@@ -12,6 +12,7 @@ import SideBar from "./components/SideBar";
 import ListItems from "./pages/ListItems";
 import NewItem from "./pages/NewItem";
 import UpdateItem from "./pages/UpdateItem";
+import BusinessList from "./components/Businesses/BusinessList";
 
 const App = () => {
   let routes;
@@ -29,6 +30,9 @@ const App = () => {
       </Route>
       <Route path="/items/:id" exact>
         <UpdateItem />
+      </Route>
+      <Route path="/business-list" exact>
+        <BusinessList />
       </Route>
       <Redirect to="/" />
     </Switch>

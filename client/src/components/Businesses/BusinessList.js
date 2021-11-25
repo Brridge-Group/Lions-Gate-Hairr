@@ -64,13 +64,13 @@ const BusinessList = () => {
             </div>
           </div>
           {list.map((business) => (
-            <div className="card card-primary card-outline" key={business.id}>
+            <Card className="card card-primary card-outline" key={business.id}>
               <div className="card-body">
                 <h5 className="class-title">{business.name}</h5>
                 <p className="card-text">{business.desc}</p>
                 <p className="card-text">{business.address}</p>
               </div>
-            </div>
+            </Card>
           ))}
         </div>
       </React.Fragment>

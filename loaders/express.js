@@ -4,15 +4,16 @@ const generatePassword = require("password-generator");
 const cors = require("cors");
 
 const itemsRoutes = require("../routes/items-route");
+const usersRoutes = require("../routes/users");
 
 const loader = async (app) => {
-
   app.use(express.json());
 
   // Serve static files from the React app
   app.use(express.static(path.join(__dirname, "../client/build")));
 
   app.use("/api/items", itemsRoutes);
+  app.use("/api/users", usersRoutes);
 
   // The "catchall" handler: for any request that doesn't
   // match one above, send back React's index.html file.

@@ -14,7 +14,7 @@ import useStyles from "../components/Styles";
 import Input from "../components/Input";
 import { signup } from "../actions/auth";
 
-const Auth = () => {
+const UserRegistration = () => {
   const classes = useStyles();
   const [formData, setFormData] = useState({ role: "user" });
   const [showPassword, setShowPassword] = useState(false);
@@ -88,7 +88,7 @@ const Auth = () => {
               name="role"
               value="user"
               onChange={handleChange}
-              checked={formData.role == "user"}
+              checked={formData.role === "user"}
             />
             <br />
             <label>Owner</label>
@@ -97,7 +97,7 @@ const Auth = () => {
               name="role"
               value="owner"
               onChange={handleChange}
-              checked={formData.role == "owner"}
+              checked={formData.role === "owner"}
             />
           </div>
           <Button
@@ -115,4 +115,4 @@ const Auth = () => {
   );
 };
 
-export default Auth;
+export default UserRegistration;

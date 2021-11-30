@@ -34,84 +34,88 @@ const UserRegistration = () => {
     setShowPassword((prevShowPassword) => !prevShowPassword);
 
   return (
-    <Container component="main" maxWidth="xs">
-      <Paper className={classes.paper} elevation={3}>
-        <Avatar className={classes.avatar}>
-          <LockOutlinedIcon />
-        </Avatar>
-        <Typography variant="h5">Sign Up</Typography>
-        <form className={classes.form} onSubmit={handleSubmit}>
-          <Grid container spacing={2}>
-            <>
+    <div className="content-wrapper">
+      <Container component="main" maxWidth="xs">
+        <Paper className={classes.paper} elevation={3}>
+          <Avatar className={classes.avatar}>
+            <LockOutlinedIcon />
+          </Avatar>
+          <Typography variant="h5">Sign Up</Typography>
+          <form className={classes.form} onSubmit={handleSubmit}>
+            <Grid container spacing={2}>
+              <>
+                <Input
+                  name="firstName"
+                  label="First Name"
+                  handleChange={handleChange}
+                  autoFocus
+                  half
+                />
+                <Input
+                  name="lastName"
+                  label="Last Name"
+                  handleChange={handleChange}
+                  half
+                />
+              </>
               <Input
-                name="firstName"
-                label="First Name"
+                name="email"
+                label="Email Address"
                 handleChange={handleChange}
-                autoFocus
-                half
+                type="email"
               />
               <Input
-                name="lastName"
-                label="Last Name"
+                name="password"
+                label="Password"
                 handleChange={handleChange}
-                half
+                type={showPassword ? "text" : "password"}
+                handleShowPassword={handleShowPasswordClicked}
               />
-            </>
-            <Input
-              name="email"
-              label="Email Address"
-              handleChange={handleChange}
-              type="email"
-            />
-            <Input
-              name="password"
-              label="Password"
-              handleChange={handleChange}
-              type={showPassword ? "text" : "password"}
-              handleShowPassword={handleShowPasswordClicked}
-            />
-            <Input
-              name="confirmPassword"
-              label="Confirm Password"
-              handleChange={handleChange}
-              type="password"
-            />
-          </Grid>
-          <br />
-          <p>
-            <b>Are you a:</b>
-          </p>
-          <div>
-            <label>User</label>
-            <input
-              type="radio"
-              name="role"
-              value="user"
-              onChange={handleChange}
-              checked={formData.role === "user"}
-            />
+              <Input
+                name="confirmPassword"
+                label="Confirm Password"
+                handleChange={handleChange}
+                type="password"
+              />
+            </Grid>
             <br />
-            <label>Owner</label>
-            <input
-              type="radio"
-              name="role"
-              value="owner"
-              onChange={handleChange}
-              checked={formData.role === "owner"}
-            />
-          </div>
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-            className={classes.submit}
-          >
-            Sign Up
-          </Button>
-        </form>
-      </Paper>
-    </Container>
+            <p>
+              <b>Are you a:</b>
+            </p>
+            <div>
+              <label>User</label>
+              &ensp;
+              <input
+                type="radio"
+                name="role"
+                value="user"
+                onChange={handleChange}
+                checked={formData.role === "user"}
+              />
+              <br />
+              <label>Business Owner</label>
+              &ensp;
+              <input
+                type="radio"
+                name="role"
+                value="owner"
+                onChange={handleChange}
+                checked={formData.role === "owner"}
+              />
+            </div>
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              color="primary"
+              className={classes.submit}
+            >
+              Sign Up
+            </Button>
+          </form>
+        </Paper>
+      </Container>
+    </div>
   );
 };
 

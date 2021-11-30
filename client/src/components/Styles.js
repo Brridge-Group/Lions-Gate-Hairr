@@ -23,15 +23,5 @@ export default makeStyles((theme) => ({
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
-  },
-    fileInput: {
-    width: '97%',
-    margin: '10px 10px',
-  },
-  profilePic: {
-    margin: '10px 10px',
-    fontWeight: 700,
-    color: "#4B4A4A",
-    fontSize: "1.1rem"
   }
 }));

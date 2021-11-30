@@ -9,41 +9,21 @@ import {
   Typography,
   Container,
 } from "@material-ui/core";
-import FileBase from "react-file-base64";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
-
 import useStyles from "../components/Styles";
 import Input from "../components/Input";
-import * as api from "../api/index";
-
-const AUTH = "AUTH";
-
-const initialState = {
-  firstName: "",
-  lastName: "",
-  email: "",
-  password: "",
-  confirmPassword: "",
-  role: "",
-};
+import { signup } from "../actions/auth";
 
 const Auth = () => {
   const classes = useStyles();
-  const [formData, setFormData] = useState(initialState);
+  const [formData, setFormData] = useState({ role: "user" });
   const [showPassword, setShowPassword] = useState(false);
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    try {
-      // sign up the user
-      const { data } = await api.signUp(formData);
-      dispatch({ type: AUTH, data });
-      history.push("/");
-    } catch (err) {
-      console.log(err);
-    }
+    dispatch(signup(formData, history));
   };
 
   const handleChange = (e) => {
@@ -96,25 +76,30 @@ const Auth = () => {
               handleChange={handleChange}
               type="password"
             />
-             <Input
-                name="role"
-                label="Role"
-                handleChange={handleChange}
-                half
-              />
-            <Typography variant="label" className={classes.profilePic}>
-              Profile Picture
-            </Typography>
-            <div className={classes.fileInput}>
-              <FileBase
-                type="file"
-                multiple={false}
-                onDone={({ base64 }) =>
-                  setFormData({ ...formData, profilePicture: base64 })
-                }
-              />
-            </div>
           </Grid>
+          <br />
+          <p>
+            <b>Are you a:</b>
+          </p>
+          <div>
+            <label>User</label>
+            <input
+              type="radio"
+              name="role"
+              value="user"
+              onChange={handleChange}
+              checked={formData.role == "user"}
+            />
+            <br />
+            <label>Owner</label>
+            <input
+              type="radio"
+              name="role"
+              value="owner"
+              onChange={handleChange}
+              checked={formData.role == "owner"}
+            />
+          </div>
           <Button
             type="submit"
             fullWidth
@@ -124,9 +109,6 @@ const Auth = () => {
           >
             Sign Up
           </Button>
-          <p>
-            Have an account? <a href="login">Click Here</a> to Login.
-          </p>
         </form>
       </Paper>
     </Container>

@@ -8,6 +8,4 @@ let userController = require("../controllers/user");
 // @access Public
 router.post("/signup", userController.signup);
 
-router.get("/getProfile", userController.getProfileById);
-
 module.exports = router;

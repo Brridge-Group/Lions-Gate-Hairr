@@ -1,22 +1,21 @@
-const express = require("express");
-const path = require("path");
-const generatePassword = require("password-generator");
-const cors = require("cors");
+import express, { Request, Response} from 'express'
+import path from 'path'
+import cors from 'cors'
 
-const itemsRoutes = require("../routes/items-route");
+import itemsRoutes from '../routes/items-route'
 
-const loader = async (app) => {
+const expressLoader = async (app: express.Application)=>{
 
   app.use(express.json());
 
-  // Serve static files from the React app
+  // server static files from the React app
   app.use(express.static(path.join(__dirname, "../client/build")));
 
   app.use("/api/items", itemsRoutes);
 
   // The "catchall" handler: for any request that doesn't
   // match one above, send back React's index.html file.
-  app.get("*", (req, res) => {
+  app.get("*", (req: Request, res: Response) => {
     console.log(__dirname);
     res.sendFile(path.join(__dirname, "../client/build/index.html"));
   });
@@ -27,6 +26,7 @@ const loader = async (app) => {
   // ...More middlewares
 
   return app;
+
 };
 
-module.exports = loader;
+export default expressLoader;

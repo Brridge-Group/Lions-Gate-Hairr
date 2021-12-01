@@ -12,7 +12,6 @@ import SideBar from "./components/SideBar";
 import ListItems from "./pages/ListItems";
 import NewItem from "./pages/NewItem";
 import UpdateItem from "./pages/UpdateItem";
-import UserRegistration from "./pages/UserRegistration";
 
 const App = () => {
   let routes;
@@ -30,9 +29,6 @@ const App = () => {
       </Route>
       <Route path="/items/:id" exact>
         <UpdateItem />
-      </Route>
-      <Route path="/user-signup" exact>
-        <UserRegistration />
       </Route>
       <Redirect to="/" />
     </Switch>

@@ -13,6 +13,7 @@ import ListItems from "./pages/ListItems";
 import NewItem from "./pages/NewItem";
 import UpdateItem from "./pages/UpdateItem";
 import UserRegistration from "./pages/UserRegistration";
+import BusinessList from "./components/Businesses/BusinessList";
 
 const App = () => {
   let routes;
@@ -33,6 +34,9 @@ const App = () => {
       </Route>
       <Route path="/user-signup" exact>
         <UserRegistration />
+      </Route>
+      <Route path="/business-list" exact>
+        <BusinessList />
       </Route>
       <Redirect to="/" />
     </Switch>

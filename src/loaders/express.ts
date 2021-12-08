@@ -11,8 +11,6 @@ const expressLoader = async (app: express.Application)=>{
   // server static files from the React app
   app.use(express.static(path.join(__dirname, "../client/build")));
 
-  app.use("/api/items", itemsRoutes);
-
   // The "catchall" handler: for any request that doesn't
   // match one above, send back React's index.html file.
   app.get("*", (req: Request, res: Response) => {
@@ -21,7 +19,10 @@ const expressLoader = async (app: express.Application)=>{
   });
 
   app.enable("trust proxy");
-  app.use(cors());
+  app.use(cors(corsOptions));
+
+  app.use("/api/items", itemsRoutes);
+  app.use("/api/users", usersRoutes);
 
   // ...More middlewares
 

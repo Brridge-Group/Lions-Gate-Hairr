@@ -50,12 +50,6 @@ const SideBar = () => {
                   <p>Items</p>
                 </NavLink>
               </li>
-              <li className="nav-item">
-                <NavLink to="/business-list" exact className="nav-link">
-                  <i className="nav-icon fas fa-list"></i>
-                  <p>Business List</p>
-                </NavLink>
-              </li>
             </ul>
           </nav>
         </div>

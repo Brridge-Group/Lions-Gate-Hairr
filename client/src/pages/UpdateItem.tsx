@@ -4,16 +4,17 @@ import { useHistory } from "react-router-dom";
 import ContentHeader from "../components/ContentHeader";
 import { Link } from "react-router-dom";
 
+
 const UpdateItem = () => {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
-  const itemId = useParams().id;
+  const {id} = useParams<{id: string}>();
   const history = useHistory();
 
   useEffect(() => {
     const fetchItem = async () => {
       try {
-        const response = await fetch(`/api/items/${itemId}`, { method: "GET" });
+        const response = await fetch(`/api/items/${id}`, { method: "GET" });
         const responseData = await response.json();
 
         if (!response.ok) {
@@ -28,13 +29,13 @@ const UpdateItem = () => {
     };
 
     fetchItem();
-  }, [itemId]);
+  }, [id]);
 
-  const itemUpdateSubmitHandler = async (event) => {
+  const itemUpdateSubmitHandler = async (event: any) => {
     event.preventDefault();
 
     try {
-      const response = await fetch(`/api/items/${itemId}`, {
+      const response = await fetch(`/api/items/${id}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",

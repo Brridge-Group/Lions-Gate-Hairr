@@ -12,6 +12,8 @@ import SideBar from "./components/SideBar";
 import ListItems from "./pages/ListItems";
 import NewItem from "./pages/NewItem";
 import UpdateItem from "./pages/UpdateItem";
+import UserRegistration from "./pages/UserRegistration";
+import BusinessList from "./components/Businesses/BusinessList";
 import BusinessDetails from "./components/BusinessDetails/BusinessDetails";
 
 const App = () => {
@@ -30,6 +32,12 @@ const App = () => {
       </Route>
       <Route path="/items/:id" exact>
         <UpdateItem />
+      </Route>
+      <Route path="/user-signup" exact>
+        <UserRegistration />
+      </Route>
+      <Route path="/businesses" exact>
+        <BusinessList />
       </Route>
       <Route path="/businesses/:id" exact>
         <BusinessDetails />

@@ -33,7 +33,7 @@ const App = () => {
       <Route path="/items/:id" exact>
         <UpdateItem />
       </Route>
-      <Route path="/user-signup" exact>
+      <Route path="/register" exact>
         <UserRegistration />
       </Route>
       <Route path="/businesses" exact>

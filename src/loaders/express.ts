@@ -1,8 +1,9 @@
 import express, { Request, Response} from 'express'
 import path from 'path'
-import cors from 'cors'
+import cors from "cors";
 
 import itemsRoutes from '../routes/items-route'
+import businessRoutes from "../routes/business-routes";
 
 const expressLoader = async (app: express.Application)=>{
 
@@ -12,6 +13,8 @@ const expressLoader = async (app: express.Application)=>{
   app.use(express.static(path.join(__dirname, "../client/build")));
 
   app.use("/api/items", itemsRoutes);
+
+  app.use("/api/businesses", businessRoutes)
 
   // The "catchall" handler: for any request that doesn't
   // match one above, send back React's index.html file.

@@ -1,11 +1,10 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 const Router = require("express");
-const itemsController = require('../controllers/items.controller')
-
-const router = Router()
-
+const itemsController = require('../controllers/items.controller');
+const router = Router();
 // Get All Items
-router.get('/', itemsController.getItems)
-
+router.get('/', itemsController.getItems);
 /* // Get an Item
 router.get('/:id', itemsController.getItem)
 
@@ -17,5 +16,4 @@ router.patch('/:id', itemsController.updateItem)
 
 //Delete item
 router.delete('/:id', itemsController.deleteItem) */
-
-export default router
+exports.default = router;

@@ -12,19 +12,15 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const express_1 = __importDefault(require("express"));
-const config_1 = __importDefault(require("./config"));
-const index_1 = __importDefault(require("./loaders/index"));
-const startServer = () => __awaiter(void 0, void 0, void 0, function* () {
-    const app = (0, express_1.default)();
-    yield (0, index_1.default)(app);
-    const port = config_1.default.port || 5000;
-    try {
-        app.listen(port);
-        console.log(`Your server is ready! Listening at port ${5000}!`);
-    }
-    catch (error) {
-        console.log("Error on ./index.ts ", error);
-    }
+const express_1 = __importDefault(require("./express"));
+const mongoose_1 = __importDefault(require("./mongoose"));
+const indexLoader = (expressApp) => __awaiter(void 0, void 0, void 0, function* () {
+    const mongoConnection = yield (0, mongoose_1.default)();
+    console.log("MongoDB Initialized");
+    yield (0, express_1.default)(expressApp);
+    console.log("Express Initialized");
+    // ... more loaders can be here
+    // ... Initialize agenda
+    // ... or Redis, or whatever you want
 });
-startServer();
+exports.default = indexLoader;

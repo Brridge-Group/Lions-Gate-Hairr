@@ -7,7 +7,7 @@ interface Props {
   address: {
     street: string;
     city: string;
-    province: string;
+    region: string;
     postalCode: string;
   };
 }
@@ -26,7 +26,7 @@ const About = (props: Props) => {
         </div>
         <div className="address">
           <p>{props.address.street}</p>
-          <p>{props.address.city}, {props.address.province}</p>
+          <p>{props.address.city}, {props.address.region}</p>
           <p>{props.address.postalCode}</p>
         </div>
       </Content>

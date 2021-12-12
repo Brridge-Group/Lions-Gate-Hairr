@@ -9,11 +9,6 @@ const businessAddressSchema = new Schema({
     required: true,
     max: 100,
   },
-  number: {
-    type: Number,
-    required: true,
-    max: 100,
-  },
   postalCode: {
     type: String,
     required: true,

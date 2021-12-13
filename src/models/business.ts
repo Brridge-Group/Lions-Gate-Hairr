@@ -14,6 +14,11 @@ const businessAddressSchema = new Schema({
     required: true,
     max: 6,
   },
+  city: {
+    type: String,
+    required: true,
+    max: 100,
+  },
   region: {
     type: String,
     required: true,
@@ -31,11 +36,19 @@ const businessSchema = new Schema({
   description: String,
   image: String,
   address: businessAddressSchema,
+  services: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Service"
+    }
+  ],
   stars: Number,
   phone: String,
 });
 
-export const Business = mongoose.model("Business", businessSchema);
+const Business = mongoose.model("Business", businessSchema);
+
+export default Business;
 
 // const businessDetailSchema = new Schema({
 //   name: { type: String, required: true },

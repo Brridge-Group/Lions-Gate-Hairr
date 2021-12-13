@@ -7,7 +7,7 @@ import Book from "../Book";
 import Review from "../Review";
 
 interface RouteParams {
-  id: string
+  id: string;
 }
 
 interface Business {
@@ -28,6 +28,7 @@ const BusinessPage = () => {
   const [businessData, setBusinessData] = useState<Business>();
   let { id } = useParams<RouteParams>();
 
+  // FETCHES BUSINESS DATA FROM REMOTE DATABSE ONCE AND SETS BUSINESSDATA STATE TO IT.
   useEffect(() => {
     const getBusinessData = async () => {
       const res = await fetch(`http://localhost:5000/api/businesses/${id}`);
@@ -37,6 +38,8 @@ const BusinessPage = () => {
     getBusinessData();
   }, []);
 
+  // CHECKS IF THE BUSINESSDATA STATE HAS VALUE. RENDERS THE BUSINESS PAGE IF IT DOES AND SETS A LOADING SCREEN IF IT DOESN'T.
+  // THE FIRST RENDER WON'T HAVE DATA, SINCE USEEFFECT, WHICH GIVES THE STATE IT'S VALUE, RUNS AFTER THE FIRST RENDER.
   return (
     <div className="content-wrapper">
       <Header>

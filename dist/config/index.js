@@ -5,6 +5,6 @@ const dotenv = require("dotenv");
 dotenv.config();
 const config = {
     port: process.env.PORT,
-    databaseURL: process.env.MONGODB_URI || process.env.LOCAL_DB_URL,
+    databaseURL: process.env.MONGODB_URI || "mongodb://localhost:27017/hairr",
 };
 exports.default = config;

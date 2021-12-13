@@ -4,9 +4,9 @@ import cors from "cors";
 
 import itemsRoutes from '../routes/items-route'
 import businessRoutes from "../routes/business-routes";
+import serviceRoutes from "../routes/service-routes";
 
 const expressLoader = async (app: express.Application)=>{
-
   app.use(express.json());
 
   // server static files from the React app
@@ -14,7 +14,9 @@ const expressLoader = async (app: express.Application)=>{
 
   app.use("/api/items", itemsRoutes);
 
-  app.use("/api/businesses", businessRoutes)
+  app.use("/api/businesses", businessRoutes);
+
+  app.use("/api/services", serviceRoutes);
 
   // The "catchall" handler: for any request that doesn't
   // match one above, send back React's index.html file.

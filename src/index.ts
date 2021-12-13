@@ -11,7 +11,7 @@ const startServer = async () => {
 
   try {
     app.listen(port);
-    console.log(`Your server is ready! Listening at port ${5000}!`);
+    console.log(`Your server is ready!`);
   } catch (error) {
     console.log("Error on ./index.ts ", error);
   }

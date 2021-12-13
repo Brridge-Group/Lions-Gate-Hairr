@@ -44,6 +44,8 @@ const seedServices = async (): Promise<void> => {
     await serviceDocument.save();
   }
 
+  console.log(await Service.find({}));
+
   // SHOWS SERVICES IN SERVICE COLLECTION.
   // const serviceCollectionArray = await Service.find({});
   // console.log(serviceCollectionArray);

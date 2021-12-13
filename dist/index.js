@@ -21,7 +21,7 @@ const startServer = () => __awaiter(void 0, void 0, void 0, function* () {
     const port = config_1.default.port || 5000;
     try {
         app.listen(port);
-        console.log(`Your server is ready! Listening at port ${5000}!`);
+        console.log(`Your server is ready!`);
     }
     catch (error) {
         console.log("Error on ./index.ts ", error);

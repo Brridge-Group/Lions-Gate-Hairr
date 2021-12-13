@@ -2,8 +2,8 @@ import mongoose from "mongoose";
 const Schema = mongoose.Schema;
 
 import config from "../config";
-import Business from "../models/business";
 import Service from "../models/service";
+import Business from "../models/business";
 
 const businesses = [
   {
@@ -59,13 +59,14 @@ const seedBusinesses = async (): Promise<void> => {
   }
 
   // SHOWS BUSINESSES IN BUSINESS COLLECTION.
-  // const businessesCollectionArray = await Business.find({});
-  // console.log(businessesCollectionArray);
+  const businessesCollectionArray = await Business.find({});
+  console.log(businessesCollectionArray);
 };
 
 seedBusinesses()
   .then(() => {
     console.log("Businesses seeding successful!");
+    mongoose.connection.close();
   })
   .catch((err) => {
     console.log("Businesses seeding failed!");

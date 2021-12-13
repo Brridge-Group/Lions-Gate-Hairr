@@ -8,11 +8,16 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.showBusiness = void 0;
+const business_1 = __importDefault(require("../models/business"));
 const showBusiness = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    // const { id } = req.params;
-    // const business = await Business.findById(id);
-    res.json({ test: "test" });
+    const { id } = req.params;
+    const business = yield business_1.default.findById(id).populate("services");
+    res.set("Access-Control-Allow-Origin", "http://localhost:3000");
+    res.send(business);
 });
 exports.showBusiness = showBusiness;

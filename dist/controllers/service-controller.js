@@ -12,10 +12,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const mongoose = require("mongoose");
-const config_1 = __importDefault(require("../config"));
-const mongooseLoader = () => __awaiter(void 0, void 0, void 0, function* () {
-    const connection = yield mongoose.connect(config_1.default.databaseURL);
-    return connection.connection.db;
+exports.indexServices = void 0;
+const service_1 = __importDefault(require("../models/service"));
+const indexServices = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const services = yield service_1.default.find({});
+    res.set("Access-Control-Allow-Origin", "http://localhost:3000");
+    res.send(services);
 });
-exports.default = mongooseLoader;
+exports.indexServices = indexServices;

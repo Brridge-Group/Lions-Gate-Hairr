@@ -1,9 +1,9 @@
 import express from "express";
 const router = express.Router({mergeParams: true});
 
-import { showBusiness } from "../controllers/business-controller";
+import { indexServices } from "../controllers/service-controller";
 
 router.route("/:id")
-  .get(showBusiness)
+  .get(indexServices)
 
 export default router;

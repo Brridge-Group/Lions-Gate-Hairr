@@ -33,6 +33,7 @@ const BusinessPage = () => {
     const getBusinessData = async () => {
       const res = await fetch(`http://localhost:5000/api/businesses/${id}`);
       const businessData = await res.json();
+      console.log(businessData);
       setBusinessData(businessData);
     };
     getBusinessData();

@@ -10,7 +10,8 @@
     "mongoose": "^6.1.1"
   },
   "scripts": {
-    "start": "npm run build && node dist/index.js",
+    "start": "node dist/index.js",
+    "postinstall": "tsc -p .",
     "dev": "nodemon src/index.ts",
     "build": "tsc -p .",
     "heroku-postbuild": "cd client && npm install && npm run build",
@@ -30,7 +31,6 @@
   "devDependencies": {
     "@types/cors": "^2.8.12",
     "@types/express": "^4.17.13",
-    "@types/mongoose": "^5.11.97",
     "@types/node": "^16.11.12",
     "nodemon": "^2.0.15",
     "ts-node": "^10.4.0",

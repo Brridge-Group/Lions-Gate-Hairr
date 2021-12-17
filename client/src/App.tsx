@@ -12,6 +12,9 @@ import SideBar from "./components/SideBar";
 import ListItems from "./pages/ListItems";
 import NewItem from "./pages/NewItem";
 import UpdateItem from "./pages/UpdateItem";
+import UserRegistration from "./pages/UserRegistration";
+import BusinessList from "./components/Businesses/BusinessList";
+import BusinessDetails from "./components/BusinessDetails/BusinessDetails";
 
 const App = () => {
   let routes;
@@ -29,6 +32,15 @@ const App = () => {
       </Route>
       <Route path="/items/:id" exact>
         <UpdateItem />
+      </Route>
+      <Route path="/register" exact>
+        <UserRegistration />
+      </Route>
+      <Route path="/businesses" exact>
+        <BusinessList />
+      </Route>
+      <Route path="/businesses/:id" exact>
+        <BusinessDetails />
       </Route>
       <Redirect to="/" />
     </Switch>

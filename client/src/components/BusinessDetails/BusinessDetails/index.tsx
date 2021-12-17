@@ -1,13 +1,24 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
-import { Header } from "./BusinessDetailsPageElements";
+import { Header, ContentWrapper, HR } from "./BusinessDetailsPageElements";
 import About from "../About";
+import ServicesAndFeatures from "../ServicesAndFeatures";
 import Book from "../Book";
 import Review from "../Review";
 
 interface RouteParams {
   id: string;
+}
+
+interface Service {
+  _id: string;
+  name: string;
+}
+
+interface Feature {
+  _id: string;
+  name: string;
 }
 
 interface Business {
@@ -20,20 +31,21 @@ interface Business {
     region: string;
     postalCode: string;
   };
+  services: Service[];
+  features: Feature[];
   stars: number;
   phone: string;
 }
 
-const BusinessPage = () => {
+const BusinessDetails = () => {
   const [businessData, setBusinessData] = useState<Business>();
-  let { id } = useParams<RouteParams>();
+  const { id } = useParams<RouteParams>();
 
   // FETCHES BUSINESS DATA FROM REMOTE DATABSE ONCE AND SETS BUSINESSDATA STATE TO IT.
   useEffect(() => {
     const getBusinessData = async () => {
-      const res = await fetch(`http://localhost:5000/api/businesses/${id}`);
+      const res = await fetch(`/api/businesses/${id}`);
       const businessData = await res.json();
-      console.log(businessData);
       setBusinessData(businessData);
     };
     getBusinessData();
@@ -43,27 +55,32 @@ const BusinessPage = () => {
   // THE FIRST RENDER WON'T HAVE DATA, SINCE USEEFFECT, WHICH GIVES THE STATE IT'S VALUE, RUNS AFTER THE FIRST RENDER.
   return (
     <div className="content-wrapper">
+      <ContentWrapper>
       <Header>
-        <div className="content">
           <h1>Business Details</h1>
-        </div>
       </Header>
-      {businessData ? (
-        <React.Fragment>
-          <About
-            name={businessData.name}
-            description={businessData.description}
-            image={businessData.image}
-            address={businessData.address}
-          />
-          <Review stars={businessData.stars} />
-          <Book phone={businessData.phone} />
-        </React.Fragment>
-      ) : (
-        <p>Loading...</p>
-      )}
+      <HR />
+        {businessData ? (
+          <React.Fragment>
+            <About
+              name={businessData.name}
+              description={businessData.description}
+              image={businessData.image}
+              address={businessData.address}
+            />
+            <Review id={id} stars={businessData.stars} />
+            <ServicesAndFeatures
+              services={businessData.services}
+              features={businessData.features}
+            />
+            <Book phone={businessData.phone} />
+          </React.Fragment>
+        ) : (
+          <p>Loading...</p>
+        )}
+      </ContentWrapper>
     </div>
   );
 };
 
-export default BusinessPage;
+export default BusinessDetails;

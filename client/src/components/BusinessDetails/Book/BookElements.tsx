@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const PhoneContainer = styled.div`
   width: 10rem;
   height: 4rem;
-  margin: 4rem auto 0 auto;
+  margin: 4rem auto 1.6rem auto;
   display: flex;
   justify-content: center;
   align-items: center;

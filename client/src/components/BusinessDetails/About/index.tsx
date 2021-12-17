@@ -1,4 +1,4 @@
-import { Container, Content } from "./AboutElements";
+import { Container } from "./AboutElements";
 
 interface Props {
   name: string;
@@ -15,7 +15,6 @@ interface Props {
 const About = (props: Props) => {
   return (
     <Container>
-      <Content>
         <img
           src={props.image}
           alt="Hair salon."
@@ -29,7 +28,6 @@ const About = (props: Props) => {
           <p>{props.address.city}, {props.address.region}</p>
           <p>{props.address.postalCode}</p>
         </div>
-      </Content>
     </Container>
   );
 };

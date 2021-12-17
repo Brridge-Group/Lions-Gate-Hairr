@@ -10,6 +10,8 @@ interface Props {
 const Book = (props: Props) => {
   const [showPhoneNumber, setShowPhoneNumber] = useState(false);
 
+  const phoneNumber = `(${props.phone.slice(0,3)}) ${props.phone.slice(3,6)}-${props.phone.slice(6)}`;
+
   const phoneNumberButtonClickHandler = (): void => {
     setShowPhoneNumber(true);
   };
@@ -22,7 +24,7 @@ const Book = (props: Props) => {
   );
 
   return <PhoneContainer>
-    {showPhoneNumber ? <p>{props.phone}</p> : BookButton}
+    {showPhoneNumber ? <p>{phoneNumber}</p> : BookButton}
   </PhoneContainer>;
 };
 

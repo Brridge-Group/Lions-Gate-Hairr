@@ -1,13 +1,14 @@
-import express, { Request, Response} from 'express'
-import path from 'path'
+import express, { Request, Response } from "express";
+import path from "path";
 import cors from "cors";
 
-import itemsRoutes from '../routes/items-route'
+import itemsRoutes from "../routes/items-route";
 import businessRoutes from "../routes/business-routes";
 import serviceRoutes from "../routes/service-routes";
 import featureRoutes from "../routes/feature-routes";
+import userRoutes from "../routes/user-routes";
 
-const expressLoader = async (app: express.Application)=>{
+const expressLoader = async (app: express.Application) => {
   app.use(express.json());
 
   // server static files from the React app
@@ -32,10 +33,11 @@ const expressLoader = async (app: express.Application)=>{
   app.enable("trust proxy");
   app.use(cors());
 
+  app.use("/api/users", userRoutes);
+
   // ...More middlewares
 
   return app;
-
 };
 
 export default expressLoader;

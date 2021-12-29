@@ -1,10 +1,37 @@
+import { Request, Response } from "express";
 let bcrypt = require("bcryptjs");
 let jwt = require("jsonwebtoken");
 let StatusCodes = require("http-status-codes");
 
-let User = require("../models/user");
+let User = require("../models/users");
 
-module.exports.signup = async (req, res) => {
+module.exports.signin = async (req: Request, res: Response) => {
+  const { email, password } = req.body
+  try {
+    const existingUser = await User.findOne({ email })
+    if (!existingUser)
+      return res.status(StatusCodes.NOT_FOUND).send("User doesn't exists!")
+
+    const isPasswordCorrect = await bcrypt.compare(
+      password,
+      existingUser.password
+    )
+
+    if (!isPasswordCorrect)
+      return res.status(StatusCodes.BAD_REQUEST).send('Invalid password!')
+    const token = jwt.sign(
+      { email: existingUser.email, id: existingUser._id },
+      'jwtSecret',
+      { expiresIn: '12h' }
+    )
+    res.status(200).json({ result: existingUser, token })
+  } catch (err) {
+    console.log(err)
+    res.status(StatusCodes.INTERNAL_SERVER_ERROR).send('Something went wrong.')
+  }
+}
+
+module.exports.signup = async (req: Request, res: Response) => {
   const { email, password, confirmPassword, firstName, lastName, role } =
     req.body;
 

@@ -28,7 +28,7 @@ const Login = () => {
   const history = useHistory();
   const [errorMsg, setErrorMsg] = useState("");
   const login =
-    (formData: any, history: any, errorM?: any) => async (dispatch) => {
+    (formData: any, history: any, errorM?: any) => async (dispatch: any) => {
       try {
         // log in the user
         const { data } = await api.signIn(formData);
@@ -40,11 +40,11 @@ const Login = () => {
         setErrorMsg(errorM);
       }
     };
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
     dispatch(login(formData, history));
   };
-  const handleChange = (e) => {
+  const handleChange = (e: any) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
   const handleShowPassword = () =>
@@ -86,7 +86,7 @@ const Login = () => {
               Sign In
             </Button>
             <p>
-              Not registered? <a href="auth">Click Here</a> to register.
+              Not registered? <a href="user-signup">Click Here</a> to register.
             </p>
           </form>
         </Paper>

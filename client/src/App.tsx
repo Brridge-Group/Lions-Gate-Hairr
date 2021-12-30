@@ -34,11 +34,11 @@ const App = () => {
       <Route path="/items/:id" exact>
         <UpdateItem />
       </Route>
-      <Route path="/user-signup" exact>
-        <UserRegistration />
-      </Route>
       <Route path="/user-signin" exact>
         <Login />
+      </Route>
+      <Route path="/user-signup" exact>
+        <UserRegistration />
       </Route>
       <Route path="/businesses" exact>
         <BusinessList />

@@ -16,6 +16,7 @@ import UserRegistration from "./pages/UserRegistration";
 import Login from "./pages/Login";
 import BusinessList from "./components/Businesses/BusinessList";
 import BusinessDetails from "./components/BusinessDetails/BusinessDetails";
+import AddBusiness from "./pages/AddBusiness";
 
 const App = () => {
   let routes;
@@ -45,6 +46,9 @@ const App = () => {
       </Route>
       <Route path="/businesses/:id" exact>
         <BusinessDetails />
+      </Route>
+      <Route path="/add-business" exact>
+        <AddBusiness />
       </Route>
       <Redirect to="/" />
     </Switch>

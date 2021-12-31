@@ -16,8 +16,6 @@ const expressLoader = async (app: express.Application) => {
 
   app.use("/api/items", itemsRoutes);
 
-  app.use("/api/businesses", businessRoutes);
-
   app.use("/api/services", serviceRoutes);
 
   app.use("/api/features", featureRoutes);
@@ -34,6 +32,8 @@ const expressLoader = async (app: express.Application) => {
   app.use(cors());
 
   app.use("/api/users", userRoutes);
+
+  app.use("/api/businesses", businessRoutes);
 
   // ...More middlewares
 

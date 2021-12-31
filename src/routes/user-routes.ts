@@ -1,4 +1,4 @@
-const Router = require("express");
+import Router from "express";
 
 const router = Router();
 
@@ -10,5 +10,7 @@ let userController = require("../controllers/user-controller");
 router.post("/signup", userController.signup);
 
 router.post("/signin", userController.signin);
+
+router.get('/get-profile', userController.getProfileById)
 
 export default router;

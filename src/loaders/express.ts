@@ -11,6 +11,16 @@ import userRoutes from "../routes/user-routes";
 const expressLoader = async (app: express.Application) => {
   app.use(express.json());
 
+  app.use((req, res, next) => {
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.setHeader(
+      "Access-Control-Allow-Headers",
+      "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+    );
+    res.setHeader("Access-Control-Allow-Methods", "GET, POST, PATCH, DELETE");
+    next();
+  });
+
   // server static files from the React app
   app.use(express.static(path.join(__dirname, "../../client/build")));
 
@@ -19,6 +29,10 @@ const expressLoader = async (app: express.Application) => {
   app.use("/api/services", serviceRoutes);
 
   app.use("/api/features", featureRoutes);
+
+  app.use("/api/businesses", businessRoutes);
+
+  app.use("/api/users", userRoutes);
 
   // The "catchall" handler: for any request that doesn't
   // match one above, send back React's index.html file.
@@ -30,10 +44,6 @@ const expressLoader = async (app: express.Application) => {
 
   app.enable("trust proxy");
   app.use(cors());
-
-  app.use("/api/users", userRoutes);
-
-  app.use("/api/businesses", businessRoutes);
 
   // ...More middlewares
 

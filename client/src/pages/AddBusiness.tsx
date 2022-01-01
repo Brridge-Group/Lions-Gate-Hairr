@@ -16,8 +16,8 @@ const AddBusiness = () => {
     city: "",
     phone: "",
   });
-  const [region, setRegion] = useState();
-  const [country, setCountry] = useState();
+  const [region, setRegion] = useState("AB");
+  const [country, setCountry] = useState("Canada");
   const history = useHistory();
 
   const handleChange = (e: any) => {
@@ -129,6 +129,7 @@ const AddBusiness = () => {
                   className="form-control"
                   placeholder="Enter street address"
                   onChange={handleChange}
+                  required
                 />
               </div>
               <div className="form-group">
@@ -140,6 +141,7 @@ const AddBusiness = () => {
                   className="form-control"
                   placeholder="Enter postal code"
                   onChange={handleChange}
+                  required
                 />
               </div>
               <div className="form-group">
@@ -151,6 +153,7 @@ const AddBusiness = () => {
                   className="form-control"
                   placeholder="Enter city"
                   onChange={handleChange}
+                  required
                 />
               </div>
               <div className="form-group">

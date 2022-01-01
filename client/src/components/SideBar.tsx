@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useHistory, useLocation } from "react-router-dom";
 import decode from "jwt-decode";
+import axios from "axios";
 
 const SideBar = () => {
   const dispatch = useDispatch();
@@ -10,6 +11,36 @@ const SideBar = () => {
   const location = useLocation();
   const [user, setUser] = useState(
     JSON.parse(localStorage.getItem("profile") ?? "false")
+  );
+  const [name, setName] = useState();
+  const [role, setRole] = useState();
+
+  let content: any;
+
+  let isOwner = (
+    <li className="nav-item">
+      <a href="#" className="nav-link">
+        <i className="nav-icon fas fa-building" />
+        <p>
+          Businesses
+          <i className="fas fa-angle-left right" />
+        </p>
+      </a>
+      <ul className="nav nav-treeview">
+        <li className="nav-item">
+          <a href="/businesses" className="nav-link">
+            <i className="far fa-circle nav-icon" />
+            <p>List of Businesses</p>
+          </a>
+        </li>
+        <li className="nav-item">
+          <a href="/add-business" className="nav-link">
+            <i className="far fa-circle nav-icon" />
+            <p>Add Business</p>
+          </a>
+        </li>
+      </ul>
+    </li>
   );
 
   useEffect(() => {
@@ -27,6 +58,33 @@ const SideBar = () => {
     history.push("/");
     setUser(null);
   };
+
+  if (user) {
+    const fetchData = async () => {
+      await axios
+        .get(
+          "http://localhost:5000/api/users" +
+            `/get-profile/?id=${user.result._id}`
+        )
+        .then(async (res) => {
+          setName(res.data.name);
+          setRole(res.data.role);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+
+      /*if (role === "owner") {
+          console.log("is owner");
+        } else if (role === "user") {
+          console.log("is regular user");
+        }*/
+    };
+    fetchData();
+  }
+
+  if (role === "owner") content = isOwner;
+  
   return (
     <React.Fragment>
       <aside className="main-sidebar sidebar-dark-primary elevation-4">
@@ -53,7 +111,7 @@ const SideBar = () => {
                 </div>
                 <div className="info">
                   <a href="#" className="d-block">
-                    {user.result.name}
+                    {name} ({role})
                   </a>
                 </div>
               </>
@@ -74,7 +132,6 @@ const SideBar = () => {
               </>
             )}
           </div>
-
           <nav className="mt-2">
             <ul
               className="nav nav-pills nav-sidebar flex-column"
@@ -88,33 +145,7 @@ const SideBar = () => {
                   <p>Home</p>
                 </NavLink>
               </li>
-              {user && (
-                <>
-                  <li className="nav-item">
-                    <a href="#" className="nav-link">
-                      <i className="nav-icon fas fa-building" />
-                      <p>
-                        Businesses
-                        <i className="fas fa-angle-left right" />
-                      </p>
-                    </a>
-                    <ul className="nav nav-treeview">
-                      <li className="nav-item">
-                        <a href="/businesses" className="nav-link">
-                          <i className="far fa-circle nav-icon" />
-                          <p>List of Businesses</p>
-                        </a>
-                      </li>
-                      <li className="nav-item">
-                        <a href="/add-business" className="nav-link">
-                          <i className="far fa-circle nav-icon" />
-                          <p>Add Business</p>
-                        </a>
-                      </li>
-                    </ul>
-                  </li>
-                </>
-              )}
+              {user && <>{content}</>}
               <li className="nav-item">
                 <NavLink to="/items" className="nav-link">
                   <i className="nav-icon fas fa-list"></i>

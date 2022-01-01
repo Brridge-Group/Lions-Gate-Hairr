@@ -38,7 +38,7 @@ export const states: string[] = [
   "LA",
   "MA",
   "MD",
-  "ME",
+  "MP",
   "MI",
   "MN",
   "MO",

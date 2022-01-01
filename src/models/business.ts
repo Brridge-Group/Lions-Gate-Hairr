@@ -50,6 +50,7 @@ const businessSchema = new Schema({
   ],
   stars: Number,
   phone: String,
+  ownerId: String,
 });
 
 const Business = mongoose.model("Business", businessSchema);

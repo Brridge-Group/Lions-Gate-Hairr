@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import ContentHeader from "../components/ContentHeader";
 import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
 import { regions } from "../constants/regions";
@@ -19,6 +18,8 @@ const AddBusiness = () => {
   const [region, setRegion] = useState("AB");
   const [country, setCountry] = useState("Canada");
   const history = useHistory();
+  const ownerId = JSON.parse(localStorage.getItem("profile") ?? "false").result
+    ._id;
 
   const handleChange = (e: any) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -46,7 +47,9 @@ const AddBusiness = () => {
         region: region,
         country: country,
       },
+      stars: 5,
       phone: formData.phone,
+      ownerId: ownerId,
     };
 
     axios

@@ -73,18 +73,12 @@ const SideBar = () => {
         .catch((error) => {
           console.log(error);
         });
-
-      /*if (role === "owner") {
-          console.log("is owner");
-        } else if (role === "user") {
-          console.log("is regular user");
-        }*/
     };
     fetchData();
   }
 
   if (role === "owner") content = isOwner;
-  
+
   return (
     <React.Fragment>
       <aside className="main-sidebar sidebar-dark-primary elevation-4">

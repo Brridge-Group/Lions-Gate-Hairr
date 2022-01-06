@@ -1,25 +1,38 @@
-import express, { Request, Response} from 'express'
-import path from 'path'
+import express, { Request, Response } from "express";
+import path from "path";
 import cors from "cors";
 
-import itemsRoutes from '../routes/items-route'
+import itemsRoutes from "../routes/items-route";
 import businessRoutes from "../routes/business-routes";
 import serviceRoutes from "../routes/service-routes";
 import featureRoutes from "../routes/feature-routes";
+import userRoutes from "../routes/user-routes";
 
-const expressLoader = async (app: express.Application)=>{
+const expressLoader = async (app: express.Application) => {
   app.use(express.json());
+
+  app.use((req, res, next) => {
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.setHeader(
+      "Access-Control-Allow-Headers",
+      "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+    );
+    res.setHeader("Access-Control-Allow-Methods", "GET, POST, PATCH, DELETE");
+    next();
+  });
 
   // server static files from the React app
   app.use(express.static(path.join(__dirname, "../../client/build")));
 
   app.use("/api/items", itemsRoutes);
 
-  app.use("/api/businesses", businessRoutes);
-
   app.use("/api/services", serviceRoutes);
 
   app.use("/api/features", featureRoutes);
+
+  app.use("/api/businesses", businessRoutes);
+
+  app.use("/api/users", userRoutes);
 
   // The "catchall" handler: for any request that doesn't
   // match one above, send back React's index.html file.
@@ -35,7 +48,6 @@ const expressLoader = async (app: express.Application)=>{
   // ...More middlewares
 
   return app;
-
 };
 
 export default expressLoader;

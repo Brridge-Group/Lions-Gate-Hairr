@@ -3,7 +3,7 @@ const router = express.Router({mergeParams: true});
 
 import { indexServices } from "../controllers/service-controller";
 
-router.route("/:id")
+router.route("/")
   .get(indexServices)
 
 export default router;

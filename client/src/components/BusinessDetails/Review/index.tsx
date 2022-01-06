@@ -22,7 +22,7 @@ const Review = (props: Props) => {
     <Container>
       <StarsContainer>{stars}</StarsContainer>
       {isLoggedIn ? (
-        <LeaveReviewButton to={props.id + "/reviews/new"}>
+        <LeaveReviewButton to={props.id + "/add-review"}>
           Leave a Review
         </LeaveReviewButton>
       ) : null}

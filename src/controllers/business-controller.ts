@@ -59,3 +59,12 @@ export const addBusiness = async (
 
   res.status(StatusCodes.CREATED).json({ business: addedBusiness });
 };
+
+export const getAllBusinesses = async (req: Request, res: Response) => {
+  try {
+    const businessList = await Business.find().populate("services").populate("features");
+    res.send(businessList);
+  } catch (err: any) {
+    res.status(StatusCodes.INTERNAL_SERVER_ERROR).send(err.message);
+  }
+};

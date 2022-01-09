@@ -6,7 +6,7 @@ const BusinessList = () => {
   const [list, setList] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const BUSINESSES = [
+  const BUSINESSES: any = [
     {
       id: "b1",
       name: "Tiffany's Salon",
@@ -63,7 +63,7 @@ const BusinessList = () => {
               </div>
             </div>
           </div>
-          {list.map((business) => (
+          {list.map((business: any) => (
             <Card className="card card-primary card-outline" key={business.id}>
               <div className="card-body">
                 <h5 className="class-title">{business.name}</h5>

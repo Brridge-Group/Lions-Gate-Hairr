@@ -3,7 +3,7 @@ import React from "react";
 import { Container, StarsContainer, LeaveReviewButton } from "./ReviewElements";
 
 interface Props {
-  id: string;
+  id?: string;
   stars: number;
 }
 

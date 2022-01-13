@@ -13,8 +13,10 @@ import ListItems from "./pages/ListItems";
 import NewItem from "./pages/NewItem";
 import UpdateItem from "./pages/UpdateItem";
 import UserRegistration from "./pages/UserRegistration";
+import Login from "./pages/Login";
 import BusinessList from "./components/Businesses/BusinessList";
 import BusinessDetails from "./components/BusinessDetails/BusinessDetails";
+import AddBusiness from "./pages/AddBusiness";
 
 const App = () => {
   let routes;
@@ -33,7 +35,10 @@ const App = () => {
       <Route path="/items/:id" exact>
         <UpdateItem />
       </Route>
-      <Route path="/register" exact>
+      <Route path="/user-signin" exact>
+        <Login />
+      </Route>
+      <Route path="/user-signup" exact>
         <UserRegistration />
       </Route>
       <Route path="/businesses" exact>
@@ -41,6 +46,9 @@ const App = () => {
       </Route>
       <Route path="/businesses/:id" exact>
         <BusinessDetails />
+      </Route>
+      <Route path="/add-business" exact>
+        <AddBusiness />
       </Route>
       <Redirect to="/" />
     </Switch>

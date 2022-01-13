@@ -53,6 +53,7 @@ const businessSchema = new Schema({
   ],
   stars: Number,
   phone: String,
+  ownerId: String,
 });
 
 businessSchema.plugin(uniqueValidator);

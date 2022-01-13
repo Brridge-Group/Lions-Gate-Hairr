@@ -12,7 +12,8 @@ import {
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import useStyles from "../components/Styles";
 import Input from "../components/Input";
-import { signup } from "../actions/auth";
+import { AUTH } from "../constants/actionTypes";
+import * as api from "../api/index";
 
 const UserRegistration = () => {
   const classes = useStyles();
@@ -20,13 +21,27 @@ const UserRegistration = () => {
   const [showPassword, setShowPassword] = useState(false);
   const dispatch = useDispatch();
   const history = useHistory();
+  const [errorMsg, setErrorMsg] = useState("");
 
-  const handleSubmit = (e) => {
+  const signup = (formData: any, history: any, errorM?: any) => async (dispatch: any) => {
+    try {
+      // sign up the user
+      const { data } = await api.signUp(formData);
+      dispatch({ type: AUTH, data });
+      history.push("/");
+    } catch (err: any) {
+      errorM = err.response.data;
+      console.log(errorM);
+      setErrorMsg(errorM);
+    }
+  };
+
+  const handleSubmit = (e: any) => {
     e.preventDefault();
     dispatch(signup(formData, history));
   };
 
-  const handleChange = (e) => {
+  const handleChange = (e: any) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
@@ -103,6 +118,8 @@ const UserRegistration = () => {
                 checked={formData.role === "owner"}
               />
             </div>
+            <br />
+            {errorMsg && <p style={{ color: "red" }}> {errorMsg} </p>}
             <Button
               type="submit"
               fullWidth
@@ -112,6 +129,9 @@ const UserRegistration = () => {
             >
               Sign Up
             </Button>
+            <p>
+              Have an account? <a href="user-signin">Click Here</a> to Login.
+            </p>
           </form>
         </Paper>
       </Container>

@@ -1,9 +1,10 @@
-import express from "express";
-const router = express.Router({mergeParams: true});
+import express from 'express'
+const router = express.Router({ mergeParams: true })
 
-import { showBusiness } from "../controllers/business-controller";
+import { showBusiness, getCityByName } from '../controllers/business-controller'
 
-router.route("/:id")
-  .get(showBusiness)
+router.route('/:id').get(showBusiness)
 
-export default router;
+router.route('search/:cityName').get(getCityByName)
+
+export default router

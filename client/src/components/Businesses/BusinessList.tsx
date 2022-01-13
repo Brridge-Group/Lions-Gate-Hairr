@@ -1,31 +1,26 @@
 import React, { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 
 import Card from "../../UIElements/Card";
+import Star from "../../UIElements/Star";
+import About from "../BusinessDetails/About";
 
 const BusinessList = () => {
   const [list, setList] = useState([]);
   const [loading, setLoading] = useState(true);
-
-  const BUSINESSES = [
-    {
-      id: "b1",
-      name: "Tiffany's Salon",
-      desc: "Up-scale hair salon for women with vraiety of services",
-      address: "1234 Yonge St, Toronto, ON",
-    },
-
-    {
-      id: "b2",
-      name: "Baber's Chair",
-      desc: "Men's salon providing modern cuts with affordable prices",
-      address: "1234 Queen St W, Toronto, ON",
-    },
-  ];
+  const history = useHistory();
 
   useEffect(() => {
-    const fetchData = () => {
-      setList(BUSINESSES);
-      setLoading(false);
+    const fetchData = async () => {
+      try {
+        const res = await fetch("/api/businesses/get-businesses");
+        const businessesList = await res.json();
+        setList(businessesList);
+        setLoading(false);
+      } catch (err: any) {
+        console.log(err);
+        setLoading(false);
+      }
     };
     fetchData();
   }, []);
@@ -63,12 +58,21 @@ const BusinessList = () => {
               </div>
             </div>
           </div>
-          {list.map((business) => (
-            <Card className="card card-primary card-outline" key={business.id}>
-              <div className="card-body">
-                <h5 className="class-title">{business.name}</h5>
-                <p className="card-text">{business.desc}</p>
-                <p className="card-text">{business.address}</p>
+          {list.map((business: any) => (
+            <Card
+              className="BusinessCard card-primary card-outline"
+              key={business._id}
+            >
+              <div
+                onClick={() => history.push("businesses/" + `${business._id}`)}
+              >
+                <About
+                  name={business.name}
+                  description={business.description}
+                  image={business.image}
+                  address={business.address}
+                />
+                <Star stars={business.stars} />
               </div>
             </Card>
           ))}

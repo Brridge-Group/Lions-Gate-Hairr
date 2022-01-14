@@ -4,8 +4,7 @@ const router = express.Router({ mergeParams: true })
 import {
   showBusiness,
   addBusiness,
-  getAllBusinesses,
-  getCityByName
+  getAllBusinesses
 } from "../controllers/business-controller";
 
 
@@ -15,6 +14,5 @@ router.get("/get-businesses", getAllBusinesses);
 
 router.route("/get-business-by-id/:id").get(showBusiness);
 
-router.route('search/:cityName').get(getCityByName)
 
 export default router;

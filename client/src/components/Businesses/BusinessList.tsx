@@ -1,29 +1,68 @@
-import React, { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
+import React, { useState, useEffect } from 'react'
+import { useHistory, useParams } from 'react-router-dom'
 
-import Card from "../../UIElements/Card";
-import Star from "../../UIElements/Star";
-import About from "../BusinessDetails/About";
+import Card from '../../UIElements/Card'
+import Star from '../../UIElements/Star'
+import About from '../BusinessDetails/About'
+
+interface RouteParams {
+  city: string
+}
+
+interface Service {
+  _id: string
+  name: string
+}
+
+interface Feature {
+  _id: string
+  name: string
+}
+
+interface Business {
+  name: string
+  description: string
+  image: string
+  address: {
+    street: string
+    city: string
+    region: string
+    postalCode: string
+  }
+  services: Service[]
+  features: Feature[]
+  stars: number
+  phone: string
+}
 
 const BusinessList = () => {
-  const [list, setList] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const history = useHistory();
+  const [list, setList] = useState([])
+  const [loading, setLoading] = useState(true)
+  const history = useHistory()
+
+  const { city } = useParams<RouteParams>()
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch("/api/businesses/get-businesses");
-        const businessesList = await res.json();
-        setList(businessesList);
-        setLoading(false);
+        const res = await fetch('/api/businesses/get-businesses')
+        const businessesList = await res.json()
+        if (typeof city !== 'undefined') {
+          const filtered = businessesList.filter((business:Business) =>{
+            return business.address.city.toLowerCase().includes(city.toLowerCase())
+          })
+          setList(filtered);
+        }else{
+          setList(businessesList);
+        }
+        setLoading(false)
       } catch (err: any) {
-        console.log(err);
-        setLoading(false);
+        console.log(err)
+        setLoading(false)
       }
-    };
-    fetchData();
-  }, []);
+    }
+    fetchData()
+  }, [])
 
   if (loading) {
     return (
@@ -34,7 +73,7 @@ const BusinessList = () => {
           </div>
         </div>
       </div>
-    );
+    )
   }
 
   if (list.length === 0) {
@@ -44,7 +83,7 @@ const BusinessList = () => {
           <h2>No businesses found.</h2>
         </Card>
       </div>
-    );
+    )
   } else {
     return (
       <React.Fragment>
@@ -64,7 +103,7 @@ const BusinessList = () => {
               key={business._id}
             >
               <div
-                onClick={() => history.push("businesses/" + `${business._id}`)}
+                onClick={() => history.push('businesses/' + `${business._id}`)}
               >
                 <About
                   name={business.name}
@@ -78,8 +117,8 @@ const BusinessList = () => {
           ))}
         </div>
       </React.Fragment>
-    );
+    )
   }
-};
+}
 
-export default BusinessList;
+export default BusinessList

@@ -3,25 +3,28 @@ import { useHistory } from 'react-router-dom'
 
 import ContentHeader from '../components/ContentHeader'
 
+
+
 const Home = () => {
   const history = useHistory()
   const [city, setCity] = useState('')
 
   const handleChange = (e: any) => {
-    if (e.target.value !== '') {
-      setCity(e.target.value.toLowerCase())
-    } else {
-      console.log('Error on handleChange')
+    try {
+      setCity(e.target.value)
+      console.log('handleChange: ', city)
+    } catch (error) {
+      console.log('Error on handleChange function', error)
     }
   }
 
   const itemSubmitHandler = async (event: React.FormEvent<any>) => {
     event.preventDefault()
     try {
-      history.push(`/items/${city}`)
-      console.log(city)
+      history.push(`/businessByCity/${city}`, { from: 'Home' })
+      console.log('ItemSubmitHandler: ', city)
     } catch (err) {
-      console.log(err)
+      console.log('Error on itemSubmitHandler function', err)
     }
   }
 

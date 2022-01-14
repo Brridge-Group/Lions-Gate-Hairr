@@ -70,18 +70,3 @@ export const getAllBusinesses = async (req: Request, res: Response) => {
     res.status(StatusCodes.INTERNAL_SERVER_ERROR).json(err.message)
   }
 }
-
-export const getCityByName = async (req: Request, res: Response) => {
-  const { cityName } = req.params
-  let businesses = []
-  try {
-    businesses = await Business.find({ 'address.city': cityName }).sort({
-      name: 1
-    })
-    res.set('Access-Control-Allow-Origin', '')
-    res.send(businesses)
-    console.log('Results of getCityByName: ', businesses)
-  } catch (error) {
-    return console.log(error)
-  }
-}

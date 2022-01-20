@@ -47,6 +47,9 @@ const App = () => {
       <Route path="/businesses/:id" exact>
         <BusinessDetails />
       </Route>
+      <Route path="/businessByCity/:city" exact>
+        <BusinessList />
+      </Route>
       <Route path="/add-business" exact>
         <AddBusiness />
       </Route>

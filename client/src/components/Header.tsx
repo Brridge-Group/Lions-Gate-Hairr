@@ -22,8 +22,8 @@ const Header = () => {
 
   const logout = () => {
     dispatch({ type: "LOGOUT" });
-    history.push("/");
-    setUser(null);
+    history.push("/user-signin");
+    setUser("false");
   };
 
   return (

@@ -1,6 +1,8 @@
+import mongoose from "mongoose";
+var uniqueValidator = require('mongoose-unique-validator');
+
 import { provinces, states } from "../constants/regions";
 
-import mongoose from "mongoose";
 const Schema = mongoose.Schema;
 
 const businessAddressSchema = new Schema({
@@ -31,6 +33,7 @@ const businessAddressSchema = new Schema({
   },
 });
 
+
 const businessSchema = new Schema({
   name: String,
   description: String,
@@ -58,6 +61,8 @@ const businessSchema = new Schema({
   phone: String,
   ownerId: String,
 });
+
+businessSchema.plugin(uniqueValidator);
 
 const Business = mongoose.model("Business", businessSchema);
 

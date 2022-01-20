@@ -19,27 +19,10 @@ const SideBar = () => {
 
   let isOwner = (
     <li className="nav-item">
-      <a href="#" className="nav-link">
-        <i className="nav-icon fas fa-building" />
-        <p>
-          Businesses
-          <i className="fas fa-angle-left right" />
-        </p>
+      <a href="/add-business" className="nav-link">
+        <i className="far fa-circle nav-icon" />
+        <p>Add Business</p>
       </a>
-      <ul className="nav nav-treeview">
-        <li className="nav-item">
-          <a href="/businesses" className="nav-link">
-            <i className="far fa-circle nav-icon" />
-            <p>List of Businesses</p>
-          </a>
-        </li>
-        <li className="nav-item">
-          <a href="/add-business" className="nav-link">
-            <i className="far fa-circle nav-icon" />
-            <p>Add Business</p>
-          </a>
-        </li>
-      </ul>
     </li>
   );
 
@@ -139,12 +122,23 @@ const SideBar = () => {
                   <p>Home</p>
                 </NavLink>
               </li>
-              {user && <>{content}</>}
               <li className="nav-item">
-                <NavLink to="/items" className="nav-link">
-                  <i className="nav-icon fas fa-list"></i>
-                  <p>Items</p>
-                </NavLink>
+                <a href="#" className="nav-link">
+                  <i className="nav-icon fas fa-building" />
+                  <p>
+                    Businesses
+                    <i className="fas fa-angle-left right" />
+                  </p>
+                </a>
+                <ul className="nav nav-treeview">
+                  <li className="nav-item">
+                    <a href="/businesses" className="nav-link">
+                      <i className="far fa-circle nav-icon" />
+                      <p>List of Businesses</p>
+                    </a>
+                  </li>
+                  {user && <>{content}</>}
+                </ul>
               </li>
             </ul>
           </nav>

@@ -44,7 +44,7 @@ const BusinessDetails = () => {
   // FETCHES BUSINESS DATA FROM REMOTE DATABSE ONCE AND SETS BUSINESSDATA STATE TO IT.
   useEffect(() => {
     const getBusinessData = async () => {
-      const res = await fetch(`/api/businesses/${id}`);
+      const res = await fetch(`/api/businesses/get-business-by-id/${id}`);
       const businessData = await res.json();
       setBusinessData(businessData);
     };

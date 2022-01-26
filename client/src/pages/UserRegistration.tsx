@@ -1,6 +1,7 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
+import React, { useState } from 'react'
+import FileBase64 from 'react-file-base64'
+import { useDispatch } from 'react-redux'
+import { useHistory } from 'react-router-dom'
 import {
   Avatar,
   Button,
@@ -8,45 +9,52 @@ import {
   Grid,
   Typography,
   Container,
-} from "@material-ui/core";
-import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
-import useStyles from "../components/Styles";
-import Input from "../components/Input";
-import { AUTH } from "../constants/actionTypes";
-import * as api from "../api/index";
+  IconButton
+} from '@material-ui/core'
+import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
+import useStyles from '../components/Styles'
+import Input from '../components/Input'
+import { AUTH } from '../constants/actionTypes'
+import * as api from '../api/index'
 
 const UserRegistration = () => {
-  const classes = useStyles();
-  const [formData, setFormData] = useState({ role: "user" });
-  const [showPassword, setShowPassword] = useState(false);
-  const dispatch = useDispatch();
-  const history = useHistory();
-  const [errorMsg, setErrorMsg] = useState("");
+  const classes = useStyles()
+  const [formData, setFormData] = useState({
+    role: 'user',
+    imageProfile:
+      'https://www.seekpng.com/png/full/966-9665493_my-profile-icon-blank-profile-image-circle.png'
+  })
+  const [showPassword, setShowPassword] = useState(false)
+  const dispatch = useDispatch()
+  const history = useHistory()
+  const [errorMsg, setErrorMsg] = useState('')
 
-  const signup = (formData: any, history: any, errorM?: any) => async (dispatch: any) => {
-    try {
-      // sign up the user
-      const { data } = await api.signUp(formData);
-      dispatch({ type: AUTH, data });
-      history.push("/");
-    } catch (err: any) {
-      errorM = err.response.data;
-      console.log(errorM);
-      setErrorMsg(errorM);
+  const signup =
+    (formData: any, history: any, errorM?: any) => async (dispatch: any) => {
+      try {
+        // sign up the user
+        const { data } = await api.signUp(formData)
+        dispatch({ type: AUTH, data })
+        history.push('/')
+      } catch (err: any) {
+        errorM = err.response.data
+        console.log(errorM)
+        setErrorMsg(errorM)
+      }
     }
-  };
 
   const handleSubmit = (e: any) => {
-    e.preventDefault();
-    dispatch(signup(formData, history));
-  };
+    e.preventDefault()
+    dispatch(signup(formData, history))
+  }
 
   const handleChange = (e: any) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
+    setFormData({ ...formData, [e.target.name]: e.target.value })
+    console.log(formData)
+  }
 
   const handleShowPasswordClicked = () =>
-    setShowPassword((prevShowPassword) => !prevShowPassword);
+    setShowPassword(prevShowPassword => !prevShowPassword)
 
   return (
     <div className="content-wrapper">
@@ -59,6 +67,26 @@ const UserRegistration = () => {
           <form className={classes.form} onSubmit={handleSubmit}>
             <Grid container spacing={2}>
               <>
+                <Button fullWidth color="default" className={classes.profile}>
+                  <IconButton>
+                    <Avatar
+                      src={formData.imageProfile}
+                      style={{
+                        margin: '10px',
+                        width: '60px',
+                        height: '60px',
+                        justifyContent: 'center'
+                      }}
+                    />
+                  </IconButton>
+                  <FileBase64
+                    multiple={false}
+                    onDone={({ base64 }) => {
+                      setFormData({ ...formData, imageProfile: base64 })
+                    }}
+                  />
+                </Button>
+
                 <Input
                   name="firstName"
                   label="First Name"
@@ -83,7 +111,7 @@ const UserRegistration = () => {
                 name="password"
                 label="Password"
                 handleChange={handleChange}
-                type={showPassword ? "text" : "password"}
+                type={showPassword ? 'text' : 'password'}
                 handleShowPassword={handleShowPasswordClicked}
               />
               <Input
@@ -105,7 +133,7 @@ const UserRegistration = () => {
                 name="role"
                 value="user"
                 onChange={handleChange}
-                checked={formData.role === "user"}
+                checked={formData.role === 'user'}
               />
               <br />
               <label>Business Owner</label>
@@ -115,11 +143,11 @@ const UserRegistration = () => {
                 name="role"
                 value="owner"
                 onChange={handleChange}
-                checked={formData.role === "owner"}
+                checked={formData.role === 'owner'}
               />
             </div>
             <br />
-            {errorMsg && <p style={{ color: "red" }}> {errorMsg} </p>}
+            {errorMsg && <p style={{ color: 'red' }}> {errorMsg} </p>}
             <Button
               type="submit"
               fullWidth
@@ -136,7 +164,7 @@ const UserRegistration = () => {
         </Paper>
       </Container>
     </div>
-  );
-};
+  )
+}
 
-export default UserRegistration;
+export default UserRegistration

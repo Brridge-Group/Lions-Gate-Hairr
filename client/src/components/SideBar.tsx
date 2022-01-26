@@ -1,21 +1,22 @@
-import React, { useEffect, useState } from "react";
-import { NavLink } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { useHistory, useLocation } from "react-router-dom";
-import decode from "jwt-decode";
-import axios from "axios";
+import React, { useEffect, useState } from 'react'
+import { NavLink } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { useHistory, useLocation } from 'react-router-dom'
+import decode from 'jwt-decode'
+import axios from 'axios'
 
 const SideBar = () => {
-  const dispatch = useDispatch();
-  const history = useHistory();
-  const location = useLocation();
+  const dispatch = useDispatch()
+  const history = useHistory()
+  const location = useLocation()
   const [user, setUser] = useState(
-    JSON.parse(localStorage.getItem("profile") ?? "false")
-  );
-  const [name, setName] = useState();
-  const [role, setRole] = useState();
+    JSON.parse(localStorage.getItem('profile') ?? 'false')
+  )
+  const [name, setName] = useState()
+  const [role, setRole] = useState()
+  const [image, setImage] = useState("https://www.seekpng.com/png/full/966-9665493_my-profile-icon-blank-profile-image-circle.png")
 
-  let content: any;
+  let content: any
 
   let isOwner = (
     <li className="nav-item">
@@ -24,43 +25,44 @@ const SideBar = () => {
         <p>Add Business</p>
       </a>
     </li>
-  );
+  )
 
   useEffect(() => {
-    const token = user?.token;
+    const token = user?.token
     if (token) {
-      const decodedToken: any = decode(token);
-      const isTokenExpired = decodedToken.exp * 1000 < new Date().getTime();
-      if (isTokenExpired) logout();
+      const decodedToken: any = decode(token)
+      const isTokenExpired = decodedToken.exp * 1000 < new Date().getTime()
+      if (isTokenExpired) logout()
     }
-    setUser(JSON.parse(localStorage.getItem("profile") ?? "false"));
-  }, [location]);
+    setUser(JSON.parse(localStorage.getItem('profile') ?? 'false'))
+  }, [location])
 
   const logout = () => {
-    dispatch({ type: "LOGOUT" });
-    history.push("/");
-    setUser(null);
-  };
+    dispatch({ type: 'LOGOUT' })
+    history.push('/')
+    setUser(null)
+  }
 
   if (user) {
     const fetchData = async () => {
       await axios
         .get(
-          "http://localhost:5000/api/users" +
+          'http://localhost:5000/api/users' +
             `/get-profile/?id=${user.result._id}`
         )
-        .then(async (res) => {
-          setName(res.data.name);
-          setRole(res.data.role);
+        .then(async res => {
+          setName(res.data.name)
+          setRole(res.data.role)
+          setImage(res.data.imageProfile)
         })
-        .catch((error) => {
-          console.log(error);
-        });
-    };
-    fetchData();
+        .catch(error => {
+          console.log(error)
+        })
+    }
+    fetchData()
   }
 
-  if (role === "owner") content = isOwner;
+  if (role === 'owner') content = isOwner
 
   return (
     <React.Fragment>
@@ -81,9 +83,8 @@ const SideBar = () => {
               <>
                 <div className="image">
                   <img
-                    src="https://www.shareicon.net/data/512x512/2017/01/06/868320_people_512x512.png"
+                    src={image}
                     className="img-circle elevation-2"
-                    alt="User Image"
                   />
                 </div>
                 <div className="info">
@@ -96,7 +97,7 @@ const SideBar = () => {
               <>
                 <div className="image">
                   <img
-                    src="https://www.shareicon.net/data/512x512/2017/01/06/868320_people_512x512.png"
+                    src="https://www.seekpng.com/png/full/966-9665493_my-profile-icon-blank-profile-image-circle.png"
                     className="img-circle elevation-2"
                     alt="User Image"
                   />
@@ -145,7 +146,7 @@ const SideBar = () => {
         </div>
       </aside>
     </React.Fragment>
-  );
-};
+  )
+}
 
-export default SideBar;
+export default SideBar

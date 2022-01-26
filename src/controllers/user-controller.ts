@@ -32,9 +32,9 @@ module.exports.signin = async (req: Request, res: Response) => {
 };
 
 module.exports.signup = async (req: Request, res: Response) => {
-  const { email, password, confirmPassword, firstName, lastName, role } =
+  const { email, password, confirmPassword, firstName, lastName, role, imageProfile } =
     req.body;
-
+console.log(req.body);
   try {
     const existingUser = await User.findOne({ email });
 
@@ -54,8 +54,9 @@ module.exports.signup = async (req: Request, res: Response) => {
       password: hashedPassword,
       name: `${firstName} ${lastName}`,
       role,
+      imageProfile
     });
-
+    console.log("Result of creation of user: ", result);
     const token = jwt.sign(
       { email: result.email, id: result._id },
       "jwtSecret",

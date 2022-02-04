@@ -51,6 +51,12 @@ const businessSchema = new Schema({
       ref: "Service",
     },
   ],
+  reviews: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Review",
+    },
+  ],
   stars: Number,
   phone: String,
   ownerId: String,

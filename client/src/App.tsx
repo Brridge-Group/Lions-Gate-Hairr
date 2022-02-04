@@ -17,6 +17,7 @@ import Login from "./pages/Login";
 import BusinessList from "./components/Businesses/BusinessList";
 import BusinessDetails from "./components/BusinessDetails/BusinessDetails";
 import AddBusiness from "./pages/AddBusiness";
+import AddReview from "./components/AddReview/AddReview";
 
 const App = () => {
   let routes;
@@ -52,6 +53,9 @@ const App = () => {
       </Route>
       <Route path="/add-business" exact>
         <AddBusiness />
+      </Route>
+      <Route path="/businesses/:id/add-review" exact>
+        <AddReview />
       </Route>
       <Redirect to="/" />
     </Switch>

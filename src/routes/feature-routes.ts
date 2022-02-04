@@ -3,7 +3,7 @@ const router = express.Router({mergeParams: true});
 
 import { indexFeatures } from "../controllers/feature-controller";
 
-router.route("/:id")
+router.route("/")
   .get(indexFeatures)
 
 export default router;

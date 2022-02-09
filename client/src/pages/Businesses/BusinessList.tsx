@@ -109,6 +109,16 @@ const BusinessList = () => {
             className='businessesList-container'
             style={{ display: 'flex', width: '100%' }}
           >
+            <div
+              className='filters'
+              style={{
+                width: '15vw',
+                flexShrink: 0,
+                marginRight: '10px'
+              }}
+            >
+              Filters
+            </div>
             <div className='businesses-list' style={{ width: '100%' }}>
               {list.map((business: any) => (
                 <Card

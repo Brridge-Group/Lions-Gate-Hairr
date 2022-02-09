@@ -115,6 +115,9 @@ const BusinessList = () => {
                   className='BusinessCard card-primary card-outline'
                   key={business._id}
                 >
+                  <div
+                    onClick={() => history.push(`/businesses/${business._id}`)}
+                  >
                     <About
                       name={business.name}
                       description={business.description}

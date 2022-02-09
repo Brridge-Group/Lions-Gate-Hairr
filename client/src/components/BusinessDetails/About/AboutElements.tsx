@@ -1,10 +1,11 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const Container = styled.div`
   width: 100%;
   margin-top: 1rem;
   display: flex;
-  justify-content: center;
+  // justify-content: center;
+  justify-content: space-between;
   align-items: center;
 
   & > img {
@@ -14,7 +15,8 @@ export const Container = styled.div`
   }
 
   & > .name {
-    margin-left: 2rem;
+    margin-left: 1.5rem;
+    min-width: 40%;
   }
 
   & > .name > h2 {
@@ -23,7 +25,9 @@ export const Container = styled.div`
   }
 
   & > .address {
-    margin-left: auto;
+    min-width: 30%;
+    // margin-left: auto;
+    // justify-content: flex-end;
   }
 
   & > .address > p {

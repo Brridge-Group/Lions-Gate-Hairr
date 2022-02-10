@@ -41,7 +41,7 @@ const seedBusinesses = async (): Promise<void> => {
   // DELETES ALL DOCUMENTS IN BUSINESS COLLECTION.
   await Business.deleteMany({})
     .then(() => {
-      console.log("Businesses deletion successfull!");
+      console.log("Businesses deletion successful!");
     })
     .catch((err) => {
       console.log("Businesses deletion failed!");

@@ -1,12 +1,14 @@
-import mongoose from "mongoose";
-const Schema = mongoose.Schema;
+import mongoose from 'mongoose'
+const Schema = mongoose.Schema
 
 const serviceSchema = new Schema({
   name: {
     type: String,
-    required: true,
+    required: true
   },
-});
+  description: { type: String },
+  isChecked: { type: Boolean, default: false }
+})
 
-const Service = mongoose.model("Service", serviceSchema);
-export default Service;
+const Service = mongoose.model('Service', serviceSchema)
+export default Service

@@ -38,6 +38,7 @@ interface Business {
   stars: number
   phone: string
 }
+interface FilterServicesAndFeatures {}
 
 const BusinessList = () => {
   const [list, setList]: any = useState([])
@@ -143,6 +144,12 @@ const BusinessList = () => {
     setFilteredServices(data)
   }
 
+
+  const handleResetFilter = () => {
+    window.location.reload()
+    // setFilterResults(busFilter) // FIXME: resets to an empty array
+  }
+
   if (loading) {
     return (
       <div className='content-wrapper'>
@@ -201,6 +208,8 @@ const BusinessList = () => {
                 onFeatChange={onFeatChange}
                 onServiceChange={onServiceChange}
                 handleFilterResults={handleFilterResults}
+                loading={loading}
+                handleResetFilter={handleResetFilter}
               />
             </div>
             <div className='businesses-list' style={{ width: '100%' }}>

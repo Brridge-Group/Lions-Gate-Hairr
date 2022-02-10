@@ -1,9 +1,12 @@
-import express from "express";
-const router = express.Router({mergeParams: true});
+import express from 'express'
+const servicesRouter = express.Router({ mergeParams: true })
 
-import { indexServices } from "../controllers/service-controller";
+import { indexServices, createService } from '../controllers/service-controller'
 
-router.route("/")
-  .get(indexServices)
+// Get All Services
+servicesRouter.route('/').get(indexServices)
 
-export default router;
+// Create Service
+servicesRouter.post('/', createService)
+
+export default servicesRouter

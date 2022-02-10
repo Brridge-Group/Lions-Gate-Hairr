@@ -1,9 +1,13 @@
+// React Components
 import React, { useState, useEffect } from 'react'
 import { useHistory, useParams } from 'react-router-dom'
 
+// Custom Imports
 import Card from '../../UIElements/Card'
 import Star from '../../UIElements/Star'
 import About from '../../components/BusinessDetails/About'
+import FilterServicesAndFeatures from '../../components/FilterServicesAndFeatures/FilterServicesAndFeatures'
+import LoadSpinner from '../../components/LoadSpinner/LoadSpinner'
 
 interface RouteParams {
   city: string
@@ -36,12 +40,21 @@ interface Business {
 }
 
 const BusinessList = () => {
-  const [list, setList] = useState([])
+  const [list, setList]: any = useState([])
   const [loading, setLoading] = useState(true)
   const history = useHistory()
-
   const { city } = useParams<RouteParams>()
 
+  // Initialize  Services and Features to state
+  const [feats, setFeats]: any = useState([]) // Features full object
+  const [services, setServices]: any = useState([]) // Services full object
+  const [featuresArr, setFeaturesArr]: any = useState([])
+  const [servicesArr, setServicesArr]: any = useState([])
+
+  // Initialize state objects for form checkboxes
+  const [isChecked, setIsChecked]: any = useState(false)
+  const [isFeatsChecked, setIsFeatsChecked]: any = useState([])
+  const [isServicesChecked, setIsServicesChecked]: any = useState([])
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -66,12 +79,77 @@ const BusinessList = () => {
     fetchData()
   }, [])
 
+  useEffect(() => {
+    const fetchFeaturesData = async () => {
+      try {
+        const response = await fetch('/api/features', {
+          method: 'GET'
+        })
+        const responseData = await response.json()
+        setFeats(responseData)
+        const featsArr = responseData.map(el => {
+          let featsName = el.name
+          let featsId = el._id
+          let featsIsChecked = el.isChecked
+
+          return [featsName, featsId, featsIsChecked]
+        })
+        setFeaturesArr(featsArr)
+      } catch (err: any) {
+        console.log(err)
+        setLoading(false)
+      }
+    }
+
+    const fetchServicesData = async () => {
+      try {
+        const response = await fetch('/api/services', {
+          method: 'GET'
+        })
+        const responseData = await response.json()
+        setServices(responseData)
+        const servicesArr = responseData.map(el => {
+          let servicesName = el.name
+          let servicesId = el._id
+          let servicesIsChecked = el.isChecked
+
+          return [servicesName, servicesId, servicesIsChecked]
+        })
+        setServicesArr(servicesArr)
+      } catch (err: any) {
+        console.log(err)
+        setLoading(false)
+      }
+    }
+    fetchFeaturesData()
+    fetchServicesData()
+  }, [])
+
+  console.log(servicesArr)
+  console.log(featuresArr)
+
+  //* Filter Business Features and Services
+  const [filterResults, setFilterResults]: any = useState([...list])
+  console.log(filterResults)
+  const [filteredFeats, setFilteredFeats]: any = useState([])
+  const [filteredServices, setFilteredServices]: any = useState([])
+
+  // Listen for the features' and services' checkbox changes and capture that data from the `Filters` child component
+  const onFeatChange = data => {
+    setFilteredFeats(data)
+  }
+
+  const onServiceChange = data => {
+    setFilteredServices(data)
+  }
+
   if (loading) {
     return (
       <div className='content-wrapper'>
-        <div className='card'>
-          <div className='card-body row'>
-            <h2>Loading....</h2>
+        <div className=''>
+          <div className='card-body row d-flex justify-content-center align-self-center mx-auto'>
+            {/* <h2>Loading....</h2> */}
+            <LoadSpinner />
           </div>
         </div>
       </div>
@@ -114,10 +192,16 @@ const BusinessList = () => {
               style={{
                 width: '15vw',
                 flexShrink: 0,
-                marginRight: '10px'
+                marginLeft: '20px'
               }}
             >
-              Filters
+              <FilterServicesAndFeatures
+                featuresArr={featuresArr}
+                servicesArr={servicesArr}
+                onFeatChange={onFeatChange}
+                onServiceChange={onServiceChange}
+                handleFilterResults={handleFilterResults}
+              />
             </div>
             <div className='businesses-list' style={{ width: '100%' }}>
               {list.map((business: any) => (

@@ -62,8 +62,8 @@ const AddBusiness = () => {
     fetchServicesData()
   }, [])
 
-  console.log(servicesArr)
-  console.log(featuresArr)
+  // console.log(servicesArr)
+  // console.log(featuresArr)
 
   const [formData, setFormData]: any = useState({
     name: '',
@@ -122,7 +122,7 @@ const AddBusiness = () => {
   axios
     .post('http://localhost:5000/api/businesses/add-business', data)
     .then(response => {
-      console.log(response.data)
+      // console.log(response.data)
       history.push('/')
     })
     .catch(error => {

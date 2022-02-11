@@ -10,7 +10,6 @@ interface Props {
   onServiceChange: any
   servicesArr: any
   featuresArr: any
-  handleFilterResults: any
   handleResetFilter: any
 }
 const FilterServicesAndFeatures: React.FC<Props> = (props: Props) => {
@@ -23,16 +22,16 @@ const FilterServicesAndFeatures: React.FC<Props> = (props: Props) => {
   // HandleChanges for the features and services checkboxes
   const onFeatChange = event => {
     const { name, checked, id } = event.target
-    console.log('id', id, 'checked', checked)
+    // console.log('id', id, 'checked', checked)
     setFilteredFeats({ ...filteredFeats, [`${name} (${id})`]: checked })
   }
-  console.log('filteredFeats', filteredFeats)
+  // console.log('filteredFeats', filteredFeats)
   const onServiceChange = event => {
     const { name, checked, id } = event.target
-    console.log('id', id, 'checked', checked)
+    // console.log('id', id, 'checked', checked)
     setFilteredServices({ ...filteredServices, [`${name} (${id})`]: checked })
   }
-  console.log('filteredServices', filteredServices)
+  // console.log('filteredServices', filteredServices)
 
   // Monitor changes to the filtered features and services arrays. If there are changes send the data to the SearchResults component
   useEffect(() => {
@@ -98,7 +97,8 @@ const FilterServicesAndFeatures: React.FC<Props> = (props: Props) => {
                 </div>
               ))}
             </div>
-            <button onClick={props.handleFilterResults}>Filter Results</button>
+            {/* TODO: BackLog => Connect to filterFunction */}
+            {/* <button onClick={props.handleResetFilter}>Filter Results</button> */}
             <button onClick={props.handleResetFilter}>Reset Filter</button>
           </div>
         </>

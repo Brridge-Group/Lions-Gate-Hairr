@@ -38,7 +38,6 @@ interface Business {
   stars: number
   phone: string
 }
-interface FilterServicesAndFeatures {}
 
 const BusinessList = () => {
   const [list, setList]: any = useState([])
@@ -56,6 +55,7 @@ const BusinessList = () => {
   const [isChecked, setIsChecked]: any = useState(false)
   const [isFeatsChecked, setIsFeatsChecked]: any = useState([])
   const [isServicesChecked, setIsServicesChecked]: any = useState([])
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -144,7 +144,6 @@ const BusinessList = () => {
     setFilteredServices(data)
   }
 
-
   const handleResetFilter = () => {
     window.location.reload()
     // setFilterResults(busFilter) // FIXME: resets to an empty array
@@ -155,7 +154,6 @@ const BusinessList = () => {
       <div className='content-wrapper'>
         <div className=''>
           <div className='card-body row d-flex justify-content-center align-self-center mx-auto'>
-            {/* <h2>Loading....</h2> */}
             <LoadSpinner />
           </div>
         </div>
@@ -207,7 +205,6 @@ const BusinessList = () => {
                 servicesArr={servicesArr}
                 onFeatChange={onFeatChange}
                 onServiceChange={onServiceChange}
-                handleFilterResults={handleFilterResults}
                 loading={loading}
                 handleResetFilter={handleResetFilter}
               />

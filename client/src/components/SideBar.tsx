@@ -23,16 +23,16 @@ const SideBar = () => {
   let isOwner = (
     <React.Fragment>
       <li className="nav-item">
-        <a href="/add-business" className="nav-link">
+        <NavLink to="/add-business" className="nav-link">
           <i className="far fa-circle nav-icon" />
           <p>Add Business</p>
-        </a>
+        </NavLink>
       </li>
       <li className="nav-item">
-        <a href="/my-businesses" className="nav-link">
+        <NavLink to="/my-businesses" className="nav-link">
           <i className="far fa-circle nav-icon" />
           <p>My Businesses</p>
-        </a>
+        </NavLink>
       </li>
     </React.Fragment>
   );
@@ -94,9 +94,9 @@ const SideBar = () => {
                   <img src={image} className="img-circle elevation-2" />
                 </div>
                 <div className="info">
-                  <a href="#" className="d-block">
+                  <NavLink to="#" className="d-block">
                     {name} ({role})
-                  </a>
+                  </NavLink>
                 </div>
               </>
             ) : (
@@ -139,10 +139,10 @@ const SideBar = () => {
                 </a>
                 <ul className="nav nav-treeview">
                   <li className="nav-item">
-                    <a href="/businesses" className="nav-link">
+                    <NavLink to="/businesses" className="nav-link">
                       <i className="far fa-circle nav-icon" />
                       <p>List of Businesses</p>
-                    </a>
+                    </NavLink>
                   </li>
                   {user && <>{content}</>}
                 </ul>

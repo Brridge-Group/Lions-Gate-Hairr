@@ -103,7 +103,8 @@ const SideBar = () => {
               <>
                 <div className="image">
                   <img
-                    src="https://www.seekpng.com/png/full/966-9665493_my-profile-icon-blank-profile-image-circle.png"
+                    //src="https://www.seekpng.com/png/full/966-9665493_my-profile-icon-blank-profile-image-circle.png"
+                    src="https://img.icons8.com/external-becris-flat-becris/64/000000/external-user-avatars-becris-flat-becris.png"
                     className="img-circle elevation-2"
                     alt="User Image"
                   />

@@ -14,7 +14,7 @@ import NewItem from "./pages/NewItem";
 import UpdateItem from "./pages/UpdateItem";
 import UserRegistration from "./pages/UserRegistration";
 import Login from "./pages/Login";
-import BusinessList from "./components/Businesses/BusinessList";
+import BusinessList from "./pages/Businesses/BusinessList";
 import BusinessDetails from "./components/BusinessDetails/BusinessDetails";
 import AddBusiness from "./pages/AddBusiness";
 import AddReview from "./components/AddReview/AddReview";

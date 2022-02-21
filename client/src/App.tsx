@@ -18,6 +18,7 @@ import BusinessList from "./pages/Businesses/BusinessList";
 import BusinessDetails from "./components/BusinessDetails/BusinessDetails";
 import AddBusiness from "./pages/AddBusiness";
 import AddReview from "./components/AddReview/AddReview";
+import MyBusinessList from "./components/Businesses/MyBusinessList";
 
 const App = () => {
   let routes;
@@ -44,6 +45,9 @@ const App = () => {
       </Route>
       <Route path="/businesses" exact>
         <BusinessList />
+      </Route>
+      <Route path="/my-businesses" exact>
+        <MyBusinessList />
       </Route>
       <Route path="/businesses/:id" exact>
         <BusinessDetails />

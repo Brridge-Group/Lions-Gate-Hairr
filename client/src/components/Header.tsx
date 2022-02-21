@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { useHistory, useLocation } from "react-router-dom";
+import { useHistory, useLocation, NavLink } from "react-router-dom";
 import decode from "jwt-decode";
 
 const Header = () => {
@@ -45,14 +45,14 @@ const Header = () => {
           {!user ? (
             <>
               <li className="nav-item">
-                <a href="user-signup" className="nav-link">
+                <NavLink to="user-signup" className="nav-link">
                   Register
-                </a>
+                </NavLink>
               </li>
               <li className="nav-item">
-                <a href="user-signin" className="nav-link">
+                <NavLink to="user-signin" className="nav-link">
                   Login
-                </a>
+                </NavLink>
               </li>
             </>
           ) : (

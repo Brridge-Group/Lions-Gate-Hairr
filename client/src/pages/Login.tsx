@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { useHistory, NavLink } from "react-router-dom";
 import {
   Avatar,
   Button,
@@ -86,7 +86,7 @@ const Login = () => {
               Sign In
             </Button>
             <p>
-              Not registered? <a href="user-signup">Click Here</a> to register.
+              Not registered? <NavLink to="user-signup">Click Here</NavLink> to register.
             </p>
           </form>
         </Paper>

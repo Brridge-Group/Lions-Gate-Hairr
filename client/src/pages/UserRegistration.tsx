@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import FileBase64 from 'react-file-base64'
 import { useDispatch } from 'react-redux'
-import { useHistory } from 'react-router-dom'
+import { useHistory, NavLink } from 'react-router-dom'
 import {
   Avatar,
   Button,
@@ -158,7 +158,7 @@ const UserRegistration = () => {
               Sign Up
             </Button>
             <p>
-              Have an account? <a href="user-signin">Click Here</a> to Login.
+              Have an account? <NavLink to="user-signin">Click Here</NavLink> to Login.
             </p>
           </form>
         </Paper>

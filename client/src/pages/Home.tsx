@@ -1,9 +1,7 @@
 import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
-
-import ContentHeader from '../components/ContentHeader'
-
-
+import './Home.css'
+import pinkcrop1 from '../assets/images/pinkcrop1.jpg'
 
 const Home = () => {
   const history = useHistory()
@@ -27,40 +25,30 @@ const Home = () => {
       console.log('Error on itemSubmitHandler function', err)
     }
   }
-
   return (
-    <React.Fragment>
-      <div className="content-wrapper">
-        <ContentHeader title="Home" />
-        <section className="content">
-          <div className="container-fluid">
-            <h2 className="text-center display-4">
-              Im looking for hairstylist in
-            </h2>
-            <div className="row">
-              <div className="col-md-8 offset-md-2">
-                <form onSubmit={itemSubmitHandler}>
-                  <div className="input-group">
-                    <input
-                      type="search"
-                      value={city}
-                      onChange={handleChange}
-                      className="form-control form-control-lg"
-                      placeholder="Type the city name here"
-                    />
-                    <div className="input-group-append">
-                      <button type="submit" className="btn btn-lg btn-default">
-                        <i className="fa fa-search"></i>
-                      </button>
-                    </div>
-                  </div>
-                </form>
-              </div>
-            </div>
+    <div
+      className='home'
+      style={{
+        backgroundImage: `url(${pinkcrop1})`,
+      }}>
+      Im looking for hairstylist in
+      <form onSubmit={itemSubmitHandler}>
+        <div className='input-group'>
+          <input
+            type='search'
+            value={city}
+            onChange={handleChange}
+            className='form-control form-control-lg'
+            placeholder='Type the city name here'
+          />
+          <div className='input-group-append'>
+            <button type='submit' className='btn btn-lg btn-default'>
+              <i className='fa fa-search'></i>
+            </button>
           </div>
-        </section>
-      </div>
-    </React.Fragment>
+        </div>
+      </form>
+    </div>
   )
 }
 

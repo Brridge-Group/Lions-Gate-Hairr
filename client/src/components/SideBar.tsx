@@ -1,147 +1,146 @@
-import React, { useEffect, useState } from "react";
-import { NavLink } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { useHistory, useLocation } from "react-router-dom";
-import decode from "jwt-decode";
-import axios from "axios";
+import React, { useEffect, useState } from 'react'
+import { NavLink } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { useHistory, useLocation } from 'react-router-dom'
+import decode from 'jwt-decode'
+import axios from 'axios'
 
 const SideBar = () => {
-  const dispatch = useDispatch();
-  const history = useHistory();
-  const location = useLocation();
+  const dispatch = useDispatch()
+  const history = useHistory()
+  const location = useLocation()
   const [user, setUser] = useState(
-    JSON.parse(localStorage.getItem("profile") ?? "false")
-  );
-  const [name, setName] = useState();
-  const [role, setRole] = useState();
+    JSON.parse(localStorage.getItem('profile') ?? 'false')
+  )
+  const [name, setName] = useState()
+  const [role, setRole] = useState()
   const [image, setImage] = useState(
-    "https://www.seekpng.com/png/full/966-9665493_my-profile-icon-blank-profile-image-circle.png"
-  );
+    'https://www.seekpng.com/png/full/966-9665493_my-profile-icon-blank-profile-image-circle.png'
+  )
 
-  let content: any;
+  let content: any
 
   let isOwner = (
-    <React.Fragment>
-      <li className="nav-item">
-        <NavLink to="/add-business" className="nav-link">
-          <i className="far fa-circle nav-icon" />
+    <>
+      <li className='nav-item'>
+        <NavLink to='/add-business' className='nav-link'>
+          <i className='far fa-circle nav-icon' />
           <p>Add Business</p>
         </NavLink>
       </li>
-      <li className="nav-item">
-        <NavLink to="/my-businesses" className="nav-link">
-          <i className="far fa-circle nav-icon" />
+      <li className='nav-item'>
+        <NavLink to='/my-businesses' className='nav-link'>
+          <i className='far fa-circle nav-icon' />
           <p>My Businesses</p>
         </NavLink>
       </li>
-    </React.Fragment>
-  );
+    </>
+  )
 
   useEffect(() => {
-    const token = user?.token;
+    const token = user?.token
     if (token) {
-      const decodedToken: any = decode(token);
-      const isTokenExpired = decodedToken.exp * 1000 < new Date().getTime();
-      if (isTokenExpired) logout();
+      const decodedToken: any = decode(token)
+      const isTokenExpired = decodedToken.exp * 1000 < new Date().getTime()
+      if (isTokenExpired) logout()
     }
-    setUser(JSON.parse(localStorage.getItem("profile") ?? "false"));
-  }, [location]);
+    setUser(JSON.parse(localStorage.getItem('profile') ?? 'false'))
+  }, [location])
 
   const logout = () => {
-    dispatch({ type: "LOGOUT" });
-    history.push("/");
-    setUser(null);
-  };
+    dispatch({ type: 'LOGOUT' })
+    history.push('/')
+    setUser(null)
+  }
 
   if (user) {
     const fetchData = async () => {
       await axios
         .get(
-          "http://localhost:5000/api/users" +
+          'http://localhost:5000/api/users' +
             `/get-profile/?id=${user.result._id}`
         )
-        .then(async (res) => {
-          setName(res.data.name);
-          setRole(res.data.role);
-          setImage(res.data.imageProfile);
+        .then(async res => {
+          setName(res.data.name)
+          setRole(res.data.role)
+          setImage(res.data.imageProfile)
         })
-        .catch((error) => {
-          console.log(error);
-        });
-    };
-    fetchData();
-    if (role === "owner") content = isOwner;
+        .catch(error => {
+          console.log(error)
+        })
+    }
+    fetchData()
+    if (role === 'owner') content = isOwner
   }
 
   return (
-    <React.Fragment>
-      <aside className="main-sidebar sidebar-dark-primary elevation-4">
-        <a href="index3.html" className="brand-link">
+    <>
+      <aside className='main-sidebar sidebar-dark-primary elevation-4'>
+        <a href='index3.html' className='brand-link'>
           <img
-            src="/assets/dist/img/AdminLTELogo.png"
-            alt="AdminLTE Logo"
-            className="brand-image img-circle elevation-3"
+            src='/assets/dist/img/AdminLTELogo.png'
+            alt='AdminLTE Logo'
+            className='brand-image img-circle elevation-3'
             style={{ opacity: 0.8 }}
           />
-          <span className="brand-text font-weight-light">Hello World</span>
+          <span className='brand-text font-weight-light'>Hello World</span>
         </a>
 
-        <div className="sidebar">
-          <div className="user-panel mt-3 pb-3 mb-3 d-flex">
+        <div className='sidebar'>
+          <div className='user-panel mt-3 pb-3 mb-3 d-flex'>
             {user ? (
               <>
-                <div className="image">
-                  <img src={image} className="img-circle elevation-2" />
+                <div className='image'>
+                  <img src={image} className='img-circle elevation-2' />
                 </div>
-                <div className="info">
-                  <NavLink to="#" className="d-block">
+                <div className='info'>
+                  <NavLink to='#' className='d-block'>
                     {name} ({role})
                   </NavLink>
                 </div>
               </>
             ) : (
               <>
-                <div className="image">
+                <div className='image'>
                   <img
                     //src="https://www.seekpng.com/png/full/966-9665493_my-profile-icon-blank-profile-image-circle.png"
-                    src="https://img.icons8.com/external-becris-flat-becris/64/000000/external-user-avatars-becris-flat-becris.png"
-                    className="img-circle elevation-2"
-                    alt="User Image"
+                    src='https://img.icons8.com/external-becris-flat-becris/64/000000/external-user-avatars-becris-flat-becris.png'
+                    className='img-circle elevation-2'
+                    alt='User Image'
                   />
                 </div>
-                <div className="info">
-                  <a href="#" className="d-block">
+                <div className='info'>
+                  <a href='#' className='d-block'>
                     User (Not logged in)
                   </a>
                 </div>
               </>
             )}
           </div>
-          <nav className="mt-2">
+          <nav className='mt-2'>
             <ul
-              className="nav nav-pills nav-sidebar flex-column"
-              data-widget="treeview"
-              role="menu"
-              data-accordion="false"
-            >
-              <li className="nav-item">
-                <NavLink to="/" exact className="nav-link">
-                  <i className="nav-icon fas fa-home"></i>
+              className='nav nav-pills nav-sidebar flex-column'
+              data-widget='treeview'
+              role='menu'
+              data-accordion='false'>
+              <li className='nav-item'>
+                <NavLink to='/' exact className='nav-link'>
+                  <i className='nav-icon fas fa-home'></i>
                   <p>Home</p>
                 </NavLink>
               </li>
-              <li className="nav-item">
-                <a href="#" className="nav-link">
-                  <i className="nav-icon fas fa-building" />
+              <li className='nav-item'>
+                <a href='#' className='nav-link'>
+                  <i className='nav-icon fas fa-building' />
                   <p>
                     Businesses
-                    <i className="fas fa-angle-left right" />
+                    <i className='fas fa-angle-left right' />
                   </p>
                 </a>
-                <ul className="nav nav-treeview">
-                  <li className="nav-item">
-                    <NavLink to="/businesses" className="nav-link">
-                      <i className="far fa-circle nav-icon" />
+                <ul className='nav nav-treeview'>
+                  <li className='nav-item'>
+                    <NavLink to='/businesses' className='nav-link'>
+                      <i className='far fa-circle nav-icon' />
                       <p>List of Businesses</p>
                     </NavLink>
                   </li>
@@ -152,8 +151,8 @@ const SideBar = () => {
           </nav>
         </div>
       </aside>
-    </React.Fragment>
-  );
-};
+    </>
+  )
+}
 
-export default SideBar;
+export default SideBar

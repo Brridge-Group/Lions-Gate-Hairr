@@ -27,7 +27,7 @@ const Home = () => {
   }
 
   return (
-    <React.Fragment>
+    <>
       <div className='content-wrapper'>
         <ContentHeader title='Home' />
         <section className='content'>
@@ -58,7 +58,7 @@ const Home = () => {
           </div>
         </section>
       </div>
-    </React.Fragment>
+    </>
   )
 }
 

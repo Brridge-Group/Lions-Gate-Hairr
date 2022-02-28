@@ -7,7 +7,7 @@ type Props = {
 const ContentHeader: React.FC<Props> = (props: Props) => {
   console.log('contentheader', props.title)
   return (
-    <React.Fragment>
+    <>
       <div className='content-header'>
         <div className='container-fluid'>
           <div className='row mb-2'>
@@ -20,7 +20,7 @@ const ContentHeader: React.FC<Props> = (props: Props) => {
           </div>
         </div>
       </div>
-    </React.Fragment>
+    </>
   )
 }
 

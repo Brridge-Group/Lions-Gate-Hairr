@@ -69,18 +69,7 @@ const App = () => {
 
   return (
     <Router>
-      <div
-        className='container'
-        style={{
-          width: '100vw',
-          height: '100vh',
-          position: 'fixed',
-          display: 'flex',
-          boxSizing: 'border-box',
-          margin: '0',
-          padding: '0',
-          flexDirection: 'column',
-        }}>
+      <div className='container'>
         <Navbar />
         {routes}
       </div>

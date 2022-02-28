@@ -9,26 +9,45 @@ body {
 }
 
 .container {
+  font-family: 'Roboto', sans-serif;
   position: fixed;
-  grid-column-gap: 39px;
   height: 100vh;
   width: 100%;
   max-width: 1206;
-  margin-right: auto;
-  margin-left: auto;
-  display: grid;
-  grid-template-columns: repeat(15, 1fr);
+  display: flex;
 }
 .navbar {
   display: flex;
   width: 100%;
   position: fixed;
-  border-bottom: 1 px solid grey;
-  height: 75px;
-  background: black;
+  border-bottom: 10 px solid grey;
+  height: 100px;
+  background: none;
   top: 0;
   z-index: 10;
+  border-bottom: 0.5px solid black;
+  justify-content: space-around;
 }
+
 ul {
-  text-decoration: none;
+  list-style-type: none;
+}
+
+li {
+  list-style: none;
+  display: inline-block;
+  margin: 0 40px;
+}
+.navbar li.active {
+  font-weight: 500;
+}
+h4 {
+  font-size: 24px;
+  font-weight: 300;
+  font-style: normal;
+}
+h5 {
+  font-size: 18px;
+  font-weight: 300;
+  padding-top: 10px;
 }

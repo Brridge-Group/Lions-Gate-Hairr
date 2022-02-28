@@ -5,13 +5,18 @@ import axios from 'axios'
 
 const Navbar = () => {
   return (
-    <div className='navbar'>
-      <ul>
-        <li>Home</li>
-        <li>Sign Up</li>
-        <li>Sign In</li>
-      </ul>
-    </div>
+    <header className='navbar'>
+      <h5>LOGO</h5>
+      <nav>
+        <ul>
+          <h5>
+            <li className='active'>Home</li>
+            <li>Sign Up</li>
+            <li>Sign In</li>
+          </h5>
+        </ul>
+      </nav>
+    </header>
   )
 }
 

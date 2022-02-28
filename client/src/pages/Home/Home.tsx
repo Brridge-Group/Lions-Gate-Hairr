@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import './Home.css'
-import pinkcrop1 from '../assets/images/pinkcrop1.jpg'
+import pinkcrop1 from '../../assets/images/pinkcrop1.jpg'
 
 const Home = () => {
   const history = useHistory()
@@ -31,23 +31,12 @@ const Home = () => {
       style={{
         backgroundImage: `url(${pinkcrop1})`,
       }}>
-      Im looking for hairstylist in
-      <form onSubmit={itemSubmitHandler}>
-        <div className='input-group'>
-          <input
-            type='search'
-            value={city}
-            onChange={handleChange}
-            className='form-control form-control-lg'
-            placeholder='Type the city name here'
-          />
-          <div className='input-group-append'>
-            <button type='submit' className='btn btn-lg btn-default'>
-              <i className='fa fa-search'></i>
-            </button>
-          </div>
-        </div>
-      </form>
+      <div className='input-group'>
+        <h4>I'm looking for hair stylist in</h4>
+        <form onSubmit={itemSubmitHandler}>
+          <input type='search' value={city} onChange={handleChange} autoFocus />
+        </form>
+      </div>
     </div>
   )
 }

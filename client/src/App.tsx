@@ -5,13 +5,8 @@ import {
   Redirect,
   Switch,
 } from 'react-router-dom'
-import Home from './pages/Home'
-import Header from './components/Header'
-import Footer from './components/Footer'
-import SideBar from './components/SideBar'
+import Home from './pages/Home/Home'
 import ListItems from './pages/ListItems'
-import NewItem from './pages/NewItem'
-import UpdateItem from './pages/UpdateItem'
 import UserRegistration from './pages/UserRegistration'
 import Login from './pages/Login'
 import BusinessList from './pages/Businesses/BusinessList'
@@ -32,12 +27,6 @@ const App = () => {
       </Route>
       <Route path='/items' exact>
         <ListItems />
-      </Route>
-      <Route path='/items/new' exact>
-        <NewItem />
-      </Route>
-      <Route path='/items/:id' exact>
-        <UpdateItem />
       </Route>
       <Route path='/user-signin' exact>
         <Login />

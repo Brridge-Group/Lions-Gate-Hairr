@@ -1,9 +1,0 @@
-.home {
-  margin-top: 75px;
-  background-size: cover;
-  background-repeat: no-repeat;
-  height: 100%;
-  width: 100%;
-  background-position-y: bottom;
-  grid-column: 1 / span-1;
-}

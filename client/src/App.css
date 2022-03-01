@@ -10,6 +10,7 @@ body {
 
 .container {
   font-family: 'Roboto', sans-serif;
+  font-style: normal;
   position: fixed;
   height: 100vh;
   width: 100%;
@@ -41,13 +42,38 @@ li {
 .navbar li.active {
   font-weight: 500;
 }
-h4 {
+h1 {
+  font-size: 36pt;
+  font-weight: 100;
+}
+h3 {
   font-size: 24px;
   font-weight: 300;
-  font-style: normal;
 }
-h5 {
+h4 {
   font-size: 18px;
   font-weight: 300;
   padding-top: 10px;
+}
+h5 {
+  font-size: 16px;
+  line-height: 19px;
+  font-weight: 300;
+}
+
+.btn--btn-primary {
+  width: 116px;
+  height: 42px;
+  background: black;
+  border-radius: 10px;
+  border: 1 px solid #f32dc8;
+  color: white;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 400;
+}
+p {
+  font-size: 14px;
+  line-height: 17px;
+  font-weight: 400;
 }

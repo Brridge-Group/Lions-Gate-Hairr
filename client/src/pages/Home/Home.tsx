@@ -32,7 +32,7 @@ const Home = () => {
         backgroundImage: `url(${pinkcrop1})`,
       }}>
       <div className='input-group'>
-        <h4>I'm looking for hair stylist in</h4>
+        <h3>I'm looking for hair stylist in</h3>
         <form onSubmit={itemSubmitHandler}>
           <input type='search' value={city} onChange={handleChange} autoFocus />
         </form>

@@ -9,7 +9,7 @@ import {
   Grid,
   Typography,
   Container,
-  IconButton
+  IconButton,
 } from '@material-ui/core'
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
 import useStyles from '../components/Styles'
@@ -22,7 +22,7 @@ const UserRegistration = () => {
   const [formData, setFormData] = useState({
     role: 'user',
     imageProfile:
-      'https://www.seekpng.com/png/full/966-9665493_my-profile-icon-blank-profile-image-circle.png'
+      'https://www.seekpng.com/png/full/966-9665493_my-profile-icon-blank-profile-image-circle.png',
   })
   const [showPassword, setShowPassword] = useState(false)
   const dispatch = useDispatch()
@@ -57,17 +57,17 @@ const UserRegistration = () => {
     setShowPassword(prevShowPassword => !prevShowPassword)
 
   return (
-    <div className="content-wrapper">
-      <Container component="main" maxWidth="xs">
+    <div className='content-wrapper'>
+      <Container component='main' maxWidth='xs'>
         <Paper className={classes.paper} elevation={3}>
           <Avatar className={classes.avatar}>
             <LockOutlinedIcon />
           </Avatar>
-          <Typography variant="h5">Sign Up</Typography>
+          <Typography variant='h5'>Sign Up</Typography>
           <form className={classes.form} onSubmit={handleSubmit}>
             <Grid container spacing={2}>
               <>
-                <Button fullWidth color="default" className={classes.profile}>
+                <Button fullWidth color='default' className={classes.profile}>
                   <IconButton>
                     <Avatar
                       src={formData.imageProfile}
@@ -75,7 +75,7 @@ const UserRegistration = () => {
                         margin: '10px',
                         width: '60px',
                         height: '60px',
-                        justifyContent: 'center'
+                        justifyContent: 'center',
                       }}
                     />
                   </IconButton>
@@ -88,37 +88,37 @@ const UserRegistration = () => {
                 </Button>
 
                 <Input
-                  name="firstName"
-                  label="First Name"
+                  name='firstName'
+                  label='First Name'
                   handleChange={handleChange}
                   autoFocus
                   half
                 />
                 <Input
-                  name="lastName"
-                  label="Last Name"
+                  name='lastName'
+                  label='Last Name'
                   handleChange={handleChange}
                   half
                 />
               </>
               <Input
-                name="email"
-                label="Email Address"
+                name='email'
+                label='Email Address'
                 handleChange={handleChange}
-                type="email"
+                type='email'
               />
               <Input
-                name="password"
-                label="Password"
+                name='password'
+                label='Password'
                 handleChange={handleChange}
                 type={showPassword ? 'text' : 'password'}
                 handleShowPassword={handleShowPasswordClicked}
               />
               <Input
-                name="confirmPassword"
-                label="Confirm Password"
+                name='confirmPassword'
+                label='Confirm Password'
                 handleChange={handleChange}
-                type="password"
+                type='password'
               />
             </Grid>
             <br />
@@ -129,9 +129,9 @@ const UserRegistration = () => {
               <label>User</label>
               &ensp;
               <input
-                type="radio"
-                name="role"
-                value="user"
+                type='radio'
+                name='role'
+                value='user'
                 onChange={handleChange}
                 checked={formData.role === 'user'}
               />
@@ -139,9 +139,9 @@ const UserRegistration = () => {
               <label>Business Owner</label>
               &ensp;
               <input
-                type="radio"
-                name="role"
-                value="owner"
+                type='radio'
+                name='role'
+                value='owner'
                 onChange={handleChange}
                 checked={formData.role === 'owner'}
               />
@@ -149,16 +149,16 @@ const UserRegistration = () => {
             <br />
             {errorMsg && <p style={{ color: 'red' }}> {errorMsg} </p>}
             <Button
-              type="submit"
+              type='submit'
               fullWidth
-              variant="contained"
-              color="primary"
-              className={classes.submit}
-            >
+              variant='contained'
+              color='primary'
+              className={classes.submit}>
               Sign Up
             </Button>
             <p>
-              Have an account? <NavLink to="user-signin">Click Here</NavLink> to Login.
+              Have an account? <NavLink to='user-signin'>Click Here</NavLink> to
+              Login.
             </p>
           </form>
         </Paper>

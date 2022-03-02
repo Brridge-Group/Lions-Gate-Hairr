@@ -32,15 +32,22 @@ body {
 
 ul {
   list-style-type: none;
+  padding: 0;
 }
 
 li {
-  list-style: none;
   display: inline-block;
   margin: 0 40px;
 }
-.navbar li.active {
-  font-weight: 500;
+a {
+  text-decoration: none;
+  color: black;
+}
+a:hover {
+  font-weight: 400;
+}
+a.active {
+  font-weight: 400;
 }
 h1 {
   font-size: 36pt;

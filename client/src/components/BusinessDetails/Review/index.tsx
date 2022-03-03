@@ -1,5 +1,3 @@
-import React from "react";
-
 import { Container, StarsContainer, LeaveReviewButton } from "./ReviewElements";
 
 interface Props {
@@ -9,7 +7,7 @@ interface Props {
 
 const isLoggedIn: boolean = true;
 
-const Review = (props: Props) => {
+export const Review = (props: Props) => {
   const stars: JSX.Element[] = [...Array(5)].map((star, i) => {
     if (i <= Math.round(props.stars) - 1) {
       return <p key={i}>&#9733;</p>;
@@ -29,5 +27,3 @@ const Review = (props: Props) => {
     </Container>
   );
 };
-
-export default Review;

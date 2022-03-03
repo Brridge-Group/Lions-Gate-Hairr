@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 
-import Card from "../../UIElements/Card";
-import Star from "../../UIElements/Star";
-import About from "../BusinessDetails/About";
+import { Card } from "../../UIElements/Card";
+import { Star } from "../../UIElements/Star";
+import { About } from "../BusinessDetails/About";
 
-const MyBusinessList = () => {
+export const MyBusinessList = () => {
   const [list, setList] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const history = useHistory();
@@ -85,5 +85,3 @@ const MyBusinessList = () => {
     );
   }
 };
-
-export default MyBusinessList;

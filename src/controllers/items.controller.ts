@@ -4,7 +4,7 @@ var createError = require('http')
 
 const Item = require('../models/item')
 
-const getItems = async (req: Request, res: Response, next: NextFunction) => {
+export const getItems = async(req: Request, res: Response, next: NextFunction) => {
   let items: []
 
   try {
@@ -20,8 +20,7 @@ const getItems = async (req: Request, res: Response, next: NextFunction) => {
   }
 }
 
-const createItem = async (req: Request, res: Response, next: NextFunction) => {
-  console.log(req.body)
+export const createItem = async(req: Request, res: Response, next: NextFunction) => {
   const { name, description } = req.body
 
   const createdItem = new Item({
@@ -39,7 +38,7 @@ const createItem = async (req: Request, res: Response, next: NextFunction) => {
   res.status(201).json({ item: createdItem })
 }
 
-const updateItem = async (req: Request, res: Response, next: NextFunction) => {
+export const updateItem = async(req: Request, res: Response, next: NextFunction) => {
   const itemId = req.params.id
 
   console.log(req.body)
@@ -64,7 +63,7 @@ const updateItem = async (req: Request, res: Response, next: NextFunction) => {
   res.status(200).json({ item: item.toObject({ getters: true }) })
 }
 
-const getItem = async (req: Request, res: Response, next: NextFunction) => {
+export const getItem = async(req: Request, res: Response, next: NextFunction) => {
   let item
 
   const itemId = req.params.id
@@ -78,7 +77,7 @@ const getItem = async (req: Request, res: Response, next: NextFunction) => {
   res.json({ item })
 }
 
-const deleteItem = async (req: Request, res: Response, next: NextFunction) => {
+export const deleteItem = async(req: Request, res: Response, next: NextFunction) => {
   let item
 
   const itemId = req.params.id
@@ -99,5 +98,3 @@ const deleteItem = async (req: Request, res: Response, next: NextFunction) => {
 
   res.json({ message: 'Delete successfully' })
 }
-
-exports.getItems = getItems

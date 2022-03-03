@@ -13,7 +13,7 @@ interface inputInterface {
     handleShowPassword?: any;
 }
 
-const Input = ({half, name, handleChange, label, autoFocus, type, handleShowPassword}: inputInterface) => {
+export const Input = ({half, name, handleChange, label, autoFocus, type, handleShowPassword}: inputInterface) => {
     return (
         <Grid item xs={12} sm={half ? 6 : 12}>
             <TextField 
@@ -38,5 +38,3 @@ const Input = ({half, name, handleChange, label, autoFocus, type, handleShowPass
         </Grid>
     )
 }
-
-export default Input

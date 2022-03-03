@@ -1,23 +1,22 @@
-import React from 'react'
 import {
   BrowserRouter as Router,
   Route,
   Redirect,
   Switch,
 } from 'react-router-dom'
-import Home from './pages/Home/Home'
-import ListItems from './pages/ListItems'
-import UserRegistration from './pages/UserRegistration'
-import Login from './pages/Login'
-import BusinessList from './pages/Businesses/BusinessList'
-import BusinessDetails from './components/BusinessDetails/BusinessDetails'
-import AddBusiness from './pages/AddBusiness'
-import AddReview from './components/AddReview/AddReview'
-import MyBusinessList from './components/Businesses/MyBusinessList'
-import Navbar from './components/Navbar'
+import { Home } from './pages/Home/Home'
+import { ListItems } from './pages/ListItems'
+import { UserRegistration } from './pages/UserRegistration'
+import { Login } from './pages/Login'
+import { BusinessList } from './pages/Businesses/BusinessList'
+import { BusinessDetails } from './components/BusinessDetails/BusinessDetails'
+import { AddBusiness } from './pages/AddBusiness'
+import { AddReview } from './components/AddReview/AddReview'
+import { MyBusinessList } from './components/Businesses/MyBusinessList'
+import { Navbar } from './components/Navbar'
 import './App.css'
 
-const App = () => {
+export const App = () => {
   let routes
 
   routes = (
@@ -65,5 +64,3 @@ const App = () => {
     </Router>
   )
 }
-
-export default App

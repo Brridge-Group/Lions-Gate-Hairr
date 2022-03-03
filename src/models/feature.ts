@@ -10,5 +10,4 @@ const featureSchema = new Schema({
   isChecked: { type: Boolean, default: false }
 })
 
-const Feature = mongoose.model('Feature', featureSchema)
-export default Feature
+export const Feature = mongoose.model('Feature', featureSchema)

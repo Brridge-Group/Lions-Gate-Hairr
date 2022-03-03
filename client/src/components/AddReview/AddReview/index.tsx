@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams, useHistory } from "react-router-dom";
-import axios from "axios";
 import { ContentWrapper, Header, HR, ReviewForm } from "./AddReviewElements";
-import StarRating from "../StarRating";
+import { StarRating } from "../StarRating";
 
 interface RouteParams {
   id: string;
@@ -34,7 +33,7 @@ interface Business {
   phone: string;
 }
 
-const AddReview = () => {
+export const AddReview = () => {
   const [businessData, setBusinessData] = useState<Business>();
   const history = useHistory();
   const { id } = useParams<RouteParams>();
@@ -88,5 +87,3 @@ const AddReview = () => {
     </div>
   );
 };
-
-export default AddReview;

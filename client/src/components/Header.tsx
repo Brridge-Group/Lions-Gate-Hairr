@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { useHistory, useLocation, NavLink } from "react-router-dom";
 import decode from "jwt-decode";
 
-const Header = () => {
+export const Header = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const location = useLocation();
@@ -69,5 +69,3 @@ const Header = () => {
     </React.Fragment>
   );
 };
-
-export default Header;

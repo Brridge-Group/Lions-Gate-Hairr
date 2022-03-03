@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import ContentHeader from '../components/ContentHeader'
+import { ContentHeader } from '../components/ContentHeader'
 import { Link } from 'react-router-dom'
 
 interface Item {
@@ -8,7 +8,7 @@ interface Item {
   description: string
 }
 
-const Items: React.FC = () => {
+export const ListItems: React.FC = () => {
   const [loadedItems, setLoadedItems] = useState<Item[]>([])
 
   useEffect(() => {
@@ -106,5 +106,3 @@ const Items: React.FC = () => {
     </React.Fragment>
   )
 }
-
-export default Items

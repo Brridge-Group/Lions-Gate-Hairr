@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom'
 import './Home.css'
 import pinkcrop1 from '../../assets/images/pinkcrop1.jpg'
 
-const Home = () => {
+export const Home = () => {
   const history = useHistory()
   const [city, setCity] = useState('')
 
@@ -40,5 +40,3 @@ const Home = () => {
     </div>
   )
 }
-
-export default Home

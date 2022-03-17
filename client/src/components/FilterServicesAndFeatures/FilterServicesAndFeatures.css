@@ -1,0 +1,28 @@
+.Filters-Container {
+  display: flex;
+  flex-direction: column;
+  justify-self: center;
+  margin: 12px;
+}
+.Filters-Label_header {
+  display: flex;
+  justify-content: center;
+  font-weight: 500;
+}
+.Filters-Label_header_services {
+  margin-top: 2.3rem;
+}
+.Filters-FormCheck {
+  text-transform: capitalize;
+}
+.Filters-FormCheckInput {
+}
+.Filters-FormCheck {
+  margin: 10px;
+}
+.Filters-FormCheckLabel {
+  font-weight: 300;
+}
+.Filters-Button {
+  margin-top: 1rem;
+}

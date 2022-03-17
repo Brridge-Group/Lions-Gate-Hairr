@@ -1,0 +1,54 @@
+.BusinessList-Wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+  margin-top: -10vh; /* Adds overlap styles to navbar */
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: bottom center;
+  background-image: url(../../assets//images/whitecrop\ 1.png);
+}
+.BusinessList-Wrapper_loader {
+  margin-top: 4rem;
+  justify-items: center;
+}
+.BusinessList-HeaderContainer {
+  justify-content: flex-end;
+  display: flex;
+  flex-direction: column;
+  height: 20vh;
+  font-size: 21px;
+}
+.BusinessList-Header {
+  font-size: 21px;
+  font-weight: 400;
+}
+
+.BusinessList-Container {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+.BusinessList-Filters {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 12rem;
+  height: max-content;
+  margin-right: 34px;
+  padding: 2rem 0 2.5rem 0;
+  border: 0.25px solid rgba(0, 0, 0, 1);
+}
+.BusinessList-Card {
+  width: 36.93rem;
+  position: relative;
+  margin: 2rem;
+  padding: 1rem;
+  margin-left: auto;
+  margin-right: auto;
+  overflow: hidden;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+  background: #f7f7f7 !important;
+}

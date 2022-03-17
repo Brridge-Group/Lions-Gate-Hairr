@@ -1,11 +1,30 @@
-* {
+/*
+  Use a more-intuitive box-sizing model.
+*/
+*,
+*::before,
+*::after {
   box-sizing: border-box;
+  /* margin: 0; // TODO:? => Consider Adding */
 }
 
 body {
   margin: 0;
   padding: 0;
   overscroll-behavior: none;
+}
+
+/*
+  Avoid text overflows
+*/
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
 }
 
 .container {
@@ -16,6 +35,8 @@ body {
   width: 100%;
   max-width: 1206;
   display: flex;
+  font-family: 'Roboto', sans-serif;
+  font-style: normal;
 }
 .navbar {
   display: flex;

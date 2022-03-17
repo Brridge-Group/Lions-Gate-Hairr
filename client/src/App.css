@@ -28,27 +28,32 @@ h6 {
 }
 
 .container {
-  font-family: 'Roboto', sans-serif;
-  font-style: normal;
-  position: fixed;
+  display: flex;
   height: 100vh;
   width: 100%;
-  max-width: 1206;
-  display: flex;
+  flex-direction: column;
   font-family: 'Roboto', sans-serif;
   font-style: normal;
+
+  /* TODO-FIXME: Removed because it prevented children components' page scroll*/
+  /* position: fixed;  */
+  /*TODO-FIXME: Not displaing to the page?  */
+  /* max-width: 1206; */
 }
 .navbar {
   display: flex;
+  height: 10vh;
   width: 100%;
-  position: fixed;
-  border-bottom: 10 px solid grey;
-  height: 100px;
-  background: none;
-  top: 0;
-  z-index: 10;
-  border-bottom: 0.5px solid black;
   justify-content: space-around;
+  border-bottom: 0.5px solid black;
+  background-color: inherit;
+  /* background: url(./assets/images/pinkcrop1.jpg); */
+  /** Removed to allow for overall repositioning of the parent container layout with the navbar and other internal sibling components, i.e. <BusinessList/> or <AddBusiness/> */
+  /* position: fixed; */
+  /* border-bottom: 10px solid grey; */
+  /* height: 100px; */
+  /* top: 0; */
+  z-index: 10;
 }
 
 ul {
@@ -71,7 +76,7 @@ a.active {
   font-weight: 400;
 }
 h1 {
-  font-size: 36pt;
+  font-size: 36px;
   font-weight: 100;
 }
 h3 {

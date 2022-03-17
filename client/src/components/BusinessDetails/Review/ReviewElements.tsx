@@ -10,6 +10,8 @@ export const Container = styled.div`
 export const StarsContainer = styled.div`
   margin-top: 1rem;
   display: flex;
+  justify-content: center;
+  align-items: center;
   font-size: 1.5rem;
 
   & > p {

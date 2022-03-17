@@ -8,16 +8,38 @@
   grid-column-gap: 20px;
   height: 100vh;
   width: 100%;
-  max-width: 1206;
+  /* max-width: 1206;  */
+  /*TODO-FIXME: Above is not displaing to the page?  */
+  margin-top: -10vh; /* Adds overlap styles to navbar */
   margin-right: auto;
   margin-left: auto;
 }
+/* .home::after {
+  content: '';
+  height: 10vh;
+  background-color: blue;
+  width: 100%;
+} */
+
+/* .home::before {
+  content: '';
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  background-color: blue;
+  position: relative;
+  margin-top: -30rem;
+  transform: rotate(90deg); */
+/* translate-radiusX(-50%); */
+/* z-index: 1; */
+/* width: 100%; */
+/* } */
 .input-group {
   text-align: center;
-  margin-top: 300px;
+  margin-top: 200px;
   grid-column: 6/11;
 }
-input {
+.input-group input {
   height: 36px;
   width: 80%;
   background: none;
@@ -26,6 +48,6 @@ input {
   text-align: center;
 }
 
-input:focus {
+.input-group input:focus {
   outline: none;
 }

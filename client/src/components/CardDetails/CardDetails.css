@@ -1,0 +1,37 @@
+.CardDetails-Container {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-around;
+  margin: 1rem auto 1rem auto;
+}
+.CardDetails-FigureContainer {
+  margin: 0 0 0 1.25rem;
+}
+.CardDetails-FigureContainer p {
+  margin-top: 0rem;
+  line-height: 10px;
+  font-size: 2.18rem;
+}
+.CardDetails-Image {
+  width: 11.25rem;
+  height: 11.25rem;
+  border-radius: 1rem;
+}
+.CardDetails-Name {
+  max-width: 15rem;
+  margin: 0 0 15px 0;
+  font-weight: 100;
+  font-size: 36px;
+}
+.CardDetails-Description {
+  max-width: 15rem;
+  margin-top: 0;
+  line-height: 28px;
+  font-size: 22px;
+}
+
+.CardDetails-Address p {
+  font-size: 16px;
+  line-height: 10px;
+}

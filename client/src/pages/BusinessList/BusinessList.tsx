@@ -6,9 +6,14 @@ import { useHistory, useParams } from 'react-router-dom'
 import Card from '../../UIElements/Card'
 import Star from '../../UIElements/Star'
 import About from '../../components/BusinessDetails/About'
+import CardDetails from '../../components/CardDetails/CardDetails'
 import FilterServicesAndFeatures from '../../components/FilterServicesAndFeatures/FilterServicesAndFeatures'
 import LoadSpinner from '../../components/LoadSpinner/LoadSpinner'
 
+// Custom Styles
+import './BusinessList.css'
+
+// Types
 interface RouteParams {
   city: string
 }
@@ -39,7 +44,9 @@ interface Business {
   phone: string
 }
 
-const BusinessList = () => {
+// export const FilterServicesAndFeatures: React.FC<Props> = (props: Props) => {
+// export const ListItems: React.FC = () => {
+export const BusinessList: React.FC = () => {
   const [list, setList]: any = useState([])
   const [loading, setLoading] = useState(true)
   const history = useHistory()
@@ -63,9 +70,7 @@ const BusinessList = () => {
         const businessesList = await res.json()
         if (typeof city !== 'undefined') {
           const filtered = businessesList.filter((business: Business) => {
-            return business.address.city
-              .toLowerCase()
-              .includes(city.toLowerCase())
+            return business.address.city.toLowerCase().includes(city.toLowerCase())
           })
           setList(filtered)
         } else {
@@ -84,7 +89,7 @@ const BusinessList = () => {
     const fetchFeaturesData = async () => {
       try {
         const response = await fetch('/api/features', {
-          method: 'GET'
+          method: 'GET',
         })
         const responseData = await response.json()
         setFeats(responseData)
@@ -105,7 +110,7 @@ const BusinessList = () => {
     const fetchServicesData = async () => {
       try {
         const response = await fetch('/api/services', {
-          method: 'GET'
+          method: 'GET',
         })
         const responseData = await response.json()
         setServices(responseData)
@@ -151,11 +156,9 @@ const BusinessList = () => {
 
   if (loading) {
     return (
-      <div className='content-wrapper'>
-        <div className=''>
-          <div className='card-body row d-flex justify-content-center align-self-center mx-auto'>
-            <LoadSpinner />
-          </div>
+      <div className='BusinessList-Wrapper' style={{ height: '100vh' }}>
+        <div className='BusinessList-Wrapper_loader'>
+          <LoadSpinner />
         </div>
       </div>
     )
@@ -163,7 +166,7 @@ const BusinessList = () => {
 
   if (list.length === 0) {
     return (
-      <div className='content-wrapper'>
+      <div className='BusinessList-Wrapper'>
         <Card>
           <h2>No businesses found.</h2>
         </Card>
@@ -172,34 +175,14 @@ const BusinessList = () => {
   } else {
     return (
       <React.Fragment>
-        <div className='content-wrapper'>
-          <div className='container-header'>
-            <div className='container-fluid'>
-              <div className='row mb-2'>
-                <div className='col-sm-6'>
-                  {/* ternary operator 
+        <div className='BusinessList-Wrapper'>
+          <div className='BusinessList-HeaderContainer'>
+            {/* ternary operator 
                   if city is defined, show city name, else show '' */}
-                  {city == 'undefined' ? (
-                    <h1>List of Businesses</h1>
-                  ) : (
-                    <h1> List of {city} Businesses</h1>
-                  )}
-                </div>
-              </div>
-            </div>
+            {city == 'undefined' ? <h1 className='BusinessList-Header'> All Businesses</h1> : <h1 className='BusinessList-Header'>{city} Businesses</h1>}
           </div>
-          <div
-            className='businessesList-container'
-            style={{ display: 'flex', width: '100%' }}
-          >
-            <div
-              className='filters'
-              style={{
-                width: '15vw',
-                flexShrink: 0,
-                marginLeft: '20px'
-              }}
-            >
+          <div className='BusinessList-Container'>
+            <div className='BusinessList-Filters'>
               <FilterServicesAndFeatures
                 featuresArr={featuresArr}
                 servicesArr={servicesArr}
@@ -209,23 +192,14 @@ const BusinessList = () => {
                 handleResetFilter={handleResetFilter}
               />
             </div>
-            <div className='businesses-list' style={{ width: '100%' }}>
+            <div
+              className='BusinessList-CardContainer'
+              // style={{ width: '100%' }}
+            >
               {list.map((business: any) => (
-                <Card
-                  className='BusinessCard card-primary card-outline'
-                  key={business._id}
-                >
-                  <div
-                    onClick={() => history.push(`/businesses/${business._id}`)}
-                  >
-                    <About
-                      name={business.name}
-                      description={business.description}
-                      image={business.image}
-                      address={business.address}
-                    />
-                    <Star stars={business.stars} />
-                  </div>
+                <Card className=' BusinessList-Card' key={business._id} onClick={() => history.push(`/businesses/${business._id}`)}>
+                  {/* <div> */}
+                  <CardDetails name={business.name} description={business.description} image={business.image} address={business.address} stars={business.stars} />
                 </Card>
               ))}
             </div>
@@ -236,4 +210,6 @@ const BusinessList = () => {
   }
 }
 
-export default BusinessList
+// TODO: [ ] -> Update Businesses List with BEM style names
+// TODO: [ ] -> Update Card Details with BEM style names
+// TODO: [ ] -> PR with <BusinessList />,  <CardDetails />

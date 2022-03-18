@@ -4,8 +4,6 @@ import { useHistory, useParams } from 'react-router-dom'
 
 // Custom Imports
 import Card from '../../UIElements/Card'
-import Star from '../../UIElements/Star'
-import About from '../../components/BusinessDetails/About'
 import CardDetails from '../../components/CardDetails/CardDetails'
 import FilterServicesAndFeatures from '../../components/FilterServicesAndFeatures/FilterServicesAndFeatures'
 import LoadSpinner from '../../components/LoadSpinner/LoadSpinner'
@@ -209,7 +207,3 @@ export const BusinessList: React.FC = () => {
     )
   }
 }
-
-// TODO: [ ] -> Update Businesses List with BEM style names
-// TODO: [ ] -> Update Card Details with BEM style names
-// TODO: [ ] -> PR with <BusinessList />,  <CardDetails />

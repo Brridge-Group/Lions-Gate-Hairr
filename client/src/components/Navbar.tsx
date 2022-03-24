@@ -6,9 +6,7 @@ import axios from 'axios'
 
 const Navbar = () => {
   const location = useLocation()
-  const [user, setUser] = useState(
-    JSON.parse(localStorage.getItem('profile') ?? 'false')
-  )
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile') ?? 'false'))
   const [role, setRole] = useState()
 
   useEffect(() => {
@@ -24,10 +22,7 @@ const Navbar = () => {
   if (user) {
     const fetchData = async () => {
       await axios
-        .get(
-          'http://localhost:5000/api/users' +
-            `/get-profile/?id=${user.result._id}`
-        )
+        .get('http://localhost:5000/api/users' + `/get-profile/?id=${user.result._id}`)
         .then(async res => {
           // setName(res.data.name)
           setRole(res.data.role)
@@ -55,12 +50,12 @@ const Navbar = () => {
             {!user ? (
               <>
                 <li>
-                  <NavLink to='/user-signup' className='nav'>
+                  <NavLink to='/user-signup' exact={true} className='nav'>
                     Sign Up
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink to='/user-signin' className='nav'>
+                  <NavLink to='/user-signin' exact={true} className='nav'>
                     Sign In
                   </NavLink>
                 </li>
@@ -68,12 +63,12 @@ const Navbar = () => {
             ) : (
               <>
                 <li>
-                  <NavLink to='#' className='nav'>
+                  <NavLink to='/' exact={true} className='nav'>
                     Profile
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink to='#' className='nav'>
+                  <NavLink to='/' exact={true} className='nav'>
                     Log Out
                   </NavLink>
                 </li>

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import './Home.css'
-import pinkcrop1 from '../../assets/images/pinkcrop1.jpg'
+import hairpink from '../../assets/images/hairpink.jpg'
 
 const Home = () => {
   const history = useHistory()
@@ -29,7 +29,7 @@ const Home = () => {
     <div
       className='home'
       style={{
-        backgroundImage: `url(${pinkcrop1})`,
+        backgroundImage: `url(${hairpink})`,
       }}>
       <div className='input-group'>
         <h3>I'm looking for hair stylist in</h3>

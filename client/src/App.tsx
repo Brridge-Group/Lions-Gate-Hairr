@@ -18,7 +18,7 @@ import Navbar from './components/Navbar'
 import './App.css'
 
 const App = () => {
-  let routes
+  let routes:any;
 
   routes = (
     <Switch>

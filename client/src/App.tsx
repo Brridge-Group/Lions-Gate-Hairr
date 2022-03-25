@@ -14,7 +14,9 @@ import BusinessDetails from './components/BusinessDetails/BusinessDetails'
 import AddBusiness from './pages/AddBusiness'
 import AddReview from './components/AddReview/AddReview'
 import MyBusinessList from './components/Businesses/MyBusinessList'
-import Navbar from './components/Navbar'
+import Navbar from './components/Navbar/Navbar'
+import Profile from './pages/Profile/Profile'
+
 import './App.css'
 
 const App = () => {
@@ -52,13 +54,16 @@ const App = () => {
       <Route path='/businesses/:id/add-review' exact>
         <AddReview />
       </Route>
+      <Route path='/profile' exact>
+        <Profile />
+      </Route>
       <Redirect to='/' />
     </Switch>
   )
 
   return (
     <Router>
-      <div className='container'>
+      <div className='App-Container'>
         <Navbar />
         {routes}
       </div>

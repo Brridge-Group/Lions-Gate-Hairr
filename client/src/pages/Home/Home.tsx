@@ -10,31 +10,31 @@ const Home = () => {
   const handleChange = (e: any) => {
     try {
       setCity(e.target.value)
-      console.log('handleChange: ', city)
-    } catch (error) {
-      console.log('Error on handleChange function', error)
-    }
+    } catch (error) {}
   }
 
   const itemSubmitHandler = async (event: React.FormEvent<any>) => {
     event.preventDefault()
     try {
       history.push(`/businessByCity/${city}`, { from: 'Home' })
-      console.log('ItemSubmitHandler: ', city)
-    } catch (err) {
-      console.log('Error on itemSubmitHandler function', err)
-    }
+    } catch (err) {}
   }
   return (
     <div
-      className='home'
+      className='Home-Container'
       style={{
         backgroundImage: `url(${hairpink})`,
       }}>
-      <div className='input-group'>
+      <div className='Home-Container_inputGroup'>
         <h3>I'm looking for hair stylist in</h3>
         <form onSubmit={itemSubmitHandler}>
-          <input type='search' value={city} onChange={handleChange} autoFocus />
+          <input
+            type='search'
+            className='Home-Container_input'
+            value={city}
+            onChange={handleChange}
+            autoFocus
+          />
         </form>
       </div>
     </div>

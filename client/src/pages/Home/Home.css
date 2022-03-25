@@ -1,4 +1,4 @@
-.home {
+.Home-Container {
   display: grid;
   grid-template-columns: repeat(14, 1fr);
   background-size: cover;
@@ -11,21 +11,23 @@
   margin-right: auto;
   margin-left: auto;
 }
-.input-group {
+.Home-Container_inputGroup {
   text-align: center;
   margin-top: 300px;
   grid-column: 6/10;
 }
-input {
+.Home-Container_input {
   height: 36px;
   width: 80%;
   background: none;
   border: 0.5px solid black;
   margin-top: -40px;
   text-align: center;
+  font-size: 1.6em;
+  font-weight: 100;
 }
 
-input:focus {
+.Home-Container_input:focus {
   outline: none;
 }
 

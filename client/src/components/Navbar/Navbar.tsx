@@ -20,7 +20,6 @@ const Navbar = () => {
     }
     setUser(JSON.parse(localStorage.getItem('profile') ?? 'false'))
   }, [location])
-
   if (user) {
     const fetchData = async () => {
       await axios
@@ -33,56 +32,46 @@ const Navbar = () => {
           setRole(res.data.role)
           // setImage(res.data.imageProfile)
         })
-        .catch(error => {
-          console.log(error)
-        })
+        .catch(error => {})
     }
   }
 
   console.log(user, role)
 
   return (
-    <header className='navbar'>
-      <h4>LOGO</h4>
-      <nav>
-        <ul>
+    <div className='Navbar'>
+      <h4 className='Navbar-Logo'>LOGO</h4>
+      <nav className='Navbar-Container'>
+        <ul className='Navbar-List'>
           <h4>
-            <li>
-              <NavLink to='/' exact={true} className='nav'>
+            <li className='Navbar-Link'>
+              <NavLink to='/' exact={true} activeStyle={{ fontWeight: '400' }}>
                 Home
               </NavLink>
             </li>
             {!user ? (
               <>
-                <li>
-                  <NavLink to='/user-signup' className='nav'>
-                    Sign Up
-                  </NavLink>
+                <li className='Navbar-Link'>
+                  <NavLink to='/user-signup'>Sign Up</NavLink>
                 </li>
-                <li>
-                  <NavLink to='/user-signin' className='nav'>
-                    Sign In
-                  </NavLink>
+                <li className='Navbar-Link'>
+                  <NavLink to='/user-signin'>Sign In</NavLink>
                 </li>
               </>
             ) : (
               <>
-                <li>
-                  <NavLink to='#' className='nav'>
-                    Profile
-                  </NavLink>
+                <li className='Navbar-Link'>
+                  <NavLink to='profile'>Profile</NavLink>
                 </li>
-                <li>
-                  <NavLink to='#' className='nav'>
-                    Log Out
-                  </NavLink>
+                <li className='Navbar-Link'>
+                  <NavLink to='#'>Log Out</NavLink>
                 </li>
               </>
             )}
           </h4>
         </ul>
       </nav>
-    </header>
+    </div>
   )
 }
 

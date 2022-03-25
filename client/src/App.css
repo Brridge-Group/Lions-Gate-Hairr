@@ -11,7 +11,7 @@ html {
   font-size: 62.5%;
 }
 
-.container {
+.App-Container {
   font-family: 'Roboto', sans-serif;
   font-style: normal;
   position: fixed;
@@ -19,7 +19,7 @@ html {
   width: 100%;
   display: flex;
 }
-.navbar {
+.Navbar {
   display: flex;
   width: 100%;
   position: fixed;
@@ -32,25 +32,26 @@ html {
   justify-content: space-around;
 }
 
-ul {
+ul.Navbar-List {
   list-style-type: none;
   padding: 0;
 }
 
-li {
+li.Navbar-Link {
   display: inline-block;
   margin: 0 4rem;
 }
-a {
+.Navbar-Link a {
   text-decoration: none;
   color: black;
 }
-a:hover {
+.Navbar-Link a:hover {
   font-weight: 400;
 }
-a.active {
+.Navbar-Link a:focus {
   font-weight: 400;
 }
+
 h1 {
   font-size: 3.6rem;
   font-weight: 100;

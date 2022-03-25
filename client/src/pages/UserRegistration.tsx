@@ -13,11 +13,11 @@ import {
 } from '@material-ui/core'
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
 import useStyles from '../components/Styles'
-import Input from '../components/Input'
+import { Input } from '../components/Input'
 import { AUTH } from '../constants/actionTypes'
 import * as api from '../api/index'
 
-const UserRegistration = () => {
+export const UserRegistration = () => {
   const classes = useStyles()
   const [formData, setFormData] = useState({
     role: 'user',
@@ -166,5 +166,3 @@ const UserRegistration = () => {
     </div>
   )
 }
-
-export default UserRegistration

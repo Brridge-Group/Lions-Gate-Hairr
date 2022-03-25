@@ -10,5 +10,4 @@ const serviceSchema = new Schema({
   isChecked: { type: Boolean, default: false }
 })
 
-const Service = mongoose.model('Service', serviceSchema)
-export default Service
+export const Service = mongoose.model('Service', serviceSchema);

@@ -1,5 +1,5 @@
 import express from "express";
-import config from "./config";
+import { config } from "./config";
 import indexLoader from "./loaders/index";
 
 const startServer = async () => {

@@ -1,11 +1,11 @@
-import { Request, Response } from "express";
+import { NextFunction, Request, Response } from "express";
 let bcrypt = require("bcryptjs");
 let jwt = require("jsonwebtoken");
 let StatusCodes = require("http-status-codes");
 
 let User = require("../models/users");
 
-module.exports.signin = async (req: Request, res: Response) => {
+export const signin = async (req: Request, res: Response) => {
   const { email, password } = req.body;
   try {
     const existingUser = await User.findOne({ email });
@@ -29,48 +29,48 @@ module.exports.signin = async (req: Request, res: Response) => {
     console.log(err);
     res.status(StatusCodes.INTERNAL_SERVER_ERROR).send("Something went wrong.");
   }
-};
+}
 
-module.exports.signup = async (req: Request, res: Response) => {
+export const signup = async(req: Request, res: Response) => {
   const { email, password, confirmPassword, firstName, lastName, role, imageProfile } =
-    req.body;
+  req.body;
 console.log(req.body);
-  try {
-    const existingUser = await User.findOne({ email });
+try {
+  const existingUser = await User.findOne({ email });
 
-    if (existingUser) {
-      console.log(existingUser);
-      return res
-        .status(StatusCodes.BAD_REQUEST)
-        .send("User already exists! Try new email address.");
-    }
-
-    if (password !== confirmPassword)
-      return res.status(StatusCodes.BAD_REQUEST).send("Password doesn't match");
-    const hashedPassword = await bcrypt.hash(password, 12);
-
-    const result = await User.create({
-      email,
-      password: hashedPassword,
-      name: `${firstName} ${lastName}`,
-      role,
-      imageProfile
-    });
-    console.log("Result of creation of user: ", result);
-    const token = jwt.sign(
-      { email: result.email, id: result._id },
-      "jwtSecret",
-      { expiresIn: "1h" }
-    );
-    console.log(`User registered:${result} and Token: ${token}`);
-    res.status(200).json({ result, token });
-  } catch (err) {
-    console.log(err);
-    res.status(StatusCodes.INTERNAL_SERVER_ERROR).send("Something went wrong.");
+  if (existingUser) {
+    console.log(existingUser);
+    return res
+      .status(StatusCodes.BAD_REQUEST)
+      .send("User already exists! Try new email address.");
   }
-};
 
-module.exports.getProfileById = async (req: Request, res: Response) => {
+  if (password !== confirmPassword)
+    return res.status(StatusCodes.BAD_REQUEST).send("Password doesn't match");
+  const hashedPassword = await bcrypt.hash(password, 12);
+
+  const result = await User.create({
+    email,
+    password: hashedPassword,
+    name: `${firstName} ${lastName}`,
+    role,
+    imageProfile
+  });
+  console.log("Result of creation of user: ", result);
+  const token = jwt.sign(
+    { email: result.email, id: result._id },
+    "jwtSecret",
+    { expiresIn: "1h" }
+  );
+  console.log(`User registered:${result} and Token: ${token}`);
+  res.status(200).json({ result, token });
+} catch (err) {
+  console.log(err);
+  res.status(StatusCodes.INTERNAL_SERVER_ERROR).send("Something went wrong.");
+}
+}
+
+export const getProfileById = async(req: Request, res: Response) => {
   const profileId = req.query.id;
 
   let profile;
@@ -91,4 +91,4 @@ module.exports.getProfileById = async (req: Request, res: Response) => {
   const result = profile.toObject({ getters: true });
   res.locals.profile = result;
   res.status(StatusCodes.OK).json(result);
-};
+}

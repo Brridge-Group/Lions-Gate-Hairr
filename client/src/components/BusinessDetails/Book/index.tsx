@@ -7,7 +7,7 @@ interface Props {
   phone: string
 }
 
-const Book = (props: Props) => {
+export const Book = (props: Props) => {
   const [showPhoneNumber, setShowPhoneNumber] = useState(false);
 
   const phoneNumber = `(${props.phone.slice(0,3)}) ${props.phone.slice(3,6)}-${props.phone.slice(6)}`;
@@ -27,5 +27,3 @@ const Book = (props: Props) => {
     {showPhoneNumber ? <p>{phoneNumber}</p> : BookButton}
   </PhoneContainer>;
 };
-
-export default Book;

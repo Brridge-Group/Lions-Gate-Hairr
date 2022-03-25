@@ -10,7 +10,7 @@ import {
   Container,
 } from '@material-ui/core'
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
-import Input from '../components/Input'
+import { Input } from '../components/Input'
 import { LOGIN } from '../constants/actionTypes'
 import * as api from '../api/index'
 import useStyles from '../components/Styles'
@@ -20,7 +20,7 @@ const initialState = {
   password: '',
 }
 
-const Login = () => {
+export const Login = () => {
   const classes = useStyles()
   const [formData, setFormData] = useState(initialState)
   const [showPassword, setShowPassword] = useState(false)
@@ -94,4 +94,3 @@ const Login = () => {
     </div>
   )
 }
-export default Login

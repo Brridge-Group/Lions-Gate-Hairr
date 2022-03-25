@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react'
-import ContentHeader from '../components/ContentHeader'
+import { ContentHeader } from '../components/ContentHeader'
 import { Link } from 'react-router-dom'
 import { useHistory } from 'react-router-dom'
 import axios from 'axios'
 import { regions } from '../constants/regions'
-const AddBusiness = () => {
+
+
+export const AddBusiness = () => {
   // Initialize  Services and Features to state
   const [feats, setFeats]: any = useState([]) // Features full object
   const [services, setServices]: any = useState([]) // Services full object
@@ -306,5 +308,3 @@ const AddBusiness = () => {
     </React.Fragment>
   )
 }
-
-export default AddBusiness

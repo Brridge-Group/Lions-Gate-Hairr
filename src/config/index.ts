@@ -8,9 +8,7 @@ interface Config {
   databaseURL: string;
 }
 
-const config: Config = {
+export const config: Config = {
   port: process.env.PORT || "",
   databaseURL: process.env.MONGODB_URI || process.env.LOCAL_DB_URL || "",
 }
-
-export default config

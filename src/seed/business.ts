@@ -1,10 +1,10 @@
 import mongoose from "mongoose";
 const Schema = mongoose.Schema;
 
-import config from "../config";
-import Service from "../models/service";
-import Feature from "../models/feature";
-import Business from "../models/business";
+import { config } from "../config";
+import { Service } from "../models/service";
+import { Feature } from "../models/feature";
+import { Business } from "../models/business";
 
 const businesses = [
   {

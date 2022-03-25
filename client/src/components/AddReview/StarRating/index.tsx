@@ -5,7 +5,7 @@ interface Props {
   id: string;
 }
 
-const StarRating = (props: Props) => {
+export const StarRating = (props: Props) => {
   const [rating, setRating] = useState<number | null>(null);
 
   const stars = [...Array(5)].map((element, i) => {
@@ -26,5 +26,3 @@ const StarRating = (props: Props) => {
   });
   return <div id={props.id}>{stars}</div>;
 };
-
-export default StarRating;

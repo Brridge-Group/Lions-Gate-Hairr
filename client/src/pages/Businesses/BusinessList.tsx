@@ -3,11 +3,11 @@ import React, { useState, useEffect } from 'react'
 import { useHistory, useParams } from 'react-router-dom'
 
 // Custom Imports
-import Card from '../../UIElements/Card'
-import Star from '../../UIElements/Star'
-import About from '../../components/BusinessDetails/About'
-import FilterServicesAndFeatures from '../../components/FilterServicesAndFeatures/FilterServicesAndFeatures'
-import LoadSpinner from '../../components/LoadSpinner/LoadSpinner'
+import { Card } from '../../UIElements/Card'
+import { Star } from '../../UIElements/Star'
+import { About } from '../../components/BusinessDetails/About'
+import { FilterServicesAndFeatures } from '../../components/FilterServicesAndFeatures/FilterServicesAndFeatures'
+import { LoadSpinner } from '../../components/LoadSpinner/LoadSpinner'
 
 interface RouteParams {
   city: string
@@ -39,7 +39,7 @@ interface Business {
   phone: string
 }
 
-const BusinessList = () => {
+export const BusinessList = () => {
   const [list, setList]: any = useState([])
   const [loading, setLoading] = useState(true)
   const history = useHistory()
@@ -179,7 +179,7 @@ const BusinessList = () => {
                 <div className='col-sm-6'>
                   {/* ternary operator 
                   if city is defined, show city name, else show '' */}
-                  {city == 'undefined' ? (
+                  {city === 'undefined' ? (
                     <h1>List of Businesses</h1>
                   ) : (
                     <h1> List of {city} Businesses</h1>
@@ -235,5 +235,3 @@ const BusinessList = () => {
     )
   }
 }
-
-export default BusinessList

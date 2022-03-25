@@ -4,7 +4,7 @@ type Props = {
   title: string
 }
 
-const ContentHeader: React.FC<Props> = (props: Props) => {
+export const ContentHeader: React.FC<Props> = (props: Props) => {
   console.log('contentheader', props.title)
   return (
     <>
@@ -23,5 +23,3 @@ const ContentHeader: React.FC<Props> = (props: Props) => {
     </>
   )
 }
-
-export default ContentHeader

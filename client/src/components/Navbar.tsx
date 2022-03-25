@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom'
 import decode from 'jwt-decode'
 import axios from 'axios'
 
-const Navbar = () => {
+export const Navbar = () => {
   const location = useLocation()
   const [user, setUser] = useState(
     JSON.parse(localStorage.getItem('profile') ?? 'false')
@@ -85,5 +85,3 @@ const Navbar = () => {
     </header>
   )
 }
-
-export default Navbar

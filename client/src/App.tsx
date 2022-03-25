@@ -6,8 +6,8 @@ import {
 } from 'react-router-dom'
 import { Home } from './pages/Home/Home'
 import { ListItems } from './pages/ListItems'
-import { UserRegistration } from './pages/UserRegistration'
-import { Login } from './pages/Login'
+import UserRegistration from './pages/Auth/UserRegistration'
+import Login from './pages/Auth/Login'
 import { BusinessList } from './pages/Businesses/BusinessList'
 import { BusinessDetails } from './components/BusinessDetails/BusinessDetails'
 import { AddBusiness } from './pages/AddBusiness'
@@ -17,7 +17,7 @@ import { Navbar } from './components/Navbar'
 import './App.css'
 
 export const App = () => {
-  let routes
+  let routes:any;
 
   routes = (
     <Switch>

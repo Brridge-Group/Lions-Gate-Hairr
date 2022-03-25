@@ -1,11 +1,14 @@
 import { useEffect, useState } from 'react'
-import { useLocation } from 'react-router-dom'
+import { useHistory, useLocation } from 'react-router-dom'
+import { useDispatch } from "react-redux";
 import { NavLink } from 'react-router-dom'
 import decode from 'jwt-decode'
 import axios from 'axios'
 
 export const Navbar = () => {
   const location = useLocation()
+  const history = useHistory();
+  const dispatch = useDispatch();
   const [user, setUser] = useState(
     JSON.parse(localStorage.getItem('profile') ?? 'false')
   )
@@ -20,6 +23,12 @@ export const Navbar = () => {
     }
     setUser(JSON.parse(localStorage.getItem('profile') ?? 'false'))
   }, [location])
+
+  const logout = () => {
+    dispatch({ type: "LOGOUT" });
+    history.push("/user-signin");
+    setUser("false");
+  };
 
   if (user) {
     const fetchData = async () => {
@@ -73,7 +82,7 @@ export const Navbar = () => {
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink to='#' className='nav'>
+                  <NavLink to='#' className='nav' onClick={logout}>
                     Log Out
                   </NavLink>
                 </li>

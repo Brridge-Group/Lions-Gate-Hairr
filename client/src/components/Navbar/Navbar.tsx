@@ -74,7 +74,8 @@ const Navbar = () => {
                   </NavLink>
                 </li>
                 <li className='Navbar-Link '>
-                  <NavLink to='#'>Log Out</NavLink>
+                  <NavLink to='/'>Log Out</NavLink>
+                  {/* {localStorage.clear()} */}
                 </li>
               </>
             )}

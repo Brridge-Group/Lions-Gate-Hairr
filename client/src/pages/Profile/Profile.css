@@ -46,6 +46,10 @@
   border-bottom: 1px solid #f32dc8;
   margin-top: 20px;
 }
+
+.Profile-Container_user-container_reviews.business {
+  margin-top: 0;
+}
 .Profile-Container_user-container_reviews h4 {
   font-weight: 500;
   padding: 10px;

@@ -52,18 +52,28 @@ const Navbar = () => {
             {!user ? (
               <>
                 <li className='Navbar-Link'>
-                  <NavLink to='/user-signup'>Sign Up</NavLink>
+                  <NavLink
+                    to='/user-signup'
+                    activeStyle={{ fontWeight: '400' }}>
+                    Sign Up
+                  </NavLink>
                 </li>
                 <li className='Navbar-Link'>
-                  <NavLink to='/user-signin'>Sign In</NavLink>
+                  <NavLink
+                    to='/user-signin'
+                    activeStyle={{ fontWeight: '400' }}>
+                    Sign In
+                  </NavLink>
                 </li>
               </>
             ) : (
               <>
                 <li className='Navbar-Link'>
-                  <NavLink to='profile'>Profile</NavLink>
+                  <NavLink to='profile' activeStyle={{ fontWeight: '400' }}>
+                    Profile
+                  </NavLink>
                 </li>
-                <li className='Navbar-Link'>
+                <li className='Navbar-Link '>
                   <NavLink to='#'>Log Out</NavLink>
                 </li>
               </>

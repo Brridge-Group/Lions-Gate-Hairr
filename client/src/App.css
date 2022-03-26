@@ -19,6 +19,7 @@ html {
   width: 100%;
   display: flex;
 }
+
 .Navbar {
   display: flex;
   width: 100%;
@@ -76,11 +77,20 @@ h5 {
   height: 42px;
   background: black;
   border-radius: 10px;
-  border: 1 px solid #f32dc8;
+  border: 1px solid #f32dc8;
   color: white;
   text-align: center;
-  font-size: 1.6rem;
-  font-weight: 400;
+  font-size: 1.5rem;
+  font-weight: 300;
+  padding-top: 10px;
+  margin: 0 15px;
+}
+.btn--btn-primary.twoLines {
+  padding-top: 5px;
+  line-height: 1;
+}
+a {
+  text-decoration: none;
 }
 p {
   font-size: 1.4rem;

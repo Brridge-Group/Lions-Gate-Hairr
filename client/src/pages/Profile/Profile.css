@@ -28,8 +28,31 @@
   background: rgb(216, 212, 212);
   padding: 70px;
   margin: auto;
+  margin-top: -20px;
 }
+.user-reviews-placeholder {
+  margin-top: 100px;
+  font-size: 1.6rem;
+}
+
 .Profile-Container_user-container {
   border: 1px solid rgba(0, 0, 0, 0.5);
-  padding: 25px;
+  padding: 45px;
+  height: 58vh;
+  background-image: url('../../assets/images/hairgreybg.jpg');
+}
+.Profile-Container_user-container_reviews {
+  border-top: 1px solid #f32dc8;
+  border-bottom: 1px solid #f32dc8;
+  margin-top: 20px;
+}
+.Profile-Container_user-container_reviews h4 {
+  font-weight: 500;
+  padding: 10px;
+  margin: 0;
+}
+.Profile-Container_user-container_links {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
 }

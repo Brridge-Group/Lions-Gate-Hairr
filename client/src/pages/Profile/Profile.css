@@ -11,3 +11,25 @@
   margin-right: auto;
   margin-left: auto;
 }
+
+.Profile-Container_user {
+  text-align: center;
+  grid-column: 5/11;
+  margin-top: 125px;
+}
+
+.Profile-Container_name h1 {
+  text-align: center;
+}
+.user-pix-placeholder {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  background: rgb(216, 212, 212);
+  padding: 70px;
+  margin: auto;
+}
+.Profile-Container_user-container {
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  padding: 25px;
+}

@@ -48,23 +48,23 @@ html {
   justify-content: space-around;
 }
 
-ul.Navbar-List {
+ul.NavbarList {
   list-style-type: none;
   padding: 0;
 }
 
-li.Navbar-Link {
+li.NavbarList_link {
   display: inline-block;
   margin: 0 4rem;
 }
-.Navbar-Link a {
+.NavbarList_link a {
   text-decoration: none;
   color: black;
 }
-.Navbar-Link a:hover {
+.NavbarList_link a:hover {
   font-weight: 400;
 }
-.Navbar-Link a:focus {
+.NavbarList_link a:focus {
   font-weight: 400;
 }
 
@@ -113,3 +113,8 @@ p {
   line-height: 17px;
   font-weight: 400;
 }
+
+/* ///////media queries ////////// */
+
+/* /* @media screen and (min-width: 992px) {
+} */

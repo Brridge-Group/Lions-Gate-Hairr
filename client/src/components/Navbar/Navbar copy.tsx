@@ -63,14 +63,13 @@ const Navbar = () => {
             </>
           ) : (
             <>
-              <li className='NavbarList_link'>
+              <li className='Navbar_link'>
                 <NavLink to='profile' activeStyle={{ fontWeight: '400' }}>
                   Profile
                 </NavLink>
               </li>
-              <li className='NavbarList_link '>
+              <li className='Navbar_link '>
                 <NavLink to='/'>Log Out</NavLink>
-                {/* {localStorage.clear()} */}
               </li>
             </>
           )}

@@ -21,19 +21,3 @@
 .Home_input:focus {
   outline: none;
 }
-
-/* ///////media queries ////////// */
-
-/* //later when figure out responsive// */
-
-/* @media screen and (min-width: 992px) {
-  .home {
-    display: grid;
-    grid-template-columns: repeat(14, 1fr);
-    grid-column-gap: 35px;
-    margin-left: auto;
-    margin-right: auto;
-    width: calc(100% - 80px);
-    max-width: 1206px;
-  }
-} */

@@ -1,24 +1,14 @@
-.Profile-Container {
-  display: grid;
-  grid-template-columns: repeat(14, 1fr);
-  background-size: cover;
-  background-repeat: no-repeat;
-  grid-column: 1 / span-1;
-  background-position: bottom center;
-  grid-column-gap: 35px;
-  height: 100vh;
-  width: 100%;
-  margin-right: auto;
-  margin-left: auto;
+.FeatureContainer_image.Profile {
+  background-image: url('../../assets/images/hairgreysm.jpg');
 }
 
-.Profile-Container_user {
+.Profile_user {
   text-align: center;
   grid-column: 5/11;
   margin-top: 125px;
 }
 
-.Profile-Container_name h1 {
+.Profile_name h1 {
   text-align: center;
 }
 .user-pix-placeholder {
@@ -35,27 +25,27 @@
   font-size: 1.6rem;
 }
 
-.Profile-Container_user-container {
+.Profile-UserContainer {
   border: 1px solid rgba(0, 0, 0, 0.5);
   padding: 45px;
   height: 58vh;
   background-image: url('../../assets/images/hairgreybg.jpg');
 }
-.Profile-Container_user-container_reviews {
+.Profile-UserContainer_reviews {
   border-top: 1px solid #f32dc8;
   border-bottom: 1px solid #f32dc8;
   margin-top: 20px;
 }
 
-.Profile-Container_user-container_reviews.business {
+.Profile-UserContainer_reviews.business {
   margin-top: 0;
 }
-.Profile-Container_user-container_reviews h4 {
+.Profile-UserContainer_reviews h4 {
   font-weight: 500;
   padding: 10px;
   margin: 0;
 }
-.Profile-Container_user-container_links {
+.Profile_links {
   display: flex;
   justify-content: center;
   margin-top: 30px;

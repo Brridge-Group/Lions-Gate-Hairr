@@ -11,13 +11,29 @@ html {
   font-size: 62.5%;
 }
 
-.App-Container {
+.AppContainer {
   font-family: 'Roboto', sans-serif;
   font-style: normal;
   position: fixed;
   height: 100vh;
   width: 100%;
   display: flex;
+}
+.FeatureContainer_image {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: bottom center;
+  width: 100%;
+}
+.FeatureContainer {
+  display: grid;
+  grid-template-columns: repeat(14, 1fr);
+  grid-column-gap: 35px;
+  height: 100vh;
+  width: 100vw;
+  max-width: 1206px;
+  margin-right: auto;
+  margin-left: auto;
 }
 
 .Navbar {

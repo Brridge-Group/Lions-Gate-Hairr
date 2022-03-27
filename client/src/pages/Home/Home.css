@@ -1,22 +1,13 @@
-.Home-Container {
-  display: grid;
-  grid-template-columns: repeat(14, 1fr);
-  background-size: cover;
-  background-repeat: no-repeat;
-  grid-column: 1 / span-1;
-  background-position: bottom center;
-  grid-column-gap: 35px;
-  height: 100vh;
-  width: 100%;
-  margin-right: auto;
-  margin-left: auto;
+.FeatureContainer_image.Home {
+  background-image: url('../../assets/images/hairpink.jpg');
 }
-.Home-Container_inputGroup {
+
+.Home_inputGroup {
   text-align: center;
   margin-top: 300px;
   grid-column: 6/10;
 }
-.Home-Container_input {
+.Home_input {
   height: 36px;
   width: 80%;
   background: none;
@@ -27,7 +18,7 @@
   font-weight: 100;
 }
 
-.Home-Container_input:focus {
+.Home_input:focus {
   outline: none;
 }
 

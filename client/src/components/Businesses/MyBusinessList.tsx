@@ -33,17 +33,17 @@ const MyBusinessList = () => {
   }, [])
 
   return (
-    <div className='Profile-Container_user'>
-      <h1 className='Profile-Container_name'>Hello {user.name}!</h1>
-      <div className='Profile-Container_user-container'>
+    <div className='Profile_user'>
+      <h1 className='Profile_name'>Hello {user.name}!</h1>
+      <div className='Profile-UserContainer'>
         {loading && <h2>Loading....</h2>}
         {!list.length ? (
-          <div className='Profile-Container_user-container_reviews business'>
+          <div className='Profile-UserContainer_reviews business'>
             <h4>no businesses found</h4>
           </div>
         ) : (
           <>
-            <div className='Profile-Container_user-container_reviews business'>
+            <div className='Profile-UserContainer_reviews business'>
               <h4>your businesses</h4>
             </div>
           </>
@@ -65,7 +65,7 @@ const MyBusinessList = () => {
         </Card>
       ))} */}
       </div>
-      <div className='Profile-Container_user-container_links'>
+      <div className='Profile_links'>
         <Link to={'#'}>
           <h6 className='btn--btn-primary'>update profile</h6>
         </Link>

@@ -19,7 +19,7 @@ import Profile from './pages/Profile/Profile'
 import './App.css'
 
 const App = () => {
-  let routes
+  let routes: any
 
   routes = (
     <Switch>
@@ -62,7 +62,7 @@ const App = () => {
 
   return (
     <Router>
-      <div className='App-Container'>
+      <div className='AppContainer'>
         <Navbar />
         {routes}
       </div>

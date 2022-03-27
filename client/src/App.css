@@ -40,7 +40,6 @@ html {
   display: flex;
   width: 100%;
   position: fixed;
-  border-bottom: 10 px solid grey;
   height: 100px;
   background: none;
   top: 0;

@@ -4,7 +4,8 @@ import { useDispatch } from "react-redux";
 import { useHistory, NavLink } from "react-router-dom";
 import { AUTH } from "../../constants/actionTypes";
 import * as api from "../../api/index";
-import pinkcrop1 from "../../assets/images/pinkcrop1.jpg";
+//import pinkcrop1 from "../../assets/images/pinkcrop1.jpg";
+import pinkcrop1 from "../../assets/images/hairpink.jpg"
 import "./UserRegistration.css";
 
 const UserRegistration = () => {
@@ -43,92 +44,26 @@ const UserRegistration = () => {
   };
 
   return (
-    <div
-      className="signup"
-      style={{
-        backgroundImage: `url(${pinkcrop1})`,
-      }}
-    >
-      <div className="input-group">
-        <h2>Sign Up</h2>
-        <form onSubmit={handleSubmit}>
-          <button>
-            <FileBase64
-              multiple={false}
-              onDone={({ base64 }) => {
-                setFormData({ ...formData, imageProfile: base64 });
-              }}
-            />
-          </button>
-          <h5>First Name:</h5>
-          <input
-            name="firstName"
-            onChange={handleChange}
-            autoFocus
-          />
-          <h5>Last Name:</h5>
-          <input
-            name="lastName"
-            onChange={handleChange}
-          />
-          <h5>Email:</h5>
-          <input
-            name="email"
-            onChange={handleChange}
-            type="email"
-          />
-          <h5>Password:</h5>
-          <input
-            name="password"
-            type="password"
-            onChange={handleChange}
-          />
-          <h5>Confirm Password:</h5>
-          <input
-            name="confirmPassword"
-            onChange={handleChange}
-            type="password"
-          />
-          <br />
-          <p>
-            <b>Are you a:</b>
-          </p>
-          <div>
-            <label>User</label>
-            &ensp;
-            <input
-              type="radio"
-              name="role"
-              value="user"
-              onChange={handleChange}
-              checked={formData.role === "user"}
-            />
-            <br />
-            <label>Business Owner</label>
-            &ensp;
-            <input
-              type="radio"
-              name="role"
-              value="owner"
-              onChange={handleChange}
-              checked={formData.role === "owner"}
-            />
-          </div>
-          <br />
-          {errorMsg && <p style={{ color: "red" }}> {errorMsg} </p>}
-          <button
-            type="submit"
-          >
-            Sign Up
-          </button>
-          <p>
-            Have an account? <NavLink to="user-signin" style={{ color: "blue" }}>Click Here</NavLink> to
-            Login.
-          </p>
-        </form>
+    <>
+    <div className="FeatureContainer_image UserRegistration" >
+      <div className="FeatureContainer">
+       <div className="UserRegistration_container">
+         <div className="UserRegistration_inputGroup">
+         <label>First Name</label>
+          <input name="lastName" onChange={handleChange} autoFocus className='UserRegistration_input'/>
+          <label>Last Name</label>
+          <input name="lastName" onChange={handleChange} autoFocus className='UserRegistration_input' />
+         </div>
+         <div className="UserRegistration_radioButton">
+
+         </div>
+        </div> 
       </div>
-    </div>
+   </div>
+   </>
   );
 };
 
 export default UserRegistration;
+
+

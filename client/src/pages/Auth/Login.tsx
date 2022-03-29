@@ -3,7 +3,8 @@ import { useDispatch } from "react-redux";
 import { useHistory, NavLink } from "react-router-dom";
 import { LOGIN } from "../../constants/actionTypes";
 import * as api from "../../api/index";
-import pinkcrop1 from "../../assets/images/pinkcrop1.jpg";
+//import pinkcrop1 from "../../assets/images/pinkcrop1.jpg";
+import pinkcrop1 from "../../assets/images/hairpink.jpg"
 import "./Login.css";
 
 const initialState = {

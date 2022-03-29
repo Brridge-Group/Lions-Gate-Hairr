@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
-import config from "../config";
-import Service from "../models/service";
+import { config } from "../config";
+import { Service } from "../models/service";
 
 const services: string[] = [
   "Coloring Services",

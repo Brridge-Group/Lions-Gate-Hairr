@@ -13,7 +13,7 @@ interface Props {
   }[];
 }
 
-const ServicesAndFeatures = (props: Props) => {
+export const ServicesAndFeatures = (props: Props) => {
   return (
     <React.Fragment>
       <Container>
@@ -35,5 +35,3 @@ const ServicesAndFeatures = (props: Props) => {
     </React.Fragment>
   );
 };
-
-export default ServicesAndFeatures;

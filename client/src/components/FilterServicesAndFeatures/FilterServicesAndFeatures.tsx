@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react'
 
 // Custom Imports
-import LoadSpinner from '../LoadSpinner/LoadSpinner'
+import { LoadSpinner } from '../LoadSpinner/LoadSpinner'
 
 interface Props {
   loading: boolean
@@ -12,7 +12,8 @@ interface Props {
   featuresArr: any
   handleResetFilter: any
 }
-const FilterServicesAndFeatures: React.FC<Props> = (props: Props) => {
+
+export const FilterServicesAndFeatures: React.FC<Props> = (props: Props) => {
   const [isLoading, setIsLoading]: any = useState(true)
 
   const [filteredFeats, setFilteredFeats]: any = useState([])
@@ -112,4 +113,3 @@ const FilterServicesAndFeatures: React.FC<Props> = (props: Props) => {
     </>
   )
 }
-export default FilterServicesAndFeatures

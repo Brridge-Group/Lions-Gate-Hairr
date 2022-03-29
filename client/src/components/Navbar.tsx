@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom'
 import decode from 'jwt-decode'
 import axios from 'axios'
 
-const Navbar = () => {
+export const Navbar = () => {
   const location = useLocation()
   const [user, setUser] = useState(
     JSON.parse(localStorage.getItem('profile') ?? 'false')
@@ -63,13 +63,14 @@ const Navbar = () => {
             </>
           ) : (
             <>
-              <li className='Navbar_link'>
+              <li className='NavbarList_link'>
                 <NavLink to='profile' activeStyle={{ fontWeight: '400' }}>
                   Profile
                 </NavLink>
               </li>
-              <li className='Navbar_link '>
+              <li className='NavbarList_link '>
                 <NavLink to='/'>Log Out</NavLink>
+                {/* {localStorage.clear()} */}
               </li>
             </>
           )}
@@ -78,5 +79,3 @@ const Navbar = () => {
     </nav>
   )
 }
-
-export default Navbar

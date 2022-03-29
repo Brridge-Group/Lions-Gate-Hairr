@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom'
-import MyBusinessList from '../../components/Businesses/MyBusinessList'
+import { MyBusinessList } from '../../components/Businesses/MyBusinessList'
 import './Profile.css'
 
-const Profile = () => {
+export const Profile = () => {
   const user = JSON.parse(localStorage.getItem('profile') ?? 'false').result
 
   console.log(user.role)
@@ -42,5 +42,3 @@ const Profile = () => {
     </div>
   )
 }
-
-export default Profile

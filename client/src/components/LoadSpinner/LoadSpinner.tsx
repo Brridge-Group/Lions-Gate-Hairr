@@ -6,7 +6,8 @@ import React from 'react'
 import '../../components/LoadSpinner/LoadSpinner.css'
 
 interface LoadSpinnerProps {}
-const LoadSpinner: React.FC<LoadSpinnerProps> = ({}) => {
+
+export const LoadSpinner: React.FC<LoadSpinnerProps> = ({}) => {
   return (
     <>
       {/* <div className='d-flex justify-content-center align-self-center mx-auto'> */}
@@ -31,5 +32,3 @@ const LoadSpinner: React.FC<LoadSpinnerProps> = ({}) => {
     </>
   )
 }
-
-export default LoadSpinner

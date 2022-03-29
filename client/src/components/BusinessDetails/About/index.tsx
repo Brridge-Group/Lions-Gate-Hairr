@@ -12,7 +12,7 @@ interface Props {
   };
 }
 
-const About = (props: Props) => {
+export const About = (props: Props) => {
   return (
     <Container>
         <img
@@ -31,5 +31,3 @@ const About = (props: Props) => {
     </Container>
   );
 };
-
-export default About;

@@ -37,15 +37,9 @@
 }
 
 .UserRegistration_inputGroup{
-position:static;
-width: 386px;
-height: 365px;
-left: 0px;
-top: 0px;
-flex: none;
-order: 0;
-flex-grow: 0;
-margin: 23px 0px;
+text-align: center;
+margin-top: 300px;
+grid-column: 6/10;
 }
 
 .UserRegistration_radioButton {

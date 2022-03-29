@@ -1,118 +1,45 @@
-/* provisorio */
-.FeatureContainer_image {
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: bottom center;
-  width: 100%;
-}
-.FeatureContainer {
-  display: grid;
-  grid-template-columns: repeat(14, 1fr);
-  grid-column-gap: 35px;
-  height: 100vh;
-  width: 100vw;
-  max-width: 1206px;
-  margin-right: auto;
-  margin-left: auto;
-}
-
-/* deletar */
-
-
 .FeatureContainer_image.UserRegistration {
-  background-image: url('../../assets/images/hairpink.jpg');
+  background-image: url('../../assets/images/hairwhite.jpg');
 }
 
-.UserRegistration_container {
+.UserRegistration_inputGroup {
+  text-align: center;
+  margin-top: 125px;
+  grid-column: 6/10;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  padding: 0px;
-  position: absolute;
-  width: 386px;
-  height: 474px;
-  left: 527px;
-  top: 188px;
-  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 }
-
-.UserRegistration_inputGroup{
-text-align: center;
-margin-top: 300px;
-grid-column: 6/10;
-}
-
-.UserRegistration_radioButton {
-position: static;
-width: 181px;
-height: 21px;
-left: 0px;
-top: 388px;
-flex: none; 
-order: 1;
-flex-grow: 0;
-margin: 23px 0px;
+.UserRegistration_form h5 {
+  margin: 20px;
 }
 
 .UserRegistration_input {
   height: 36px;
-  width: 80%;
+  width: 100%;
   background: none;
   border: 0.5px solid black;
   margin-top: -40px;
-  text-align: center;
-  font-size: 1.6em;
-  font-weight: 100;
 }
-
-.UserRegistration_input:focus {
-  outline: none;
+.UserRegistration_radioButtons {
+  display: flex;
+  width: fit-content;
+  margin: auto;
 }
-
-/* .signup {
-    display: grid;
-    grid-template-columns: repeat(15, 1fr);
-    background-size: cover;
-    background-repeat: no-repeat;
-    grid-column: 1 / span-1;
-    background-position: bottom center;
-    grid-column-gap: 20px;
-    height: 100vh;
-    width: 100%;
-    max-width: 1206;
-    margin-right: auto;
-    margin-left: auto;
-  }
-  .input-group {
-    text-align: center;
-    margin-top: 100px !important;
-    grid-column: 6/11;
-    background-color: #F0E4E6;
-  }
-  input {
-    height: 36px;
-    width: 80%;
-    background: none;
-    border: 0.5px solid black;
-    margin-top: -40px;
-    text-align: center;
-  }
-  button {
-      margin-top: 20px;
-  }
-  
-  input:focus {
-    outline: none;
-  }
-
-
-label{
-  display: inline;
+.UserRegistration_radioButtons input {
+  background: none;
+  margin-top: 0;
+  margin-right: 10px;
 }
-
-input[type=radio],
-input.radio{
-  display: inline;
-  width: auto;
-  margin: 2px 0 0 2px;
-} */
+.UserRegistration_radio {
+  display: flex;
+  align-items: center;
+}
+h5.UserRegistration_radio input {
+  width: 36px;
+  background: none;
+}
+.UserRegistration_submit {
+  background: none;
+  border: none;
+  cursor: pointer;
+}

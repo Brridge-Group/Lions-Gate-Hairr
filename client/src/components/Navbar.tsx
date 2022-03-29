@@ -36,8 +36,6 @@ export const Navbar = () => {
     }
   }
 
-  console.log(user, role)
-
   return (
     <nav className='Navbar'>
       <h4 className='Navbar_logo'>LOGO</h4>
@@ -70,7 +68,6 @@ export const Navbar = () => {
               </li>
               <li className='NavbarList_link '>
                 <NavLink to='/'>Log Out</NavLink>
-                {/* {localStorage.clear()} */}
               </li>
             </>
           )}

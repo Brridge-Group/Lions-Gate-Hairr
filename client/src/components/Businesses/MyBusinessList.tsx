@@ -36,6 +36,9 @@ export const MyBusinessList = () => {
     <div className='Profile_user'>
       <h1 className='Profile_name'>Hello {user.name}!</h1>
       <div className='Profile-UserContainer'>
+        {/* update here if change background image */}
+        {/* <div className='Profile-UserContainer Owner'> */}
+
         {loading && <h2>Loading....</h2>}
         {!list.length ? (
           <div className='Profile-UserContainer_reviews business'>

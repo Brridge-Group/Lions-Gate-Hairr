@@ -1,4 +1,11 @@
-.FeatureContainer_image.Profile {
+/* .FeatureContainer_image.User {
+  background-image: url('../../assets/images/hairpink.jpg');
+}
+.FeatureContainer_image.Owner {
+  background-image: url('../../assets/images/hairgreysm.jpg');
+} */
+
+.FeatureContainer_image {
   background-image: url('../../assets/images/hairgreysm.jpg');
 }
 

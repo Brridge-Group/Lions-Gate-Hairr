@@ -7,18 +7,26 @@ export const Profile = () => {
 
   console.log(user.role)
   return (
-    <div className='FeatureContainer_image Profile'>
+    //use following if have diffefrent image for owner profile
+    // <div
+    //   className={
+    //     user.role === 'user'
+    //       ? 'FeatureContainer_image User'
+    //       : 'FeatureContainer_image Owner'
+    //   }>
+    <div className='FeatureContainer_image User'>
       <div className='FeatureContainer'>
         {user && user.role === 'user' ? (
           <div className='Profile_user'>
             <h1 className='Profile_name'>Hello {user.name} !</h1>
-            <div className='Profile-UserContainer'>
+            <div className='Profile-UserContainer '>
               <div
                 className='user-pix-placeholder'
                 style={{ fontSize: '15px' }}>
                 user foto
               </div>
               <div className='Profile-UserContainer_reviews'>
+                {/* when reviews are imported here, add loading, setLoading state as in mybusiness component */}
                 <h4>your reviews</h4>
               </div>
               <div className='user-reviews-placeholder'>

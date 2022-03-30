@@ -1,7 +1,9 @@
 .FeatureContainer_image.Home {
   background-image: url('../../assets/images/hairpink.jpg');
 }
-
+.FeatureContainer_image.LoggedIn {
+  background-image: url('../../assets/images/hairlavender.jpg');
+}
 .Home_inputGroup {
   text-align: center;
   margin-top: 300px;

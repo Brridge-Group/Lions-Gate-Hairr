@@ -16,9 +16,9 @@ import { MyBusinessList } from './components/Businesses/MyBusinessList'
 import { Navbar } from './components/Navbar'
 import './App.css'
 
+
 export const App = () => {
   let routes: any
-
   routes = (
     <Switch>
       <Route path='/' exact>

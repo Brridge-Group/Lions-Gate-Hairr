@@ -1,5 +1,6 @@
 .FeatureContainer_image.UserRegistration {
   background-image: url('../../assets/images/hairwhite.jpg');
+
 }
 
 .UserRegistration_inputGroup {
@@ -9,6 +10,12 @@
   display: flex;
   flex-direction: column;
 }
+
+.UserRegistration_form{
+  background-image: url('../../assets/images/hairwhite.jpg');
+
+}
+
 .UserRegistration_form h5 {
   margin: 20px;
 }

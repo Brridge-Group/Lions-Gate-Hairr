@@ -1,0 +1,122 @@
+.AddBusiness-Wrapper {
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
+  margin-top: -10vh; /* Adds overlap styles to navbar */
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: bottom center;
+  background-image: url(../../assets//images/pinkcrop1.jpg);
+}
+.AddBusiness-Wrapper form {
+  display: flex;
+}
+.AddBusiness-Wrapper .AddBusiness-FormCard_body .AddBusiness-FormCard_body_formGroup {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  background-color: transparent;
+  color: black;
+}
+.AddBusiness-FormCard {
+  /* margin-top: 14vh; */
+  margin-top: 5.438rem;
+}
+.AddBusiness-FormCard_body {
+  display: flex;
+  flex-direction: column;
+  /* width: 25rem; */
+  /* width: 24.5rem; */
+  width: 27.45rem;
+  /* margin-right: 21px; */
+  margin-right: 0px;
+  margin-left: 97px;
+  font-weight: 300;
+}
+.AddBusiness-FormCard_body input,
+textarea,
+select {
+  height: 36px;
+  /* width: 80%; */
+  background: none;
+  border: 0.5px solid black;
+  margin-bottom: 15px;
+  text-align: center;
+}
+.AddBusiness-FormCard_body input::placeholder,
+textarea::placeholder {
+  color: rgba(0, 0, 0, 0);
+}
+
+.AddBusiness-FormCard_body_columns {
+  display: flex;
+  justify-content: space-between;
+  /* width: 24.5rem; */
+  width: 27.52rem;
+}
+.AddBusiness-FormCard_body_left {
+  width: 11.25rem;
+  width: 12.6rem;
+  /* width: 10rem; */
+}
+.AddBusiness-FormCard_body_right {
+  width: 11.25rem;
+  width: 12.6rem;
+  /* width: 10rem; */
+}
+.AddBusiness-FormCard_sidebar {
+  display: flex;
+  flex-direction: column;
+  width: 13.5rem;
+  margin-top: 1.15rem;
+}
+.AddBusiness-FormCard_filtersContainer {
+  display: flex;
+  flex-direction: column;
+  height: 25.813rem;
+  width: 11rem;
+  /* margin-left: 1.938rem; */
+  /* margin-left: 3.938rem; */
+  margin-left: 2.2rem;
+  padding: 1.5rem 0rem 2rem 0rem;
+  border: 0.25px solid rgba(0, 0, 0, 1);
+}
+.AddBusiness-FormCard_filtersContainer_labelHeader {
+  display: flex;
+  justify-content: center;
+  height: 1.5rem;
+  font-weight: 500;
+}
+.AddBusiness-FormCard_filtersContainer_formGroup {
+  /* height: 103.81px; */
+  max-height: 35%;
+  margin: 12px;
+  overflow: scroll;
+}
+.AddBusiness-FormCard_filtersContainer_labelHeader_services {
+  margin-top: 1rem;
+}
+.AddBusiness-FormCard_filtersContainer_formCheck {
+  margin-bottom: 0.608rem;
+}
+.AddBusiness-FormCard_filtersContainer_formCheckLabel {
+  font-weight: 300;
+  margin-bottom: 0.608rem;
+}
+.AddBusiness-FormCard_sidebar_footer {
+  display: flex;
+  justify-content: center;
+}
+.AddBusiness-FormCard_sidebar_btn {
+  width: 116px;
+  height: 42px;
+  /* margin: 2rem 0 0 3.938rem; */
+  margin: 2rem 0 0 1.938rem;
+  background: black;
+  border-radius: 10px;
+  border: 1px solid #f32dc8;
+  color: white;
+  text-align: center;
+}

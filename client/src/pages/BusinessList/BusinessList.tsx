@@ -154,7 +154,7 @@ export const BusinessList: React.FC = () => {
 
   if (loading) {
     return (
-      <div className='BusinessList-Wrapper' style={{ height: '100vh' }}>
+      <div className='BusinessList-Wrapper'>
         <div className='BusinessList-Wrapper_loader'>
           <LoadSpinner />
         </div>
@@ -164,15 +164,15 @@ export const BusinessList: React.FC = () => {
 
   if (list.length === 0) {
     return (
-      <div className='BusinessList-Wrapper'>
-        <Card>
-          <h2>No businesses found.</h2>
-        </Card>
+      <div className='BusinessList-Wrapper' style={{ display: 'flex', justifyContent: 'center', height: '100vh', placeItems: 'center' }}>
+        <h2>No businesses found. Please try another city.</h2>
+        {/* <Card></Card> */}
       </div>
     )
   } else {
     return (
-      <React.Fragment>
+      // <React.Fragment>
+      <section className='BusinessList'>
         <div className='BusinessList-Wrapper'>
           <div className='BusinessList-HeaderContainer'>
             {/* ternary operator 
@@ -203,7 +203,8 @@ export const BusinessList: React.FC = () => {
             </div>
           </div>
         </div>
-      </React.Fragment>
+      </section>
+      // </React.Fragment>
     )
   }
 }

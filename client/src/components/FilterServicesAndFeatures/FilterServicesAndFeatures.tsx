@@ -16,6 +16,7 @@ interface Props {
   featuresArr: any
   handleResetFilter: any
 }
+
 const FilterServicesAndFeatures: React.FC<Props> = (props: Props) => {
   const [isLoading, setIsLoading]: any = useState(true)
 
@@ -54,11 +55,10 @@ const FilterServicesAndFeatures: React.FC<Props> = (props: Props) => {
       {!props.loading ? (
         <>
           <div className='Filters-Container'>
+            <label htmlFor='features' className='Filters-Label_header'>
+              Features
+            </label>
             <div className='Filters-FormGroup'>
-              <label htmlFor='features' className='Filters-Label_header'>
-                Features
-              </label>
-
               {props.featuresArr?.map((feature, id, index) => (
                 <div className='Filters-FormCheck' key={`${feature}_` + index}>
                   <input className='Filters-FormCheckInput' type='checkbox' name={`feature-${feature[0]}`} id={feature[1]} defaultChecked={feature[2].isChecked} value={id} onChange={onFeatChange} />
@@ -68,10 +68,10 @@ const FilterServicesAndFeatures: React.FC<Props> = (props: Props) => {
                 </div>
               ))}
             </div>
+            <label htmlFor='services' className='Filters-Label_header   Filters-Label_header_services'>
+              Services
+            </label>
             <div className='Filters-FormGroup'>
-              <label htmlFor='services' className='Filters-Label_header   Filters-Label_header_services'>
-                Services
-              </label>
               {props.servicesArr?.map((service, id, index) => (
                 <div className='Filters-FormCheck' key={`${service}_` + index}>
                   <input
@@ -92,7 +92,7 @@ const FilterServicesAndFeatures: React.FC<Props> = (props: Props) => {
             {/* TODO: BackLog => Connect to filterFunction */}
             {/* <button onClick={props.handleResetFilter}>Filter Results</button> */}
             <button className='Filters-Button' onClick={props.handleResetFilter}>
-              Reset Filter
+              reset Filters
             </button>
           </div>
         </>

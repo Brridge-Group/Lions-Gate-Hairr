@@ -11,7 +11,7 @@ interface Props {
   image: string
   stars: number
   address: {
-    street: string
+    address1: string
     city: string
     region: string
     postalCode: string
@@ -29,7 +29,7 @@ const CardDetails = (props: Props) => {
         <h2 className='CardDetails-Name'>{props.name}</h2>
         <p className='CardDetails-Description'>{props.description}</p>
         <div className='CardDetails-Address'>
-          <p>{props.address.street}</p>
+          <p>{props.address.address1}</p>
           <p>
             {props.address.city}, {props.address.region}
           </p>

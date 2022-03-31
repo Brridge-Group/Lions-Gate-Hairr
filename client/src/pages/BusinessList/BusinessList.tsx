@@ -1,5 +1,5 @@
 // React Components
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { useHistory, useParams } from 'react-router-dom'
 
 // Custom Imports
@@ -166,12 +166,10 @@ export const BusinessList: React.FC = () => {
     return (
       <div className='BusinessList-Wrapper' style={{ display: 'flex', justifyContent: 'center', height: '100vh', placeItems: 'center' }}>
         <h2>No businesses found. Please try another city.</h2>
-        {/* <Card></Card> */}
       </div>
     )
   } else {
     return (
-      // <React.Fragment>
       <section className='BusinessList'>
         <div className='BusinessList-Wrapper'>
           <div className='BusinessList-HeaderContainer'>
@@ -190,13 +188,9 @@ export const BusinessList: React.FC = () => {
                 handleResetFilter={handleResetFilter}
               />
             </div>
-            <div
-              className='BusinessList-CardContainer'
-              // style={{ width: '100%' }}
-            >
+            <div className='BusinessList-CardContainer'>
               {list.map((business: any) => (
                 <Card className=' BusinessList-Card' key={business._id} onClick={() => history.push(`/businesses/${business._id}`)}>
-                  {/* <div> */}
                   <CardDetails name={business.name} description={business.description} image={business.image} address={business.address} stars={business.stars} />
                 </Card>
               ))}
@@ -204,7 +198,6 @@ export const BusinessList: React.FC = () => {
           </div>
         </div>
       </section>
-      // </React.Fragment>
     )
   }
 }

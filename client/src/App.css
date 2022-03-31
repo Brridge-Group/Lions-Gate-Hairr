@@ -35,10 +35,10 @@ h6 {
   font-family: 'Roboto', sans-serif;
   font-style: normal;
 
-  /* TODO-FIXME: Removed because it prevented children components' page scroll*/
-  /* position: fixed;  */
-  /*TODO-FIXME: Not displaing to the page?  */
-  /* max-width: 1206; */
+  /* TODO- [ ✅ ] FIXED Removed because it prevented children components' page scroll
+         - UPDATE: Added back to allow for a single place to fix position for all components and within the component a nested scroll-behavior was added.
+  */
+  position: fixed;
 }
 .navbar {
   display: flex;
@@ -99,7 +99,7 @@ h5 {
   height: 42px;
   background: black;
   border-radius: 10px;
-  border: 1 px solid #f32dc8;
+  border: 1px solid #f32dc8;
   color: white;
   text-align: center;
   font-size: 16px;

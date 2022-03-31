@@ -1,134 +1,186 @@
-import React, { useState } from "react";
-import FileBase64 from "react-file-base64";
-import { useDispatch } from "react-redux";
-import { useHistory, NavLink } from "react-router-dom";
-import { AUTH } from "../../constants/actionTypes";
-import * as api from "../../api/index";
-import pinkcrop1 from "../../assets/images/pinkcrop1.jpg";
-import "./UserRegistration.css";
+import { useState } from 'react'
+import UserImage from '../../UIElements/UserImage'
+import VisibilityRoundedIcon from '@material-ui/icons/VisibilityRounded';
+import VisibilityOffRoundedIcon from '@material-ui/icons/VisibilityOffRounded';
+import Input from "@material-ui/core/Input";
+import InputAdornment from "@material-ui/core/InputAdornment";
+import IconButton from "@material-ui/core/IconButton";
+import {toast} from 'react-toastify';
 
-const UserRegistration = () => {
-  const [formData, setFormData] = useState({
-    role: "user",
-    imageProfile:
-      "https://www.seekpng.com/png/full/966-9665493_my-profile-icon-blank-profile-image-circle.png",
-  });
-  const [showPassword, setShowPassword] = useState(false);
-  const dispatch = useDispatch();
-  const history = useHistory();
-  const [errorMsg, setErrorMsg] = useState("");
+import { NavLink } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { useHistory } from 'react-router-dom'
+import { AUTH } from '../../constants/actionTypes'
+import * as api from '../../api/index'
+import './UserRegistration.css'
+import 'react-toastify/dist/ReactToastify.css';
+
+require('dotenv').config()
+toast.configure()
+
+export const UserRegistration = () => {
+  const [userData, setUserData] = useState({
+    role: 'user',
+    imageProfile: 'https://www.seekpng.com/png/full/966-9665493_my-profile-icon-blank-profile-image-circle.png',
+  })
+
+  const [isChecked, setIsChecked] = useState(false)
+  const [showPassword, setShowPassword] = useState(false)
+  const [image, setImage] = useState<any | null>(null)
+  const dispatch = useDispatch()
+  const history = useHistory()
+  const [errorMsg, setErrorMsg] = useState('')
+ 
 
   const signup =
     (formData: any, history: any, errorM?: any) => async (dispatch: any) => {
       try {
         // sign up the user
-        const { data } = await api.signUp(formData);
-        dispatch({ type: AUTH, data });
-        history.push("/");
+        const { data } = await api.signUp(userData)
+        dispatch({ type: AUTH, data })
+        history.push('/')
       } catch (err: any) {
-        errorM = err.response.data;
-        console.log(errorM);
-        setErrorMsg(errorM);
+        errorM = err.response.data
+        setErrorMsg(errorM)
       }
-    };
+    }
+
+  const toggleShow = () => {
+    setShowPassword(!showPassword);
+  }
+
+  const handleMouseDownPassword = (event) => {
+    event.preventDefault();
+  };
+
+  const onImageChange = async(event: any) => {
+    if (event.target.files[0]) {
+      if(event.target.files[0].type.match('image')){
+        setImage(URL.createObjectURL(event.target.files[0]))
+      
+        let base64 = await new Promise(resolve => {
+          let reader = new FileReader();
+          reader.onload = (e) => {
+              resolve(e.target?.result as any);
+          }
+          reader.readAsDataURL(event.target.files[0]);
+        }) as string;
+  
+        setUserData({ ...userData, imageProfile: base64 })
+      }else{
+        toast('Image type error, it should be png/jpeg.');
+      }
+      }else{
+        toast('Unknown.');
+      }
+  }
+
 
   const handleSubmit = (e: any) => {
-    e.preventDefault();
-    dispatch(signup(formData, history));
-  };
+    e.preventDefault()
+    dispatch(signup(userData, history))
+    console.log(userData)
+  }
 
   const handleChange = (e: any) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-    console.log(formData);
-  };
-
+    setUserData({ ...userData, [e.target.name]: e.target.value })
+  }
+  
   return (
-    <div
-      className="signup"
-      style={{
-        backgroundImage: `url(${pinkcrop1})`,
-      }}
-    >
-      <div className="input-group">
-        <h2>Sign Up</h2>
-        <form onSubmit={handleSubmit}>
-          <button>
-            <FileBase64
-              multiple={false}
-              onDone={({ base64 }) => {
-                setFormData({ ...formData, imageProfile: base64 });
-              }}
-            />
-          </button>
-          <h5>First Name:</h5>
-          <input
-            name="firstName"
-            onChange={handleChange}
-            autoFocus
-          />
-          <h5>Last Name:</h5>
-          <input
-            name="lastName"
-            onChange={handleChange}
-          />
-          <h5>Email:</h5>
-          <input
-            name="email"
-            onChange={handleChange}
-            type="email"
-          />
-          <h5>Password:</h5>
-          <input
-            name="password"
-            type="password"
-            onChange={handleChange}
-          />
-          <h5>Confirm Password:</h5>
-          <input
-            name="confirmPassword"
-            onChange={handleChange}
-            type="password"
-          />
-          <br />
-          <p>
-            <b>Are you a:</b>
-          </p>
-          <div>
-            <label>User</label>
-            &ensp;
-            <input
-              type="radio"
-              name="role"
-              value="user"
-              onChange={handleChange}
-              checked={formData.role === "user"}
-            />
-            <br />
-            <label>Business Owner</label>
-            &ensp;
-            <input
-              type="radio"
-              name="role"
-              value="owner"
-              onChange={handleChange}
-              checked={formData.role === "owner"}
-            />
+    <>
+      <div className='FeatureContainer_image UserRegistration'>
+        <div className='FeatureContainer'>
+          <div className='UserRegistration_inputGroup'>
+            <form className='UserRegistration_form' onSubmit={handleSubmit}>
+              
+              <UserImage pic={image} name={'Sergio'} handleChange = {onImageChange}/>
+              <h5>
+                <label>First Name</label>
+              </h5>
+              <input
+                name='firstName'
+                onChange={handleChange}
+                autoFocus
+                className='UserRegistration_input'
+              />
+              <h5>
+                <label>Last Name</label>
+              </h5>
+              <input
+                name='lastName'
+                onChange={handleChange}
+                className='UserRegistration_input'
+              />
+              <h5>
+                <label>Email</label>
+              </h5>
+              <input
+                name='email'
+                onChange={handleChange}
+                className='UserRegistration_input'
+              />
+              <h5>
+                <label>Password</label>
+              </h5>
+              <Input
+                name='password'
+                type={showPassword ? "text" : "password"}
+                onChange={handleChange}
+                className='UserRegistration_input'
+                endAdornment={
+                        <InputAdornment position="end">
+                        <IconButton
+                          onClick={toggleShow}
+                          onMouseDown={handleMouseDownPassword}
+                        >{showPassword ? <VisibilityRoundedIcon /> : <VisibilityOffRoundedIcon />}
+                        </IconButton>
+                        </InputAdornment>
+                  }
+                />
+              
+              <h5>
+                <label>Confirm Password</label>
+              </h5>
+              <Input
+                name='confirmPassword' 
+                className='UserRegistration_input'
+                type={showPassword ? "text" : "password"} 
+                onChange={handleChange} 
+              />
+              <div className='UserRegistration_radioButtons'>
+                <h5 className='UserRegistration_radio'>
+                  <input 
+                    type='radio'
+                    name='role' 
+                    value='user' 
+                    onChange={handleChange}
+                    checked={userData.role === "user"}
+                  /> 
+                  User
+                </h5>
+                <h5 className='UserRegistration_radio'>
+                  <input 
+                    type='radio'
+                    name='role' 
+                    value='owner'
+                    onChange={handleChange}
+                    checked={userData.role === "owner"}
+                      /> Owner
+                </h5>
+              </div>
+              <button type='submit' className='UserRegistration_submit'>
+                <h6 className='btn--btn-primary'>Sign Up</h6>
+              </button>
+              <p>
+                  Have an account? <NavLink to="user-signin" style={{ color: "blue" }}>Click Here</NavLink> to
+                  Login.
+                </p>
+              <br />
+                {errorMsg && <p style={{ color: "red" }}> {errorMsg} </p>}
+            </form>
           </div>
-          <br />
-          {errorMsg && <p style={{ color: "red" }}> {errorMsg} </p>}
-          <button
-            type="submit"
-          >
-            Sign Up
-          </button>
-          <p>
-            Have an account? <NavLink to="user-signin" style={{ color: "blue" }}>Click Here</NavLink> to
-            Login.
-          </p>
-        </form>
+        </div>
       </div>
-    </div>
-  );
-};
-
-export default UserRegistration;
+    </>
+  )
+}

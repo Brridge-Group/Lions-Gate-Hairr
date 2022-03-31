@@ -11,7 +11,7 @@ html {
   font-size: 62.5%;
 }
 
-.container {
+.AppContainer {
   font-family: 'Roboto', sans-serif;
   font-style: normal;
   position: fixed;
@@ -19,11 +19,27 @@ html {
   width: 100%;
   display: flex;
 }
-.navbar {
+.FeatureContainer_image {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: bottom center;
+  width: 100%;
+}
+.FeatureContainer {
+  display: grid;
+  grid-template-columns: repeat(14, 1fr);
+  grid-column-gap: 35px;
+  height: 100vh;
+  width: 100vw;
+  max-width: 1206px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.Navbar {
   display: flex;
   width: 100%;
   position: fixed;
-  border-bottom: 10 px solid grey;
   height: 100px;
   background: none;
   top: 0;
@@ -32,25 +48,26 @@ html {
   justify-content: space-around;
 }
 
-ul {
+ul.NavbarList {
   list-style-type: none;
   padding: 0;
 }
 
-li {
+li.NavbarList_link {
   display: inline-block;
   margin: 0 4rem;
 }
-a {
+.NavbarList_link a {
   text-decoration: none;
   color: black;
 }
-a:hover {
+.NavbarList_link a:hover {
   font-weight: 400;
 }
-a.active {
+.NavbarList_link a:focus {
   font-weight: 400;
 }
+
 h1 {
   font-size: 3.6rem;
   font-weight: 100;
@@ -75,11 +92,21 @@ h5 {
   height: 42px;
   background: black;
   border-radius: 10px;
-  border: 1 px solid #f32dc8;
+  border: 1px solid #f32dc8;
   color: white;
   text-align: center;
-  font-size: 1.6rem;
-  font-weight: 400;
+  font-size: 1.5rem;
+  font-weight: 300;
+  padding-top: 10px;
+  margin: 0 15px;
+  cursor: pointer;
+}
+.btn--btn-primary.twoLines {
+  padding-top: 5px;
+  line-height: 1;
+}
+a {
+  text-decoration: none;
 }
 p {
   font-size: 1.4rem;

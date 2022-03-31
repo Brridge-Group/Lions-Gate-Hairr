@@ -29,6 +29,7 @@ export const Navbar = () => {
     history.push('/user-signin')
     setUser('false')
   }
+
   if (user) {
     const fetchData = async () => {
       await axios
@@ -41,47 +42,55 @@ export const Navbar = () => {
           setRole(res.data.role)
           // setImage(res.data.imageProfile)
         })
-        .catch(error => {})
+        .catch(error => {
+          console.log(error)
+        })
     }
   }
 
+  console.log(user, role)
+
   return (
-    <nav className='Navbar'>
-      <h4 className='Navbar_logo'>LOGO</h4>
-      <ul className='NavbarList'>
-        <h4>
-          <li className='NavbarList_link'>
-            <NavLink to='/' exact={true} activeStyle={{ fontWeight: '400' }}>
-              Home
-            </NavLink>
-          </li>
-          {!user ? (
-            <>
-              <li className='NavbarList_link'>
-                <NavLink to='/user-signup' activeStyle={{ fontWeight: '400' }}>
-                  Sign Up
-                </NavLink>
-              </li>
-              <li className='NavbarList_link'>
-                <NavLink to='/user-signin' activeStyle={{ fontWeight: '400' }}>
-                  Sign In
-                </NavLink>
-              </li>
-            </>
-          ) : (
-            <>
-              <li className='NavbarList_link'>
-                <NavLink to='profile' activeStyle={{ fontWeight: '400' }}>
-                  Profile
-                </NavLink>
-              </li>
-              <NavLink to='#' onClick={logout}>
-                Log Out
+    <header className='navbar'>
+      <h4>LOGO</h4>
+      <nav>
+        <ul>
+          <h4>
+            <li>
+              <NavLink to='/' exact={true} className='nav'>
+                Home
               </NavLink>
-            </>
-          )}
-        </h4>
-      </ul>
-    </nav>
+            </li>
+            {!user ? (
+              <>
+                <li>
+                  <NavLink to='/user-signup' className='nav'>
+                    Sign Up
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink to='/user-signin' className='nav'>
+                    Sign In
+                  </NavLink>
+                </li>
+              </>
+            ) : (
+              <>
+                <li>
+                  <NavLink to='#' className='nav'>
+                    Profile
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink to='#' className='nav' onClick={logout}>
+                    Log Out
+                  </NavLink>
+                </li>
+              </>
+            )}
+          </h4>
+        </ul>
+      </nav>
+    </header>
   )
 }

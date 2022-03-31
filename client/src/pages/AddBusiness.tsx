@@ -1,9 +1,17 @@
+// React Components
 import React, { useEffect, useState } from 'react'
-import ContentHeader from '../components/ContentHeader'
 import { Link } from 'react-router-dom'
 import { useHistory } from 'react-router-dom'
-import axios from 'axios'
+
+// Custom Imports
+import ContentHeader from '../components/ContentHeader'
 import { regions } from '../constants/regions'
+
+// 3rd Party Custom Imports
+import axios from 'axios'
+
+// Custom Styles
+// import './AddBusiness.css'
 const AddBusiness = () => {
   // Initialize  Services and Features to state
   const [feats, setFeats]: any = useState([]) // Features full object
@@ -20,7 +28,7 @@ const AddBusiness = () => {
     const fetchFeaturesData = async () => {
       try {
         const response = await fetch('/api/features', {
-          method: 'GET'
+          method: 'GET',
         })
         const responseData = await response.json()
         setFeats(responseData)
@@ -41,7 +49,7 @@ const AddBusiness = () => {
     const fetchServicesData = async () => {
       try {
         const response = await fetch('/api/services', {
-          method: 'GET'
+          method: 'GET',
         })
         const responseData = await response.json()
         setServices(responseData)
@@ -72,13 +80,12 @@ const AddBusiness = () => {
     street: '',
     postalCode: '',
     city: '',
-    phone: ''
+    phone: '',
   })
   const [region, setRegion] = useState('AB')
   const [country, setCountry] = useState('Canada')
   const history = useHistory()
-  const ownerId = JSON.parse(localStorage.getItem('profile') ?? 'false').result
-    ._id
+  const ownerId = JSON.parse(localStorage.getItem('profile') ?? 'false').result._id
 
   const handleChange = (e: any) => {
     setFormData({ ...formData, [e.target.name]: e.target.value })
@@ -92,11 +99,7 @@ const AddBusiness = () => {
     setCountry(e.target.value)
   }
   const onFormChange = (event: any) => {
-    const value =
-      event.target.type === 'checkbox'
-        ? event.target.checked
-        : event.target.value
-
+    const value = event.target.type === 'checkbox' ? event.target.checked : event.target.value
   }
 
   const handleSubmit = (e: any) => {
@@ -112,11 +115,11 @@ const AddBusiness = () => {
       postalCode: formData.postalCode,
       city: formData.city,
       region: region,
-      country: country
+      country: country,
     },
     stars: 5,
     phone: formData.phone,
-    ownerId: ownerId
+    ownerId: ownerId,
   }
 
   axios
@@ -141,96 +144,38 @@ const AddBusiness = () => {
             <form onSubmit={handleSubmit}>
               <div className='form-group'>
                 <label>Name:</label>
-                <input
-                  name='name'
-                  type='text'
-                  value={formData.name}
-                  className='form-control'
-                  placeholder='Enter business name'
-                  onChange={handleChange}
-                  required
-                />
+                <input name='name' type='text' value={formData.name} className='form-control' placeholder='Enter business name' onChange={handleChange} required />
               </div>
               <div className='form-group'>
                 <label>Description:</label>
                 <br />
-                <textarea
-                  name='description'
-                  value={formData.description}
-                  className='form-control'
-                  placeholder='Enter business description'
-                  onChange={handleChange}
-                  required
-                />
+                <textarea name='description' value={formData.description} className='form-control' placeholder='Enter business description' onChange={handleChange} required />
               </div>
               <div className='form-group'>
                 <label>Phone:</label>
-                <input
-                  name='phone'
-                  type='text'
-                  value={formData.phone}
-                  className='form-control'
-                  placeholder='Enter phone number'
-                  onChange={handleChange}
-                  required
-                />
+                <input name='phone' type='text' value={formData.phone} className='form-control' placeholder='Enter phone number' onChange={handleChange} required />
               </div>
               <div className='form-group'>
                 <label>Image:</label>
-                <input
-                  name='image'
-                  type='text'
-                  value={formData.image}
-                  className='form-control'
-                  placeholder='Enter image url'
-                  onChange={handleChange}
-                  required
-                />
+                <input name='image' type='text' value={formData.image} className='form-control' placeholder='Enter image url' onChange={handleChange} required />
               </div>
               <br />
               <h4>Address</h4>
               <div className='form-group'>
                 <label>Street:</label>
-                <input
-                  name='street'
-                  type='text'
-                  value={formData.street}
-                  className='form-control'
-                  placeholder='Enter street address'
-                  onChange={handleChange}
-                  required
-                />
+                <input name='street' type='text' value={formData.street} className='form-control' placeholder='Enter street address' onChange={handleChange} required />
               </div>
               <div className='form-group'>
                 <label>Postal Code:</label>
-                <input
-                  name='postalCode'
-                  type='text'
-                  value={formData.postalCode}
-                  className='form-control'
-                  placeholder='Enter postal code'
-                  onChange={handleChange}
-                  required
-                />
+                <input name='postalCode' type='text' value={formData.postalCode} className='form-control' placeholder='Enter postal code' onChange={handleChange} required />
               </div>
               <div className='form-group'>
                 <label>City:</label>
-                <input
-                  name='city'
-                  type='text'
-                  value={formData.city}
-                  className='form-control'
-                  placeholder='Enter city'
-                  onChange={handleChange}
-                  required
-                />
+                <input name='city' type='text' value={formData.city} className='form-control' placeholder='Enter city' onChange={handleChange} required />
               </div>
               <div className='form-group'>
                 <label>Province / State:</label>
-                <select
-                  className='custom-select rounded-0'
-                  onChange={handleRegion}
-                >
+                <select className='custom-select rounded-0' onChange={handleRegion}>
                   {regions.map(region => (
                     <option value={region.value}>{region.label}</option>
                   ))}
@@ -238,10 +183,7 @@ const AddBusiness = () => {
               </div>
               <div className='form-group'>
                 <label>Country:</label>
-                <select
-                  className='custom-select rounded-0'
-                  onChange={handleCountry}
-                >
+                <select className='custom-select rounded-0' onChange={handleCountry}>
                   <option value='Canada'> Canada </option>
                   <option value='United States'> United States</option>
                 </select>
@@ -250,19 +192,8 @@ const AddBusiness = () => {
                 <label htmlFor='features'>Features</label>
 
                 {featuresArr?.map((feature, index) => (
-                  <div
-                    className='form-check'
-                    style={{ textTransform: 'capitalize' }}
-                    key={`${feature}_` + index}
-                  >
-                    <input
-                      className='form-check-input'
-                      type='checkbox'
-                      name={`feature-${feature[0]}`}
-                      id={feature[1]}
-                      defaultChecked={feature[2]}
-                      onChange={onFormChange}
-                    />
+                  <div className='form-check' style={{ textTransform: 'capitalize' }} key={`${feature}_` + index}>
+                    <input className='form-check-input' type='checkbox' name={`feature-${feature[0]}`} id={feature[1]} defaultChecked={feature[2]} onChange={onFormChange} />
                     <label className='form-check-label' htmlFor={feature[1]}>
                       {feature[0]}
                     </label>
@@ -272,19 +203,8 @@ const AddBusiness = () => {
               <div className='form-group'>
                 <label htmlFor='services'>Services</label>
                 {servicesArr?.map((service, index) => (
-                  <div
-                    className='form-check'
-                    style={{ textTransform: 'capitalize' }}
-                    key={`${service}_` + index}
-                  >
-                    <input
-                      className='form-check-input'
-                      type='checkbox'
-                      name={`service-${service[0]}`}
-                      id={service[1]}
-                      defaultChecked={service[2]}
-                      onChange={onFormChange}
-                    />
+                  <div className='form-check' style={{ textTransform: 'capitalize' }} key={`${service}_` + index}>
+                    <input className='form-check-input' type='checkbox' name={`service-${service[0]}`} id={service[1]} defaultChecked={service[2]} onChange={onFormChange} />
                     <label className='form-check-label' htmlFor={service[1]}>
                       {service[0]}
                     </label>

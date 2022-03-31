@@ -1,5 +1,5 @@
 // React Components
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { useHistory, useParams } from 'react-router-dom'
 
 // Custom Imports
@@ -154,7 +154,7 @@ export const BusinessList: React.FC = () => {
 
   if (loading) {
     return (
-      <div className='BusinessList-Wrapper' style={{ height: '100vh' }}>
+      <div className='BusinessList-Wrapper'>
         <div className='BusinessList-Wrapper_loader'>
           <LoadSpinner />
         </div>
@@ -164,15 +164,13 @@ export const BusinessList: React.FC = () => {
 
   if (list.length === 0) {
     return (
-      <div className='BusinessList-Wrapper'>
-        <Card>
-          <h2>No businesses found.</h2>
-        </Card>
+      <div className='BusinessList-Wrapper' style={{ display: 'flex', justifyContent: 'center', height: '100vh', placeItems: 'center' }}>
+        <h2>No businesses found. Please try another city.</h2>
       </div>
     )
   } else {
     return (
-      <React.Fragment>
+      <section className='BusinessList'>
         <div className='BusinessList-Wrapper'>
           <div className='BusinessList-HeaderContainer'>
             {/* ternary operator 
@@ -190,20 +188,16 @@ export const BusinessList: React.FC = () => {
                 handleResetFilter={handleResetFilter}
               />
             </div>
-            <div
-              className='BusinessList-CardContainer'
-              // style={{ width: '100%' }}
-            >
+            <div className='BusinessList-CardContainer'>
               {list.map((business: any) => (
                 <Card className=' BusinessList-Card' key={business._id} onClick={() => history.push(`/businesses/${business._id}`)}>
-                  {/* <div> */}
                   <CardDetails name={business.name} description={business.description} image={business.image} address={business.address} stars={business.stars} />
                 </Card>
               ))}
             </div>
           </div>
         </div>
-      </React.Fragment>
+      </section>
     )
   }
 }

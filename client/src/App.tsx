@@ -7,7 +7,7 @@ import {
 import './App.css'
 import { Home } from './pages/Home/Home'
 import { ListItems } from './pages/ListItems'
-import UserRegistration from './pages/Auth/UserRegistration'
+import { UserRegistration } from './pages/Auth/UserRegistration'
 import Login from './pages/Auth/Login'
 import { BusinessList } from './pages/Businesses/BusinessList'
 import { BusinessDetails } from './components/BusinessDetails/BusinessDetails'
@@ -19,7 +19,6 @@ import { Profile } from './pages/Profile/Profile'
 
 export const App = () => {
   let routes: any
-
   routes = (
     <Switch>
       <Route path='/' exact>

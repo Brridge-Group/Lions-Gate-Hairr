@@ -1,4 +1,4 @@
-.login {
+/* .login {
   display: grid;
   grid-template-columns: repeat(15, 1fr);
   background-size: cover;
@@ -26,9 +26,9 @@ input {
   text-align: center;
 }
 button {
-    margin-top: 20px;
+  margin-top: 20px;
 }
 
 input:focus {
   outline: none;
-}
+} */

@@ -16,6 +16,7 @@ import { AddReview } from './components/AddReview/AddReview/AddReview'
 import { MyBusinessList } from './components/Businesses/MyBusinessList'
 import { Navbar } from './components/Navbar'
 import { Profile } from './pages/Profile/Profile'
+import { EditProfile } from './pages/Auth/EditProfile'
 
 export const App = () => {
   let routes: any
@@ -32,6 +33,9 @@ export const App = () => {
       </Route>
       <Route path='/user-signup' exact>
         <UserRegistration />
+      </Route>
+      <Route path='/users/:id' exact>
+        <EditProfile />
       </Route>
       <Route path='/businesses' exact>
         <BusinessList />

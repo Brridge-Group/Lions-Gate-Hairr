@@ -34,7 +34,7 @@ export const Profile = () => {
               </div>
             </div>
             <div className='Profile_links'>
-              <Link to={'#'}>
+              <Link to={'users/:id'}>
                 <h6 className='btn--btn-primary'>update profile</h6>
               </Link>
               <Link to={'#'}>

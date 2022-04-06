@@ -6,10 +6,9 @@ import Input from '@material-ui/core/Input'
 import InputAdornment from '@material-ui/core/InputAdornment'
 import IconButton from '@material-ui/core/IconButton'
 import { toast } from 'react-toastify'
-import { NavLink } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
+import { AnyIfEmpty, useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
-import { AUTH } from '../../constants/actionTypes'
+import { AUTH, UPDATE, LOGIN } from '../../constants/actionTypes'
 import * as api from '../../api/index'
 import './UserRegistration.css'
 import 'react-toastify/dist/ReactToastify.css'
@@ -31,6 +30,7 @@ export const EditProfile = () => {
     role: 'user',
     imageProfile: 'https://imgur.com/vOXWIO6.jpg',
   })
+  // const [updateUserData, setUpdateUserData] = useState({})
 
   const [isEditing, setIsEditing] = useState(false)
 
@@ -40,7 +40,23 @@ export const EditProfile = () => {
   const dispatch = useDispatch()
   const history = useHistory()
   const [errorMsg, setErrorMsg] = useState('')
+  const [firstName, setFirstName] = useState<any | ''>('')
+  const [lastName, setLastName] = useState<any | ''>('')
+  const [email, setEmail] = useState<any | ''>('')
 
+  const signIn = useSelector((state: any) => state.signIn)
+  console.log(signIn)
+  // let { login } = signIn
+
+  const userUpdate = useSelector((state: any) => state.updateUser)
+  console.log('userUpdate', userUpdate)
+  // const { loading, error, success } = userUpdate
+
+  // useEffect(() => {
+  //   setFirstName(updateUserData.firstName)
+  //   setLastName(updateUserData.lastName)
+  //   setImage(updateUserData.image)
+  // }, [updateUserData])
   // useEffect(() => {
   //   ;(async () => {
   //     try {
@@ -54,12 +70,26 @@ export const EditProfile = () => {
   //   })()
   // }, [])
 
-  const signup =
+  // login =
+  //   (formData: any, history: any, errorM?: any) => async (dispatch: any) => {
+  //     try {
+  //       // log in the user
+  //       const { data } = await api.signIn(formData)
+  //       dispatch({ type: LOGIN, data })
+  //       history.push('/')
+  //     } catch (err: any) {
+  //       errorM = err.response.data
+  //       console.log(errorM)
+  //       setErrorMsg(errorM)
+  //     }
+  //   }
+
+  const updateUser =
     (formData: any, history: any, errorM?: any) => async (dispatch: any) => {
       try {
         // sign up the user
-        const { data } = await api.signUp(userData)
-        dispatch({ type: AUTH, data })
+        const { data } = await api.updateUser(userData)
+        dispatch({ type: UPDATE, data })
         history.push('/')
       } catch (err: any) {
         errorM = err.response.data
@@ -99,7 +129,7 @@ export const EditProfile = () => {
 
   const handleSubmit = (e: any) => {
     e.preventDefault()
-    dispatch(signup(userData, history))
+    dispatch(updateUser(userData, history))
     console.log(userData)
   }
 
@@ -126,6 +156,7 @@ export const EditProfile = () => {
                 onChange={handleChange}
                 autoFocus
                 className='UserRegistration_input'
+                // placeholder={}
               />
               <h5>
                 <label>Last Name</label>
@@ -197,17 +228,8 @@ export const EditProfile = () => {
                 </h5>
               </div>
               <button type='submit' className='UserRegistration_submit'>
-                <h6 className='btn--btn-primary'>Sign Up</h6>
+                <h6 className='btn--btn-primary'>Update Profile</h6>
               </button>
-              <p style={{ fontWeight: '300' }}>
-                Have an account?{' '}
-                <NavLink
-                  to='user-signin'
-                  style={{ fontWeight: '500', color: 'black' }}>
-                  Click Here
-                </NavLink>{' '}
-                to Login.
-              </p>
               <br />
               {errorMsg && <p style={{ color: 'grey' }}> {errorMsg} </p>}
             </form>

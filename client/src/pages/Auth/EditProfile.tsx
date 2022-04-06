@@ -11,6 +11,7 @@ import { useHistory } from 'react-router-dom'
 import { AUTH, UPDATE, LOGIN } from '../../constants/actionTypes'
 import * as api from '../../api/index'
 import './UserRegistration.css'
+import '../Profile/Profile.css'
 import 'react-toastify/dist/ReactToastify.css'
 
 require('dotenv').config()
@@ -101,7 +102,7 @@ export const EditProfile = () => {
 
   return (
     <>
-      <div className='FeatureContainer_image UserRegistration'>
+      <div className='FeatureContainer_image User'>
         <div className='FeatureContainer'>
           <div className='UserRegistration_inputGroup'>
             <form className='UserRegistration_form' onSubmit={handleSubmit}>

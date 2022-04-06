@@ -7,7 +7,7 @@ export const Profile = () => {
 
   console.log(user.role)
   return (
-    //use following if have diffefrent image for owner profile
+    //use following if have different image for owner profile
     // <div
     //   className={
     //     user.role === 'user'

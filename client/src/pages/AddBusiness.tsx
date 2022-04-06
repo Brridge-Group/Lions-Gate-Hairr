@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import { ContentHeader } from '../components/ContentHeader'
 import { Link } from 'react-router-dom'
 import { useHistory } from 'react-router-dom'
 import axios from 'axios'
 import { regions } from '../constants/regions'
-
 
 export const AddBusiness = () => {
   // Initialize  Services and Features to state
@@ -22,7 +20,7 @@ export const AddBusiness = () => {
     const fetchFeaturesData = async () => {
       try {
         const response = await fetch('/api/features', {
-          method: 'GET'
+          method: 'GET',
         })
         const responseData = await response.json()
         setFeats(responseData)
@@ -43,7 +41,7 @@ export const AddBusiness = () => {
     const fetchServicesData = async () => {
       try {
         const response = await fetch('/api/services', {
-          method: 'GET'
+          method: 'GET',
         })
         const responseData = await response.json()
         setServices(responseData)
@@ -74,7 +72,7 @@ export const AddBusiness = () => {
     street: '',
     postalCode: '',
     city: '',
-    phone: ''
+    phone: '',
   })
   const [region, setRegion] = useState('AB')
   const [country, setCountry] = useState('Canada')
@@ -98,7 +96,6 @@ export const AddBusiness = () => {
       event.target.type === 'checkbox'
         ? event.target.checked
         : event.target.value
-
   }
 
   const handleSubmit = (e: any) => {
@@ -114,11 +111,11 @@ export const AddBusiness = () => {
       postalCode: formData.postalCode,
       city: formData.city,
       region: region,
-      country: country
+      country: country,
     },
     stars: 5,
     phone: formData.phone,
-    ownerId: ownerId
+    ownerId: ownerId,
   }
 
   axios
@@ -134,7 +131,6 @@ export const AddBusiness = () => {
   return (
     <React.Fragment>
       <div className='content-wrapper'>
-        <ContentHeader title='Add New Business' />
         <div className='card w-50 mx-auto'>
           <div className='card-header'>
             <h3 className='card-title'>Add New Business</h3>
@@ -231,8 +227,7 @@ export const AddBusiness = () => {
                 <label>Province / State:</label>
                 <select
                   className='custom-select rounded-0'
-                  onChange={handleRegion}
-                >
+                  onChange={handleRegion}>
                   {regions.map(region => (
                     <option value={region.value}>{region.label}</option>
                   ))}
@@ -242,8 +237,7 @@ export const AddBusiness = () => {
                 <label>Country:</label>
                 <select
                   className='custom-select rounded-0'
-                  onChange={handleCountry}
-                >
+                  onChange={handleCountry}>
                   <option value='Canada'> Canada </option>
                   <option value='United States'> United States</option>
                 </select>
@@ -255,8 +249,7 @@ export const AddBusiness = () => {
                   <div
                     className='form-check'
                     style={{ textTransform: 'capitalize' }}
-                    key={`${feature}_` + index}
-                  >
+                    key={`${feature}_` + index}>
                     <input
                       className='form-check-input'
                       type='checkbox'
@@ -277,8 +270,7 @@ export const AddBusiness = () => {
                   <div
                     className='form-check'
                     style={{ textTransform: 'capitalize' }}
-                    key={`${service}_` + index}
-                  >
+                    key={`${service}_` + index}>
                     <input
                       className='form-check-input'
                       type='checkbox'

@@ -6,7 +6,6 @@ import {
 } from 'react-router-dom'
 import './App.css'
 import { Home } from './pages/Home/Home'
-import { ListItems } from './pages/ListItems'
 import { UserRegistration } from './pages/Auth/UserRegistration'
 import Login from './pages/Auth/Login'
 import { BusinessList } from './pages/Businesses/BusinessList'
@@ -24,9 +23,6 @@ export const App = () => {
     <Switch>
       <Route path='/' exact>
         <Home />
-      </Route>
-      <Route path='/items' exact>
-        <ListItems />
       </Route>
       <Route path='/user-signin' exact>
         <Login />

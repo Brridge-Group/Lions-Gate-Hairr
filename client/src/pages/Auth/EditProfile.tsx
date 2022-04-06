@@ -6,7 +6,7 @@ import Input from '@material-ui/core/Input'
 import InputAdornment from '@material-ui/core/InputAdornment'
 import IconButton from '@material-ui/core/IconButton'
 import { toast } from 'react-toastify'
-import { AnyIfEmpty, useDispatch, useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import { AUTH, UPDATE, LOGIN } from '../../constants/actionTypes'
 import * as api from '../../api/index'
@@ -16,81 +16,39 @@ import 'react-toastify/dist/ReactToastify.css'
 require('dotenv').config()
 toast.configure()
 
-// const INITIAL_STATE = {
-//   firstName: '',
-//   lastName: '',
-//   email: '',
-//   password: '',
-//   confirmPassword: '',
-// }
-
 export const EditProfile = () => {
-  // const [userData, setUserData] = useState({ INITIAL_STATE })
   const [userData, setUserData] = useState({
     role: 'user',
-    imageProfile: 'https://imgur.com/vOXWIO6.jpg',
+    imageProfile: 'https://imgur.com/LDpwLVZ.jpg',
   })
-  // const [updateUserData, setUpdateUserData] = useState({})
 
-  const [isEditing, setIsEditing] = useState(false)
-
-  const [isChecked, setIsChecked] = useState(false)
-  const [showPassword, setShowPassword] = useState(false)
-  const [image, setImage] = useState<any | null>(null)
   const dispatch = useDispatch()
   const history = useHistory()
   const [errorMsg, setErrorMsg] = useState('')
   const [firstName, setFirstName] = useState<any | ''>('')
   const [lastName, setLastName] = useState<any | ''>('')
   const [email, setEmail] = useState<any | ''>('')
+  const [password, setPassword] = useState<any | ''>('')
+  const [confirmPassword, setConfirmPassword] = useState<any | ''>('')
+  const [showPassword, setShowPassword] = useState(false)
+  const [image, setImage] = useState<any | null>(null)
 
-  const signIn = useSelector((state: any) => state.signIn)
-  console.log(signIn)
-  // let { login } = signIn
-
-  const userUpdate = useSelector((state: any) => state.updateUser)
-  console.log('userUpdate', userUpdate)
-  // const { loading, error, success } = userUpdate
-
-  // useEffect(() => {
-  //   setFirstName(updateUserData.firstName)
-  //   setLastName(updateUserData.lastName)
-  //   setImage(updateUserData.image)
-  // }, [updateUserData])
-  // useEffect(() => {
-  //   ;(async () => {
-  //     try {
-  //       const userData = await axios.get(
-  //         'https://jsonplaceholder.typicode.com/users/1'
-  //       )
-  //       setUserData(userData.data)
-  //     } catch (error) {
-  //       console.log(error)
-  //     }
-  //   })()
-  // }, [])
-
-  // login =
-  //   (formData: any, history: any, errorM?: any) => async (dispatch: any) => {
-  //     try {
-  //       // log in the user
-  //       const { data } = await api.signIn(formData)
-  //       dispatch({ type: LOGIN, data })
-  //       history.push('/')
-  //     } catch (err: any) {
-  //       errorM = err.response.data
-  //       console.log(errorM)
-  //       setErrorMsg(errorM)
-  //     }
-  //   }
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem('profile') ?? 'false')
+    console.log(user)
+    setFirstName(user.result.name.split(' ')[0])
+    setLastName(user.result.name.split(' ')[1])
+    setEmail(user.result.email)
+    setImage(user.result.imageProfile)
+  }, [])
 
   const updateUser =
     (formData: any, history: any, errorM?: any) => async (dispatch: any) => {
       try {
-        // sign up the user
+        // update the user
         const { data } = await api.updateUser(userData)
         dispatch({ type: UPDATE, data })
-        history.push('/')
+        history.push('/users')
       } catch (err: any) {
         errorM = err.response.data
         setErrorMsg(errorM)
@@ -129,8 +87,12 @@ export const EditProfile = () => {
 
   const handleSubmit = (e: any) => {
     e.preventDefault()
+    const name = { name: firstName + ' ' + lastName, email }
+    const merge = { ...name, ...userData }
+    console.log('merge', merge)
+    setUserData(merge)
+    console.log('in handle submit, userData', userData)
     dispatch(updateUser(userData, history))
-    console.log(userData)
   }
 
   const handleChange = (e: any) => {
@@ -153,17 +115,18 @@ export const EditProfile = () => {
               </h5>
               <input
                 name='firstName'
-                onChange={handleChange}
+                value={firstName}
+                onChange={e => setFirstName(e.target.value)}
                 autoFocus
                 className='UserRegistration_input'
-                // placeholder={}
               />
               <h5>
                 <label>Last Name</label>
               </h5>
               <input
                 name='lastName'
-                onChange={handleChange}
+                value={lastName}
+                onChange={e => setLastName(e.target.value)}
                 className='UserRegistration_input'
               />
               <h5>
@@ -171,7 +134,8 @@ export const EditProfile = () => {
               </h5>
               <input
                 name='email'
-                onChange={handleChange}
+                onChange={e => setEmail(e.target.value)}
+                value={email}
                 className='UserRegistration_input'
               />
               <h5>
@@ -180,7 +144,7 @@ export const EditProfile = () => {
               <Input
                 name='password'
                 type={showPassword ? 'text' : 'password'}
-                onChange={handleChange}
+                onChange={e => setPassword(e.target.value)}
                 className='UserRegistration_input'
                 endAdornment={
                   <InputAdornment position='end'>
@@ -203,7 +167,7 @@ export const EditProfile = () => {
                 name='confirmPassword'
                 className='UserRegistration_input'
                 type={showPassword ? 'text' : 'password'}
-                onChange={handleChange}
+                onChange={e => setConfirmPassword(e.target.value)}
               />
               <div className='UserRegistration_radioButtons'>
                 <h5 className='UserRegistration_radio'>
@@ -223,7 +187,7 @@ export const EditProfile = () => {
                     value='owner'
                     onChange={handleChange}
                     checked={userData.role === 'owner'}
-                  />{' '}
+                  />
                   Owner
                 </h5>
               </div>

@@ -20,7 +20,7 @@ toast.configure()
 export const UserRegistration = () => {
   const [userData, setUserData] = useState({
     role: 'user',
-    imageProfile: 'https://imgur.com/vOXWIO6.jpg',
+    imageProfile: 'https://imgur.com/LDpwLVZ.jpg',
   })
 
   const [isChecked, setIsChecked] = useState(false)
@@ -76,7 +76,6 @@ export const UserRegistration = () => {
   const handleSubmit = (e: any) => {
     e.preventDefault()
     dispatch(signup(userData, history))
-    console.log(userData)
   }
 
   const handleChange = (e: any) => {

@@ -66,9 +66,7 @@ require("react-toastify/dist/ReactToastify.css");
 require('dotenv').config();
 react_toastify_1.toast.configure();
 exports.EditProfile = function () {
-    var _a = react_1.useState({
-        imageProfile: 'https://imgur.com/LDpwLVZ.jpg'
-    }), userData = _a[0], setUserData = _a[1];
+    var _a = react_1.useState({}), userData = _a[0], setUserData = _a[1];
     var dispatch = react_redux_1.useDispatch();
     var history = react_router_dom_1.useHistory();
     var _b = react_1.useState(''), errorMsg = _b[0], setErrorMsg = _b[1];
@@ -80,6 +78,7 @@ exports.EditProfile = function () {
     var _h = react_1.useState(false), showPassword = _h[0], setShowPassword = _h[1];
     var _j = react_1.useState(null), image = _j[0], setImage = _j[1];
     var _k = react_1.useState(''), isRole = _k[0], setIsRole = _k[1];
+    var _l = react_1.useState(''), imageProfile = _l[0], setImageProfile = _l[1];
     react_1.useEffect(function () {
         var _a;
         var user = JSON.parse((_a = localStorage.getItem('profile')) !== null && _a !== void 0 ? _a : 'false');
@@ -89,6 +88,7 @@ exports.EditProfile = function () {
         setEmail(user.result.email);
         setImage(user.result.imageProfile);
         setIsRole(user.result.role);
+        // setImageProfile(user.result.imageProfile)
     }, []);
     var updateUser = function (formData, history, errorM) { return function (dispatch) { return __awaiter(void 0, void 0, void 0, function () {
         var data, err_1;
@@ -100,7 +100,7 @@ exports.EditProfile = function () {
                 case 1:
                     data = (_a.sent()).data;
                     dispatch({ type: actionTypes_1.UPDATE, data: data });
-                    history.push('/users');
+                    history.push('/');
                     return [3 /*break*/, 3];
                 case 2:
                     err_1 = _a.sent();
@@ -135,21 +135,18 @@ exports.EditProfile = function () {
                         })];
                 case 1:
                     base64 = (_a.sent());
-                    setUserData(__assign(__assign({}, userData), { imageProfile: base64 }));
+                    setImage({ imageProfile: base64 });
                     return [3 /*break*/, 3];
-                case 2:
-                    react_toastify_1.toast('Image type error, it should be png/jpeg.');
-                    _a.label = 3;
+                case 2: return [2 /*return*/, 'Image type error, it should be png/jpeg.'];
                 case 3: return [3 /*break*/, 5];
-                case 4:
-                    react_toastify_1.toast('Unknown.');
-                    _a.label = 5;
+                case 4: return [2 /*return*/, 'Unknown.'];
                 case 5: return [2 /*return*/];
             }
         });
     }); };
     var handleSubmit = function (e) {
         e.preventDefault();
+        console.log(password, confirmPassword, isRole, imageProfile);
         var name = { name: firstName + ' ' + lastName, email: email };
         var merge = __assign(__assign({}, name), userData);
         console.log('merge', merge);
@@ -157,10 +154,25 @@ exports.EditProfile = function () {
         console.log('in handle submit, userData', userData);
         dispatch(updateUser(userData, history));
     };
-    var handleChange = function (e) {
-        var _a;
-        setUserData(__assign(__assign({}, userData), (_a = {}, _a[e.target.name] = e.target.value, _a)));
-    };
+    // const itemUpdateSubmitHandler = async (event) => {
+    //   event.preventDefault();
+    //   try {
+    //     const response = await fetch(`/api/items/${itemId}`, {
+    //       method: "PATCH",
+    //       headers: {
+    //         "Content-Type": "application/json",
+    //       },
+    //       body: JSON.stringify({ name, description }),
+    //     });
+    //     if (!response.ok) {
+    //       throw new Error("Could not save new item");
+    //     }
+    //     history.push("/items");
+    //   } catch (err) {}
+    // };
+    // const handleChange = (e: any) => {
+    //   setUserData({ ...userData, [e.target.name]: e.target.value })
+    // }
     return (React.createElement(React.Fragment, null,
         React.createElement("div", { className: 'FeatureContainer_image User' },
             React.createElement("div", { className: 'FeatureContainer' },

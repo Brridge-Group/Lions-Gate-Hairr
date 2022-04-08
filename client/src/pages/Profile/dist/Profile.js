@@ -2,7 +2,7 @@
 exports.__esModule = true;
 exports.Profile = void 0;
 var react_router_dom_1 = require("react-router-dom");
-var MyBusinessList_1 = require("../../components/Businesses/MyBusinessList");
+var MyBusinessList_1 = require("../../components/MyBusinessList/MyBusinessList");
 require("./Profile.css");
 exports.Profile = function () {
     var _a;

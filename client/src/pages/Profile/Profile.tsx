@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { MyBusinessList } from '../../components/Businesses/MyBusinessList'
+import { MyBusinessList } from '../../components/MyBusinessList/MyBusinessList'
 import './Profile.css'
 
 export const Profile = () => {

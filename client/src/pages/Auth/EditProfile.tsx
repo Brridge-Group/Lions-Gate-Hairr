@@ -18,9 +18,7 @@ require('dotenv').config()
 toast.configure()
 
 export const EditProfile = () => {
-  const [userData, setUserData] = useState({
-    imageProfile: 'https://imgur.com/LDpwLVZ.jpg',
-  })
+  const [userData, setUserData] = useState<any | {}>({})
 
   const dispatch = useDispatch()
   const history = useHistory()
@@ -33,6 +31,7 @@ export const EditProfile = () => {
   const [showPassword, setShowPassword] = useState(false)
   const [image, setImage] = useState<any | null>(null)
   const [isRole, setIsRole] = useState<any | ''>('')
+  const [imageProfile, setImageProfile] = useState<any | ''>('')
 
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem('profile') ?? 'false')
@@ -42,6 +41,7 @@ export const EditProfile = () => {
     setEmail(user.result.email)
     setImage(user.result.imageProfile)
     setIsRole(user.result.role)
+    // setImageProfile(user.result.imageProfile)
   }, [])
 
   const updateUser =
@@ -50,7 +50,7 @@ export const EditProfile = () => {
         // update the user
         const { data } = await api.updateUser(userData)
         dispatch({ type: UPDATE, data })
-        history.push('/users')
+        history.push('/')
       } catch (err: any) {
         errorM = err.response.data
         setErrorMsg(errorM)
@@ -77,18 +77,20 @@ export const EditProfile = () => {
           }
           reader.readAsDataURL(event.target.files[0])
         })) as string
-
-        setUserData({ ...userData, imageProfile: base64 })
+        setImage({ imageProfile: base64 })
+        // setUserData({ ...userData, imageProfile: base64 })
+        // setUserData({ ...userData, imageProfile: base64 })
       } else {
-        toast('Image type error, it should be png/jpeg.')
+        return 'Image type error, it should be png/jpeg.'
       }
     } else {
-      toast('Unknown.')
+      return 'Unknown.'
     }
   }
 
   const handleSubmit = (e: any) => {
     e.preventDefault()
+    console.log(password, confirmPassword, isRole, imageProfile)
     const name = { name: firstName + ' ' + lastName, email }
     const merge = { ...name, ...userData }
     console.log('merge', merge)
@@ -97,9 +99,28 @@ export const EditProfile = () => {
     dispatch(updateUser(userData, history))
   }
 
-  const handleChange = (e: any) => {
-    setUserData({ ...userData, [e.target.name]: e.target.value })
-  }
+  // const itemUpdateSubmitHandler = async (event) => {
+  //   event.preventDefault();
+
+  //   try {
+  //     const response = await fetch(`/api/items/${itemId}`, {
+  //       method: "PATCH",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify({ name, description }),
+  //     });
+
+  //     if (!response.ok) {
+  //       throw new Error("Could not save new item");
+  //     }
+
+  //     history.push("/items");
+  //   } catch (err) {}
+  // };
+  // const handleChange = (e: any) => {
+  //   setUserData({ ...userData, [e.target.name]: e.target.value })
+  // }
 
   return (
     <>

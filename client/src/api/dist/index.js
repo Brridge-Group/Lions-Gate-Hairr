@@ -11,4 +11,4 @@ API.interceptors.request.use(function (req) {
 });
 exports.signUp = function (formData) { return API.post('/users/signup', formData); };
 exports.signIn = function (formData) { return API.post('/users/signin', formData); };
-exports.updateUser = function (formData) { return API.put('/users/:id', formData); };
+exports.updateUser = function (formData) { return API.patch('/users/:id', formData); };

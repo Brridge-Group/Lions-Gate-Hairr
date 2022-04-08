@@ -67,7 +67,6 @@ require('dotenv').config();
 react_toastify_1.toast.configure();
 exports.EditProfile = function () {
     var _a = react_1.useState({
-        role: 'user',
         imageProfile: 'https://imgur.com/LDpwLVZ.jpg'
     }), userData = _a[0], setUserData = _a[1];
     var dispatch = react_redux_1.useDispatch();
@@ -80,6 +79,7 @@ exports.EditProfile = function () {
     var _g = react_1.useState(''), confirmPassword = _g[0], setConfirmPassword = _g[1];
     var _h = react_1.useState(false), showPassword = _h[0], setShowPassword = _h[1];
     var _j = react_1.useState(null), image = _j[0], setImage = _j[1];
+    var _k = react_1.useState(''), isRole = _k[0], setIsRole = _k[1];
     react_1.useEffect(function () {
         var _a;
         var user = JSON.parse((_a = localStorage.getItem('profile')) !== null && _a !== void 0 ? _a : 'false');
@@ -88,6 +88,7 @@ exports.EditProfile = function () {
         setLastName(user.result.name.split(' ')[1]);
         setEmail(user.result.email);
         setImage(user.result.imageProfile);
+        setIsRole(user.result.role);
     }, []);
     var updateUser = function (formData, history, errorM) { return function (dispatch) { return __awaiter(void 0, void 0, void 0, function () {
         var data, err_1;
@@ -176,7 +177,7 @@ exports.EditProfile = function () {
                             React.createElement("label", null, "Email")),
                         React.createElement("input", { name: 'email', onChange: function (e) { return setEmail(e.target.value); }, value: email, className: 'UserRegistration_input' }),
                         React.createElement("h5", null,
-                            React.createElement("label", null, "Password")),
+                            React.createElement("label", null, "New Password")),
                         React.createElement(Input_1["default"], { name: 'password', type: showPassword ? 'text' : 'password', onChange: function (e) { return setPassword(e.target.value); }, className: 'UserRegistration_input', endAdornment: React.createElement(InputAdornment_1["default"], { position: 'end' },
                                 React.createElement(IconButton_1["default"], { onClick: toggleShow, onMouseDown: handleMouseDownPassword }, showPassword ? (React.createElement(VisibilityRounded_1["default"], null)) : (React.createElement(VisibilityOffRounded_1["default"], null)))) }),
                         React.createElement("h5", null,
@@ -184,10 +185,10 @@ exports.EditProfile = function () {
                         React.createElement(Input_1["default"], { name: 'confirmPassword', className: 'UserRegistration_input', type: showPassword ? 'text' : 'password', onChange: function (e) { return setConfirmPassword(e.target.value); } }),
                         React.createElement("div", { className: 'UserRegistration_radioButtons' },
                             React.createElement("h5", { className: 'UserRegistration_radio' },
-                                React.createElement("input", { type: 'radio', name: 'role', value: 'user', onChange: handleChange, checked: userData.role === 'user' }),
+                                React.createElement("input", { type: 'radio', name: 'role', value: 'user', checked: isRole === 'user', onChange: function (e) { return setIsRole(e.target.value); } }),
                                 "User"),
                             React.createElement("h5", { className: 'UserRegistration_radio' },
-                                React.createElement("input", { type: 'radio', name: 'role', value: 'owner', onChange: handleChange, checked: userData.role === 'owner' }),
+                                React.createElement("input", { type: 'radio', name: 'role', value: 'owner', onChange: function (e) { return setIsRole(e.target.value); }, checked: isRole === 'owner' }),
                                 "Owner")),
                         React.createElement("button", { type: 'submit', className: 'UserRegistration_submit' },
                             React.createElement("h6", { className: 'btn--btn-primary' }, "Update Profile")),

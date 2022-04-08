@@ -18,25 +18,27 @@
 .Profile_name h1 {
   text-align: center;
 }
-.user-pix-placeholder {
-  width: 180px;
-  height: 180px;
-  border-radius: 50%;
-  background: rgb(216, 212, 212);
-  padding: 70px;
-  margin: auto;
+img.user-pix-placeholder {
+  width: 35%;
+
   margin-top: -20px;
 }
 .user-reviews-placeholder {
   margin-top: 100px;
   font-size: 1.6rem;
 }
-
+.user-foto {
+  z-index: 100;
+  position: absolute;
+  left: 45%;
+  /* top: -10%; */
+}
 .Profile-UserContainer {
   border: 1px solid rgba(0, 0, 0, 0.5);
   padding: 45px;
   height: 58vh;
   background-image: url('../../assets/images/hairgreybg.jpg');
+  position: relative;
 }
 .Profile-UserContainer_reviews {
   border-top: 1px solid #f32dc8;

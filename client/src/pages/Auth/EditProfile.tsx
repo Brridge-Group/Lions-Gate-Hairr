@@ -19,7 +19,6 @@ toast.configure()
 
 export const EditProfile = () => {
   const [userData, setUserData] = useState({
-    role: 'user',
     imageProfile: 'https://imgur.com/LDpwLVZ.jpg',
   })
 
@@ -33,6 +32,7 @@ export const EditProfile = () => {
   const [confirmPassword, setConfirmPassword] = useState<any | ''>('')
   const [showPassword, setShowPassword] = useState(false)
   const [image, setImage] = useState<any | null>(null)
+  const [isRole, setIsRole] = useState<any | ''>('')
 
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem('profile') ?? 'false')
@@ -41,6 +41,7 @@ export const EditProfile = () => {
     setLastName(user.result.name.split(' ')[1])
     setEmail(user.result.email)
     setImage(user.result.imageProfile)
+    setIsRole(user.result.role)
   }, [])
 
   const updateUser =
@@ -140,7 +141,7 @@ export const EditProfile = () => {
                 className='UserRegistration_input'
               />
               <h5>
-                <label>Password</label>
+                <label>New Password</label>
               </h5>
               <Input
                 name='password'
@@ -176,8 +177,8 @@ export const EditProfile = () => {
                     type='radio'
                     name='role'
                     value='user'
-                    onChange={handleChange}
-                    checked={userData.role === 'user'}
+                    checked={isRole === 'user'}
+                    onChange={e => setIsRole(e.target.value)}
                   />
                   User
                 </h5>
@@ -186,8 +187,8 @@ export const EditProfile = () => {
                     type='radio'
                     name='role'
                     value='owner'
-                    onChange={handleChange}
-                    checked={userData.role === 'owner'}
+                    onChange={e => setIsRole(e.target.value)}
+                    checked={isRole === 'owner'}
                   />
                   Owner
                 </h5>

@@ -20,10 +20,12 @@ export const Profile = () => {
           <div className='Profile_user'>
             <h1 className='Profile_name'>Hello {user.name} !</h1>
             <div className='Profile-UserContainer '>
-              <div
-                className='user-pix-placeholder'
-                style={{ fontSize: '15px' }}>
-                user foto
+              <div className='' style={{ fontSize: '15px' }}>
+                <h6 className='user-foto'>user foto</h6>
+                <img
+                  src='https://imgur.com/LDpwLVZ.jpg'
+                  className='user-pix-placeholder'
+                />
               </div>
               <div className='Profile-UserContainer_reviews'>
                 {/* when reviews are imported here, add loading, setLoading state as in mybusiness component */}

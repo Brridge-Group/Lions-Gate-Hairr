@@ -3,10 +3,11 @@ import { useState, useEffect } from 'react'
 import { useHistory, useParams } from 'react-router-dom'
 
 // Custom Imports
-import Card from '../../UIElements/Card'
-import CardDetails from '../../components/CardDetails/CardDetails'
-import FilterServicesAndFeatures from '../../components/FilterServicesAndFeatures/FilterServicesAndFeatures'
-import LoadSpinner from '../../components/LoadSpinner/LoadSpinner'
+import { Card } from '../../UIElements/Card'
+import { Star } from '../../UIElements/Star'
+import { About } from '../../components/BusinessDetails/About'
+import { FilterServicesAndFeatures } from '../../components/FilterServicesAndFeatures/FilterServicesAndFeatures'
+import { LoadSpinner } from '../../components/LoadSpinner/LoadSpinner'
 
 // Custom Styles
 import './BusinessList.css'

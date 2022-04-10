@@ -13,6 +13,9 @@ body {
   padding: 0;
   overscroll-behavior: none;
 }
+html {
+  font-size: 62.5%;
+}
 
 /*
   Avoid text overflows
@@ -27,20 +30,37 @@ h6 {
   overflow-wrap: break-word;
 }
 
-.container {
-  display: flex;
-  height: 100vh;
-  width: 100%;
-  flex-direction: column;
+.AppContainer {
   font-family: 'Roboto', sans-serif;
   font-style: normal;
+  position: fixed;
+  height: 100vh;
+  width: 100%;
+  display: flex;
 
-  /* TODO-FIXME: Removed because it prevented children components' page scroll*/
-  /* position: fixed;  */
-  /*TODO-FIXME: Not displaing to the page?  */
-  /* max-width: 1206; */
+  /* TODO- [ ✅ ] FIXED: Removed because it prevented children components' page scroll
+      - UPDATE: Added back to allow for a single place to fix position for all components and within the component a nested scroll-behavior was added.
+  */
+  position: fixed;
 }
-.navbar {
+.FeatureContainer_image {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: bottom center;
+  width: 100%;
+}
+.FeatureContainer {
+  display: grid;
+  grid-template-columns: repeat(14, 1fr);
+  grid-column-gap: 35px;
+  height: 100vh;
+  width: 100vw;
+  max-width: 1206px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.Navbar {
   display: flex;
   height: 10vh;
   width: 100%;
@@ -53,43 +73,45 @@ h6 {
   /* border-bottom: 10px solid grey; */
   /* height: 100px; */
   /* top: 0; */
+  /* background: none; */
   z-index: 10;
 }
 
-ul {
+ul.NavbarList {
   list-style-type: none;
   padding: 0;
 }
 
-li {
+li.NavbarList_link {
   display: inline-block;
-  margin: 0 40px;
+  margin: 0 4rem;
 }
-a {
+.NavbarList_link a {
   text-decoration: none;
   color: black;
 }
-a:hover {
+.NavbarList_link a:hover {
   font-weight: 400;
 }
-a.active {
+.NavbarList_link a:focus {
   font-weight: 400;
 }
+
 h1 {
-  font-size: 36px;
+  font-size: 3.6rem;
   font-weight: 100;
 }
 h3 {
-  font-size: 24px;
+  font-size: 2.4rem;
   font-weight: 300;
 }
 h4 {
-  font-size: 18px;
+  font-size: 1.8rem;
   font-weight: 300;
   padding-top: 10px;
 }
 h5 {
-  font-size: 16px;
+  font-size: 1.6rem;
   line-height: 19px;
   font-weight: 300;
 }
@@ -99,14 +121,24 @@ h5 {
   height: 42px;
   background: black;
   border-radius: 10px;
-  border: 1 px solid #f32dc8;
+  border: 1px solid #f32dc8;
   color: white;
   text-align: center;
-  font-size: 16px;
-  font-weight: 400;
+  font-size: 1.5rem;
+  font-weight: 300;
+  padding-top: 10px;
+  margin: 0 15px;
+  cursor: pointer;
+}
+.btn--btn-primary.twoLines {
+  padding-top: 5px;
+  line-height: 1;
+}
+a {
+  text-decoration: none;
 }
 p {
-  font-size: 14px;
+  font-size: 1.4rem;
   line-height: 17px;
   font-weight: 400;
 }

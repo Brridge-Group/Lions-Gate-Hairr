@@ -1,5 +1,6 @@
 // React Components
 import React, { useEffect, useState } from 'react'
+import { ContentHeader } from '../components/ContentHeader'
 import { Link } from 'react-router-dom'
 import { useHistory } from 'react-router-dom'
 
@@ -10,9 +11,7 @@ import { regions } from '../constants/regions'
 // 3rd Party Custom Imports
 import axios from 'axios'
 
-// Custom Styles
-// import './AddBusiness.css'
-const AddBusiness = () => {
+export const AddBusiness = () => {
   // Initialize  Services and Features to state
   const [feats, setFeats]: any = useState([]) // Features full object
   const [services, setServices]: any = useState([]) // Services full object
@@ -226,5 +225,3 @@ const AddBusiness = () => {
     </React.Fragment>
   )
 }
-
-export default AddBusiness

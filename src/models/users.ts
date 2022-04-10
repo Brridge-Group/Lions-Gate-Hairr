@@ -18,6 +18,4 @@ const userSchema = new Schema({
   imageProfile: { type: String, required: true}
 })
 
-const User = mongoose.model('User', userSchema)
-
-module.exports = User
+export const User = mongoose.model('User', userSchema)

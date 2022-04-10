@@ -1,11 +1,10 @@
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
-
 import { Header, ContentWrapper, HR } from './BusinessDetailsPageElements'
-import About from '../About'
-import ServicesAndFeatures from '../ServicesAndFeatures'
-import Book from '../Book'
-import Review from '../Review'
+import { About } from '../About'
+import { ServicesAndFeatures } from '../ServicesAndFeatures'
+import { Book } from '../Book'
+import { Review } from '../Review'
 
 interface RouteParams {
   id: string
@@ -37,7 +36,7 @@ interface Business {
   phone: string
 }
 
-const BusinessDetails = () => {
+export const BusinessDetails = () => {
   const [businessData, setBusinessData] = useState<Business>()
   const { id } = useParams<RouteParams>()
 
@@ -82,5 +81,3 @@ const BusinessDetails = () => {
     </div>
   )
 }
-
-export default BusinessDetails

@@ -1,15 +1,13 @@
 .home {
   display: grid;
-  grid-template-columns: repeat(15, 1fr);
+  grid-template-columns: repeat(14, 1fr);
   background-size: cover;
   background-repeat: no-repeat;
   grid-column: 1 / span-1;
   background-position: bottom center;
-  grid-column-gap: 20px;
+  grid-column-gap: 35px;
   height: 100vh;
   width: 100%;
-  /* max-width: 1206;  */
-  /*TODO-FIXME: Above is not displaing to the page?  */
   margin-top: -10vh; /* Adds overlap styles to navbar */
   margin-right: auto;
   margin-left: auto;
@@ -36,8 +34,8 @@
 /* } */
 .input-group {
   text-align: center;
-  margin-top: 200px;
-  grid-column: 6/11;
+  margin-top: 300px;
+  grid-column: 6/10;
 }
 .input-group input {
   height: 36px;
@@ -51,3 +49,19 @@
 .input-group input:focus {
   outline: none;
 }
+
+/* ///////media queries ////////// */
+
+/* //later when figure out responsive// */
+
+/* @media screen and (min-width: 992px) {
+  .home {
+    display: grid;
+    grid-template-columns: repeat(14, 1fr);
+    grid-column-gap: 35px;
+    margin-left: auto;
+    margin-right: auto;
+    width: calc(100% - 80px);
+    max-width: 1206px;
+  }
+} */

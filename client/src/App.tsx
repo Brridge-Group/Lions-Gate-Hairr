@@ -4,6 +4,7 @@ import {
   Redirect,
   Switch,
 } from 'react-router-dom'
+import './App.css'
 import { Home } from './pages/Home/Home'
 import { ListItems } from './pages/ListItems'
 import { UserRegistration } from './pages/Auth/UserRegistration'
@@ -11,11 +12,10 @@ import Login from './pages/Auth/Login'
 import { BusinessList } from './pages/Businesses/BusinessList'
 import { BusinessDetails } from './components/BusinessDetails/BusinessDetails'
 import { AddBusiness } from './pages/AddBusiness'
-import { AddReview } from './components/AddReview/AddReview'
+import { AddReview } from './components/AddReview/AddReview/AddReview'
 import { MyBusinessList } from './components/Businesses/MyBusinessList'
 import { Navbar } from './components/Navbar'
-import './App.css'
-
+import { Profile } from './pages/Profile/Profile'
 
 export const App = () => {
   let routes: any
@@ -50,6 +50,9 @@ export const App = () => {
       </Route>
       <Route path='/businesses/:id/add-review' exact>
         <AddReview />
+      </Route>
+      <Route path='/profile' exact>
+        <Profile />
       </Route>
       <Redirect to='/' />
     </Switch>

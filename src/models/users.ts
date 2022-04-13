@@ -18,4 +18,4 @@ const userSchema = new Schema({
   imageProfile: { type: String, required: true}
 })
 
-export const User = mongoose.model('User', userSchema)
+module.exports = mongoose.model('User', userSchema);

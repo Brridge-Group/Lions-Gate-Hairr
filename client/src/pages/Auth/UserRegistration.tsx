@@ -34,14 +34,15 @@ export const UserRegistration = () => {
 
   const signup =
     (formData: any, history: any, errorM?: any) => async (dispatch: any) => {
+      let data;
       try {
         // sign up the user
-        const { data } = await api.signUp(userData)
+        data = await api.signUp(userData)
         dispatch({ type: AUTH, data })
         history.push('/')
       } catch (err: any) {
         errorM = err.response.data
-        setErrorMsg(errorM)
+        toast(errorM)
       }
     }
 
@@ -79,7 +80,6 @@ export const UserRegistration = () => {
   const handleSubmit = (e: any) => {
     e.preventDefault()
     dispatch(signup(userData, history))
-    console.log(userData)
   }
 
   const handleChange = (e: any) => {

@@ -75,9 +75,11 @@ export const Navbar = () => {
                   Profile
                 </NavLink>
               </li>
-              <NavLink to='#' onClick={logout}>
-                Log Out
-              </NavLink>
+              <li className='NavbarList_link '>
+                <NavLink to='#' onClick={logout}>
+                  Log Out
+                </NavLink>
+              </li>
             </>
           )}
         </h4>

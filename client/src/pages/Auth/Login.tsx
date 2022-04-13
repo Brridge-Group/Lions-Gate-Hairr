@@ -1,71 +1,69 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { useHistory, NavLink } from "react-router-dom";
-import { LOGIN } from "../../constants/actionTypes";
-import * as api from "../../api/index";
-//import pinkcrop1 from "../../assets/images/pinkcrop1.jpg";
-import pinkcrop1 from "../../assets/images/hairpink.jpg"
-import "./Login.css";
+import React, { useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { useHistory, NavLink } from 'react-router-dom'
+import { LOGIN } from '../../constants/actionTypes'
+import * as api from '../../api/index'
+import hairpink from '../../assets/images/hairpink.jpg'
+import './Login.css'
 
 const initialState = {
-  email: "",
-  password: "",
-};
+  email: '',
+  password: '',
+}
 
 const Login = () => {
-  const [formData, setFormData] = useState(initialState);
-  const [showPassword, setShowPassword] = useState(false);
-  const dispatch = useDispatch();
-  const history = useHistory();
-  const [errorMsg, setErrorMsg] = useState("");
+  const [formData, setFormData] = useState(initialState)
+  const [showPassword, setShowPassword] = useState(false)
+  const dispatch = useDispatch()
+  const history = useHistory()
+  const [errorMsg, setErrorMsg] = useState('')
   const login =
     (formData: any, history: any, errorM?: any) => async (dispatch: any) => {
       try {
         // log in the user
-        const { data } = await api.signIn(formData);
-        dispatch({ type: LOGIN, data });
-        history.push("/");
+        const { data } = await api.signIn(formData)
+        dispatch({ type: LOGIN, data })
+        history.push('/')
       } catch (err: any) {
-        errorM = err.response.data;
-        console.log(errorM);
-        setErrorMsg(errorM);
+        errorM = err.response.data
+        console.log(errorM)
+        setErrorMsg(errorM)
       }
-    };
+    }
   const handleSubmit = async (e: any) => {
-    e.preventDefault();
-    dispatch(login(formData, history));
-  };
+    e.preventDefault()
+    dispatch(login(formData, history))
+  }
   const handleChange = (e: any) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-  
+    setFormData({ ...formData, [e.target.name]: e.target.value })
+  }
+
   return (
     <div
-      className="login"
+      className='login'
       style={{
-        backgroundImage: `url(${pinkcrop1})`,
-      }}
-    >
-      <div className="input-group">
+        backgroundImage: `url(${hairpink})`,
+      }}>
+      <div className='input-group'>
         <h2>Sign In</h2>
         <form onSubmit={handleSubmit}>
           <h5>Username:</h5>
-          <input name="email" onChange={handleChange} type="email" />
+          <input name='email' onChange={handleChange} type='email' />
           <h5>Password:</h5>
-          <input name="password" type="Password" onChange={handleChange} />
+          <input name='password' type='Password' onChange={handleChange} />
           <br />
-          {errorMsg && <p style={{ color: "red" }}> {errorMsg} </p>}
-          <button type="submit">Sign In</button>
+          {errorMsg && <p style={{ color: 'red' }}> {errorMsg} </p>}
+          <button type='submit'>Sign In</button>
           <p>
-            Not registered?{" "}
-            <NavLink to="user-signup" style={{ color: "blue" }}>
+            Not registered?{' '}
+            <NavLink to='user-signup' style={{ color: 'blue' }}>
               Click Here
-            </NavLink>{" "}
+            </NavLink>{' '}
             to register.
           </p>
         </form>
       </div>
     </div>
-  );
-};
-export default Login;
+  )
+}
+export default Login

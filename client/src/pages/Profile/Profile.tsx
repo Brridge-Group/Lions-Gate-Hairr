@@ -7,14 +7,12 @@ export const Profile = () => {
 
   console.log(user.role)
   return (
-    //use following if have different image for owner profile
-    // <div
-    //   className={
-    //     user.role === 'user'
-    //       ? 'FeatureContainer_image User'
-    //       : 'FeatureContainer_image Owner'
-    //   }>
-    <div className='FeatureContainer_image User'>
+    <div
+      className={
+        user.role === 'user'
+          ? 'FeatureContainer_image User'
+          : 'FeatureContainer_image Owner'
+      }>
       <div className='FeatureContainer'>
         {user && user.role === 'user' ? (
           <div className='Profile_user'>

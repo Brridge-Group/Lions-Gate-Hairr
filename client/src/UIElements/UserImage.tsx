@@ -7,7 +7,7 @@ const UserImage = ({ pic, name, handleChange }) => (
     <Image
       src={pic || 'https://imgur.com/LDpwLVZ.jpg'}
       alt={name}
-      boxSize='150px'
+      boxSize='125px'
       borderRadius='25rem'
       fallbackSrc='https://imgur.com/LDpwLVZ.jpg'
     />

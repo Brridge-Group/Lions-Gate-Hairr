@@ -1,5 +1,5 @@
-.FeatureContainer_image.UserRegistration {
-  background-image: url('../../assets/images/hairgrey3.jpg');
+.FeatureContainer_image.Profile {
+  background-image: url('../../assets/images/hairgrey90.jpg');
   margin-bottom: -10px;
 }
 
@@ -13,15 +13,18 @@
 
 .UserRegistration_form h5 {
   margin: 20px;
+  font-size: 1.4rem;
+  line-height: normal;
 }
 
 .UserRegistration_input {
-  height: 36px;
+  height: 32px;
   width: 100%;
   background: none;
   border: 0.5px solid black;
   margin-top: -40px;
   text-align: center;
+  margin-bottom: -5px;
 }
 .UserRegistration_radioButtons {
   display: flex;

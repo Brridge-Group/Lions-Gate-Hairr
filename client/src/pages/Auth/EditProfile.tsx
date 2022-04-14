@@ -124,7 +124,7 @@ export const EditProfile = () => {
 
   return (
     <>
-      <div className='FeatureContainer_image User'>
+      <div className='FeatureContainer_image EditUser'>
         <div className='FeatureContainer'>
           <div className='UserRegistration_inputGroup'>
             <form className='UserRegistration_form' onSubmit={handleSubmit}>

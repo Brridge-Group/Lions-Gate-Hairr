@@ -13,6 +13,6 @@ router.post('/signin', userController.signin)
 
 router.get('/get-profile', userController.getProfileById)
 
-router.patch('/:id', userController.updateUser)
+router.post('/:id', userController.updateUser)
 
 export default router

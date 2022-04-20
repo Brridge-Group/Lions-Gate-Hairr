@@ -101,7 +101,7 @@ export const getProfileById = async (req: Request, res: Response) => {
 }
 
 export const updateUser = async (req: Request, res: Response) => {
-  const profileId = req.params.id
+  const filter = req.params.id
 
   const {
     email,
@@ -112,32 +112,62 @@ export const updateUser = async (req: Request, res: Response) => {
     role,
     imageProfile,
   } = req.body
-  console.log(req.body, 'in update user')
+
   try {
-    await User.findById(profileId)
+    if (password) {
+      if (password !== confirmPassword)
+        return res
+          .status(StatusCodes.BAD_REQUEST)
+          .send("Password doesn't match")
 
-    if (password !== confirmPassword)
-      return res.status(StatusCodes.BAD_REQUEST).send("Password doesn't match")
-    const hashedPassword = await bcrypt.hash(password, 12)
-
-    const result = await User.save({
-      email,
-      password: hashedPassword,
-      name: `${firstName} ${lastName}`,
-      role,
-      imageProfile,
-    })
-    console.log('Result of update of user: ', result)
-    const token = jwt.sign(
-      { email: result.email, id: result._id },
-      'jwtSecret',
-      {
-        expiresIn: '1h',
+      const hashedPassword = await bcrypt.hash(password, 12)
+      const fieldsToUpdate = {
+        name: `${firstName} ${lastName}`,
+        email: email,
+        password: hashedPassword,
+        role: role,
+        imageProfile: imageProfile,
       }
-    )
-
-    res.status(200).json({ result, token })
-  } catch (err) {
+      let result = await User.findOneAndUpdate(filter, fieldsToUpdate, {
+        new: true,
+      })
+      if (result) {
+        const token = jwt.sign(
+          { email: result.email, id: result._id },
+          'jwtSecret',
+          {
+            expiresIn: '1h',
+          }
+        )
+        res.status(200).json({ result, token })
+      } else {
+        res.status(400).json({ error: 'Error in update user' })
+      }
+    } else {
+      const fieldsToUpdate = {
+        name: `${firstName} ${lastName}`,
+        email: email,
+        role: role,
+        imageProfile: imageProfile,
+      }
+      let result = await User.findOneAndUpdate(filter, fieldsToUpdate, {
+        new: true,
+      })
+      if (result) {
+        const token = jwt.sign(
+          { email: result.email, id: result._id },
+          'jwtSecret',
+          {
+            expiresIn: '1h',
+          }
+        )
+        res.status(200).json({ result, token })
+      } else {
+        res.status(400).json({ error: 'Error in update user' })
+      }
+    }
+  } catch (error) {
+    console.log(error)
     return res
       .status(StatusCodes.BAD_REQUEST)
       .send('Something went wrong, try later!')

@@ -5,7 +5,7 @@ import './Profile.css'
 export const Profile = () => {
   const user = JSON.parse(localStorage.getItem('profile') ?? 'false').result
 
-  console.log(user.role)
+  console.log('User on Profile page line 8: ', user)
   return (
     <div
       className={
@@ -19,11 +19,7 @@ export const Profile = () => {
             <h1 className='Profile_name'>Hello {user.name} !</h1>
             <div className='Profile-UserContainer '>
               <div className='' style={{ fontSize: '15px' }}>
-                <h6 className='user-foto'>user foto</h6>
-                <img
-                  src='https://imgur.com/LDpwLVZ.jpg'
-                  className='user-pix-placeholder'
-                />
+                <img src={user.imageProfile} className='user-pix-placeholder' />
               </div>
               <div className='Profile-UserContainer_reviews'>
                 {/* when reviews are imported here, add loading, setLoading state as in mybusiness component */}
@@ -34,7 +30,7 @@ export const Profile = () => {
               </div>
             </div>
             <div className='Profile_links'>
-              <Link to={'users/:id'}>
+              <Link to={`users/${user._id}`}>
                 <h6 className='btn--btn-primary'>update profile</h6>
               </Link>
               <Link to={'#'}>

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import UserImage from '../../UIElements/UserImage'
 import VisibilityRoundedIcon from '@material-ui/icons/VisibilityRounded'
 import VisibilityOffRoundedIcon from '@material-ui/icons/VisibilityOffRounded'
@@ -6,49 +6,38 @@ import Input from '@material-ui/core/Input'
 import InputAdornment from '@material-ui/core/InputAdornment'
 import IconButton from '@material-ui/core/IconButton'
 import { toast } from 'react-toastify'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
-import { AUTH, UPDATE, LOGIN } from '../../constants/actionTypes'
+import { UPDATE } from '../../constants/actionTypes'
 import * as api from '../../api/index'
 import './UserRegistration.css'
 import '../Profile/Profile.css'
 import 'react-toastify/dist/ReactToastify.css'
 
-require('dotenv').config()
 toast.configure()
 
 export const EditProfile = () => {
-  const [userData, setUserData] = useState<any | {}>({})
+  const user = JSON.parse(localStorage.getItem('profile') ?? 'false').result
 
   const dispatch = useDispatch()
   const history = useHistory()
-  const [errorMsg, setErrorMsg] = useState('')
-  const [firstName, setFirstName] = useState<any | ''>('')
-  const [lastName, setLastName] = useState<any | ''>('')
-  const [email, setEmail] = useState<any | ''>('')
-  const [password, setPassword] = useState<any | ''>('')
-  const [confirmPassword, setConfirmPassword] = useState<any | ''>('')
   const [showPassword, setShowPassword] = useState(false)
-  const [image, setImage] = useState<any | null>(null)
-  const [isRole, setIsRole] = useState<any | ''>('')
-  const [imageProfile, setImageProfile] = useState<any | ''>('')
-
-  useEffect(() => {
-    const user = JSON.parse(localStorage.getItem('profile') ?? 'false')
-    console.log(user)
-    setFirstName(user.result.name.split(' ')[0])
-    setLastName(user.result.name.split(' ')[1])
-    setEmail(user.result.email)
-    setImage(user.result.imageProfile)
-    setIsRole(user.result.role)
-    // setImageProfile(user.result.imageProfile)
-  }, [])
+  const [errorMsg, setErrorMsg] = useState('')
+  const [userData, setUserData] = useState({
+    firstName: user.name.split(' ')[0],
+    lastName: user.name.split(' ')[1],
+    email: user.email,
+    role: user.role,
+    imageProfile: user.imageProfile,
+    password: '',
+    confirmPassword: '',
+  })
 
   const updateUser =
     (formData: any, history: any, errorM?: any) => async (dispatch: any) => {
       try {
         // update the user
-        const { data } = await api.updateUser(userData)
+        const { data } = await api.updateUser(userData, user._id)
         dispatch({ type: UPDATE, data })
         history.push('/')
       } catch (err: any) {
@@ -68,8 +57,6 @@ export const EditProfile = () => {
   const onImageChange = async (event: any) => {
     if (event.target.files[0]) {
       if (event.target.files[0].type.match('image')) {
-        setImage(URL.createObjectURL(event.target.files[0]))
-
         let base64 = (await new Promise(resolve => {
           let reader = new FileReader()
           reader.onload = e => {
@@ -77,50 +64,24 @@ export const EditProfile = () => {
           }
           reader.readAsDataURL(event.target.files[0])
         })) as string
-        setImage({ imageProfile: base64 })
-        // setUserData({ ...userData, imageProfile: base64 })
-        // setUserData({ ...userData, imageProfile: base64 })
+        setUserData({ ...userData, imageProfile: base64 })
       } else {
-        return 'Image type error, it should be png/jpeg.'
+        toast('Image type error, it should be png/jpeg.')
       }
     } else {
-      return 'Unknown.'
+      toast('Unknown error , try again.')
     }
   }
 
   const handleSubmit = (e: any) => {
     e.preventDefault()
-    console.log(password, confirmPassword, isRole, imageProfile)
-    const name = { name: firstName + ' ' + lastName, email }
-    const merge = { ...name, ...userData }
-    console.log('merge', merge)
-    setUserData(merge)
-    console.log('in handle submit, userData', userData)
     dispatch(updateUser(userData, history))
   }
 
-  // const itemUpdateSubmitHandler = async (event) => {
-  //   event.preventDefault();
-
-  //   try {
-  //     const response = await fetch(`/api/items/${itemId}`, {
-  //       method: "PATCH",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //       body: JSON.stringify({ name, description }),
-  //     });
-
-  //     if (!response.ok) {
-  //       throw new Error("Could not save new item");
-  //     }
-
-  //     history.push("/items");
-  //   } catch (err) {}
-  // };
-  // const handleChange = (e: any) => {
-  //   setUserData({ ...userData, [e.target.name]: e.target.value })
-  // }
+  const handleChange = (e: any) => {
+    setUserData({ ...userData, [e.target.name]: e.target.value })
+    console.log(userData)
+  }
 
   return (
     <>
@@ -129,7 +90,7 @@ export const EditProfile = () => {
           <div className='UserRegistration_inputGroup'>
             <form className='UserRegistration_form' onSubmit={handleSubmit}>
               <UserImage
-                pic={image}
+                pic={userData.imageProfile}
                 name={'Sergio'}
                 handleChange={onImageChange}
               />
@@ -138,8 +99,8 @@ export const EditProfile = () => {
               </h5>
               <input
                 name='firstName'
-                value={firstName}
-                onChange={e => setFirstName(e.target.value)}
+                value={userData.firstName}
+                onChange={handleChange}
                 autoFocus
                 className='UserRegistration_input'
               />
@@ -148,8 +109,8 @@ export const EditProfile = () => {
               </h5>
               <input
                 name='lastName'
-                value={lastName}
-                onChange={e => setLastName(e.target.value)}
+                value={userData.lastName}
+                onChange={handleChange}
                 className='UserRegistration_input'
               />
               <h5>
@@ -157,8 +118,8 @@ export const EditProfile = () => {
               </h5>
               <input
                 name='email'
-                onChange={e => setEmail(e.target.value)}
-                value={email}
+                onChange={handleChange}
+                value={userData.email}
                 className='UserRegistration_input'
               />
               <h5>
@@ -167,7 +128,7 @@ export const EditProfile = () => {
               <Input
                 name='password'
                 type={showPassword ? 'text' : 'password'}
-                onChange={e => setPassword(e.target.value)}
+                onChange={handleChange}
                 className='UserRegistration_input'
                 endAdornment={
                   <InputAdornment position='end'>
@@ -190,7 +151,7 @@ export const EditProfile = () => {
                 name='confirmPassword'
                 className='UserRegistration_input'
                 type={showPassword ? 'text' : 'password'}
-                onChange={e => setConfirmPassword(e.target.value)}
+                onChange={handleChange}
               />
               <div className='UserRegistration_radioButtons'>
                 <h5 className='UserRegistration_radio'>
@@ -198,8 +159,8 @@ export const EditProfile = () => {
                     type='radio'
                     name='role'
                     value='user'
-                    checked={isRole === 'user'}
-                    onChange={e => setIsRole(e.target.value)}
+                    checked={userData.role === 'user'}
+                    onChange={handleChange}
                   />
                   User
                 </h5>
@@ -208,8 +169,8 @@ export const EditProfile = () => {
                     type='radio'
                     name='role'
                     value='owner'
-                    onChange={e => setIsRole(e.target.value)}
-                    checked={isRole === 'owner'}
+                    onChange={handleChange}
+                    checked={userData.role === 'owner'}
                   />
                   Owner
                 </h5>

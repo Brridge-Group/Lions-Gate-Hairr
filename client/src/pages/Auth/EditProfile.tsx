@@ -6,43 +6,43 @@ import Input from '@material-ui/core/Input'
 import InputAdornment from '@material-ui/core/InputAdornment'
 import IconButton from '@material-ui/core/IconButton'
 import { toast } from 'react-toastify'
-import { NavLink } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
-import { AUTH } from '../../constants/actionTypes'
+import { UPDATE } from '../../constants/actionTypes'
 import * as api from '../../api/index'
 import './UserRegistration.css'
 import '../Profile/Profile.css'
-
 import 'react-toastify/dist/ReactToastify.css'
 
-require('dotenv').config()
 toast.configure()
 
-export const UserRegistration = () => {
-  const [userData, setUserData] = useState({
-    role: 'user',
-    imageProfile: 'https://imgur.com/LDpwLVZ.jpg',
-  })
+export const EditProfile = () => {
+  const user = JSON.parse(localStorage.getItem('profile') ?? 'false').result
 
-  const [isChecked, setIsChecked] = useState(false)
-  const [showPassword, setShowPassword] = useState(false)
-  const [image, setImage] = useState<any | null>(null)
   const dispatch = useDispatch()
   const history = useHistory()
+  const [showPassword, setShowPassword] = useState(false)
   const [errorMsg, setErrorMsg] = useState('')
+  const [userData, setUserData] = useState({
+    firstName: user.name.split(' ')[0],
+    lastName: user.name.split(' ')[1],
+    email: user.email,
+    role: user.role,
+    imageProfile: user.imageProfile,
+    password: '',
+    confirmPassword: '',
+  })
 
-  const signup =
+  const updateUser =
     (formData: any, history: any, errorM?: any) => async (dispatch: any) => {
-      let data;
       try {
-        // sign up the user
-        data = await api.signUp(userData)
-        dispatch({ type: AUTH, data })
+        // update the user
+        const { data } = await api.updateUser(userData, user._id)
+        dispatch({ type: UPDATE, data })
         history.push('/')
       } catch (err: any) {
         errorM = err.response.data
-        toast(errorM)
+        setErrorMsg(errorM)
       }
     }
 
@@ -57,8 +57,6 @@ export const UserRegistration = () => {
   const onImageChange = async (event: any) => {
     if (event.target.files[0]) {
       if (event.target.files[0].type.match('image')) {
-        setImage(URL.createObjectURL(event.target.files[0]))
-
         let base64 = (await new Promise(resolve => {
           let reader = new FileReader()
           reader.onload = e => {
@@ -66,33 +64,33 @@ export const UserRegistration = () => {
           }
           reader.readAsDataURL(event.target.files[0])
         })) as string
-
         setUserData({ ...userData, imageProfile: base64 })
       } else {
         toast('Image type error, it should be png/jpeg.')
       }
     } else {
-      toast('Unknown.')
+      toast('Unknown error , try again.')
     }
   }
 
   const handleSubmit = (e: any) => {
     e.preventDefault()
-    dispatch(signup(userData, history))
+    dispatch(updateUser(userData, history))
   }
 
   const handleChange = (e: any) => {
     setUserData({ ...userData, [e.target.name]: e.target.value })
+    console.log(userData)
   }
 
   return (
     <>
-      <div className='FeatureContainer_image Profile'>
+      <div className='FeatureContainer_image EditUser'>
         <div className='FeatureContainer'>
           <div className='UserRegistration_inputGroup'>
             <form className='UserRegistration_form' onSubmit={handleSubmit}>
               <UserImage
-                pic={image}
+                pic={userData.imageProfile}
                 name={'Sergio'}
                 handleChange={onImageChange}
               />
@@ -101,6 +99,7 @@ export const UserRegistration = () => {
               </h5>
               <input
                 name='firstName'
+                value={userData.firstName}
                 onChange={handleChange}
                 autoFocus
                 className='UserRegistration_input'
@@ -110,6 +109,7 @@ export const UserRegistration = () => {
               </h5>
               <input
                 name='lastName'
+                value={userData.lastName}
                 onChange={handleChange}
                 className='UserRegistration_input'
               />
@@ -119,10 +119,11 @@ export const UserRegistration = () => {
               <input
                 name='email'
                 onChange={handleChange}
+                value={userData.email}
                 className='UserRegistration_input'
               />
               <h5>
-                <label>Password</label>
+                <label>New Password</label>
               </h5>
               <Input
                 name='password'
@@ -158,8 +159,8 @@ export const UserRegistration = () => {
                     type='radio'
                     name='role'
                     value='user'
-                    onChange={handleChange}
                     checked={userData.role === 'user'}
+                    onChange={handleChange}
                   />
                   User
                 </h5>
@@ -170,22 +171,13 @@ export const UserRegistration = () => {
                     value='owner'
                     onChange={handleChange}
                     checked={userData.role === 'owner'}
-                  />{' '}
+                  />
                   Owner
                 </h5>
               </div>
               <button type='submit' className='UserRegistration_submit'>
-                <h6 className='btn--btn-primary'>Sign Up</h6>
+                <h6 className='btn--btn-primary'>Update Profile</h6>
               </button>
-              <p style={{ fontWeight: '300' }}>
-                Have an account?{' '}
-                <NavLink
-                  to='user-signin'
-                  style={{ fontWeight: '500', color: 'black' }}>
-                  Click Here
-                </NavLink>{' '}
-                to Login.
-              </p>
               <br />
               {errorMsg && <p style={{ color: 'grey' }}> {errorMsg} </p>}
             </form>

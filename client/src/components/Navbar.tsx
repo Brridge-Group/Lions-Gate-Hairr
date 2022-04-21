@@ -7,7 +7,7 @@ import axios from 'axios'
 
 export const Navbar = () => {
   const location = useLocation()
-  const history = useHistory()
+  const history: any = useHistory()
   const dispatch = useDispatch()
   const [user, setUser] = useState(
     JSON.parse(localStorage.getItem('profile') ?? 'false')
@@ -26,7 +26,7 @@ export const Navbar = () => {
 
   const logout = () => {
     dispatch({ type: 'LOGOUT' })
-    history.push('/user-signin')
+    history.go('/')
     setUser('false')
   }
   if (user) {

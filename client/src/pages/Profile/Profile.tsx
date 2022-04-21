@@ -1,29 +1,25 @@
 import { Link } from 'react-router-dom'
-import { MyBusinessList } from '../../components/Businesses/MyBusinessList'
+import { MyBusinessList } from '../../components/MyBusinessList/MyBusinessList'
 import './Profile.css'
 
 export const Profile = () => {
   const user = JSON.parse(localStorage.getItem('profile') ?? 'false').result
 
-  console.log(user.role)
+  console.log('User on Profile page line 8: ', user)
   return (
-    //use following if have diffefrent image for owner profile
-    // <div
-    //   className={
-    //     user.role === 'user'
-    //       ? 'FeatureContainer_image User'
-    //       : 'FeatureContainer_image Owner'
-    //   }>
-    <div className='FeatureContainer_image User'>
+    <div
+      className={
+        user.role === 'user'
+          ? 'FeatureContainer_image User'
+          : 'FeatureContainer_image Owner'
+      }>
       <div className='FeatureContainer'>
         {user && user.role === 'user' ? (
           <div className='Profile_user'>
             <h1 className='Profile_name'>Hello {user.name} !</h1>
             <div className='Profile-UserContainer '>
-              <div
-                className='user-pix-placeholder'
-                style={{ fontSize: '15px' }}>
-                user foto
+              <div className='' style={{ fontSize: '15px' }}>
+                <img src={user.imageProfile} className='user-pix-placeholder' />
               </div>
               <div className='Profile-UserContainer_reviews'>
                 {/* when reviews are imported here, add loading, setLoading state as in mybusiness component */}
@@ -34,7 +30,7 @@ export const Profile = () => {
               </div>
             </div>
             <div className='Profile_links'>
-              <Link to={'#'}>
+              <Link to={`users/${user._id}`}>
                 <h6 className='btn--btn-primary'>update profile</h6>
               </Link>
               <Link to={'#'}>

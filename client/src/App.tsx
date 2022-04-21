@@ -6,16 +6,16 @@ import {
 } from 'react-router-dom'
 import './App.css'
 import { Home } from './pages/Home/Home'
-import { ListItems } from './pages/ListItems'
 import { UserRegistration } from './pages/Auth/UserRegistration'
 import Login from './pages/Auth/Login'
 import { BusinessList } from './pages/Businesses/BusinessList'
 import { BusinessDetails } from './components/BusinessDetails/BusinessDetails'
 import { AddBusiness } from './pages/AddBusiness'
 import { AddReview } from './components/AddReview/AddReview/AddReview'
-import { MyBusinessList } from './components/Businesses/MyBusinessList'
+import { MyBusinessList } from './components/MyBusinessList/MyBusinessList'
 import { Navbar } from './components/Navbar'
 import { Profile } from './pages/Profile/Profile'
+import { EditProfile } from './pages/Auth/EditProfile'
 
 export const App = () => {
   let routes: any
@@ -24,14 +24,14 @@ export const App = () => {
       <Route path='/' exact>
         <Home />
       </Route>
-      <Route path='/items' exact>
-        <ListItems />
-      </Route>
       <Route path='/user-signin' exact>
         <Login />
       </Route>
       <Route path='/user-signup' exact>
         <UserRegistration />
+      </Route>
+      <Route path='/users/:id' exact>
+        <EditProfile />
       </Route>
       <Route path='/businesses' exact>
         <BusinessList />
@@ -47,6 +47,9 @@ export const App = () => {
       </Route>
       <Route path='/add-business' exact>
         <AddBusiness />
+      </Route>
+      <Route path='/users/:id' exact>
+        <EditProfile />
       </Route>
       <Route path='/businesses/:id/add-review' exact>
         <AddReview />

@@ -41,7 +41,6 @@ export const signup = async (req: Request, res: Response) => {
     role,
     imageProfile,
   } = req.body
-  console.log(req.body)
   try {
     const existingUser = await User.findOne({ email })
 
@@ -63,7 +62,7 @@ export const signup = async (req: Request, res: Response) => {
       role,
       imageProfile,
     })
-    console.log('Result of creation of user: ', result)
+
     const token = jwt.sign(
       { email: result.email, id: result._id },
       'jwtSecret',

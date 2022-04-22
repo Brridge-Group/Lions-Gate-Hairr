@@ -101,13 +101,8 @@ export const getProfileById = async (req: Request, res: Response) => {
 }
 
 export const updateUser = async (req: Request, res: Response) => {
-<<<<<<< Updated upstream
-  const filter = req.params.id
-
-=======
   const filter = {_id: req.params.id};
   
->>>>>>> Stashed changes
   const {
     email,
     password,
@@ -117,22 +112,12 @@ export const updateUser = async (req: Request, res: Response) => {
     role,
     imageProfile,
   } = req.body
-<<<<<<< Updated upstream
-
-  try {
-    if (password) {
-      if (password !== confirmPassword)
-        return res
-          .status(StatusCodes.BAD_REQUEST)
-          .send("Password doesn't match")
-=======
   try {
 
     if(password){
       //password is not empty
       if (password !== confirmPassword)
         return res.status(StatusCodes.BAD_REQUEST).send("Password doesn't match")
->>>>>>> Stashed changes
 
       const hashedPassword = await bcrypt.hash(password, 12)
       const fieldsToUpdate = {
@@ -140,7 +125,6 @@ export const updateUser = async (req: Request, res: Response) => {
         email: email,
         password: hashedPassword,
         role: role,
-<<<<<<< Updated upstream
         imageProfile: imageProfile,
       }
       let result = await User.findOneAndUpdate(filter, fieldsToUpdate, {
@@ -149,43 +133,10 @@ export const updateUser = async (req: Request, res: Response) => {
       if (result) {
         const token = jwt.sign(
           { email: result.email, id: result._id },
-=======
-        imageProfile: imageProfile
-      }
-    
-      let userUpdated = await User.findOneAndUpdate(filter, fieldsToUpdate, {new: true});
-      
-      if(userUpdated){
-        const token = jwt.sign(
-          { email: userUpdated.email, id: userUpdated._id },
           'jwtSecret',
           {
             expiresIn: '1h',
           }
-        )  
-        res.status(200).json({ userUpdated, token })
-      }else{
-        res.status(400).json({error: "Error in update user"})
-      }
-    }else{
-      const fieldsToUpdate = {
-        name: `${firstName} ${lastName}`,
-        email: email,
-        role: role,
-        imageProfile: imageProfile
-      }
-
-      let userUpdated = await User.findOneAndUpdate(filter, fieldsToUpdate, {new: true});
-
-      if(userUpdated){
-        const token = jwt.sign(
-          { email: userUpdated.email, id: userUpdated._id },
->>>>>>> Stashed changes
-          'jwtSecret',
-          {
-            expiresIn: '1h',
-          }
-<<<<<<< Updated upstream
         )
         res.status(200).json({ result, token })
       } else {
@@ -217,20 +168,7 @@ export const updateUser = async (req: Request, res: Response) => {
   } catch (error) {
     console.log(error)
     return res
-=======
-        )  
-        res.status(200).json({ userUpdated, token })
-      }else{
-        /* res.status(400).json({error: "Error in update user"}) */
-        console.log("error")
-      }
-    }
-  } catch (err) {
-
-    console.log('Erro on catch' + err)
-    /* return res
->>>>>>> Stashed changes
       .status(StatusCodes.BAD_REQUEST)
-      .send('Something went wrong in update user, try later!') */
+      .send('Something went wrong in update user, try later!')
   } 
 }

@@ -18,8 +18,4 @@ const userSchema = new Schema({
   imageProfile: { type: String, required: true },
 })
 
-<<<<<<< Updated upstream
 module.exports = mongoose.model('User', userSchema)
-=======
-module.exports = mongoose.model('User', userSchema);
->>>>>>> Stashed changes

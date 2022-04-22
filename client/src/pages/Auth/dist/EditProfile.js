@@ -63,40 +63,30 @@ var api = require("../../api/index");
 require("./UserRegistration.css");
 require("../Profile/Profile.css");
 require("react-toastify/dist/ReactToastify.css");
-require('dotenv').config();
 react_toastify_1.toast.configure();
 exports.EditProfile = function () {
-    var _a = react_1.useState({}), userData = _a[0], setUserData = _a[1];
+    var _a;
+    var user = JSON.parse((_a = localStorage.getItem('profile')) !== null && _a !== void 0 ? _a : 'false').result;
     var dispatch = react_redux_1.useDispatch();
     var history = react_router_dom_1.useHistory();
-    var _b = react_1.useState(''), errorMsg = _b[0], setErrorMsg = _b[1];
-    var _c = react_1.useState(''), firstName = _c[0], setFirstName = _c[1];
-    var _d = react_1.useState(''), lastName = _d[0], setLastName = _d[1];
-    var _e = react_1.useState(''), email = _e[0], setEmail = _e[1];
-    var _f = react_1.useState(''), password = _f[0], setPassword = _f[1];
-    var _g = react_1.useState(''), confirmPassword = _g[0], setConfirmPassword = _g[1];
-    var _h = react_1.useState(false), showPassword = _h[0], setShowPassword = _h[1];
-    var _j = react_1.useState(null), image = _j[0], setImage = _j[1];
-    var _k = react_1.useState(''), isRole = _k[0], setIsRole = _k[1];
-    var _l = react_1.useState(''), imageProfile = _l[0], setImageProfile = _l[1];
-    react_1.useEffect(function () {
-        var _a;
-        var user = JSON.parse((_a = localStorage.getItem('profile')) !== null && _a !== void 0 ? _a : 'false');
-        console.log(user);
-        setFirstName(user.result.name.split(' ')[0]);
-        setLastName(user.result.name.split(' ')[1]);
-        setEmail(user.result.email);
-        setImage(user.result.imageProfile);
-        setIsRole(user.result.role);
-        // setImageProfile(user.result.imageProfile)
-    }, []);
+    var _b = react_1.useState(false), showPassword = _b[0], setShowPassword = _b[1];
+    var _c = react_1.useState(''), errorMsg = _c[0], setErrorMsg = _c[1];
+    var _d = react_1.useState({
+        firstName: user.name.split(' ')[0],
+        lastName: user.name.split(' ')[1],
+        email: user.email,
+        role: user.role,
+        imageProfile: user.imageProfile,
+        password: '',
+        confirmPassword: ''
+    }), userData = _d[0], setUserData = _d[1];
     var updateUser = function (formData, history, errorM) { return function (dispatch) { return __awaiter(void 0, void 0, void 0, function () {
         var data, err_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 2, , 3]);
-                    return [4 /*yield*/, api.updateUser(userData)];
+                    return [4 /*yield*/, api.updateUser(userData, user._id)];
                 case 1:
                     data = (_a.sent()).data;
                     dispatch({ type: actionTypes_1.UPDATE, data: data });
@@ -124,7 +114,6 @@ exports.EditProfile = function () {
                 case 0:
                     if (!event.target.files[0]) return [3 /*break*/, 4];
                     if (!event.target.files[0].type.match('image')) return [3 /*break*/, 2];
-                    setImage(URL.createObjectURL(event.target.files[0]));
                     return [4 /*yield*/, new Promise(function (resolve) {
                             var reader = new FileReader();
                             reader.onload = function (e) {
@@ -135,72 +124,55 @@ exports.EditProfile = function () {
                         })];
                 case 1:
                     base64 = (_a.sent());
-                    setImage({ imageProfile: base64 });
+                    setUserData(__assign(__assign({}, userData), { imageProfile: base64 }));
                     return [3 /*break*/, 3];
-                case 2: return [2 /*return*/, 'Image type error, it should be png/jpeg.'];
+                case 2:
+                    react_toastify_1.toast('Image type error, it should be png/jpeg.');
+                    _a.label = 3;
                 case 3: return [3 /*break*/, 5];
-                case 4: return [2 /*return*/, 'Unknown.'];
+                case 4:
+                    react_toastify_1.toast('Unknown error, try again');
+                    _a.label = 5;
                 case 5: return [2 /*return*/];
             }
         });
     }); };
     var handleSubmit = function (e) {
         e.preventDefault();
-        console.log(password, confirmPassword, isRole, imageProfile);
-        var name = { name: firstName + ' ' + lastName, email: email };
-        var merge = __assign(__assign({}, name), userData);
-        console.log('merge', merge);
-        setUserData(merge);
-        console.log('in handle submit, userData', userData);
         dispatch(updateUser(userData, history));
     };
-    // const itemUpdateSubmitHandler = async (event) => {
-    //   event.preventDefault();
-    //   try {
-    //     const response = await fetch(`/api/items/${itemId}`, {
-    //       method: "PATCH",
-    //       headers: {
-    //         "Content-Type": "application/json",
-    //       },
-    //       body: JSON.stringify({ name, description }),
-    //     });
-    //     if (!response.ok) {
-    //       throw new Error("Could not save new item");
-    //     }
-    //     history.push("/items");
-    //   } catch (err) {}
-    // };
-    // const handleChange = (e: any) => {
-    //   setUserData({ ...userData, [e.target.name]: e.target.value })
-    // }
+    var handleChange = function (e) {
+        var _a;
+        setUserData(__assign(__assign({}, userData), (_a = {}, _a[e.target.name] = e.target.value, _a)));
+    };
     return (React.createElement(React.Fragment, null,
-        React.createElement("div", { className: 'FeatureContainer_image User' },
+        React.createElement("div", { className: 'FeatureContainer_image Profile' },
             React.createElement("div", { className: 'FeatureContainer' },
                 React.createElement("div", { className: 'UserRegistration_inputGroup' },
                     React.createElement("form", { className: 'UserRegistration_form', onSubmit: handleSubmit },
-                        React.createElement(UserImage_1["default"], { pic: image, name: 'Sergio', handleChange: onImageChange }),
+                        React.createElement(UserImage_1["default"], { pic: userData.imageProfile, name: user.name + '_pictureProfile', handleChange: onImageChange }),
                         React.createElement("h5", null,
                             React.createElement("label", null, "First Name")),
-                        React.createElement("input", { name: 'firstName', value: firstName, onChange: function (e) { return setFirstName(e.target.value); }, autoFocus: true, className: 'UserRegistration_input' }),
+                        React.createElement("input", { name: 'firstName', value: userData.firstName, onChange: handleChange, autoFocus: true, className: 'UserRegistration_input' }),
                         React.createElement("h5", null,
                             React.createElement("label", null, "Last Name")),
-                        React.createElement("input", { name: 'lastName', value: lastName, onChange: function (e) { return setLastName(e.target.value); }, className: 'UserRegistration_input' }),
+                        React.createElement("input", { name: 'lastName', value: userData.lastName, onChange: handleChange, className: 'UserRegistration_input' }),
                         React.createElement("h5", null,
                             React.createElement("label", null, "Email")),
-                        React.createElement("input", { name: 'email', onChange: function (e) { return setEmail(e.target.value); }, value: email, className: 'UserRegistration_input' }),
+                        React.createElement("input", { name: 'email', onChange: handleChange, value: userData.email, className: 'UserRegistration_input' }),
                         React.createElement("h5", null,
                             React.createElement("label", null, "New Password")),
-                        React.createElement(Input_1["default"], { name: 'password', type: showPassword ? 'text' : 'password', onChange: function (e) { return setPassword(e.target.value); }, className: 'UserRegistration_input', endAdornment: React.createElement(InputAdornment_1["default"], { position: 'end' },
+                        React.createElement(Input_1["default"], { name: 'password', type: showPassword ? 'text' : 'password', onChange: handleChange, className: 'UserRegistration_input', endAdornment: React.createElement(InputAdornment_1["default"], { position: 'end' },
                                 React.createElement(IconButton_1["default"], { onClick: toggleShow, onMouseDown: handleMouseDownPassword }, showPassword ? (React.createElement(VisibilityRounded_1["default"], null)) : (React.createElement(VisibilityOffRounded_1["default"], null)))) }),
                         React.createElement("h5", null,
                             React.createElement("label", null, "Confirm Password")),
-                        React.createElement(Input_1["default"], { name: 'confirmPassword', className: 'UserRegistration_input', type: showPassword ? 'text' : 'password', onChange: function (e) { return setConfirmPassword(e.target.value); } }),
+                        React.createElement(Input_1["default"], { name: 'confirmPassword', className: 'UserRegistration_input', type: showPassword ? 'text' : 'password', onChange: handleChange }),
                         React.createElement("div", { className: 'UserRegistration_radioButtons' },
                             React.createElement("h5", { className: 'UserRegistration_radio' },
-                                React.createElement("input", { type: 'radio', name: 'role', value: 'user', checked: isRole === 'user', onChange: function (e) { return setIsRole(e.target.value); } }),
+                                React.createElement("input", { type: 'radio', name: 'role', value: 'user', checked: userData.role === 'user', onChange: handleChange }),
                                 "User"),
                             React.createElement("h5", { className: 'UserRegistration_radio' },
-                                React.createElement("input", { type: 'radio', name: 'role', value: 'owner', onChange: function (e) { return setIsRole(e.target.value); }, checked: isRole === 'owner' }),
+                                React.createElement("input", { type: 'radio', name: 'role', value: 'owner', onChange: handleChange, checked: userData.role === 'owner' }),
                                 "Owner")),
                         React.createElement("button", { type: 'submit', className: 'UserRegistration_submit' },
                             React.createElement("h6", { className: 'btn--btn-primary' }, "Update Profile")),

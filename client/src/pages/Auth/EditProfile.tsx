@@ -16,13 +16,12 @@ import 'react-toastify/dist/ReactToastify.css'
 toast.configure()
 
 export const EditProfile = () => {
+  const user = JSON.parse(localStorage.getItem('profile') ?? 'false').result
 
-  const user = JSON.parse(localStorage.getItem('profile') ?? 'false').result;
-  
-  const dispatch = useDispatch();
-  const history = useHistory();
+  const dispatch = useDispatch()
+  const history = useHistory()
 
-  const [showPassword, setShowPassword] = useState(false);
+  const [showPassword, setShowPassword] = useState(false)
   const [errorMsg, setErrorMsg] = useState('')
   const [userData, setUserData] = useState({
     firstName: user.name.split(' ')[0],
@@ -30,22 +29,22 @@ export const EditProfile = () => {
     email: user.email,
     role: user.role,
     imageProfile: user.imageProfile,
-    password: "",
-    confirmPassword: "",
+    password: '',
+    confirmPassword: '',
   })
- 
+
   const updateUser =
     (formData: any, history: any, errorM?: any) => async (dispatch: any) => {
       try {
         // update the user
-        const { data } = await api.updateUser(userData, user._id);
+        const { data } = await api.updateUser(userData, user._id)
         dispatch({ type: UPDATE, data })
         history.push('/')
       } catch (err: any) {
         errorM = err.response.data
         setErrorMsg(errorM)
       }
-    } 
+    }
 
   const toggleShow = () => {
     setShowPassword(!showPassword)
@@ -85,24 +84,25 @@ export const EditProfile = () => {
 
   return (
     <>
-      <div className='FeatureContainer_image EditUser'>
+      <div className='FeatureContainer_image Profile'>
         <div className='FeatureContainer'>
           <div className='UserRegistration_inputGroup'>
             <form className='UserRegistration_form' onSubmit={handleSubmit}>
-              {<UserImage
-                pic={userData.imageProfile}
-                name={user.name+'_pictureProfile'}
-                handleChange={onImageChange}
-              /> }
+              {
+                <UserImage
+                  pic={userData.imageProfile}
+                  name={user.name + '_pictureProfile'}
+                  handleChange={onImageChange}
+                />
+              }
               <h5>
                 <label>First Name</label>
               </h5>
-             <input
+              <input
                 name='firstName'
                 value={userData.firstName}
                 onChange={handleChange}
                 autoFocus
-                //value={userData && userData.firstName}
                 className='UserRegistration_input'
               />
               <h5>

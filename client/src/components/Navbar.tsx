@@ -76,7 +76,7 @@ export const Navbar = () => {
                 </NavLink>
               </li>
               <li className='NavbarList_link '>
-                <NavLink to='#' onClick={logout}>
+                <NavLink to='/' onClick={logout}>
                   Log Out
                 </NavLink>
               </li>

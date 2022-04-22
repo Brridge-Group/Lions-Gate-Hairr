@@ -48,9 +48,6 @@ export const App = () => {
       <Route path='/add-business' exact>
         <AddBusiness />
       </Route>
-      <Route path='/users/:id' exact>
-        <EditProfile />
-      </Route>
       <Route path='/businesses/:id/add-review' exact>
         <AddReview />
       </Route>

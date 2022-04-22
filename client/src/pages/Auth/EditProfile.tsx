@@ -13,6 +13,7 @@ import * as api from '../../api/index'
 import './UserRegistration.css'
 import '../Profile/Profile.css'
 import 'react-toastify/dist/ReactToastify.css'
+<<<<<<< Updated upstream
 
 toast.configure()
 
@@ -32,19 +33,45 @@ export const EditProfile = () => {
     password: '',
     confirmPassword: '',
   })
+=======
+toast.configure()
 
+export const EditProfile = () => {
+
+  const user = JSON.parse(localStorage.getItem('profile') ?? 'false').result;
+  
+  const dispatch = useDispatch();
+  const history = useHistory();
+>>>>>>> Stashed changes
+
+  const [showPassword, setShowPassword] = useState(false);
+  const [errorMsg, setErrorMsg] = useState('')
+  const [userData, setUserData] = useState({
+    firstName: user.name.split(' ')[0],
+    lastName: user.name.split(' ')[1],
+    email: user.email,
+    role: user.role,
+    imageProfile: user.imageProfile,
+    password: "",
+    confirmPassword: "",
+  })
+ 
   const updateUser =
     (formData: any, history: any, errorM?: any) => async (dispatch: any) => {
       try {
         // update the user
+<<<<<<< Updated upstream
         const { data } = await api.updateUser(userData, user._id)
+=======
+        const { data } = await api.updateUser(userData, user._id);
+>>>>>>> Stashed changes
         dispatch({ type: UPDATE, data })
         history.push('/')
       } catch (err: any) {
         errorM = err.response.data
         setErrorMsg(errorM)
       }
-    }
+    } 
 
   const toggleShow = () => {
     setShowPassword(!showPassword)
@@ -69,7 +96,11 @@ export const EditProfile = () => {
         toast('Image type error, it should be png/jpeg.')
       }
     } else {
+<<<<<<< Updated upstream
       toast('Unknown error , try again.')
+=======
+      toast('Unknown error, try again')
+>>>>>>> Stashed changes
     }
   }
 
@@ -80,8 +111,35 @@ export const EditProfile = () => {
 
   const handleChange = (e: any) => {
     setUserData({ ...userData, [e.target.name]: e.target.value })
+<<<<<<< Updated upstream
     console.log(userData)
   }
+=======
+  }
+
+  // const itemUpdateSubmitHandler = async (event) => {
+  //   event.preventDefault();
+
+  //   try {
+  //     const response = await fetch(`/api/items/${itemId}`, {
+  //       method: "PATCH",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify({ name, description }),
+  //     });
+
+  //     if (!response.ok) {
+  //       throw new Error("Could not save new item");
+  //     }
+
+  //     history.push("/items");
+  //   } catch (err) {}
+  // };
+  // const handleChange = (e: any) => {
+  //   setUserData({ ...userData, [e.target.name]: e.target.value })
+  // }
+>>>>>>> Stashed changes
 
   return (
     <>
@@ -89,19 +147,29 @@ export const EditProfile = () => {
         <div className='FeatureContainer'>
           <div className='UserRegistration_inputGroup'>
             <form className='UserRegistration_form' onSubmit={handleSubmit}>
+<<<<<<< Updated upstream
               <UserImage
                 pic={userData.imageProfile}
                 name={'Sergio'}
+=======
+              {<UserImage
+                pic={userData.imageProfile}
+                name={user.name+'_pictureProfile'}
+>>>>>>> Stashed changes
                 handleChange={onImageChange}
-              />
+              /> }
               <h5>
                 <label>First Name</label>
               </h5>
-              <input
+             <input
                 name='firstName'
+<<<<<<< Updated upstream
                 value={userData.firstName}
+=======
+>>>>>>> Stashed changes
                 onChange={handleChange}
                 autoFocus
+                value={userData && userData.firstName}
                 className='UserRegistration_input'
               />
               <h5>
@@ -109,7 +177,11 @@ export const EditProfile = () => {
               </h5>
               <input
                 name='lastName'
+<<<<<<< Updated upstream
                 value={userData.lastName}
+=======
+                value={userData && userData.lastName}
+>>>>>>> Stashed changes
                 onChange={handleChange}
                 className='UserRegistration_input'
               />
@@ -119,7 +191,11 @@ export const EditProfile = () => {
               <input
                 name='email'
                 onChange={handleChange}
+<<<<<<< Updated upstream
                 value={userData.email}
+=======
+                value={userData &&  userData.email} 
+>>>>>>> Stashed changes
                 className='UserRegistration_input'
               />
               <h5>

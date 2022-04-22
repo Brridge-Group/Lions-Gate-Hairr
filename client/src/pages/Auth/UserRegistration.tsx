@@ -71,7 +71,7 @@ export const UserRegistration = () => {
         toast('Image type error, it should be png/jpeg.')
       }
     } else {
-      toast('Unknown.')
+      toast('Unknown error, try again')
     }
   }
 
@@ -92,7 +92,7 @@ export const UserRegistration = () => {
             <form className='UserRegistration_form' onSubmit={handleSubmit}>
               <UserImage
                 pic={image}
-                name={'Sergio'}
+                name={'Profile Picture of User'}
                 handleChange={onImageChange}
               />
               <h5>

@@ -10,7 +10,7 @@ import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import { UPDATE } from '../../constants/actionTypes'
 import * as api from '../../api/index'
-import './UserRegistration.css'
+import './UserRegistration/UserRegistration.css'
 import '../Profile/Profile.css'
 import 'react-toastify/dist/ReactToastify.css'
 

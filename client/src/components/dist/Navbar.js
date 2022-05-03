@@ -62,7 +62,7 @@ exports.Navbar = function () {
     }, [location]);
     var logout = function () {
         dispatch({ type: 'LOGOUT' });
-        history.go('/');
+        history.push('/');
         setUser('false');
     };
     if (user) {
@@ -98,7 +98,7 @@ exports.Navbar = function () {
                     React.createElement("li", { className: 'NavbarList_link' },
                         React.createElement(react_router_dom_2.NavLink, { to: '/user-signin', activeStyle: { fontWeight: '400' } }, "Sign In")))) : (React.createElement(React.Fragment, null,
                     React.createElement("li", { className: 'NavbarList_link' },
-                        React.createElement(react_router_dom_2.NavLink, { to: 'profile', activeStyle: { fontWeight: '400' } }, "Profile")),
+                        React.createElement(react_router_dom_2.NavLink, { to: '/profile', activeStyle: { fontWeight: '400' } }, "Profile")),
                     React.createElement("li", { className: 'NavbarList_link ' },
-                        React.createElement(react_router_dom_2.NavLink, { to: '#', onClick: logout }, "Log Out"))))))));
+                        React.createElement(react_router_dom_2.NavLink, { to: '/', onClick: logout }, "Log Out"))))))));
 };

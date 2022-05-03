@@ -33,8 +33,9 @@ export const UserRegistration = () => {
   const dispatch = useDispatch()
   const history = useHistory()
 
-  const signup = (formData: any, history: any, errorM?: any) => async (dispatch: any) => {
-      let data;
+  const signup =
+    (formData: any, history: any, errorM?: any) => async (dispatch: any) => {
+      let data
       try {
         // sign up the user
         data = await api.signUp(userData)
@@ -55,43 +56,45 @@ export const UserRegistration = () => {
   }
 
   const onImageChange = async (e: any) => {
-    e.preventDefault();
+    e.preventDefault()
 
-    if(e.target.files && e.target.files[0]){
+    if (e.target.files && e.target.files[0]) {
       setImageSelected(true)
-      const maxFileSize = 2097067; //2mb
-      const file = e.target.files[0];
+      const maxFileSize = 2097067 //2mb
+      const file = e.target.files[0]
 
-      if(file.type.match('image.*')){
-        if(file.size > maxFileSize){ 
-          toast.error(`File size is too large ${file.size}kb . Please upload image less than 2 mb.`) 
-        }else{
-          setImage(URL.createObjectURL(file));
-          let base64 = (await new Promise(resolve =>{
-            let reader = new FileReader();
+      if (file.type.match('image.*')) {
+        if (file.size > maxFileSize) {
+          toast.error(
+            `File size is too large ${file.size}kb . Please upload image less than 2 mb.`
+          )
+        } else {
+          setImage(URL.createObjectURL(file))
+          let base64 = (await new Promise(resolve => {
+            let reader = new FileReader()
             reader.onload = e => {
-              resolve(e.target?.result as any) 
+              resolve(e.target?.result as any)
             }
             reader.readAsDataURL(file)
-          })) as string;
-  
+          })) as string
+
           setUserData({ ...userData, imageProfile: base64 })
-        } 
-      }else{
+        }
+      } else {
         toast.error('Error: the file is not a image. It should be png/jpeg.')
-      } 
-    }else{
+      }
+    } else {
       toast.error('No image was selected.')
     }
   }
 
   const handleSubmit = (e: any) => {
     e.preventDefault()
-    if(!imageSelected){
+    if (!imageSelected) {
       toast('Error uploading image. No image was selected.')
-    }else{
+    } else {
       dispatch(signup(userData, history))
-    } 
+    }
   }
 
   const handleChange = (e: any) => {

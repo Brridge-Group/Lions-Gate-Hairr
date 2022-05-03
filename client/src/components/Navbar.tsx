@@ -26,7 +26,7 @@ export const Navbar = () => {
 
   const logout = () => {
     dispatch({ type: 'LOGOUT' })
-    history.go('/')
+    history.push('/')
     setUser('false')
   }
   if (user) {
@@ -71,12 +71,12 @@ export const Navbar = () => {
           ) : (
             <>
               <li className='NavbarList_link'>
-                <NavLink to='profile' activeStyle={{ fontWeight: '400' }}>
+                <NavLink to='/profile' activeStyle={{ fontWeight: '400' }}>
                   Profile
                 </NavLink>
               </li>
               <li className='NavbarList_link '>
-                <NavLink to='#' onClick={logout}>
+                <NavLink to='/' onClick={logout}>
                   Log Out
                 </NavLink>
               </li>

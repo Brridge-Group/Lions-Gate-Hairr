@@ -100,8 +100,8 @@ export const getProfileById = async (req: Request, res: Response) => {
 }
 
 export const updateUser = async (req: Request, res: Response) => {
-  const filter = req.params.id
-
+  const filter = {_id: req.params.id};
+  
   const {
     email,
     password,
@@ -111,13 +111,12 @@ export const updateUser = async (req: Request, res: Response) => {
     role,
     imageProfile,
   } = req.body
-
   try {
-    if (password) {
+
+    if(password){
+      //password is not empty
       if (password !== confirmPassword)
-        return res
-          .status(StatusCodes.BAD_REQUEST)
-          .send("Password doesn't match")
+        return res.status(StatusCodes.BAD_REQUEST).send("Password doesn't match")
 
       const hashedPassword = await bcrypt.hash(password, 12)
       const fieldsToUpdate = {
@@ -169,6 +168,6 @@ export const updateUser = async (req: Request, res: Response) => {
     console.log(error)
     return res
       .status(StatusCodes.BAD_REQUEST)
-      .send('Something went wrong, try later!')
-  }
+      .send('Something went wrong in update user, try later!')
+  } 
 }

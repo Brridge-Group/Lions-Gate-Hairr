@@ -72,11 +72,12 @@ exports.UserRegistration = function () {
         imageProfile: 'https://imgur.com/LDpwLVZ.jpg'
     }), userData = _a[0], setUserData = _a[1];
     var _b = react_1.useState(false), isChecked = _b[0], setIsChecked = _b[1];
-    var _c = react_1.useState(false), showPassword = _c[0], setShowPassword = _c[1];
-    var _d = react_1.useState(null), image = _d[0], setImage = _d[1];
+    var _c = react_1.useState(), errorMsg = _c[0], setErrorMsg = _c[1];
+    var _d = react_1.useState(false), imageSelected = _d[0], setImageSelected = _d[1];
+    var _e = react_1.useState(false), showPassword = _e[0], setShowPassword = _e[1];
+    var _f = react_1.useState(null), image = _f[0], setImage = _f[1];
     var dispatch = react_redux_1.useDispatch();
     var history = react_router_dom_2.useHistory();
-    var _e = react_1.useState(''), errorMsg = _e[0], setErrorMsg = _e[1];
     var signup = function (formData, history, errorM) { return function (dispatch) { return __awaiter(void 0, void 0, void 0, function () {
         var data, err_1;
         return __generator(this, function (_a) {
@@ -85,14 +86,15 @@ exports.UserRegistration = function () {
                     _a.trys.push([0, 2, , 3]);
                     return [4 /*yield*/, api.signUp(userData)];
                 case 1:
-                    data = (_a.sent()).data;
+                    // sign up the user
+                    data = _a.sent();
                     dispatch({ type: actionTypes_1.AUTH, data: data });
                     history.push('/');
                     return [3 /*break*/, 3];
                 case 2:
                     err_1 = _a.sent();
                     errorM = err_1.response.data;
-                    setErrorMsg(errorM);
+                    react_toastify_1.toast(errorM);
                     return [3 /*break*/, 3];
                 case 3: return [2 /*return*/];
             }
@@ -104,40 +106,55 @@ exports.UserRegistration = function () {
     var handleMouseDownPassword = function (event) {
         event.preventDefault();
     };
-    var onImageChange = function (event) { return __awaiter(void 0, void 0, void 0, function () {
-        var base64;
+    var onImageChange = function (e) { return __awaiter(void 0, void 0, void 0, function () {
+        var maxFileSize, file_1, base64;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    if (!event.target.files[0]) return [3 /*break*/, 4];
-                    if (!event.target.files[0].type.match('image')) return [3 /*break*/, 2];
-                    setImage(URL.createObjectURL(event.target.files[0]));
+                    e.preventDefault();
+                    if (!(e.target.files && e.target.files[0])) return [3 /*break*/, 6];
+                    setImageSelected(true);
+                    maxFileSize = 2097067 //2mb
+                    ;
+                    file_1 = e.target.files[0];
+                    if (!file_1.type.match('image.*')) return [3 /*break*/, 4];
+                    if (!(file_1.size > maxFileSize)) return [3 /*break*/, 1];
+                    react_toastify_1.toast.error("File size is too large " + file_1.size + "kb . Please upload image less than 2 mb.");
+                    return [3 /*break*/, 3];
+                case 1:
+                    setImage(URL.createObjectURL(file_1));
                     return [4 /*yield*/, new Promise(function (resolve) {
                             var reader = new FileReader();
                             reader.onload = function (e) {
                                 var _a;
                                 resolve((_a = e.target) === null || _a === void 0 ? void 0 : _a.result);
                             };
-                            reader.readAsDataURL(event.target.files[0]);
+                            reader.readAsDataURL(file_1);
                         })];
-                case 1:
+                case 2:
                     base64 = (_a.sent());
                     setUserData(__assign(__assign({}, userData), { imageProfile: base64 }));
-                    return [3 /*break*/, 3];
-                case 2:
-                    react_toastify_1.toast('Image type error, it should be png/jpeg.');
                     _a.label = 3;
                 case 3: return [3 /*break*/, 5];
                 case 4:
-                    react_toastify_1.toast('Unknown.');
+                    react_toastify_1.toast.error('Error: the file is not a image. It should be png/jpeg.');
                     _a.label = 5;
-                case 5: return [2 /*return*/];
+                case 5: return [3 /*break*/, 7];
+                case 6:
+                    react_toastify_1.toast.error('No image was selected.');
+                    _a.label = 7;
+                case 7: return [2 /*return*/];
             }
         });
     }); };
     var handleSubmit = function (e) {
         e.preventDefault();
-        dispatch(signup(userData, history));
+        if (!imageSelected) {
+            react_toastify_1.toast('Error uploading image. No image was selected.');
+        }
+        else {
+            dispatch(signup(userData, history));
+        }
     };
     var handleChange = function (e) {
         var _a;
@@ -148,7 +165,7 @@ exports.UserRegistration = function () {
             React.createElement("div", { className: 'FeatureContainer' },
                 React.createElement("div", { className: 'UserRegistration_inputGroup' },
                     React.createElement("form", { className: 'UserRegistration_form', onSubmit: handleSubmit },
-                        React.createElement(UserImage_1["default"], { pic: image, name: 'Sergio', handleChange: onImageChange }),
+                        React.createElement(UserImage_1["default"], { pic: image, name: 'profile-picture', handleChange: onImageChange }),
                         React.createElement("h5", null,
                             React.createElement("label", null, "First Name")),
                         React.createElement("input", { name: 'firstName', onChange: handleChange, autoFocus: true, className: 'UserRegistration_input' }),

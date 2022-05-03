@@ -13,7 +13,6 @@ import * as api from '../../api/index'
 import './UserRegistration.css'
 import '../Profile/Profile.css'
 import 'react-toastify/dist/ReactToastify.css'
-
 toast.configure()
 
 export const EditProfile = () => {
@@ -21,6 +20,7 @@ export const EditProfile = () => {
 
   const dispatch = useDispatch()
   const history = useHistory()
+
   const [showPassword, setShowPassword] = useState(false)
   const [errorMsg, setErrorMsg] = useState('')
   const [userData, setUserData] = useState({
@@ -69,7 +69,7 @@ export const EditProfile = () => {
         toast('Image type error, it should be png/jpeg.')
       }
     } else {
-      toast('Unknown error , try again.')
+      toast('Unknown error, try again')
     }
   }
 
@@ -80,20 +80,21 @@ export const EditProfile = () => {
 
   const handleChange = (e: any) => {
     setUserData({ ...userData, [e.target.name]: e.target.value })
-    console.log(userData)
   }
 
   return (
     <>
-      <div className='FeatureContainer_image EditUser'>
+      <div className='FeatureContainer_image Profile'>
         <div className='FeatureContainer'>
           <div className='UserRegistration_inputGroup'>
             <form className='UserRegistration_form' onSubmit={handleSubmit}>
-              <UserImage
-                pic={userData.imageProfile}
-                name={'Sergio'}
-                handleChange={onImageChange}
-              />
+              {
+                <UserImage
+                  pic={userData.imageProfile}
+                  name={user.name + '_pictureProfile'}
+                  handleChange={onImageChange}
+                />
+              }
               <h5>
                 <label>First Name</label>
               </h5>

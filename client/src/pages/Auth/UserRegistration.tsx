@@ -26,15 +26,16 @@ export const UserRegistration = () => {
   })
 
   const [isChecked, setIsChecked] = useState(false)
+  const [errorMsg, setErrorMsg] = useState()
+  const [imageSelected, setImageSelected] = useState(false)
   const [showPassword, setShowPassword] = useState(false)
   const [image, setImage] = useState<any | null>(null)
   const dispatch = useDispatch()
   const history = useHistory()
-  const [errorMsg, setErrorMsg] = useState('')
 
   const signup =
     (formData: any, history: any, errorM?: any) => async (dispatch: any) => {
-      let data;
+      let data
       try {
         // sign up the user
         data = await api.signUp(userData)
@@ -54,31 +55,46 @@ export const UserRegistration = () => {
     event.preventDefault()
   }
 
-  const onImageChange = async (event: any) => {
-    if (event.target.files[0]) {
-      if (event.target.files[0].type.match('image')) {
-        setImage(URL.createObjectURL(event.target.files[0]))
+  const onImageChange = async (e: any) => {
+    e.preventDefault()
 
-        let base64 = (await new Promise(resolve => {
-          let reader = new FileReader()
-          reader.onload = e => {
-            resolve(e.target?.result as any)
-          }
-          reader.readAsDataURL(event.target.files[0])
-        })) as string
+    if (e.target.files && e.target.files[0]) {
+      setImageSelected(true)
+      const maxFileSize = 2097067 //2mb
+      const file = e.target.files[0]
 
-        setUserData({ ...userData, imageProfile: base64 })
+      if (file.type.match('image.*')) {
+        if (file.size > maxFileSize) {
+          toast.error(
+            `File size is too large ${file.size}kb . Please upload image less than 2 mb.`
+          )
+        } else {
+          setImage(URL.createObjectURL(file))
+          let base64 = (await new Promise(resolve => {
+            let reader = new FileReader()
+            reader.onload = e => {
+              resolve(e.target?.result as any)
+            }
+            reader.readAsDataURL(file)
+          })) as string
+
+          setUserData({ ...userData, imageProfile: base64 })
+        }
       } else {
-        toast('Image type error, it should be png/jpeg.')
+        toast.error('Error: the file is not a image. It should be png/jpeg.')
       }
     } else {
-      toast('Unknown error, try again')
+      toast.error('No image was selected.')
     }
   }
 
   const handleSubmit = (e: any) => {
     e.preventDefault()
-    dispatch(signup(userData, history))
+    if (!imageSelected) {
+      toast('Error uploading image. No image was selected.')
+    } else {
+      dispatch(signup(userData, history))
+    }
   }
 
   const handleChange = (e: any) => {
@@ -93,7 +109,7 @@ export const UserRegistration = () => {
             <form className='UserRegistration_form' onSubmit={handleSubmit}>
               <UserImage
                 pic={image}
-                name={'Profile Picture of User'}
+                name={'profile-picture'}
                 handleChange={onImageChange}
               />
               <h5>

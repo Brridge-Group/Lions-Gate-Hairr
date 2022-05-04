@@ -52,7 +52,6 @@ exports.Home = function () {
         }
         catch (error) { }
     };
-    //use location to capture user status from navbar
     console.log('location', location, location.state);
     var itemSubmitHandler = function (event) { return __awaiter(void 0, void 0, void 0, function () {
         return __generator(this, function (_a) {
@@ -64,7 +63,7 @@ exports.Home = function () {
             return [2 /*return*/];
         });
     }); };
-    return (react_1["default"].createElement(react_1["default"].Fragment, null, location.state === null ? (react_1["default"].createElement("div", { className: ' FeatureContainer_image Home' },
+    return (react_1["default"].createElement(react_1["default"].Fragment, null, localStorage.getItem('profile') === null ? (react_1["default"].createElement("div", { className: ' FeatureContainer_image Home' },
         react_1["default"].createElement("div", { className: 'FeatureContainer' },
             react_1["default"].createElement("div", { className: 'Home_inputGroup' },
                 react_1["default"].createElement("h3", null, "I'm looking for hair stylist in"),

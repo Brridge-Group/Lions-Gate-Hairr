@@ -62,7 +62,8 @@ exports.Navbar = function () {
     }, [location]);
     var logout = function () {
         dispatch({ type: 'LOGOUT' });
-        history.push({
+        //export to tell home component user is false
+        history.push('export', {
             pathname: '/',
             state: { user: 'false' }
         });

@@ -14,7 +14,6 @@ export const Home = () => {
       setCity(e.target.value)
     } catch (error) {}
   }
-  //use location to capture user status from navbar
   console.log('location', location, location.state)
 
   const itemSubmitHandler = async (event: React.FormEvent<any>) => {
@@ -25,7 +24,7 @@ export const Home = () => {
   }
   return (
     <>
-      {location.state === null ? (
+      {localStorage.getItem('profile') === null ? (
         <div className=' FeatureContainer_image Home'>
           <div className='FeatureContainer'>
             <div className='Home_inputGroup'>

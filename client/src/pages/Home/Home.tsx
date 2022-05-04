@@ -1,11 +1,12 @@
-import { ContactSupportOutlined } from '@material-ui/icons'
 import React, { useState } from 'react'
-import { useHistory } from 'react-router-dom'
+import { useHistory, useLocation } from 'react-router-dom'
 import './Home.css'
 
 export const Home = () => {
   const history = useHistory()
+  const location = useLocation()
   const [city, setCity] = useState('')
+
   const user = JSON.parse(localStorage.getItem('profile') ?? 'false').result
 
   const handleChange = (e: any) => {
@@ -13,6 +14,7 @@ export const Home = () => {
       setCity(e.target.value)
     } catch (error) {}
   }
+  console.log('location', location, location.state)
 
   const itemSubmitHandler = async (event: React.FormEvent<any>) => {
     event.preventDefault()

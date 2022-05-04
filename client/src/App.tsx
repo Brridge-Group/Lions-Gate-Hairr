@@ -6,8 +6,8 @@ import {
 } from 'react-router-dom'
 import './App.css'
 import { Home } from './pages/Home/Home'
-import { UserRegistration } from './pages/Auth/UserRegistration'
-import Login from './pages/Auth/Login'
+import { UserRegistration } from './pages/Auth/UserRegistration/UserRegistration'
+import Login from './pages/Auth/Login/Login'
 import { BusinessList } from './pages/Businesses/BusinessList'
 import { BusinessDetails } from './components/BusinessDetails/BusinessDetails'
 import { AddBusiness } from './pages/AddBusiness'
@@ -32,9 +32,6 @@ export const App = () => {
       </Route>
       <Route path='/users/:id' exact>
         <EditProfile />
-      </Route>
-      <Route path='/businesses' exact>
-        <BusinessList />
       </Route>
       <Route path='/my-businesses' exact>
         <MyBusinessList />

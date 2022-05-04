@@ -26,9 +26,13 @@ export const Navbar = () => {
 
   const logout = () => {
     dispatch({ type: 'LOGOUT' })
-    history.push('/')
-    setUser('false')
+    //export to tell home component user is false
+    history.push('export', {
+      pathname: '/',
+      state: { user: 'false' },
+    })
   }
+
   if (user) {
     const fetchData = async () => {
       await axios

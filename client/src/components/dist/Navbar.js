@@ -62,8 +62,10 @@ exports.Navbar = function () {
     }, [location]);
     var logout = function () {
         dispatch({ type: 'LOGOUT' });
-        history.push('/');
-        setUser('false');
+        history.push({
+            pathname: '/',
+            state: { user: 'false' }
+        });
     };
     if (user) {
         var fetchData = function () { return __awaiter(void 0, void 0, void 0, function () {

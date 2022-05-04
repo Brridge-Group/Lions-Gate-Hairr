@@ -26,8 +26,11 @@ export const Navbar = () => {
 
   const logout = () => {
     dispatch({ type: 'LOGOUT' })
-    history.push('/')
-    setUser('false')
+
+    history.push({
+      pathname: '/',
+      state: { user: 'false' },
+    })
   }
   if (user) {
     const fetchData = async () => {

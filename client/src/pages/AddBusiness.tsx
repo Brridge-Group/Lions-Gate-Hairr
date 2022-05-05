@@ -1,11 +1,11 @@
 // React Components
 import React, { useEffect, useState } from 'react'
-import { ContentHeader } from '../components/ContentHeader'
 import { Link } from 'react-router-dom'
 import { useHistory } from 'react-router-dom'
 
 // Custom Imports
-import ContentHeader from '../components/ContentHeader'
+// import ContentHeader from '../components/ContentHeader'
+import { ContentHeader } from '../components/ContentHeader'
 import { regions } from '../constants/regions'
 
 // 3rd Party Custom Imports

@@ -6,6 +6,7 @@ import { useHistory, useParams } from 'react-router-dom'
 import { Card } from '../../UIElements/Card'
 import { Star } from '../../UIElements/Star'
 import { About } from '../../components/BusinessDetails/About'
+import CardDetails from '../../components/CardDetails/CardDetails'
 import { FilterServicesAndFeatures } from '../../components/FilterServicesAndFeatures/FilterServicesAndFeatures'
 import { LoadSpinner } from '../../components/LoadSpinner/LoadSpinner'
 

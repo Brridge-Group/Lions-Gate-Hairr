@@ -8,30 +8,11 @@
   grid-column-gap: 35px;
   height: 100vh;
   width: 100%;
-  margin-top: -10vh; /* Adds overlap styles to navbar */
+  /* Adds overlap styles to navbar */
+  /* margin-top: -10vh;  */
   margin-right: auto;
   margin-left: auto;
 }
-/* .home::after {
-  content: '';
-  height: 10vh;
-  background-color: blue;
-  width: 100%;
-} */
-
-/* .home::before {
-  content: '';
-  height: 100%;
-  display: flex;
-  flex-direction: row;
-  background-color: blue;
-  position: relative;
-  margin-top: -30rem;
-  transform: rotate(90deg); */
-/* translate-radiusX(-50%); */
-/* z-index: 1; */
-/* width: 100%; */
-/* } */
 .input-group {
   text-align: center;
   margin-top: 300px;

@@ -2,7 +2,7 @@
 import './CardDetails.css'
 
 // Custom Imports
-import Star from '../../UIElements/Star'
+import { Star } from '../../UIElements/Star'
 
 // Types
 interface Props {

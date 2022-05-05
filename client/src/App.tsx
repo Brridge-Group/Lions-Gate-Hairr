@@ -1,21 +1,15 @@
-import {
-  BrowserRouter as Router,
-  Route,
-  Redirect,
-  Switch,
-} from 'react-router-dom'
+import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-dom'
 import { Home } from './pages/Home/Home'
 import { ListItems } from './pages/ListItems'
 import { UserRegistration } from './pages/Auth/UserRegistration'
 import Login from './pages/Auth/Login'
-import { BusinessList } from './pages/Businesses/BusinessList'
+import { BusinessList } from './pages/BusinessList/BusinessList'
 import { BusinessDetails } from './components/BusinessDetails/BusinessDetails'
 import { AddBusiness } from './pages/AddBusiness'
 import { AddReview } from './components/AddReview/AddReview'
 import { MyBusinessList } from './components/Businesses/MyBusinessList'
 import { Navbar } from './components/Navbar'
 import './App.css'
-
 
 export const App = () => {
   let routes: any

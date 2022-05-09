@@ -40,8 +40,7 @@ export const createItem = async(req: Request, res: Response, next: NextFunction)
 
 export const updateItem = async(req: Request, res: Response, next: NextFunction) => {
   const itemId = req.params.id
-
-  console.log(req.body)
+  
   const { name, description } = req.body
 
   let item

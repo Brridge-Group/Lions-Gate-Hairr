@@ -1,10 +1,14 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState} from 'react'
+import Button from '@material-ui/core/Button';
+import Box from '@material-ui/core/Box';
 import { Link } from 'react-router-dom'
 import { useHistory } from 'react-router-dom'
 import axios from 'axios'
+import { toast } from 'react-toastify'
 import { regions } from '../constants/regions'
 
 export const AddBusiness = () => {
+  const [imageUrl, setImageUrl] = useState(null);
   // Initialize  Services and Features to state
   const [feats, setFeats]: any = useState([]) // Features full object
   const [services, setServices]: any = useState([]) // Services full object
@@ -77,11 +81,39 @@ export const AddBusiness = () => {
   const [region, setRegion] = useState('AB')
   const [country, setCountry] = useState('Canada')
   const history = useHistory()
-  const ownerId = JSON.parse(localStorage.getItem('profile') ?? 'false').result
-    ._id
+  const ownerId = JSON.parse(localStorage.getItem('profile') || '{}').data.result._id
 
   const handleChange = (e: any) => {
     setFormData({ ...formData, [e.target.name]: e.target.value })
+  console.log('LIne 85: ', JSON.stringify(formData))
+  }
+
+  const onImageChange = async (e: any) => {
+    e.preventDefault();
+
+    if(e.target.files && e.target.files[0]){
+      const maxFileSize = 2097067 // 2 mb
+      const file = e.target.files[0];
+
+      if(file.type.match('image.*')){
+        if(file.size > maxFileSize){
+          toast.error(
+            `File size is too large ${file.size}kb. Please upload image less than 2 mb.`
+          )
+        }else{
+          let base64 = (await new Promise(resolve => {
+            let reader = new FileReader()
+            reader.onload = e => {
+              resolve(e.target?.result as any)
+            }
+            reader.readAsDataURL(file)
+          })) as string
+          setFormData({...formData, [e.target.name]: base64})
+        }
+      }else{
+        toast.error('Error: file is not a image. It should be png/jpeg file.')
+      }
+    }  
   }
 
   const handleRegion = (e: any) => {
@@ -174,16 +206,28 @@ export const AddBusiness = () => {
                 />
               </div>
               <div className='form-group'>
-                <label>Image:</label>
-                <input
-                  name='image'
-                  type='text'
-                  value={formData.image}
-                  className='form-control'
-                  placeholder='Enter image url'
-                  onChange={handleChange}
-                  required
-                />
+              <label htmlFor="select-image">
+                <Button variant="contained" color="primary" component="span">
+                     {formData.image === '' ? 'Select Image' : 'Change Image'}
+                </Button>
+              </label>
+                <input 
+                name='image'
+                accept="image/*" 
+                type="file" 
+                id="select-image"
+                style={{ display: 'none' }}
+                onChange={onImageChange}
+                required />
+               {formData.image && (
+                <Box mt={2} textAlign="center">
+                    <div>Image Preview:</div>
+                    <img 
+                      src={formData.image} 
+                      alt="Example of a business"
+                      height="100px" />
+                 </Box>
+                )}
               </div>
               <br />
               <h4>Address</h4>

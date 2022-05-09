@@ -1,14 +1,14 @@
 * {
   box-sizing: border-box;
 }
-
+:root {
+  font-size: 62.5%;
+}
 body {
   margin: 0;
   padding: 0;
   overscroll-behavior: none;
-}
-html {
-  font-size: 62.5%;
+  font-size: 1.6rem;
 }
 
 .AppContainer {
@@ -47,7 +47,9 @@ html {
   border-bottom: 0.5px solid black;
   justify-content: space-around;
 }
-
+h4.Navbar_logo {
+  padding-top: 20px;
+}
 ul.NavbarList {
   list-style-type: none;
   padding: 0;
@@ -79,12 +81,12 @@ h3 {
 h4 {
   font-size: 1.8rem;
   font-weight: 300;
-  padding-top: 10px;
 }
 h5 {
-  font-size: 1.6rem;
+  font-size: 1.4rem;
   line-height: 19px;
   font-weight: 300;
+  margin: 20px 0 15px 0;
 }
 
 .btn--btn-primary {
@@ -116,5 +118,9 @@ p {
 
 /* ///////media queries ////////// */
 
-/* /* @media screen and (min-width: 992px) {
-} */
+@media screen and (max-width: 575px) {
+  .FeatureContainer {
+    display: block;
+    width: 90%;
+  }
+}

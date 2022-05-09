@@ -12,9 +12,8 @@
 }
 
 .UserRegistration_form h5 {
-  margin: 20px;
-  font-size: 1.4rem;
   line-height: normal;
+  margin: 20px 0 15px 0;
 }
 
 .UserRegistration_input {

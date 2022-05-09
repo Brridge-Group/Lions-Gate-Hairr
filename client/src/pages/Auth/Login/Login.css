@@ -10,8 +10,6 @@
   flex-direction: column;
 }
 .Login_form h5 {
-  margin: 20px;
-  font-size: 1.4rem;
   line-height: normal;
 }
 .Login_input {
@@ -29,4 +27,18 @@
 }
 .Login p {
   margin-top: 20px;
+}
+
+/* ///////media queries ////////// */
+
+@media screen and (max-width: 990px) {
+  .Login_inputGroup {
+    grid-column: 5/11;
+  }
+}
+
+@media screen and (max-width: 575px) {
+  .Login_inputGroup {
+    margin-top: 120px;
+  }
 }

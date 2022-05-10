@@ -50,6 +50,18 @@ exports.Navbar = function () {
     var dispatch = react_redux_1.useDispatch();
     var _b = react_1.useState(JSON.parse((_a = localStorage.getItem('profile')) !== null && _a !== void 0 ? _a : 'false')), user = _b[0], setUser = _b[1];
     var _c = react_1.useState(), role = _c[0], setRole = _c[1];
+    var _d = react_1.useState(window.innerWidth), width = _d[0], setWidth = _d[1];
+    var isNavbarMobile;
+    width <= 575 ? (isNavbarMobile = true) : (isNavbarMobile = false);
+    react_1.useEffect(function () {
+        window.addEventListener('resize', handleWindowSizeChange);
+        return function () {
+            window.removeEventListener('resize', handleWindowSizeChange);
+        };
+    }, []);
+    var handleWindowSizeChange = function () {
+        setWidth(window.innerWidth);
+    };
     react_1.useEffect(function () {
         var _a;
         var token = user === null || user === void 0 ? void 0 : user.token;
@@ -89,6 +101,7 @@ exports.Navbar = function () {
             });
         }); };
     }
+    console.log('isNavbarMobile', isNavbarMobile);
     return (React.createElement("nav", { className: 'Navbar' },
         React.createElement("h4", { className: 'Navbar_logo' }, "LOGO"),
         React.createElement("ul", { className: 'NavbarList' },

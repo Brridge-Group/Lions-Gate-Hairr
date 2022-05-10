@@ -14,6 +14,22 @@ export const Navbar = () => {
   )
   const [role, setRole] = useState()
 
+  const [width, setWidth] = useState(window.innerWidth)
+  let isNavbarMobile
+  width <= 575 ? (isNavbarMobile = true) : (isNavbarMobile = false)
+
+  useEffect(() => {
+    window.addEventListener('resize', handleWindowSizeChange)
+
+    return () => {
+      window.removeEventListener('resize', handleWindowSizeChange)
+    }
+  }, [])
+
+  const handleWindowSizeChange = () => {
+    setWidth(window.innerWidth)
+  }
+
   useEffect(() => {
     const token = user?.token
     if (token) {
@@ -48,6 +64,7 @@ export const Navbar = () => {
         .catch(error => {})
     }
   }
+  console.log('isNavbarMobile', isNavbarMobile)
 
   return (
     <nav className='Navbar'>

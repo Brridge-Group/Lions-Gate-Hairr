@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import decode from 'jwt-decode'
 import axios from 'axios'
+import { MenuButton } from './MenuButton'
 import './NavbarMobile.css'
 
 export const NavbarMobile = () => {
@@ -14,22 +15,11 @@ export const NavbarMobile = () => {
     JSON.parse(localStorage.getItem('profile') ?? 'false')
   )
   const [role, setRole] = useState()
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
 
-  // const [width, setWidth] = useState(window.innerWidth)
-  // let isNavbarMobile
-  // width <= 575 ? (isNavbarMobile = true) : (isNavbarMobile = false)
-
-  // useEffect(() => {
-  //   window.addEventListener('resize', handleWindowSizeChange)
-
-  //   return () => {
-  //     window.removeEventListener('resize', handleWindowSizeChange)
-  //   }
-  // }, [])
-
-  // const handleWindowSizeChange = () => {
-  //   setWidth(window.innerWidth)
-  // }
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen)
+  }
 
   useEffect(() => {
     const token = user?.token
@@ -65,14 +55,13 @@ export const NavbarMobile = () => {
         .catch(error => {})
     }
   }
-  // console.log('isNavbarMobile', isNavbarMobile)
 
   return (
     <nav className='Navbar'>
       <h4 className='Navbar_logo'>LOGO</h4>
       <input type='checkbox' id='chk' />
-      <label htmlFor='chk' className='show-menu-btn'>
-        <i className='fas fa-bars' />
+      <label htmlFor='chk' className='show-menu-btn' onClick={toggleMenu}>
+        <MenuButton isOpen={isMenuOpen} />
       </label>
       <ul className='NavbarList menu'>
         <h4>

@@ -13,9 +13,7 @@ import { BusinessDetails } from './components/BusinessDetails/BusinessDetails'
 import { AddBusiness } from './pages/AddBusiness'
 import { AddReview } from './components/AddReview/AddReview/AddReview'
 import { MyBusinessList } from './components/MyBusinessList/MyBusinessList'
-import { Navbar } from './components/Navbar'
-import { NavbarMobile } from './components/NavbarMobile'
-
+import { Navbar } from './components/Navbar/Navbar'
 import { Profile } from './pages/Profile/Profile'
 import { EditProfile } from './pages/Auth/EditProfile'
 
@@ -60,7 +58,7 @@ export const App = () => {
   return (
     <Router>
       <div className='AppContainer'>
-        <NavbarMobile />
+        <Navbar />
         {routes}
       </div>
     </Router>

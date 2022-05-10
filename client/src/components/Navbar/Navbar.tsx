@@ -5,9 +5,9 @@ import { NavLink } from 'react-router-dom'
 import decode from 'jwt-decode'
 import axios from 'axios'
 import { MenuButton } from './MenuButton'
-import './NavbarMobile.css'
+import './Navbar.css'
 
-export const NavbarMobile = () => {
+export const Navbar = () => {
   const location = useLocation()
   const history: any = useHistory()
   const dispatch = useDispatch()

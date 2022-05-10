@@ -11,7 +11,7 @@ var BusinessDetails_1 = require("./components/BusinessDetails/BusinessDetails");
 var AddBusiness_1 = require("./pages/AddBusiness");
 var AddReview_1 = require("./components/AddReview/AddReview/AddReview");
 var MyBusinessList_1 = require("./components/MyBusinessList/MyBusinessList");
-var NavbarMobile_1 = require("./components/NavbarMobile");
+var Navbar_1 = require("./components/Navbar/Navbar");
 var Profile_1 = require("./pages/Profile/Profile");
 var EditProfile_1 = require("./pages/Auth/EditProfile");
 exports.App = function () {
@@ -40,6 +40,6 @@ exports.App = function () {
         React.createElement(react_router_dom_1.Redirect, { to: '/' })));
     return (React.createElement(react_router_dom_1.BrowserRouter, null,
         React.createElement("div", { className: 'AppContainer' },
-            React.createElement(NavbarMobile_1.NavbarMobile, null),
+            React.createElement(Navbar_1.Navbar, null),
             routes)));
 };

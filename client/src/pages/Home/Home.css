@@ -23,3 +23,14 @@
 .Home_input:focus {
   outline: none;
 }
+
+/* ///////media queries ////////// */
+
+@media screen and (max-width: 575px) {
+  .FeatureContainer_image.Home {
+    background-image: url('../../assets/images/hairpink-mobile.jpg');
+  }
+  .FeatureContainer_image.LoggedIn {
+    background-image: url('../../assets/images/hairlavender-mobile.jpg');
+  }
+}

@@ -25,7 +25,6 @@ export const UserRegistration = () => {
     imageProfile: 'https://imgur.com/LDpwLVZ.jpg',
   })
 
-  const [isChecked, setIsChecked] = useState(false)
   const [errorMsg, setErrorMsg] = useState()
   const [imageSelected, setImageSelected] = useState(false)
   const [showPassword, setShowPassword] = useState(false)

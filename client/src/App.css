@@ -36,40 +36,6 @@ body {
   margin-left: auto;
 }
 
-.Navbar {
-  display: flex;
-  width: 100%;
-  position: fixed;
-  height: 100px;
-  background: none;
-  top: 0;
-  z-index: 10;
-  border-bottom: 0.5px solid black;
-  justify-content: space-around;
-}
-h4.Navbar_logo {
-  padding-top: 20px;
-}
-ul.NavbarList {
-  list-style-type: none;
-  padding: 0;
-}
-
-li.NavbarList_link {
-  display: inline-block;
-  margin: 0 4rem;
-}
-.NavbarList_link a {
-  text-decoration: none;
-  color: black;
-}
-.NavbarList_link a:hover {
-  font-weight: 400;
-}
-.NavbarList_link a:focus {
-  font-weight: 400;
-}
-
 h1 {
   font-size: 3.6rem;
   font-weight: 100;
@@ -122,5 +88,11 @@ p {
   .FeatureContainer {
     display: block;
     width: 80%;
+  }
+}
+
+@media screen and (max-height: 575px) and (max-width: 450px) {
+  .FeatureContainer {
+    overflow: hidden;
   }
 }

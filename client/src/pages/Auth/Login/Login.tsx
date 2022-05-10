@@ -66,7 +66,7 @@ const Login = () => {
               Sign In
             </button>
             <p style={{ fontWeight: '300' }}>
-              Not Signed Up?{' '}
+              Don't have an account?{' '}
               <NavLink
                 to='user-signup'
                 style={{ fontWeight: '500', color: 'black' }}>

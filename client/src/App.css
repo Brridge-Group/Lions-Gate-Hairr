@@ -91,7 +91,7 @@ p {
   }
 }
 
-@media screen and (max-height: 575px) and (max-width: 450px) {
+@media screen and (max-height: 850px) and (max-width: 450px) {
   .FeatureContainer {
     overflow: hidden;
   }

@@ -41,4 +41,7 @@
   .Login_inputGroup {
     margin-top: 120px;
   }
+  .FeatureContainer_image.Login {
+    background-image: url('../../../assets/images/hairwhite-mobile.jpg');
+  }
 }

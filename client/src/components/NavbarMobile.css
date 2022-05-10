@@ -9,17 +9,14 @@
 
 .show-menu-btn {
   transition: 0.4s;
-  font-size: 30px;
   cursor: pointer;
-  user-select: none;
   display: none;
-  margin-left: 40px;
 }
 
-.menu a:hover,
-.show-menu-btn:hover,
-.hide-menu-btn:hover {
-  color: rgb(151, 151, 151);
+.menu a:hover {
+  text-decoration: none;
+  border-bottom: 1px solid #f32dc8;
+  padding-bottom: 3px;
 }
 
 #chk {
@@ -29,21 +26,29 @@
 }
 
 @media screen and (max-width: 575px) {
-  .show-menu-btn,
-  .hide-menu-btn {
+  .show-menu-btn {
     display: block;
+    margin-right: -22%;
   }
   li.NavbarList_link {
     display: block;
     margin: 0 2rem;
+    color: white;
   }
-
+  .NavbarList_link a {
+    color: white;
+  }
+  .Navbar_logo {
+    margin-left: -22%;
+  }
+  ul.NavbarList {
+    padding-top: 10%;
+  }
   .menu {
-    display: block;
     position: fixed;
-    width: 80%;
+    width: 82%;
     height: 80%;
-    background: snow;
+    background: black;
     right: -100%;
     top: 14%;
     text-align: left;
@@ -51,10 +56,18 @@
     line-height: normal;
     transition: 0.7s;
     z-index: 3;
-    margin-right: 10%;
+    margin-right: 9%;
+    display: flex;
+    justify-content: center;
+    color: white;
+    border-radius: 10px;
+    border: 1px solid #f32dc8;
   }
   .menu a {
     display: block;
+    padding: 20px;
+  }
+  .menu a:hover {
     padding: 20px;
   }
 

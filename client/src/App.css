@@ -121,6 +121,6 @@ p {
 @media screen and (max-width: 575px) {
   .FeatureContainer {
     display: block;
-    width: 90%;
+    width: 80%;
   }
 }

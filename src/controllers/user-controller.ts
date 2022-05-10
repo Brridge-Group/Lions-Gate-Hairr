@@ -26,7 +26,7 @@ export const signin = async (req: Request, res: Response) => {
     )
     res.status(200).json({ result: existingUser, token })
   } catch (err) {
-    console.log(err)
+    console.log('Error on SignIn function on line 29: ',err)
     res.status(StatusCodes.INTERNAL_SERVER_ERROR).send('Something went wrong.')
   }
 }
@@ -45,7 +45,6 @@ export const signup = async (req: Request, res: Response) => {
     const existingUser = await User.findOne({ email })
 
     if (existingUser) {
-      console.log(existingUser)
       return res
         .status(StatusCodes.BAD_REQUEST)
         .send('User already exists! Try new email address.')

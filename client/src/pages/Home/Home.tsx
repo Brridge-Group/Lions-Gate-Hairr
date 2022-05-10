@@ -12,9 +12,10 @@ export const Home = () => {
   const handleChange = (e: any) => {
     try {
       setCity(e.target.value)
-    } catch (error) {}
+    } catch (error) {
+      console.log(JSON.stringify(error))
+    }
   }
-  console.log('location', location, location.state)
 
   const itemSubmitHandler = async (event: React.FormEvent<any>) => {
     event.preventDefault()

@@ -1,25 +1,23 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { useHistory } from 'react-router-dom'
 
 import { Card } from '../../UIElements/Card'
 import { Star } from '../../UIElements/Star'
 import { About } from '../BusinessDetails/About'
 import '../../pages/Profile/Profile.css'
 
+
+
 export const MyBusinessList = () => {
   const [list, setList] = useState<any[]>([])
   const [loading, setLoading] = useState(true)
-  const history = useHistory()
-  const ownerId = JSON.parse(localStorage.getItem('profile') ?? 'false').result
-    ._id
-  const user = JSON.parse(localStorage.getItem('profile') ?? 'false').result
+  const user = JSON.parse(localStorage.getItem('profile') || '{}').data.result; 
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const res = await fetch(
-          '/api/businesses/get-business-by-ownersId/?id=' + `${ownerId}`
+          `/api/businesses/get-business-by-ownersId/?id=${user._id}`
         )
         const businessesList = await res.json()
         setList(businessesList)

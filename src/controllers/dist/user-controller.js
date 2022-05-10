@@ -65,7 +65,7 @@ exports.signin = function (req, res) { return __awaiter(void 0, void 0, void 0, 
                 return [3 /*break*/, 5];
             case 4:
                 err_1 = _b.sent();
-                console.log(err_1);
+
                 res.status(StatusCodes.INTERNAL_SERVER_ERROR).send('Something went wrong.');
                 return [3 /*break*/, 5];
             case 5: return [2 /*return*/];

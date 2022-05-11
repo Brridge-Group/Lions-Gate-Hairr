@@ -43,6 +43,8 @@ var react_redux_1 = require("react-redux");
 var react_router_dom_2 = require("react-router-dom");
 var jwt_decode_1 = require("jwt-decode");
 var axios_1 = require("axios");
+var MenuButton_1 = require("./MenuButton");
+require("./Navbar.css");
 exports.Navbar = function () {
     var _a;
     var location = react_router_dom_1.useLocation();
@@ -50,17 +52,9 @@ exports.Navbar = function () {
     var dispatch = react_redux_1.useDispatch();
     var _b = react_1.useState(JSON.parse((_a = localStorage.getItem('profile')) !== null && _a !== void 0 ? _a : 'false')), user = _b[0], setUser = _b[1];
     var _c = react_1.useState(), role = _c[0], setRole = _c[1];
-    var _d = react_1.useState(window.innerWidth), width = _d[0], setWidth = _d[1];
-    var isNavbarMobile;
-    width <= 575 ? (isNavbarMobile = true) : (isNavbarMobile = false);
-    react_1.useEffect(function () {
-        window.addEventListener('resize', handleWindowSizeChange);
-        return function () {
-            window.removeEventListener('resize', handleWindowSizeChange);
-        };
-    }, []);
-    var handleWindowSizeChange = function () {
-        setWidth(window.innerWidth);
+    var _d = react_1.useState(false), isMenuOpen = _d[0], setIsMenuOpen = _d[1];
+    var toggleMenu = function () {
+        setIsMenuOpen(!isMenuOpen);
     };
     react_1.useEffect(function () {
         var _a;
@@ -101,10 +95,12 @@ exports.Navbar = function () {
             });
         }); };
     }
-    console.log('isNavbarMobile', isNavbarMobile);
     return (React.createElement("nav", { className: 'Navbar' },
         React.createElement("h4", { className: 'Navbar_logo' }, "LOGO"),
-        React.createElement("ul", { className: 'NavbarList' },
+        React.createElement("input", { type: 'checkbox', id: 'chk' }),
+        React.createElement("label", { htmlFor: 'chk', className: 'show-menu-btn', onClick: toggleMenu },
+            React.createElement(MenuButton_1.MenuButton, { isOpen: isMenuOpen })),
+        React.createElement("ul", { className: 'NavbarList menu' },
             React.createElement("h4", null,
                 React.createElement("li", { className: 'NavbarList_link' },
                     React.createElement(react_router_dom_2.NavLink, { to: '/', exact: true, activeStyle: { fontWeight: '400' } }, "Home")),

@@ -4,6 +4,8 @@ import { useDispatch } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import decode from 'jwt-decode'
 import axios from 'axios'
+import { MenuButton } from './MenuButton'
+import './Navbar.css'
 
 export const Navbar = () => {
   const location = useLocation()
@@ -13,6 +15,11 @@ export const Navbar = () => {
     JSON.parse(localStorage.getItem('profile') ?? 'false')
   )
   const [role, setRole] = useState()
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen)
+  }
 
   useEffect(() => {
     const token = user?.token
@@ -52,7 +59,11 @@ export const Navbar = () => {
   return (
     <nav className='Navbar'>
       <h4 className='Navbar_logo'>LOGO</h4>
-      <ul className='NavbarList'>
+      <input type='checkbox' id='chk' />
+      <label htmlFor='chk' className='show-menu-btn' onClick={toggleMenu}>
+        <MenuButton isOpen={isMenuOpen} />
+      </label>
+      <ul className='NavbarList menu'>
         <h4>
           <li className='NavbarList_link'>
             <NavLink to='/' exact={true} activeStyle={{ fontWeight: '400' }}>

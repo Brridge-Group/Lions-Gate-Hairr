@@ -13,7 +13,7 @@ import { BusinessDetails } from './components/BusinessDetails/BusinessDetails'
 import { AddBusiness } from './pages/AddBusiness'
 import { AddReview } from './components/AddReview/AddReview/AddReview'
 import { MyBusinessList } from './components/MyBusinessList/MyBusinessList'
-import { Navbar } from './components/Navbar'
+import { Navbar } from './components/Navbar/Navbar'
 import { Profile } from './pages/Profile/Profile'
 import { EditProfile } from './pages/Auth/EditProfile'
 

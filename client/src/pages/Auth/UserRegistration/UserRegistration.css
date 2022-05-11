@@ -1,5 +1,5 @@
 .FeatureContainer_image.Profile {
-  background-image: url('../../../assets/images/hairgrey90.jpg');
+  background-image: url('../../../assets/images/hairgreysm.jpg');
   margin-bottom: -10px;
 }
 
@@ -12,9 +12,8 @@
 }
 
 .UserRegistration_form h5 {
-  margin: 20px;
-  font-size: 1.4rem;
   line-height: normal;
+  margin: 20px 0 15px 0;
 }
 
 .UserRegistration_input {
@@ -39,6 +38,8 @@
 .UserRegistration_radio {
   display: flex;
   align-items: center;
+  margin-right: 20px !important;
+  margin-left: 20px !important;
 }
 
 .UserRegistration_submit {
@@ -68,4 +69,26 @@ input:focus {
 .MuiInputBase-input {
   text-align: center;
   font-size: 1.3rem !important;
+}
+/* ///////media queries ////////// */
+
+@media screen and (max-width: 990px) {
+  .UserRegistration_inputGroup {
+    grid-column: 5/11;
+  }
+}
+@media screen and (max-width: 575px) {
+  .FeatureContainer_image.Profile {
+    background-image: url('../../../assets/images/hairgrey-mobile.jpg');
+  }
+}
+
+@media screen and (max-height: 850px) and (max-width: 450px) {
+  .UserRegistration_inputGroup {
+    overflow: scroll;
+    height: 65%;
+  }
+  .UserRegistration_inputGroup::-webkit-scrollbar {
+    display: none;
+  }
 }

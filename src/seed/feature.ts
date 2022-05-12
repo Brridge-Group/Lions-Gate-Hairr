@@ -1,7 +1,6 @@
 import mongoose from "mongoose";
-
-import config from "../config";
-import Feature from "../models/feature";
+import { config } from "../config";
+import { Feature } from "../models/feature";
 
 const features: string[] = [
   "Free Parking",

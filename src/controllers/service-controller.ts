@@ -2,7 +2,7 @@ import { Request, Response, NextFunction } from 'express'
 import { validationResult } from 'express-validator'
 let StatusCodes = require('http-status-codes')
 
-import Service from '../models/service'
+import { Service } from '../models/service'
 
 // Get All Services
 export const indexServices = async (req: Request, res: Response) => {

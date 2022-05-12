@@ -2,7 +2,7 @@ import { Request, Response, NextFunction } from 'express'
 import { validationResult } from 'express-validator'
 let StatusCodes = require('http-status-codes')
 
-import Business from '../models/business'
+import { Business } from '../models/business'
 
 export const showBusiness = async (req: Request, res: Response) => {
   const { id } = req.params

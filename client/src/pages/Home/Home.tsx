@@ -1,18 +1,19 @@
 import React, { useState } from 'react'
-import { useHistory } from 'react-router-dom'
+import { useHistory, useLocation } from 'react-router-dom'
 import './Home.css'
-import pinkcrop1 from '../../assets/images/pinkcrop1.jpg'
 
-const Home = () => {
+export const Home = () => {
   const history = useHistory()
+  const location = useLocation()
   const [city, setCity] = useState('')
+
+  const user = JSON.parse(localStorage.getItem('profile') ?? 'false').result
 
   const handleChange = (e: any) => {
     try {
       setCity(e.target.value)
-      console.log('handleChange: ', city)
     } catch (error) {
-      console.log('Error on handleChange function', error)
+      console.log(JSON.stringify(error))
     }
   }
 
@@ -20,25 +21,45 @@ const Home = () => {
     event.preventDefault()
     try {
       history.push(`/businessByCity/${city}`, { from: 'Home' })
-      console.log('ItemSubmitHandler: ', city)
-    } catch (err) {
-      console.log('Error on itemSubmitHandler function', err)
-    }
+    } catch (err) {}
   }
   return (
-    <div
-      className='home'
-      style={{
-        backgroundImage: `url(${pinkcrop1})`,
-      }}>
-      <div className='input-group'>
-        <h3>I'm looking for hair stylist in</h3>
-        <form onSubmit={itemSubmitHandler}>
-          <input type='search' value={city} onChange={handleChange} autoFocus />
-        </form>
-      </div>
-    </div>
+    <>
+      {localStorage.getItem('profile') === null ? (
+        <div className=' FeatureContainer_image Home'>
+          <div className='FeatureContainer'>
+            <div className='Home_inputGroup'>
+              <h3>I'm looking for hair stylist in</h3>
+              <form onSubmit={itemSubmitHandler}>
+                <input
+                  type='search'
+                  className='Home_input'
+                  value={city}
+                  onChange={handleChange}
+                  autoFocus
+                />
+              </form>
+            </div>
+          </div>
+        </div>
+      ) : (
+        <div className=' FeatureContainer_image LoggedIn'>
+          <div className='FeatureContainer'>
+            <div className='Home_inputGroup'>
+              <h3>I'm looking for hair stylist in</h3>
+              <form onSubmit={itemSubmitHandler}>
+                <input
+                  type='search'
+                  className='Home_input'
+                  value={city}
+                  onChange={handleChange}
+                  autoFocus
+                />
+              </form>
+            </div>
+          </div>
+        </div>
+      )}
+    </>
   )
 }
-
-export default Home

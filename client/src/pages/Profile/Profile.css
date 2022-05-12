@@ -1,0 +1,61 @@
+.FeatureContainer_image.User {
+  background-image: url('../../assets/images/hairwhite.jpg');
+}
+
+.FeatureContainer_image.EditUser {
+  background-image: url('../../assets/images/hairgreysm.jpg');
+}
+
+.FeatureContainer_image.Owner {
+  background-image: url('../../assets/images/hairgreysm.jpg');
+}
+
+.Profile_user {
+  text-align: center;
+  grid-column: 5/11;
+  margin-top: 125px;
+}
+
+.Profile_name h1 {
+  text-align: center;
+}
+img.user-pix-placeholder {
+  width: 35%;
+
+  margin-top: -20px;
+}
+.user-reviews-placeholder {
+  margin-top: 100px;
+  font-size: 1.6rem;
+}
+.user-foto {
+  z-index: 100;
+  position: absolute;
+  left: 45%;
+}
+.Profile-UserContainer {
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  padding: 45px;
+  height: 58vh;
+  background-image: url('../../assets/images/hairwhitebg.jpg');
+  position: relative;
+}
+.Profile-UserContainer_reviews {
+  border-top: 1px solid #f32dc8;
+  border-bottom: 1px solid #f32dc8;
+  margin-top: 20px;
+}
+
+.Profile-UserContainer_reviews.business {
+  margin-top: 0;
+}
+.Profile-UserContainer_reviews h4 {
+  font-weight: 500;
+  padding: 10px;
+  margin: 0;
+}
+.Profile_links {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}

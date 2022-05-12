@@ -64,10 +64,8 @@ const businessSchema = new Schema({
   stars: Number,
   phone: String,
   ownerId: String,
-})
+}).plugin(uniqueValidator);
 
-businessSchema.plugin(uniqueValidator)
 
-const Business = mongoose.model('Business', businessSchema)
+export const Business = mongoose.model("Business", businessSchema);
 
-export default Business

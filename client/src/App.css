@@ -7,13 +7,15 @@
   box-sizing: border-box;
   /* margin: 0; // TODO:? => Consider Adding */
 }
-
+:root {
+  font-size: 62.5%;
+}
 body {
   margin: 0;
   padding: 0;
   overscroll-behavior: none;
+  font-size: 1.6rem;
 }
-
 /*
   Avoid text overflows
 */
@@ -27,71 +29,48 @@ h6 {
   overflow-wrap: break-word;
 }
 
-.container {
-  display: flex;
-  height: 100vh;
-  width: 100%;
-  flex-direction: column;
+.AppContainer {
   font-family: 'Roboto', sans-serif;
   font-style: normal;
-
-  /* TODO- [ ✅ ] FIXED Removed because it prevented children components' page scroll
-         - UPDATE: Added back to allow for a single place to fix position for all components and within the component a nested scroll-behavior was added.
-  */
   position: fixed;
-}
-.navbar {
-  display: flex;
-  height: 10vh;
+  height: 100vh;
   width: 100%;
-  justify-content: space-around;
-  border-bottom: 0.5px solid black;
-  background-color: inherit;
-  /* background: url(./assets/images/pinkcrop1.jpg); */
-  /** Removed to allow for overall repositioning of the parent container layout with the navbar and other internal sibling components, i.e. <BusinessList/> or <AddBusiness/> */
-  /* position: fixed; */
-  /* border-bottom: 10px solid grey; */
-  /* height: 100px; */
-  /* top: 0; */
-  z-index: 10;
+  display: flex;
+}
+.FeatureContainer_image {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: bottom center;
+  width: 100%;
+}
+.FeatureContainer {
+  display: grid;
+  grid-template-columns: repeat(14, 1fr);
+  grid-column-gap: 35px;
+  height: 100vh;
+  width: 100vw;
+  max-width: 1206px;
+  margin-right: auto;
+  margin-left: auto;
 }
 
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-li {
-  display: inline-block;
-  margin: 0 40px;
-}
-a {
-  text-decoration: none;
-  color: black;
-}
-a:hover {
-  font-weight: 400;
-}
-a.active {
-  font-weight: 400;
-}
 h1 {
-  font-size: 36px;
+  font-size: 3.6rem;
   font-weight: 100;
 }
 h3 {
-  font-size: 24px;
+  font-size: 2.4rem;
   font-weight: 300;
 }
 h4 {
-  font-size: 18px;
+  font-size: 1.8rem;
   font-weight: 300;
-  padding-top: 10px;
 }
 h5 {
-  font-size: 16px;
+  font-size: 1.4rem;
   line-height: 19px;
   font-weight: 300;
+  margin: 20px 0 15px 0;
 }
 
 .btn--btn-primary {
@@ -102,11 +81,68 @@ h5 {
   border: 1px solid #f32dc8;
   color: white;
   text-align: center;
-  font-size: 16px;
-  font-weight: 400;
+  font-size: 1.5rem;
+  font-weight: 300;
+  padding-top: 10px;
+  margin: 0 15px;
+  cursor: pointer;
+}
+.btn--btn-primary.twoLines {
+  padding-top: 5px;
+  line-height: 1;
+}
+a {
+  text-decoration: none;
 }
 p {
-  font-size: 14px;
+  font-size: 1.4rem;
   line-height: 17px;
   font-weight: 400;
 }
+
+/* ///////media queries ////////// */
+
+@media screen and (max-width: 575px) {
+  .FeatureContainer {
+    display: block;
+    width: 80%;
+  }
+}
+
+@media screen and (max-height: 850px) and (max-width: 450px) {
+  .FeatureContainer {
+    overflow: hidden;
+  }
+}
+
+
+
+
+/* .container {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  flex-direction: column;
+  font-family: 'Roboto', sans-serif;
+  font-style: normal;
+
+  TODO- [ ✅ ] FIXED Removed because it prevented children components' page scroll
+         - UPDATE: Added back to allow for a single place to fix position for all components and within the component a nested scroll-behavior was added.
+ 
+  position: fixed;
+}
+.navbar {
+  display: flex;
+  height: 10vh;
+  width: 100%;
+  justify-content: space-around;
+  border-bottom: 0.5px solid black;
+  background-color: inherit;
+  background: url(./assets/images/pinkcrop1.jpg);
+   Removed to allow for overall repositioning of the parent container layout with the navbar and other internal sibling components, i.e. <BusinessList/> or <AddBusiness/>
+  position: fixed;
+  border-bottom: 10px solid grey;
+  height: 100px;
+  top: 0;
+  z-index: 10;
+} */

@@ -34,20 +34,48 @@
 /* z-index: 1; */
 /* width: 100%; */
 /* } */
-.input-group {
+
+/* .input-group {
   text-align: center;
   margin-top: 200px;
   grid-column: 6/11;
 }
 .input-group input {
-  height: 36px;
+  height: 36px;} */
+
+.FeatureContainer_image.Home {
+  background-image: url('../../assets/images/hairpink.jpg');
+}
+.FeatureContainer_image.LoggedIn {
+  background-image: url('../../assets/images/hairlavender.jpg');
+}
+.Home_inputGroup {
+  text-align: center;
+  margin-top: 300px;
+  grid-column: 6/10;
+}
+.Home_input {
+  height: 30px;
   width: 80%;
   background: none;
   border: 0.5px solid black;
   margin-top: -40px;
   text-align: center;
+  font-size: 1.6em;
+  font-weight: 100;
 }
 
-.input-group input:focus {
+.Home_input:focus {
   outline: none;
+}
+
+/* ///////media queries ////////// */
+
+@media screen and (max-width: 575px) {
+  .FeatureContainer_image.Home {
+    background-image: url('../../assets/images/hairpink-mobile.jpg');
+  }
+  .FeatureContainer_image.LoggedIn {
+    background-image: url('../../assets/images/hairlavender-mobile.jpg');
+  }
 }

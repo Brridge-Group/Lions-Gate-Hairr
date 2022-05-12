@@ -1,16 +1,18 @@
-import Router from "express";
+import Router from 'express'
 
-const router = Router();
+const router = Router()
 
-let userController = require("../controllers/user-controller");
+let userController = require('../controllers/user-controller')
 
 // @route POST /api/user/register
 // @desc Register User
 // @access Public
-router.post("/signup", userController.signup);
+router.post('/signup', userController.signup)
 
-router.post("/signin", userController.signin);
+router.post('/signin', userController.signin)
 
 router.get('/get-profile', userController.getProfileById)
 
-export default router;
+router.post('/:id', userController.updateUser)
+
+export default router

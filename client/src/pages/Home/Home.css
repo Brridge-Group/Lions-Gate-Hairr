@@ -1,24 +1,3 @@
-.home {
-  display: grid;
-  grid-template-columns: repeat(15, 1fr);
-  background-size: cover;
-  background-repeat: no-repeat;
-  grid-column: 1 / span-1;
-  background-position: bottom center;
-  grid-column-gap: 20px;
-  height: 100vh;
-  width: 100%;
-  /* max-width: 1206;  */
-  /*TODO-FIXME: Above is not displaing to the page?  */
-  /* margin-top: -10vh; Adds overlap styles to navbar */
-  margin-right: auto;
-  margin-left: auto;
-}
-
-/*
-.input-group input {
-  height: 36px;} */
-
 .FeatureContainer_image.Home {
   background-image: url('../../assets/images/hairpink.jpg');
 }

@@ -5,7 +5,6 @@
 *::before,
 *::after {
   box-sizing: border-box;
-  /* margin: 0; // TODO:? => Consider Adding */
 }
 :root {
   font-size: 62.5%;
@@ -28,23 +27,6 @@ h5,
 h6 {
   overflow-wrap: break-word;
 }
-
-/* 
- .container {
-  display: flex;
-  height: 100vh;
-  width: 100%;
-  flex-direction: column;
-  font-family: 'Roboto', sans-serif;
-  font-style: normal;
-
-  TODO- [ ✅ ] FIXED Removed because it prevented children components' page scroll
-         - UPDATE: Added back to allow for a single place to fix position for all components and within the component a nested scroll-behavior was added.
- 
-  position: fixed;
-}
-
-*/
 
 .AppContainer {
   display: flex;
@@ -132,20 +114,3 @@ p {
     overflow: hidden;
   }
 }
-
-/*
-.navbar {
-  display: flex;
-  height: 10vh;
-  width: 100%;
-  justify-content: space-around;
-  border-bottom: 0.5px solid black;
-  background-color: inherit;
-  background: url(./assets/images/pinkcrop1.jpg);
-   Removed to allow for overall repositioning of the parent container layout with the navbar and other internal sibling components, i.e. <BusinessList/> or <AddBusiness/>
-  position: fixed;
-  border-bottom: 10px solid grey;
-  height: 100px;
-  top: 0;
-  z-index: 10;
-} */

@@ -4,7 +4,6 @@
   height: 100vh;
   align-items: center;
   justify-content: center;
-  /* margin-top: -10vh; Adds overlap styles to navbar */
   background-size: 100% 100%;
   background-repeat: no-repeat;
   background-position: bottom center;
@@ -23,18 +22,12 @@
   color: black;
 }
 .AddBusiness-FormCard {
-  /* margin-top: 14vh; */
-  /* margin-top: 8.7008rem;   */
-   margin-top: 1.36rem;
+  margin-top: 1.36rem;
 }
 .AddBusiness-FormCard_body {
   display: flex;
   flex-direction: column;
-  /* width: 25rem; */
-  /* width: 24.5rem; */
-  /* width: 27.45rem; */
   width: 38.6rem;
-  /* margin-right: 21px; */
   margin-right: 0px;
   margin-left: 9.7008rem;
   font-weight: 300;
@@ -43,7 +36,6 @@
 textarea,
 select {
   height: 3.6rem;
-  /* width: 80%; */
   background: none;
   border: 0.5px solid black;
   margin-bottom: 1.5008rem;
@@ -57,27 +49,19 @@ textarea::placeholder {
 .AddBusiness-FormCard_body_columns {
   display: flex;
   justify-content: space-between;
-  /* width: 24.5rem; */
-  /* width: 27.52rem; */
   width: 38.532rem;
 }
 .AddBusiness-FormCard_body_left {
-  /* width: 11.25rem; */
-  /* width: 12.6rem; */
-  /* width: 10rem; */
   width: 17.5008rem;
 }
 .AddBusiness-FormCard_body_right {
-  /* width: 11.25rem; */
-  /* width: 12.6rem; */
-  /* width: 10rem; */
   width: 17.5008rem;
 }
 .AddBusiness-FormCard_sidebar {
   display: flex;
   flex-direction: column;
   /* width: 13.5rem; */
-    width: 17.6rem;
+  width: 17.6rem;
   margin-top: 1.92rem;
   margin-left: 2.2rem;
 }
@@ -86,10 +70,6 @@ textarea::placeholder {
   flex-direction: column;
   height: 41.3008rem;
   width: 17.6rem;
-  /* margin-left: 1.938rem; */
-  /* margin-left: 3.938rem; */
-  /* margin-left: 2.2rem; */
-  /* padding: 1.5rem 0rem 2rem 0rem; */
   padding-top: 2.2rem;
   border: 0.25px solid rgba(0, 0, 0, 1);
 }
@@ -101,7 +81,6 @@ textarea::placeholder {
 }
 .AddBusiness-FormCard_filtersContainer_formGroup {
   max-height: 35%;
-  /* max-height: 6.488; */
   margin: 12px;
   overflow: scroll;
 }
@@ -124,8 +103,6 @@ textarea::placeholder {
 .AddBusiness-FormCard_sidebar_btn {
   width: 116px;
   height: 42px;
-  /* margin: 2rem 0 0 3.938rem; */
-  /* margin: 2rem 0 0 1.938rem; */
   background: black;
   border-radius: 10px;
   border: 1px solid #f32dc8;

@@ -4,16 +4,18 @@
   height: 100vh;
   align-items: center;
   justify-content: center;
-  margin-top: -10vh; /* Adds overlap styles to navbar */
+  /* margin-top: -10vh; Adds overlap styles to navbar */
   background-size: 100% 100%;
   background-repeat: no-repeat;
   background-position: bottom center;
-  background-image: url(../../assets//images/hairpink.jpg);
+  background-image: url(../../assets//images/hairlavender.jpg);
 }
 .AddBusiness-Wrapper form {
   display: flex;
 }
-.AddBusiness-Wrapper .AddBusiness-FormCard_body .AddBusiness-FormCard_body_formGroup {
+.AddBusiness-Wrapper
+  .AddBusiness-FormCard_body
+  .AddBusiness-FormCard_body_formGroup {
   display: flex;
   flex-direction: column;
   text-align: center;
@@ -22,27 +24,29 @@
 }
 .AddBusiness-FormCard {
   /* margin-top: 14vh; */
-  margin-top: 5.438rem;
+  /* margin-top: 8.7008rem;   */
+   margin-top: 1.36rem;
 }
 .AddBusiness-FormCard_body {
   display: flex;
   flex-direction: column;
   /* width: 25rem; */
   /* width: 24.5rem; */
-  width: 27.45rem;
+  /* width: 27.45rem; */
+  width: 38.6rem;
   /* margin-right: 21px; */
   margin-right: 0px;
-  margin-left: 97px;
+  margin-left: 9.7008rem;
   font-weight: 300;
 }
 .AddBusiness-FormCard_body input,
 textarea,
 select {
-  height: 36px;
+  height: 3.6rem;
   /* width: 80%; */
   background: none;
   border: 0.5px solid black;
-  margin-bottom: 15px;
+  margin-bottom: 1.5008rem;
   text-align: center;
 }
 .AddBusiness-FormCard_body input::placeholder,
@@ -54,33 +58,39 @@ textarea::placeholder {
   display: flex;
   justify-content: space-between;
   /* width: 24.5rem; */
-  width: 27.52rem;
+  /* width: 27.52rem; */
+  width: 38.532rem;
 }
 .AddBusiness-FormCard_body_left {
-  width: 11.25rem;
-  width: 12.6rem;
+  /* width: 11.25rem; */
+  /* width: 12.6rem; */
   /* width: 10rem; */
+  width: 17.5008rem;
 }
 .AddBusiness-FormCard_body_right {
-  width: 11.25rem;
-  width: 12.6rem;
+  /* width: 11.25rem; */
+  /* width: 12.6rem; */
   /* width: 10rem; */
+  width: 17.5008rem;
 }
 .AddBusiness-FormCard_sidebar {
   display: flex;
   flex-direction: column;
-  width: 13.5rem;
-  margin-top: 1.15rem;
+  /* width: 13.5rem; */
+    width: 17.6rem;
+  margin-top: 1.92rem;
+  margin-left: 2.2rem;
 }
 .AddBusiness-FormCard_filtersContainer {
   display: flex;
   flex-direction: column;
-  height: 25.813rem;
-  width: 11rem;
+  height: 41.3008rem;
+  width: 17.6rem;
   /* margin-left: 1.938rem; */
   /* margin-left: 3.938rem; */
-  margin-left: 2.2rem;
-  padding: 1.5rem 0rem 2rem 0rem;
+  /* margin-left: 2.2rem; */
+  /* padding: 1.5rem 0rem 2rem 0rem; */
+  padding-top: 2.2rem;
   border: 0.25px solid rgba(0, 0, 0, 1);
 }
 .AddBusiness-FormCard_filtersContainer_labelHeader {
@@ -90,13 +100,13 @@ textarea::placeholder {
   font-weight: 500;
 }
 .AddBusiness-FormCard_filtersContainer_formGroup {
-  /* height: 103.81px; */
   max-height: 35%;
+  /* max-height: 6.488; */
   margin: 12px;
   overflow: scroll;
 }
 .AddBusiness-FormCard_filtersContainer_labelHeader_services {
-  margin-top: 1rem;
+  margin-top: 3.45rem;
 }
 .AddBusiness-FormCard_filtersContainer_formCheck {
   margin-bottom: 0.608rem;
@@ -108,12 +118,14 @@ textarea::placeholder {
 .AddBusiness-FormCard_sidebar_footer {
   display: flex;
   justify-content: center;
+  align-items: flex-end;
+  height: 7.18rem;
 }
 .AddBusiness-FormCard_sidebar_btn {
   width: 116px;
   height: 42px;
   /* margin: 2rem 0 0 3.938rem; */
-  margin: 2rem 0 0 1.938rem;
+  /* margin: 2rem 0 0 1.938rem; */
   background: black;
   border-radius: 10px;
   border: 1px solid #f32dc8;

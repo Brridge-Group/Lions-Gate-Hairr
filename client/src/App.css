@@ -29,13 +29,31 @@ h6 {
   overflow-wrap: break-word;
 }
 
-.AppContainer {
+/* 
+ .container {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  flex-direction: column;
   font-family: 'Roboto', sans-serif;
   font-style: normal;
+
+  TODO- [ ✅ ] FIXED Removed because it prevented children components' page scroll
+         - UPDATE: Added back to allow for a single place to fix position for all components and within the component a nested scroll-behavior was added.
+ 
+  position: fixed;
+}
+
+*/
+
+.AppContainer {
+  display: flex;
   position: fixed;
   height: 100vh;
   width: 100%;
-  display: flex;
+  flex-direction: column;
+  font-family: 'Roboto', sans-serif;
+  font-style: normal;
 }
 .FeatureContainer_image {
   background-size: cover;
@@ -115,22 +133,7 @@ p {
   }
 }
 
-
-
-
-/* .container {
-  display: flex;
-  height: 100vh;
-  width: 100%;
-  flex-direction: column;
-  font-family: 'Roboto', sans-serif;
-  font-style: normal;
-
-  TODO- [ ✅ ] FIXED Removed because it prevented children components' page scroll
-         - UPDATE: Added back to allow for a single place to fix position for all components and within the component a nested scroll-behavior was added.
- 
-  position: fixed;
-}
+/*
 .navbar {
   display: flex;
   height: 10vh;

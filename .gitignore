@@ -11,6 +11,7 @@ package-lock.json
 /dist
 
 # misc
+.vscode
 .prettierrc.json
 .DS_Store
 .env.local

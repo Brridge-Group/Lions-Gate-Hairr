@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import { useHistory } from 'react-router-dom'
 
 // Custom Imports
-import ContentHeader from '../../components/ContentHeader'
+// import ContentHeader from '../../components/ContentHeader'
 import { regions } from '../../constants/regions'
 
 // 3rd Party Custom Imports
@@ -18,12 +18,14 @@ export const AddBusiness = () => {
   const [services, setServices]: any = useState([]) // Services full object
   const [featuresArr, setFeaturesArr]: any = useState([])
   const [servicesArr, setServicesArr]: any = useState([])
+
   // Initialize state objects for form checkboxes
   const [isChecked, setIsChecked]: any = useState(false)
   const [isFeatsChecked, setIsFeatsChecked]: any = useState([])
   const [isServicesChecked, setIsServicesChecked]: any = useState([])
   const [loading, setLoading] = useState(true)
 
+  // Fetch Services and Features from Database API Endpoint
   useEffect(() => {
     const fetchFeaturesData = async () => {
       try {
@@ -73,7 +75,6 @@ export const AddBusiness = () => {
   // console.log(servicesArr)
   // console.log(featuresArr)
 
-  //* TODO: Check form Inputs before commit then PR
   const [formData, setFormData]: any = useState({
     businessName: '',
     description: '',
@@ -92,8 +93,58 @@ export const AddBusiness = () => {
     ._id
 
   const handleChange = (e: any) => {
+    const value = e.target.type === 'checkbox' ? e.target.checked : e.target.value
+
+    // Evaluate to determine if checkbox is checked and if is it a service or feature
+    if (e.target.type === 'checkbox') {
+      setIsChecked({
+        ...isChecked,
+        [e.target.name]: value,
+      })
+
+      if (e.target.name.includes('service')) {
+        setIsServicesChecked({
+          ...isServicesChecked,
+          [e.target.id]: value,
+        })
+      }
+
+      if (e.target.name.includes('feature')) {
+        setIsFeatsChecked({
+          ...isFeatsChecked,
+          [e.target.id]: value,
+        })
+      }
+    }
+    console.log(value)
+
     setFormData({ ...formData, [e.target.name]: e.target.value })
   }
+
+  // Save to the businesses collection database all features and services set to true.
+  let savedFormFeats = Object.entries(isFeatsChecked)
+    .map(key => {
+      if (key[1] === true) {
+        return [key[0]]
+      }
+    })
+    .filter(el => {
+      if (el !== undefined) {
+      }
+      return el
+    })
+
+  let savedFormServices = Object.entries(isServicesChecked)
+    .map(key => {
+      if (key[1] === true) {
+        return [key[0]]
+      }
+    })
+    .filter(el => {
+      if (el !== undefined) {
+      }
+      return el
+    })
 
   const handleRegion = (e: any) => {
     setRegion(e.target.value)
@@ -102,17 +153,8 @@ export const AddBusiness = () => {
   const handleCountry = (e: any) => {
     setCountry(e.target.value)
   }
-  const onFormChange = (event: any) => {
-    const value =
-      event.target.type === 'checkbox'
-        ? event.target.checked
-        : event.target.value
-  }
 
-  const handleSubmit = (e: any) => {
-    e.preventDefault()
-  }
-
+  // Initialize business profile form state object
   const data = {
     businessName: formData.businessName,
     description: formData.description,
@@ -134,15 +176,29 @@ export const AddBusiness = () => {
     ownerId: ownerId
   }
 
-  axios
-    .post('http://localhost:5000/api/businesses/add-business', data)
-    .then(response => {
-      // console.log(response.data)
-      history.push('/')
-    })
-    .catch(error => {
-      console.log(error)
-    })
+  const saveNewBusiness = () => {
+    // Add FeaturesArray and ServicesArray to data business form state object
+    let newBusiness = {
+      ...data,
+      features: savedFormFeats,
+      services: savedFormServices,
+    }
+
+    axios
+      .post('http://localhost:5000/api/businesses/add-business', newBusiness)
+      .then(response => {
+        console.log(response.data)
+        history.push('/')
+      })
+      .catch(error => {
+        console.log(error)
+      })
+  }
+
+  const handleSubmit = (e: any) => {
+    e.preventDefault()
+    saveNewBusiness()
+  }
 
   return (
     <React.Fragment>
@@ -307,10 +363,7 @@ export const AddBusiness = () => {
             </div>
             <div className='AddBusiness-FormCard_sidebar'>
               <div className='AddBusiness-FormCard_filtersContainer'>
-                <label
-                  className=' AddBusiness-FormCard_filtersContainer_labelHeader'
-                  htmlFor='features'
-                >
+                <label className=' AddBusiness-FormCard_filtersContainer_labelHeader' htmlFor='features'>
                   Features
                 </label>
                 <div className='AddBusiness-FormCard_filtersContainer_formGroup'>
@@ -326,7 +379,7 @@ export const AddBusiness = () => {
                         name={`feature-${feature[0]}`}
                         id={feature[1]}
                         defaultChecked={feature[2]}
-                        onChange={onFormChange}
+                        onChange={handleChange}
                       />
                       <label
                         className='AddBusiness-FormCard_filtersContainer_formCheckLabel'
@@ -337,10 +390,7 @@ export const AddBusiness = () => {
                     </div>
                   ))}
                 </div>
-                <label
-                  className=' AddBusiness-FormCard_filtersContainer_labelHeader  AddBusiness-FormCard_filtersContainer_labelHeader_services'
-                  htmlFor='services'
-                >
+                <label className=' AddBusiness-FormCard_filtersContainer_labelHeader  AddBusiness-FormCard_filtersContainer_labelHeader_services' htmlFor='services'>
                   Services
                 </label>
                 <div className='AddBusiness-FormCard_filtersContainer_formGroup'>
@@ -356,7 +406,7 @@ export const AddBusiness = () => {
                         name={`service-${service[0]}`}
                         id={service[1]}
                         defaultChecked={service[2]}
-                        onChange={onFormChange}
+                        onChange={handleChange}
                       />
                       <label
                         className='AddBusiness-FormCard_filtersContainer_formCheckLabel'

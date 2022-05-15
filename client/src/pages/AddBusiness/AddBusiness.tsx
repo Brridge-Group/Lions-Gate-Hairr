@@ -152,6 +152,17 @@ export const AddBusiness = () => {
           <form onSubmit={handleSubmit}>
             <div className='AddBusiness-FormCard_body'>
               <div className='AddBusiness-FormCard_body_formGroup'>
+                <label>Image:</label>
+                <input
+                  name='image'
+                  type='text'
+                  value={formData.image}
+                  className='AddBusiness-FormControl'
+                  placeholder='Enter the image link'
+                  onChange={handleChange}
+                />
+              </div>
+              <div className='AddBusiness-FormCard_body_formGroup'>
                 <label>Business Name</label>
                 <input
                   name='businessName'
@@ -235,7 +246,7 @@ export const AddBusiness = () => {
                       required
                     />
                   </div>
-                  <div className='AddBusiness-FormCard_body_formGroup'>
+                  {/* <div className='AddBusiness-FormCard_body_formGroup'>
                     <label>Country:</label>
                     <select
                       className='custom-select rounded-0'
@@ -244,8 +255,8 @@ export const AddBusiness = () => {
                       <option value='Canada'> Canada </option>
                       <option value='United States'> United States</option>
                     </select>
-                  </div>
-                  <div className='AddBusiness-FormCard_body_formGroup'>
+                  </div> */}
+                  {/* <div className='AddBusiness-FormCard_body_formGroup'>
                     <label>Image:</label>
                     <input
                       name='image'
@@ -255,7 +266,7 @@ export const AddBusiness = () => {
                       placeholder='Enter the image link'
                       onChange={handleChange}
                     />
-                  </div>
+                  </div> */}
                 </div>
                 <div className='AddBusiness-FormCard_body_right'>
                   <div className='AddBusiness-FormCard_body_formGroup'>
@@ -280,6 +291,16 @@ export const AddBusiness = () => {
                       onChange={handleChange}
                       required
                     />
+                  </div>
+                  <div className='AddBusiness-FormCard_body_formGroup'>
+                    <label>Country:</label>
+                    <select
+                      className='custom-select rounded-0'
+                      onChange={handleCountry}
+                    >
+                      <option value='Canada'> Canada </option>
+                      <option value='United States'> United States</option>
+                    </select>
                   </div>
                 </div>
               </div>

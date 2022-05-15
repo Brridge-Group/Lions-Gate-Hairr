@@ -22,24 +22,25 @@
   color: black;
 }
 .AddBusiness-FormCard {
-  margin-top: 1.36rem;
+  margin-top: -8.55rem;
 }
 .AddBusiness-FormCard_body {
   display: flex;
   flex-direction: column;
+  height: 42.35rem;
   width: 38.6rem;
-  margin-right: 0px;
   margin-left: 9.7008rem;
+  overflow: scroll;
   font-weight: 300;
 }
 .AddBusiness-FormCard_body input,
 textarea,
 select {
   height: 3.6rem;
-  background: none;
-  border: 0.5px solid black;
-  margin-bottom: 1.5008rem;
   text-align: center;
+  margin-bottom: 1.5008rem;
+  border: 0.5px solid black;
+  background: none;
 }
 .AddBusiness-FormCard_body input::placeholder,
 textarea::placeholder {
@@ -60,10 +61,9 @@ textarea::placeholder {
 .AddBusiness-FormCard_sidebar {
   display: flex;
   flex-direction: column;
-  /* width: 13.5rem; */
   width: 17.6rem;
-  margin-top: 1.92rem;
   margin-left: 2.2rem;
+  padding-top: 2.063rem;
 }
 .AddBusiness-FormCard_filtersContainer {
   display: flex;
@@ -91,21 +91,21 @@ textarea::placeholder {
   margin-bottom: 0.608rem;
 }
 .AddBusiness-FormCard_filtersContainer_formCheckLabel {
-  font-weight: 300;
   margin-bottom: 0.608rem;
+  font-weight: 300;
 }
 .AddBusiness-FormCard_sidebar_footer {
   display: flex;
   justify-content: center;
-  align-items: flex-end;
   height: 7.18rem;
+  align-items: flex-end;
 }
 .AddBusiness-FormCard_sidebar_btn {
   width: 116px;
   height: 42px;
+  text-align: center;
   background: black;
   border-radius: 10px;
   border: 1px solid #f32dc8;
   color: white;
-  text-align: center;
 }

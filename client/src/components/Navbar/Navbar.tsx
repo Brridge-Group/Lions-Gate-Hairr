@@ -36,7 +36,7 @@ export const Navbar = () => {
     //export to tell home component user is false
     history.push('export', {
       pathname: '/',
-      state: { user: 'false' },
+      state: { user: 'false' }
     })
   }
 
@@ -66,19 +66,20 @@ export const Navbar = () => {
       <ul className='NavbarList menu'>
         <h4>
           <li className='NavbarList_link'>
-            <NavLink to='/' exact={true} activeStyle={{ fontWeight: '400' }}>
+            <NavLink to='/' exact={true} activeStyle={{ fontWeight: 400 }}>
               Home
             </NavLink>
+            Recurring
           </li>
           {!user ? (
             <>
               <li className='NavbarList_link'>
-                <NavLink to='/user-signup' activeStyle={{ fontWeight: '400' }}>
+                <NavLink to='/user-signup' activeStyle={{ fontWeight: 400 }}>
                   Sign Up
                 </NavLink>
               </li>
               <li className='NavbarList_link'>
-                <NavLink to='/user-signin' activeStyle={{ fontWeight: '400' }}>
+                <NavLink to='/user-signin' activeStyle={{ fontWeight: 400 }}>
                   Sign In
                 </NavLink>
               </li>
@@ -86,7 +87,7 @@ export const Navbar = () => {
           ) : (
             <>
               <li className='NavbarList_link'>
-                <NavLink to='/profile' activeStyle={{ fontWeight: '400' }}>
+                <NavLink to='/profile' activeStyle={{ fontWeight: 400 }}>
                   Profile
                 </NavLink>
               </li>

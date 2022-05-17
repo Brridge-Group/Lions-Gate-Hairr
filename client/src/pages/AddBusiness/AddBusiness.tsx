@@ -1,6 +1,6 @@
 // React Components
 import React, { useEffect, useState } from 'react'
-import { useHistory, Link } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import { toast } from 'react-toastify'
 
 // Custom Imports
@@ -14,7 +14,6 @@ import Button from '@material-ui/core/Button'
 import './AddBusiness.css'
 
 export const AddBusiness = () => {
-  const [imageUrl, setImageUrl]: any = useState(null)
   const [loading, setLoading] = useState(true)
 
   // Initialize  Services and Features to state
@@ -112,8 +111,6 @@ export const AddBusiness = () => {
             }
             reader.readAsDataURL(file)
           })) as string
-          // setImageUrl({ [e.target.name]: base64 })
-          // setFormData({ ...formData })
           setFormData({ ...formData, [e.target.name]: base64 })
         }
       } else {

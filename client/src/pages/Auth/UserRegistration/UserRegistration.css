@@ -1,0 +1,94 @@
+.FeatureContainer_image.Profile {
+  background-image: url('../../../assets/images/hairgreysm.jpg');
+  margin-bottom: -10px;
+}
+
+.UserRegistration_inputGroup {
+  text-align: center;
+  margin-top: 125px;
+  grid-column: 6/10;
+  display: flex;
+  flex-direction: column;
+}
+
+.UserRegistration_form h5 {
+  line-height: normal;
+  margin: 20px 0 15px 0;
+}
+
+.UserRegistration_input {
+  height: 32px;
+  width: 100%;
+  background: none;
+  border: 0.5px solid black;
+  margin-top: -40px;
+  text-align: center;
+  margin-bottom: -5px;
+}
+.UserRegistration_radioButtons {
+  display: flex;
+  width: fit-content;
+  margin: auto;
+}
+.UserRegistration_radioButtons input {
+  background: none;
+  margin-top: 0;
+  margin-right: 10px;
+}
+.UserRegistration_radio {
+  display: flex;
+  align-items: center;
+  margin-right: 20px !important;
+  margin-left: 20px !important;
+}
+
+.UserRegistration_submit {
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin-top: -5px;
+}
+
+input[name='role'] {
+  accent-color: black;
+}
+textarea:focus,
+input:focus {
+  outline: none;
+}
+
+.MuiInput-underline:before {
+  border-bottom: none !important;
+  text-align: center;
+}
+
+.MuiInput-underline:after {
+  border-bottom: none !important;
+}
+
+.MuiInputBase-input {
+  text-align: center;
+  font-size: 1.3rem !important;
+}
+/* ///////media queries ////////// */
+
+@media screen and (max-width: 990px) {
+  .UserRegistration_inputGroup {
+    grid-column: 5/11;
+  }
+}
+@media screen and (max-width: 575px) {
+  .FeatureContainer_image.Profile {
+    background-image: url('../../../assets/images/hairgrey-mobile.jpg');
+  }
+}
+
+@media screen and (max-height: 850px) and (max-width: 450px) {
+  .UserRegistration_inputGroup {
+    overflow: scroll;
+    height: 65%;
+  }
+  .UserRegistration_inputGroup::-webkit-scrollbar {
+    display: none;
+  }
+}

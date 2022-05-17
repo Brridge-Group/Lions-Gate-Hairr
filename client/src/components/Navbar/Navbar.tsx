@@ -4,15 +4,22 @@ import { useDispatch } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import decode from 'jwt-decode'
 import axios from 'axios'
+import { MenuButton } from './MenuButton'
+import './Navbar.css'
 
 export const Navbar = () => {
   const location = useLocation()
-  const history = useHistory()
+  const history: any = useHistory()
   const dispatch = useDispatch()
   const [user, setUser] = useState(
     JSON.parse(localStorage.getItem('profile') ?? 'false')
   )
   const [role, setRole] = useState()
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen)
+  }
 
   useEffect(() => {
     const token = user?.token
@@ -26,9 +33,13 @@ export const Navbar = () => {
 
   const logout = () => {
     dispatch({ type: 'LOGOUT' })
-    history.push('/user-signin')
-    setUser('false')
+    //export to tell home component user is false
+    history.push('export', {
+      pathname: '/',
+      state: { user: 'false' },
+    })
   }
+
   if (user) {
     const fetchData = async () => {
       await axios
@@ -48,7 +59,11 @@ export const Navbar = () => {
   return (
     <nav className='Navbar'>
       <h4 className='Navbar_logo'>LOGO</h4>
-      <ul className='NavbarList'>
+      <input type='checkbox' id='chk' />
+      <label htmlFor='chk' className='show-menu-btn' onClick={toggleMenu}>
+        <MenuButton isOpen={isMenuOpen} />
+      </label>
+      <ul className='NavbarList menu'>
         <h4>
           <li className='NavbarList_link'>
             <NavLink to='/' exact={true} activeStyle={{ fontWeight: '400' }}>
@@ -71,13 +86,15 @@ export const Navbar = () => {
           ) : (
             <>
               <li className='NavbarList_link'>
-                <NavLink to='profile' activeStyle={{ fontWeight: '400' }}>
+                <NavLink to='/profile' activeStyle={{ fontWeight: '400' }}>
                   Profile
                 </NavLink>
               </li>
-              <NavLink to='#' onClick={logout}>
-                Log Out
-              </NavLink>
+              <li className='NavbarList_link '>
+                <NavLink to='/' onClick={logout}>
+                  Log Out
+                </NavLink>
+              </li>
             </>
           )}
         </h4>

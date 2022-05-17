@@ -69,7 +69,6 @@ export const Navbar = () => {
             <NavLink to='/' exact={true} activeStyle={{ fontWeight: 400 }}>
               Home
             </NavLink>
-            Recurring
           </li>
           {!user ? (
             <>

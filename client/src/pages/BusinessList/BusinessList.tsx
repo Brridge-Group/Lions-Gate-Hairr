@@ -156,7 +156,16 @@ export const BusinessList: React.FC = () => {
 
   if (loading) {
     return (
-      <div className='BusinessList-Wrapper'>
+      <div
+        className='BusinessList-Wrapper'
+        style={{
+          display: 'flex',
+          justifyContent: 'center',
+          height: '100vh',
+          width: '100%',
+          placeItems: 'center'
+        }}
+      >
         <div className='BusinessList-Wrapper_loader'>
           <LoadSpinner />
         </div>
@@ -166,7 +175,16 @@ export const BusinessList: React.FC = () => {
 
   if (list.length === 0) {
     return (
-      <div className='BusinessList-Wrapper' style={{ display: 'flex', justifyContent: 'center', height: '100vh', placeItems: 'center' }}>
+      <div
+        className='BusinessList-Wrapper'
+        style={{
+          display: 'flex',
+          justifyContent: 'center',
+          height: '100vh',
+          width: '100%',
+          placeItems: 'center'
+        }}
+      >
         <h2>No businesses found. Please try another city.</h2>
       </div>
     )

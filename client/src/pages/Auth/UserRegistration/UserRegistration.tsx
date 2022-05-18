@@ -22,7 +22,7 @@ toast.configure()
 export const UserRegistration = () => {
   const [userData, setUserData] = useState({
     role: 'user',
-    imageProfile: 'https://imgur.com/LDpwLVZ.jpg',
+    imageProfile: 'https://imgur.com/LDpwLVZ.jpg'
   })
 
   const [errorMsg, setErrorMsg] = useState()
@@ -148,7 +148,8 @@ export const UserRegistration = () => {
                   <InputAdornment position='end'>
                     <IconButton
                       onClick={toggleShow}
-                      onMouseDown={handleMouseDownPassword}>
+                      onMouseDown={handleMouseDownPassword}
+                    >
                       {showPassword ? (
                         <VisibilityRoundedIcon />
                       ) : (
@@ -192,11 +193,12 @@ export const UserRegistration = () => {
               <button type='submit' className='UserRegistration_submit'>
                 <h6 className='btn--btn-primary'>Sign Up</h6>
               </button>
-              <p style={{ fontWeight: '300' }}>
+              <p style={{ fontWeight: 300 }}>
                 Have an account?{' '}
                 <NavLink
                   to='user-signin'
-                  style={{ fontWeight: '500', color: 'black' }}>
+                  style={{ fontWeight: 500, color: 'black' }}
+                >
                   Click Here
                 </NavLink>{' '}
                 to Login.

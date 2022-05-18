@@ -44,7 +44,7 @@ interface Business {
 
 // export const FilterServicesAndFeatures: React.FC<Props> = (props: Props) => {
 // export const ListItems: React.FC = () => {
-export const BusinessList = () => {
+export const BusinessList: React.FC = () => {
   const [list, setList]: any = useState([])
   const [loading, setLoading] = useState(true)
   const history = useHistory()
@@ -156,7 +156,16 @@ export const BusinessList = () => {
 
   if (loading) {
     return (
-      <div className='BusinessList-Wrapper'>
+      <div
+        className='BusinessList-Wrapper'
+        style={{
+          display: 'flex',
+          justifyContent: 'center',
+          height: '100vh',
+          width: '100%',
+          placeItems: 'center'
+        }}
+      >
         <div className='BusinessList-Wrapper_loader'>
           <LoadSpinner />
         </div>
@@ -172,6 +181,7 @@ export const BusinessList = () => {
           display: 'flex',
           justifyContent: 'center',
           height: '100vh',
+          width: '100%',
           placeItems: 'center'
         }}
       >
@@ -185,11 +195,7 @@ export const BusinessList = () => {
           <div className='BusinessList-HeaderContainer'>
             {/* ternary operator 
                   if city is defined, show city name, else show '' */}
-            {city == 'undefined' ? (
-              <h1 className='BusinessList-Header'> All Businesses</h1>
-            ) : (
-              <h1 className='BusinessList-Header'>{city} Businesses</h1>
-            )}
+            {city == 'undefined' ? <h1 className='BusinessList-Header'> All Businesses</h1> : <h1 className='BusinessList-Header'>{city} Businesses</h1>}
           </div>
           <div className='BusinessList-Container'>
             <div className='BusinessList-Filters'>

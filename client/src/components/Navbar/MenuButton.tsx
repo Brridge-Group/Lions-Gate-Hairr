@@ -8,7 +8,7 @@ export const MenuButton = ({ isOpen }) => {
         <div className='line middleLine'></div>
         <div className='line bottomLine'></div>
       </div>
-      <style >{`
+      <style>{`
         .topLine {
           transform: ${isOpen ? 'rotate(45deg)' : 'rotate(0)'};
         }

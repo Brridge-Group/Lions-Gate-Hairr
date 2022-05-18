@@ -7,7 +7,7 @@ import './Login.css'
 
 const initialState = {
   email: '',
-  password: '',
+  password: ''
 }
 
 const Login = () => {
@@ -65,11 +65,12 @@ const Login = () => {
             <button type='submit' className='Login btn--btn-primary'>
               Sign In
             </button>
-            <p style={{ fontWeight: '300' }}>
+            <p style={{ fontWeight: 300 }}>
               Don't have an account?{' '}
               <NavLink
                 to='user-signup'
-                style={{ fontWeight: '500', color: 'black' }}>
+                style={{ fontWeight: 500, color: 'black' }}
+              >
                 Click Here{' '}
               </NavLink>
               to Sign Up

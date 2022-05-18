@@ -255,7 +255,8 @@ export const AddBusiness = () => {
                         color: '#fff',
                         width: '9rem',
                         border: '1px solid #f32dc8',
-                        height: '2.5rem'
+                        height: '2.5rem',
+                        textTransform: 'lowercase'
                       }}
                     >
                       {formData.image === '' ? 'Select Image' : 'Change Image'}

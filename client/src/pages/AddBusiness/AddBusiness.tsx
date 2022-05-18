@@ -272,7 +272,7 @@ export const AddBusiness = () => {
                 </figure>
               </div>
               <div className='AddBusiness-FormCard_body_formGroup'>
-                <label>Business Name</label>
+                <label htmlFor='businessName'>Business Name</label>
                 <input
                   name='businessName'
                   type='text'
@@ -284,7 +284,7 @@ export const AddBusiness = () => {
                 />
               </div>
               <div className='AddBusiness-FormCard_body_formGroup'>
-                <label>Description</label>
+                <label htmlFor='description'>Description</label>
                 <textarea
                   name='description'
                   value={formData.description}
@@ -295,7 +295,7 @@ export const AddBusiness = () => {
                 />
               </div>
               <div className='AddBusiness-FormCard_body_formGroup'>
-                <label>Email</label>
+                <label htmlFor='email'>Email</label>
                 <input
                   name='email'
                   type='email'
@@ -307,7 +307,7 @@ export const AddBusiness = () => {
                 />
               </div>
               <div className='AddBusiness-FormCard_body_formGroup'>
-                <label>Address Line 1</label>
+                <label htmlFor='address1'>Address Line 1</label>
                 <input
                   name='address1'
                   type='text'
@@ -321,7 +321,7 @@ export const AddBusiness = () => {
               <div className='AddBusiness-FormCard_body_columns'>
                 <div className='AddBusiness-FormCard_body_left'>
                   <div className='AddBusiness-FormCard_body_formGroup'>
-                    <label>City / Town</label>
+                    <label htmlFor='cityTown'>City / Town</label>
                     <input
                       name='cityTown'
                       type='text'
@@ -333,10 +333,12 @@ export const AddBusiness = () => {
                     />
                   </div>
                   <div className='AddBusiness-FormCard_body_formGroup'>
-                    <label>Province / State</label>
+                    <label htmlFor='region'>Province / State</label>
                     <select
                       className='custom-select rounded-0'
                       onChange={handleRegion}
+                      name='region'
+                      id='region'
                     >
                       {regions.map(region => (
                         <option value={region.value}>{region.label}</option>
@@ -344,7 +346,7 @@ export const AddBusiness = () => {
                     </select>
                   </div>
                   <div className='AddBusiness-FormCard_body_formGroup'>
-                    <label>Phone Number</label>
+                    <label htmlFor='phone'>Phone Number</label>
                     <input
                       name='phone'
                       type='text'
@@ -358,7 +360,7 @@ export const AddBusiness = () => {
                 </div>
                 <div className='AddBusiness-FormCard_body_right'>
                   <div className='AddBusiness-FormCard_body_formGroup'>
-                    <label>Address Line 2</label>
+                    <label htmlFor='address2'>Address Line 2</label>
                     <input
                       name='address2'
                       type='text'
@@ -369,7 +371,7 @@ export const AddBusiness = () => {
                     />
                   </div>
                   <div className='AddBusiness-FormCard_body_formGroup'>
-                    <label>Postal Code</label>
+                    <label htmlFor=''>Postal Code</label>
                     <input
                       name='postalCode'
                       type='text'
@@ -381,10 +383,12 @@ export const AddBusiness = () => {
                     />
                   </div>
                   <div className='AddBusiness-FormCard_body_formGroup'>
-                    <label>Country:</label>
+                    <label htmlFor='country'>Country:</label>
                     <select
                       className='custom-select rounded-0'
                       onChange={handleCountry}
+                      name='country'
+                      id='country'
                     >
                       <option value='Canada'> Canada </option>
                       <option value='United States'> United States</option>

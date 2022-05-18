@@ -10,7 +10,7 @@
 /dist
 
 # misc
-.vscode
+/.vscode
 .prettierrc.json
 .DS_Store
 .env.local

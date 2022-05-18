@@ -11,7 +11,7 @@ import '../../pages/Profile/Profile.css'
 export const MyBusinessList = () => {
   const [list, setList] = useState<any[]>([])
   const [loading, setLoading] = useState(true)
-  const user = JSON.parse(localStorage.getItem('profile') || '{}').data.result; 
+  const user = JSON.parse(localStorage.getItem('profile') || '{}').result; 
 
   useEffect(() => {
     const fetchData = async () => {

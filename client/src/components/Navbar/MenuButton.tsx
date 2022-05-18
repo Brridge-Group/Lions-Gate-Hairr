@@ -3,12 +3,12 @@ import './MenuButton.css'
 export const MenuButton = ({ isOpen }) => {
   return (
     <>
-      <div class='menu-button'>
+      <div className='menu-button'>
         <div className='line topLine'></div>
         <div className='line middleLine'></div>
         <div className='line bottomLine'></div>
       </div>
-      <style jsx>{`
+      <style >{`
         .topLine {
           transform: ${isOpen ? 'rotate(45deg)' : 'rotate(0)'};
         }

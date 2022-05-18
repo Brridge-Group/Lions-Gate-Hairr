@@ -18,8 +18,7 @@ html .BusinessList {
 .BusinessList-Wrapper_loader {
   display: flex;
   justify-content: center;
-  justify-items: center;
-  margin-top: 4rem;
+  margin-top: -38rem;
 }
 .BusinessList-HeaderContainer {
   justify-content: flex-end;
@@ -27,38 +26,51 @@ html .BusinessList {
   flex-direction: column;
   height: 10.68rem;
   text-align: center;
-  font-size: 1.313rem;
+  /* font-size: 1.313rem; */
 }
 .BusinessList-Header {
-  margin-bottom: 0.5rem;
-  font-size: 1.313rem;
+  /* margin-bottom: 0.5rem; */
+  /* font-size: 1.313rem; */
+  margin-bottom: 0.8rem;
+  font-size: 2.1008rem;
   font-weight: 400;
 }
 .BusinessList-Container {
   display: flex;
-  width: 100%;
+  /* width: 100%; */
+  width: 77.2rem;
   justify-content: center;
 }
 .BusinessList-Filters {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 13rem;
-  height: 38rem;
+  /* width: 13rem; */
+  /* width: 20.8rem; */
+  /* height: 38rem; */
+  height: 60.8rem;
+  /* width: 50.6rem; */
+  width: 18.8rem;
+  /* height: 46.8rem; */
   margin-right: 2.125em;
   padding: 2rem 0 0 0;
   border: 0.25px solid rgba(0, 0, 0, 1);
 }
 .BusinessList-CardContainer {
-  height: 38rem;
-  width: 37.25rem;
+  /* height: 38rem; */
+  height: 60.8rem;
+  /* width: 37.25rem; */
+  /* width: 50.6rem; */
+  width: 59.6rem;
   overflow: scroll;
 }
 .BusinessList-Card {
   width: 100%;
+  height: 30.4rem;
   position: relative;
   padding: 1rem;
-  margin: 0 35px 0 auto !important;
+  /* margin: 0 35px 0 auto !important;
+  margin: 0 0px 0 auto !important; */
   overflow: hidden;
   border-radius: 0px;
   box-shadow: none;

@@ -1,9 +1,13 @@
 .Filters-Container {
   display: flex;
   flex-direction: column;
-  height: 38rem;
+  /* height: 38rem;
   margin: 12px;
-  margin-right: 12px;
+  margin-right: 12px; */
+  height: 60.8rem;
+  /* margin: 1.2rem;
+  margin-right: 1.2rem; */
+  margin: 3.2rem 1.2rem 1.2rem 1.2rem;
 }
 .Filters-Label_header {
   display: flex;
@@ -11,24 +15,36 @@
   font-weight: 500;
 }
 .Filters-Label_header_services {
+  /* margin-top: 1rem; */
   margin-top: 1rem;
 }
 .Filters-FormGroup {
-  max-height: 35%;
+  /* max-height: 35%;
+  margin: 1rem 0 0 0; */
+  max-height: 36%;
+  /* margin: 1rem 0 0 0; */
   overflow: scroll;
-  margin: 1rem 0 0 0;
 }
 .Filters-FormCheck {
+  /* margin: 10px; */
+  /* margin: 1rem; */
+  margin: 1rem 1rem 1rem 0;
   text-transform: capitalize;
-  margin: 10px;
+}
+.Filters-FormCheckInput {
+  /* margin-right: 1rem; */
+  margin: 0 1rem 0 0;
 }
 .Filters-FormCheckLabel {
   font-weight: 300;
 }
 .Filters-Button {
-  width: 116px;
+  /* width: 116px;
   height: 42px;
-  margin: 2rem 0 0 1.55rem;
+  margin: 2rem 0 0 1.55rem; */
+  width: 11.6rem;
+  height: 4.2rem;
+  margin: 5rem 0 0 1.55rem;
   background: black;
   border-radius: 10px;
   border: 1px solid #f32dc8;

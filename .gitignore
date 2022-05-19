@@ -13,7 +13,7 @@
 
 # Misc
 **/.vscode
-**/.vscode/settings.json
+.vscode/settings.json
 .prettierrc.json
 .DS_Store
 
@@ -32,3 +32,4 @@ yarn-debug.log*
 yarn-error.log*
 lerna-debug.log*
 .pnpm-debug.log*
+

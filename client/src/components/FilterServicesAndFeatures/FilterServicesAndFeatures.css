@@ -1,0 +1,37 @@
+.Filters-Container {
+  display: flex;
+  flex-direction: column;
+  height: 38rem;
+  margin: 12px;
+  margin-right: 12px;
+}
+.Filters-Label_header {
+  display: flex;
+  justify-content: center;
+  font-weight: 500;
+}
+.Filters-Label_header_services {
+  margin-top: 1rem;
+}
+.Filters-FormGroup {
+  max-height: 35%;
+  overflow: scroll;
+  margin: 1rem 0 0 0;
+}
+.Filters-FormCheck {
+  text-transform: capitalize;
+  margin: 10px;
+}
+.Filters-FormCheckLabel {
+  font-weight: 300;
+}
+.Filters-Button {
+  width: 116px;
+  height: 42px;
+  margin: 2rem 0 0 1.55rem;
+  background: black;
+  border-radius: 10px;
+  border: 1px solid #f32dc8;
+  color: white;
+  text-align: center;
+}

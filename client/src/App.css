@@ -1,4 +1,9 @@
-* {
+/*
+  Use a more-intuitive box-sizing model.
+*/
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 :root {
@@ -10,14 +15,27 @@ body {
   overscroll-behavior: none;
   font-size: 1.6rem;
 }
+/*
+  Avoid text overflows
+*/
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
 
 .AppContainer {
-  font-family: 'Roboto', sans-serif;
-  font-style: normal;
+  display: flex;
   position: fixed;
   height: 100vh;
   width: 100%;
-  display: flex;
+  flex-direction: column;
+  font-family: 'Roboto', sans-serif;
+  font-style: normal;
 }
 .FeatureContainer_image {
   background-size: cover;

@@ -60,7 +60,5 @@ html .BusinessList {
   border-radius: 0px;
   box-shadow: none;
   border: 0.25px solid rgba(0, 0, 0, 0.7);
-  /* TODO: [✅] => Update with hairgreybg.jpg */
-  /* background: #f7f7f7 !important;  */
   background-image: url(../../assets/images/hairgreysm.jpg);
 }

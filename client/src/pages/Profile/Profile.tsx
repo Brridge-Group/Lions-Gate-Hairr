@@ -5,7 +5,7 @@ import { MyBusinessList } from '../../components/MyBusinessList/MyBusinessList'
 import './Profile.css'
 
 export const Profile = () => {
-  const {role, _id, name, imageProfile} = JSON.parse(localStorage.getItem('profile') || '{}').data.result; 
+  const {role, _id, name, imageProfile} = JSON.parse(localStorage.getItem('profile') || '{}').result; 
 
   return (
    <div

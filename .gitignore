@@ -1,24 +1,27 @@
-# dependencies
+# Dependencies
 /node_modules
 /.pnp
 .pnp.js
 
-# testing
+# Testing
 /coverage
 
-# production
+# Production
 /dist
 
-# misc
+# Misc
 **/.vscode
 .prettierrc.json
 .DS_Store
+
+# Environment variable (dotenv ) files
 .env.local
 .env.development.local
 .env.test.local
 .env.production.local
 .env
 
+# Logs
 logs
 *.log
 npm-debug.log*

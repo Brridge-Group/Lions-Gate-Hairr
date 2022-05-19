@@ -11,6 +11,7 @@
 
 # Misc
 **/.vscode
+**/.vscode/settings.json
 .prettierrc.json
 .DS_Store
 

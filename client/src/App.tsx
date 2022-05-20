@@ -4,7 +4,6 @@ import {
   Redirect,
   Switch
 } from 'react-router-dom'
-
 import './App.css'
 import { Home } from './pages/Home/Home'
 import { UserRegistration } from './pages/Auth/UserRegistration/UserRegistration'

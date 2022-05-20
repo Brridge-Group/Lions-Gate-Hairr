@@ -156,7 +156,16 @@ export const BusinessList = () => {
 
   if (loading) {
     return (
-      <div className='BusinessList-Wrapper'>
+      <div
+        className='BusinessList-Wrapper'
+        style={{
+          display: 'flex',
+          justifyContent: 'center',
+          height: '100vh',
+          width: '100%',
+          placeItems: 'center'
+        }}
+      >
         <div className='BusinessList-Wrapper_loader'>
           <LoadSpinner />
         </div>
@@ -172,6 +181,7 @@ export const BusinessList = () => {
           display: 'flex',
           justifyContent: 'center',
           height: '100vh',
+          width: '100%',
           placeItems: 'center'
         }}
       >

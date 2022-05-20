@@ -1,12 +1,21 @@
-import mongoose from "mongoose";
-var uniqueValidator = require('mongoose-unique-validator');
+import mongoose from 'mongoose'
+var uniqueValidator = require('mongoose-unique-validator')
 
-import { provinces, states } from "../constants/regions";
+import { provinces, states } from '../constants/regions'
 
-const Schema = mongoose.Schema;
+const Schema = mongoose.Schema
 
 const businessAddressSchema = new Schema({
-  street: {
+  address1: {
+    type: String,
+    required: true,
+    max: 100,
+  },
+  address2: {
+    type: String,
+    max: 100,
+  },
+  city: {
     type: String,
     required: true,
     max: 100,
@@ -16,11 +25,6 @@ const businessAddressSchema = new Schema({
     required: true,
     max: 6,
   },
-  city: {
-    type: String,
-    required: true,
-    max: 100,
-  },
   region: {
     type: String,
     required: true,
@@ -29,32 +33,32 @@ const businessAddressSchema = new Schema({
   country: {
     type: String,
     required: true,
-    enum: ["Canada", "United States"],
+    enum: ['Canada', 'United States'],
   },
-});
-
+})
 
 const businessSchema = new Schema({
-  name: String,
+  businessName: { type: String, required: true },
   description: String,
   image: String,
+  email: String,
   address: businessAddressSchema,
   features: [
     {
       type: Schema.Types.ObjectId,
-      ref: "Feature",
+      ref: 'Feature',
     },
   ],
   services: [
     {
       type: Schema.Types.ObjectId,
-      ref: "Service",
+      ref: 'Service',
     },
   ],
   reviews: [
     {
       type: Schema.Types.ObjectId,
-      ref: "Review",
+      ref: 'Review',
     },
   ],
   stars: Number,

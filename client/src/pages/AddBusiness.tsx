@@ -1,14 +1,23 @@
-import React, { useEffect, useState} from 'react'
-import Button from '@material-ui/core/Button';
-import Box from '@material-ui/core/Box';
+// React Components
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useHistory } from 'react-router-dom'
-import axios from 'axios'
 import { toast } from 'react-toastify'
+
+// Custom Imports
+// import ContentHeader from '../components/ContentHeader'
 import { regions } from '../constants/regions'
 
+// 3rd Party Custom Imports
+import axios from 'axios'
+import Button from '@material-ui/core/Button'
+import Box from '@material-ui/core/Box'
+
+// Custom Styles
+import './AddBusiness.css'
+
 export const AddBusiness = () => {
-  const [imageUrl, setImageUrl] = useState(null);
+  const [imageUrl, setImageUrl] = useState(null)
   // Initialize  Services and Features to state
   const [feats, setFeats]: any = useState([]) // Features full object
   const [services, setServices]: any = useState([]) // Services full object
@@ -24,7 +33,7 @@ export const AddBusiness = () => {
     const fetchFeaturesData = async () => {
       try {
         const response = await fetch('/api/features', {
-          method: 'GET',
+          method: 'GET'
         })
         const responseData = await response.json()
         setFeats(responseData)
@@ -45,7 +54,7 @@ export const AddBusiness = () => {
     const fetchServicesData = async () => {
       try {
         const response = await fetch('/api/services', {
-          method: 'GET',
+          method: 'GET'
         })
         const responseData = await response.json()
         setServices(responseData)
@@ -76,31 +85,32 @@ export const AddBusiness = () => {
     street: '',
     postalCode: '',
     city: '',
-    phone: '',
+    phone: ''
   })
   const [region, setRegion] = useState('AB')
   const [country, setCountry] = useState('Canada')
   const history = useHistory()
-  const ownerId = JSON.parse(localStorage.getItem('profile') || '{}').data.result._id
+  const ownerId = JSON.parse(localStorage.getItem('profile') || '{}').data
+    .result._id
 
   const handleChange = (e: any) => {
     setFormData({ ...formData, [e.target.name]: e.target.value })
-  console.log('LIne 85: ', JSON.stringify(formData))
+    console.log('LIne 85: ', JSON.stringify(formData))
   }
 
   const onImageChange = async (e: any) => {
-    e.preventDefault();
+    e.preventDefault()
 
-    if(e.target.files && e.target.files[0]){
+    if (e.target.files && e.target.files[0]) {
       const maxFileSize = 2097067 // 2 mb
-      const file = e.target.files[0];
+      const file = e.target.files[0]
 
-      if(file.type.match('image.*')){
-        if(file.size > maxFileSize){
+      if (file.type.match('image.*')) {
+        if (file.size > maxFileSize) {
           toast.error(
             `File size is too large ${file.size}kb. Please upload image less than 2 mb.`
           )
-        }else{
+        } else {
           let base64 = (await new Promise(resolve => {
             let reader = new FileReader()
             reader.onload = e => {
@@ -108,12 +118,12 @@ export const AddBusiness = () => {
             }
             reader.readAsDataURL(file)
           })) as string
-          setFormData({...formData, [e.target.name]: base64})
+          setFormData({ ...formData, [e.target.name]: base64 })
         }
-      }else{
+      } else {
         toast.error('Error: file is not a image. It should be png/jpeg file.')
       }
-    }  
+    }
   }
 
   const handleRegion = (e: any) => {
@@ -143,11 +153,11 @@ export const AddBusiness = () => {
       postalCode: formData.postalCode,
       city: formData.city,
       region: region,
-      country: country,
+      country: country
     },
     stars: 5,
     phone: formData.phone,
-    ownerId: ownerId,
+    ownerId: ownerId
   }
 
   axios
@@ -206,27 +216,31 @@ export const AddBusiness = () => {
                 />
               </div>
               <div className='form-group'>
-              <label htmlFor="select-image">
-                <Button variant="contained" color="primary" component="span">
-                     {formData.image === '' ? 'Select Image' : 'Change Image'}
-                </Button>
-              </label>
-                <input 
-                name='image'
-                accept="image/*" 
-                type="file" 
-                id="select-image"
-                style={{ display: 'none' }}
-                onChange={onImageChange}
-                required />
-               {formData.image && (
-                <Box mt={2} textAlign="center">
+                {/* <label>Image:</label>
+                <input name='image' type='text' value={formData.image} className='form-control' placeholder='Enter image url' onChange={handleChange} required /> */}
+                <label htmlFor='select-image'>
+                  <Button variant='contained' color='primary' component='span'>
+                    {formData.image === '' ? 'Select Image' : 'Change Image'}
+                  </Button>
+                </label>
+                <input
+                  name='image'
+                  accept='image/*'
+                  type='file'
+                  id='select-image'
+                  style={{ display: 'none' }}
+                  onChange={onImageChange}
+                  required
+                />
+                {formData.image && (
+                  <Box mt={2} textAlign='center'>
                     <div>Image Preview:</div>
-                    <img 
-                      src={formData.image} 
-                      alt="Example of a business"
-                      height="100px" />
-                 </Box>
+                    <img
+                      src={formData.image}
+                      alt='Example of a business'
+                      height='100px'
+                    />
+                  </Box>
                 )}
               </div>
               <br />
@@ -271,7 +285,8 @@ export const AddBusiness = () => {
                 <label>Province / State:</label>
                 <select
                   className='custom-select rounded-0'
-                  onChange={handleRegion}>
+                  onChange={handleRegion}
+                >
                   {regions.map(region => (
                     <option value={region.value}>{region.label}</option>
                   ))}
@@ -281,7 +296,8 @@ export const AddBusiness = () => {
                 <label>Country:</label>
                 <select
                   className='custom-select rounded-0'
-                  onChange={handleCountry}>
+                  onChange={handleCountry}
+                >
                   <option value='Canada'> Canada </option>
                   <option value='United States'> United States</option>
                 </select>
@@ -293,7 +309,8 @@ export const AddBusiness = () => {
                   <div
                     className='form-check'
                     style={{ textTransform: 'capitalize' }}
-                    key={`${feature}_` + index}>
+                    key={`${feature}_` + index}
+                  >
                     <input
                       className='form-check-input'
                       type='checkbox'
@@ -314,7 +331,8 @@ export const AddBusiness = () => {
                   <div
                     className='form-check'
                     style={{ textTransform: 'capitalize' }}
-                    key={`${service}_` + index}>
+                    key={`${service}_` + index}
+                  >
                     <input
                       className='form-check-input'
                       type='checkbox'

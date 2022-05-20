@@ -1,9 +1,13 @@
 // React Components
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 
 // Custom Imports
 import { LoadSpinner } from '../LoadSpinner/LoadSpinner'
 
+// Custom Styles
+import './FilterServicesAndFeatures.css'
+
+// Types
 interface Props {
   loading: boolean
   onFeatChange: any
@@ -34,7 +38,7 @@ export const FilterServicesAndFeatures: React.FC<Props> = (props: Props) => {
   }
   // console.log('filteredServices', filteredServices)
 
-  // Monitor changes to the filtered features and services arrays. If there are changes send the data to the SearchResults component
+  //* Monitor changes to the filtered features and services arrays. If there are changes send the data to the SearchResults component
   useEffect(() => {
     if (props.onFeatChange) {
       props.onFeatChange(filteredFeats)
@@ -49,65 +53,42 @@ export const FilterServicesAndFeatures: React.FC<Props> = (props: Props) => {
   return (
     <>
       {!props.loading ? (
-        <>
-          <div className='filters' style={{ margin: '10px' }}>
-            <div className='form-group'>
-              <label htmlFor='features'>Features</label>
-
-              {props.featuresArr?.map((feature, id, index) => (
-                <div
-                  className='form-check'
-                  style={{ textTransform: 'capitalize' }}
-                  key={`${feature}_` + index}
-                >
-                  <input
-                    className='form-check-input'
-                    type='checkbox'
-                    name={`feature-${feature[0]}`}
-                    id={feature[1]}
-                    defaultChecked={feature[2].isChecked}
-                    value={id}
-                    onChange={onFeatChange}
-                  />
-                  <label className='form-check-label' htmlFor={feature[1]}>
-                    {feature[0]}
-                  </label>
-                </div>
-              ))}
-            </div>
-            <div className='form-group'>
-              <label htmlFor='services'>Services</label>
-              {props.servicesArr?.map((service, id, index) => (
-                <div
-                  className='form-check'
-                  style={{ textTransform: 'capitalize' }}
-                  key={`${service}_` + index}
-                >
-                  <input
-                    className='form-check-input'
-                    type='checkbox'
-                    name={`service-${service[0]}`}
-                    id={service[1]}
-                    defaultChecked={service[2].isChecked}
-                    value={id}
-                    onChange={onServiceChange}
-                  />
-                  <label className='form-check-label' htmlFor={service[1]}>
-                    {service[0]}
-                  </label>
-                </div>
-              ))}
-            </div>
-            {/* TODO: BackLog => Connect to filterFunction */}
-            {/* <button onClick={props.handleResetFilter}>Filter Results</button> */}
-            <button onClick={props.handleResetFilter}>Reset Filter</button>
+        <section className='Filters-Container'>
+          <label htmlFor='features' className='Filters-Label_header'>
+            Features
+          </label>
+          <div className='Filters-FormGroup'>
+            {props.featuresArr?.map((feature, id, index) => (
+              <div className='Filters-FormCheck' key={`${feature}_` + index}>
+                <input className='Filters-FormCheckInput' type='checkbox' name={`feature-${feature[0]}`} id={feature[1]} defaultChecked={feature[2].isChecked} value={id} onChange={onFeatChange} />
+                <label className='Filters-FormCheckLabel' htmlFor={feature[1]}>
+                  {feature[0]}
+                </label>
+              </div>
+            ))}
           </div>
-        </>
+          <label htmlFor='services' className='Filters-Label_header   Filters-Label_header_services'>
+            Services
+          </label>
+          <div className='Filters-FormGroup'>
+            {props.servicesArr?.map((service, id, index) => (
+              <div className='Filters-FormCheck' key={`${service}_` + index}>
+                <input className='Filters-FormCheckInput' type='checkbox' name={`service-${service[0]}`} id={service[1]} defaultChecked={service[2].isChecked} value={id} onChange={onServiceChange} />
+                <label className='Filters-FormCheckLabel' htmlFor={service[1]}>
+                  {service[0]}
+                </label>
+              </div>
+            ))}
+          </div>
+          {/* TODO: BackLog => Connect to filterFunction */}
+          {/* <button onClick={props.handleResetFilter}>Filter Results</button> */}
+          <button className='Filters-Button' onClick={props.handleResetFilter}>
+            reset Filters
+          </button>
+        </section>
       ) : (
         <>
-          <div className='filters ' style={{ margin: '10px' }}>
-            {isLoading && <LoadSpinner />}
-          </div>
+          <section className='Filters-Container'>{isLoading && <LoadSpinner />}</section>
         </>
       )}
     </>

@@ -4,8 +4,6 @@ import { useHistory, useParams } from 'react-router-dom'
 
 // Custom Imports
 import { Card } from '../../UIElements/Card'
-import { Star } from '../../UIElements/Star'
-import { About } from '../../components/BusinessDetails/About'
 import CardDetails from '../../components/CardDetails/CardDetails'
 import { FilterServicesAndFeatures } from '../../components/FilterServicesAndFeatures/FilterServicesAndFeatures'
 import { LoadSpinner } from '../../components/LoadSpinner/LoadSpinner'
@@ -46,7 +44,7 @@ interface Business {
 
 // export const FilterServicesAndFeatures: React.FC<Props> = (props: Props) => {
 // export const ListItems: React.FC = () => {
-export const BusinessList: React.FC = () => {
+export const BusinessList = () => {
   const [list, setList]: any = useState([])
   const [loading, setLoading] = useState(true)
   const history = useHistory()
@@ -70,7 +68,9 @@ export const BusinessList: React.FC = () => {
         const businessesList = await res.json()
         if (typeof city !== 'undefined') {
           const filtered = businessesList.filter((business: Business) => {
-            return business.address.city.toLowerCase().includes(city.toLowerCase())
+            return business.address.city
+              .toLowerCase()
+              .includes(city.toLowerCase())
           })
           setList(filtered)
         } else {
@@ -89,7 +89,7 @@ export const BusinessList: React.FC = () => {
     const fetchFeaturesData = async () => {
       try {
         const response = await fetch('/api/features', {
-          method: 'GET',
+          method: 'GET'
         })
         const responseData = await response.json()
         setFeats(responseData)
@@ -110,7 +110,7 @@ export const BusinessList: React.FC = () => {
     const fetchServicesData = async () => {
       try {
         const response = await fetch('/api/services', {
-          method: 'GET',
+          method: 'GET'
         })
         const responseData = await response.json()
         setServices(responseData)
@@ -195,7 +195,11 @@ export const BusinessList: React.FC = () => {
           <div className='BusinessList-HeaderContainer'>
             {/* ternary operator 
                   if city is defined, show city name, else show '' */}
-            {city == 'undefined' ? <h1 className='BusinessList-Header'> All Businesses</h1> : <h1 className='BusinessList-Header'>{city} Businesses</h1>}
+            {city == 'undefined' ? (
+              <h1 className='BusinessList-Header'> All Businesses</h1>
+            ) : (
+              <h1 className='BusinessList-Header'>{city} Businesses</h1>
+            )}
           </div>
           <div className='BusinessList-Container'>
             <div className='BusinessList-Filters'>
@@ -210,8 +214,18 @@ export const BusinessList: React.FC = () => {
             </div>
             <div className='BusinessList-CardContainer'>
               {list.map((business: any) => (
-                <Card className=' BusinessList-Card' key={business._id} onClick={() => history.push(`/businesses/${business._id}`)}>
-                  <CardDetails name={business.name} description={business.description} image={business.image} address={business.address} stars={business.stars} />
+                <Card
+                  className=' BusinessList-Card'
+                  key={business._id}
+                  onClick={() => history.push(`/businesses/${business._id}`)}
+                >
+                  <CardDetails
+                    name={business.name}
+                    description={business.description}
+                    image={business.image}
+                    address={business.address}
+                    stars={business.stars}
+                  />
                 </Card>
               ))}
             </div>

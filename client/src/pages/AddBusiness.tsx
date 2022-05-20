@@ -1,6 +1,5 @@
 // React Components
 import React, { useEffect, useState } from 'react'
-
 import { useHistory, Link } from 'react-router-dom'
 
 // Custom Imports
@@ -14,6 +13,7 @@ import { regions } from '../constants/regions'
 // Custom Styles
 import Button from '@material-ui/core/Button'
 import Box from '@material-ui/core/Box'
+import './AddBusiness.css'
 
 export const AddBusiness = () => {
   const [imageUrl, setImageUrl] = useState(null)
@@ -215,6 +215,8 @@ export const AddBusiness = () => {
                 />
               </div>
               <div className='form-group'>
+                {/* <label>Image:</label>
+                <input name='image' type='text' value={formData.image} className='form-control' placeholder='Enter image url' onChange={handleChange} required /> */}
                 <label htmlFor='select-image'>
                   <Button variant='contained' color='primary' component='span'>
                     {formData.image === '' ? 'Select Image' : 'Change Image'}

@@ -2,7 +2,7 @@ import {
   BrowserRouter as Router,
   Route,
   Redirect,
-  Switch,
+  Switch
 } from 'react-router-dom'
 import './App.css'
 import { Home } from './pages/Home/Home'
@@ -10,7 +10,7 @@ import { UserRegistration } from './pages/Auth/UserRegistration/UserRegistration
 import Login from './pages/Auth/Login/Login'
 import { BusinessList } from './pages/BusinessList/BusinessList'
 import { BusinessDetails } from './components/BusinessDetails/BusinessDetails'
-import { AddBusiness } from './pages/AddBusiness'
+import { AddBusiness } from './pages/AddBusiness/AddBusiness'
 import { AddReview } from './components/AddReview/AddReview/AddReview'
 import { MyBusinessList } from './components/MyBusinessList/MyBusinessList'
 import { Navbar } from './components/Navbar/Navbar'

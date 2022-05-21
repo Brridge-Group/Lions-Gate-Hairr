@@ -88,7 +88,7 @@ export const AddBusiness = () => {
   const [region, setRegion] = useState('AB')
   const [country, setCountry] = useState('Canada')
   const history = useHistory()
-  const ownerId = JSON.parse(localStorage.getItem('profile') ?? 'false').result
+  const ownerId = JSON.parse(localStorage.getItem('profile') ?? 'false').data.result
     ._id
 
   const onImageChange = async (e: any) => {
@@ -186,7 +186,7 @@ export const AddBusiness = () => {
     businessName: formData.businessName,
     description: formData.description,
     image:
-      formData.image === ''
+      formData.image === ' '
         ? 'https://images.unsplash.com/photo-1560066984-138dadb4c035?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1674&q=80'
         : formData.image,
     email: formData.email,
@@ -210,7 +210,7 @@ export const AddBusiness = () => {
       features: savedFormFeats,
       services: savedFormServices
     }
-
+  
     axios
       .post('http://localhost:5000/api/businesses/add-business', newBusiness)
       .then(response => {
@@ -219,7 +219,7 @@ export const AddBusiness = () => {
       })
       .catch(error => {
         console.log(error)
-      })
+      }) 
   }
 
   const handleSubmit = (e: any) => {

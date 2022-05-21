@@ -45,32 +45,20 @@ export const MyBusinessList = () => {
         ) : (
           <>
             <div className='Profile-UserContainer_reviews business'>
-              <h4>your businesses</h4>
+              <h4>Your businesses</h4>
+              {/* temporary showing just business name because it was not showing anything */}
+              {list.map((business: any) => (
+                <h1 key={business._id}>Business Name: {business.businessName}</h1>
+              ))}
             </div>
           </>
         )}
-
-        {/* {list.map((business: any) => (
-        <Card
-          className='BusinessCard card-primary card-outline'
-          key={business._id}>
-          <div onClick={() => history.push('businesses/' + `${business._id}`)}>
-            <About
-              name={business.name}
-              description={business.description}
-              image={business.image}
-              address={business.address}
-            />
-            <Star stars={business.stars} />
-          </div>
-        </Card>
-      ))} */}
       </div>
       <div className='Profile_links'>
-        <Link to={'#'}>
+        <Link to={'/profile'}>
           <h6 className='btn--btn-primary'>update profile</h6>
         </Link>
-        <Link to={'#'}>
+        <Link to={'/add-business'}>
           <h6 className='btn--btn-primary twoLines'>
             add a<br /> business
           </h6>

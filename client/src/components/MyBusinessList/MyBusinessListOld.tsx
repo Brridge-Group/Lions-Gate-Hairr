@@ -9,7 +9,7 @@ export const MyBusinessList = () => {
   const [list, setList] = useState<any[]>([])
   const [loading, setLoading] = useState(true)
   const history = useHistory()
-  const ownerId = JSON.parse(localStorage.getItem('profile') ?? 'false').result
+  const ownerId = JSON.parse(localStorage.getItem('profile') ?? 'false').data.result
     ._id
 
   useEffect(() => {

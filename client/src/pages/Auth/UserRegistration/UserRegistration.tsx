@@ -22,7 +22,7 @@ toast.configure()
 export const UserRegistration = () => {
   const [userData, setUserData] = useState({
     role: 'user',
-    imageProfile: 'https://imgur.com/LDpwLVZ.jpg',
+    imageProfile: 'https://imgur.com/LDpwLVZ.jpg'
   })
 
   const [errorMsg, setErrorMsg] = useState()
@@ -148,7 +148,8 @@ export const UserRegistration = () => {
                   <InputAdornment position='end'>
                     <IconButton
                       onClick={toggleShow}
-                      onMouseDown={handleMouseDownPassword}>
+                      onMouseDown={handleMouseDownPassword}
+                    >
                       {showPassword ? (
                         <VisibilityRoundedIcon />
                       ) : (

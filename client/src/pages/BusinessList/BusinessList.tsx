@@ -1,14 +1,17 @@
 // React Components
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { useHistory, useParams } from 'react-router-dom'
 
 // Custom Imports
 import { Card } from '../../UIElements/Card'
-import { Star } from '../../UIElements/Star'
-import { About } from '../../components/BusinessDetails/About'
+import CardDetails from '../../components/CardDetails/CardDetails'
 import { FilterServicesAndFeatures } from '../../components/FilterServicesAndFeatures/FilterServicesAndFeatures'
 import { LoadSpinner } from '../../components/LoadSpinner/LoadSpinner'
 
+// Custom Styles
+import './BusinessList.css'
+
+// Types
 interface RouteParams {
   city: string
 }
@@ -39,6 +42,8 @@ interface Business {
   phone: string
 }
 
+// export const FilterServicesAndFeatures: React.FC<Props> = (props: Props) => {
+// export const ListItems: React.FC = () => {
 export const BusinessList = () => {
   const [list, setList]: any = useState([])
   const [loading, setLoading] = useState(true)
@@ -151,11 +156,18 @@ export const BusinessList = () => {
 
   if (loading) {
     return (
-      <div className='content-wrapper'>
-        <div className=''>
-          <div className='card-body row d-flex justify-content-center align-self-center mx-auto'>
-            <LoadSpinner />
-          </div>
+      <div
+        className='BusinessList-Wrapper'
+        style={{
+          display: 'flex',
+          justifyContent: 'center',
+          height: '100vh',
+          width: '100%',
+          placeItems: 'center'
+        }}
+      >
+        <div className='BusinessList-Wrapper_loader'>
+          <LoadSpinner />
         </div>
       </div>
     )
@@ -163,43 +175,34 @@ export const BusinessList = () => {
 
   if (list.length === 0) {
     return (
-      <div className='content-wrapper'>
-        <Card>
-          <h2>No businesses found.</h2>
-        </Card>
+      <div
+        className='BusinessList-Wrapper'
+        style={{
+          display: 'flex',
+          justifyContent: 'center',
+          height: '100vh',
+          width: '100%',
+          placeItems: 'center'
+        }}
+      >
+        <h2>No businesses found. Please try another city.</h2>
       </div>
     )
   } else {
     return (
-      <React.Fragment>
-        <div className='content-wrapper'>
-          <div className='container-header'>
-            <div className='container-fluid'>
-              <div className='row mb-2'>
-                <div className='col-sm-6'>
-                  {/* ternary operator 
+      <section className='BusinessList'>
+        <div className='BusinessList-Wrapper'>
+          <div className='BusinessList-HeaderContainer'>
+            {/* ternary operator 
                   if city is defined, show city name, else show '' */}
-                  {city === 'undefined' ? (
-                    <h1>List of Businesses</h1>
-                  ) : (
-                    <h1> List of {city} Businesses</h1>
-                  )}
-                </div>
-              </div>
-            </div>
+            {city == 'undefined' ? (
+              <h1 className='BusinessList-Header'> All Businesses</h1>
+            ) : (
+              <h1 className='BusinessList-Header'>{city} Businesses</h1>
+            )}
           </div>
-          <div
-            className='businessesList-container'
-            style={{ display: 'flex', width: '100%' }}
-          >
-            <div
-              className='filters'
-              style={{
-                width: '15vw',
-                flexShrink: 0,
-                marginLeft: '20px'
-              }}
-            >
+          <div className='BusinessList-Container'>
+            <div className='BusinessList-Filters'>
               <FilterServicesAndFeatures
                 featuresArr={featuresArr}
                 servicesArr={servicesArr}
@@ -209,29 +212,26 @@ export const BusinessList = () => {
                 handleResetFilter={handleResetFilter}
               />
             </div>
-            <div className='businesses-list' style={{ width: '100%' }}>
+            <div className='BusinessList-CardContainer'>
               {list.map((business: any) => (
                 <Card
-                  className='BusinessCard card-primary card-outline'
+                  className=' BusinessList-Card'
                   key={business._id}
+                  onClick={() => history.push(`/businesses/${business._id}`)}
                 >
-                  <div
-                    onClick={() => history.push(`/businesses/${business._id}`)}
-                  >
-                    <About
-                      name={business.name}
-                      description={business.description}
-                      image={business.image}
-                      address={business.address}
-                    />
-                    <Star stars={business.stars} />
-                  </div>
+                  <CardDetails
+                    name={business.name}
+                    description={business.description}
+                    image={business.image}
+                    address={business.address}
+                    stars={business.stars}
+                  />
                 </Card>
               ))}
             </div>
           </div>
         </div>
-      </React.Fragment>
+      </section>
     )
   }
 }

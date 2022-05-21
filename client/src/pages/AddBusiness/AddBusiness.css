@@ -1,0 +1,143 @@
+.AddBusiness-Wrapper {
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: bottom center;
+  background-image: url(../../assets//images/hairlavender.jpg);
+}
+.AddBusiness-Wrapper form {
+  display: flex;
+}
+.AddBusiness-Wrapper
+  .AddBusiness-FormCard_body
+  .AddBusiness-FormCard_body_formGroup {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  background-color: transparent;
+  color: black;
+}
+.AddBusiness-FormCard {
+  margin-top: -8.55rem;
+}
+.AddBusiness-FormCard_body {
+  display: flex;
+  flex-direction: column;
+  height: 42.35rem;
+  width: 38.6rem;
+  margin-left: 9.7008rem;
+  overflow: scroll;
+  font-weight: 300;
+}
+.AddBusiness-FormCard_preview_container {
+  align-items: center;
+}
+.AddBusiness-FormCard_image_preview {
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+  align-items: center;
+}
+.AddBusiness-FormCard_image_preview img {
+  margin-bottom: 0.608rem;
+}
+.AddBusiness-FormCard_image_btn {
+  /* width: 9em; */
+  width: 13rem !important;
+  height: 2.5rem;
+  text-align: center;
+  background: black;
+  border-radius: 0.625rem;
+  border: 1px solid #f32dc8;
+  color: white;
+}
+.AddBusiness-FormCard_body input,
+textarea,
+select {
+  height: 3.6rem;
+  text-align: center;
+  margin-bottom: 1.5008rem;
+  border: 0.5px solid black;
+  background: none;
+}
+.AddBusiness-FormCard_body_formGroup input,
+textarea,
+select,
+button {
+  font-family: 'Roboto', sans-serif !important;
+  font-size: 1.4rem;
+  font-weight: 400;
+}
+.AddBusiness-FormCard_body input::placeholder,
+textarea::placeholder {
+  color: rgba(0, 0, 0, 0);
+}
+.AddBusiness-FormCard_body_columns {
+  display: flex;
+  justify-content: space-between;
+  width: 38.532rem;
+}
+.AddBusiness-FormCard_body_left {
+  width: 17.5008rem;
+}
+.AddBusiness-FormCard_body_right {
+  width: 17.5008rem;
+}
+.AddBusiness-FormCard_sidebar {
+  display: flex;
+  flex-direction: column;
+  width: 17.6rem;
+  margin-left: 2.2rem;
+  padding-top: 2.063rem;
+}
+.AddBusiness-FormCard_filtersContainer {
+  display: flex;
+  flex-direction: column;
+  height: 41.3008rem;
+  width: 17.6rem;
+  padding-top: 2.2rem;
+  border: 0.25px solid rgba(0, 0, 0, 1);
+}
+.AddBusiness-FormCard_filtersContainer_labelHeader {
+  display: flex;
+  justify-content: center;
+  height: 1.5rem;
+  font-weight: 500;
+}
+.AddBusiness-FormCard_filtersContainer_formGroup {
+  max-height: 36%;
+  margin: 12px;
+  overflow: scroll;
+}
+.AddBusiness-FormCard_filtersContainer_labelHeader_services {
+  margin-top: 2.45rem;
+}
+div.AddBusiness-FormCard_filtersContainer_formGroup:nth-child(4) {
+  padding-top: 1px;
+}
+.AddBusiness-FormCard_filtersContainer_formCheck {
+  margin-bottom: 0.608rem;
+}
+.AddBusiness-FormCard_filtersContainer_formCheckLabel {
+  margin-bottom: 0.608rem;
+  font-weight: 300;
+}
+.AddBusiness-FormCard_sidebar_footer {
+  display: flex;
+  justify-content: center;
+  height: 7.18rem;
+  align-items: flex-end;
+}
+.AddBusiness-FormCard_sidebar_btn {
+  width: 11.6rem;
+  height: 4.2rem;
+  text-align: center;
+  background: black;
+  border-radius: 10px;
+  border: 1px solid #f32dc8;
+  color: white;
+}

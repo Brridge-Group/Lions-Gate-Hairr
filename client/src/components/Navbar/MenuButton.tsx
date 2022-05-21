@@ -8,6 +8,12 @@ export const MenuButton = ({ isOpen }) => {
         <div className='line middleLine'></div>
         <div className='line bottomLine'></div>
       </div>
+      {/* FIXME [ ] => removed `jsx` due to an compile error: TypeScript error in client/src/components/Navbar/MenuButton.tsx(14,14): 
+      Type '{ children: string; jsx: true; }' is not assignable to type DetailedHTMLProps<StyleHTMLAttributes<HTMLStyleElement>, HTMLStyleElement>'.
+  
+      Property 'jsx' does not exist on type 'DetailedHTMLProps<StyleHTMLAttributes<HTMLStyleElement>, HTMLStyleElement>'.  TS2322
+      ` */}
+      {/* <style jsx>{` */}
       <style>{`
         .topLine {
           transform: ${isOpen ? 'rotate(45deg)' : 'rotate(0)'};

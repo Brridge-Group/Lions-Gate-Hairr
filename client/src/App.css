@@ -27,7 +27,6 @@ h5,
 h6 {
   overflow-wrap: break-word;
 }
-
 .AppContainer {
   display: flex;
   position: fixed;
@@ -108,7 +107,6 @@ p {
     width: 80%;
   }
 }
-
 @media screen and (max-height: 850px) and (max-width: 450px) {
   .FeatureContainer {
     overflow: hidden;

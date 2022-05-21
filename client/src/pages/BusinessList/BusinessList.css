@@ -12,7 +12,7 @@ html .BusinessList {
   background-size: 100% 100%;
   background-repeat: no-repeat;
   background-position: bottom center;
-  background-image: url(../../assets//images/whitecrop\ 1.png);
+  background-image: url(../../assets/images/hairgreysm.jpg);
 }
 .BusinessList-Wrapper_loader {
   display: flex;
@@ -60,5 +60,5 @@ html .BusinessList {
   border-radius: 0px;
   box-shadow: none;
   border: 0.25px solid rgba(0, 0, 0, 0.7);
-  background: #f7f7f7 !important;
+  background-image: url(../../assets/images/hairgreysm.jpg);
 }

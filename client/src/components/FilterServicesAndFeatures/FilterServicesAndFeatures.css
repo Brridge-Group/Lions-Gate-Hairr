@@ -1,8 +1,14 @@
 .Filters-Container {
   display: flex;
   flex-direction: column;
-  height: 60.8rem;
-  margin: 3.2rem 1.2rem 1.2rem 1.2rem;
+  height: 58.7rem;
+  padding-left: 12px;
+  padding-top: 20px;
+  padding-right: 12px;
+  padding-bottom: 12px;
+  border-bottom-width: 0px;
+  border-bottom-style: solid;
+  background: #efefef !important;
 }
 .Filters-Label_header {
   display: flex;

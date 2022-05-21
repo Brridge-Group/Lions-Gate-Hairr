@@ -44,7 +44,7 @@ interface Business {
 
 // export const FilterServicesAndFeatures: React.FC<Props> = (props: Props) => {
 // export const ListItems: React.FC = () => {
-export const BusinessList: React.FC = () => {
+export const BusinessList = () => {
   const [list, setList]: any = useState([])
   const [loading, setLoading] = useState(true)
   const history = useHistory()

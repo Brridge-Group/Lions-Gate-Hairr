@@ -16,7 +16,7 @@ import 'react-toastify/dist/ReactToastify.css'
 toast.configure()
 
 export const EditProfile = () => {
-  const user = JSON.parse(localStorage.getItem('profile') ?? 'false').result
+  const user = JSON.parse(localStorage.getItem('profile') ?? 'false').data.result
 
   const dispatch = useDispatch()
   const history = useHistory()

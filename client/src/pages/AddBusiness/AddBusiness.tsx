@@ -88,7 +88,7 @@ export const AddBusiness = () => {
   const [region, setRegion] = useState('AB')
   const [country, setCountry] = useState('Canada')
   const history = useHistory()
-  const ownerId = JSON.parse(localStorage.getItem('profile') ?? 'false').result
+  const ownerId = JSON.parse(localStorage.getItem('profile') ?? 'false').data.result
     ._id
 
   const onImageChange = async (e: any) => {

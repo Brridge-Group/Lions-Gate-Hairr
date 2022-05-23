@@ -57,27 +57,18 @@ input:focus {
   outline: none;
 }
 
-.MuiInput-underline:before {
-  border-bottom: none !important;
-  text-align: center;
-}
-
-.MuiInput-underline:after {
-  border-bottom: none !important;
-}
-
-.MuiInputBase-input {
-  text-align: center;
-  font-size: 1.3rem !important;
-}
 .UserRegistration_password-wrapper {
   position: relative;
 }
+button.UserRegistration_input-button {
+  border: none;
+  background: none;
+}
 .UserRegistration_input-button {
   position: absolute;
-  right: 5%;
+  right: 1%;
   color: grey;
-  font-size: 2rem;
+  font-size: 1.75rem;
 }
 /* ///////media queries ////////// */
 

@@ -52,10 +52,6 @@ export const UserRegistration = () => {
     setShowPassword(!showPassword)
   }
 
-  const handleMouseDownPassword = event => {
-    event.preventDefault()
-  }
-
   const onImageChange = async (e: any) => {
     e.preventDefault()
 
@@ -91,11 +87,7 @@ export const UserRegistration = () => {
 
   const handleSubmit = (e: any) => {
     e.preventDefault()
-    if (!imageSelected) {
-      toast('Error uploading image. No image was selected.')
-    } else {
-      dispatch(signup(userData, history))
-    }
+    dispatch(signup(userData, history))
   }
 
   const handleChange = (e: any) => {

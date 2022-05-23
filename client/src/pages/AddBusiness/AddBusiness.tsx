@@ -3,8 +3,6 @@ import React, { useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import { toast } from 'react-toastify'
 
-import { AiFillEye } from 'react-icons/ai'
-
 // Custom Imports
 import { regions } from '../../constants/regions'
 

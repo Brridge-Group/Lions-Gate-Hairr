@@ -32,7 +32,7 @@ export const AddBusiness = () => {
     const fetchFeaturesData = async () => {
       try {
         const response = await fetch('/api/features', {
-          method: 'GET'
+          method: 'GET',
         })
         const responseData = await response.json()
         setFeats(responseData)
@@ -53,7 +53,7 @@ export const AddBusiness = () => {
     const fetchServicesData = async () => {
       try {
         const response = await fetch('/api/services', {
-          method: 'GET'
+          method: 'GET',
         })
         const responseData = await response.json()
         setServices(responseData)
@@ -83,7 +83,7 @@ export const AddBusiness = () => {
     image: '',
     cityTown: '',
     postalCode: '',
-    phone: ''
+    phone: '',
   })
   const [region, setRegion] = useState('AB')
   const [country, setCountry] = useState('Canada')
@@ -126,20 +126,20 @@ export const AddBusiness = () => {
     if (e.target.type === 'checkbox') {
       setIsChecked({
         ...isChecked,
-        [e.target.name]: value
+        [e.target.name]: value,
       })
 
       if (e.target.name.includes('service')) {
         setIsServicesChecked({
           ...isServicesChecked,
-          [e.target.id]: value
+          [e.target.id]: value,
         })
       }
 
       if (e.target.name.includes('feature')) {
         setIsFeatsChecked({
           ...isFeatsChecked,
-          [e.target.id]: value
+          [e.target.id]: value,
         })
       }
     }
@@ -196,11 +196,11 @@ export const AddBusiness = () => {
       postalCode: formData.postalCode,
       city: formData.cityTown,
       region: region,
-      country: country
+      country: country,
     },
     stars: 0,
     phone: formData.phone,
-    ownerId: ownerId
+    ownerId: ownerId,
   }
 
   const saveNewBusiness = () => {
@@ -208,7 +208,7 @@ export const AddBusiness = () => {
     let newBusiness = {
       ...data,
       features: savedFormFeats,
-      services: savedFormServices
+      services: savedFormServices,
     }
 
     axios
@@ -256,9 +256,8 @@ export const AddBusiness = () => {
                         width: '9rem',
                         border: '1px solid #f32dc8',
                         height: '2.5rem',
-                        textTransform: 'lowercase'
-                      }}
-                    >
+                        textTransform: 'lowercase',
+                      }}>
                       {formData.image === '' ? 'Select Image' : 'Change Image'}
                     </Button>
                   </label>
@@ -339,8 +338,7 @@ export const AddBusiness = () => {
                       className='custom-select rounded-0'
                       onChange={handleRegion}
                       name='region'
-                      id='region'
-                    >
+                      id='region'>
                       {regions.map(region => (
                         <option value={region.value}>{region.label}</option>
                       ))}
@@ -389,8 +387,7 @@ export const AddBusiness = () => {
                       className='custom-select rounded-0'
                       onChange={handleCountry}
                       name='country'
-                      id='country'
-                    >
+                      id='country'>
                       <option value='Canada'> Canada </option>
                       <option value='United States'> United States</option>
                     </select>
@@ -402,8 +399,7 @@ export const AddBusiness = () => {
               <div className='AddBusiness-FormCard_filtersContainer'>
                 <label
                   className=' AddBusiness-FormCard_filtersContainer_labelHeader'
-                  htmlFor='features'
-                >
+                  htmlFor='features'>
                   Features
                 </label>
                 <div className='AddBusiness-FormCard_filtersContainer_formGroup'>
@@ -411,8 +407,7 @@ export const AddBusiness = () => {
                     <div
                       className='AddBusiness-FormCard_filtersContainer_formCheck'
                       style={{ textTransform: 'capitalize' }}
-                      key={`${feature}_` + index}
-                    >
+                      key={`${feature}_` + index}>
                       <input
                         className='AddBusiness-FormCard_filtersContainer_formCheckInput'
                         type='checkbox'
@@ -423,8 +418,7 @@ export const AddBusiness = () => {
                       />
                       <label
                         className='AddBusiness-FormCard_filtersContainer_formCheckLabel'
-                        htmlFor={feature[1]}
-                      >
+                        htmlFor={feature[1]}>
                         {feature[0]}
                       </label>
                     </div>
@@ -432,8 +426,7 @@ export const AddBusiness = () => {
                 </div>
                 <label
                   className=' AddBusiness-FormCard_filtersContainer_labelHeader  AddBusiness-FormCard_filtersContainer_labelHeader_services'
-                  htmlFor='services'
-                >
+                  htmlFor='services'>
                   Services
                 </label>
                 <div className='AddBusiness-FormCard_filtersContainer_formGroup'>
@@ -441,8 +434,7 @@ export const AddBusiness = () => {
                     <div
                       className='AddBusiness-FormCard_filtersContainer_formCheck'
                       style={{ textTransform: 'capitalize' }}
-                      key={`${service}_` + index}
-                    >
+                      key={`${service}_` + index}>
                       <input
                         className='AddBusiness-FormCard_filtersContainer_formCheckInput'
                         type='checkbox'
@@ -453,8 +445,7 @@ export const AddBusiness = () => {
                       />
                       <label
                         className='AddBusiness-FormCard_filtersContainer_formCheckLabel'
-                        htmlFor={service[1]}
-                      >
+                        htmlFor={service[1]}>
                         {service[0]}
                       </label>
                     </div>
@@ -464,8 +455,7 @@ export const AddBusiness = () => {
               <div className='AddBusiness-FormCard_sidebar_footer'>
                 <button
                   type='submit'
-                  className='AddBusiness-FormCard_sidebar_btn'
-                >
+                  className='AddBusiness-FormCard_sidebar_btn'>
                   submit
                 </button>
               </div>

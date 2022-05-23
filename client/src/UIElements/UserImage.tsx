@@ -1,15 +1,13 @@
-import { Image } from '@chakra-ui/react'
+// import { Image } from '@chakra-ui/react'
 import { AddAPhotoRounded } from '@material-ui/icons'
 import './UserImage.css'
 
 const UserImage = ({ pic, name, handleChange }) => (
   <>
-    <Image
+    <img
       src={pic || 'https://imgur.com/LDpwLVZ.jpg'}
       alt={name}
-      boxSize='125px'
-      borderRadius='25rem'
-      fallbackSrc='https://imgur.com/LDpwLVZ.jpg'
+      className='UserImage-pic'
     />
     <div className='fileUpload btn btn-primary'>
       <span>

@@ -16,3 +16,9 @@
   opacity: 0;
   filter: alpha(opacity=0);
 }
+
+.UserImage-pic {
+  width: 125px;
+  height: 125px;
+  border-radius: 50%;
+}

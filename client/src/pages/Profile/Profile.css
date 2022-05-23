@@ -59,3 +59,8 @@ img.user-pix-placeholder {
   justify-content: center;
   margin-top: 30px;
 }
+.Profile-UserContainer_pic {
+  width: 125px;
+  height: 125px;
+  border-radius: 50%;
+}

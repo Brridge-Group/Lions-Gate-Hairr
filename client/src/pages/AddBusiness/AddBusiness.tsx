@@ -8,10 +8,13 @@ import { regions } from '../../constants/regions'
 
 // 3rd Party Custom Imports
 import axios from 'axios'
-import Button from '@material-ui/core/Button'
+import './AddBusiness.css'
+
+// interface AddBusiness {
+//   onClick: React.MouseEventHandler<HTMLButtonElement>
+// }
 
 // Custom Styles
-import './AddBusiness.css'
 
 export const AddBusiness = () => {
   const [loading, setLoading] = useState(true)
@@ -247,9 +250,9 @@ export const AddBusiness = () => {
                     height='100px'
                   />
                   <label htmlFor='select-image'>
-                    <Button
+                    <button
                       className='AddBusiness-FormCard_image_btn'
-                      component='span'
+                      // component='span'
                       style={{
                         background: '#000',
                         color: '#fff',
@@ -259,7 +262,7 @@ export const AddBusiness = () => {
                         textTransform: 'lowercase',
                       }}>
                       {formData.image === '' ? 'Select Image' : 'Change Image'}
-                    </Button>
+                    </button>
                   </label>
                   <input
                     name='image'

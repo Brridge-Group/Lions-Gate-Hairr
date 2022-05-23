@@ -99,6 +99,8 @@ p {
   font-weight: 400;
 }
 
+.Toastify__toast-container--top-center {
+}
 /* ///////media queries ////////// */
 
 @media screen and (max-width: 575px) {

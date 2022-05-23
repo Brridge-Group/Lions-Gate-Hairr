@@ -1,10 +1,5 @@
 import { useState } from 'react'
 import UserImage from '../../../UIElements/UserImage'
-import VisibilityRoundedIcon from '@material-ui/icons/VisibilityRounded'
-import VisibilityOffRoundedIcon from '@material-ui/icons/VisibilityOffRounded'
-import Input from '@material-ui/core/Input'
-import InputAdornment from '@material-ui/core/InputAdornment'
-import IconButton from '@material-ui/core/IconButton'
 import { toast } from 'react-toastify'
 import { NavLink } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
@@ -15,6 +10,11 @@ import './UserRegistration.css'
 import '../../Profile/Profile.css'
 
 import 'react-toastify/dist/ReactToastify.css'
+import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai'
+
+interface UserRegistration {
+  onClick: React.MouseEventHandler<HTMLButtonElement>
+}
 
 require('dotenv').config()
 toast.configure()
@@ -22,7 +22,7 @@ toast.configure()
 export const UserRegistration = () => {
   const [userData, setUserData] = useState({
     role: 'user',
-    imageProfile: 'https://imgur.com/LDpwLVZ.jpg'
+    imageProfile: 'https://imgur.com/LDpwLVZ.jpg',
   })
 
   const [errorMsg, setErrorMsg] = useState()
@@ -31,6 +31,8 @@ export const UserRegistration = () => {
   const [image, setImage] = useState<any | null>(null)
   const dispatch = useDispatch()
   const history = useHistory()
+
+  // <HTMLButtonElement>.onClick?:
 
   const signup =
     (formData: any, history: any, errorM?: any) => async (dispatch: any) => {
@@ -136,33 +138,27 @@ export const UserRegistration = () => {
                 onChange={handleChange}
                 className='UserRegistration_input'
               />
-              <h5>
-                <label>Password</label>
-              </h5>
-              <Input
-                name='password'
-                type={showPassword ? 'text' : 'password'}
-                onChange={handleChange}
-                className='UserRegistration_input'
-                endAdornment={
-                  <InputAdornment position='end'>
-                    <IconButton
-                      onClick={toggleShow}
-                      onMouseDown={handleMouseDownPassword}
-                    >
-                      {showPassword ? (
-                        <VisibilityRoundedIcon />
-                      ) : (
-                        <VisibilityOffRoundedIcon />
-                      )}
-                    </IconButton>
-                  </InputAdornment>
-                }
-              />
+              <div className='UserRegistration_password-wrapper'>
+                <h5>
+                  <label>Password</label>
+                </h5>
+                <input
+                  name='confirmPassword'
+                  className='UserRegistration_input'
+                  type={showPassword ? 'text' : 'password'}
+                  onChange={handleChange}
+                />
+                <button
+                  className='UserRegistration_input-button'
+                  onClick={toggleShow}>
+                  {showPassword ? <AiFillEye /> : <AiFillEyeInvisible />}
+                </button>
+              </div>
+
               <h5>
                 <label>Confirm Password</label>
               </h5>
-              <Input
+              <input
                 name='confirmPassword'
                 className='UserRegistration_input'
                 type={showPassword ? 'text' : 'password'}
@@ -197,8 +193,7 @@ export const UserRegistration = () => {
                 Have an account?{' '}
                 <NavLink
                   to='user-signin'
-                  style={{ fontWeight: 500, color: 'black' }}
-                >
+                  style={{ fontWeight: 500, color: 'black' }}>
                   Click Here
                 </NavLink>{' '}
                 to Login.

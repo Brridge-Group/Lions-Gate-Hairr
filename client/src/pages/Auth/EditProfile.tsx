@@ -1,10 +1,5 @@
 import { useState } from 'react'
 import UserImage from '../../UIElements/UserImage'
-import VisibilityRoundedIcon from '@material-ui/icons/VisibilityRounded'
-import VisibilityOffRoundedIcon from '@material-ui/icons/VisibilityOffRounded'
-import Input from '@material-ui/core/Input'
-import InputAdornment from '@material-ui/core/InputAdornment'
-import IconButton from '@material-ui/core/IconButton'
 import { toast } from 'react-toastify'
 import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
@@ -13,8 +8,12 @@ import * as api from '../../api/index'
 import './UserRegistration/UserRegistration.css'
 import '../Profile/Profile.css'
 import 'react-toastify/dist/ReactToastify.css'
+import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai'
 toast.configure()
 
+interface EditProfile {
+  onClick: React.MouseEventHandler<HTMLButtonElement>
+}
 export const EditProfile = () => {
   const user = JSON.parse(localStorage.getItem('profile') ?? 'false').result
 
@@ -48,10 +47,6 @@ export const EditProfile = () => {
 
   const toggleShow = () => {
     setShowPassword(!showPassword)
-  }
-
-  const handleMouseDownPassword = event => {
-    event.preventDefault()
   }
 
   const onImageChange = async (event: any) => {
@@ -123,32 +118,27 @@ export const EditProfile = () => {
                 value={userData.email}
                 className='UserRegistration_input'
               />
-              <h5>
-                <label>New Password</label>
-              </h5>
-              <Input
-                name='password'
-                type={showPassword ? 'text' : 'password'}
-                onChange={handleChange}
-                className='UserRegistration_input'
-                endAdornment={
-                  <InputAdornment position='end'>
-                    <IconButton
-                      onClick={toggleShow}
-                      onMouseDown={handleMouseDownPassword}>
-                      {showPassword ? (
-                        <VisibilityRoundedIcon />
-                      ) : (
-                        <VisibilityOffRoundedIcon />
-                      )}
-                    </IconButton>
-                  </InputAdornment>
-                }
-              />
+
+              <div className='UserRegistration_password-wrapper'>
+                <h5>
+                  <label>New Password</label>
+                </h5>
+                <input
+                  name='Password'
+                  className='UserRegistration_input'
+                  type={showPassword ? 'text' : 'password'}
+                  onChange={handleChange}
+                />
+                <button
+                  className='UserRegistration_input-button'
+                  onClick={toggleShow}>
+                  {showPassword ? <AiFillEye /> : <AiFillEyeInvisible />}
+                </button>
+              </div>
               <h5>
                 <label>Confirm Password</label>
               </h5>
-              <Input
+              <input
                 name='confirmPassword'
                 className='UserRegistration_input'
                 type={showPassword ? 'text' : 'password'}

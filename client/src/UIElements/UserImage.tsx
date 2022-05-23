@@ -1,6 +1,5 @@
-// import { Image } from '@chakra-ui/react'
-import { AddAPhotoRounded } from '@material-ui/icons'
 import './UserImage.css'
+import { AiFillCamera } from 'react-icons/ai'
 
 const UserImage = ({ pic, name, handleChange }) => (
   <>
@@ -11,7 +10,7 @@ const UserImage = ({ pic, name, handleChange }) => (
     />
     <div className='fileUpload btn btn-primary'>
       <span>
-        <AddAPhotoRounded fontSize='large' />
+        <AiFillCamera style={{ fontSize: '2rem' }} />
       </span>
       <input
         id='uploadBtn'

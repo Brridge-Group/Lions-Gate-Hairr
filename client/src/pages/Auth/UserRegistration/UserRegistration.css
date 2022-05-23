@@ -70,6 +70,15 @@ input:focus {
   text-align: center;
   font-size: 1.3rem !important;
 }
+.UserRegistration_password-wrapper {
+  position: relative;
+}
+.UserRegistration_input-button {
+  position: absolute;
+  right: 5%;
+  color: grey;
+  font-size: 2rem;
+}
 /* ///////media queries ////////// */
 
 @media screen and (max-width: 990px) {

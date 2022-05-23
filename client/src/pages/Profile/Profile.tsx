@@ -1,12 +1,18 @@
-import { useHistory, useLocation } from 'react-router-dom'
+import { useHistory, useLocation, useParams } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import { MyBusinessList } from '../../components/MyBusinessList/MyBusinessList'
 import './Profile.css'
+
+interface RouteParams {
+  id: string
+}
 
 export const Profile = () => {
   const { role, _id, name, imageProfile } = JSON.parse(
     localStorage.getItem('profile') || '{}'
   ).data.result
+  const { id } = useParams<RouteParams>()
+  console.log(_id, id, '_id, id')
 
   return (
     <div
@@ -37,7 +43,7 @@ export const Profile = () => {
               <Link to={`users/${_id}`}>
                 <h6 className='btn--btn-primary'>update profile</h6>
               </Link>
-              <Link to={'/users/:id'}>
+              <Link to={'#'}>
                 {' '}
                 <h6 className='btn--btn-primary twoLines'>become an owner</h6>
               </Link>

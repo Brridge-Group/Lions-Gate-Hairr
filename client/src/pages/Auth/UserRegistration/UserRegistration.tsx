@@ -32,8 +32,6 @@ export const UserRegistration = () => {
   const dispatch = useDispatch()
   const history = useHistory()
 
-  // <HTMLButtonElement>.onClick?:
-
   const signup =
     (formData: any, history: any, errorM?: any) => async (dispatch: any) => {
       let data
@@ -91,6 +89,7 @@ export const UserRegistration = () => {
   }
 
   const handleChange = (e: any) => {
+    console.log(e.target.value)
     setUserData({ ...userData, [e.target.name]: e.target.value })
   }
 
@@ -135,12 +134,13 @@ export const UserRegistration = () => {
                   <label>Password</label>
                 </h5>
                 <input
-                  name='confirmPassword'
+                  name='password'
                   className='UserRegistration_input'
                   type={showPassword ? 'text' : 'password'}
                   onChange={handleChange}
                 />
                 <button
+                  type='button'
                   className='UserRegistration_input-button'
                   onClick={toggleShow}>
                   {showPassword ? <AiFillEye /> : <AiFillEyeInvisible />}

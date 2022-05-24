@@ -7,20 +7,15 @@ import { About } from '../BusinessDetails/About'
 import '../../pages/Profile/Profile.css'
 import {LoadSpinner} from '../LoadSpinner/LoadSpinner';
 
-
-
 export const MyBusinessList = () => {
   const [list, setList] = useState<any[]>([])
   const [loading, setLoading] = useState(true)
-  const history = useHistory();
-  const user = JSON.parse(localStorage.getItem('profile') || '{}').result; 
+  const user = JSON.parse(localStorage.getItem('profile') || 'false').result
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch(
-          `/api/businesses/get-business-by-ownersId/?id=${user._id}`
-        )
+        const res = await fetch(`/api/businesses/get-business-by-ownersId/?id=${user._id}`)
         const businessesList = await res.json()
         setList(businessesList)
         setLoading(false)

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import React, { useState,  MouseEvent } from 'react'
 import UserImage from '../../UIElements/UserImage'
 import VisibilityRoundedIcon from '@material-ui/icons/VisibilityRounded'
 import VisibilityOffRoundedIcon from '@material-ui/icons/VisibilityOffRounded'
@@ -7,13 +7,16 @@ import InputAdornment from '@material-ui/core/InputAdornment'
 import IconButton from '@material-ui/core/IconButton'
 import { toast } from 'react-toastify'
 import { useDispatch } from 'react-redux'
-import { useHistory } from 'react-router-dom'
+import { RouteComponentProps, useHistory } from 'react-router-dom'
 import { UPDATE } from '../../constants/actionTypes'
 import * as api from '../../api/index'
 import './UserRegistration/UserRegistration.css'
 import '../Profile/Profile.css'
 import 'react-toastify/dist/ReactToastify.css'
+import { UserValues } from './UserRegistration/UserRegistration'
+
 toast.configure()
+
 
 export const EditProfile = () => {
   const user = JSON.parse(localStorage.getItem('profile') ?? 'false').result
@@ -22,8 +25,8 @@ export const EditProfile = () => {
   const history = useHistory()
 
   const [showPassword, setShowPassword] = useState(false)
-  const [errorMsg, setErrorMsg] = useState('')
-  const [userData, setUserData] = useState({
+  const [errorMsg, setErrorMsg] = useState<string | undefined>('')
+  const [userData, setUserData] = useState<UserValues>({
     firstName: user.name.split(' ')[0],
     lastName: user.name.split(' ')[1],
     email: user.email,
@@ -34,7 +37,7 @@ export const EditProfile = () => {
   })
 
   const updateUser =
-    (formData: any, history: any, errorM?: any) => async (dispatch: any) => {
+    (formData: UserValues, history: RouteComponentProps["history"], errorM?: string | undefined) => async (dispatch: any) => {
       try {
         // update the user
         const { data } = await api.updateUser(userData, user._id)
@@ -50,19 +53,20 @@ export const EditProfile = () => {
     setShowPassword(!showPassword)
   }
 
-  const handleMouseDownPassword = event => {
+  const handleMouseDownPassword = (event: MouseEvent<HTMLButtonElement> ) => {
     event.preventDefault()
   }
 
-  const onImageChange = async (event: any) => {
-    if (event.target.files[0]) {
-      if (event.target.files[0].type.match('image')) {
+  const onImageChange = async (event: React.ChangeEvent<HTMLInputElement> ) => {
+    event.preventDefault();
+    if (event.target.files![0]) {
+      if (event.target.files![0].type.match('image')) {
         let base64 = (await new Promise(resolve => {
           let reader = new FileReader()
           reader.onload = e => {
-            resolve(e.target?.result as any)
+            resolve(e.target?.result as string| PromiseLike<string>)
           }
-          reader.readAsDataURL(event.target.files[0])
+          reader.readAsDataURL(event.target.files![0])
         })) as string
         setUserData({ ...userData, imageProfile: base64 })
       } else {
@@ -73,12 +77,12 @@ export const EditProfile = () => {
     }
   }
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     dispatch(updateUser(userData, history))
   }
 
-  const handleChange = (e: any) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUserData({ ...userData, [e.target.name]: e.target.value })
   }
 

@@ -18,20 +18,20 @@ interface Props {
 }
 
 export const FilterServicesAndFeatures: React.FC<Props> = (props: Props) => {
-  const [isLoading, setIsLoading]: any = useState(true)
+  const [isLoading, setIsLoading] = useState(true)
 
   const [filteredFeats, setFilteredFeats]: any = useState([])
   const [filteredServices, setFilteredServices]: any = useState([])
 
   //* Filter Business Features and Services
   // HandleChanges for the features and services checkboxes
-  const onFeatChange = event => {
+  const onFeatChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, checked, id } = event.target
     // console.log('id', id, 'checked', checked)
     setFilteredFeats({ ...filteredFeats, [`${name} (${id})`]: checked })
   }
   // console.log('filteredFeats', filteredFeats)
-  const onServiceChange = event => {
+  const onServiceChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, checked, id } = event.target
     // console.log('id', id, 'checked', checked)
     setFilteredServices({ ...filteredServices, [`${name} (${id})`]: checked })

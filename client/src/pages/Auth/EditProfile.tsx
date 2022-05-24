@@ -33,18 +33,17 @@ export const EditProfile = () => {
     confirmPassword: '',
   })
 
-  const updateUser =
-    (formData: any, history: any, errorM?: any) => async (dispatch: any) => {
-      try {
-        // update the user
-        const { data } = await api.updateUser(userData, user._id)
-        dispatch({ type: UPDATE, data })
-        history.push('/')
-      } catch (err: any) {
-        errorM = err.response.data
-        setErrorMsg(errorM)
-      }
+  const updateUser = (formData: any, history: any, errorM?: any) => async (dispatch: any) => {
+    try {
+      // update the user
+      const { data } = await api.updateUser(userData, user._id)
+      dispatch({ type: UPDATE, data })
+      history.push('/')
+    } catch (err: any) {
+      errorM = err.response.data
+      setErrorMsg(errorM)
     }
+  }
 
   const toggleShow = () => {
     setShowPassword(!showPassword)
@@ -88,41 +87,19 @@ export const EditProfile = () => {
         <div className='FeatureContainer'>
           <div className='UserRegistration_inputGroup'>
             <form className='UserRegistration_form' onSubmit={handleSubmit}>
-              {
-                <UserImage
-                  pic={userData.imageProfile}
-                  name={user.name + '_pictureProfile'}
-                  handleChange={onImageChange}
-                />
-              }
+              {<UserImage pic={userData.imageProfile} name={user.name + '_pictureProfile'} handleChange={onImageChange} />}
               <h5>
                 <label>First Name</label>
               </h5>
-              <input
-                name='firstName'
-                value={userData.firstName}
-                onChange={handleChange}
-                autoFocus
-                className='UserRegistration_input'
-              />
+              <input name='firstName' value={userData.firstName} onChange={handleChange} autoFocus className='UserRegistration_input' />
               <h5>
                 <label>Last Name</label>
               </h5>
-              <input
-                name='lastName'
-                value={userData.lastName}
-                onChange={handleChange}
-                className='UserRegistration_input'
-              />
+              <input name='lastName' value={userData.lastName} onChange={handleChange} className='UserRegistration_input' />
               <h5>
                 <label>Email</label>
               </h5>
-              <input
-                name='email'
-                onChange={handleChange}
-                value={userData.email}
-                className='UserRegistration_input'
-              />
+              <input name='email' onChange={handleChange} value={userData.email} className='UserRegistration_input' />
               <h5>
                 <label>New Password</label>
               </h5>
@@ -133,14 +110,8 @@ export const EditProfile = () => {
                 className='UserRegistration_input'
                 endAdornment={
                   <InputAdornment position='end'>
-                    <IconButton
-                      onClick={toggleShow}
-                      onMouseDown={handleMouseDownPassword}>
-                      {showPassword ? (
-                        <VisibilityRoundedIcon />
-                      ) : (
-                        <VisibilityOffRoundedIcon />
-                      )}
+                    <IconButton onClick={toggleShow} onMouseDown={handleMouseDownPassword}>
+                      {showPassword ? <VisibilityRoundedIcon /> : <VisibilityOffRoundedIcon />}
                     </IconButton>
                   </InputAdornment>
                 }
@@ -148,31 +119,14 @@ export const EditProfile = () => {
               <h5>
                 <label>Confirm Password</label>
               </h5>
-              <Input
-                name='confirmPassword'
-                className='UserRegistration_input'
-                type={showPassword ? 'text' : 'password'}
-                onChange={handleChange}
-              />
+              <Input name='confirmPassword' className='UserRegistration_input' type={showPassword ? 'text' : 'password'} onChange={handleChange} />
               <div className='UserRegistration_radioButtons'>
                 <h5 className='UserRegistration_radio'>
-                  <input
-                    type='radio'
-                    name='role'
-                    value='user'
-                    checked={userData.role === 'user'}
-                    onChange={handleChange}
-                  />
+                  <input type='radio' name='role' value='user' checked={userData.role === 'user'} onChange={handleChange} />
                   User
                 </h5>
                 <h5 className='UserRegistration_radio'>
-                  <input
-                    type='radio'
-                    name='role'
-                    value='owner'
-                    onChange={handleChange}
-                    checked={userData.role === 'owner'}
-                  />
+                  <input type='radio' name='role' value='owner' onChange={handleChange} checked={userData.role === 'owner'} />
                   Owner
                 </h5>
               </div>

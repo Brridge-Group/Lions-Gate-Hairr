@@ -197,8 +197,7 @@ export const UserRegistration = () => {
                 Have an account?{' '}
                 <NavLink
                   to='user-signin'
-                  style={{ fontWeight: 500, color: 'black' }}
-                >
+                  style={{ fontWeight: 500, color: 'black' }}>
                   Click Here
                 </NavLink>{' '}
                 to Login.

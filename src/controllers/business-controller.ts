@@ -53,7 +53,7 @@ export const getAllBusinesses = async (req: Request, res: Response) => {
 }
 
 export const getOwnersBusinesses = async (req: Request, res: Response) => {
-  const id = req.query.id
+  const id = req.query.id;
   try {
     const businessList = await Business.find({ ownerId: id }).populate('services').populate('features')
     res.send(businessList)

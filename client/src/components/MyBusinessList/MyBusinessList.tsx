@@ -9,14 +9,12 @@ import '../../pages/Profile/Profile.css'
 export const MyBusinessList = () => {
   const [list, setList] = useState<any[]>([])
   const [loading, setLoading] = useState(true)
-  const user = JSON.parse(localStorage.getItem('profile') || '{}').data.result
+  const user = JSON.parse(localStorage.getItem('profile') || 'false').result
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch(
-          `/api/businesses/get-business-by-ownersId/?id=${user._id}`
-        )
+        const res = await fetch(`/api/businesses/get-business-by-ownersId/?id=${user._id}`)
         const businessesList = await res.json()
         setList(businessesList)
         setLoading(false)

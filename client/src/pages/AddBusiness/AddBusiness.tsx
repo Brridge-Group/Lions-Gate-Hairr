@@ -32,7 +32,7 @@ export const AddBusiness = () => {
     const fetchFeaturesData = async () => {
       try {
         const response = await fetch('/api/features', {
-          method: 'GET'
+          method: 'GET',
         })
         const responseData = await response.json()
         setFeats(responseData)
@@ -53,7 +53,7 @@ export const AddBusiness = () => {
     const fetchServicesData = async () => {
       try {
         const response = await fetch('/api/services', {
-          method: 'GET'
+          method: 'GET',
         })
         const responseData = await response.json()
         setServices(responseData)
@@ -83,13 +83,12 @@ export const AddBusiness = () => {
     image: '',
     cityTown: '',
     postalCode: '',
-    phone: ''
+    phone: '',
   })
   const [region, setRegion] = useState('AB')
   const [country, setCountry] = useState('Canada')
   const history = useHistory()
-  const ownerId = JSON.parse(localStorage.getItem('profile') ?? 'false').data.result
-    ._id
+  const ownerId = JSON.parse(localStorage.getItem('profile') ?? 'false').result._id
 
   const onImageChange = async (e: any) => {
     e.preventDefault()
@@ -100,9 +99,7 @@ export const AddBusiness = () => {
 
       if (file.type.match('image.*')) {
         if (file.size > maxFileSize) {
-          toast.error(
-            `The selected image file size, ${file.size}kb, is too large. Please upload an image that is less than 2 mb.`
-          )
+          toast.error(`The selected image file size, ${file.size}kb, is too large. Please upload an image that is less than 2 mb.`)
         } else {
           let base64 = (await new Promise(resolve => {
             let reader = new FileReader()
@@ -119,27 +116,26 @@ export const AddBusiness = () => {
     }
   }
   const onFormChange = (e: any) => {
-    const value =
-      e.target.type === 'checkbox' ? e.target.checked : e.target.value
+    const value = e.target.type === 'checkbox' ? e.target.checked : e.target.value
 
     // Evaluate to determine if checkbox is checked and if is it a service or feature
     if (e.target.type === 'checkbox') {
       setIsChecked({
         ...isChecked,
-        [e.target.name]: value
+        [e.target.name]: value,
       })
 
       if (e.target.name.includes('service')) {
         setIsServicesChecked({
           ...isServicesChecked,
-          [e.target.id]: value
+          [e.target.id]: value,
         })
       }
 
       if (e.target.name.includes('feature')) {
         setIsFeatsChecked({
           ...isFeatsChecked,
-          [e.target.id]: value
+          [e.target.id]: value,
         })
       }
     }
@@ -196,11 +192,11 @@ export const AddBusiness = () => {
       postalCode: formData.postalCode,
       city: formData.cityTown,
       region: region,
-      country: country
+      country: country,
     },
     stars: 0,
     phone: formData.phone,
-    ownerId: ownerId
+    ownerId: ownerId,
   }
 
   const saveNewBusiness = () => {
@@ -208,7 +204,7 @@ export const AddBusiness = () => {
     let newBusiness = {
       ...data,
       features: savedFormFeats,
-      services: savedFormServices
+      services: savedFormServices,
     }
 
     axios
@@ -256,91 +252,39 @@ export const AddBusiness = () => {
                         width: '9rem',
                         border: '1px solid #f32dc8',
                         height: '2.5rem',
-                        textTransform: 'lowercase'
-                      }}
-                    >
+                        textTransform: 'lowercase',
+                      }}>
                       {formData.image === '' ? 'Select Image' : 'Change Image'}
                     </Button>
                   </label>
-                  <input
-                    name='image'
-                    accept='image/*'
-                    type='file'
-                    id='select-image'
-                    style={{ display: 'none' }}
-                    onChange={onImageChange}
-                  />
+                  <input name='image' accept='image/*' type='file' id='select-image' style={{ display: 'none' }} onChange={onImageChange} />
                 </figure>
               </div>
               <div className='AddBusiness-FormCard_body_formGroup'>
                 <label htmlFor='businessName'>Business Name</label>
-                <input
-                  name='businessName'
-                  type='text'
-                  value={formData.businessName}
-                  className='AddBusiness-FormControl'
-                  placeholder='Enter business name'
-                  onChange={onFormChange}
-                  required
-                />
+                <input name='businessName' type='text' value={formData.businessName} className='AddBusiness-FormControl' placeholder='Enter business name' onChange={onFormChange} required />
               </div>
               <div className='AddBusiness-FormCard_body_formGroup'>
                 <label htmlFor='description'>Description</label>
-                <textarea
-                  name='description'
-                  value={formData.description}
-                  className='AddBusiness-FormControl'
-                  placeholder='Enter business description'
-                  onChange={onFormChange}
-                  required
-                />
+                <textarea name='description' value={formData.description} className='AddBusiness-FormControl' placeholder='Enter business description' onChange={onFormChange} required />
               </div>
               <div className='AddBusiness-FormCard_body_formGroup'>
                 <label htmlFor='email'>Email</label>
-                <input
-                  name='email'
-                  type='email'
-                  value={formData.email}
-                  className='AddBusiness-FormControl'
-                  placeholder='Enter email address'
-                  onChange={onFormChange}
-                  required
-                />
+                <input name='email' type='email' value={formData.email} className='AddBusiness-FormControl' placeholder='Enter email address' onChange={onFormChange} required />
               </div>
               <div className='AddBusiness-FormCard_body_formGroup'>
                 <label htmlFor='address1'>Address Line 1</label>
-                <input
-                  name='address1'
-                  type='text'
-                  value={formData.address1}
-                  className='AddBusiness-FormControl'
-                  placeholder='Enter street address'
-                  onChange={onFormChange}
-                  required
-                />
+                <input name='address1' type='text' value={formData.address1} className='AddBusiness-FormControl' placeholder='Enter street address' onChange={onFormChange} required />
               </div>
               <div className='AddBusiness-FormCard_body_columns'>
                 <div className='AddBusiness-FormCard_body_left'>
                   <div className='AddBusiness-FormCard_body_formGroup'>
                     <label htmlFor='cityTown'>City / Town</label>
-                    <input
-                      name='cityTown'
-                      type='text'
-                      value={formData.cityTown}
-                      className='AddBusiness-FormControl'
-                      placeholder='Enter city'
-                      onChange={onFormChange}
-                      required
-                    />
+                    <input name='cityTown' type='text' value={formData.cityTown} className='AddBusiness-FormControl' placeholder='Enter city' onChange={onFormChange} required />
                   </div>
                   <div className='AddBusiness-FormCard_body_formGroup'>
                     <label htmlFor='region'>Province / State</label>
-                    <select
-                      className='custom-select rounded-0'
-                      onChange={handleRegion}
-                      name='region'
-                      id='region'
-                    >
+                    <select className='custom-select rounded-0' onChange={handleRegion} name='region' id='region'>
                       {regions.map(region => (
                         <option value={region.value}>{region.label}</option>
                       ))}
@@ -348,49 +292,21 @@ export const AddBusiness = () => {
                   </div>
                   <div className='AddBusiness-FormCard_body_formGroup'>
                     <label htmlFor='phone'>Phone Number</label>
-                    <input
-                      name='phone'
-                      type='text'
-                      value={formData.phone}
-                      className='AddBusiness-FormControl'
-                      placeholder='Enter phone number'
-                      onChange={onFormChange}
-                      required
-                    />
+                    <input name='phone' type='text' value={formData.phone} className='AddBusiness-FormControl' placeholder='Enter phone number' onChange={onFormChange} required />
                   </div>
                 </div>
                 <div className='AddBusiness-FormCard_body_right'>
                   <div className='AddBusiness-FormCard_body_formGroup'>
                     <label htmlFor='address2'>Address Line 2</label>
-                    <input
-                      name='address2'
-                      type='text'
-                      value={formData.address2}
-                      className='AddBusiness-FormControl'
-                      placeholder='Enter street address 2'
-                      onChange={onFormChange}
-                    />
+                    <input name='address2' type='text' value={formData.address2} className='AddBusiness-FormControl' placeholder='Enter street address 2' onChange={onFormChange} />
                   </div>
                   <div className='AddBusiness-FormCard_body_formGroup'>
                     <label htmlFor=''>Postal Code</label>
-                    <input
-                      name='postalCode'
-                      type='text'
-                      value={formData.postalCode}
-                      className='AddBusiness-FormControl'
-                      placeholder='Enter postal code'
-                      onChange={onFormChange}
-                      required
-                    />
+                    <input name='postalCode' type='text' value={formData.postalCode} className='AddBusiness-FormControl' placeholder='Enter postal code' onChange={onFormChange} required />
                   </div>
                   <div className='AddBusiness-FormCard_body_formGroup'>
                     <label htmlFor='country'>Country:</label>
-                    <select
-                      className='custom-select rounded-0'
-                      onChange={handleCountry}
-                      name='country'
-                      id='country'
-                    >
+                    <select className='custom-select rounded-0' onChange={handleCountry} name='country' id='country'>
                       <option value='Canada'> Canada </option>
                       <option value='United States'> United States</option>
                     </select>
@@ -400,19 +316,12 @@ export const AddBusiness = () => {
             </div>
             <div className='AddBusiness-FormCard_sidebar'>
               <div className='AddBusiness-FormCard_filtersContainer'>
-                <label
-                  className=' AddBusiness-FormCard_filtersContainer_labelHeader'
-                  htmlFor='features'
-                >
+                <label className=' AddBusiness-FormCard_filtersContainer_labelHeader' htmlFor='features'>
                   Features
                 </label>
                 <div className='AddBusiness-FormCard_filtersContainer_formGroup'>
                   {featuresArr?.map((feature, index) => (
-                    <div
-                      className='AddBusiness-FormCard_filtersContainer_formCheck'
-                      style={{ textTransform: 'capitalize' }}
-                      key={`${feature}_` + index}
-                    >
+                    <div className='AddBusiness-FormCard_filtersContainer_formCheck' style={{ textTransform: 'capitalize' }} key={`${feature}_` + index}>
                       <input
                         className='AddBusiness-FormCard_filtersContainer_formCheckInput'
                         type='checkbox'
@@ -421,28 +330,18 @@ export const AddBusiness = () => {
                         defaultChecked={feature[2]}
                         onChange={onFormChange}
                       />
-                      <label
-                        className='AddBusiness-FormCard_filtersContainer_formCheckLabel'
-                        htmlFor={feature[1]}
-                      >
+                      <label className='AddBusiness-FormCard_filtersContainer_formCheckLabel' htmlFor={feature[1]}>
                         {feature[0]}
                       </label>
                     </div>
                   ))}
                 </div>
-                <label
-                  className=' AddBusiness-FormCard_filtersContainer_labelHeader  AddBusiness-FormCard_filtersContainer_labelHeader_services'
-                  htmlFor='services'
-                >
+                <label className=' AddBusiness-FormCard_filtersContainer_labelHeader  AddBusiness-FormCard_filtersContainer_labelHeader_services' htmlFor='services'>
                   Services
                 </label>
                 <div className='AddBusiness-FormCard_filtersContainer_formGroup'>
                   {servicesArr?.map((service, index) => (
-                    <div
-                      className='AddBusiness-FormCard_filtersContainer_formCheck'
-                      style={{ textTransform: 'capitalize' }}
-                      key={`${service}_` + index}
-                    >
+                    <div className='AddBusiness-FormCard_filtersContainer_formCheck' style={{ textTransform: 'capitalize' }} key={`${service}_` + index}>
                       <input
                         className='AddBusiness-FormCard_filtersContainer_formCheckInput'
                         type='checkbox'
@@ -451,10 +350,7 @@ export const AddBusiness = () => {
                         defaultChecked={service[2]}
                         onChange={onFormChange}
                       />
-                      <label
-                        className='AddBusiness-FormCard_filtersContainer_formCheckLabel'
-                        htmlFor={service[1]}
-                      >
+                      <label className='AddBusiness-FormCard_filtersContainer_formCheckLabel' htmlFor={service[1]}>
                         {service[0]}
                       </label>
                     </div>
@@ -462,10 +358,7 @@ export const AddBusiness = () => {
                 </div>
               </div>
               <div className='AddBusiness-FormCard_sidebar_footer'>
-                <button
-                  type='submit'
-                  className='AddBusiness-FormCard_sidebar_btn'
-                >
+                <button type='submit' className='AddBusiness-FormCard_sidebar_btn'>
                   submit
                 </button>
               </div>

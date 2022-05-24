@@ -5,7 +5,7 @@ import { Card } from '../../UIElements/Card'
 import { Star } from '../../UIElements/Star'
 import { About } from '../BusinessDetails/About'
 import '../../pages/Profile/Profile.css'
-import { Loading } from '../LoadSpinner/Loading';
+import {LoadSpinner} from '../LoadSpinner/LoadSpinner';
 
 
 
@@ -13,7 +13,7 @@ export const MyBusinessList = () => {
   const [list, setList] = useState<any[]>([])
   const [loading, setLoading] = useState(true)
   const history = useHistory();
-  const user = JSON.parse(localStorage.getItem('profile') || '{}').data.result; 
+  const user = JSON.parse(localStorage.getItem('profile') || '{}').result; 
 
   useEffect(() => {
     const fetchData = async () => {
@@ -38,7 +38,7 @@ export const MyBusinessList = () => {
       <div className='Profile-UserContainer'>
         {/* update here if change background image */}
         {/* <div className='Profile-UserContainer Owner'> */}
-        {loading ? <Loading  /> :
+        {loading ? <LoadSpinner  /> :
            (  
              !list.length ? 
               ( 

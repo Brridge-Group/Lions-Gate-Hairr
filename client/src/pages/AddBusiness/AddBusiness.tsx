@@ -10,9 +10,9 @@ import { regions } from '../../constants/regions'
 import axios from 'axios'
 import './AddBusiness.css'
 
-// interface AddBusiness {
-//   onClick: React.MouseEventHandler<HTMLButtonElement>
-// }
+interface AddBusiness {
+  onClick: React.MouseEventHandler<HTMLButtonElement>
+}
 
 // Custom Styles
 

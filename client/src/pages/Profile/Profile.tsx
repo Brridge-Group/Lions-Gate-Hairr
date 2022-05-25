@@ -9,10 +9,8 @@ interface RouteParams {
 
 export const Profile = () => {
   const { role, _id, name, imageProfile } = JSON.parse(
-    localStorage.getItem('profile') || '{}'
-  ).data.result
-  const { id } = useParams<RouteParams>()
-  console.log(_id, id, '_id, id')
+    localStorage.getItem('profile') || 'false'
+  ).result
 
   return (
     <div

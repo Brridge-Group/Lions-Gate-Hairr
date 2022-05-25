@@ -39,7 +39,9 @@ export const UserRegistration = () => {
         // sign up the user
         data = await api.signUp(userData)
         dispatch({ type: AUTH, data })
-        history.push('/')
+        userData.role === 'user'
+          ? history.push('/')
+          : history.push('/add-business')
       } catch (err: any) {
         errorM = err.response.data
         toast(errorM)

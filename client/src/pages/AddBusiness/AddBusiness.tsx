@@ -238,73 +238,75 @@ export const AddBusiness = () => {
         {/* <-- Form Start --> */}
 
         <form onSubmit={handleSubmit} className='AddBusiness_inputGroup'>
-          <div className='AddBusiness-FormCard_body'>
-            <BusinessImage
-              pic={image}
-              name={'profile-picture'}
-              handleChange={onImageChange}
-            />
-            <h5>
-              <label htmlFor='businessName'>Business Name</label>
-            </h5>
-            <input
-              name='businessName'
-              type='text'
-              value={formData.businessName}
-              className='UserRegistration_input'
-              onChange={onFormChange}
-              required
-            />
-            <h5>
-              <label htmlFor='description'>Description</label>
-            </h5>
-            <textarea
-              name='description'
-              value={formData.description}
-              className='UserRegistration_input'
-              onChange={onFormChange}
-              required
-            />
-            <h5>
-              <label htmlFor='email'>Email</label>
-            </h5>
-            <input
-              name='email'
-              type='email'
-              value={formData.email}
-              className='UserRegistration_input'
-              onChange={onFormChange}
-              required
-            />
-            <h5>
-              <label htmlFor='address1'>Address Line 1</label>
-            </h5>
-            <input
-              name='address1'
-              type='text'
-              value={formData.address1}
-              className='UserRegistration_input'
-              onChange={onFormChange}
-              required
-            />
+          <div className='AddBusiness_scroll'>
+            <div className='AddBusiness-FormCard_body'>
+              <BusinessImage
+                pic={image}
+                name={'profile-picture'}
+                handleChange={onImageChange}
+              />
+              <h5>
+                <label htmlFor='businessName'>Business Name</label>
+              </h5>
+              <input
+                name='businessName'
+                type='text'
+                value={formData.businessName}
+                className='UserRegistration_input'
+                onChange={onFormChange}
+                required
+              />
+              <h5>
+                <label htmlFor='description'>Description</label>
+              </h5>
+              <textarea
+                name='description'
+                value={formData.description}
+                className='UserRegistration_input'
+                onChange={onFormChange}
+                required
+              />
+              <h5>
+                <label htmlFor='email'>Email</label>
+              </h5>
+              <input
+                name='email'
+                type='email'
+                value={formData.email}
+                className='UserRegistration_input'
+                onChange={onFormChange}
+                required
+              />
+              <h5>
+                <label htmlFor='address1'>Address Line 1</label>
+              </h5>
+              <input
+                name='address1'
+                type='text'
+                value={formData.address1}
+                className='UserRegistration_input'
+                onChange={onFormChange}
+                required
+              />
 
-            <div className='AddBusiness-FormCard_body_columns'>
-              <div className='AddBusiness-FormCard_body_left'>
-                <div className='AddBusiness-FormCard_body_formGroup'>
-                  <label htmlFor='cityTown'>City / Town</label>
+              <div className='AddBusiness-FormCard_body_columns'>
+                <div className='AddBusiness-FormCard_body_left'>
+                  <h5>
+                    <label htmlFor='cityTown'>City / Town</label>
+                  </h5>
                   <input
                     name='cityTown'
                     type='text'
                     value={formData.cityTown}
-                    className='AddBusiness-FormControl'
+                    className='UserRegistration_input'
                     onChange={onFormChange}
                     required
                   />
-                </div>
-                <div className='AddBusiness-FormCard_body_formGroup'>
-                  <label htmlFor='region'>Province / State</label>
+                  <h5>
+                    <label htmlFor='region'>Province / State</label>
+                  </h5>
                   <select
-                    className='custom-select rounded-0'
+                    className='UserRegistration_input'
                     onChange={handleRegion}
                     name='region'
                     id='region'>
@@ -312,45 +314,49 @@ export const AddBusiness = () => {
                       <option value={region.value}>{region.label}</option>
                     ))}
                   </select>
-                </div>
-                <div className='AddBusiness-FormCard_body_formGroup'>
-                  <label htmlFor='phone'>Phone Number</label>
+                  <h5>
+                    <label htmlFor='phone'>Phone Number</label>
+                  </h5>
                   <input
                     name='phone'
                     type='text'
                     value={formData.phone}
-                    className='AddBusiness-FormControl'
+                    className='UserRegistration_input'
                     onChange={onFormChange}
                     required
                   />
                 </div>
-              </div>
-              <div className='AddBusiness-FormCard_body_right'>
-                <div className='AddBusiness-FormCard_body_formGroup'>
-                  <label htmlFor='address2'>Address Line 2</label>
+                <div className='AddBusiness-FormCard_body_right'>
+                  <h5>
+                    <label htmlFor='address2'>Address Line 2</label>
+                  </h5>
+
                   <input
                     name='address2'
                     type='text'
                     value={formData.address2}
-                    className='AddBusiness-FormControl'
+                    className='UserRegistration_input'
                     onChange={onFormChange}
                   />
-                </div>
-                <div className='AddBusiness-FormCard_body_formGroup'>
-                  <label htmlFor=''>Postal Code</label>
+
+                  <h5>
+                    <label htmlFor=''>Postal Code</label>
+                  </h5>
+
                   <input
                     name='postalCode'
                     type='text'
                     value={formData.postalCode}
-                    className='AddBusiness-FormControl'
+                    className='UserRegistration_input'
                     onChange={onFormChange}
                     required
                   />
-                </div>
-                <div className='AddBusiness-FormCard_body_formGroup'>
-                  <label htmlFor='country'>Country:</label>
+
+                  <h5>
+                    <label htmlFor='country'>Country:</label>
+                  </h5>
                   <select
-                    className='custom-select rounded-0'
+                    className='UserRegistration_input'
                     onChange={handleCountry}
                     name='country'
                     id='country'>

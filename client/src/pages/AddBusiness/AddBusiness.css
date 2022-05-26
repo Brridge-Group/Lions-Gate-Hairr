@@ -9,7 +9,20 @@
   grid-column: 4/12;
   display: flex;
   flex-direction: row;
+  height: 50%;
 }
-.AddBusiness-FormCard_body {
-  width: 60%;
+
+.AddBusiness-FormCard_sidebar {
+  margin-left: 10%;
+}
+.AddBusiness-FormCard_body_columns {
+  display: flex;
+}
+.AddBusiness_scroll {
+  overflow-y: auto;
+  display: flex;
+}
+.AddBusiness-FormCard_body_left {
+  margin-right: 10%;
+  width: 45%;
 }

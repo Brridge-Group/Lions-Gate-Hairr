@@ -44,7 +44,6 @@
   font-size: 1.6rem;
 }
 input.AddBusiness-FormCard_filtersContainer_formCheckInput {
-  background: none;
   margin-right: 5px;
 }
 
@@ -65,3 +64,13 @@ input.AddBusiness-FormCard_filtersContainer_formCheckInput {
 /* input[type='checkbox'] {
   visibility: hidden;
 } */
+
+/* ///////media queries ////////// */
+
+@media screen and (max-width: 575px) {
+  .FeatureContainer_image.Profile {
+    background-image: url('../../assets/images/hairlavender-mobile.jpg');
+    margin-bottom: 0;
+    height: 100%;
+  }
+}

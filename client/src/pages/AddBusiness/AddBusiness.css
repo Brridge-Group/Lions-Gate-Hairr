@@ -5,7 +5,7 @@
 
 .AddBusiness_inputGroup {
   text-align: center;
-  margin-top: 125px;
+  margin-top: 160px;
   grid-column: 4/12;
   display: flex;
   flex-direction: row;
@@ -13,7 +13,10 @@
 }
 
 .AddBusiness-FormCard_sidebar {
-  margin-left: 10%;
+  margin-left: 5%;
+  border: 0.5px solid black;
+  padding: 1.6rem;
+  text-align: left;
 }
 .AddBusiness-FormCard_body_columns {
   display: flex;
@@ -21,8 +24,44 @@
 .AddBusiness_scroll {
   overflow-y: auto;
   display: flex;
+  width: 75%;
+}
+.AddBusiness-FormCard_body {
+  width: 100%;
 }
 .AddBusiness-FormCard_body_left {
   margin-right: 10%;
   width: 45%;
 }
+.AddBusiness-FormCard_body_right {
+  width: 45%;
+}
+
+.sidebar-hed {
+  text-align: center;
+  font-weight: 500;
+  margin: 0;
+  font-size: 1.6rem;
+}
+input.AddBusiness-FormCard_filtersContainer_formCheckInput {
+  background: none;
+  margin-right: 5px;
+}
+
+.UserRegistration_input.color {
+  background: #eee6ed;
+}
+
+.AddBusiness-FormCard_filtersContainer_formGroup {
+  text-transform: capitalize;
+  overflow-y: scroll;
+  height: 170px;
+}
+.AddBusiness-FormCard_filtersContainer {
+  margin-bottom: 15px;
+}
+
+/* * Hide the default checkbox */
+/* input[type='checkbox'] {
+  visibility: hidden;
+} */

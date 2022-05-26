@@ -284,7 +284,7 @@ export const AddBusiness = () => {
                 name='address1'
                 type='text'
                 value={formData.address1}
-                className='UserRegistration_input'
+                className='UserRegistration_input color'
                 onChange={onFormChange}
                 required
               />
@@ -298,7 +298,7 @@ export const AddBusiness = () => {
                     name='cityTown'
                     type='text'
                     value={formData.cityTown}
-                    className='UserRegistration_input'
+                    className='UserRegistration_input color'
                     onChange={onFormChange}
                     required
                   />
@@ -306,7 +306,7 @@ export const AddBusiness = () => {
                     <label htmlFor='region'>Province / State</label>
                   </h5>
                   <select
-                    className='UserRegistration_input'
+                    className='UserRegistration_input color'
                     onChange={handleRegion}
                     name='region'
                     id='region'>
@@ -321,7 +321,7 @@ export const AddBusiness = () => {
                     name='phone'
                     type='text'
                     value={formData.phone}
-                    className='UserRegistration_input'
+                    className='UserRegistration_input color'
                     onChange={onFormChange}
                     required
                   />
@@ -335,7 +335,7 @@ export const AddBusiness = () => {
                     name='address2'
                     type='text'
                     value={formData.address2}
-                    className='UserRegistration_input'
+                    className='UserRegistration_input color'
                     onChange={onFormChange}
                   />
 
@@ -347,7 +347,7 @@ export const AddBusiness = () => {
                     name='postalCode'
                     type='text'
                     value={formData.postalCode}
-                    className='UserRegistration_input'
+                    className='UserRegistration_input color'
                     onChange={onFormChange}
                     required
                   />
@@ -356,7 +356,7 @@ export const AddBusiness = () => {
                     <label htmlFor='country'>Country:</label>
                   </h5>
                   <select
-                    className='UserRegistration_input'
+                    className='UserRegistration_input color'
                     onChange={handleCountry}
                     name='country'
                     id='country'>
@@ -369,68 +369,62 @@ export const AddBusiness = () => {
           </div>
           <div className='AddBusiness-FormCard_sidebar'>
             <div className='AddBusiness-FormCard_filtersContainer'>
-              <label
-                className=' AddBusiness-FormCard_filtersContainer_labelHeader'
-                htmlFor='features'>
-                Features
-              </label>
+              <h4 className='sidebar-hed'>
+                <label htmlFor='features'>Features</label>
+              </h4>
               <div className='AddBusiness-FormCard_filtersContainer_formGroup'>
                 {featuresArr?.map((feature, index) => (
-                  <div
-                    className='AddBusiness-FormCard_filtersContainer_formCheck'
-                    style={{ textTransform: 'capitalize' }}
-                    key={`${feature}_` + index}>
-                    <input
-                      className='AddBusiness-FormCard_filtersContainer_formCheckInput'
-                      type='checkbox'
-                      name={`feature-${feature[0]}`}
-                      id={feature[1]}
-                      defaultChecked={feature[2]}
-                      onChange={onFormChange}
-                    />
-                    <label
-                      className='AddBusiness-FormCard_filtersContainer_formCheckLabel'
-                      htmlFor={feature[1]}>
-                      {feature[0]}
-                    </label>
+                  <div key={`${feature}_` + index}>
+                    <h5
+                      style={{
+                        display: 'flex',
+                        marginTop: '10px',
+                        marginBottom: '5px',
+                      }}>
+                      <input
+                        type='checkbox'
+                        name={`feature-${feature[0]}`}
+                        id={feature[1]}
+                        defaultChecked={feature[2]}
+                        onChange={onFormChange}
+                      />
+                      <label htmlFor={feature[1]}>{feature[0]}</label>
+                    </h5>
                   </div>
                 ))}
               </div>
-              <label
-                className=' AddBusiness-FormCard_filtersContainer_labelHeader  AddBusiness-FormCard_filtersContainer_labelHeader_services'
-                htmlFor='services'>
-                Services
-              </label>
+              <h4 className='sidebar-hed'>
+                <label htmlFor='features'>Services</label>
+              </h4>
               <div className='AddBusiness-FormCard_filtersContainer_formGroup'>
                 {servicesArr?.map((service, index) => (
-                  <div
-                    className='AddBusiness-FormCard_filtersContainer_formCheck'
-                    style={{ textTransform: 'capitalize' }}
-                    key={`${service}_` + index}>
-                    <input
-                      className='AddBusiness-FormCard_filtersContainer_formCheckInput'
-                      type='checkbox'
-                      name={`service-${service[0]}`}
-                      id={service[1]}
-                      defaultChecked={service[2]}
-                      onChange={onFormChange}
-                    />
-                    <label
-                      className='AddBusiness-FormCard_filtersContainer_formCheckLabel'
-                      htmlFor={service[1]}>
-                      {service[0]}
-                    </label>
+                  <div key={`${service}_` + index}>
+                    <h5
+                      style={{
+                        display: 'flex',
+                        marginTop: '10px',
+                        marginBottom: '5px',
+                      }}>
+                      <input
+                        type='checkbox'
+                        name={`service-${service[0]}`}
+                        id={service[1]}
+                        defaultChecked={service[2]}
+                        onChange={onFormChange}
+                      />
+                      <label htmlFor={service[1]}>{service[0]}</label>
+                    </h5>
                   </div>
                 ))}
               </div>
             </div>
-            <div className='AddBusiness-FormCard_sidebar_footer'>
-              <button
-                type='submit'
-                className='AddBusiness-FormCard_sidebar_btn'>
-                submit
-              </button>
-            </div>
+
+            <button
+              type='submit'
+              className='btn--btn-primary'
+              style={{ paddingTop: '0px' }}>
+              submit
+            </button>
           </div>
         </form>
         {/* <-- Form Ends --> */}

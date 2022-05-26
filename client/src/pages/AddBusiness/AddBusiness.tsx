@@ -10,6 +10,7 @@ import { regions } from '../../constants/regions'
 // 3rd Party Custom Imports
 import axios from 'axios'
 import './AddBusiness.css'
+import '../Auth/UserRegistration/UserRegistration.css'
 
 interface AddBusiness {
   onClick: React.MouseEventHandler<HTMLButtonElement>
@@ -232,65 +233,61 @@ export const AddBusiness = () => {
   }
 
   return (
-    <div className='AddBusiness-Wrapper'>
-      <div className='AddBusiness-FormCard'>
+    <div className='FeatureContainer_image Profile'>
+      <div className='FeatureContainer'>
         {/* <-- Form Start --> */}
-        <form onSubmit={handleSubmit}>
+
+        <form onSubmit={handleSubmit} className='AddBusiness_inputGroup'>
           <div className='AddBusiness-FormCard_body'>
-            <div className='AddBusiness-FormCard_body_formGroup AddBusiness-FormCard_preview_container'>
-              <BusinessImage
-                pic={image}
-                name={'profile-picture'}
-                handleChange={onImageChange}
-              />
-            </div>
-            <div className='AddBusiness-FormCard_body_formGroup'>
+            <BusinessImage
+              pic={image}
+              name={'profile-picture'}
+              handleChange={onImageChange}
+            />
+            <h5>
               <label htmlFor='businessName'>Business Name</label>
-              <input
-                name='businessName'
-                type='text'
-                value={formData.businessName}
-                className='AddBusiness-FormControl'
-                placeholder='Enter business name'
-                onChange={onFormChange}
-                required
-              />
-            </div>
-            <div className='AddBusiness-FormCard_body_formGroup'>
+            </h5>
+            <input
+              name='businessName'
+              type='text'
+              value={formData.businessName}
+              className='UserRegistration_input'
+              onChange={onFormChange}
+              required
+            />
+            <h5>
               <label htmlFor='description'>Description</label>
-              <textarea
-                name='description'
-                value={formData.description}
-                className='AddBusiness-FormControl'
-                placeholder='Enter business description'
-                onChange={onFormChange}
-                required
-              />
-            </div>
-            <div className='AddBusiness-FormCard_body_formGroup'>
+            </h5>
+            <textarea
+              name='description'
+              value={formData.description}
+              className='UserRegistration_input'
+              onChange={onFormChange}
+              required
+            />
+            <h5>
               <label htmlFor='email'>Email</label>
-              <input
-                name='email'
-                type='email'
-                value={formData.email}
-                className='AddBusiness-FormControl'
-                placeholder='Enter email address'
-                onChange={onFormChange}
-                required
-              />
-            </div>
-            <div className='AddBusiness-FormCard_body_formGroup'>
+            </h5>
+            <input
+              name='email'
+              type='email'
+              value={formData.email}
+              className='UserRegistration_input'
+              onChange={onFormChange}
+              required
+            />
+            <h5>
               <label htmlFor='address1'>Address Line 1</label>
-              <input
-                name='address1'
-                type='text'
-                value={formData.address1}
-                className='AddBusiness-FormControl'
-                placeholder='Enter street address'
-                onChange={onFormChange}
-                required
-              />
-            </div>
+            </h5>
+            <input
+              name='address1'
+              type='text'
+              value={formData.address1}
+              className='UserRegistration_input'
+              onChange={onFormChange}
+              required
+            />
+
             <div className='AddBusiness-FormCard_body_columns'>
               <div className='AddBusiness-FormCard_body_left'>
                 <div className='AddBusiness-FormCard_body_formGroup'>
@@ -300,7 +297,6 @@ export const AddBusiness = () => {
                     type='text'
                     value={formData.cityTown}
                     className='AddBusiness-FormControl'
-                    placeholder='Enter city'
                     onChange={onFormChange}
                     required
                   />
@@ -324,7 +320,6 @@ export const AddBusiness = () => {
                     type='text'
                     value={formData.phone}
                     className='AddBusiness-FormControl'
-                    placeholder='Enter phone number'
                     onChange={onFormChange}
                     required
                   />
@@ -338,7 +333,6 @@ export const AddBusiness = () => {
                     type='text'
                     value={formData.address2}
                     className='AddBusiness-FormControl'
-                    placeholder='Enter street address 2'
                     onChange={onFormChange}
                   />
                 </div>
@@ -349,7 +343,6 @@ export const AddBusiness = () => {
                     type='text'
                     value={formData.postalCode}
                     className='AddBusiness-FormControl'
-                    placeholder='Enter postal code'
                     onChange={onFormChange}
                     required
                   />

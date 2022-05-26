@@ -5,6 +5,10 @@
   margin-top: -30px;
   color: rgba(0, 0, 0, 0.3);
 }
+.fileUpload.business {
+  color: rgba(0, 0, 0, 0.5);
+  margin-top: 10px;
+}
 .fileUpload input.upload {
   position: absolute;
   top: 0;
@@ -21,4 +25,8 @@
   width: 125px;
   height: 125px;
   border-radius: 50%;
+}
+.BusinessImage-pic {
+  width: 125px;
+  height: 125px;
 }

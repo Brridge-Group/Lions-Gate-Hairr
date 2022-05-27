@@ -26,7 +26,7 @@ export const FilterServicesAndFeatures: React.FC<Props> = (props: Props) => {
 
   //* Filter Business Features and Services
   //* HandleChanges for the features and services checkboxes
-  const onFeatChange = event => {
+  const onFeatChange: React.ChangeEventHandler<HTMLInputElement> = event => {
     const { name, checked, id } = event.target
     // console.log('id', id, 'checked', checked)
     // setFilteredFeats({ ...filteredFeats, [`${name} (${id})`]: checked })
@@ -64,39 +64,20 @@ export const FilterServicesAndFeatures: React.FC<Props> = (props: Props) => {
           <div className='Filters-FormGroup'>
             {props.featuresArr?.map((feature, id, index) => (
               <div className='Filters-FormCheck' key={`${feature}_` + index}>
-                <input
-                  className='Filters-FormCheckInput'
-                  type='checkbox'
-                  name={`feature-${feature[0]}`}
-                  id={feature[1]}
-                  defaultChecked={feature[2].isChecked}
-                  value={id}
-                  onChange={onFeatChange}
-                />
+                <input className='Filters-FormCheckInput' type='checkbox' name={`feature-${feature[0]}`} id={feature[1]} defaultChecked={feature[2].isChecked} value={id} onChange={onFeatChange} />
                 <label className='Filters-FormCheckLabel' htmlFor={feature[1]}>
                   {feature[0]}
                 </label>
               </div>
             ))}
           </div>
-          <label
-            htmlFor='services'
-            className='Filters-Label_header   Filters-Label_header_services'
-          >
+          <label htmlFor='services' className='Filters-Label_header   Filters-Label_header_services'>
             Services
           </label>
           <div className='Filters-FormGroup'>
             {props.servicesArr?.map((service, id, index) => (
               <div className='Filters-FormCheck' key={`${service}_` + index}>
-                <input
-                  className='Filters-FormCheckInput'
-                  type='checkbox'
-                  name={`service-${service[0]}`}
-                  id={service[1]}
-                  defaultChecked={service[2].isChecked}
-                  value={id}
-                  onChange={onServiceChange}
-                />
+                <input className='Filters-FormCheckInput' type='checkbox' name={`service-${service[0]}`} id={service[1]} defaultChecked={service[2].isChecked} value={id} onChange={onServiceChange} />
                 <label className='Filters-FormCheckLabel' htmlFor={service[1]}>
                   {service[0]}
                 </label>
@@ -104,10 +85,7 @@ export const FilterServicesAndFeatures: React.FC<Props> = (props: Props) => {
             ))}
           </div>
           {/* TODO(BackLog): [✅] => Connect to `handleFilteredResults` */}
-          <button
-            className='Filters-Button'
-            onClick={props.handleFilteredResults}
-          >
+          <button className='Filters-Button' onClick={props.handleFilteredResults}>
             filter results
           </button>
           <button className='Reset-Button' onClick={props.handleResetFilter}>
@@ -116,9 +94,7 @@ export const FilterServicesAndFeatures: React.FC<Props> = (props: Props) => {
         </section>
       ) : (
         <>
-          <section className='Filters-Container'>
-            {isLoading && <LoadSpinner />}
-          </section>
+          <section className='Filters-Container'>{isLoading && <LoadSpinner />}</section>
         </>
       )}
     </>

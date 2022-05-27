@@ -1,4 +1,4 @@
-import React, { useState, MouseEvent } from 'react'
+import { useState } from 'react'
 import UserImage from '../../../UIElements/UserImage'
 import VisibilityRoundedIcon from '@material-ui/icons/VisibilityRounded'
 import VisibilityOffRoundedIcon from '@material-ui/icons/VisibilityOffRounded'
@@ -8,65 +8,41 @@ import IconButton from '@material-ui/core/IconButton'
 import { toast } from 'react-toastify'
 import { NavLink } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
-import { useHistory, RouteComponentProps } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import { AUTH } from '../../../constants/actionTypes'
 import * as api from '../../../api/index'
 import './UserRegistration.css'
 import '../../Profile/Profile.css'
+
 import 'react-toastify/dist/ReactToastify.css'
-import { AxiosResponse } from 'axios'
 
 require('dotenv').config()
 toast.configure()
 
-export interface UserValues {
-  firstName: string;
-  lastName: string;
-  imageProfile: string;
-  email: string;
-  password: string;
-  confirmPassword: string;
-  role: string;
-}
-
-
 export const UserRegistration = () => {
-  const [userData, setUserData] = useState<UserValues>({
+  const [userData, setUserData] = useState({
     role: 'user',
-    imageProfile: 'https://imgur.com/LDpwLVZ.jpg',
-    firstName: '',
-    lastName: '',
-    email: '',
-    password: '',
-    confirmPassword: '',
+    imageProfile: 'https://imgur.com/LDpwLVZ.jpg'
   })
+
   const [errorMsg, setErrorMsg] = useState()
   const [imageSelected, setImageSelected] = useState(false)
   const [showPassword, setShowPassword] = useState(false)
-  const [image, setImage] = useState<string | null>(null)
+  const [image, setImage] = useState<any | null>(null)
   const dispatch = useDispatch()
   const history = useHistory()
 
   const signup =
-    (formData: UserValues, history: RouteComponentProps["history"], errorM?: string | undefined) => async (dispatch: any) => {
-      let data: AxiosResponse<any, any>;
+    (formData: any, history: any, errorM?: any) => async (dispatch: any) => {
+      let data
       try {
         // sign up the user
         data = await api.signUp(userData)
         dispatch({ type: AUTH, data })
         history.push('/')
       } catch (err: any) {
-        setErrorMsg(err.response.data);
-        setUserData({
-          role: 'user',
-          imageProfile: 'https://imgur.com/LDpwLVZ.jpg',
-          firstName: ' ',
-          lastName: ' ',
-          email: ' ',
-          password: ' ',
-          confirmPassword: ' ',
-        })
-        toast(err.response.data)
+        errorM = err.response.data
+        toast(errorM)
       }
     }
 
@@ -74,17 +50,17 @@ export const UserRegistration = () => {
     setShowPassword(!showPassword)
   }
 
-  const handleMouseDownPassword = (event: MouseEvent<HTMLButtonElement> )=> {
+  const handleMouseDownPassword = event => {
     event.preventDefault()
   }
 
-  const onImageChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+  const onImageChange = async (e: any) => {
     e.preventDefault()
 
-    if (e.target.files && e.target.files![0]) {
+    if (e.target.files && e.target.files[0]) {
       setImageSelected(true)
       const maxFileSize = 2097067 //2mb
-      const file = e.target.files![0]
+      const file = e.target.files[0]
 
       if (file.type.match('image.*')) {
         if (file.size > maxFileSize) {
@@ -96,7 +72,7 @@ export const UserRegistration = () => {
           let base64 = (await new Promise(resolve => {
             let reader = new FileReader()
             reader.onload = e => {
-              resolve(e.target?.result as string| PromiseLike<string>)
+              resolve(e.target?.result as any)
             }
             reader.readAsDataURL(file)
           })) as string
@@ -111,7 +87,7 @@ export const UserRegistration = () => {
     }
   }
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: any) => {
     e.preventDefault()
     if (!imageSelected) {
       toast('Error uploading image. No image was selected.')
@@ -120,7 +96,7 @@ export const UserRegistration = () => {
     }
   }
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: any) => {
     setUserData({ ...userData, [e.target.name]: e.target.value })
   }
 
@@ -236,4 +212,3 @@ export const UserRegistration = () => {
     </>
   )
 }
-

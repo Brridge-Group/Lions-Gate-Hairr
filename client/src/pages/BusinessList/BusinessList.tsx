@@ -16,17 +16,17 @@ interface RouteParams {
   city: string
 }
 
-export interface Service {
+interface Service {
   _id: string
   name: string
 }
 
-export interface Feature {
+interface Feature {
   _id: string
   name: string
 }
 
-export interface Business {
+interface Business {
   name: string
   description: string
   image: string
@@ -45,21 +45,21 @@ export interface Business {
 // export const FilterServicesAndFeatures: React.FC<Props> = (props: Props) => {
 // export const ListItems: React.FC = () => {
 export const BusinessList = () => {
-  const [list, setList] = useState<Business[]>([])
+  const [list, setList]: any = useState([])
   const [loading, setLoading] = useState(true)
   const history = useHistory()
   const { city } = useParams<RouteParams>()
 
   // Initialize  Services and Features to state
-  const [feats, setFeats]= useState<Feature[]>([]) // Features full object
-  const [services, setServices] = useState<Service[]>([]) // Services full object
-  const [featuresArr, setFeaturesArr] = useState<Feature[]>([])
-  const [servicesArr, setServicesArr] = useState<Service[]>([])
+  const [feats, setFeats]: any = useState([]) // Features full object
+  const [services, setServices]: any = useState([]) // Services full object
+  const [featuresArr, setFeaturesArr]: any = useState([])
+  const [servicesArr, setServicesArr]: any = useState([])
 
   // Initialize state objects for form checkboxes
-  const [isChecked, setIsChecked] = useState(false)
-  const [isFeatsChecked, setIsFeatsChecked] = useState([])
-  const [isServicesChecked, setIsServicesChecked]= useState([])
+  const [isChecked, setIsChecked]: any = useState(false)
+  const [isFeatsChecked, setIsFeatsChecked]: any = useState([])
+  const [isServicesChecked, setIsServicesChecked]: any = useState([])
 
   useEffect(() => {
     const fetchData = async () => {
@@ -135,16 +135,17 @@ export const BusinessList = () => {
   console.log(featuresArr)
 
   //* Filter Business Features and Services
-  const [filterResults, setFilterResults]= useState<Business[]>([...list])
-  const [filteredFeats, setFilteredFeats] = useState<Feature[]>([])
-  const [filteredServices, setFilteredServices] = useState<Service[]>([])
+  const [filterResults, setFilterResults]: any = useState([...list])
+  console.log(filterResults)
+  const [filteredFeats, setFilteredFeats]: any = useState([])
+  const [filteredServices, setFilteredServices]: any = useState([])
 
   // Listen for the features' and services' checkbox changes and capture that data from the `Filters` child component
-  const onFeatChange = (data:Feature[]) => {
+  const onFeatChange = data => {
     setFilteredFeats(data)
   }
 
-  const onServiceChange = (data: Service[]) => {
+  const onServiceChange = data => {
     setFilteredServices(data)
   }
 

@@ -4,7 +4,7 @@ import { useHistory, useParams } from 'react-router-dom'
 
 // Custom Imports
 import { Card } from '../../UIElements/Card'
-import CardDetails from '../../components/CardDetails/CardDetails'
+import { CardDetails } from '../../components/CardDetails/CardDetails'
 import { FilterServicesAndFeatures } from '../../components/FilterServicesAndFeatures/FilterServicesAndFeatures'
 import { LoadSpinner } from '../../components/LoadSpinner/LoadSpinner'
 
@@ -31,7 +31,8 @@ interface Business {
   description: string
   image: string
   address: {
-    street: string
+    address1: string
+    address2: string
     city: string
     region: string
     postalCode: string
@@ -50,13 +51,15 @@ export const BusinessList = () => {
   const history = useHistory()
   const { city } = useParams<RouteParams>()
 
-  // Initialize  Services and Features to state
+  console.log(`initial list`, list)
+
+  //* Initialize Services and Features to state
   const [feats, setFeats]: any = useState([]) // Features full object
   const [services, setServices]: any = useState([]) // Services full object
   const [featuresArr, setFeaturesArr]: any = useState([])
   const [servicesArr, setServicesArr]: any = useState([])
 
-  // Initialize state objects for form checkboxes
+  //* Initialize state objects for form checkboxes
   const [isChecked, setIsChecked]: any = useState(false)
   const [isFeatsChecked, setIsFeatsChecked]: any = useState([])
   const [isServicesChecked, setIsServicesChecked]: any = useState([])
@@ -68,9 +71,7 @@ export const BusinessList = () => {
         const businessesList = await res.json()
         if (typeof city !== 'undefined') {
           const filtered = businessesList.filter((business: Business) => {
-            return business.address.city
-              .toLowerCase()
-              .includes(city.toLowerCase())
+            return business.address.city.toLowerCase().includes(city.toLowerCase())
           })
           setList(filtered)
         } else {

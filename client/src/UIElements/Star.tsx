@@ -7,9 +7,9 @@ interface Props {
 export const Star = (props: Props) => {
   const star: JSX.Element[] = [...Array(5)].map((star, i) => {
     if (i <= Math.round(props.stars) - 1) {
-      return <AiOutlineStar key={i} />
+      return <AiOutlineStar key={i} style={{ fontSize: '2rem' }} />
     } else {
-      return <AiFillStar key={i} />
+      return <AiFillStar key={i} style={{ fontSize: '2rem' }} />
     }
   })
 

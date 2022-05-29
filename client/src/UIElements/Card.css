@@ -6,18 +6,23 @@
 
 .BusinessCard {
   border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+  margin-top: 3rem;
 }
+.BusinessCard:first-child {
+  margin-top: 0;
+}
+
+/* .BusinessCard:last-child {
+  border-bottom: none;
+} */
 div.card:nth-child(1) {
   margin-top: 0;
 }
 
-.BusinessCard:hover {
-  opacity: 0.5;
-}
 .Star-container {
   width: 35%;
   display: flex;
   justify-content: space-between;
   margin-top: 1rem;
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
 }

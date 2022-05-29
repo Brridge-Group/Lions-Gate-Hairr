@@ -15,6 +15,13 @@ body {
   overscroll-behavior: none;
   font-size: 1.6rem;
 }
+/* //hide scrollbar// */
+* {
+  -ms-overflow-style: none;
+}
+::-webkit-scrollbar {
+  display: none;
+}
 /*
   Avoid text overflows
 */

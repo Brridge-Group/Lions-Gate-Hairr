@@ -5,6 +5,8 @@ import { Card } from '../../UIElements/Card'
 import { Star } from '../../UIElements/Star'
 import { About } from '../BusinessDetails/About'
 import '../../pages/Profile/Profile.css'
+import './MyBusinessList.css'
+
 import { LoadSpinner } from '../LoadSpinner/LoadSpinner'
 
 export const MyBusinessList = () => {
@@ -46,22 +48,36 @@ export const MyBusinessList = () => {
             <div className='Profile-UserContainer_reviews business'>
               <h4>Your businesses</h4>
               {/* TODO: fix styles */}
-              {list.map((business: any) => (
-                <div
-                  className='BusinessCard '
-                  key={business._id}
-                  onClick={() =>
-                    history.push('businesses/' + `${business._id}`)
-                  }>
-                  <About
-                    name={business.businessName}
-                    description={business.description}
-                    image={business.image}
-                    address={business.address}
-                  />
-                  <Star stars={business.stars} />
-                </div>
-              ))}{' '}
+              <div className='BusinessCard-container'>
+                {list.map((business: any) => (
+                  <div
+                    className='BusinessCard '
+                    key={business._id}
+                    onClick={() =>
+                      history.push('businesses/' + `${business._id}`)
+                    }>
+                    <About
+                      name={business.businessName}
+                      description={business.description}
+                      image={business.image}
+                      address={business.address}
+                    />
+                    <Star stars={business.stars} />
+                    <div className='BusinessCard-buttons'>
+                      <button className='btn--btn-primary business'>
+                        read <br />
+                        reviews
+                      </button>
+                      <button className='btn--btn-primary business'>
+                        edit business
+                      </button>
+                      <button className='btn--btn-primary business'>
+                        delete business
+                      </button>
+                    </div>
+                  </div>
+                ))}{' '}
+              </div>
               {/*end of map method */}
             </div>
           </>

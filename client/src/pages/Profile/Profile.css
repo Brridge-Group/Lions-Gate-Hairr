@@ -51,6 +51,8 @@ img.user-pix-placeholder {
 
 .Profile-UserContainer_reviews.business {
   margin-top: 0;
+  height: 100%;
+  overflow: hidden;
 }
 
 .Profile_links {
@@ -65,4 +67,5 @@ img.user-pix-placeholder {
 }
 .Profile-UserContainer.Owner {
   background-image: url('../../assets/images/hairgreybg.jpg');
+  padding-bottom: 0;
 }

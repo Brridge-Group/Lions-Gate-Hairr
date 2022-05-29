@@ -33,9 +33,7 @@ export const MyBusinessList = () => {
   return (
     <div className='Profile_user'>
       <h1 className='Profile_name'>Hello {user.name}!</h1>
-      <div className='Profile-UserContainer'>
-        {/* update here if change background image */}
-        {/* <div className='Profile-UserContainer Owner'> */}
+      <div className='Profile-UserContainer Owner'>
         {loading ? (
           <LoadSpinner />
         ) : !list.length ? (
@@ -48,9 +46,7 @@ export const MyBusinessList = () => {
               <h4>Your businesses</h4>
               {/* TODO: fix styles */}
               {list.map((business: any) => (
-                <Card
-                  className='BusinessCard card-primary card-outline'
-                  key={business._id}>
+                <Card className='BusinessCard ' key={business._id}>
                   <div
                     onClick={() =>
                       history.push('businesses/' + `${business._id}`)

@@ -70,9 +70,8 @@ img.user-pix-placeholder {
     height: 100%;
   }
   .FeatureContainer_image.EditUser,
-  .FeatureContainer_image.Owner  {
+  .FeatureContainer_image.Owner {
     background-image: url('../../assets/images/hairgrey-mobile.jpg');
     height: 100%;
   }
-
-
+}

@@ -29,7 +29,6 @@ export const MyBusinessList = () => {
     }
     fetchData()
   }, [])
-  console.log('in business list, list', list)
 
   return (
     <div className='Profile_user'>
@@ -47,20 +46,20 @@ export const MyBusinessList = () => {
               <h4>Your businesses</h4>
               {/* TODO: fix styles */}
               {list.map((business: any) => (
-                <div
-                  className='BusinessCard '
-                  key={business._id}
-                  onClick={() =>
-                    history.push('businesses/' + `${business._id}`)
-                  }>
-                  <About
-                    name={business.businessName}
-                    description={business.description}
-                    image={business.image}
-                    address={business.address}
-                  />
-                  <Star stars={business.stars} />
-                </div>
+                <Card className='BusinessCard ' key={business._id}>
+                  <div
+                    onClick={() =>
+                      history.push('businesses/' + `${business._id}`)
+                    }>
+                    <About
+                      name={business.name}
+                      description={business.description}
+                      image={business.image}
+                      address={business.address}
+                    />
+                    <Star stars={business.stars} />
+                  </div>
+                </Card>
               ))}{' '}
               {/*end of map method */}
             </div>

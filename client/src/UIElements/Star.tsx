@@ -1,21 +1,17 @@
-import { Container, StarsContainer } from "../components/BusinessDetails/Review/ReviewElements";
-
+import { AiOutlineStar, AiFillStar } from 'react-icons/ai'
+import './Card.css'
 interface Props {
-    stars: number;
-  }
+  stars: number
+}
 
 export const Star = (props: Props) => {
-    const star: JSX.Element[] = [...Array(5)].map((star, i) => {
-      if (i <= Math.round(props.stars) - 1) {
-        return <p key={i}>&#9733;</p>;
-      } else {
-        return <p key={i}>&#9734;</p>;
-      }
-    });
-  
-    return (
-      <Container>
-        <StarsContainer>{star}</StarsContainer>
-      </Container>
-    );
-  };
+  const star: JSX.Element[] = [...Array(5)].map((star, i) => {
+    if (i <= Math.round(props.stars) - 1) {
+      return <AiOutlineStar key={i} />
+    } else {
+      return <AiFillStar key={i} />
+    }
+  })
+
+  return <div className='Star-container'>{star}</div>
+}

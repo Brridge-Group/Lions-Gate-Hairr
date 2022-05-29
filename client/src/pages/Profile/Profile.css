@@ -35,7 +35,7 @@ img.user-pix-placeholder {
 }
 .Profile-UserContainer {
   border: 1px solid rgba(0, 0, 0, 0.5);
-  padding: 4.5rem;
+  padding: 3.5rem;
   height: 58vh;
   background-image: url('../../assets/images/hairwhitebg.jpg');
   position: relative;
@@ -46,6 +46,7 @@ img.user-pix-placeholder {
   font-weight: 500;
   padding: 1rem;
   margin: 0;
+  margin-bottom: 3.5rem;
 }
 
 .Profile-UserContainer_reviews.business {

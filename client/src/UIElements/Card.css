@@ -1,17 +1,11 @@
 .card {
   position: relative;
   margin: 0;
-  padding: 1rem;
   overflow: hidden;
 }
 
 .BusinessCard {
-  padding: 1rem;
-  overflow: hidden;
-  /* width: 1000px; */
-  max-width: 75%;
-  margin-left: auto;
-  margin-right: auto;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.5);
 }
 div.card:nth-child(1) {
   margin-top: 0;
@@ -19,4 +13,11 @@ div.card:nth-child(1) {
 
 .BusinessCard:hover {
   opacity: 0.5;
+}
+.Star-container {
+  width: 35%;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }

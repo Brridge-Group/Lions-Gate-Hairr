@@ -15,8 +15,6 @@
     "@types/styled-components": "^5.1.16",
     "axios": "^0.25.0",
     "dotenv": "^16.0.0",
-    "framer-motion": "^4.1.17",
-    "i": "^0.3.7",
     "jwt-decode": "^3.1.2",
     "npm": "^8.5.5",
     "react": "^17.0.2",

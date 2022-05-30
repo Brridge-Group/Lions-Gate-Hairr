@@ -2,11 +2,8 @@
   background-image: url('../../assets/images/hairwhite.jpg');
 }
 
+.FeatureContainer_image.Owner,
 .FeatureContainer_image.EditUser {
-  background-image: url('../../assets/images/hairgreysm.jpg');
-}
-
-.FeatureContainer_image.Owner {
   background-image: url('../../assets/images/hairgreysm.jpg');
 }
 
@@ -68,4 +65,16 @@ img.user-pix-placeholder {
 .Profile-UserContainer.Owner {
   background-image: url('../../assets/images/hairgreybg.jpg');
   padding-bottom: 0;
+}
+
+/* ///////media queries ////////// */
+
+@media screen and (max-width: 575px) {
+  .FeatureContainer_image.Owner,
+  .FeatureContainer_image.EditUser {
+    background-image: url('../../assets/images/hairgrey-mobile.jpg');
+  }
+}
+.FeatureContainer_image.User {
+  background-image: url('../../assets/images/hairwhite-mobile.jpg');
 }

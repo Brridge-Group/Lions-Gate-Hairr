@@ -58,14 +58,14 @@ export const BusinessDetails = () => {
   return (
     <div className=' FeatureContainer_image Home'>
       <div className='BusinessContainer'>
-        {/* <div className='BusinessDetails-container'> */}
+        {/* <div className='container'> */}
         {businessData ? (
           <>
             <div className='BusinessDetails-leftColumn'>
               <h4 className='sidebar-hed'>
                 <label htmlFor='features'>Features</label>
               </h4>
-              <ul>
+              <ul className='BusinessDetails-ul'>
                 {businessData.features.map(feature => (
                   <h5 className='features'>
                     <li key={feature._id}>{feature.name}</li>
@@ -93,6 +93,9 @@ export const BusinessDetails = () => {
               <div className='BusinessDetails-buttons'>
                 <Review id={id} stars={businessData.stars} />
                 <Book phone={businessData.phone} />
+              </div>
+              <div className='BusinessDetails_reviews'>
+                <h4>reviews</h4>
               </div>
             </div>
           </>

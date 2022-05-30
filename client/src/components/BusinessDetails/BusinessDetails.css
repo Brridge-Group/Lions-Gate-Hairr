@@ -93,3 +93,51 @@ h5.features:last-child {
   margin-left: 65px;
   margin-bottom: 11px;
 }
+.BusinessDetails_reviews h4 {
+  border-top: 1px solid #f32dc8;
+  border-bottom: 1px solid #f32dc8;
+  font-weight: 500;
+  padding: 1rem;
+  margin: 0;
+  margin-bottom: 2.5rem;
+  text-align: center;
+  margin-top: 3rem;
+}
+
+/* ///////media queries ////////// */
+
+@media screen and (max-width: 990px) {
+  .BusinessDetails-leftColumn {
+    grid-column: 3/7;
+  }
+  .BusinessDetails-rightColumn {
+    grid-column: 7/15;
+  }
+}
+
+@media screen and (max-width: 575px) {
+  .BusinessContainer {
+    grid-column: none;
+    display: block;
+    overflow-y: scroll;
+    height: 70%;
+    margin-top: 100px;
+  }
+
+  .BusinessDetails-leftColumn {
+    width: 50%;
+    margin: auto;
+    margin-top: 60px;
+  }
+
+  .BusinessDetails-rightColumn {
+    width: 85%;
+    margin: auto;
+    margin-top: 3rem;
+    padding: 3rem;
+  }
+  .btn--btn-primary.review.book,
+  .phoneNumber {
+    align-self: flex-end;
+  }
+}

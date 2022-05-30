@@ -140,25 +140,82 @@ export const BusinessList = () => {
   console.log(featuresArr)
 
   //* Filter Business Features and Services
-  const [filterResults, setFilterResults]: any = useState([...list])
+  const [filteredResults, setFilteredResults]: any = useState([])
   console.log(filterResults)
   const [filteredFeats, setFilteredFeats]: any = useState([])
   const [filteredServices, setFilteredServices]: any = useState([])
 
-  // Listen for the features' and services' checkbox changes and capture that data from the `Filters` child component
-  const onFeatChange = data => {
-    setFilteredFeats(data)
+  //* Listen for the features' and services' checkbox changes and capture that data from the `FilterServicesAndFeatures` child component
+  const onFeatChange = (feature: any) => {
+    setFilteredFeats(feature)
   }
 
-  const onServiceChange = data => {
-    setFilteredServices(data)
+  const onServiceChange = (service: any) => {
+    setFilteredServices(service)
   }
 
-  const handleResetFilter = () => {
-    window.location.reload()
-    // setFilterResults(busFilter) // FIXME: resets to an empty array
+  const handleFilteredResults = () => {
+    let tempFilteredResults: any[] = []
+    let tempSelectedFeatsServices: any[] = []
+    //* Push user selected Features to a single temp array, if the filtered array/object is not empty
+    if (Object.keys(filteredFeats).length > 0) {
+      //* Filter out elements that are only true and push those true objects to tempSelectedFeatsServices
+      Object.entries(filteredFeats).filter(featureElement => {
+        if (featureElement[1] === true) {
+          tempSelectedFeatsServices.push(featureElement)
+          return true
+        }
+      })
+    }
+    //* Push user selected Services to a single temp array, if the filtered array/object is not empty
+    if (Object.keys(filteredServices).length > 0) {
+      //* Filter out elements that are only true and push those true objects to tempSelectedFeatsServices
+      Object.entries(filteredServices).filter(featureElement => {
+        if (featureElement[1] === true) {
+          tempSelectedFeatsServices.push(featureElement)
+          return true
+        }
+      })
+    }
+    //* Filter the list of businesses by the selected Features and Services
+    let newList: any[] = [...list].filter(businessObject => {
+      //* Iterate through the selected Features and Services
+      if (tempSelectedFeatsServices.length === 0) {
+        tempFilteredResults.push(businessObject)
+        return true
+      }
+      if (tempSelectedFeatsServices.length > 0) {
+        return tempSelectedFeatsServices.some(filteredElement => {
+          //* Iterate through the Features of each business
+          businessObject.features.filter(bizFeats => {
+            //* If the business has the selected Features, add it to the tempFilteredResults array
+            if (Object.values(bizFeats).includes(filteredElement[0])) {
+              tempFilteredResults.push(businessObject)
+              return true
+            }
+          })
+          //* Iterate through the Services of each business
+          businessObject.services.filter(bizServices => {
+            //* If the business has the selected Services, add it to the tempFilteredResults array
+            if (Object.values(bizServices).includes(filteredElement[0])) {
+              tempFilteredResults.push(businessObject)
+              return true
+            }
+          })
+        })
+      }
+    })
+    let uniqueTempFilteredResults: any = Array.from(new Set(tempFilteredResults))
+    setFilteredResults(uniqueTempFilteredResults)
   }
 
+  //* Set `filteredResults` Businesses List
+  useEffect(() => {
+    setFilteredResults(() => {
+      let newFilteredResults = [...list]
+      return newFilteredResults
+    })
+  }, [list, city])
   if (loading) {
     return (
       <div
@@ -213,11 +270,12 @@ export const BusinessList = () => {
                 handleResetFilter={handleResetFilter}
               />
             </div>
+            {/* Display full Business List by city or a Filtered list by Services and Features   */}
             <div className='BusinessList-CardContainer'>
-              {list.map((business: any) => (
-                <Card
-                  className=' BusinessList-Card'
-                  key={business._id}
+              {filteredResults && filteredResults.length > 0 ? (
+                filteredResults?.map((business: any) => (
+                  <Card className=' BusinessList-Card' key={`${business._id}_` + business.name} onClick={() => history.push(`/businesses/${business._id}`)}>
+                    <CardDetails businessName={business.businessName} description={business.description} image={business.image} address={business.address} stars={business.stars} />
                   onClick={() => history.push(`/businesses/${business._id}`)}
                 >
                   <CardDetails
@@ -227,8 +285,15 @@ export const BusinessList = () => {
                     address={business.address}
                     stars={business.stars}
                   />
-                </Card>
-              ))}
+                  </Card>
+                ))
+              ) : (
+                <>
+                  <h1>No businesses were found with the chosen services and or features.</h1>
+                  <br />
+                  <h1>Please change your selection and filter again.</h1>
+                </>
+              )}
             </div>
           </div>
         </div>

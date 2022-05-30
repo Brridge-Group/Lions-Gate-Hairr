@@ -34,4 +34,5 @@ div.card:nth-child(1) {
   width: 95px;
   padding-top: 5px;
   line-height: 1;
+  font-family: 'Roboto', sans-serif;
 }

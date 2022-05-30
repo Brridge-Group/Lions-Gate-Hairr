@@ -75,7 +75,7 @@ export const BusinessDetails = () => {
               <h4 className='sidebar-hed'>
                 <label htmlFor='features'>Services</label>
               </h4>
-              <ul>
+              <ul className='BusinessDetails-ul'>
                 {businessData.services.map(service => (
                   <h5 className='services'>
                     <li key={service._id}>{service.name}</li>
@@ -90,10 +90,11 @@ export const BusinessDetails = () => {
                 image={businessData.image}
                 address={businessData.address}
               />
-              <Review id={id} stars={businessData.stars} />
+              <div className='BusinessDetails-buttons'>
+                <Review id={id} stars={businessData.stars} />
+                <Book phone={businessData.phone} />
+              </div>
             </div>
-
-            {/* <Book phone={businessData.phone} /> */}
           </>
         ) : (
           <p>Loading...</p>

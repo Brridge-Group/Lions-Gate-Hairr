@@ -26,7 +26,7 @@
   margin-top: 160px;
 }
 
-ul {
+ul.BusinessDetails-ul {
   list-style: none;
   margin: 0;
   padding: 0;
@@ -77,4 +77,19 @@ h5.features:last-child {
 .About-right p {
   color: rgba(0, 0, 0, 0.8);
   margin: 0;
+}
+.BusinessDetails-buttons {
+  display: flex;
+  flex-direction: column;
+}
+.btn--btn-primary.review.book,
+.phoneNumber {
+  align-self: center;
+  margin-left: 50px;
+  margin-top: -42px;
+}
+.phoneNumber {
+  margin-top: -30px;
+  margin-left: 65px;
+  margin-bottom: 11px;
 }

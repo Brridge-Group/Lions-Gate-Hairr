@@ -1,22 +1,54 @@
 .BusinessDetails-container {
   text-align: center;
   margin-top: 160px;
-  grid-column: 4/12;
+  grid-column: 4/13;
   display: flex;
   flex-direction: row;
-  height: 50%;
+  height: 58vh;
+}
+.BusinessContainer {
+  display: grid;
+  grid-template-columns: repeat(16, 1fr);
+  grid-column-gap: 40px;
+  height: 100vh;
+  width: 100vw;
+  max-width: 1206px;
+  margin-right: auto;
+  margin-left: auto;
 }
 
 .BusinessDetails-leftColumn {
-  width: 30%;
   border: 0.5px solid black;
   padding: 1.6rem;
   text-align: left;
+  height: fit-content;
+  grid-column: 4/7;
+  margin-top: 160px;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+h5.features,
+h5.services {
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+
+h5.features:last-child {
+  margin-bottom: 2rem;
 }
 .BusinessDetails-rightColumn {
   border: 0.5px solid black;
-  margin-left: 5%;
-  width: 65%;
+  background-image: url('../../assets/images/hairpinkbg.jpg');
+  padding: 3.5rem;
+  margin-top: 160px;
+  grid-column: 7/14;
+  height: fit-content;
+  max-height: 58vh;
 }
 .About {
   display: flex;

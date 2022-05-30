@@ -1,14 +1,11 @@
 import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
-import {
-  Header,
-  ContentWrapper,
-  HR,
-} from './BusinessDetails/BusinessDetailsPageElements'
+
 import { About } from './About'
-import { ServicesAndFeatures } from './ServicesAndFeatures'
+
 import { Book } from './Book'
 import { Review } from './Review'
+import './BusinessDetails.css'
 
 interface RouteParams {
   id: string
@@ -25,7 +22,7 @@ interface Feature {
 }
 
 interface Business {
-  name: string
+  businessName: string
   description: string
   image: string
   address: {
@@ -56,46 +53,53 @@ export const BusinessDetails = () => {
 
   // CHECKS IF THE BUSINESSDATA STATE HAS VALUE. RENDERS THE BUSINESS PAGE IF IT DOES AND SETS A LOADING SCREEN IF IT DOESN'T.
   // THE FIRST RENDER WON'T HAVE DATA, SINCE USEEFFECT, WHICH GIVES THE STATE IT'S VALUE, RUNS AFTER THE FIRST RENDER.
+
+  console.log('business data', businessData)
   return (
     <div className=' FeatureContainer_image Home'>
-      <div className='FeatureContainer'>
-        <div className='BusinessDetails-container'>
-          {businessData ? (
-            <>
-              <div className='BusinessDetails-leftColumn'>
-                <h4 className='sidebar-hed'>
-                  <label htmlFor='features'>Features</label>
-                </h4>
-                <ul>
-                  {businessData.services.map(service => (
-                    <li key={service._id}>{service.name}</li>
-                  ))}
-                </ul>
-                <h4 className='sidebar-hed'>
-                  <label htmlFor='features'>Services</label>
-                </h4>
-                <ul>
-                  {businessData.features.map(feature => (
+      <div className='BusinessContainer'>
+        {/* <div className='BusinessDetails-container'> */}
+        {businessData ? (
+          <>
+            <div className='BusinessDetails-leftColumn'>
+              <h4 className='sidebar-hed'>
+                <label htmlFor='features'>Features</label>
+              </h4>
+              <ul>
+                {businessData.features.map(feature => (
+                  <h5 className='features'>
                     <li key={feature._id}>{feature.name}</li>
-                  ))}
-                </ul>
-              </div>
-              <div className='BusinessDetails-rightColumn'></div>
-              {/* <About
-              name={businessData.name}
-              description={businessData.description}
-              image={businessData.image}
-              address={businessData.address}
-            /> */}
-              {/* <Review id={id} stars={businessData.stars} />
+                  </h5>
+                ))}
+              </ul>
+              <h4 className='sidebar-hed'>
+                <label htmlFor='features'>Services</label>
+              </h4>
+              <ul>
+                {businessData.services.map(service => (
+                  <h5 className='services'>
+                    <li key={service._id}>{service.name}</li>
+                  </h5>
+                ))}
+              </ul>
+            </div>
+            <div className='BusinessDetails-rightColumn'>
+              <About
+                name={businessData.businessName}
+                description={businessData.description}
+                image={businessData.image}
+                address={businessData.address}
+              />
+              <Review id={id} stars={businessData.stars} />
+            </div>
 
-            <Book phone={businessData.phone} /> */}
-            </>
-          ) : (
-            <p>Loading...</p>
-          )}
-        </div>
+            {/* <Book phone={businessData.phone} /> */}
+          </>
+        ) : (
+          <p>Loading...</p>
+        )}
       </div>
     </div>
+    // </div>
   )
 }

@@ -73,19 +73,20 @@ input.AddBusiness-FormCard_filtersContainer_formCheckInput {
     margin-bottom: 0;
     height: 100%;
   }
-}
-.AddBusiness_inputGroup {
-  text-align: center;
-  margin-top: 160px;
-  grid-column: none;
-  flex-wrap: wrap;
-  height: 50%;
-  overflow-y: scroll;
-}
-.AddBusiness_scroll {
-  width: 100%;
-}
-.AddBusiness-FormCard_sidebar {
-  margin: auto;
-  margin-top: 3rem;
+
+  .AddBusiness_inputGroup {
+    text-align: center;
+    margin-top: 160px;
+    grid-column: none;
+    flex-wrap: wrap;
+    height: 50%;
+    overflow-y: scroll;
+  }
+  .AddBusiness_scroll {
+    width: 100%;
+  }
+  .AddBusiness-FormCard_sidebar {
+    margin: auto;
+    margin-top: 3rem;
+  }
 }

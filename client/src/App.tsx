@@ -2,7 +2,7 @@ import {
   BrowserRouter as Router,
   Route,
   Redirect,
-  Switch
+  Switch,
 } from 'react-router-dom'
 import './App.css'
 import { Home } from './pages/Home/Home'

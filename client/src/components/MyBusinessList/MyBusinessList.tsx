@@ -64,16 +64,23 @@ export const MyBusinessList = () => {
                     />
                     <Star stars={business.stars} />
                     <div className='BusinessCard-buttons'>
-                      <button className='btn--btn-primary business'>
-                        read <br />
-                        reviews
-                      </button>
-                      <button className='btn--btn-primary business'>
-                        edit business
-                      </button>
-                      <button className='btn--btn-primary business'>
-                        delete business
-                      </button>
+                      <Link to={'#'}>
+                        <h6 className='btn--btn-primary twoLines business'>
+                          read <br />
+                          reviews
+                        </h6>
+                      </Link>
+                      <Link to={'#'}>
+                        <h6 className='btn--btn-primary twoLines business'>
+                          edit <br />
+                          business
+                        </h6>
+                      </Link>
+                      <Link to={'#'}>
+                        <h6 className='btn--btn-primary twoLines business'>
+                          delete business
+                        </h6>
+                      </Link>
                     </div>
                   </div>
                 ))}{' '}

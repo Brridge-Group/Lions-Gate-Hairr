@@ -3,11 +3,8 @@
   justify-content: space-between;
   margin-bottom: 2rem;
 }
-.btn--btn-primary.business {
+.btn--btn-primary.twoLines.business {
   width: 95px;
-  margin: 0;
-  padding-top: 0px;
-  line-height: 1.6rem;
 }
 .BusinessCard-container {
   overflow-y: scroll;

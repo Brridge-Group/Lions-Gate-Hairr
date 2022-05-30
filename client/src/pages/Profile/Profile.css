@@ -73,8 +73,10 @@ img.user-pix-placeholder {
   .FeatureContainer_image.Owner,
   .FeatureContainer_image.EditUser {
     background-image: url('../../assets/images/hairgrey-mobile.jpg');
+    height: 100%;
   }
 }
 .FeatureContainer_image.User {
   background-image: url('../../assets/images/hairwhite-mobile.jpg');
+  height: 100%;
 }

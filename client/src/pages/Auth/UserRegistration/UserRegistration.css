@@ -80,6 +80,7 @@ button.UserRegistration_input-button {
 @media screen and (max-width: 575px) {
   .FeatureContainer_image.Profile {
     background-image: url('../../../assets/images/hairgrey-mobile.jpg');
+    height: 100%;
   }
 }
 

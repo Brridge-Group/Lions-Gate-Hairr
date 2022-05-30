@@ -43,5 +43,6 @@
   }
   .FeatureContainer_image.Login {
     background-image: url('../../../assets/images/hairwhite-mobile.jpg');
+    height: 100%;
   }
 }

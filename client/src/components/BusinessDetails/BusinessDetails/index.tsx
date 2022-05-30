@@ -25,7 +25,7 @@ interface Business {
   description: string
   image: string
   address: {
-    street: string
+    address1: string
     city: string
     region: string
     postalCode: string

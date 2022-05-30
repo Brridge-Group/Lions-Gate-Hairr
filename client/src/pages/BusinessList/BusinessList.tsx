@@ -18,29 +18,33 @@ interface RouteParams {
 
 interface Service {
   _id: string
+  isChecked: boolean
   name: string
 }
 
 interface Feature {
   _id: string
+  isChecked: boolean
   name: string
 }
 
 interface Business {
-  name: string
+  businessName: string
   description: string
+  email: string
   image: string
+  phone: string
   address: {
     address1: string
     address2: string
     city: string
+    country: string
     region: string
     postalCode: string
   }
   services: Service[]
   features: Feature[]
   stars: number
-  phone: string
 }
 
 // export const FilterServicesAndFeatures: React.FC<Props> = (props: Props) => {

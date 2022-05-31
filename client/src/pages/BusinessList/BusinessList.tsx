@@ -87,6 +87,7 @@ export const BusinessList = () => {
   }, [])
   // console.log(`initial list`, list)
   
+  //* Fetch Features and Services from the database
   useEffect(() => {
     const fetchFeaturesData = async () => {
       try {
@@ -152,7 +153,7 @@ export const BusinessList = () => {
     setFilteredServices(service)
   }
 
-  const handleFilteredResults = () => {
+  const handleFilteredResults = (): [] => {
     let tempFilteredResults: any[] = []
     let tempSelectedFeatsServices: any[] = []
     //* Push user selected Features to a single temp array, if the filtered array/object is not empty
@@ -206,6 +207,7 @@ export const BusinessList = () => {
     //* Remove Any Duplicates
     let uniqueTempFilteredResults: any = Array.from(new Set(tempFilteredResults))
     setFilteredResults(uniqueTempFilteredResults)
+    return filteredResults
   }
 
   //* Set `filteredResults` Businesses List
@@ -216,7 +218,7 @@ export const BusinessList = () => {
     })
   }, [list, city])
 
-  const handleResetFilter = () => {
+  const handleResetFilter = (): any => {
     // TODO: [ ] => FIXME: Reset checkboxes to false
     //? TODO: [ ] => Explore connecting to child component to allow for checkbox resetting to opposite of checked
     window.location.reload()
@@ -233,15 +235,13 @@ export const BusinessList = () => {
           width: '100%',
           placeItems: 'center',
         }}>
-      >
         <div className='BusinessList-Wrapper_loader'>
           <LoadSpinner />
         </div>
       </div>
     )
   }
-
-  if (list.length === 0) {
+  if (list.length === 0 || city == 'undefined') {
     return (
       <div
         className='BusinessList-Wrapper'
@@ -252,7 +252,6 @@ export const BusinessList = () => {
           width: '100%',
           placeItems: 'center',
         }}>
-      >
         <h2>No businesses found. Please try another city.</h2>
       </div>
     )
@@ -261,9 +260,7 @@ export const BusinessList = () => {
       <section className='BusinessList'>
         <div className='BusinessList-Wrapper'>
           <div className='BusinessList-HeaderContainer'>
-            {/* ternary operator 
-                  if city is defined, show city name, else show '' */}
-            {city == 'undefined' ? <h1 className='BusinessList-Header'> All Businesses</h1> : <h1 className='BusinessList-Header'>{city} Businesses</h1>}
+            <h1 className='BusinessList-Header'>{city} Businesses</h1>
           </div>
           <div className='BusinessList-Container'>
             <div className='BusinessList-Filters'>

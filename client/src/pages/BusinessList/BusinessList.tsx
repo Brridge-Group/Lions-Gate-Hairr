@@ -205,6 +205,7 @@ export const BusinessList = () => {
         })
       }
     })
+    //* Remove Any Duplicates
     let uniqueTempFilteredResults: any = Array.from(new Set(tempFilteredResults))
     setFilteredResults(uniqueTempFilteredResults)
   }
@@ -216,6 +217,12 @@ export const BusinessList = () => {
       return newFilteredResults
     })
   }, [list, city])
+  const handleResetFilter = () => {
+    // TODO: [ ] => FIXME: Reset checkboxes to false
+    //? TODO: [ ] => Explore connecting to child component to allow for checkbox resetting to opposite of checked
+    window.location.reload()
+  }
+
   if (loading) {
     return (
       <div
@@ -276,15 +283,6 @@ export const BusinessList = () => {
                 filteredResults?.map((business: any) => (
                   <Card className=' BusinessList-Card' key={`${business._id}_` + business.name} onClick={() => history.push(`/businesses/${business._id}`)}>
                     <CardDetails businessName={business.businessName} description={business.description} image={business.image} address={business.address} stars={business.stars} />
-                  onClick={() => history.push(`/businesses/${business._id}`)}
-                >
-                  <CardDetails
-                    name={business.name}
-                    description={business.description}
-                    image={business.image}
-                    address={business.address}
-                    stars={business.stars}
-                  />
                   </Card>
                 ))
               ) : (

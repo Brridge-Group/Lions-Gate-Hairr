@@ -47,15 +47,11 @@ interface Business {
   stars: number
 }
 
-// export const FilterServicesAndFeatures: React.FC<Props> = (props: Props) => {
-// export const ListItems: React.FC = () => {
 export const BusinessList = () => {
   const [list, setList]: any = useState([])
   const [loading, setLoading] = useState(true)
   const history = useHistory()
   const { city } = useParams<RouteParams>()
-
-  console.log(`initial list`, list)
 
   //* Initialize Services and Features to state
   const [feats, setFeats]: any = useState([]) // Features full object
@@ -89,12 +85,13 @@ export const BusinessList = () => {
     }
     fetchData()
   }, [])
-
+  // console.log(`initial list`, list)
+  
   useEffect(() => {
     const fetchFeaturesData = async () => {
       try {
         const response = await fetch('/api/features', {
-          method: 'GET'
+          method: 'GET',
         })
         const responseData = await response.json()
         setFeats(responseData)
@@ -115,7 +112,7 @@ export const BusinessList = () => {
     const fetchServicesData = async () => {
       try {
         const response = await fetch('/api/services', {
-          method: 'GET'
+          method: 'GET',
         })
         const responseData = await response.json()
         setServices(responseData)
@@ -135,13 +132,14 @@ export const BusinessList = () => {
     fetchFeaturesData()
     fetchServicesData()
   }, [])
-
-  console.log(servicesArr)
+  // console.log(`servicesArr`, servicesArr)
+  // console.log(`featuresArr`, featuresArr)
   console.log(featuresArr)
 
   //* Filter Business Features and Services
   const [filteredResults, setFilteredResults]: any = useState([])
   console.log(filterResults)
+  // console.log(`filteredResults`, filteredResults)
   const [filteredFeats, setFilteredFeats]: any = useState([])
   const [filteredServices, setFilteredServices]: any = useState([])
 
@@ -217,6 +215,7 @@ export const BusinessList = () => {
       return newFilteredResults
     })
   }, [list, city])
+
   const handleResetFilter = () => {
     // TODO: [ ] => FIXME: Reset checkboxes to false
     //? TODO: [ ] => Explore connecting to child component to allow for checkbox resetting to opposite of checked
@@ -232,8 +231,8 @@ export const BusinessList = () => {
           justifyContent: 'center',
           height: '100vh',
           width: '100%',
-          placeItems: 'center'
-        }}
+          placeItems: 'center',
+        }}>
       >
         <div className='BusinessList-Wrapper_loader'>
           <LoadSpinner />
@@ -251,8 +250,8 @@ export const BusinessList = () => {
           justifyContent: 'center',
           height: '100vh',
           width: '100%',
-          placeItems: 'center'
-        }}
+          placeItems: 'center',
+        }}>
       >
         <h2>No businesses found. Please try another city.</h2>
       </div>
@@ -274,7 +273,9 @@ export const BusinessList = () => {
                 onFeatChange={onFeatChange}
                 onServiceChange={onServiceChange}
                 loading={loading}
+                // isChecked={isChecked}
                 handleResetFilter={handleResetFilter}
+                handleFilteredResults={handleFilteredResults}
               />
             </div>
             {/* Display full Business List by city or a Filtered list by Services and Features   */}

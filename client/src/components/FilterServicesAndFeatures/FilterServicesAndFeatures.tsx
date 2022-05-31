@@ -18,14 +18,14 @@ interface Props {
   handleFilteredResults: any
 }
 
-export const FilterServicesAndFeatures: React.FC<Props> = (props: Props) => {
-  const [isLoading, setIsLoading]: any = useState(true)
+export const FilterServicesAndFeatures = (props: Props) => {
+  const [isLoading, setIsLoading] = useState(true)
 
+  //* Initialize Arrays for Selected Business Features and Services
   const [filteredFeats, setFilteredFeats]: any = useState([])
   const [filteredServices, setFilteredServices]: any = useState([])
 
-  //* Filter Business Features and Services
-  //* HandleChanges for the features and services checkboxes
+  //* HandleChanges for the Selected Features and Services Checkboxes
   const onFeatChange: React.ChangeEventHandler<HTMLInputElement> = event => {
     const { name, checked, id } = event.target
     // console.log('id', id, 'checked', checked)
@@ -34,7 +34,7 @@ export const FilterServicesAndFeatures: React.FC<Props> = (props: Props) => {
   }
   // console.log('filteredFeats onChange', filteredFeats)
 
-  const onServiceChange = event => {
+  const onServiceChange: React.ChangeEventHandler<HTMLInputElement> = event => {
     const { name, checked, id } = event.target
     // console.log('id', id, 'checked', checked)
     // setFilteredServices({ ...filteredServices, [`${name} (${id})`]: checked })
@@ -42,7 +42,7 @@ export const FilterServicesAndFeatures: React.FC<Props> = (props: Props) => {
   }
   // console.log('filteredServices onChange', filteredServices)
 
-  //* Monitor changes to the filtered features and services arrays. If there are changes send the data to the `BusinessList` Parent component
+  //* Monitor changes to the filtered Features and Services arrays. If there are changes send the data to the `BusinessList` Parent component
   useEffect(() => {
     if (props.onFeatChange) {
       props.onFeatChange(filteredFeats)
@@ -53,7 +53,6 @@ export const FilterServicesAndFeatures: React.FC<Props> = (props: Props) => {
       // console.log('filteredServices useEffect changes', filteredServices)
     }
   }, [filteredFeats, filteredServices])
-
   return (
     <>
       {!props.loading ? (
@@ -84,7 +83,6 @@ export const FilterServicesAndFeatures: React.FC<Props> = (props: Props) => {
               </div>
             ))}
           </div>
-          {/* TODO(BackLog): [✅] => Connect to `handleFilteredResults` */}
           <button className='Filters-Button' onClick={props.handleFilteredResults}>
             filter results
           </button>

@@ -139,7 +139,6 @@ export const BusinessList = () => {
 
   //* Filter Business Features and Services
   const [filteredResults, setFilteredResults]: any = useState([])
-  console.log(filterResults)
   // console.log(`filteredResults`, filteredResults)
   const [filteredFeats, setFilteredFeats]: any = useState([])
   const [filteredServices, setFilteredServices]: any = useState([])

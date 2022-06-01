@@ -36,3 +36,6 @@ div.card:nth-child(1) {
   line-height: 1;
   font-family: 'Roboto', sans-serif;
 }
+.BusinessCard.List {
+  cursor: pointer;
+}

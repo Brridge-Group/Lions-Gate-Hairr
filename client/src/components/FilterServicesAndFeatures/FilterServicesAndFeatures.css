@@ -1,44 +1,22 @@
-.Filters-Container {
+.Filters {
+  height: 80%;
   display: flex;
   flex-direction: column;
-  height: 58.7rem;
-  padding-left: 12px;
-  padding-top: 20px;
-  padding-right: 12px;
-  padding-bottom: 12px;
-  border-bottom-width: 0px;
-  border-bottom-style: solid;
-  background: #efefef !important;
 }
-.Filters-Label_header {
-  display: flex;
-  justify-content: center;
-  font-weight: 500;
+.Filters-FormGroup.features,
+.Filters-FormGroup.services {
+  min-height: fit-content;
+  height: 50%;
+  overflow-y: scroll;
+  margin-bottom: 2rem;
 }
-.Filters-Label_header_services {
+.btn--btn-primary.filter {
+  padding-top: 0;
   margin-top: 1rem;
 }
-.Filters-FormGroup {
-  max-height: 36%;
-  overflow: scroll;
-}
-.Filters-FormCheck {
-  margin: 1rem 1rem 1rem 0;
-  text-transform: capitalize;
-}
-.Filters-FormCheckInput {
-  margin: 0 1rem 0 0;
-}
-.Filters-FormCheckLabel {
-  font-weight: 300;
-}
-.Filters-Button {
-  width: 11.6rem;
-  height: 4.2rem;
-  margin: 5rem 0 0 1.55rem;
-  background: black;
-  border-radius: 10px;
-  border: 1px solid #f32dc8;
-  color: white;
-  text-align: center;
+.Filters-buttons {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translate(-50%, 0);
 }

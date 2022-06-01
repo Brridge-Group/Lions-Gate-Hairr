@@ -1,4 +1,4 @@
-import './BusinessDetails.css'
+import './About.css'
 interface Props {
   name: string
   description: string

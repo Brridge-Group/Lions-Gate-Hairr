@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 
-import { About } from './About'
+import { About } from './About/About'
 
 import { Book } from './Book'
 import { Review } from './Review'

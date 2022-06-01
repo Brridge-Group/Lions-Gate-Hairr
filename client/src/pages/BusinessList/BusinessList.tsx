@@ -3,8 +3,9 @@ import { useState, useEffect } from 'react'
 import { useHistory, useParams } from 'react-router-dom'
 
 // Custom Imports
+import { About } from '../../components/BusinessDetails/About/About'
+import { Star } from '../../UIElements/Star'
 import { Card } from '../../UIElements/Card'
-import CardDetails from '../../components/CardDetails/CardDetails'
 import { FilterServicesAndFeatures } from '../../components/FilterServicesAndFeatures/FilterServicesAndFeatures'
 import { LoadSpinner } from '../../components/LoadSpinner/LoadSpinner'
 
@@ -85,6 +86,7 @@ export const BusinessList = () => {
     fetchData()
   }, [])
 
+  console.log('hi, list', list)
   useEffect(() => {
     const fetchFeaturesData = async () => {
       try {
@@ -156,8 +158,7 @@ export const BusinessList = () => {
 
   return (
     <div className='FeatureContainer_image BusinessList'>
-      <div className='FeatureContainer Business'>
-        {/* <section className='BusinessList-wrapper'> */}
+      <div className='FeatureContainer BusinessList'>
         {loading ? (
           <LoadSpinner />
         ) : !list.length ? (
@@ -166,14 +167,13 @@ export const BusinessList = () => {
           </div>
         ) : (
           <>
+            {/* ternary operator
+                    if city is defined, show city name, else show '' */}
             {city == 'undefined' ? (
               <h1 className='BusinessList-Header'> All Businesses</h1>
             ) : (
               <h1 className='BusinessList-Header'>{city} Businesses</h1>
             )}
-            {/* ternary operator
-                  if city is defined, show city name, else show '' */}
-            {/* <section className='BusinessList-Container'> */}
             <div className='BusinessList-Filters leftColumn '>
               <FilterServicesAndFeatures
                 featuresArr={featuresArr}
@@ -184,26 +184,24 @@ export const BusinessList = () => {
                 handleResetFilter={handleResetFilter}
               />
             </div>
-            <div className='BusinessList rightColumn'>
+            <div className='BusinessList-Filters rightColumn'>
               {list.map((business: any) => (
                 <Card
-                  className=' BusinessList-Card'
+                  className='BusinessCard List'
                   key={business._id}
                   onClick={() => history.push(`/businesses/${business._id}`)}>
-                  <CardDetails
-                    name={business.name}
+                  <About
+                    name={business.businessName}
                     description={business.description}
                     image={business.image}
                     address={business.address}
-                    stars={business.stars}
                   />
+                  <Star stars={business.stars} />
                 </Card>
               ))}
             </div>
-            {/* </section> */}
           </>
         )}
-        {/* </section> */}
       </div>
     </div>
   )

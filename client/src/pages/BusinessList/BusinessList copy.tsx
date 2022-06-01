@@ -89,7 +89,7 @@ export const BusinessList = () => {
     const fetchFeaturesData = async () => {
       try {
         const response = await fetch('/api/features', {
-          method: 'GET',
+          method: 'GET'
         })
         const responseData = await response.json()
         setFeats(responseData)
@@ -110,7 +110,7 @@ export const BusinessList = () => {
     const fetchServicesData = async () => {
       try {
         const response = await fetch('/api/services', {
-          method: 'GET',
+          method: 'GET'
         })
         const responseData = await response.json()
         setServices(responseData)
@@ -154,27 +154,55 @@ export const BusinessList = () => {
     // setFilterResults(busFilter) // FIXME: resets to an empty array
   }
 
-  return (
-    <div className='FeatureContainer_image BusinessList'>
-      <div className='FeatureContainer Business'>
-        {/* <section className='BusinessList-wrapper'> */}
-        {loading ? (
+  if (loading) {
+    return (
+      <div
+        className='BusinessList-Wrapper'
+        style={{
+          display: 'flex',
+          justifyContent: 'center',
+          height: '100vh',
+          width: '100%',
+          placeItems: 'center'
+        }}
+      >
+        <div className='BusinessList-Wrapper_loader'>
           <LoadSpinner />
-        ) : !list.length ? (
-          <div className='Profile-UserContainer_reviews business'>
-            <h4>No businesses found. Please try another city.</h4>
-          </div>
-        ) : (
-          <>
+        </div>
+      </div>
+    )
+  }
+
+  if (list.length === 0) {
+    return (
+      <div
+        className='BusinessList-Wrapper'
+        style={{
+          display: 'flex',
+          justifyContent: 'center',
+          height: '100vh',
+          width: '100%',
+          placeItems: 'center'
+        }}
+      >
+        <h2>No businesses found. Please try another city.</h2>
+      </div>
+    )
+  } else {
+    return (
+      <section className='BusinessList'>
+        <div className='BusinessList-Wrapper'>
+          <div className='BusinessList-HeaderContainer'>
+            {/* ternary operator 
+                  if city is defined, show city name, else show '' */}
             {city == 'undefined' ? (
               <h1 className='BusinessList-Header'> All Businesses</h1>
             ) : (
               <h1 className='BusinessList-Header'>{city} Businesses</h1>
             )}
-            {/* ternary operator
-                  if city is defined, show city name, else show '' */}
-            {/* <section className='BusinessList-Container'> */}
-            <div className='BusinessList-Filters leftColumn '>
+          </div>
+          <div className='BusinessList-Container'>
+            <div className='BusinessList-Filters'>
               <FilterServicesAndFeatures
                 featuresArr={featuresArr}
                 servicesArr={servicesArr}
@@ -184,12 +212,13 @@ export const BusinessList = () => {
                 handleResetFilter={handleResetFilter}
               />
             </div>
-            <div className='BusinessList rightColumn'>
+            <div className='BusinessList-CardContainer'>
               {list.map((business: any) => (
                 <Card
                   className=' BusinessList-Card'
                   key={business._id}
-                  onClick={() => history.push(`/businesses/${business._id}`)}>
+                  onClick={() => history.push(`/businesses/${business._id}`)}
+                >
                   <CardDetails
                     name={business.name}
                     description={business.description}
@@ -200,11 +229,9 @@ export const BusinessList = () => {
                 </Card>
               ))}
             </div>
-            {/* </section> */}
-          </>
-        )}
-        {/* </section> */}
-      </div>
-    </div>
-  )
+          </div>
+        </div>
+      </section>
+    )
+  }
 }

@@ -237,7 +237,7 @@ export const AddBusiness = () => {
   }
 
   return (
-    <div className='FeatureContainer_image Profile'>
+    <div className='FeatureContainer_image AddBusiness'>
       <div className='FeatureContainer'>
         {/* <-- Form Start --> */}
 

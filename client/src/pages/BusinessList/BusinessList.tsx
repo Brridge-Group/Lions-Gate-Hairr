@@ -1,6 +1,6 @@
 // React Components
 import { useState, useEffect } from 'react'
-import { useHistory, useParams } from 'react-router-dom'
+import { useHistory, useParams, Link } from 'react-router-dom'
 
 // Custom Imports
 import { About } from '../../components/BusinessDetails/About/About'
@@ -109,6 +109,10 @@ export const BusinessList = () => {
       }
     }
 
+    const redirectToBus = () => {}
+
+    // history.push(`/businesses/${business._id}`)
+
     const fetchServicesData = async () => {
       try {
         const response = await fetch('/api/services', {
@@ -162,17 +166,17 @@ export const BusinessList = () => {
         {loading ? (
           <LoadSpinner />
         ) : !list.length ? (
-          <div className='Profile-UserContainer_reviews business'>
-            <h4>No businesses found. Please try another city.</h4>
-          </div>
+          <h1 className='BusinessList-none'>
+            No businesses found. Please try another city.
+          </h1>
         ) : (
           <>
             {/* ternary operator
                     if city is defined, show city name, else show '' */}
             {city == 'undefined' ? (
-              <h1 className='BusinessList-Header'> All Businesses</h1>
+              <h1 className='BusinessList-Header'> All Salons</h1>
             ) : (
-              <h1 className='BusinessList-Header'>{city} Businesses</h1>
+              <h1 className='BusinessList-Header'>{city} Salons</h1>
             )}
             <div className='BusinessList-Filters leftColumn '>
               <FilterServicesAndFeatures
@@ -186,17 +190,18 @@ export const BusinessList = () => {
             </div>
             <div className='BusinessList-Filters rightColumn'>
               {list.map((business: any) => (
-                <Card
-                  className='BusinessCard List'
-                  key={business._id}
-                  onClick={() => history.push(`/businesses/${business._id}`)}>
-                  <About
-                    name={business.businessName}
-                    description={business.description}
-                    image={business.image}
-                    address={business.address}
-                  />
-                  <Star stars={business.stars} />
+                <Card className='BusinessCard List' key={business._id}>
+                  <Link
+                    to={`/businesses/${business._id}`}
+                    className='BusinessCard-link'>
+                    <About
+                      name={business.businessName}
+                      description={business.description}
+                      image={business.image}
+                      address={business.address}
+                    />
+                    <Star stars={business.stars} />
+                  </Link>
                 </Card>
               ))}
             </div>

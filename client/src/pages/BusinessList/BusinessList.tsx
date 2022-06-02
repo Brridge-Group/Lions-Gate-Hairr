@@ -59,10 +59,11 @@ export const BusinessList = () => {
   const [featuresArr, setFeaturesArr]: any = useState([])
   const [servicesArr, setServicesArr]: any = useState([])
 
-  //* Initialize state objects for form checkboxes
-  const [isChecked, setIsChecked]: any = useState(false)
-  const [isFeatsChecked, setIsFeatsChecked]: any = useState([])
-  const [isServicesChecked, setIsServicesChecked]: any = useState([])
+  // //* Initialize state objects for form checkboxes
+  // // TODO: [ ] => Connect with `handleResetFilter` to reset checkboxes to false
+  // const [isChecked, setIsChecked]: any = useState(false)
+  // const [isFeatsChecked, setIsFeatsChecked]: any = useState([])
+  // const [isServicesChecked, setIsServicesChecked]: any = useState([])
 
   useEffect(() => {
     const fetchData = async () => {
@@ -86,7 +87,7 @@ export const BusinessList = () => {
     fetchData()
   }, [])
   // console.log(`initial list`, list)
-  
+
   //* Fetch Features and Services from the database
   useEffect(() => {
     const fetchFeaturesData = async () => {
@@ -135,7 +136,6 @@ export const BusinessList = () => {
   }, [])
   // console.log(`servicesArr`, servicesArr)
   // console.log(`featuresArr`, featuresArr)
-  console.log(featuresArr)
 
   //* Filter Business Features and Services
   const [filteredResults, setFilteredResults]: any = useState([])

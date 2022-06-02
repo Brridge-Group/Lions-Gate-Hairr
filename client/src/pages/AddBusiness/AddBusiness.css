@@ -68,7 +68,7 @@ input.AddBusiness-FormCard_filtersContainer_formCheckInput {
 /* ///////media queries ////////// */
 
 @media screen and (max-width: 575px) {
-  .FeatureContainer_image.Profile {
+  .FeatureContainer_image.AddBusiness {
     background-image: url('../../assets/images/hairlavender-mobile.jpg');
     margin-bottom: 0;
     height: 100%;

@@ -34,10 +34,9 @@ export const UserRegistration = () => {
 
   const signup =
     (formData: any, history: any, errorM?: any) => async (dispatch: any) => {
-      let data
       try {
         // sign up the user
-        data = await api.signUp(userData)
+        const { data } = await api.signUp(userData)
         dispatch({ type: AUTH, data })
         history.push('/')
       } catch (err: any) {

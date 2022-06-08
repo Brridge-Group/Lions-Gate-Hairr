@@ -1,10 +1,5 @@
 import { useState } from 'react'
 import UserImage from '../../../UIElements/UserImage'
-import VisibilityRoundedIcon from '@material-ui/icons/VisibilityRounded'
-import VisibilityOffRoundedIcon from '@material-ui/icons/VisibilityOffRounded'
-import Input from '@material-ui/core/Input'
-import InputAdornment from '@material-ui/core/InputAdornment'
-import IconButton from '@material-ui/core/IconButton'
 import { toast } from 'react-toastify'
 import { NavLink } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
@@ -15,6 +10,11 @@ import './UserRegistration.css'
 import '../../Profile/Profile.css'
 
 import 'react-toastify/dist/ReactToastify.css'
+import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai'
+
+interface UserRegistration {
+  onClick: React.MouseEventHandler<HTMLButtonElement>
+}
 
 require('dotenv').config()
 toast.configure()
@@ -22,7 +22,7 @@ toast.configure()
 export const UserRegistration = () => {
   const [userData, setUserData] = useState({
     role: 'user',
-    imageProfile: 'https://imgur.com/LDpwLVZ.jpg'
+    imageProfile: 'https://imgur.com/LDpwLVZ.jpg',
   })
 
   const [errorMsg, setErrorMsg] = useState()
@@ -39,7 +39,9 @@ export const UserRegistration = () => {
         // sign up the user
         data = await api.signUp(userData)
         dispatch({ type: AUTH, data })
-        history.push('/')
+        userData.role === 'user'
+          ? history.push('/')
+          : history.push('/add-business')
       } catch (err: any) {
         errorM = err.response.data
         toast(errorM)
@@ -48,10 +50,6 @@ export const UserRegistration = () => {
 
   const toggleShow = () => {
     setShowPassword(!showPassword)
-  }
-
-  const handleMouseDownPassword = event => {
-    event.preventDefault()
   }
 
   const onImageChange = async (e: any) => {
@@ -89,14 +87,11 @@ export const UserRegistration = () => {
 
   const handleSubmit = (e: any) => {
     e.preventDefault()
-    if (!imageSelected) {
-      toast('Error uploading image. No image was selected.')
-    } else {
-      dispatch(signup(userData, history))
-    }
+    dispatch(signup(userData, history))
   }
 
   const handleChange = (e: any) => {
+    console.log(e.target.value)
     setUserData({ ...userData, [e.target.name]: e.target.value })
   }
 
@@ -136,33 +131,28 @@ export const UserRegistration = () => {
                 onChange={handleChange}
                 className='UserRegistration_input'
               />
-              <h5>
-                <label>Password</label>
-              </h5>
-              <Input
-                name='password'
-                type={showPassword ? 'text' : 'password'}
-                onChange={handleChange}
-                className='UserRegistration_input'
-                endAdornment={
-                  <InputAdornment position='end'>
-                    <IconButton
-                      onClick={toggleShow}
-                      onMouseDown={handleMouseDownPassword}
-                    >
-                      {showPassword ? (
-                        <VisibilityRoundedIcon />
-                      ) : (
-                        <VisibilityOffRoundedIcon />
-                      )}
-                    </IconButton>
-                  </InputAdornment>
-                }
-              />
+              <div className='UserRegistration_password-wrapper'>
+                <h5>
+                  <label>Password</label>
+                </h5>
+                <input
+                  name='password'
+                  className='UserRegistration_input'
+                  type={showPassword ? 'text' : 'password'}
+                  onChange={handleChange}
+                />
+                <button
+                  type='button'
+                  className='UserRegistration_input-button'
+                  onClick={toggleShow}>
+                  {showPassword ? <AiFillEye /> : <AiFillEyeInvisible />}
+                </button>
+              </div>
+
               <h5>
                 <label>Confirm Password</label>
               </h5>
-              <Input
+              <input
                 name='confirmPassword'
                 className='UserRegistration_input'
                 type={showPassword ? 'text' : 'password'}

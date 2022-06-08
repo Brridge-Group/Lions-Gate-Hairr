@@ -57,18 +57,18 @@ input:focus {
   outline: none;
 }
 
-.MuiInput-underline:before {
-  border-bottom: none !important;
-  text-align: center;
+.UserRegistration_password-wrapper {
+  position: relative;
 }
-
-.MuiInput-underline:after {
-  border-bottom: none !important;
+button.UserRegistration_input-button {
+  border: none;
+  background: none;
 }
-
-.MuiInputBase-input {
-  text-align: center;
-  font-size: 1.3rem !important;
+.UserRegistration_input-button {
+  position: absolute;
+  right: 1%;
+  color: grey;
+  font-size: 1.75rem;
 }
 /* ///////media queries ////////// */
 
@@ -80,6 +80,7 @@ input:focus {
 @media screen and (max-width: 575px) {
   .FeatureContainer_image.Profile {
     background-image: url('../../../assets/images/hairgrey-mobile.jpg');
+    height: 100%;
   }
 }
 

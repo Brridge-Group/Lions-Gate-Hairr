@@ -1,19 +1,16 @@
-import { Image } from '@chakra-ui/react'
-import { AddAPhotoRounded } from '@material-ui/icons'
 import './UserImage.css'
+import { AiFillCamera } from 'react-icons/ai'
 
 const UserImage = ({ pic, name, handleChange }) => (
   <>
-    <Image
+    <img
       src={pic || 'https://imgur.com/LDpwLVZ.jpg'}
       alt={name}
-      boxSize='125px'
-      borderRadius='25rem'
-      fallbackSrc='https://imgur.com/LDpwLVZ.jpg'
+      className='UserImage-pic'
     />
     <div className='fileUpload btn btn-primary'>
       <span>
-        <AddAPhotoRounded fontSize='large' />
+        <AiFillCamera style={{ fontSize: '2rem' }} />
       </span>
       <input
         id='uploadBtn'

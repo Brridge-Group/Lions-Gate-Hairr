@@ -36,7 +36,7 @@ export const Navbar = () => {
     //export to tell home component user is false
     history.push('export', {
       pathname: '/',
-      state: { user: 'false' }
+      state: { user: 'false' },
     })
   }
 

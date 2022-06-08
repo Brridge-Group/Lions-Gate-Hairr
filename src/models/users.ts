@@ -15,7 +15,7 @@ const userSchema = new Schema({
     type: Date,
     default: new Date(),
   },
-  imageProfile: { type: String, required: true },
+  imageProfile: { type: String },
 })
 
 module.exports = mongoose.model('User', userSchema)

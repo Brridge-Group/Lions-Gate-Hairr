@@ -41,7 +41,7 @@ export const MyBusinessList = () => {
           <LoadSpinner />
         ) : !list.length ? (
           <div className='Profile-UserContainer_reviews business'>
-            <h5>no businesses found</h5>
+            <h4>no businesses found</h4>
           </div>
         ) : (
           <>

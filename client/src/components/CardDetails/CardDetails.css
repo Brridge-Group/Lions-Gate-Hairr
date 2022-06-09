@@ -9,15 +9,17 @@
   display: flex;
   flex-direction: column;
 }
-/* Star Stylying */
-.CardDetails-FigureContainer > div:nth-child(2) > div:nth-child(1) {
-  justify-content: space-between;
+/* Star Stylying Begins ---- */
+.Star-container {
+  width: 100%;
+  
 }
-.CardDetails-FigureContainer p {
+.CardDetails-FigureContainer svg {
   margin-top: 0rem;
   line-height: 1rem;
-  font-size: 2.928rem;
+  font-size: 2.928rem !important;
 }
+/* Star Stylying Ends ---- */
 .CardDetails-Image {
   width: 18rem;
   height: 18rem;

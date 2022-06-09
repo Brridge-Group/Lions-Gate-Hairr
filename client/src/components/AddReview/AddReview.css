@@ -3,8 +3,46 @@
 }
 .AddReview-container {
   text-align: center;
-  margin-top: 245px;
-  grid-column: 6/10;
+  margin-top: 145px;
+  grid-column: 5/11;
   display: flex;
   flex-direction: column;
+}
+.btn-review {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-size: 2rem;
+}
+.btn-review.on,
+.star.btn-review.on {
+  color: #000;
+}
+
+.btn-review.off,
+.star.btn-review.off {
+  color: #ccc;
+}
+.form {
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  margin-top: 25px;
+}
+.form-group.star-rating {
+  margin: 19px 0;
+}
+.form-control.text-area {
+  background: none;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  width: 85%;
+  height: 200px;
+}
+
+.form-group {
+  margin-bottom: 19px;
+}
+.btn--btn-primary.add-review {
+  width: 95px;
+  margin-bottom: 19px;
+  padding-top: 0px;
 }

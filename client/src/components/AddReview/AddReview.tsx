@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react'
 import { useParams, useHistory } from 'react-router-dom'
-// import { Header, HR, ReviewForm } from './AddReview/AddReviewElements'
+import { AiOutlineStar, AiFillStar } from 'react-icons/ai'
+
 // import { StarRating } from './StarRating'
 import './AddReview.css'
+import { BusinessDetails } from '../BusinessDetails/BusinessDetails'
 
 interface RouteParams {
   id: string
@@ -34,8 +36,22 @@ interface Business {
   phone: string
 }
 
+// ts? BusinessDetails, author
+
+interface AddReview {
+  comment: string
+  rating: number
+  business: any
+  author: any
+}
 export const AddReview = () => {
   const [businessData, setBusinessData] = useState<Business>()
+  const [rating, setRating] = useState(0)
+  const [hover, setHover] = useState(0)
+  const [clicked, setClicked] = useState(true)
+  const [reviewForm, setReviewForm] = useState({
+    comment: '',
+  })
   const history = useHistory()
   const { id } = useParams<RouteParams>()
 
@@ -90,15 +106,14 @@ export const AddReview = () => {
                   <button
                     type='button'
                     key={index}
-                    // className={
-                    //   index <= (hover || rating)
-                    //     ? 'btn-review on'
-                    //     : 'btn-review off'
-                    // }
-                    // onClick={() => setRating(index)}
-                    // onMouseEnter={() => setHover(index)}
-                    // onMouseLeave={() => setHover(rating)}
-                  >
+                    className={
+                      index <= (hover || rating)
+                        ? 'btn-review on'
+                        : 'btn-review off'
+                    }
+                    onClick={() => setRating(index)}
+                    onMouseEnter={() => setHover(index)}
+                    onMouseLeave={() => setHover(rating)}>
                     <span className='star'>&#9733;</span>
                   </button>
                 )
@@ -117,7 +132,7 @@ export const AddReview = () => {
             <button
               // onChange={handleChange}
               type='submit'
-              className='btn btn-primary'>
+              className='btn--btn-primary add-review'>
               Submit
             </button>
           </form>

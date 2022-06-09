@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useParams, useHistory } from 'react-router-dom'
-import { ReviewForm } from './AddReview/AddReviewElements'
+// import { ReviewForm } from './AddReview/AddReviewElements'
 import './AddReview.css'
 
 import { StarRating } from './StarRating'
@@ -76,12 +76,12 @@ export const AddReview = () => {
       <div className='FeatureContainer'>
         <h1>Review Business</h1>
         <h2>Review your experience with Andrelio Salon</h2>
-        <ReviewForm onSubmit={formSubmitHandler}>
-          <StarRating id='star-rating' />
-          <label htmlFor='review'>Leave a Review</label>
-          <textarea name='review' id='review' rows={10}></textarea>
-          <button type='submit'>Submit</button>
-        </ReviewForm>
+        {/* <ReviewForm onSubmit={formSubmitHandler}> */}
+        <StarRating id='star-rating' />
+        <label htmlFor='review'>Leave a Review</label>
+        <textarea name='review' id='review' rows={10}></textarea>
+        <button type='submit'>Submit</button>
+        {/* </ReviewForm> */}
       </div>
     </div>
   )

@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { AiOutlineStar, AiFillStar } from 'react-icons/ai'
+import './AddReview.css'
 interface Props {
   id?: string
   stars: number
@@ -11,17 +11,15 @@ export const Review = (props: Props) => {
   const stars: JSX.Element[] = [...Array(5)].map((star, i) => {
     if (i <= Math.round(props.stars) - 1) {
       return (
-        <AiFillStar
-          key={i}
-          style={{ fontSize: '2rem', color: 'rgba(0,0,0,0.7)' }}
-        />
+        <div className='star btn-review on' key={i}>
+          &#9733;
+        </div>
       )
     } else {
       return (
-        <AiOutlineStar
-          key={i}
-          style={{ fontSize: '2rem', color: 'rgba(0,0,0,0.5)' }}
-        />
+        <div className='star btn-review off' key={i}>
+          &#9733;
+        </div>
       )
     }
   })

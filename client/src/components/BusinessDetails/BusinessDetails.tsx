@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom'
 import { About } from './About/About'
 
 import { Book } from './Book'
-import { Review } from './Review'
+import { Review } from '../AddReview/Review'
 import './BusinessDetails.css'
 
 interface RouteParams {

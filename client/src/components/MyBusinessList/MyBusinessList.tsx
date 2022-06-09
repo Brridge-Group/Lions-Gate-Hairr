@@ -13,7 +13,6 @@ export const MyBusinessList = () => {
   const history = useHistory()
   const [list, setList] = useState<any[]>([])
   const [loading, setLoading] = useState(true)
-  const history = useHistory()
   const user = JSON.parse(localStorage.getItem('profile') || 'false').result
 
   useEffect(() => {

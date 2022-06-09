@@ -1,8 +1,10 @@
+import { Request, Response, NextFunction } from 'express'
+
 const Review = require('../models/review')
 const Business = require('../models/business')
-const User = require('../models/user')
+const User = require('../models/users')
 
-const getReviews = async (req, res, next) => {
+const getReviews = async (req: Request, res: Response, next: NextFunction) => {
   let reviews
   try {
     reviews = await Review.find()
@@ -11,11 +13,15 @@ const getReviews = async (req, res, next) => {
   }
 
   res.json({
-    reviews: reviews.map(review => review.toObject({ getters: true })),
+    reviews: reviews.map((review: any) => review.toObject({ getters: true })),
   })
 }
 
-const createReview = async (req, res, next) => {
+const createReview = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   console.log(req.body)
   const { comment, rating, business, author } = req.body
 
@@ -45,7 +51,11 @@ const createReview = async (req, res, next) => {
   res.status(201).json({ review: newReview })
 }
 
-const updateReview = async (req, res, next) => {
+const updateReview = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   const reviewId = req.params.id
 
   console.log(req.body)
@@ -70,7 +80,7 @@ const updateReview = async (req, res, next) => {
   res.status(200).json({ review: review.toObject({ getters: true }) })
 }
 
-const getReview = async (req, res, next) => {
+const getReview = async (req: Request, res: Response, next: NextFunction) => {
   let review
 
   const reviewId = req.params.id
@@ -84,7 +94,11 @@ const getReview = async (req, res, next) => {
   res.json({ review })
 }
 
-const deleteReview = async (req, res, next) => {
+const deleteReview = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   let review
 
   const reviewId = req.params.id

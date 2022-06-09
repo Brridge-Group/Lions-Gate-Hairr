@@ -1,0 +1,10 @@
+.FeatureContainer_image.Review {
+  background-image: url('../../assets/images/hairlavender.jpg');
+}
+.AddReview-container {
+  text-align: center;
+  margin-top: 245px;
+  grid-column: 6/10;
+  display: flex;
+  flex-direction: column;
+}

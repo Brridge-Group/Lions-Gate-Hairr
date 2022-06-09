@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react'
 import { useParams, useHistory } from 'react-router-dom'
-import { Header, HR, ReviewForm } from './AddReviewElements'
-import { StarRating } from '../StarRating'
+import { ReviewForm } from './AddReview/AddReviewElements'
+import './AddReview.css'
+
+import { StarRating } from './StarRating'
 
 interface RouteParams {
   id: string
@@ -72,10 +74,7 @@ export const AddReview = () => {
   return (
     <div className='FeatureContainer_image Owner'>
       <div className='FeatureContainer'>
-        <Header>
-          <h1>Review Business</h1>
-        </Header>
-        <HR />
+        <h1>Review Business</h1>
         <h2>Review your experience with Andrelio Salon</h2>
         <ReviewForm onSubmit={formSubmitHandler}>
           <StarRating id='star-rating' />

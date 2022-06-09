@@ -1,9 +1,8 @@
 import { useEffect, useState } from 'react'
 import { useParams, useHistory } from 'react-router-dom'
-import { ReviewForm } from './AddReview/AddReviewElements'
+// import { Header, HR, ReviewForm } from './AddReview/AddReviewElements'
+// import { StarRating } from './StarRating'
 import './AddReview.css'
-
-import { StarRating } from './StarRating'
 
 interface RouteParams {
   id: string
@@ -49,7 +48,7 @@ export const AddReview = () => {
     }
     getBusinessData()
   }, [])
-
+  console.log(businessData, id, 'businessData, id')
   const formSubmitHandler = async e => {
     e.preventDefault()
     try {
@@ -72,16 +71,57 @@ export const AddReview = () => {
   }
 
   return (
-    <div className='FeatureContainer_image Owner'>
+    <div className='FeatureContainer_image Review'>
       <div className='FeatureContainer'>
-        <h1>Review Business</h1>
-        <h2>Review your experience with Andrelio Salon</h2>
-        <ReviewForm onSubmit={formSubmitHandler}>
+        <div className='AddReview-container'>
+          <h2>Review your experience with Andrelio Salon</h2>
+          {/* <ReviewForm onSubmit={formSubmitHandler}>
           <StarRating id='star-rating' />
-          <label htmlFor='review'>Leave a Review</label>
           <textarea name='review' id='review' rows={10}></textarea>
-          <button type='submit'>Submit</button>
-        </ReviewForm>
+          <button type='submit' className='btn--btn-primary'>
+            Submit
+          </button>
+        </ReviewForm> */}
+          <form className='form'>
+            <div className='form-group star-rating'>
+              {[...Array(5)].map((star, index) => {
+                index += 1
+                return (
+                  <button
+                    type='button'
+                    key={index}
+                    // className={
+                    //   index <= (hover || rating)
+                    //     ? 'btn-review on'
+                    //     : 'btn-review off'
+                    // }
+                    // onClick={() => setRating(index)}
+                    // onMouseEnter={() => setHover(index)}
+                    // onMouseLeave={() => setHover(rating)}
+                  >
+                    <span className='star'>&#9733;</span>
+                  </button>
+                )
+              })}
+            </div>
+            <div className='form-group'>
+              <label htmlFor='comment'></label>
+              <textarea
+                name='comment'
+                // type='text'
+                className='form-control text-area'
+                // onChange={handleChange}
+                // value={comment}
+              />
+            </div>
+            <button
+              // onChange={handleChange}
+              type='submit'
+              className='btn btn-primary'>
+              Submit
+            </button>
+          </form>
+        </div>
       </div>
     </div>
   )

@@ -65,7 +65,23 @@ export const AddReview = () => {
     }
     getBusinessData()
   }, [])
-  console.log(businessData, id, typeof businessData, 'businessData, id')
+
+  console.log('businessData, id', businessData, id, typeof businessData)
+
+  const handleChange = e => {
+    e.preventDefault()
+    console.log('e.target', e.target.value)
+    setReviewForm({ ...reviewForm, [e.target.name]: e.target.value })
+  }
+  const saveNewReview = async () => {
+    let newReview = {
+      ...reviewForm,
+      author: user._id,
+      business: id,
+      rating: rating,
+    }
+  }
+
   const formSubmitHandler = async e => {
     e.preventDefault()
     try {
@@ -86,19 +102,7 @@ export const AddReview = () => {
       console.log('Review submission error occured!', e)
     }
   }
-  const handleChange = e => {
-    e.preventDefault()
-    console.log('e.target', e.target.value)
-    setReviewForm({ ...reviewForm, [e.target.name]: e.target.value })
-  }
-  // const saveNewReview = async () => {
-  //   let newReview = {
-  //     ...reviewForm,
-  //     author: props.user._id,
-  //     business: business._id,
-  //     rating: rating,
-  //   }
-  // }
+
   return (
     <div className='FeatureContainer_image Review'>
       <div className='FeatureContainer'>

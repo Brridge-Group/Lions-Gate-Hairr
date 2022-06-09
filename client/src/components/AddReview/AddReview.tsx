@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react'
 import { useParams, useHistory } from 'react-router-dom'
 import { AiOutlineStar, AiFillStar } from 'react-icons/ai'
 
-// import { StarRating } from './StarRating'
 import './AddReview.css'
 import { BusinessDetails } from '../BusinessDetails/BusinessDetails'
 
@@ -49,9 +48,7 @@ export const AddReview = () => {
   const [rating, setRating] = useState(0)
   const [hover, setHover] = useState(0)
   const [clicked, setClicked] = useState(true)
-  const [reviewForm, setReviewForm] = useState({
-    comment: '',
-  })
+  const [reviewForm, setReviewForm] = useState('')
   const history = useHistory()
   const { id } = useParams<RouteParams>()
 
@@ -126,7 +123,7 @@ export const AddReview = () => {
                 // type='text'
                 className='form-control text-area'
                 // onChange={handleChange}
-                // value={comment}
+                value={reviewForm}
               />
             </div>
             <button

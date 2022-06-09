@@ -15,14 +15,12 @@
   cursor: pointer;
   font-size: 2rem;
 }
-.btn-review.on,
-.star.btn-review.on {
+.btn-review.on {
   color: #000;
 }
 
-.btn-review.off,
-.star.btn-review.off {
-  color: #ccc;
+.btn-review.off {
+  color: rgba(0, 0, 0, 0.2);
 }
 .form {
   border: 1px solid rgba(0, 0, 0, 0.5);

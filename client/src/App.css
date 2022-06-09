@@ -127,3 +127,9 @@ a {
 .star {
   font-size: 2rem;
 }
+.star.btn-review.on {
+  color: #000;
+}
+.star.btn-review.off {
+  color: rgba(0, 0, 0, 0.2);
+}

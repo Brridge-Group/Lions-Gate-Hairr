@@ -2,11 +2,8 @@
   background-image: url('../../assets/images/hairwhite.jpg');
 }
 
+.FeatureContainer_image.Owner,
 .FeatureContainer_image.EditUser {
-  background-image: url('../../assets/images/hairgreysm.jpg');
-}
-
-.FeatureContainer_image.Owner {
   background-image: url('../../assets/images/hairgreysm.jpg');
 }
 
@@ -35,27 +32,51 @@ img.user-pix-placeholder {
 }
 .Profile-UserContainer {
   border: 1px solid rgba(0, 0, 0, 0.5);
-  padding: 45px;
+  padding: 3.5rem;
   height: 58vh;
   background-image: url('../../assets/images/hairwhitebg.jpg');
   position: relative;
 }
-.Profile-UserContainer_reviews {
+.Profile-UserContainer_reviews h4 {
   border-top: 1px solid #f32dc8;
   border-bottom: 1px solid #f32dc8;
-  margin-top: 20px;
+  font-weight: 500;
+  padding: 1rem;
+  margin: 0;
+  margin-bottom: 3.5rem;
 }
 
 .Profile-UserContainer_reviews.business {
   margin-top: 0;
+  height: 100%;
+  overflow: hidden;
 }
-.Profile-UserContainer_reviews h4 {
-  font-weight: 500;
-  padding: 10px;
-  margin: 0;
-}
+
 .Profile_links {
   display: flex;
   justify-content: center;
   margin-top: 30px;
+}
+.Profile-UserContainer_pic {
+  width: 125px;
+  height: 125px;
+  border-radius: 50%;
+}
+.Profile-UserContainer.Owner {
+  background-image: url('../../assets/images/hairgreybg.jpg');
+  padding-bottom: 0;
+}
+
+/* ///////media queries ////////// */
+
+@media screen and (max-width: 575px) {
+  .FeatureContainer_image.Owner,
+  .FeatureContainer_image.EditUser {
+    background-image: url('../../assets/images/hairgrey-mobile.jpg');
+    height: 100%;
+  }
+}
+.FeatureContainer_image.User {
+  background-image: url('../../assets/images/hairwhite-mobile.jpg');
+  height: 100%;
 }

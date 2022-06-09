@@ -5,9 +5,12 @@ import { Card } from '../../UIElements/Card'
 import { Star } from '../../UIElements/Star'
 import { About } from '../BusinessDetails/About'
 import '../../pages/Profile/Profile.css'
+import './MyBusinessList.css'
+
 import { LoadSpinner } from '../LoadSpinner/LoadSpinner'
 
 export const MyBusinessList = () => {
+  const history = useHistory()
   const [list, setList] = useState<any[]>([])
   const [loading, setLoading] = useState(true)
   const history = useHistory()
@@ -16,7 +19,9 @@ export const MyBusinessList = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch(`/api/businesses/get-business-by-ownersId/?id=${user._id}`)
+        const res = await fetch(
+          `/api/businesses/get-business-by-ownersId/?id=${user._id}`
+        )
         const businessesList = await res.json()
         setList(businessesList)
         setLoading(false)
@@ -27,13 +32,12 @@ export const MyBusinessList = () => {
     }
     fetchData()
   }, [])
+  console.log('in business list, list', list)
 
   return (
     <div className='Profile_user'>
       <h1 className='Profile_name'>Hello {user.name}!</h1>
-      <div className='Profile-UserContainer'>
-        {/* update here if change background image */}
-        {/* <div className='Profile-UserContainer Owner'> */}
+      <div className='Profile-UserContainer Owner'>
         {loading ? (
           <LoadSpinner />
         ) : !list.length ? (
@@ -45,14 +49,43 @@ export const MyBusinessList = () => {
             <div className='Profile-UserContainer_reviews business'>
               <h4>Your businesses</h4>
               {/* TODO: fix styles */}
-              {list.map((business: any) => (
-                <Card className='BusinessCard card-primary card-outline' key={business._id}>
-                  <div onClick={() => history.push(`/businesses/${business._id}`)}>
-                    <About name={business.name} description={business.description} image={business.image} address={business.address} />
+              <div className='BusinessCard-container'>
+                {list.map((business: any) => (
+                  <div
+                    className='BusinessCard '
+                    key={business._id}
+                    onClick={() =>
+                      history.push('businesses/' + `${business._id}`)
+                    }>
+                    <About
+                      name={business.businessName}
+                      description={business.description}
+                      image={business.image}
+                      address={business.address}
+                    />
                     <Star stars={business.stars} />
+                    <div className='BusinessCard-buttons'>
+                      <Link to={'#'}>
+                        <h6 className='btn--btn-primary twoLines business'>
+                          read <br />
+                          reviews
+                        </h6>
+                      </Link>
+                      <Link to={'#'}>
+                        <h6 className='btn--btn-primary twoLines business'>
+                          edit <br />
+                          business
+                        </h6>
+                      </Link>
+                      <Link to={'#'}>
+                        <h6 className='btn--btn-primary twoLines business'>
+                          delete business
+                        </h6>
+                      </Link>
+                    </div>
                   </div>
-                </Card>
-              ))}{' '}
+                ))}{' '}
+              </div>
               {/*end of map method */}
             </div>
           </>

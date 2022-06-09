@@ -29,8 +29,10 @@
 @media screen and (max-width: 575px) {
   .FeatureContainer_image.Home {
     background-image: url('../../assets/images/hairpink-mobile.jpg');
+    height: 100%;
   }
   .FeatureContainer_image.LoggedIn {
     background-image: url('../../assets/images/hairlavender-mobile.jpg');
+    height: 100%;
   }
 }

@@ -1,0 +1,13 @@
+.BusinessCard-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+}
+.btn--btn-primary.twoLines.business {
+  width: 95px;
+}
+.BusinessCard-container {
+  overflow-y: scroll;
+  height: 90%;
+  padding-bottom: 2rem;
+}

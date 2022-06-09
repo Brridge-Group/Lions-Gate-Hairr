@@ -35,7 +35,17 @@
 .Filters-Button {
   width: 11.6rem;
   height: 4.2rem;
-  margin: 5rem 0 0 1.55rem;
+  margin: 5rem 0 1rem 1.55rem;
+  background: black;
+  border-radius: 10px;
+  border: 1px solid #f32dc8;
+  color: white;
+  text-align: center;
+}
+.Reset-Button {
+  width: 11.6rem;
+  height: 4.2rem;
+  margin: 0rem 0 0 1.55rem;
   background: black;
   border-radius: 10px;
   border: 1px solid #f32dc8;

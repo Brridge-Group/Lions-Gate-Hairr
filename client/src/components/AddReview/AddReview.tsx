@@ -80,28 +80,56 @@ export const AddReview = () => {
       business: id,
       rating: rating,
     }
-  }
 
-  const formSubmitHandler = async e => {
-    e.preventDefault()
+    const requestOptions = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ ...newReview }),
+    }
+
     try {
-      // SENDING POST REQUEST WILL BE DONE AFTER WE CAN GET USER ID TO SEND.
-      // await axios.post(`/api/businesses/${id}/review`, {
-      //   rating: e.target.rating.value,
-      //   review: e.target.review.value,
-      // });
-      // history.push(`/businesses/${id}`);
-
-      // AGAIN, NEED A WAY TO GET USER ID TO CONNECT THE REVIEW WITH ITS AUTHOR.
-      console.log({
-        userId: null,
-        rating: e.target.rating.value,
-        review: e.target.review.value,
-      })
-    } catch (e) {
-      console.log('Review submission error occured!', e)
+      console.log('in try, new review', newReview)
+      const response = await fetch('/api/reviews', requestOptions)
+      if (!response.ok) {
+        throw new Error('New review not saved! Please resubmit.')
+      }
+      const json = await response.json()
+      alert('Review successful.')
+    } catch (error) {
+      console.error('Review not created.')
+      // error.message)
+      // set_Error(error.message)
     }
   }
+
+  const submitReview = e => {
+    e.preventDefault()
+    saveNewReview()
+    // .then(history.push('/'))
+  }
+
+  // const formSubmitHandler = async e => {
+  //   e.preventDefault()
+  //   try {
+  //     // SENDING POST REQUEST WILL BE DONE AFTER WE CAN GET USER ID TO SEND.
+  //     // await axios.post(`/api/businesses/${id}/review`, {
+  //     //   rating: e.target.rating.value,
+  //     //   review: e.target.review.value,
+  //     // });
+  //     // history.push(`/businesses/${id}`);
+
+  //     // AGAIN, NEED A WAY TO GET USER ID TO CONNECT THE REVIEW WITH ITS AUTHOR.
+  //     console.log({
+  //       userId: null,
+  //       rating: e.target.rating.value,
+  //       review: e.target.review.value,
+  //     })
+  //   } catch (e) {
+  //     console.log('Review submission error occured!', e)
+  //   }
+  // }
 
   return (
     <div className='FeatureContainer_image Review'>
@@ -115,7 +143,7 @@ export const AddReview = () => {
             Submit
           </button>
         </ReviewForm> */}
-          <form className='form' onSubmit={formSubmitHandler}>
+          <form className='form' onSubmit={submitReview}>
             <div className='form-group star-rating'>
               {[...Array(5)].map((star, index) => {
                 index += 1
@@ -147,7 +175,7 @@ export const AddReview = () => {
               />
             </div>
             <button
-              // onChange={handleChange}
+              onChange={handleChange}
               type='submit'
               className='btn--btn-primary add-review'>
               Submit

@@ -52,7 +52,7 @@ export const BusinessDetails = () => {
   // CHECKS IF THE BUSINESSDATA STATE HAS VALUE. RENDERS THE BUSINESS PAGE IF IT DOES AND SETS A LOADING SCREEN IF IT DOESN'T.
   // THE FIRST RENDER WON'T HAVE DATA, SINCE USEEFFECT, WHICH GIVES THE STATE IT'S VALUE, RUNS AFTER THE FIRST RENDER.
 
-  console.log('business data', businessData)
+  console.log('business details', businessData)
   return (
     <div className=' FeatureContainer_image Home'>
       <div className='BusinessContainer'>

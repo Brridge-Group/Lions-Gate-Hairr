@@ -1,16 +1,39 @@
+// import { profile } from 'console'
+import { useState } from 'react'
 import { useHistory, useLocation, useParams } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import { MyBusinessList } from '../../components/MyBusinessList/MyBusinessList'
 import './Profile.css'
+import axios from 'axios'
 
 interface RouteParams {
   id: string
 }
 
 export const Profile = () => {
-  const { role, _id, name, imageProfile } = JSON.parse(
+  const { role, _id, name, imageProfile, reviews } = JSON.parse(
     localStorage.getItem('profile') || 'false'
   ).result
+  const [userReview, getUserReview] = useState([])
+
+  console.log('reviews', reviews)
+
+  let data = []
+  for (let i = 0; i < reviews.length; i++) {
+    axios
+      .get(`/api/reviews/${reviews[i]}`)
+      .then(response => console.log(response.data, 'in review response'))
+  }
+
+  reviews.map(review =>
+    console.log(review, review.comment, review.rating, 'in profile, review')
+  )
+  // const result =
+  //   !props.loadingTracks &&
+  //   props.tracks.data.length &&
+  //   props.tracks.data.filter(track =>
+  //     props.tracksFiltered.find(genre => genre === track._id)
+  //   )
 
   return (
     <div
@@ -22,7 +45,7 @@ export const Profile = () => {
       <div className='FeatureContainer'>
         {role && role === 'user' ? (
           <div className='Profile_user'>
-            <h1 className='Profile_name'>Hello {name} !</h1>
+            <h1 className='Profile_name'>Hello {name}!</h1>
             <div className='Profile-UserContainer '>
               <img
                 src={imageProfile || 'https://imgur.com/LDpwLVZ.jpg'}

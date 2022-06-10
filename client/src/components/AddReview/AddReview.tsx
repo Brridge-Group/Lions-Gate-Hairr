@@ -33,8 +33,6 @@ interface Business {
   phone: string
 }
 
-// ts? BusinessDetails, author
-
 interface AddReview {
   comment: string
   rating: number
@@ -54,9 +52,7 @@ export const AddReview = () => {
   const { comment } = reviewForm
 
   const user = JSON.parse(localStorage.getItem('profile') ?? 'false').result
-  console.log(user, user._id, 'user in add review')
 
-  // FETCHES BUSINESS DATA FROM REMOTE DATABSE ONCE AND SETS BUSINESSDATA STATE TO IT.
   useEffect(() => {
     const getBusinessData = async () => {
       const res = await fetch(`/api/businesses/get-business-by-id/${id}`)
@@ -90,7 +86,6 @@ export const AddReview = () => {
     }
 
     try {
-      console.log('in try, new review', newReview)
       const response = await fetch('/api/reviews', requestOptions)
       if (!response.ok) {
         throw new Error('New review not saved! Please resubmit.')
@@ -110,39 +105,11 @@ export const AddReview = () => {
     // .then(history.push('/'))
   }
 
-  // const formSubmitHandler = async e => {
-  //   e.preventDefault()
-  //   try {
-  //     // SENDING POST REQUEST WILL BE DONE AFTER WE CAN GET USER ID TO SEND.
-  //     // await axios.post(`/api/businesses/${id}/review`, {
-  //     //   rating: e.target.rating.value,
-  //     //   review: e.target.review.value,
-  //     // });
-  //     // history.push(`/businesses/${id}`);
-
-  //     // AGAIN, NEED A WAY TO GET USER ID TO CONNECT THE REVIEW WITH ITS AUTHOR.
-  //     console.log({
-  //       userId: null,
-  //       rating: e.target.rating.value,
-  //       review: e.target.review.value,
-  //     })
-  //   } catch (e) {
-  //     console.log('Review submission error occured!', e)
-  //   }
-  // }
-
   return (
     <div className='FeatureContainer_image Review'>
       <div className='FeatureContainer'>
         <div className='AddReview-container'>
           <h2>Review your experience with Andrelio Salon</h2>
-          {/* <ReviewForm onSubmit={formSubmitHandler}>
-          <StarRating id='star-rating' />
-          <textarea name='review' id='review' rows={10}></textarea>
-          <button type='submit' className='btn--btn-primary'>
-            Submit
-          </button>
-        </ReviewForm> */}
           <form className='form' onSubmit={submitReview}>
             <div className='form-group star-rating'>
               {[...Array(5)].map((star, index) => {
@@ -168,7 +135,6 @@ export const AddReview = () => {
               <label htmlFor='comment'></label>
               <textarea
                 name='comment'
-                // type='text'
                 className='form-control text-area'
                 onChange={handleChange}
                 value={comment}

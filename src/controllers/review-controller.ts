@@ -1,21 +1,9 @@
 import { Request, Response, NextFunction } from 'express'
+let StatusCodes = require('http-status-codes')
 
-const Review = require('../models/review')
-const Business = require('../models/business')
-const User = require('../models/users')
-
-const getReviews = async (req: Request, res: Response, next: NextFunction) => {
-  let reviews
-  try {
-    reviews = await Review.find()
-  } catch (error) {
-    return next(error)
-  }
-
-  res.json({
-    reviews: reviews.map((review: any) => review.toObject({ getters: true })),
-  })
-}
+let Review = require('../models/review')
+import { Business } from '../models/business'
+let User = require('../models/users')
 
 const createReview = async (
   req: Request,
@@ -37,12 +25,12 @@ const createReview = async (
   } catch (error) {
     return next(error)
   }
-  let businessFind = await Business.findById(newReview.business)
+  let businessFind = await Business.findById(business)
   console.log('businessFind', businessFind)
   businessFind.reviews.push(newReview)
   await businessFind.save()
 
-  let authorFind = await User.findById(newReview.author)
+  let authorFind = await User.findById(author)
   console.log('authorFind', authorFind)
   authorFind.reviews.push(newReview)
   await authorFind.save()
@@ -72,7 +60,7 @@ const updateReview = async (
   review.rating = rating
 
   try {
-    const result = await review.save()
+    await review.save()
   } catch (err) {
     return next(err)
   }
@@ -84,6 +72,7 @@ const getReview = async (req: Request, res: Response, next: NextFunction) => {
   let review
 
   const reviewId = req.params.id
+  console.log('in get review')
 
   try {
     review = await Review.findById(reviewId)
@@ -120,7 +109,6 @@ const deleteReview = async (
   res.json({ message: 'Delete successfully' })
 }
 
-exports.getReviews = getReviews
 exports.createReview = createReview
 exports.updateReview = updateReview
 exports.getReview = getReview

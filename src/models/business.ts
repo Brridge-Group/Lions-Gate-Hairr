@@ -1,5 +1,5 @@
 import mongoose from 'mongoose'
-var uniqueValidator = require('mongoose-unique-validator')
+// var uniqueValidator = require('mongoose-unique-validator')
 
 import { provinces, states } from '../constants/regions'
 
@@ -64,8 +64,7 @@ const businessSchema = new Schema({
   stars: Number,
   phone: String,
   ownerId: String,
-}).plugin(uniqueValidator);
+})
+// .plugin(uniqueValidator);
 
-
-export const Business = mongoose.model("Business", businessSchema);
-
+export const Business = mongoose.model('Business', businessSchema)

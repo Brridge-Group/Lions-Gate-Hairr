@@ -26,7 +26,7 @@ export const signin = async (req: Request, res: Response) => {
     )
     res.status(200).json({ result: existingUser, token })
   } catch (err) {
-    console.log('Error on SignIn function on line 29: ',err)
+    console.log('Error on SignIn function on line 29: ', err)
     res.status(StatusCodes.INTERNAL_SERVER_ERROR).send('Something went wrong.')
   }
 }
@@ -99,8 +99,8 @@ export const getProfileById = async (req: Request, res: Response) => {
 }
 
 export const updateUser = async (req: Request, res: Response) => {
-  const filter = {_id: req.params.id};
-  
+  const filter = { _id: req.params.id }
+
   const {
     email,
     password,
@@ -111,11 +111,12 @@ export const updateUser = async (req: Request, res: Response) => {
     imageProfile,
   } = req.body
   try {
-
-    if(password){
+    if (password) {
       //password is not empty
       if (password !== confirmPassword)
-        return res.status(StatusCodes.BAD_REQUEST).send("Password doesn't match")
+        return res
+          .status(StatusCodes.BAD_REQUEST)
+          .send("Password doesn't match")
 
       const hashedPassword = await bcrypt.hash(password, 12)
       const fieldsToUpdate = {
@@ -168,5 +169,5 @@ export const updateUser = async (req: Request, res: Response) => {
     return res
       .status(StatusCodes.BAD_REQUEST)
       .send('Something went wrong in update user, try later!')
-  } 
+  }
 }

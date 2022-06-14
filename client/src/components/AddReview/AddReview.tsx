@@ -40,13 +40,14 @@ interface AddReview {
   author: any
 }
 export const AddReview = () => {
+  const history = useHistory()
+
   // const [businessData, setBusinessData] = useState({})
   const [businessData, setBusinessData] = useState<Business>()
 
   const [rating, setRating] = useState(0)
   const [hover, setHover] = useState(0)
   const [reviewForm, setReviewForm] = useState({ comment: '' })
-  const history = useHistory()
   const { id } = useParams<RouteParams>()
 
   const { comment } = reviewForm

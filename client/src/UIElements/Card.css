@@ -19,12 +19,18 @@ div.card:nth-child(1) {
   margin-top: 0;
 }
 
-.Star-container {
+.Star-container,
+.Star-container_small {
   width: 35%;
   display: flex;
   justify-content: space-between;
   margin-top: 1rem;
   margin-bottom: 2rem;
+}
+.Star-container_small {
+  width: 50%;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 .Review-container {
   display: flex;

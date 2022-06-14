@@ -83,6 +83,10 @@ h5 {
   font-weight: 300;
   margin: 20px 0 15px 0;
 }
+/* h6 {
+  font-size: 1.4rem;
+  font-weight: 200;
+} */
 p {
   line-height: 1.9rem;
   font-weight: 400;
@@ -111,6 +115,19 @@ a {
   color: black;
 }
 
+.star {
+  font-size: 2rem;
+}
+.star_small {
+  font-size: 1.6rem;
+}
+.star.btn-review.on {
+  color: #000;
+}
+.star.btn-review.off {
+  color: rgba(0, 0, 0, 0.2);
+}
+
 /* ///////media queries ////////// */
 
 @media screen and (max-width: 575px) {
@@ -123,13 +140,4 @@ a {
   .FeatureContainer {
     overflow: hidden;
   }
-}
-.star {
-  font-size: 2rem;
-}
-.star.btn-review.on {
-  color: #000;
-}
-.star.btn-review.off {
-  color: rgba(0, 0, 0, 0.2);
 }

@@ -1,6 +1,4 @@
-// import { profile } from 'console'
 import { useState, useEffect } from 'react'
-import { useHistory, useLocation, useParams } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import { MyBusinessList } from '../../components/MyBusinessList/MyBusinessList'
 import './Profile.css'
@@ -19,16 +17,30 @@ export const Profile = () => {
   const [userReview, getUserReview] = useState([])
   const [loading, setLoading] = useState(true)
 
+  // need to update local storage when add new review
+
   useEffect(() => {
-    const fetchReviews = async () => {
-      reviews.map(async review => {
-        const userReviews = await axios.get(`api/reviews/${review}`)
-        console.log(userReviews, 'user reviews in fetch')
-        // getUserReview([...userReview, userReviews])
-      })
+    const fetchReviews = () => {
+      // reviews.forEach(async review => {
+      //   console.log(review, 'review')
+      //   let userReviews = await axios.get(`api/reviews/${review}`)
+      //   console.log(userReviews, 'user reviews in fetch')
+      //   // @ts-ignore
+      //   getUserReview([...userReview, userReviews.data])
+      // })
+
+      Promise.all(
+        reviews.map((review: any) => axios.get(`api/reviews/${review}`))
+      )
+        // .then(data => console.log(data, 'in promise'))
+        //   // @ts-ignore
+        .then((data: any) => getUserReview(data))
+      // )
     }
     fetchReviews()
+    setLoading(false)
   }, [])
+  console.log(userReview, 'userReview line 39', typeof userReview)
 
   return (
     <div
@@ -52,7 +64,18 @@ export const Profile = () => {
                 <h4>your reviews</h4>
               </div>
               <div className='user-reviews-placeholder'>
-                reviews scroll here
+                {/* console.log('userReview line 63', userReview) */}
+                {/* {console.log('userReview line 63', userReview)} */}
+                {!loading &&
+                  userReview.map((r: any) => (
+                    // console.log(typeof r, 'r', r.review.comment)
+                    <ul>
+                      <li className='Profile_reviews' key={r._id}>
+                        {r.data.review.comment}
+                        {r.data.review.rating}
+                      </li>
+                    </ul>
+                  ))}
               </div>
             </div>
             <div className='Profile_links'>

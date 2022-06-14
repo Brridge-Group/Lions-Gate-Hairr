@@ -90,19 +90,19 @@ export const AddReview = () => {
       if (!response.ok) {
         throw new Error('New review not saved! Please resubmit.')
       }
-      const json = await response.json()
+      await response.json()
       alert('Review successful.')
     } catch (error) {
       console.error('Review not created.')
-      // error.message)
-      // set_Error(error.message)
     }
   }
 
-  const submitReview = e => {
+  const submitReview = async (e: React.FormEvent<any>) => {
     e.preventDefault()
-    saveNewReview()
-    // .then(history.push('/'))
+    try {
+      saveNewReview()
+      history.push('/')
+    } catch (err) {}
   }
 
   return (

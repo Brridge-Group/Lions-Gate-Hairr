@@ -86,7 +86,6 @@ export const BusinessList = () => {
     fetchData()
   }, [])
 
-  console.log('hi, list', list)
   useEffect(() => {
     const fetchFeaturesData = async () => {
       try {
@@ -104,12 +103,9 @@ export const BusinessList = () => {
         })
         setFeaturesArr(featsArr)
       } catch (err: any) {
-        console.log(err)
         setLoading(false)
       }
     }
-
-    const redirectToBus = () => {}
 
     // history.push(`/businesses/${business._id}`)
 
@@ -137,12 +133,12 @@ export const BusinessList = () => {
     fetchServicesData()
   }, [])
 
-  console.log(servicesArr)
-  console.log(featuresArr)
+  // console.log(servicesArr)
+  // console.log(featuresArr)
 
   //* Filter Business Features and Services
   const [filterResults, setFilterResults]: any = useState([...list])
-  console.log(filterResults)
+  // console.log(filterResults)
   const [filteredFeats, setFilteredFeats]: any = useState([])
   const [filteredServices, setFilteredServices]: any = useState([])
 
@@ -173,6 +169,7 @@ export const BusinessList = () => {
           <>
             {/* ternary operator
                     if city is defined, show city name, else show '' */}
+            {/* // FIXME: city name should be upper/lower case*/}
             {city == 'undefined' ? (
               <h1 className='BusinessList-Header'> All Salons</h1>
             ) : (

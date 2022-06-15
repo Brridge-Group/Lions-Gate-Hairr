@@ -87,7 +87,6 @@ ul.Profile_User_reviews {
   padding: 3.5rem;
   background-image: url('../../assets/images/hairwhitebg.jpg');
   position: relative;
-  height: fit-content;
 }
 .Profile-UserContainer_reviews h4 {
   border-top: 1px solid #f32dc8;
@@ -99,7 +98,7 @@ ul.Profile_User_reviews {
   margin-top: 1rem;
 }
 .Profile-UserContainer_reviews {
-  height: 35vh;
+  height: 38vh;
   overflow: hidden;
 }
 

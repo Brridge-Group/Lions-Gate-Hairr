@@ -12,7 +12,6 @@ interface Props {
 }
 
 export const About = (props: Props) => {
-  console.log('in about, props', props)
   return (
     <div className='About'>
       <div className='About-left'>

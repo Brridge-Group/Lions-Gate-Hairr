@@ -11,6 +11,7 @@ import Login from './pages/Auth/Login/Login'
 import { BusinessList } from './pages/BusinessList/BusinessList'
 import { BusinessDetails } from './components/BusinessDetails/BusinessDetails'
 import { AddBusiness } from './pages/AddBusiness/AddBusiness'
+import { MyBusinessReviews } from './pages/MyBusinessReviews/MyBusinessReviews'
 import { AddReview } from './components/AddReview/AddReview'
 import { MyBusinessList } from './components/MyBusinessList/MyBusinessList'
 import { Navbar } from './components/Navbar/Navbar'
@@ -50,6 +51,9 @@ export const App = () => {
       </Route>
       <Route path='/profile' exact>
         <Profile />
+      </Route>
+      <Route path='/my-businesses/:id/reviews' exact>
+        <MyBusinessReviews />
       </Route>
       <Redirect to='/' />
     </Switch>

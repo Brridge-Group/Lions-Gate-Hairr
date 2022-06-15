@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { MyBusinessList } from '../../components/MyBusinessList/MyBusinessList'
 import { StarSmall } from '../../UIElements/Star'
-
+import { LoadSpinner } from '../../components/LoadSpinner/LoadSpinner'
 import './Profile.css'
 import axios from 'axios'
 
@@ -23,14 +23,6 @@ export const Profile = () => {
 
   useEffect(() => {
     const fetchReviews = () => {
-      // reviews.forEach(async review => {
-      //   console.log(review, 'review')
-      //   let userReviews = await axios.get(`api/reviews/${review}`)
-      //   console.log(userReviews, 'user reviews in fetch')
-      //   // @ts-ignore
-      //   getUserReview([...userReview, userReviews.data])
-      // })
-
       Promise.all(
         reviews.map((review: any) => axios.get(`api/reviews/${review}`))
       )
@@ -66,34 +58,38 @@ export const Profile = () => {
               <div className='Profile-UserContainer_reviews'>
                 <h4>your reviews</h4>
                 <div className='profile-container'>
-                  {/* console.log('userReview line 63', userReview) */}
-                  {/* {console.log('userReview line 63', userReview)} */}
-                  <ul className='Profile_User_reviews'>
-                    {!loading &&
-                      userReview.map((r: any) => (
-                        <>
-                          <li className='Profile_reviews' key={r._id}>
-                            <div className='column-left'>
-                              <img src={r.data.review.business.image} />
-                              <div className='review-btns'>
-                                <button className='btn--btn-primary reviews'>
-                                  edit
-                                </button>
-                                <button className='btn--btn-primary reviews'>
-                                  delete
-                                </button>
+                  {loading ? (
+                    <LoadSpinner />
+                  ) : !userReview.length ? (
+                    'add some reviews'
+                  ) : (
+                    <ul className='Profile_User_reviews'>
+                      {!loading &&
+                        userReview.map((r: any) => (
+                          <>
+                            <li key={r._id} className='Profile_reviews'>
+                              <div className='column-left'>
+                                <img src={r.data.review.business.image} />
+                                <div className='review-btns'>
+                                  <button className='btn--btn-primary reviews'>
+                                    edit
+                                  </button>
+                                  <button className='btn--btn-primary reviews'>
+                                    delete
+                                  </button>
+                                </div>
                               </div>
-                            </div>
-                            <div className='column-right'>
-                              <h2>{r.data.review.business.businessName}</h2>
-                              <h5>{r.data.review.business.address.city}</h5>
-                              <StarSmall stars={r.data.review.rating} />
-                              <h5>{r.data.review.comment}</h5>
-                            </div>
-                          </li>
-                        </>
-                      ))}
-                  </ul>
+                              <div className='column-right'>
+                                <h2>{r.data.review.business.businessName}</h2>
+                                <h5>{r.data.review.business.address.city}</h5>
+                                <StarSmall stars={r.data.review.rating} />
+                                <h5>{r.data.review.comment}</h5>
+                              </div>
+                            </li>
+                          </>
+                        ))}
+                    </ul>
+                  )}
                 </div>
               </div>
             </div>

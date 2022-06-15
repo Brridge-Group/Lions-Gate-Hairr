@@ -22,7 +22,8 @@ interface Business {
   description: string
   image: string
   address: {
-    street: string
+    address1: string
+    address2: string
     city: string
     region: string
     postalCode: string
@@ -63,7 +64,14 @@ export const AddReview = () => {
     getBusinessData()
   }, [])
 
-  console.log('businessData, id', businessData, id, typeof businessData)
+  console.log(
+    'businessData, id',
+    businessData,
+    id,
+    typeof businessData
+    // @ts-ignore
+  )
+  // @ts-ignore
 
   const handleChange = e => {
     e.preventDefault()
@@ -110,7 +118,7 @@ export const AddReview = () => {
     <div className='FeatureContainer_image Review'>
       <div className='FeatureContainer'>
         <div className='AddReview-container'>
-          <h2>Review your experience with Andrelio Salon</h2>
+          <h2>Review your experience with business name</h2>
           <form className='form' onSubmit={submitReview}>
             <div className='form-group star-rating'>
               {[...Array(5)].map((star, index) => {

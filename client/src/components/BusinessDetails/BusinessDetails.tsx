@@ -4,6 +4,7 @@ import { About } from './About/About'
 import { Book } from './Book'
 import { Review } from '../AddReview/Review'
 import './BusinessDetails.css'
+import { MyBusinessReviews } from '../../pages/MyBusinessReviews/MyBusinessReviews'
 
 interface RouteParams {
   id: string
@@ -18,7 +19,11 @@ interface Feature {
   _id: string
   name: string
 }
-
+interface Review {
+  _id: string
+  comment: string
+  rating: number
+}
 interface Business {
   businessName: string
   description: string
@@ -31,6 +36,7 @@ interface Business {
   }
   services: Service[]
   features: Feature[]
+  reviews: Review[]
   stars: number
   phone: string
 }
@@ -94,6 +100,7 @@ export const BusinessDetails = () => {
               </div>
               <div className='BusinessDetails_reviews'>
                 <h4>reviews</h4>
+                <MyBusinessReviews />
               </div>
             </div>
           </>
@@ -102,6 +109,5 @@ export const BusinessDetails = () => {
         )}
       </div>
     </div>
-    // </div>
   )
 }

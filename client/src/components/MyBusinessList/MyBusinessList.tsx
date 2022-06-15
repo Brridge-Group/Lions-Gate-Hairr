@@ -70,7 +70,13 @@ export const MyBusinessList = () => {
                           reviews
                         </h6>
                       </Link>
-                      <Link to={'#'}>
+                      <Link
+                        to={`/my-businesses/${business._id}/reviews`}
+                        //need to pass reviews here
+                        // state={{ from: 'reviews' }}
+                        {...list}>
+                        {/* {...business.reviews} */}
+
                         <h6 className='btn--btn-primary twoLines business'>
                           edit <br />
                           business

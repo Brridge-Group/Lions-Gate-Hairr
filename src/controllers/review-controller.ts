@@ -72,10 +72,12 @@ const getReview = async (req: Request, res: Response, next: NextFunction) => {
   let review
 
   const reviewId = req.params.id
-  console.log('in get review')
+  console.log('in get review', req.params.id)
 
   try {
     review = await Review.findById(reviewId)
+      .populate('business')
+      .populate('author')
   } catch (err) {
     return next(err)
   }

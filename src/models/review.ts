@@ -5,8 +5,8 @@ const reviewSchema = new Schema({
   comment: { type: String },
   rating: { type: Number, required: true },
   createDate: { type: Date, default: Date.now },
-  // author: { type: Schema.Types.ObjectId, ref: 'User', required: true },
-  // business: { type: Schema.Types.ObjectId, ref: 'Business', required: true },
+  author: { type: Schema.Types.ObjectId, ref: 'User', required: true },
+  business: { type: Schema.Types.ObjectId, ref: 'Business', required: true },
   // business: String,
 
   // userId: {
@@ -16,8 +16,8 @@ const reviewSchema = new Schema({
   //   index: true,
   // },
 
-  author: String,
-  business: String,
+  // author: String,
+  // business: String,
 })
 
 module.exports = mongoose.model('Review', reviewSchema)

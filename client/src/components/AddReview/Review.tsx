@@ -3,6 +3,8 @@ import './AddReview.css'
 interface Props {
   id?: string
   stars: number
+  ownerId: string
+  thisOwnerId: string
 }
 
 const isLoggedIn: boolean = true
@@ -28,6 +30,14 @@ export const Review = (props: Props) => {
     <>
       <div className='Review-container'>
         <div className='Star-container'>{stars}</div>
+        {/* {(isLoggedIn && props.ownerId !== props.thisOwnerId) ||
+        (isLoggedIn && props.ownerId === null) ? (
+          <Link
+            to={props.id + '/add-review'}
+            className='btn--btn-primary review'>
+            Leave a Review
+          </Link>
+        ) : null} */}
         {isLoggedIn ? (
           <Link
             to={props.id + '/add-review'}

@@ -118,7 +118,10 @@ export const AddReview = () => {
     <div className='FeatureContainer_image Review'>
       <div className='FeatureContainer'>
         <div className='AddReview-container'>
-          <h2>Review your experience with business name</h2>
+          <h2>
+            Review your experience with businessData.businessName will read as
+            undefined
+          </h2>
           <form className='form' onSubmit={submitReview}>
             <div className='form-group star-rating'>
               {[...Array(5)].map((star, index) => {

@@ -39,6 +39,8 @@ interface Business {
   reviews: Review[]
   stars: number
   phone: string
+  ownerId: string
+  thisOwnerId: string
 }
 
 export const BusinessDetails = () => {
@@ -95,8 +97,17 @@ export const BusinessDetails = () => {
                 address={businessData.address}
               />
               <div className='BusinessDetails-buttons'>
-                <Review id={id} stars={businessData.stars} />
-                <Book phone={businessData.phone} />
+                <Review
+                  id={id}
+                  stars={businessData.stars}
+                  ownerId={businessData.ownerId}
+                  thisOwnerId={businessData.ownerId}
+                />
+                <Book
+                  phone={businessData.phone}
+                  ownerId={businessData.ownerId}
+                  thisOwnerId={businessData.ownerId}
+                />
               </div>
               <div className='BusinessDetails_reviews'>
                 <h4>reviews</h4>

@@ -114,7 +114,6 @@ export const BusinessList = () => {
         setLoading(false)
       }
     }
-
     const redirectToBus = () => {}
 
     // history.push(`/businesses/${business._id}`)
@@ -142,12 +141,12 @@ export const BusinessList = () => {
     fetchFeaturesData()
     fetchServicesData()
   }, [])
-  // console.log(`servicesArr`, servicesArr)
-  // console.log(`featuresArr`, featuresArr)
+  console.log(`servicesArr`, servicesArr)
+  console.log(`featuresArr`, featuresArr)
 
   //* Filter Business Features and Services
   const [filteredResults, setFilteredResults]: any = useState([])
-  // console.log(`filteredResults`, filteredResults)
+  console.log(`filteredResults`, filteredResults)
   const [filteredFeats, setFilteredFeats]: any = useState([])
   const [filteredServices, setFilteredServices]: any = useState([])
 
@@ -226,6 +225,7 @@ export const BusinessList = () => {
       return newFilteredResults
     })
   }, [list, city])
+  console.log(list, city, 'list, city')
 
   const handleResetFilter = (): any => {
     // TODO: [ ] => FIXME: Reset checkboxes to false
@@ -238,19 +238,13 @@ export const BusinessList = () => {
       <div className='FeatureContainer BusinessList'>
         {loading ? (
           <LoadSpinner />
-        ) : !list.length ? (
+        ) : !list.length || city == 'undefined' ? (
           <h1 className='BusinessList-none'>
             No businesses found. Please try another city.
           </h1>
         ) : (
           <>
-            {/* ternary operator
-                    if city is defined, show city name, else show '' */}
-            {city == 'undefined' ? (
-              <h1 className='BusinessList-Header'> All Salons</h1>
-            ) : (
-              <h1 className='BusinessList-Header'>{city} Salons</h1>
-            )}
+            <h1 className='BusinessList-Header'>{city} Salons</h1>
             <div className='BusinessList-Filters leftColumn '>
               <FilterServicesAndFeatures
                 featuresArr={featuresArr}
@@ -264,21 +258,24 @@ export const BusinessList = () => {
               />
             </div>
             <div className='BusinessList-Filters rightColumn'>
+              {/* Display full Business List by city or a Filtered list by Services and Features   */}
               {filteredResults && filteredResults.length > 0 ? (
                 filteredResults?.map((business: any) => (
-                  <Card className='BusinessCard List' key={business._id}>
-                    <Link
-                      to={`/businesses/${business._id}`}
-                      className='BusinessCard-link'>
-                      <About
-                        name={business.businessName}
-                        description={business.description}
-                        image={business.image}
-                        address={business.address}
-                      />
-                      <Star stars={business.stars} />
-                    </Link>
-                  </Card>
+                  <>
+                    <Card className='BusinessCard List' key={business._id}>
+                      <Link
+                        to={`/businesses/${business._id}`}
+                        className='BusinessCard-link'>
+                        <About
+                          name={business.businessName}
+                          description={business.description}
+                          image={business.image}
+                          address={business.address}
+                        />
+                        <Star stars={business.stars} />
+                      </Link>
+                    </Card>
+                  </>
                 ))
               ) : (
                 <>
@@ -291,37 +288,6 @@ export const BusinessList = () => {
                 </>
               )}
             </div>
-            {/* Display full Business List by city or a Filtered list by Services and Features   */}
-            {/* <div className='BusinessList-CardContainer'>
-              {filteredResults && filteredResults.length > 0 ? (
-                filteredResults?.map((business: any) => (
-                  <Card
-                    className=' BusinessCard List'
-                    key={`${business._id}_` + business.name}>
-                    <Link
-                      to={`/businesses/${business._id}`}
-                      className='BusinessCard-link'>
-                      <About
-                        name={business.businessName}
-                        description={business.description}
-                        image={business.image}
-                        address={business.address}
-                      />
-                      <Star stars={business.stars} />
-                    </Link>
-                  </Card>
-                ))
-              ) : (
-                <>
-                  <h1>
-                    No businesses were found with the chosen services and or
-                    features.
-                  </h1>
-                  <br />
-                  <h1>Please change your selection and filter again.</h1>
-                </>
-              )}
-            </div> */}
           </>
         )}
       </div>

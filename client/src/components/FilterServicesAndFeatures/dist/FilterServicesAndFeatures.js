@@ -76,5 +76,5 @@ exports.FilterServicesAndFeatures = function (props) {
                 React.createElement("label", { className: 'Filters-FormCheckLabel', htmlFor: service[1] }, service[0]))); }))),
         React.createElement("div", { className: 'Filters-buttons' },
             React.createElement("button", { className: 'btn--btn-primary filter', onClick: props.handleResetFilter }, "Filter Results"),
-            React.createElement("button", { className: 'btn--btn-primary filter', onClick: props.handleResetFilter }, "reset Filters")))) : (React.createElement("section", { className: 'Filters-Container' }, isLoading && React.createElement(LoadSpinner_1.LoadSpinner, null)))));
+            React.createElement("button", { className: 'btn--btn-primary filter', onClick: props.handleResetFilter }, "Reset Filters")))) : (React.createElement("section", { className: 'Filters-Container' }, isLoading && React.createElement(LoadSpinner_1.LoadSpinner, null)))));
 };

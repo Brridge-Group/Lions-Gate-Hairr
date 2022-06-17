@@ -180,11 +180,11 @@ exports.BusinessList = function () {
         fetchFeaturesData();
         fetchServicesData();
     }, []);
-    // console.log(`servicesArr`, servicesArr)
-    // console.log(`featuresArr`, featuresArr)
+    console.log("servicesArr", servicesArr);
+    console.log("featuresArr", featuresArr);
     //* Filter Business Features and Services
     var _g = react_1.useState([]), filteredResults = _g[0], setFilteredResults = _g[1];
-    // console.log(`filteredResults`, filteredResults)
+    console.log("filteredResults", filteredResults);
     var _h = react_1.useState([]), filteredFeats = _h[0], setFilteredFeats = _h[1];
     var _j = react_1.useState([]), filteredServices = _j[0], setFilteredServices = _j[1];
     //* Listen for the features' and services' checkbox changes and capture that data from the `FilterServicesAndFeatures` child component
@@ -257,24 +257,26 @@ exports.BusinessList = function () {
             return newFilteredResults;
         });
     }, [list, city]);
+    console.log(list, city, 'list, city');
     var handleResetFilter = function () {
         // TODO: [ ] => FIXME: Reset checkboxes to false
         //? TODO: [ ] => Explore connecting to child component to allow for checkbox resetting to opposite of checked
         window.location.reload();
     };
     return (React.createElement("div", { className: 'FeatureContainer_image BusinessList' },
-        React.createElement("div", { className: 'FeatureContainer BusinessList' }, loading ? (React.createElement(LoadSpinner_1.LoadSpinner, null)) : !list.length ? (React.createElement("h1", { className: 'BusinessList-none' }, "No businesses found. Please try another city.")) : (React.createElement(React.Fragment, null,
-            city == 'undefined' ? (React.createElement("h1", { className: 'BusinessList-Header' }, " All Salons")) : (React.createElement("h1", { className: 'BusinessList-Header' },
+        React.createElement("div", { className: 'FeatureContainer BusinessList' }, loading ? (React.createElement(LoadSpinner_1.LoadSpinner, null)) : !list.length || city == 'undefined' ? (React.createElement("h1", { className: 'BusinessList-none' }, "No businesses found. Please try another city.")) : (React.createElement(React.Fragment, null,
+            React.createElement("h1", { className: 'BusinessList-Header' },
                 city,
-                " Salons")),
+                " Salons"),
             React.createElement("div", { className: 'BusinessList-Filters leftColumn ' },
                 React.createElement(FilterServicesAndFeatures_1.FilterServicesAndFeatures, { featuresArr: featuresArr, servicesArr: servicesArr, onFeatChange: onFeatChange, onServiceChange: onServiceChange, loading: loading, 
                     // isChecked={isChecked}
                     handleResetFilter: handleResetFilter, handleFilteredResults: handleFilteredResults })),
-            React.createElement("div", { className: 'BusinessList-Filters rightColumn' }, filteredResults && filteredResults.length > 0 ? (filteredResults === null || filteredResults === void 0 ? void 0 : filteredResults.map(function (business) { return (React.createElement(Card_1.Card, { className: 'BusinessCard List', key: business._id },
-                React.createElement(react_router_dom_1.Link, { to: "/businesses/" + business._id, className: 'BusinessCard-link' },
-                    React.createElement(About_1.About, { name: business.businessName, description: business.description, image: business.image, address: business.address }),
-                    React.createElement(Star_1.Star, { stars: business.stars })))); })) : (React.createElement(React.Fragment, null,
+            React.createElement("div", { className: 'BusinessList-Filters rightColumn' }, filteredResults && filteredResults.length > 0 ? (filteredResults === null || filteredResults === void 0 ? void 0 : filteredResults.map(function (business) { return (React.createElement(React.Fragment, null,
+                React.createElement(Card_1.Card, { className: 'BusinessCard List', key: business._id },
+                    React.createElement(react_router_dom_1.Link, { to: "/businesses/" + business._id, className: 'BusinessCard-link' },
+                        React.createElement(About_1.About, { name: business.businessName, description: business.description, image: business.image, address: business.address }),
+                        React.createElement(Star_1.Star, { stars: business.stars }))))); })) : (React.createElement(React.Fragment, null,
                 React.createElement("h1", null, "No businesses were found with the chosen services and or features."),
                 React.createElement("br", null),
                 React.createElement("h1", null, "Please change your selection and filter again.")))))))));

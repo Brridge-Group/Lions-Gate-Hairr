@@ -122,7 +122,7 @@ export const FilterServicesAndFeatures = (props: Props) => {
             <button
               className='btn--btn-primary filter'
               onClick={props.handleResetFilter}>
-              reset Filters
+              Reset Filters
             </button>
           </div>
         </>

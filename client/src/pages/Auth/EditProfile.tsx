@@ -38,7 +38,9 @@ export const EditProfile = () => {
         // update the user
         const { data } = await api.updateUser(userData, user._id)
         dispatch({ type: UPDATE, data })
-        history.push('/')
+        userData.role === 'user'
+          ? history.push('/')
+          : history.push('/add-business')
       } catch (err: any) {
         errorM = err.response.data
         setErrorMsg(errorM)

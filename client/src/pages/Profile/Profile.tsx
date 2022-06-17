@@ -41,7 +41,7 @@ export const Profile = () => {
               <Link to={`users/${_id}`}>
                 <h6 className='btn--btn-primary'>update profile</h6>
               </Link>
-              <Link to={'#'}>
+              <Link to={'/add-business'}>
                 {' '}
                 <h6 className='btn--btn-primary twoLines'>become an owner</h6>
               </Link>

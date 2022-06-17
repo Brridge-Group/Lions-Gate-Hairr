@@ -10,7 +10,6 @@ import { regions } from '../../constants/regions'
 // 3rd Party Custom Imports
 import axios from 'axios'
 import './AddBusiness.css'
-import '../Auth/UserRegistration/UserRegistration.css'
 
 interface AddBusiness {
   onClick: React.MouseEventHandler<HTMLButtonElement>
@@ -237,80 +236,83 @@ export const AddBusiness = () => {
   }
 
   return (
-    <div className='FeatureContainer_image AddBusiness'>
-      <div className='FeatureContainer'>
+    <div className='AddBusiness-Wrapper'>
+      <div className='AddBusiness-FormCard'>
         {/* <-- Form Start --> */}
-
-        <form onSubmit={handleSubmit} className='AddBusiness_inputGroup'>
-          <div className='AddBusiness_scroll'>
-            <div className='AddBusiness-FormCard_body'>
+        <form onSubmit={handleSubmit}>
+          <div className='AddBusiness-FormCard_body'>
+            <div className='AddBusiness-FormCard_body_formGroup AddBusiness-FormCard_preview_container'>
               <BusinessImage
                 pic={image}
                 name={'profile-picture'}
                 handleChange={onImageChange}
               />
-              <h5>
-                <label htmlFor='businessName'>Business Name</label>
-              </h5>
+            </div>
+            <div className='AddBusiness-FormCard_body_formGroup'>
+              <label htmlFor='businessName'>Business Name</label>
               <input
                 name='businessName'
                 type='text'
                 value={formData.businessName}
-                className='UserRegistration_input'
+                className='AddBusiness-FormControl'
+                placeholder='Enter business name'
                 onChange={onFormChange}
                 required
               />
-              <h5>
-                <label htmlFor='description'>Description</label>
-              </h5>
+            </div>
+            <div className='AddBusiness-FormCard_body_formGroup'>
+              <label htmlFor='description'>Description</label>
               <textarea
                 name='description'
                 value={formData.description}
-                className='UserRegistration_input'
+                className='AddBusiness-FormControl'
+                placeholder='Enter business description'
                 onChange={onFormChange}
                 required
               />
-              <h5>
-                <label htmlFor='email'>Email</label>
-              </h5>
+            </div>
+            <div className='AddBusiness-FormCard_body_formGroup'>
+              <label htmlFor='email'>Email</label>
               <input
                 name='email'
                 type='email'
                 value={formData.email}
-                className='UserRegistration_input'
+                className='AddBusiness-FormControl'
+                placeholder='Enter email address'
                 onChange={onFormChange}
                 required
               />
-              <h5>
-                <label htmlFor='address1'>Address Line 1</label>
-              </h5>
+            </div>
+            <div className='AddBusiness-FormCard_body_formGroup'>
+              <label htmlFor='address1'>Address Line 1</label>
               <input
                 name='address1'
                 type='text'
                 value={formData.address1}
-                className='UserRegistration_input color'
+                className='AddBusiness-FormControl'
+                placeholder='Enter street address'
                 onChange={onFormChange}
                 required
               />
-
-              <div className='AddBusiness-FormCard_body_columns'>
-                <div className='AddBusiness-FormCard_body_left'>
-                  <h5>
-                    <label htmlFor='cityTown'>City / Town</label>
-                  </h5>
+            </div>
+            <div className='AddBusiness-FormCard_body_columns'>
+              <div className='AddBusiness-FormCard_body_left'>
+                <div className='AddBusiness-FormCard_body_formGroup'>
+                  <label htmlFor='cityTown'>City / Town</label>
                   <input
                     name='cityTown'
                     type='text'
                     value={formData.cityTown}
-                    className='UserRegistration_input color'
+                    className='AddBusiness-FormControl'
+                    placeholder='Enter city'
                     onChange={onFormChange}
                     required
                   />
-                  <h5>
-                    <label htmlFor='region'>Province / State</label>
-                  </h5>
+                </div>
+                <div className='AddBusiness-FormCard_body_formGroup'>
+                  <label htmlFor='region'>Province / State</label>
                   <select
-                    className='UserRegistration_input color'
+                    className='custom-select rounded-0'
                     onChange={handleRegion}
                     name='region'
                     id='region'>
@@ -318,49 +320,48 @@ export const AddBusiness = () => {
                       <option value={region.value}>{region.label}</option>
                     ))}
                   </select>
-                  <h5>
-                    <label htmlFor='phone'>Phone Number</label>
-                  </h5>
+                </div>
+                <div className='AddBusiness-FormCard_body_formGroup'>
+                  <label htmlFor='phone'>Phone Number</label>
                   <input
                     name='phone'
                     type='text'
                     value={formData.phone}
-                    className='UserRegistration_input color'
+                    className='AddBusiness-FormControl'
+                    placeholder='Enter phone number'
                     onChange={onFormChange}
                     required
                   />
                 </div>
-                <div className='AddBusiness-FormCard_body_right'>
-                  <h5>
-                    <label htmlFor='address2'>Address Line 2</label>
-                  </h5>
-
+              </div>
+              <div className='AddBusiness-FormCard_body_right'>
+                <div className='AddBusiness-FormCard_body_formGroup'>
+                  <label htmlFor='address2'>Address Line 2</label>
                   <input
                     name='address2'
                     type='text'
                     value={formData.address2}
-                    className='UserRegistration_input color'
+                    className='AddBusiness-FormControl'
+                    placeholder='Enter street address 2'
                     onChange={onFormChange}
                   />
-
-                  <h5>
-                    <label htmlFor=''>Postal Code</label>
-                  </h5>
-
+                </div>
+                <div className='AddBusiness-FormCard_body_formGroup'>
+                  <label htmlFor=''>Postal Code</label>
                   <input
                     name='postalCode'
                     type='text'
                     value={formData.postalCode}
-                    className='UserRegistration_input color'
+                    className='AddBusiness-FormControl'
+                    placeholder='Enter postal code'
                     onChange={onFormChange}
                     required
                   />
-
-                  <h5>
-                    <label htmlFor='country'>Country:</label>
-                  </h5>
+                </div>
+                <div className='AddBusiness-FormCard_body_formGroup'>
+                  <label htmlFor='country'>Country:</label>
                   <select
-                    className='UserRegistration_input color'
+                    className='custom-select rounded-0'
                     onChange={handleCountry}
                     name='country'
                     id='country'>
@@ -373,62 +374,68 @@ export const AddBusiness = () => {
           </div>
           <div className='AddBusiness-FormCard_sidebar'>
             <div className='AddBusiness-FormCard_filtersContainer'>
-              <h4 className='sidebar-hed'>
-                <label htmlFor='features'>Features</label>
-              </h4>
+              <label
+                className=' AddBusiness-FormCard_filtersContainer_labelHeader'
+                htmlFor='features'>
+                Features
+              </label>
               <div className='AddBusiness-FormCard_filtersContainer_formGroup'>
                 {featuresArr?.map((feature, index) => (
-                  <div key={`${feature}_` + index}>
-                    <h5
-                      style={{
-                        display: 'flex',
-                        marginTop: '10px',
-                        marginBottom: '5px',
-                      }}>
-                      <input
-                        type='checkbox'
-                        name={`feature-${feature[0]}`}
-                        id={feature[1]}
-                        defaultChecked={feature[2]}
-                        onChange={onFormChange}
-                      />
-                      <label htmlFor={feature[1]}>{feature[0]}</label>
-                    </h5>
+                  <div
+                    className='AddBusiness-FormCard_filtersContainer_formCheck'
+                    style={{ textTransform: 'capitalize' }}
+                    key={`${feature}_` + index}>
+                    <input
+                      className='AddBusiness-FormCard_filtersContainer_formCheckInput'
+                      type='checkbox'
+                      name={`feature-${feature[0]}`}
+                      id={feature[1]}
+                      defaultChecked={feature[2]}
+                      onChange={onFormChange}
+                    />
+                    <label
+                      className='AddBusiness-FormCard_filtersContainer_formCheckLabel'
+                      htmlFor={feature[1]}>
+                      {feature[0]}
+                    </label>
                   </div>
                 ))}
               </div>
-              <h4 className='sidebar-hed'>
-                <label htmlFor='features'>Services</label>
-              </h4>
+              <label
+                className=' AddBusiness-FormCard_filtersContainer_labelHeader  AddBusiness-FormCard_filtersContainer_labelHeader_services'
+                htmlFor='services'>
+                Services
+              </label>
               <div className='AddBusiness-FormCard_filtersContainer_formGroup'>
                 {servicesArr?.map((service, index) => (
-                  <div key={`${service}_` + index}>
-                    <h5
-                      style={{
-                        display: 'flex',
-                        marginTop: '10px',
-                        marginBottom: '5px',
-                      }}>
-                      <input
-                        type='checkbox'
-                        name={`service-${service[0]}`}
-                        id={service[1]}
-                        defaultChecked={service[2]}
-                        onChange={onFormChange}
-                      />
-                      <label htmlFor={service[1]}>{service[0]}</label>
-                    </h5>
+                  <div
+                    className='AddBusiness-FormCard_filtersContainer_formCheck'
+                    style={{ textTransform: 'capitalize' }}
+                    key={`${service}_` + index}>
+                    <input
+                      className='AddBusiness-FormCard_filtersContainer_formCheckInput'
+                      type='checkbox'
+                      name={`service-${service[0]}`}
+                      id={service[1]}
+                      defaultChecked={service[2]}
+                      onChange={onFormChange}
+                    />
+                    <label
+                      className='AddBusiness-FormCard_filtersContainer_formCheckLabel'
+                      htmlFor={service[1]}>
+                      {service[0]}
+                    </label>
                   </div>
                 ))}
               </div>
             </div>
-
-            <button
-              type='submit'
-              className='btn--btn-primary'
-              style={{ paddingTop: '0px' }}>
-              submit
-            </button>
+            <div className='AddBusiness-FormCard_sidebar_footer'>
+              <button
+                type='submit'
+                className='AddBusiness-FormCard_sidebar_btn'>
+                submit
+              </button>
+            </div>
           </div>
         </form>
         {/* <-- Form Ends --> */}

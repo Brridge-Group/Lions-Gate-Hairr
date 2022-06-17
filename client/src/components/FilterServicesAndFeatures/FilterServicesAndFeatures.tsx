@@ -56,44 +56,80 @@ export const FilterServicesAndFeatures = (props: Props) => {
   return (
     <>
       {!props.loading ? (
-        <section className='Filters-Container'>
-          <label htmlFor='features' className='Filters-Label_header'>
-            Features
-          </label>
-          <div className='Filters-FormGroup'>
-            {props.featuresArr?.map((feature, id, index) => (
-              <div className='Filters-FormCheck' key={`${feature}_` + index}>
-                <input className='Filters-FormCheckInput' type='checkbox' name={`feature-${feature[0]}`} id={feature[1]} defaultChecked={feature[2].isChecked} value={id} onChange={onFeatChange} />
-                <label className='Filters-FormCheckLabel' htmlFor={feature[1]}>
-                  {feature[0]}
-                </label>
-              </div>
-            ))}
-          </div>
-          <label htmlFor='services' className='Filters-Label_header   Filters-Label_header_services'>
-            Services
-          </label>
-          <div className='Filters-FormGroup'>
-            {props.servicesArr?.map((service, id, index) => (
-              <div className='Filters-FormCheck' key={`${service}_` + index}>
-                <input className='Filters-FormCheckInput' type='checkbox' name={`service-${service[0]}`} id={service[1]} defaultChecked={service[2].isChecked} value={id} onChange={onServiceChange} />
-                <label className='Filters-FormCheckLabel' htmlFor={service[1]}>
-                  {service[0]}
-                </label>
-              </div>
-            ))}
-          </div>
-          <button className='Filters-Button' onClick={props.handleFilteredResults}>
-            filter results
-          </button>
-          <button className='Reset-Button' onClick={props.handleResetFilter}>
-            reset filters
-          </button>
-        </section>
-      ) : (
         <>
-          <section className='Filters-Container'>{isLoading && <LoadSpinner />}</section>
+          <section className='Filters'>
+            <h4 className='sidebar-hed'>
+              <label htmlFor='features'>Features</label>
+            </h4>
+            <div className='Filters-FormGroup features'>
+              {props.featuresArr?.map((feature, id, index) => (
+                <h5
+                  key={`${feature}_` + index}
+                  style={{
+                    display: 'flex',
+                    marginTop: '10px',
+                    marginBottom: '5px',
+                  }}>
+                  <input
+                    type='checkbox'
+                    name={`feature-${feature[0]}`}
+                    id={feature[1]}
+                    defaultChecked={feature[2].isChecked}
+                    value={id}
+                    onChange={onFeatChange}
+                  />
+                  <label htmlFor={feature[1]}>{feature[0]}</label>
+                </h5>
+                // </div>
+              ))}
+            </div>
+            <h4 className='sidebar-hed'>
+              <label htmlFor='services'>Services</label>
+            </h4>
+            <div className='Filters-FormGroup services'>
+              {props.servicesArr?.map((service, id, index) => (
+                <h5
+                  key={`${service}_` + index}
+                  style={{
+                    display: 'flex',
+                    marginTop: '10px',
+                    marginBottom: '5px',
+                  }}>
+                  <input
+                    type='checkbox'
+                    name={`service-${service[0]}`}
+                    id={service[1]}
+                    defaultChecked={service[2].isChecked}
+                    value={id}
+                    onChange={onServiceChange}
+                  />
+                  <label
+                    className='Filters-FormCheckLabel'
+                    htmlFor={service[1]}>
+                    {service[0]}
+                  </label>
+                </h5>
+              ))}
+            </div>
+          </section>
+          {/* TODO: BackLog => Connect to filterFunction */}
+          <div className='Filters-buttons'>
+            <button
+              className='btn--btn-primary filter'
+              onClick={props.handleFilteredResults}>
+              Filter Results
+            </button>
+            <button
+              className='btn--btn-primary filter'
+              onClick={props.handleResetFilter}>
+              Reset Filters
+            </button>
+          </div>
         </>
+      ) : (
+        <section className='Filters-Container'>
+          {isLoading && <LoadSpinner />}
+        </section>
       )}
     </>
   )

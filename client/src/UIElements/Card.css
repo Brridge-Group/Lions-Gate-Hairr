@@ -12,9 +12,9 @@
   margin-top: 0;
 }
 
-/* .BusinessCard:last-child {
+.BusinessCard:last-child {
   border-bottom: none;
-} */
+}
 div.card:nth-child(1) {
   margin-top: 0;
 }
@@ -25,4 +25,18 @@ div.card:nth-child(1) {
   justify-content: space-between;
   margin-top: 1rem;
   margin-bottom: 2rem;
+}
+
+.Review-container {
+  display: flex;
+  flex-direction: column;
+}
+.btn--btn-primary.review {
+  width: 95px;
+  padding-top: 5px;
+  line-height: 1;
+  font-family: 'Roboto', sans-serif;
+}
+.BusinessCard.List {
+  cursor: pointer;
 }

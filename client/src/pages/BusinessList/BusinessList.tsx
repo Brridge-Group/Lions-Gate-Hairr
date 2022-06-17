@@ -1,10 +1,11 @@
 // React Components
 import { useState, useEffect } from 'react'
-import { useHistory, useParams } from 'react-router-dom'
+import { useHistory, useParams, Link } from 'react-router-dom'
 
 // Custom Imports
+import { About } from '../../components/BusinessDetails/About/About'
+import { Star } from '../../UIElements/Star'
 import { Card } from '../../UIElements/Card'
-import { CardDetails } from '../../components/CardDetails/CardDetails'
 import { FilterServicesAndFeatures } from '../../components/FilterServicesAndFeatures/FilterServicesAndFeatures'
 import { LoadSpinner } from '../../components/LoadSpinner/LoadSpinner'
 
@@ -72,7 +73,9 @@ export const BusinessList = () => {
         const businessesList = await res.json()
         if (typeof city !== 'undefined') {
           const filtered = businessesList.filter((business: Business) => {
-            return business.address.city.toLowerCase().includes(city.toLowerCase())
+            return business.address.city
+              .toLowerCase()
+              .includes(city.toLowerCase())
           })
           setList(filtered)
         } else {
@@ -88,6 +91,7 @@ export const BusinessList = () => {
   }, [])
   // console.log(`initial list`, list)
 
+  console.log('hi, list', list)
   //* Fetch Features and Services from the database
   useEffect(() => {
     const fetchFeaturesData = async () => {
@@ -110,6 +114,9 @@ export const BusinessList = () => {
         setLoading(false)
       }
     }
+    const redirectToBus = () => {}
+
+    // history.push(`/businesses/${business._id}`)
 
     const fetchServicesData = async () => {
       try {
@@ -134,12 +141,12 @@ export const BusinessList = () => {
     fetchFeaturesData()
     fetchServicesData()
   }, [])
-  // console.log(`servicesArr`, servicesArr)
-  // console.log(`featuresArr`, featuresArr)
+  console.log(`servicesArr`, servicesArr)
+  console.log(`featuresArr`, featuresArr)
 
   //* Filter Business Features and Services
   const [filteredResults, setFilteredResults]: any = useState([])
-  // console.log(`filteredResults`, filteredResults)
+  console.log(`filteredResults`, filteredResults)
   const [filteredFeats, setFilteredFeats]: any = useState([])
   const [filteredServices, setFilteredServices]: any = useState([])
 
@@ -204,7 +211,9 @@ export const BusinessList = () => {
       }
     })
     //* Remove Any Duplicates
-    let uniqueTempFilteredResults: any = Array.from(new Set(tempFilteredResults))
+    let uniqueTempFilteredResults: any = Array.from(
+      new Set(tempFilteredResults)
+    )
     setFilteredResults(uniqueTempFilteredResults)
     return filteredResults
   }
@@ -216,6 +225,7 @@ export const BusinessList = () => {
       return newFilteredResults
     })
   }, [list, city])
+  console.log(list, city, 'list, city')
 
   const handleResetFilter = (): any => {
     // TODO: [ ] => FIXME: Reset checkboxes to false
@@ -223,46 +233,19 @@ export const BusinessList = () => {
     window.location.reload()
   }
 
-  if (loading) {
-    return (
-      <div
-        className='BusinessList-Wrapper'
-        style={{
-          display: 'flex',
-          justifyContent: 'center',
-          height: '100vh',
-          width: '100%',
-          placeItems: 'center',
-        }}>
-        <div className='BusinessList-Wrapper_loader'>
+  return (
+    <div className='FeatureContainer_image BusinessList'>
+      <div className='FeatureContainer BusinessList'>
+        {loading ? (
           <LoadSpinner />
-        </div>
-      </div>
-    )
-  }
-  if (list.length === 0 || city == 'undefined') {
-    return (
-      <div
-        className='BusinessList-Wrapper'
-        style={{
-          display: 'flex',
-          justifyContent: 'center',
-          height: '100vh',
-          width: '100%',
-          placeItems: 'center',
-        }}>
-        <h2>No businesses found. Please try another city.</h2>
-      </div>
-    )
-  } else {
-    return (
-      <section className='BusinessList'>
-        <div className='BusinessList-Wrapper'>
-          <div className='BusinessList-HeaderContainer'>
-            <h1 className='BusinessList-Header'>{city} Businesses</h1>
-          </div>
-          <div className='BusinessList-Container'>
-            <div className='BusinessList-Filters'>
+        ) : !list.length || city == 'undefined' ? (
+          <h1 className='BusinessList-none'>
+            No businesses found. Please try another city.
+          </h1>
+        ) : (
+          <>
+            <h1 className='BusinessList-Header'>{city} Salons</h1>
+            <div className='BusinessList-Filters leftColumn '>
               <FilterServicesAndFeatures
                 featuresArr={featuresArr}
                 servicesArr={servicesArr}
@@ -274,25 +257,40 @@ export const BusinessList = () => {
                 handleFilteredResults={handleFilteredResults}
               />
             </div>
-            {/* Display full Business List by city or a Filtered list by Services and Features   */}
-            <div className='BusinessList-CardContainer'>
+            <div className='BusinessList-Filters rightColumn'>
+              {/* Display full Business List by city or a Filtered list by Services and Features   */}
               {filteredResults && filteredResults.length > 0 ? (
                 filteredResults?.map((business: any) => (
-                  <Card className=' BusinessList-Card' key={`${business._id}_` + business.name} onClick={() => history.push(`/businesses/${business._id}`)}>
-                    <CardDetails businessName={business.businessName} description={business.description} image={business.image} address={business.address} stars={business.stars} />
-                  </Card>
+                  <>
+                    <Card className='BusinessCard List' key={business._id}>
+                      <Link
+                        to={`/businesses/${business._id}`}
+                        className='BusinessCard-link'>
+                        <About
+                          name={business.businessName}
+                          description={business.description}
+                          image={business.image}
+                          address={business.address}
+                        />
+                        <Star stars={business.stars} />
+                      </Link>
+                    </Card>
+                  </>
                 ))
               ) : (
                 <>
-                  <h1>No businesses were found with the chosen services and or features.</h1>
+                  <h1>
+                    No businesses were found with the chosen services and or
+                    features.
+                  </h1>
                   <br />
                   <h1>Please change your selection and filter again.</h1>
                 </>
               )}
             </div>
-          </div>
-        </div>
-      </section>
-    )
-  }
+          </>
+        )}
+      </div>
+    </div>
+  )
 }

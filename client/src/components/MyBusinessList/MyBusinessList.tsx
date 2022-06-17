@@ -3,7 +3,7 @@ import { Link, useHistory } from 'react-router-dom'
 
 import { Card } from '../../UIElements/Card'
 import { Star } from '../../UIElements/Star'
-import { About } from '../BusinessDetails/About'
+import { About } from '../BusinessDetails/About/About'
 import '../../pages/Profile/Profile.css'
 import './MyBusinessList.css'
 

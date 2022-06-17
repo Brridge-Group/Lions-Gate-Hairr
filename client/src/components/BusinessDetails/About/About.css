@@ -1,0 +1,29 @@
+.About {
+  display: flex;
+}
+.About-pic {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.About-left {
+  width: 35%;
+  margin-right: 7%;
+}
+.About-right {
+  text-align: left;
+  width: 65%;
+}
+.About-right h3 {
+  font-size: 2rem;
+  margin: 0;
+  margin-bottom: 0.5rem;
+}
+.About-right h2 {
+  margin-top: -0.5rem;
+}
+
+.About-right p {
+  color: rgba(0, 0, 0, 0.8);
+  margin: 0;
+}

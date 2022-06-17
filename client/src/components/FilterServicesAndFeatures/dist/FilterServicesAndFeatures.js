@@ -75,6 +75,6 @@ exports.FilterServicesAndFeatures = function (props) {
                 React.createElement("input", { type: 'checkbox', name: "service-" + service[0], id: service[1], defaultChecked: service[2].isChecked, value: id, onChange: onServiceChange }),
                 React.createElement("label", { className: 'Filters-FormCheckLabel', htmlFor: service[1] }, service[0]))); }))),
         React.createElement("div", { className: 'Filters-buttons' },
-            React.createElement("button", { className: 'btn--btn-primary filter', onClick: props.handleResetFilter }, "Filter Results"),
+            React.createElement("button", { className: 'btn--btn-primary filter', onClick: props.handleFilteredResults }, "Filter Results"),
             React.createElement("button", { className: 'btn--btn-primary filter', onClick: props.handleResetFilter }, "Reset Filters")))) : (React.createElement("section", { className: 'Filters-Container' }, isLoading && React.createElement(LoadSpinner_1.LoadSpinner, null)))));
 };

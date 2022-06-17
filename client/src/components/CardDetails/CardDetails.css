@@ -1,0 +1,49 @@
+.CardDetails-Container {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-around;
+  margin: 1.6rem auto 1.6rem auto;
+}
+.CardDetails-FigureContainer {
+  display: flex;
+  flex-direction: column;
+}
+/* Star Stylying Begins ---- */
+.Star-container {
+  width: 100%;
+  
+}
+.CardDetails-FigureContainer svg {
+  margin-top: 0rem;
+  line-height: 1rem;
+  font-size: 2.928rem !important;
+}
+/* Star Stylying Ends ---- */
+.CardDetails-Image {
+  width: 18rem;
+  height: 18rem;
+}
+.CardDetails-Info {
+  width: 30.3056rem;
+}
+.CardDetails-Name {
+  max-width: 30.3056rem;
+  margin: 0 0 1.5008rem 0;
+  font-weight: 100;
+  font-size: 3.6rem;
+  text-transform: capitalize;
+}
+.CardDetails-Description {
+  max-width: 24rem;
+  margin-top: 0;
+  line-height: 2.8rem;
+  font-size: 2.2rem;
+}
+.CardDetails-Address {
+  text-transform: capitalize;
+}
+.CardDetails-Address p {
+  font-size: 1.6rem;
+  line-height: 1rem;
+}

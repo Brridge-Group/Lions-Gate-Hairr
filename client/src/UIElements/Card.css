@@ -32,6 +32,7 @@ div.card:nth-child(1) {
   margin-top: 1rem;
   margin-bottom: 1rem;
 }
+
 .Review-container {
   display: flex;
   flex-direction: column;

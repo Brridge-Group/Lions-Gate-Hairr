@@ -2,9 +2,9 @@ import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { About } from './About/About'
 import { Book } from './Book'
-import { Review } from '../AddReview/Review'
+import { Review } from '../Reviews/Review'
 import './BusinessDetails.css'
-import { MyBusinessReviews } from '../../pages/MyBusinessReviews/MyBusinessReviews'
+import { MyBusinessReviews } from '../MyBusinessReviews/MyBusinessReviews'
 
 interface RouteParams {
   id: string
@@ -40,7 +40,6 @@ interface Business {
   stars: number
   phone: string
   ownerId: string
-  thisOwnerId: string
 }
 
 export const BusinessDetails = () => {
@@ -101,12 +100,10 @@ export const BusinessDetails = () => {
                   id={id}
                   stars={businessData.stars}
                   ownerId={businessData.ownerId}
-                  thisOwnerId={businessData.ownerId}
                 />
                 <Book
                   phone={businessData.phone}
                   ownerId={businessData.ownerId}
-                  thisOwnerId={businessData.ownerId}
                 />
               </div>
               <div className='BusinessDetails_reviews'>

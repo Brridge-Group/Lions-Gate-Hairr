@@ -71,12 +71,16 @@ export const Profile = () => {
                               <div className='column-left'>
                                 <img src={r.data.review.business.image} />
                                 <div className='review-btns'>
-                                  <button className='btn--btn-primary reviews'>
-                                    edit
-                                  </button>
-                                  <button className='btn--btn-primary reviews'>
-                                    delete
-                                  </button>
+                                  <Link to={`users/${_id}`}>
+                                    <h6 className='btn--btn-primary reviews'>
+                                      edit
+                                    </h6>
+                                  </Link>
+                                  <Link to={`users/${_id}`}>
+                                    <h6 className='btn--btn-primary reviews'>
+                                      delete
+                                    </h6>
+                                  </Link>
                                 </div>
                               </div>
                               <div className='column-right'>

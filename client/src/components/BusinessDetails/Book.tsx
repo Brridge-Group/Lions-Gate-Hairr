@@ -3,7 +3,6 @@ import { useState } from 'react'
 interface Props {
   phone: string
   ownerId: string
-  thisOwnerId: string
 }
 
 export const Book = (props: Props) => {
@@ -28,14 +27,6 @@ export const Book = (props: Props) => {
 
   return (
     <>
-      {/* {props.ownerId !== props.thisOwnerId || props.ownerId === null ? (
-        showPhoneNumber ? (
-          <p className='phoneNumber'>{phoneNumber}</p>
-        ) : (
-          BookButton
-        )
-      ) : null} */}
-
       {showPhoneNumber ? (
         <p className='phoneNumber'>{phoneNumber}</p>
       ) : (

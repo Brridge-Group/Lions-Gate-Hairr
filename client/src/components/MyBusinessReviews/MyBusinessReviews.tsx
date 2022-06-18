@@ -1,36 +1,37 @@
-import { useState, useEffect } from 'react'
-import { LoadSpinner } from '../../components/LoadSpinner/LoadSpinner'
-import { StarSmall } from '../../UIElements/Star'
-import { useLocation } from 'react-router-dom'
+// import { useState, useEffect } from 'react'
+// import { LoadSpinner } from '../LoadSpinner/LoadSpinner'
+// import { StarSmall } from '../../UIElements/Star'
+// import { useLocation } from 'react-router-dom'
 
-interface Business {
-  businessName: string
-  description: string
-  image: string
-  address: {
-    address1: string
-    address2: string
-    city: string
-    region: string
-    postalCode: string
-  }
-}
-interface User {
-  name: string
-  imageProfile: string
-}
+// interface Business {
+//   businessName: string
+//   description: string
+//   image: string
+//   address: {
+//     address1: string
+//     address2: string
+//     city: string
+//     region: string
+//     postalCode: string
+//   }
+//   reviews: []
+// }
+// interface User {
+//   name: string
+//   imageProfile: string
+// }
 
-interface Review {
-  _id: string
-  comment: string
-  rating: number
-}
+// interface Review {
+//   _id: string
+//   comment: string
+//   rating: number
+// }
 
 export const MyBusinessReviews = () => {
-  const [businessReviews, getBusinessReviews] = useState([])
+  // const [businessReviews, getBusinessReviews] = useState([])
 
-  const [loading, setLoading] = useState(true)
-  const location = useLocation()
+  // const [loading, setLoading] = useState(true)
+  // const location = useLocation()
 
   //geting reviews here from my business list
   // const { from } = location.state
@@ -50,15 +51,15 @@ export const MyBusinessReviews = () => {
   // }, [])
   return (
     <div>
-      <div className='Profile-UserContainer_reviews'>
-        <div className='profile-container'>
-          {/* {loading ? (
+      {/* <div className='Profile-UserContainer_reviews'>
+        <div className='profile-container'> */}
+      {/* {loading ? (
             <LoadSpinner />
           ) : 'add some reviews' ? (
             'add some reviews'
           ) : ( */}
-          <ul className='Profile_User_reviews'>
-            {/* {!loading &&
+      {/* <ul className='Profile_User_reviews'> */}
+      {/* {!loading &&
                 businessReviews.map((r: any) => (
                   <>
                     <li className='Profile_reviews' key={r._id}>
@@ -82,10 +83,10 @@ export const MyBusinessReviews = () => {
                     </li>
                   </>
                 ))} */}
-          </ul>
-          {/* )} */}
-        </div>
-      </div>
+      {/* </ul> */}
+      {/* )} */}
+      {/* </div> */}
+      {/* </div> */}
     </div>
   )
 }

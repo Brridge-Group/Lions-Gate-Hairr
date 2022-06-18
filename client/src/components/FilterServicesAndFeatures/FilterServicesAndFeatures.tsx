@@ -15,41 +15,44 @@ interface Props {
   servicesArr: any
   featuresArr: any
   handleResetFilter: any
+  handleFilteredResults: any
 }
 
-export const FilterServicesAndFeatures: React.FC<Props> = (props: Props) => {
-  const [isLoading, setIsLoading]: any = useState(true)
+export const FilterServicesAndFeatures = (props: Props) => {
+  const [isLoading, setIsLoading] = useState(true)
 
+  //* Initialize Arrays for Selected Business Features and Services
   const [filteredFeats, setFilteredFeats]: any = useState([])
   const [filteredServices, setFilteredServices]: any = useState([])
 
-  //* Filter Business Features and Services
-  // HandleChanges for the features and services checkboxes
-  const onFeatChange = event => {
+  //* HandleChanges for the Selected Features and Services Checkboxes
+  const onFeatChange: React.ChangeEventHandler<HTMLInputElement> = event => {
     const { name, checked, id } = event.target
     // console.log('id', id, 'checked', checked)
-    setFilteredFeats({ ...filteredFeats, [`${name} (${id})`]: checked })
+    // setFilteredFeats({ ...filteredFeats, [`${name} (${id})`]: checked })
+    setFilteredFeats({ ...filteredFeats, [`${id}`]: checked })
   }
-  // console.log('filteredFeats', filteredFeats)
-  const onServiceChange = event => {
-    const { name, checked, id } = event.target
-    // console.log('id', id, 'checked', checked)
-    setFilteredServices({ ...filteredServices, [`${name} (${id})`]: checked })
-  }
-  // console.log('filteredServices', filteredServices)
+  // console.log('filteredFeats onChange', filteredFeats)
 
-  //* Monitor changes to the filtered features and services arrays. If there are changes send the data to the SearchResults component
+  const onServiceChange: React.ChangeEventHandler<HTMLInputElement> = event => {
+    const { name, checked, id } = event.target
+    // console.log('id', id, 'checked', checked)
+    // setFilteredServices({ ...filteredServices, [`${name} (${id})`]: checked })
+    setFilteredServices({ ...filteredServices, [`${id}`]: checked })
+  }
+  // console.log('filteredServices onChange', filteredServices)
+
+  //* Monitor changes to the filtered Features and Services arrays. If there are changes send the data to the `BusinessList` Parent component
   useEffect(() => {
     if (props.onFeatChange) {
       props.onFeatChange(filteredFeats)
-      // console.log(filteredFeats)
+      // console.log('filteredFeats useEffect changes', filteredFeats)
     }
     if (props.onServiceChange) {
       props.onServiceChange(filteredServices)
-      // console.log(filteredServices)
+      // console.log('filteredServices useEffect changes', filteredServices)
     }
   }, [filteredFeats, filteredServices])
-
   return (
     <>
       {!props.loading ? (
@@ -113,13 +116,13 @@ export const FilterServicesAndFeatures: React.FC<Props> = (props: Props) => {
           <div className='Filters-buttons'>
             <button
               className='btn--btn-primary filter'
-              onClick={props.handleResetFilter}>
+              onClick={props.handleFilteredResults}>
               Filter Results
             </button>
             <button
               className='btn--btn-primary filter'
               onClick={props.handleResetFilter}>
-              reset Filters
+              Reset Filters
             </button>
           </div>
         </>

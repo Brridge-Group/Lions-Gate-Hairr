@@ -8,6 +8,7 @@ import '../../pages/Profile/Profile.css'
 import './MyBusinessList.css'
 
 import { LoadSpinner } from '../LoadSpinner/LoadSpinner'
+import { MyBusinessReviews } from '../MyBusinessReviews/dist/MyBusinessReviews'
 
 export const MyBusinessList = () => {
   const history = useHistory()
@@ -31,6 +32,13 @@ export const MyBusinessList = () => {
     }
     fetchData()
   }, [])
+
+  // const reviewRoute = () => {
+  //   history.push(`/my-businesses/${business._id}/reviews`, {
+  //     business: business,
+  //   })
+  // }
+
   console.log('in business list, list', list)
 
   return (
@@ -64,19 +72,21 @@ export const MyBusinessList = () => {
                     />
                     <Star stars={business.stars} />
                     <div className='BusinessCard-buttons'>
+                      <button
+                        className='btn--btn-primary twoLines business'
+                        // onClick={
+                        //   () =>
+                        //     history.push(
+                        //       `/my-businesses/${business._id}/reviews`
+                        //     )
+                        //   //   ,
+                        //   //   { list: list }
+                        //   // )
+                        // }
+                      >
+                        read reviews
+                      </button>
                       <Link to={'#'}>
-                        <h6 className='btn--btn-primary twoLines business'>
-                          read <br />
-                          reviews
-                        </h6>
-                      </Link>
-                      <Link
-                        to={`/my-businesses/${business._id}/reviews`}
-                        //need to pass reviews here
-                        // state={{ from: 'reviews' }}
-                        {...list}>
-                        {/* {...business.reviews} */}
-
                         <h6 className='btn--btn-primary twoLines business'>
                           edit <br />
                           business
@@ -87,6 +97,9 @@ export const MyBusinessList = () => {
                           delete business
                         </h6>
                       </Link>
+                    </div>
+                    <div className='Reviews-dropdown-toggle'>
+                      <MyBusinessReviews reviews={business.reviews} />
                     </div>
                   </div>
                 ))}{' '}

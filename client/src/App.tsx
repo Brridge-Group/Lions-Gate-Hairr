@@ -1,22 +1,28 @@
+// React Components
 import {
   BrowserRouter as Router,
   Route,
   Redirect,
   Switch,
 } from 'react-router-dom'
-import './App.css'
+
+// Custom Imports
 import { Home } from './pages/Home/Home'
 import { UserRegistration } from './pages/Auth/UserRegistration/UserRegistration'
 import Login from './pages/Auth/Login/Login'
 import { BusinessList } from './pages/BusinessList/BusinessList'
 import { BusinessDetails } from './components/BusinessDetails/BusinessDetails'
 import { AddBusiness } from './pages/AddBusiness/AddBusiness'
-import { MyBusinessReviews } from './pages/MyBusinessReviews/MyBusinessReviews'
-import { AddReview } from './components/AddReview/AddReview'
+import { MyBusinessReviews } from './components/MyBusinessReviews/MyBusinessReviews'
+import { AddReview } from './components/Reviews/AddReview'
+import { EditReview } from './components/Reviews/EditReview'
 import { MyBusinessList } from './components/MyBusinessList/MyBusinessList'
 import { Navbar } from './components/Navbar/Navbar'
 import { Profile } from './pages/Profile/Profile'
 import { EditProfile } from './pages/Auth/EditProfile'
+
+// Custom Styles
+import './App.css'
 
 export const App = () => {
   let routes: any
@@ -49,12 +55,15 @@ export const App = () => {
       <Route path='/businesses/:id/add-review' exact>
         <AddReview />
       </Route>
+      <Route path='/businesses/:id/edit-review' exact>
+        <EditReview />
+      </Route>
       <Route path='/profile' exact>
         <Profile />
       </Route>
-      <Route path='/my-businesses/:id/reviews' exact>
+      {/* <Route path='/my-businesses/:id/reviews' exact>
         <MyBusinessReviews />
-      </Route>
+      </Route> */}
       <Redirect to='/' />
     </Switch>
   )

@@ -45,12 +45,12 @@ require("../../pages/Profile/Profile.css");
 require("./MyBusinessList.css");
 var MyBusinessReviews_1 = require("../MyBusinessReviews/MyBusinessReviews");
 var LoadSpinner_1 = require("../LoadSpinner/LoadSpinner");
-// import { MyBusinessReviews } from '../MyBusinessReviews/dist/MyBusinessReviews'
 exports.MyBusinessList = function () {
     var history = react_router_dom_1.useHistory();
     var _a = react_1.useState([]), list = _a[0], setList = _a[1];
     var _b = react_1.useState(true), loading = _b[0], setLoading = _b[1];
     var _c = react_1.useState(false), toggle = _c[0], setToggle = _c[1];
+    var _d = react_1.useState(list.map(function (element) { return true; })), show = _d[0], setShow = _d[1];
     var user = JSON.parse(localStorage.getItem('profile') || 'false').result;
     react_1.useEffect(function () {
         var fetchData = function () { return __awaiter(void 0, void 0, void 0, function () {
@@ -79,19 +79,22 @@ exports.MyBusinessList = function () {
         }); };
         fetchData();
     }, []);
-    var menu = toggle ? 'menu open' : 'menu';
-    // const reviewRoute = () => {
-    //   history.push(`/my-businesses/${business._id}/reviews`, {
-    //     business: business,
-    //   })
-    // }
+    var menuBus = toggle ? 'menu-business open' : 'menu-business';
+    var showNumber = list.map(function (l, i) { return i; });
     var toggleIt = function (idx) {
-        console.log(idx, 'idx');
-        setToggle(!toggle);
-        // const toggle = () => {
-        //   handleClick(idx)
-        // }
+        showNumber.map(function (i) {
+            console.log(i, idx, 'i, idx');
+            if (i === idx) {
+                //FIX THIS only toggle above idx
+                setToggle(!toggle);
+            }
+        });
     };
+    //   hideShow = (index) => {
+    //     const newShowStatus = [...this.state.show];
+    //     newShowStatus[index] = !this.state.show[index];
+    //     this.setState({show: newShowStatus});
+    // }
     console.log('in business list, list', list);
     return (React.createElement("div", { className: 'Profile_user' },
         React.createElement("h1", { className: 'Profile_name' },
@@ -107,7 +110,7 @@ exports.MyBusinessList = function () {
                         React.createElement(About_1.About, { name: business.businessName, description: business.description, image: business.image, address: business.address }),
                         React.createElement(Star_1.Star, { stars: business.stars }),
                         React.createElement("div", { className: 'BusinessCard-buttons' },
-                            React.createElement("button", { className: 'btn--btn-primary twoLines business', onClick: function () { return toggleIt(idx); } }, !toggle ? 'read reviews' : 'close'),
+                            React.createElement("h6", { className: 'btn--btn-primary twoLines business reviews', onClick: function () { return toggleIt(idx); }, "data-idx": idx }, !toggle ? 'read reviews' : 'close reviews'),
                             React.createElement(react_router_dom_1.Link, { to: '#' },
                                 React.createElement("h6", { className: 'btn--btn-primary twoLines business' },
                                     "edit ",
@@ -115,7 +118,7 @@ exports.MyBusinessList = function () {
                                     "business")),
                             React.createElement(react_router_dom_1.Link, { to: '#' },
                                 React.createElement("h6", { className: 'btn--btn-primary twoLines business' }, "delete business"))),
-                        React.createElement("div", { className: menu },
+                        React.createElement("div", { className: menuBus },
                             React.createElement(MyBusinessReviews_1.MyBusinessReviews, null)))); }),
                     ' '))))),
         React.createElement("div", { className: 'Profile_links' },

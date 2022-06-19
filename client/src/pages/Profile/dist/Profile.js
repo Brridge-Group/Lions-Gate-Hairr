@@ -17,10 +17,8 @@ exports.Profile = function () {
     react_1.useEffect(function () {
         var fetchReviews = function () {
             Promise.all(reviews.map(function (review) { return axios_1["default"].get("api/reviews/" + review); }))
-                // .then(data => console.log(data, 'in promise'))
                 //   // @ts-ignore
                 .then(function (data) { return getUserReview(data); });
-            // )
         };
         fetchReviews();
         setLoading(false);
@@ -40,13 +38,13 @@ exports.Profile = function () {
                     React.createElement("h4", null, "your reviews"),
                     React.createElement("div", { className: 'profile-container' }, loading ? (React.createElement(LoadSpinner_1.LoadSpinner, null)) : !userReview.length ? ('add some reviews') : (React.createElement("ul", { className: 'Profile_User_reviews' }, !loading &&
                         userReview.map(function (r) { return (React.createElement(React.Fragment, null,
-                            React.createElement("li", { key: r._id, className: 'Profile_reviews' },
+                            React.createElement("li", { key: r.data.review._id, className: 'Profile_reviews' },
                                 React.createElement("div", { className: 'column-left' },
                                     React.createElement("img", { src: r.data.review.business.image }),
                                     React.createElement("div", { className: 'review-btns' },
-                                        React.createElement(react_router_dom_1.Link, { to: "users/" + _id },
+                                        React.createElement(react_router_dom_1.Link, { to: "/reviews/" + r.data.review._id + "/edit-review" },
                                             React.createElement("h6", { className: 'btn--btn-primary reviews' }, "edit")),
-                                        React.createElement(react_router_dom_1.Link, { to: "users/" + _id },
+                                        React.createElement(react_router_dom_1.Link, { to: "#" },
                                             React.createElement("h6", { className: 'btn--btn-primary reviews' }, "delete")))),
                                 React.createElement("div", { className: 'column-right' },
                                     React.createElement("h2", null, r.data.review.business.businessName),

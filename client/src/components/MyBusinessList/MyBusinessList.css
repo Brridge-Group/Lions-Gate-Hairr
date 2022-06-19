@@ -6,6 +6,11 @@
 .btn--btn-primary.twoLines.business {
   width: 95px;
 }
+.btn--btn-primary.twoLines.business.reviews {
+  height: 42px;
+  padding: 0 10px;
+  padding-top: 5px;
+}
 .BusinessCard-container {
   overflow-y: scroll;
   height: 90%;
@@ -13,7 +18,7 @@
   max-height: 58vh;
 }
 
-.menu {
+.menu-business {
   position: relative;
   width: 100%;
   height: fit-content;
@@ -26,6 +31,6 @@
   justify-content: center;
   display: none;
 }
-.menu.open {
+.menu-business.open {
   display: block;
 }

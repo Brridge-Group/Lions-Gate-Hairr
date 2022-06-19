@@ -59,51 +59,47 @@ var react_1 = require("react");
 var react_router_dom_1 = require("react-router-dom");
 require("./AddReview.css");
 exports.EditReview = function () {
-    var _a;
     var history = react_router_dom_1.useHistory();
-    var _b = react_1.useState(), businessData = _b[0], setBusinessData = _b[1];
-    var _c = react_1.useState(0), rating = _c[0], setRating = _c[1];
-    var _d = react_1.useState(0), hover = _d[0], setHover = _d[1];
-    var _e = react_1.useState({ comment: '' }), reviewForm = _e[0], setReviewForm = _e[1];
+    var _a = react_1.useState(0), hover = _a[0], setHover = _a[1];
+    var _b = react_1.useState([]), review = _b[0], setReview = _b[1];
     var id = react_router_dom_1.useParams().id;
-    var comment = reviewForm.comment;
-    var user = JSON.parse((_a = localStorage.getItem('profile')) !== null && _a !== void 0 ? _a : 'false').result;
     react_1.useEffect(function () {
-        var getBusinessData = function () { return __awaiter(void 0, void 0, void 0, function () {
-            var res, businessData;
+        var getReview = function () { return __awaiter(void 0, void 0, void 0, function () {
+            var res, reviewData;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, fetch("/api/businesses/get-business-by-id/" + id)];
+                    case 0: return [4 /*yield*/, fetch("/api/reviews/" + id)];
                     case 1:
                         res = _a.sent();
                         return [4 /*yield*/, res.json()];
                     case 2:
-                        businessData = _a.sent();
-                        setBusinessData(businessData);
+                        reviewData = _a.sent();
+                        setReview(reviewData.review);
                         return [2 /*return*/];
                 }
             });
         }); };
-        getBusinessData();
+        getReview();
     }, []);
-    console.log('businessData, id', businessData, id, typeof businessData
-    // @ts-ignore
-    );
-    // @ts-ignore
+    var _c = react_1.useState(3), rating = _c[0], setRating = _c[1];
+    var _d = react_1.useState({
+        comment: "i'm hard coded in"
+    }), reviewForm = _d[0], setReviewForm = _d[1];
+    var comment = reviewForm.comment;
     var handleChange = function (e) {
         var _a;
         e.preventDefault();
         console.log('e.target', e.target.value);
         setReviewForm(__assign(__assign({}, reviewForm), (_a = {}, _a[e.target.name] = e.target.value, _a)));
     };
-    var saveNewReview = function () { return __awaiter(void 0, void 0, void 0, function () {
+    var saveUpdatedReview = function () { return __awaiter(void 0, void 0, void 0, function () {
         var newReview, requestOptions, response, error_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    newReview = __assign(__assign({}, reviewForm), { author: user._id, business: id, rating: rating });
+                    newReview = __assign(__assign({}, reviewForm), { rating: rating });
                     requestOptions = {
-                        method: 'POST',
+                        method: 'PATCH',
                         headers: {
                             'Content-Type': 'application/json'
                         },
@@ -112,7 +108,7 @@ exports.EditReview = function () {
                     _a.label = 1;
                 case 1:
                     _a.trys.push([1, 4, , 5]);
-                    return [4 /*yield*/, fetch('/api/reviews', requestOptions)];
+                    return [4 /*yield*/, fetch("/api/reviews/" + id, requestOptions)];
                 case 2:
                     response = _a.sent();
                     if (!response.ok) {
@@ -131,11 +127,11 @@ exports.EditReview = function () {
             }
         });
     }); };
-    var submitReview = function (e) { return __awaiter(void 0, void 0, void 0, function () {
+    var updateReview = function (e) { return __awaiter(void 0, void 0, void 0, function () {
         return __generator(this, function (_a) {
             e.preventDefault();
             try {
-                saveNewReview();
+                saveUpdatedReview();
                 history.push('/');
             }
             catch (err) { }
@@ -145,8 +141,8 @@ exports.EditReview = function () {
     return (React.createElement("div", { className: 'FeatureContainer_image Review' },
         React.createElement("div", { className: 'FeatureContainer' },
             React.createElement("div", { className: 'AddReview-container' },
-                React.createElement("h2", null, "Review your experience with businessData.businessName will read as undefined"),
-                React.createElement("form", { className: 'form', onSubmit: submitReview },
+                React.createElement("h2", null, "Update your Review with businessData.businessName will read as undefined"),
+                React.createElement("form", { className: 'form', onSubmit: updateReview },
                     React.createElement("div", { className: 'form-group star-rating' }, __spreadArrays(Array(5)).map(function (star, index) {
                         index += 1;
                         return (React.createElement("button", { type: 'button', key: index, className: index <= (hover || rating)

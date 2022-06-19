@@ -3,8 +3,9 @@ import axios from 'axios'
 
 interface Props {
   reviews?: Array<[]>
-  // ownerId: string
 }
+
+// ownerId: string
 
 // import { LoadSpinner } from '../LoadSpinner/LoadSpinner'
 // import { StarSmall } from '../../UIElements/Star'
@@ -28,54 +29,34 @@ interface Props {
 //   imageProfile: string
 // }
 
-// interface Review {
-//   _id: string
-//   comment: string
-//   rating: number
-// }
+interface Review {
+  _id: string
+  comment: string
+  rating: number
+}
 
 export const MyBusinessReviews = (props: Props) => {
   const [loading, setLoading] = useState(true)
   const [businessReviews, getBusinessReviews] = useState([])
-  console.log(props, props.reviews, 'props')
-  // const [reviews, setReviews]
+  console.log(props, props.reviews, 'props.reviews, in my business reviews')
 
   // useEffect(() => {
   //   const fetchBusinessReviews = () => {
   //     Promise.all(
   //       props.reviews.map((review: any) => axios.get(`api/reviews/${review}`))
   //     )
-  //     .then(data => console.log(data, 'in promise'))
+  //       .then(data => console.log(data, 'in promise'))
   //       // @ts-ignore
-  //     .then((data: any) => getUserReview(data))
-  //     )
+  //       .then((data: any) => getUserReview(data))
   //   }
-  //   // fetchBusinessReviews()
+  //   fetchBusinessReviews()
   //   setLoading(false)
   // }, [])
 
-  // const [loading, setLoading] = useState(true)
-  // const location = useLocation()
-
-  //geting reviews here from my business list
-  // const { from } = location.state
-
-  // useEffect(() => {
-  //   const fetchReviews = () => {
-  //     Promise.all(
-  //       reviews.map((review: any) => axios.get(`api/reviews/${review}`))
-  //     )
-  //       // .then(data => console.log(data, 'in promise'))
-  //       //   // @ts-ignore
-  //       .then((data: any) => getBusinessReviews(data))
-  //     // )
-  //   }
-  //   fetchReviews()
-  //   setLoading(false)
-  // }, [])
   return (
     <div>
       in business reviews
+      {/* ////////below will be changed to the users reviews////// */}
       {/* <div className='Profile-UserContainer_reviews'>
         <div className='profile-container'> */}
       {/* {loading ? (

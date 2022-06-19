@@ -5,6 +5,7 @@ import {
   Redirect,
   Switch,
 } from 'react-router-dom'
+import { useState } from 'react'
 
 // Custom Imports
 import { Home } from './pages/Home/Home'
@@ -55,15 +56,12 @@ export const App = () => {
       <Route path='/businesses/:id/add-review' exact>
         <AddReview />
       </Route>
-      <Route path='/businesses/:id/edit-review' exact>
+      <Route path='/reviews/:id/edit-review' exact>
         <EditReview />
       </Route>
       <Route path='/profile' exact>
         <Profile />
       </Route>
-      {/* <Route path='/my-businesses/:id/reviews' exact>
-        <MyBusinessReviews />
-      </Route> */}
       <Redirect to='/' />
     </Switch>
   )

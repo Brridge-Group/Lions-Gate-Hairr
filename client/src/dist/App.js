@@ -39,7 +39,7 @@ exports.App = function () {
             React.createElement(AddBusiness_1.AddBusiness, null)),
         React.createElement(react_router_dom_1.Route, { path: '/businesses/:id/add-review', exact: true },
             React.createElement(AddReview_1.AddReview, null)),
-        React.createElement(react_router_dom_1.Route, { path: '/businesses/:id/edit-review', exact: true },
+        React.createElement(react_router_dom_1.Route, { path: '/reviews/:id/edit-review', exact: true },
             React.createElement(EditReview_1.EditReview, null)),
         React.createElement(react_router_dom_1.Route, { path: '/profile', exact: true },
             React.createElement(Profile_1.Profile, null)),

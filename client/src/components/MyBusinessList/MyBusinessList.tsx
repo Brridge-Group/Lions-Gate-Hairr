@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Link, useHistory } from 'react-router-dom'
 
-import { Card } from '../../UIElements/Card'
 import { Star } from '../../UIElements/Star'
 import { About } from '../BusinessDetails/About/About'
 import '../../pages/Profile/Profile.css'
@@ -9,13 +8,14 @@ import './MyBusinessList.css'
 import { MyBusinessReviews } from '../MyBusinessReviews/MyBusinessReviews'
 
 import { LoadSpinner } from '../LoadSpinner/LoadSpinner'
-// import { MyBusinessReviews } from '../MyBusinessReviews/dist/MyBusinessReviews'
 
 export const MyBusinessList = () => {
   const history = useHistory()
   const [list, setList] = useState<any[]>([])
   const [loading, setLoading] = useState(true)
   const [toggle, setToggle] = useState(false)
+
+  const [show, setShow] = useState(list.map(element => true))
 
   const user = JSON.parse(localStorage.getItem('profile') || 'false').result
 
@@ -36,21 +36,26 @@ export const MyBusinessList = () => {
     fetchData()
   }, [])
 
-  const menu = toggle ? 'menu open' : 'menu'
-  // const reviewRoute = () => {
-  //   history.push(`/my-businesses/${business._id}/reviews`, {
-  //     business: business,
-  //   })
+  const menuBus = toggle ? 'menu-business open' : 'menu-business'
+
+  const showNumber = list.map((l, i) => i)
+
+  const toggleIt = (idx: any) => {
+    showNumber.map(i => {
+      console.log(i, idx, 'i, idx')
+      if (i === idx) {
+        //FIX THIS only toggle above idx
+        setToggle(!toggle)
+      }
+    })
+  }
+
+  //   hideShow = (index) => {
+  //     const newShowStatus = [...this.state.show];
+  //     newShowStatus[index] = !this.state.show[index];
+  //     this.setState({show: newShowStatus});
   // }
 
-  const toggleIt = idx => {
-    console.log(idx, 'idx')
-    setToggle(!toggle)
-
-    // const toggle = () => {
-    //   handleClick(idx)
-    // }
-  }
   console.log('in business list, list', list)
 
   return (
@@ -79,11 +84,12 @@ export const MyBusinessList = () => {
                     />
                     <Star stars={business.stars} />
                     <div className='BusinessCard-buttons'>
-                      <button
-                        className='btn--btn-primary twoLines business'
-                        onClick={() => toggleIt(idx)}>
-                        {!toggle ? 'read reviews' : 'close'}
-                      </button>
+                      <h6
+                        className='btn--btn-primary twoLines business reviews'
+                        onClick={() => toggleIt(idx)}
+                        data-idx={idx}>
+                        {!toggle ? 'read reviews' : 'close reviews'}
+                      </h6>
                       <Link to={'#'}>
                         <h6 className='btn--btn-primary twoLines business'>
                           edit <br />
@@ -97,7 +103,7 @@ export const MyBusinessList = () => {
                       </Link>
                     </div>
                     {/* <div className='Reviews-dropdown-toggle'> */}
-                    <div className={menu}>
+                    <div className={menuBus}>
                       <MyBusinessReviews />
                     </div>
                   </div>

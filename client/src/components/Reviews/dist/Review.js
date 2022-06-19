@@ -12,6 +12,7 @@ var react_router_dom_1 = require("react-router-dom");
 require("./AddReview.css");
 var isLoggedIn = true;
 exports.Review = function (props) {
+    console.log('in review, id, ownerId', props.id, props.ownerId);
     var stars = __spreadArrays(Array(5)).map(function (star, i) {
         if (i <= Math.round(props.stars) - 1) {
             return (React.createElement("div", { className: 'star btn-review on', key: i }, "\u2605"));

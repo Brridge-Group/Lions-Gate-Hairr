@@ -26,10 +26,8 @@ export const Profile = () => {
       Promise.all(
         reviews.map((review: any) => axios.get(`api/reviews/${review}`))
       )
-        // .then(data => console.log(data, 'in promise'))
         //   // @ts-ignore
         .then((data: any) => getUserReview(data))
-      // )
     }
     fetchReviews()
     setLoading(false)
@@ -67,16 +65,19 @@ export const Profile = () => {
                       {!loading &&
                         userReview.map((r: any) => (
                           <>
-                            <li key={r._id} className='Profile_reviews'>
+                            <li
+                              key={r.data.review._id}
+                              className='Profile_reviews'>
                               <div className='column-left'>
                                 <img src={r.data.review.business.image} />
                                 <div className='review-btns'>
-                                  <Link to={`users/${_id}`}>
+                                  <Link
+                                    to={`/reviews/${r.data.review._id}/edit-review`}>
                                     <h6 className='btn--btn-primary reviews'>
                                       edit
                                     </h6>
                                   </Link>
-                                  <Link to={`users/${_id}`}>
+                                  <Link to={`#`}>
                                     <h6 className='btn--btn-primary reviews'>
                                       delete
                                     </h6>

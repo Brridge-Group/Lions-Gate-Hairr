@@ -36,7 +36,7 @@ interface Business {
   }
   services: Service[]
   features: Feature[]
-  reviews: Review[]
+  reviews?: Array<[]>
   stars: number
   phone: string
   ownerId: string
@@ -108,7 +108,7 @@ export const BusinessDetails = () => {
               </div>
               <div className='BusinessDetails_reviews'>
                 <h4>reviews</h4>
-                <MyBusinessReviews />
+                <MyBusinessReviews reviews={businessData.reviews} />
               </div>
             </div>
           </>

@@ -43,12 +43,14 @@ var Star_1 = require("../../UIElements/Star");
 var About_1 = require("../BusinessDetails/About/About");
 require("../../pages/Profile/Profile.css");
 require("./MyBusinessList.css");
+var MyBusinessReviews_1 = require("../MyBusinessReviews/MyBusinessReviews");
 var LoadSpinner_1 = require("../LoadSpinner/LoadSpinner");
-var MyBusinessReviews_1 = require("../MyBusinessReviews/dist/MyBusinessReviews");
+// import { MyBusinessReviews } from '../MyBusinessReviews/dist/MyBusinessReviews'
 exports.MyBusinessList = function () {
     var history = react_router_dom_1.useHistory();
     var _a = react_1.useState([]), list = _a[0], setList = _a[1];
     var _b = react_1.useState(true), loading = _b[0], setLoading = _b[1];
+    var _c = react_1.useState(false), toggle = _c[0], setToggle = _c[1];
     var user = JSON.parse(localStorage.getItem('profile') || 'false').result;
     react_1.useEffect(function () {
         var fetchData = function () { return __awaiter(void 0, void 0, void 0, function () {
@@ -77,11 +79,19 @@ exports.MyBusinessList = function () {
         }); };
         fetchData();
     }, []);
+    var menu = toggle ? 'menu open' : 'menu';
     // const reviewRoute = () => {
     //   history.push(`/my-businesses/${business._id}/reviews`, {
     //     business: business,
     //   })
     // }
+    var toggleIt = function (idx) {
+        console.log(idx, 'idx');
+        setToggle(!toggle);
+        // const toggle = () => {
+        //   handleClick(idx)
+        // }
+    };
     console.log('in business list, list', list);
     return (React.createElement("div", { className: 'Profile_user' },
         React.createElement("h1", { className: 'Profile_name' },
@@ -93,13 +103,11 @@ exports.MyBusinessList = function () {
             React.createElement("div", { className: 'Profile-UserContainer_reviews business' },
                 React.createElement("h4", null, "Your businesses"),
                 React.createElement("div", { className: 'BusinessCard-container' },
-                    list.map(function (business) { return (React.createElement("div", { className: 'BusinessCard ', key: business._id, onClick: function () {
-                            return history.push('businesses/' + ("" + business._id));
-                        } },
+                    list.map(function (business, idx) { return (React.createElement("div", { className: 'BusinessCard ', key: business._id },
                         React.createElement(About_1.About, { name: business.businessName, description: business.description, image: business.image, address: business.address }),
                         React.createElement(Star_1.Star, { stars: business.stars }),
                         React.createElement("div", { className: 'BusinessCard-buttons' },
-                            React.createElement("button", { className: 'btn--btn-primary twoLines business' }, "read reviews"),
+                            React.createElement("button", { className: 'btn--btn-primary twoLines business', onClick: function () { return toggleIt(idx); } }, !toggle ? 'read reviews' : 'close'),
                             React.createElement(react_router_dom_1.Link, { to: '#' },
                                 React.createElement("h6", { className: 'btn--btn-primary twoLines business' },
                                     "edit ",
@@ -107,8 +115,8 @@ exports.MyBusinessList = function () {
                                     "business")),
                             React.createElement(react_router_dom_1.Link, { to: '#' },
                                 React.createElement("h6", { className: 'btn--btn-primary twoLines business' }, "delete business"))),
-                        React.createElement("div", { className: 'Reviews-dropdown-toggle' },
-                            React.createElement(MyBusinessReviews_1.MyBusinessReviews, { reviews: business.reviews })))); }),
+                        React.createElement("div", { className: menu },
+                            React.createElement(MyBusinessReviews_1.MyBusinessReviews, null)))); }),
                     ' '))))),
         React.createElement("div", { className: 'Profile_links' },
             React.createElement(react_router_dom_1.Link, { to: "/users/" + user._id },

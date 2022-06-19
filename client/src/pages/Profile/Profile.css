@@ -97,14 +97,14 @@ ul.Profile_User_reviews {
   margin-top: 1rem;
 }
 .Profile-UserContainer_reviews {
-  height: 38vh;
+  height: 60vh;
   overflow: hidden;
 }
 
 .Profile-UserContainer_reviews.business {
   margin-top: 0;
-  height: 100%;
-  overflow: hidden;
+  /* height: 100%;
+  overflow: hidden; */
 }
 
 .Profile_links {

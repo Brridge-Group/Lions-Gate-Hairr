@@ -87,5 +87,5 @@ exports.BusinessDetails = function () {
                     React.createElement(Book_1.Book, { phone: businessData.phone, ownerId: businessData.ownerId })),
                 React.createElement("div", { className: 'BusinessDetails_reviews' },
                     React.createElement("h4", null, "reviews"),
-                    React.createElement(MyBusinessReviews_1.MyBusinessReviews, null))))) : (React.createElement("p", null, "Loading...")))));
+                    React.createElement(MyBusinessReviews_1.MyBusinessReviews, { reviews: businessData.reviews }))))) : (React.createElement("p", null, "Loading...")))));
 };

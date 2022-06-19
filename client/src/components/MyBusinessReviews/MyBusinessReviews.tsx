@@ -1,4 +1,11 @@
-// import { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
+import axios from 'axios'
+
+interface Props {
+  reviews?: Array<[]>
+  // ownerId: string
+}
+
 // import { LoadSpinner } from '../LoadSpinner/LoadSpinner'
 // import { StarSmall } from '../../UIElements/Star'
 // import { useLocation } from 'react-router-dom'
@@ -27,8 +34,25 @@
 //   rating: number
 // }
 
-export const MyBusinessReviews = () => {
-  // const [businessReviews, getBusinessReviews] = useState([])
+export const MyBusinessReviews = (props: Props) => {
+  const [loading, setLoading] = useState(true)
+  const [businessReviews, getBusinessReviews] = useState([])
+  console.log(props, props.reviews, 'props')
+  // const [reviews, setReviews]
+
+  // useEffect(() => {
+  //   const fetchBusinessReviews = () => {
+  //     Promise.all(
+  //       props.reviews.map((review: any) => axios.get(`api/reviews/${review}`))
+  //     )
+  //     .then(data => console.log(data, 'in promise'))
+  //       // @ts-ignore
+  //     .then((data: any) => getUserReview(data))
+  //     )
+  //   }
+  //   // fetchBusinessReviews()
+  //   setLoading(false)
+  // }, [])
 
   // const [loading, setLoading] = useState(true)
   // const location = useLocation()
@@ -51,6 +75,7 @@ export const MyBusinessReviews = () => {
   // }, [])
   return (
     <div>
+      in business reviews
       {/* <div className='Profile-UserContainer_reviews'>
         <div className='profile-container'> */}
       {/* {loading ? (

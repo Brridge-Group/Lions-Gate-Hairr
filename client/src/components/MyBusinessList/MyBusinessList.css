@@ -10,9 +10,22 @@
   overflow-y: scroll;
   height: 90%;
   padding-bottom: 2rem;
+  max-height: 58vh;
 }
-.Reviews-dropdown-toggle {
+
+.menu {
+  position: relative;
   width: 100%;
-  height: 40px;
-  border-top: 1px solid black;
+  height: fit-content;
+  text-align: left;
+  line-height: normal;
+  transition: 0.7s;
+  z-index: 3;
+  margin-right: 9%;
+  display: flex;
+  justify-content: center;
+  display: none;
+}
+.menu.open {
+  display: block;
 }

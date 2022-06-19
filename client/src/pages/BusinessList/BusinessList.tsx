@@ -261,17 +261,15 @@ export const BusinessList = () => {
                 filteredResults?.map((business: any) => (
                   <>
                     <Card className='BusinessCard List' key={business._id}>
-                      <Link
-                        to={`/businesses/${business._id}`}
-                        className='BusinessCard-link'>
+                      <Link to={`/businesses/${business._id}`}>
                         <About
                           name={business.businessName}
                           description={business.description}
                           image={business.image}
                           address={business.address}
                         />
-                        <Star stars={business.stars} />
                       </Link>
+                      <Star stars={business.stars} />
                     </Card>
                   </>
                 ))

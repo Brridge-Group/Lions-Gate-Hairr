@@ -6,14 +6,17 @@ import { Star } from '../../UIElements/Star'
 import { About } from '../BusinessDetails/About/About'
 import '../../pages/Profile/Profile.css'
 import './MyBusinessList.css'
+import { MyBusinessReviews } from '../MyBusinessReviews/MyBusinessReviews'
 
 import { LoadSpinner } from '../LoadSpinner/LoadSpinner'
-import { MyBusinessReviews } from '../MyBusinessReviews/dist/MyBusinessReviews'
+// import { MyBusinessReviews } from '../MyBusinessReviews/dist/MyBusinessReviews'
 
 export const MyBusinessList = () => {
   const history = useHistory()
   const [list, setList] = useState<any[]>([])
   const [loading, setLoading] = useState(true)
+  const [toggle, setToggle] = useState(false)
+
   const user = JSON.parse(localStorage.getItem('profile') || 'false').result
 
   useEffect(() => {
@@ -33,12 +36,21 @@ export const MyBusinessList = () => {
     fetchData()
   }, [])
 
+  const menu = toggle ? 'menu open' : 'menu'
   // const reviewRoute = () => {
   //   history.push(`/my-businesses/${business._id}/reviews`, {
   //     business: business,
   //   })
   // }
 
+  const toggleIt = idx => {
+    console.log(idx, 'idx')
+    setToggle(!toggle)
+
+    // const toggle = () => {
+    //   handleClick(idx)
+    // }
+  }
   console.log('in business list, list', list)
 
   return (
@@ -57,13 +69,8 @@ export const MyBusinessList = () => {
               <h4>Your businesses</h4>
               {/* TODO: fix styles */}
               <div className='BusinessCard-container'>
-                {list.map((business: any) => (
-                  <div
-                    className='BusinessCard '
-                    key={business._id}
-                    onClick={() =>
-                      history.push('businesses/' + `${business._id}`)
-                    }>
+                {list.map((business: any, idx) => (
+                  <div className='BusinessCard ' key={business._id}>
                     <About
                       name={business.businessName}
                       description={business.description}
@@ -74,17 +81,8 @@ export const MyBusinessList = () => {
                     <div className='BusinessCard-buttons'>
                       <button
                         className='btn--btn-primary twoLines business'
-                        // onClick={
-                        //   () =>
-                        //     history.push(
-                        //       `/my-businesses/${business._id}/reviews`
-                        //     )
-                        //   //   ,
-                        //   //   { list: list }
-                        //   // )
-                        // }
-                      >
-                        read reviews
+                        onClick={() => toggleIt(idx)}>
+                        {!toggle ? 'read reviews' : 'close'}
                       </button>
                       <Link to={'#'}>
                         <h6 className='btn--btn-primary twoLines business'>
@@ -98,8 +96,9 @@ export const MyBusinessList = () => {
                         </h6>
                       </Link>
                     </div>
-                    <div className='Reviews-dropdown-toggle'>
-                      <MyBusinessReviews reviews={business.reviews} />
+                    {/* <div className='Reviews-dropdown-toggle'> */}
+                    <div className={menu}>
+                      <MyBusinessReviews />
                     </div>
                   </div>
                 ))}{' '}

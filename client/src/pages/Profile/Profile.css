@@ -49,14 +49,13 @@ img.user-pix-placeholder {
 }
 .column-right.Star-container {
   width: 60%;
-  /* width: 30%; */
 }
 img {
   width: 100%;
 }
 .profile-container {
   overflow-y: scroll;
-  height: 90%;
+  height: 60%;
 }
 ul.Profile_User_reviews {
   padding: 0;
@@ -85,7 +84,8 @@ ul.Profile_User_reviews {
   border: 1px solid rgba(0, 0, 0, 0.5);
   padding: 3.5rem;
   background-image: url('../../assets/images/hairwhitebg.jpg');
-  position: relative;
+  height: 62vh;
+  padding-bottom: 0;
 }
 .Profile-UserContainer_reviews h4 {
   border-top: 1px solid #f32dc8;
@@ -96,15 +96,14 @@ ul.Profile_User_reviews {
   margin-bottom: 2rem;
   margin-top: 1rem;
 }
-.Profile-UserContainer_reviews {
-  height: 60vh;
+.Profile-UserContainer_reviews,
+.Profile-UserContainer_reviews.business {
+  height: 100%;
   overflow: hidden;
 }
 
 .Profile-UserContainer_reviews.business {
   margin-top: 0;
-  /* height: 100%;
-  overflow: hidden; */
 }
 
 .Profile_links {

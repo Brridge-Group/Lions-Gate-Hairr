@@ -41,13 +41,13 @@ export const MyBusinessList = () => {
   const showNumber = list.map((l, i) => i)
 
   const toggleIt = (idx: any) => {
-    showNumber.map(i => {
-      console.log(i, idx, 'i, idx')
-      if (i === idx) {
-        //FIX THIS only toggle above idx
-        setToggle(!toggle)
-      }
-    })
+    // showNumber.map(i => {
+    //   console.log(i, idx, 'i, idx')
+    //   if (i === idx) {
+    //FIX THIS only toggle above idx
+    setToggle(!toggle)
+    // }
+    // })
   }
 
   //   hideShow = (index) => {

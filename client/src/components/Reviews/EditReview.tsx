@@ -26,6 +26,8 @@ export const EditReview = () => {
     getReview()
   }, [])
 
+  console.log('in edit review, review', review)
+
   const [rating, setRating] = useState(3)
   const [reviewForm, setReviewForm] = useState({
     comment: "i'm hard coded in",

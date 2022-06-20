@@ -44,6 +44,7 @@ var Book_1 = require("./Book");
 var Review_1 = require("../Reviews/Review");
 require("./BusinessDetails.css");
 var MyBusinessReviews_1 = require("../MyBusinessReviews/MyBusinessReviews");
+var LoadSpinner_1 = require("../LoadSpinner/LoadSpinner");
 exports.BusinessDetails = function () {
     var _a = react_1.useState(), businessData = _a[0], setBusinessData = _a[1];
     var id = react_router_dom_1.useParams().id;
@@ -87,5 +88,5 @@ exports.BusinessDetails = function () {
                     React.createElement(Book_1.Book, { phone: businessData.phone, ownerId: businessData.ownerId })),
                 React.createElement("div", { className: 'BusinessDetails_reviews' },
                     React.createElement("h4", null, "reviews"),
-                    React.createElement(MyBusinessReviews_1.MyBusinessReviews, { reviews: businessData.reviews }))))) : (React.createElement("p", null, "Loading...")))));
+                    React.createElement(MyBusinessReviews_1.MyBusinessReviews, { reviews: businessData.reviews }))))) : (React.createElement(LoadSpinner_1.LoadSpinner, null)))));
 };

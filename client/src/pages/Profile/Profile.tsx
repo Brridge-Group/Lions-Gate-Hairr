@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import { MyBusinessList } from '../../components/MyBusinessList/MyBusinessList'
 import { StarSmall } from '../../UIElements/Star'
 import { LoadSpinner } from '../../components/LoadSpinner/LoadSpinner'
@@ -11,6 +11,8 @@ interface Profile {
 }
 
 export const Profile = () => {
+  const history = useHistory()
+
   const { role, _id, name, imageProfile, reviews } = JSON.parse(
     localStorage.getItem('profile') || 'false'
   ).result
@@ -52,14 +54,11 @@ export const Profile = () => {
                 alt={name + '_profilePicture'}
                 className='Profile-UserContainer_pic'
               />
-
               <div className='Profile-UserContainer_reviews'>
                 <h4>your reviews</h4>
                 <div className='profile-container'>
                   {loading ? (
                     <LoadSpinner />
-                  ) : !userReview.length ? (
-                    'add some reviews'
                   ) : (
                     <ul className='Profile_User_reviews'>
                       {!loading &&
@@ -84,11 +83,14 @@ export const Profile = () => {
                                   </Link>
                                 </div>
                               </div>
-                              <div className='column-right'>
-                                <h2>{r.data.review.business.businessName}</h2>
-                                <h5>{r.data.review.business.address.city}</h5>
-                                <StarSmall stars={r.data.review.rating} />
-                                <h5>{r.data.review.comment}</h5>
+                              <div className='column-right clicked'>
+                                <Link
+                                  to={`/businesses/${r.data.review.business._id}`}>
+                                  <h2>{r.data.review.business.businessName}</h2>
+                                  <h5>{r.data.review.business.address.city}</h5>
+                                  <StarSmall stars={r.data.review.rating} />
+                                  <h5>{r.data.review.comment}</h5>
+                                </Link>
                               </div>
                             </li>
                           </>

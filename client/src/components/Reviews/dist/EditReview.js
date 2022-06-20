@@ -81,6 +81,7 @@ exports.EditReview = function () {
         }); };
         getReview();
     }, []);
+    console.log('in edit review, review', review);
     var _c = react_1.useState(3), rating = _c[0], setRating = _c[1];
     var _d = react_1.useState({
         comment: "i'm hard coded in"

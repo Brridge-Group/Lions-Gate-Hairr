@@ -82,13 +82,13 @@ exports.MyBusinessList = function () {
     var menuBus = toggle ? 'menu-business open' : 'menu-business';
     var showNumber = list.map(function (l, i) { return i; });
     var toggleIt = function (idx) {
-        showNumber.map(function (i) {
-            console.log(i, idx, 'i, idx');
-            if (i === idx) {
-                //FIX THIS only toggle above idx
-                setToggle(!toggle);
-            }
-        });
+        // showNumber.map(i => {
+        //   console.log(i, idx, 'i, idx')
+        //   if (i === idx) {
+        //FIX THIS only toggle above idx
+        setToggle(!toggle);
+        // }
+        // })
     };
     //   hideShow = (index) => {
     //     const newShowStatus = [...this.state.show];

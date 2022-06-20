@@ -9,7 +9,7 @@ interface Props {
 const isLoggedIn: boolean = true
 
 export const Review = (props: Props) => {
-  console.log('in review, id, ownerId', props.id, props.ownerId)
+  console.log('in review, id, ownerId, props', props.id, props.ownerId, props)
   const stars: JSX.Element[] = [...Array(5)].map((star, i) => {
     if (i <= Math.round(props.stars) - 1) {
       return (

@@ -17,14 +17,6 @@ export const Home = () => {
     }
   }
 
-  // const deleteNameSpace = city.replace(/\s+/g, '')
-
-  // const reviewRoute = () => {
-  //   history.push(`/${deleteNameSpace.toLowerCase()}/review`, {
-  //     business: business,
-  //   })
-  // }
-
   const itemSubmitHandler = async (event: React.FormEvent<any>) => {
     event.preventDefault()
     try {

@@ -5,6 +5,7 @@ import { Book } from './Book'
 import { Review } from '../Reviews/Review'
 import './BusinessDetails.css'
 import { MyBusinessReviews } from '../MyBusinessReviews/MyBusinessReviews'
+import { LoadSpinner } from '../LoadSpinner/LoadSpinner'
 
 interface RouteParams {
   id: string
@@ -113,7 +114,7 @@ export const BusinessDetails = () => {
             </div>
           </>
         ) : (
-          <p>Loading...</p>
+          <LoadSpinner />
         )}
       </div>
     </div>

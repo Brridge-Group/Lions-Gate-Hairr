@@ -54,12 +54,6 @@ exports.Home = function () {
             console.log(JSON.stringify(error));
         }
     };
-    // const deleteNameSpace = city.replace(/\s+/g, '')
-    // const reviewRoute = () => {
-    //   history.push(`/${deleteNameSpace.toLowerCase()}/review`, {
-    //     business: business,
-    //   })
-    // }
     var itemSubmitHandler = function (event) { return __awaiter(void 0, void 0, void 0, function () {
         return __generator(this, function (_a) {
             event.preventDefault();

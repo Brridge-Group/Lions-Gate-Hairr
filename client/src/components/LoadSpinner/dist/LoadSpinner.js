@@ -7,18 +7,19 @@ var react_1 = require("react");
 require("../../components/LoadSpinner/LoadSpinner.css");
 exports.LoadSpinner = function (_a) {
     return (react_1["default"].createElement(react_1["default"].Fragment, null,
-        react_1["default"].createElement("div", { className: 'loadingio-spinner-spinner-94sumfx7kxi' },
-            react_1["default"].createElement("div", { className: 'ldio-cs9r5gg8z0w' },
-                react_1["default"].createElement("div", null),
-                react_1["default"].createElement("div", null),
-                react_1["default"].createElement("div", null),
-                react_1["default"].createElement("div", null),
-                react_1["default"].createElement("div", null),
-                react_1["default"].createElement("div", null),
-                react_1["default"].createElement("div", null),
-                react_1["default"].createElement("div", null),
-                react_1["default"].createElement("div", null),
-                react_1["default"].createElement("div", null),
-                react_1["default"].createElement("div", null),
-                react_1["default"].createElement("div", null)))));
+        react_1["default"].createElement("div", { className: 'center-spinner' },
+            react_1["default"].createElement("div", { className: 'loadingio-spinner-spinner-94sumfx7kxi' },
+                react_1["default"].createElement("div", { className: 'ldio-cs9r5gg8z0w' },
+                    react_1["default"].createElement("div", null),
+                    react_1["default"].createElement("div", null),
+                    react_1["default"].createElement("div", null),
+                    react_1["default"].createElement("div", null),
+                    react_1["default"].createElement("div", null),
+                    react_1["default"].createElement("div", null),
+                    react_1["default"].createElement("div", null),
+                    react_1["default"].createElement("div", null),
+                    react_1["default"].createElement("div", null),
+                    react_1["default"].createElement("div", null),
+                    react_1["default"].createElement("div", null),
+                    react_1["default"].createElement("div", null))))));
 };

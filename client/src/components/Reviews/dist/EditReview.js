@@ -61,7 +61,7 @@ require("./AddReview.css");
 exports.EditReview = function () {
     var history = react_router_dom_1.useHistory();
     var _a = react_1.useState(0), hover = _a[0], setHover = _a[1];
-    var _b = react_1.useState([]), review = _b[0], setReview = _b[1];
+    var _b = react_1.useState({}), reviewData = _b[0], setReviewData = _b[1];
     var id = react_router_dom_1.useParams().id;
     react_1.useEffect(function () {
         var getReview = function () { return __awaiter(void 0, void 0, void 0, function () {
@@ -74,23 +74,23 @@ exports.EditReview = function () {
                         return [4 /*yield*/, res.json()];
                     case 2:
                         reviewData = _a.sent();
-                        setReview(reviewData.review);
+                        setReviewData(reviewData.review);
                         return [2 /*return*/];
                 }
             });
         }); };
         getReview();
     }, []);
-    console.log('in edit review, review', review);
-    var _c = react_1.useState(3), rating = _c[0], setRating = _c[1];
+    console.log('in edit review, reviewData', reviewData, reviewData.comment, reviewData.rating);
+    var _c = react_1.useState(reviewData.rating), rating = _c[0], setRating = _c[1];
     var _d = react_1.useState({
-        comment: "i'm hard coded in"
+        comment: reviewData.comment
     }), reviewForm = _d[0], setReviewForm = _d[1];
     var comment = reviewForm.comment;
     var handleChange = function (e) {
         var _a;
         e.preventDefault();
-        console.log('e.target', e.target.value);
+        console.log('e.target in handle change', e.target.value);
         setReviewForm(__assign(__assign({}, reviewForm), (_a = {}, _a[e.target.name] = e.target.value, _a)));
     };
     var saveUpdatedReview = function () { return __awaiter(void 0, void 0, void 0, function () {
@@ -146,13 +146,13 @@ exports.EditReview = function () {
                 React.createElement("form", { className: 'form', onSubmit: updateReview },
                     React.createElement("div", { className: 'form-group star-rating' }, __spreadArrays(Array(5)).map(function (star, index) {
                         index += 1;
-                        return (React.createElement("button", { type: 'button', key: index, className: index <= (hover || rating)
+                        return (React.createElement("button", { type: 'button', key: index, className: index <= (hover || reviewData.rating)
                                 ? 'btn-review on'
                                 : 'btn-review off', onClick: function () { return setRating(index); }, onMouseEnter: function () { return setHover(index); }, onMouseLeave: function () { return setHover(rating); } },
                             React.createElement("span", { className: 'star' }, "\u2605")));
                     })),
                     React.createElement("div", { className: 'form-group' },
                         React.createElement("label", { htmlFor: 'comment' }),
-                        React.createElement("textarea", { name: 'comment', className: 'form-control text-area', onChange: handleChange, value: comment })),
-                    React.createElement("button", { onChange: handleChange, type: 'submit', className: 'btn--btn-primary add-review' }, "Submit"))))));
+                        React.createElement("textarea", { name: 'comment', className: 'form-control text-area', onChange: handleChange, value: reviewData.comment })),
+                    React.createElement("button", { type: 'submit', className: 'btn--btn-primary add-review' }, "Submit"))))));
 };

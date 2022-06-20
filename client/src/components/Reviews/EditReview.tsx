@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useParams, useHistory } from 'react-router-dom'
+import { Star } from '../../UIElements/Star'
 import './AddReview.css'
 
 interface RouteParams {
@@ -14,30 +15,36 @@ export const EditReview = () => {
   const history = useHistory()
 
   const [hover, setHover] = useState(0)
-  const [review, setReview] = useState([])
+  const [reviewData, setReviewData] = useState<any>({})
   const { id } = useParams<RouteParams>()
 
   useEffect(() => {
     const getReview = async () => {
       const res = await fetch(`/api/reviews/${id}`)
       const reviewData = await res.json()
-      setReview(reviewData.review)
+      setReviewData(reviewData.review)
     }
     getReview()
   }, [])
 
-  console.log('in edit review, review', review)
+  console.log(
+    'in edit review, reviewData',
+    reviewData,
+    reviewData.comment,
+    reviewData.rating
+  )
 
-  const [rating, setRating] = useState(3)
+  const [rating, setRating] = useState(reviewData.rating)
   const [reviewForm, setReviewForm] = useState({
-    comment: "i'm hard coded in",
+    comment: reviewData.comment,
+    // rating: reviewData.rating,
   })
 
   const { comment } = reviewForm
 
   const handleChange = (e: any) => {
     e.preventDefault()
-    console.log('e.target', e.target.value)
+    console.log('e.target in handle change', e.target.value)
     setReviewForm({ ...reviewForm, [e.target.name]: e.target.value })
   }
   const saveUpdatedReview = async () => {
@@ -91,7 +98,7 @@ export const EditReview = () => {
                     type='button'
                     key={index}
                     className={
-                      index <= (hover || rating)
+                      index <= (hover || reviewData.rating)
                         ? 'btn-review on'
                         : 'btn-review off'
                     }
@@ -109,13 +116,10 @@ export const EditReview = () => {
                 name='comment'
                 className='form-control text-area'
                 onChange={handleChange}
-                value={comment}
+                value={reviewData.comment}
               />
             </div>
-            <button
-              onChange={handleChange}
-              type='submit'
-              className='btn--btn-primary add-review'>
+            <button type='submit' className='btn--btn-primary add-review'>
               Submit
             </button>
           </form>

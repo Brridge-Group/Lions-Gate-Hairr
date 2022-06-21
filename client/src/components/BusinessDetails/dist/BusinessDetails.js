@@ -84,7 +84,7 @@ exports.BusinessDetails = function () {
             React.createElement("div", { className: 'BusinessDetails-rightColumn' },
                 React.createElement(About_1.About, { name: businessData.businessName, description: businessData.description, image: businessData.image, address: businessData.address }),
                 React.createElement("div", { className: 'BusinessDetails-buttons' },
-                    React.createElement(Review_1.Review, { id: id, stars: businessData.stars, ownerId: businessData.ownerId }),
+                    React.createElement(Review_1.Review, { id: id, stars: businessData.stars, ownerId: businessData.ownerId, name: businessData.businessName }),
                     React.createElement(Book_1.Book, { phone: businessData.phone, ownerId: businessData.ownerId })),
                 React.createElement("div", { className: 'BusinessDetails_reviews' },
                     React.createElement("h4", null, "reviews"),

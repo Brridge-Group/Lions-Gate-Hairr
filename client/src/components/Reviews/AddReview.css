@@ -50,3 +50,15 @@
   margin-bottom: 19px;
   padding-top: 0px;
 }
+.AddReview-name {
+  text-transform: capitalize;
+}
+/* ///////media queries ////////// */
+
+@media screen and (max-width: 575px) {
+  .FeatureContainer_image.Review {
+    background-image: url('../../assets/images/hairlavender-mobile.jpg');
+    margin-bottom: 0;
+    height: 100%;
+  }
+}

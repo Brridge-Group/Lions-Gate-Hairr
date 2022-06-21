@@ -4,6 +4,7 @@ interface Props {
   id?: string
   stars: number
   ownerId: string
+  name: string
 }
 
 const isLoggedIn: boolean = true
@@ -39,11 +40,16 @@ export const Review = (props: Props) => {
         <div className='Star-container'>{stars}</div>
         {isLoggedIn ? (
           <Link
-            to={props.id + '/add-review'}
+            to={{ pathname: props.id + '/add-review', state: props.name }}
             className='btn--btn-primary review'>
             Leave a Review
           </Link>
-        ) : null}
+        ) : //    <Link
+        //    to={props.id + '/add-review'}
+        //    className='btn--btn-primary review'>
+        //    Leave a Review
+        //  </Link>
+        null}
       </div>
     </>
   )

@@ -54,34 +54,35 @@ var __spreadArrays = (this && this.__spreadArrays) || function () {
     return r;
 };
 exports.__esModule = true;
-exports.EditReview = void 0;
+exports.AddReview = void 0;
 var react_1 = require("react");
 var react_router_dom_1 = require("react-router-dom");
 require("./AddReview.css");
-exports.EditReview = function () {
-    var location = react_router_dom_1.useLocation();
-    var reviewData = location.state;
+exports.AddReview = function () {
+    var _a;
     var history = react_router_dom_1.useHistory();
-    var _a = react_1.useState(0), hover = _a[0], setHover = _a[1];
+    var location = react_router_dom_1.useLocation();
+    var busName = location.state;
     var _b = react_1.useState(0), rating = _b[0], setRating = _b[1];
-    var _c = react_1.useState({
-        comment: reviewData.comment
-    }), reviewForm = _c[0], setReviewForm = _c[1];
+    var _c = react_1.useState(0), hover = _c[0], setHover = _c[1];
+    var _d = react_1.useState({ comment: '' }), reviewForm = _d[0], setReviewForm = _d[1];
     var id = react_router_dom_1.useParams().id;
-    console.log(reviewData, 'reviewData', typeof reviewData);
+    var comment = reviewForm.comment;
+    var user = JSON.parse((_a = localStorage.getItem('profile')) !== null && _a !== void 0 ? _a : 'false').result;
     var handleChange = function (e) {
         var _a;
         e.preventDefault();
+        console.log('e.target', e.target.value);
         setReviewForm(__assign(__assign({}, reviewForm), (_a = {}, _a[e.target.name] = e.target.value, _a)));
     };
-    var saveUpdatedReview = function () { return __awaiter(void 0, void 0, void 0, function () {
+    var saveNewReview = function () { return __awaiter(void 0, void 0, void 0, function () {
         var newReview, requestOptions, response, error_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    newReview = __assign(__assign({}, reviewForm), { rating: rating });
+                    newReview = __assign(__assign({}, reviewForm), { author: user._id, business: id, rating: rating });
                     requestOptions = {
-                        method: 'PATCH',
+                        method: 'POST',
                         headers: {
                             'Content-Type': 'application/json'
                         },
@@ -90,7 +91,7 @@ exports.EditReview = function () {
                     _a.label = 1;
                 case 1:
                     _a.trys.push([1, 4, , 5]);
-                    return [4 /*yield*/, fetch("/api/reviews/" + id, requestOptions)];
+                    return [4 /*yield*/, fetch('/api/reviews', requestOptions)];
                 case 2:
                     response = _a.sent();
                     if (!response.ok) {
@@ -109,11 +110,11 @@ exports.EditReview = function () {
             }
         });
     }); };
-    var updateReview = function (e) { return __awaiter(void 0, void 0, void 0, function () {
+    var submitReview = function (e) { return __awaiter(void 0, void 0, void 0, function () {
         return __generator(this, function (_a) {
             e.preventDefault();
             try {
-                saveUpdatedReview();
+                saveNewReview();
                 history.push('/');
             }
             catch (err) { }
@@ -124,19 +125,19 @@ exports.EditReview = function () {
         React.createElement("div", { className: 'FeatureContainer' },
             React.createElement("div", { className: 'AddReview-container' },
                 React.createElement("h2", null,
-                    "Update your Review with",
+                    "Review your experience with",
                     ' ',
-                    React.createElement("span", { className: 'AddReview-name' }, reviewData.business.businessName)),
-                React.createElement("form", { className: 'form', onSubmit: updateReview },
+                    React.createElement("span", { className: 'AddReview-name' }, busName)),
+                React.createElement("form", { className: 'form', onSubmit: submitReview },
                     React.createElement("div", { className: 'form-group star-rating' }, __spreadArrays(Array(5)).map(function (star, index) {
                         index += 1;
-                        return (React.createElement("button", { type: 'button', key: index, className: index <= (hover || reviewData.rating)
+                        return (React.createElement("button", { type: 'button', key: index, className: index <= (hover || rating)
                                 ? 'btn-review on'
                                 : 'btn-review off', onClick: function () { return setRating(index); }, onMouseEnter: function () { return setHover(index); }, onMouseLeave: function () { return setHover(rating); } },
                             React.createElement("span", { className: 'star' }, "\u2605")));
                     })),
                     React.createElement("div", { className: 'form-group' },
                         React.createElement("label", { htmlFor: 'comment' }),
-                        React.createElement("textarea", { name: 'comment', className: 'form-control text-area', onChange: handleChange, value: reviewForm.comment })),
-                    React.createElement("button", { type: 'submit', className: 'btn--btn-primary add-review' }, "Submit"))))));
+                        React.createElement("textarea", { name: 'comment', className: 'form-control text-area', onChange: handleChange, value: comment })),
+                    React.createElement("button", { onChange: handleChange, type: 'submit', className: 'btn--btn-primary add-review' }, "Submit"))))));
 };

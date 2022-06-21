@@ -1,37 +1,10 @@
 import { useEffect, useState } from 'react'
-import { useParams, useHistory } from 'react-router-dom'
+import { useParams, useHistory, useLocation } from 'react-router-dom'
 
 import './AddReview.css'
 
 interface RouteParams {
   id: string
-}
-
-interface Service {
-  _id: string
-  name: string
-}
-
-interface Feature {
-  _id: string
-  name: string
-}
-
-interface Business {
-  businessName: string
-  description: string
-  image: string
-  address: {
-    address1: string
-    address2: string
-    city: string
-    region: string
-    postalCode: string
-  }
-  services: Service[]
-  features: Feature[]
-  stars: number
-  phone: string
 }
 
 interface AddReview {
@@ -42,9 +15,8 @@ interface AddReview {
 }
 export const AddReview = () => {
   const history = useHistory()
-
-  // const [businessData, setBusinessData] = useState({})
-  const [businessData, setBusinessData] = useState<Business>()
+  const location = useLocation<any>()
+  const busName = location.state
 
   const [rating, setRating] = useState(0)
   const [hover, setHover] = useState(0)
@@ -54,24 +26,6 @@ export const AddReview = () => {
   const { comment } = reviewForm
 
   const user = JSON.parse(localStorage.getItem('profile') ?? 'false').result
-
-  useEffect(() => {
-    const getBusinessData = async () => {
-      const res = await fetch(`/api/businesses/get-business-by-id/${id}`)
-      const businessData = await res.json()
-      setBusinessData(businessData)
-    }
-    getBusinessData()
-  }, [])
-
-  console.log(
-    'businessData, id',
-    businessData,
-    id,
-    typeof businessData
-    // @ts-ignore
-  )
-  // @ts-ignore
 
   const handleChange = e => {
     e.preventDefault()
@@ -119,8 +73,8 @@ export const AddReview = () => {
       <div className='FeatureContainer'>
         <div className='AddReview-container'>
           <h2>
-            Review your experience with businessData.businessName will read as
-            undefined
+            Review your experience with{' '}
+            <span className='AddReview-name'>{busName}</span>
           </h2>
           <form className='form' onSubmit={submitReview}>
             <div className='form-group star-rating'>

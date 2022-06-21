@@ -101,6 +101,7 @@ export const BusinessDetails = () => {
                   id={id}
                   stars={businessData.stars}
                   ownerId={businessData.ownerId}
+                  name={businessData.businessName}
                 />
                 <Book
                   phone={businessData.phone}

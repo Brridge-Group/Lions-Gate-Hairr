@@ -67,7 +67,12 @@ export const EditReview = () => {
     <div className='FeatureContainer_image Review'>
       <div className='FeatureContainer'>
         <div className='AddReview-container'>
-          <h2>Update your Review with {reviewData.business.businessName}</h2>
+          <h2>
+            Update your Review with{' '}
+            <span className='AddReview-name'>
+              {reviewData.business.businessName}
+            </span>
+          </h2>
           <form className='form' onSubmit={updateReview}>
             <div className='form-group star-rating'>
               {[...Array(5)].map((star, index) => {

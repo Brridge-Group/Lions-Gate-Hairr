@@ -64,12 +64,23 @@ export const Profile = () => {
                             <div className='column-left'>
                               <img src={r.data.review.business.image} />
                               <div className='review-btns'>
-                                <Link
+                                {/* <Link
                                   to={`/reviews/${r.data.review._id}/edit-review`}>
                                   <h6 className='btn--btn-primary reviews'>
                                     edit
                                   </h6>
+                                </Link> */}
+                                <Link
+                                  to={{
+                                    pathname: `/reviews/${r.data.review._id}/edit-review`,
+                                    state: r.data.review,
+                                  }}>
+                                  {' '}
+                                  <h6 className='btn--btn-primary reviews'>
+                                    edit
+                                  </h6>
                                 </Link>
+
                                 <Link to={`#`}>
                                   <h6 className='btn--btn-primary reviews'>
                                     delete

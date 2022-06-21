@@ -1,6 +1,5 @@
-import { useEffect, useState } from 'react'
-import { useParams, useHistory } from 'react-router-dom'
-import { Star } from '../../UIElements/Star'
+import { useState } from 'react'
+import { useParams, useHistory, useLocation } from 'react-router-dom'
 import './AddReview.css'
 
 interface RouteParams {
@@ -12,39 +11,22 @@ interface EditReview {
   rating: number
 }
 export const EditReview = () => {
+  const location = useLocation<any>()
+  const reviewData = location.state
   const history = useHistory()
 
   const [hover, setHover] = useState(0)
-  const [reviewData, setReviewData] = useState<any>({})
-  const { id } = useParams<RouteParams>()
-
-  useEffect(() => {
-    const getReview = async () => {
-      const res = await fetch(`/api/reviews/${id}`)
-      const reviewData = await res.json()
-      setReviewData(reviewData.review)
-    }
-    getReview()
-  }, [])
-
-  console.log(
-    'in edit review, reviewData',
-    reviewData,
-    reviewData.comment,
-    reviewData.rating
-  )
-
-  const [rating, setRating] = useState(reviewData.rating)
-  const [reviewForm, setReviewForm] = useState({
+  const [rating, setRating] = useState(0)
+  const [reviewForm, setReviewForm] = useState<any>({
     comment: reviewData.comment,
-    // rating: reviewData.rating,
   })
 
-  const { comment } = reviewForm
+  const { id } = useParams<RouteParams>()
+
+  console.log(reviewData, 'reviewData', typeof reviewData)
 
   const handleChange = (e: any) => {
     e.preventDefault()
-    console.log('e.target in handle change', e.target.value)
     setReviewForm({ ...reviewForm, [e.target.name]: e.target.value })
   }
   const saveUpdatedReview = async () => {
@@ -85,10 +67,7 @@ export const EditReview = () => {
     <div className='FeatureContainer_image Review'>
       <div className='FeatureContainer'>
         <div className='AddReview-container'>
-          <h2>
-            Update your Review with businessData.businessName will read as
-            undefined
-          </h2>
+          <h2>Update your Review with {reviewData.business.businessName}</h2>
           <form className='form' onSubmit={updateReview}>
             <div className='form-group star-rating'>
               {[...Array(5)].map((star, index) => {
@@ -116,7 +95,7 @@ export const EditReview = () => {
                 name='comment'
                 className='form-control text-area'
                 onChange={handleChange}
-                value={reviewData.comment}
+                value={reviewForm.comment}
               />
             </div>
             <button type='submit' className='btn--btn-primary add-review'>

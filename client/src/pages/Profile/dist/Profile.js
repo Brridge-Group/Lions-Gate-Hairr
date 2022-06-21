@@ -40,7 +40,11 @@ exports.Profile = function () {
                                 React.createElement("div", { className: 'column-left' },
                                     React.createElement("img", { src: r.data.review.business.image }),
                                     React.createElement("div", { className: 'review-btns' },
-                                        React.createElement(react_router_dom_1.Link, { to: "/reviews/" + r.data.review._id + "/edit-review" },
+                                        React.createElement(react_router_dom_1.Link, { to: {
+                                                pathname: "/reviews/" + r.data.review._id + "/edit-review",
+                                                state: r.data.review
+                                            } },
+                                            ' ',
                                             React.createElement("h6", { className: 'btn--btn-primary reviews' }, "edit")),
                                         React.createElement(react_router_dom_1.Link, { to: "#" },
                                             React.createElement("h6", { className: 'btn--btn-primary reviews' }, "delete")))),

@@ -91,22 +91,36 @@ const deleteReview = async (
   next: NextFunction
 ) => {
   let review
+  let busReview
+  let authorReview
+  const { business, author } = req.body
 
   const reviewId = req.params.id
 
-  try {
-    review = await Review.findById(reviewId)
-  } catch (err) {
-    return next(err)
-  }
+  //     // await Review.findByIdAndRemove(reviewId)
+  // } catch (err) {
+  //   return next(err)
+  // }
+  console.log('in review controller', reviewId, business, author)
 
-  try {
-    if (review) {
-      await review.remove()
-    }
-  } catch (err) {
-    return next(err)
-  }
+  // const reviewResponse = await ReviewsDAO.deleteReview(
+  //   reviewId,
+  //   userId,
+  // )
+
+  // try {
+  //   review = await Review.findById(reviewId)
+  // } catch (err) {
+  //   return next(err)
+  // }
+
+  // try {
+  //   if (review) {
+  //     await review.remove()
+  //   }
+  // } catch (err) {
+  //   return next(err)
+  // }
 
   res.json({ message: 'Delete successfully' })
 }

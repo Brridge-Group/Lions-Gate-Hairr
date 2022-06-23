@@ -8,6 +8,7 @@ export const showBusiness = async (req: Request, res: Response) => {
   const { id } = req.params
   const business = await Business.findById(id).populate('services')
   await business.populate('features')
+  await business.populate('reviews')
   res.set('Access-Control-Allow-Origin', '')
   res.send(business)
 }
@@ -67,6 +68,7 @@ export const getAllBusinesses = async (req: Request, res: Response) => {
     const businessList = await Business.find()
       .populate('services')
       .populate('features')
+
     res.send(businessList)
   } catch (err: any) {
     res.status(StatusCodes.INTERNAL_SERVER_ERROR).json(err.message)

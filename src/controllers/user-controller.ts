@@ -81,6 +81,7 @@ export const getProfileById = async (req: Request, res: Response) => {
   let profile
   try {
     profile = await User.findById(profileId, '-password')
+    await profile.populate('reviews')
   } catch (err) {
     return res
       .status(StatusCodes.BAD_REQUEST)

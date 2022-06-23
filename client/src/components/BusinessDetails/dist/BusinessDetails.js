@@ -43,11 +43,12 @@ var About_1 = require("./About/About");
 var Book_1 = require("./Book");
 var Review_1 = require("../Reviews/Review");
 require("./BusinessDetails.css");
-var MyBusinessReviews_1 = require("../MyBusinessReviews/MyBusinessReviews");
+var BusinessReviews_1 = require("../BusinessReviews/BusinessReviews");
 var LoadSpinner_1 = require("../LoadSpinner/LoadSpinner");
 exports.BusinessDetails = function () {
     var _a = react_1.useState(), businessData = _a[0], setBusinessData = _a[1];
     var id = react_router_dom_1.useParams().id;
+    console.log('in bus details, business data', businessData);
     // FETCHES BUSINESS DATA FROM REMOTE DATABSE ONCE AND SETS BUSINESSDATA STATE TO IT.
     react_1.useEffect(function () {
         var getBusinessData = function () { return __awaiter(void 0, void 0, void 0, function () {
@@ -88,5 +89,5 @@ exports.BusinessDetails = function () {
                     React.createElement(Book_1.Book, { phone: businessData.phone, ownerId: businessData.ownerId })),
                 React.createElement("div", { className: 'BusinessDetails_reviews' },
                     React.createElement("h4", null, "reviews"),
-                    React.createElement(MyBusinessReviews_1.MyBusinessReviews, { reviews: businessData.reviews }))))) : (React.createElement(LoadSpinner_1.LoadSpinner, null)))));
+                    React.createElement(BusinessReviews_1.BusinessReviews, { reviews: businessData.reviews }))))) : (React.createElement(LoadSpinner_1.LoadSpinner, null)))));
 };

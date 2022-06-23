@@ -33,7 +33,7 @@ img.user-pix-placeholder {
 }
 
 .column-left {
-  width: 30%;
+  width: 25%;
   margin-right: 20px;
   margin-bottom: 20px;
 }
@@ -74,7 +74,7 @@ ul.Profile_User_reviews {
   margin-top: 10px;
 }
 .btn--btn-primary.reviews {
-  width: 55px;
+  width: 48px;
   margin: 0;
   height: 35px;
   padding-top: 7px;

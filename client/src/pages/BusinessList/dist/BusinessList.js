@@ -108,7 +108,6 @@ exports.BusinessList = function () {
         fetchData();
     }, []);
     // console.log(`initial list`, list)
-    console.log('hi, list', list);
     //* Fetch Features and Services from the database
     react_1.useEffect(function () {
         var fetchFeaturesData = function () { return __awaiter(void 0, void 0, void 0, function () {
@@ -178,11 +177,11 @@ exports.BusinessList = function () {
         fetchFeaturesData();
         fetchServicesData();
     }, []);
-    console.log("servicesArr", servicesArr);
-    console.log("featuresArr", featuresArr);
+    // console.log(`servicesArr`, servicesArr)
+    // console.log(`featuresArr`, featuresArr)
     //* Filter Business Features and Services
     var _g = react_1.useState([]), filteredResults = _g[0], setFilteredResults = _g[1];
-    console.log("filteredResults", filteredResults);
+    // console.log(`filteredResults`, filteredResults)
     var _h = react_1.useState([]), filteredFeats = _h[0], setFilteredFeats = _h[1];
     var _j = react_1.useState([]), filteredServices = _j[0], setFilteredServices = _j[1];
     //* Listen for the features' and services' checkbox changes and capture that data from the `FilterServicesAndFeatures` child component
@@ -255,7 +254,7 @@ exports.BusinessList = function () {
             return newFilteredResults;
         });
     }, [list, city]);
-    console.log(list, city, 'list, city');
+    // console.log(list, city, 'list, city')
     var handleResetFilter = function () {
         // TODO: [ ] => FIXME: Reset checkboxes to false
         //? TODO: [ ] => Explore connecting to child component to allow for checkbox resetting to opposite of checked

@@ -72,7 +72,6 @@ exports.AddReview = function () {
     var handleChange = function (e) {
         var _a;
         e.preventDefault();
-        console.log('e.target', e.target.value);
         setReviewForm(__assign(__assign({}, reviewForm), (_a = {}, _a[e.target.name] = e.target.value, _a)));
     };
     var saveNewReview = function () { return __awaiter(void 0, void 0, void 0, function () {

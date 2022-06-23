@@ -1,0 +1,50 @@
+.person-circle {
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
+  background-color: slategrey;
+}
+.Business_reviews {
+  margin-top: 20px;
+  font-size: 1.6rem;
+  display: flex;
+  text-align: left;
+  border-bottom: 1px solid #f32dc8;
+}
+.Business_reviews:first-child {
+  margin-top: 0;
+}
+.Profile_reviews:first-child {
+  margin-top: 0;
+}
+
+.Business_column-left {
+  width: 20%;
+  margin: 20px;
+  margin-left: 0;
+  margin-top: 0;
+}
+h5.person-city {
+  color: rgba(0, 0, 0, 0.5);
+}
+h6 {
+  font-size: 1.6rem;
+  font-weight: 300;
+  margin: 0;
+}
+
+.Business_column-right {
+  width: 65%;
+  margin-top: -5px;
+  margin-bottom: 20px;
+}
+
+ul.BusinessReviews_container {
+  padding: 0;
+  list-style-type: none;
+  margin-top: 0;
+}
+.BusinessReviews_container {
+  overflow-y: scroll;
+  height: 95%;
+}

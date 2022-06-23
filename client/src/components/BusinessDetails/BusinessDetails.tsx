@@ -4,7 +4,7 @@ import { About } from './About/About'
 import { Book } from './Book'
 import { Review } from '../Reviews/Review'
 import './BusinessDetails.css'
-import { MyBusinessReviews } from '../MyBusinessReviews/MyBusinessReviews'
+import { BusinessReviews } from '../BusinessReviews/BusinessReviews'
 import { LoadSpinner } from '../LoadSpinner/LoadSpinner'
 
 interface RouteParams {
@@ -37,7 +37,7 @@ interface Business {
   }
   services: Service[]
   features: Feature[]
-  reviews?: Array<[]>
+  reviews: Array<[]>
   stars: number
   phone: string
   ownerId: string
@@ -46,6 +46,8 @@ interface Business {
 export const BusinessDetails = () => {
   const [businessData, setBusinessData] = useState<Business>()
   const { id } = useParams<RouteParams>()
+
+  console.log('in bus details, business data', businessData)
 
   // FETCHES BUSINESS DATA FROM REMOTE DATABSE ONCE AND SETS BUSINESSDATA STATE TO IT.
   useEffect(() => {
@@ -110,7 +112,7 @@ export const BusinessDetails = () => {
               </div>
               <div className='BusinessDetails_reviews'>
                 <h4>reviews</h4>
-                <MyBusinessReviews reviews={businessData.reviews} />
+                <BusinessReviews reviews={businessData.reviews} />
               </div>
             </div>
           </>

@@ -43,7 +43,7 @@ var Star_1 = require("../../UIElements/Star");
 var About_1 = require("../BusinessDetails/About/About");
 require("../../pages/Profile/Profile.css");
 require("./MyBusinessList.css");
-var MyBusinessReviews_1 = require("../MyBusinessReviews/MyBusinessReviews");
+var BusinessReviews_1 = require("../BusinessReviews/BusinessReviews");
 var LoadSpinner_1 = require("../LoadSpinner/LoadSpinner");
 exports.MyBusinessList = function () {
     var history = react_router_dom_1.useHistory();
@@ -79,15 +79,18 @@ exports.MyBusinessList = function () {
         }); };
         fetchData();
     }, []);
+    console.log('in my bus list,list', list);
     var menuBus = toggle ? 'menu-business open' : 'menu-business';
+    // const showNumber = list.map((l, i) => i)
     var showNumber = list.map(function (l, i) { return i; });
     var toggleIt = function (idx) {
-        // showNumber.map(i => {
-        //   console.log(i, idx, 'i, idx')
-        //   if (i === idx) {
-        //FIX THIS only toggle above idx
+        // showNumber.map(i => {å
+        console.log(showNumber, 'i, id, toggleit, showNumber');
+        // if (id === showNumber) {
+        // if (showNumber == idx) {
         setToggle(!toggle);
         // }
+        //FIX THIS only toggle above idx
         // })
     };
     //   hideShow = (index) => {
@@ -110,7 +113,9 @@ exports.MyBusinessList = function () {
                         React.createElement(About_1.About, { name: business.businessName, description: business.description, image: business.image, address: business.address }),
                         React.createElement(Star_1.Star, { stars: business.stars }),
                         React.createElement("div", { className: 'BusinessCard-buttons' },
-                            React.createElement("h6", { className: 'btn--btn-primary twoLines business reviews', onClick: function () { return toggleIt(idx); }, "data-idx": idx }, !toggle ? 'read reviews' : 'close reviews'),
+                            React.createElement("h6", { className: 'btn--btn-primary twoLines business reviews', 
+                                // onClick={() => toggleIt(business._id)}
+                                onClick: function () { return toggleIt(idx); }, "data-idx": idx, id: business._id }, !toggle ? 'read reviews' : 'close reviews'),
                             React.createElement(react_router_dom_1.Link, { to: '#' },
                                 React.createElement("h6", { className: 'btn--btn-primary twoLines business' },
                                     "edit ",
@@ -119,7 +124,7 @@ exports.MyBusinessList = function () {
                             React.createElement(react_router_dom_1.Link, { to: '#' },
                                 React.createElement("h6", { className: 'btn--btn-primary twoLines business' }, "delete business"))),
                         React.createElement("div", { className: menuBus },
-                            React.createElement(MyBusinessReviews_1.MyBusinessReviews, null)))); }),
+                            React.createElement(BusinessReviews_1.BusinessReviews, { reviews: business.reviews })))); }),
                     ' '))))),
         React.createElement("div", { className: 'Profile_links' },
             React.createElement(react_router_dom_1.Link, { to: "/users/" + user._id },

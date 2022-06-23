@@ -23,7 +23,7 @@ export const EditReview = () => {
 
   const { id } = useParams<RouteParams>()
 
-  console.log(reviewData, 'reviewData', typeof reviewData)
+  // console.log(reviewData, 'reviewData', typeof reviewData)
 
   const handleChange = (e: any) => {
     e.preventDefault()

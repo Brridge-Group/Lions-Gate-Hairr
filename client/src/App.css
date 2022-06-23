@@ -86,6 +86,7 @@ h5 {
 p {
   line-height: 1.9rem;
   font-weight: 400;
+  text-transform: capitalize;
 }
 
 .btn--btn-primary {

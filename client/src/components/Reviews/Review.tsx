@@ -44,12 +44,7 @@ export const Review = (props: Props) => {
             className='btn--btn-primary review'>
             Leave a Review
           </Link>
-        ) : //    <Link
-        //    to={props.id + '/add-review'}
-        //    className='btn--btn-primary review'>
-        //    Leave a Review
-        //  </Link>
-        null}
+        ) : null}
       </div>
     </>
   )

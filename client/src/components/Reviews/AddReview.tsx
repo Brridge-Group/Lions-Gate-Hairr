@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { useParams, useHistory, useLocation } from 'react-router-dom'
 
 import './AddReview.css'
@@ -29,7 +29,6 @@ export const AddReview = () => {
 
   const handleChange = e => {
     e.preventDefault()
-    console.log('e.target', e.target.value)
     setReviewForm({ ...reviewForm, [e.target.name]: e.target.value })
   }
   const saveNewReview = async () => {

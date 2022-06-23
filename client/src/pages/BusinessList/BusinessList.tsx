@@ -91,7 +91,6 @@ export const BusinessList = () => {
   }, [])
   // console.log(`initial list`, list)
 
-  console.log('hi, list', list)
   //* Fetch Features and Services from the database
   useEffect(() => {
     const fetchFeaturesData = async () => {
@@ -139,12 +138,12 @@ export const BusinessList = () => {
     fetchFeaturesData()
     fetchServicesData()
   }, [])
-  console.log(`servicesArr`, servicesArr)
-  console.log(`featuresArr`, featuresArr)
+  // console.log(`servicesArr`, servicesArr)
+  // console.log(`featuresArr`, featuresArr)
 
   //* Filter Business Features and Services
   const [filteredResults, setFilteredResults]: any = useState([])
-  console.log(`filteredResults`, filteredResults)
+  // console.log(`filteredResults`, filteredResults)
   const [filteredFeats, setFilteredFeats]: any = useState([])
   const [filteredServices, setFilteredServices]: any = useState([])
 
@@ -223,7 +222,7 @@ export const BusinessList = () => {
       return newFilteredResults
     })
   }, [list, city])
-  console.log(list, city, 'list, city')
+  // console.log(list, city, 'list, city')
 
   const handleResetFilter = (): any => {
     // TODO: [ ] => FIXME: Reset checkboxes to false

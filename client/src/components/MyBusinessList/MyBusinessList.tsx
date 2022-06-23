@@ -5,9 +5,13 @@ import { Star } from '../../UIElements/Star'
 import { About } from '../BusinessDetails/About/About'
 import '../../pages/Profile/Profile.css'
 import './MyBusinessList.css'
-import { MyBusinessReviews } from '../MyBusinessReviews/MyBusinessReviews'
+import { BusinessReviews } from '../BusinessReviews/BusinessReviews'
 
 import { LoadSpinner } from '../LoadSpinner/LoadSpinner'
+
+interface BusinessReviews {
+  reviews: Array<[]>
+}
 
 export const MyBusinessList = () => {
   const history = useHistory()
@@ -35,18 +39,21 @@ export const MyBusinessList = () => {
     }
     fetchData()
   }, [])
-
+  console.log('in my bus list,list', list)
   const menuBus = toggle ? 'menu-business open' : 'menu-business'
 
+  // const showNumber = list.map((l, i) => i)
   const showNumber = list.map((l, i) => i)
 
   const toggleIt = (idx: any) => {
-    // showNumber.map(i => {
-    //   console.log(i, idx, 'i, idx')
-    //   if (i === idx) {
-    //FIX THIS only toggle above idx
+    // showNumber.map(i => {å
+    console.log(showNumber, 'i, id, toggleit, showNumber')
+    // if (id === showNumber) {
+    // if (showNumber == idx) {
     setToggle(!toggle)
     // }
+    //FIX THIS only toggle above idx
+
     // })
   }
 
@@ -86,8 +93,10 @@ export const MyBusinessList = () => {
                     <div className='BusinessCard-buttons'>
                       <h6
                         className='btn--btn-primary twoLines business reviews'
+                        // onClick={() => toggleIt(business._id)}
                         onClick={() => toggleIt(idx)}
-                        data-idx={idx}>
+                        data-idx={idx}
+                        id={business._id}>
                         {!toggle ? 'read reviews' : 'close reviews'}
                       </h6>
                       <Link to={'#'}>
@@ -104,7 +113,7 @@ export const MyBusinessList = () => {
                     </div>
                     {/* <div className='Reviews-dropdown-toggle'> */}
                     <div className={menuBus}>
-                      <MyBusinessReviews />
+                      <BusinessReviews reviews={business.reviews} />
                     </div>
                   </div>
                 ))}{' '}

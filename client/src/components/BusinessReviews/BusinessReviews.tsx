@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { StarSmall } from '../../UIElements/Star'
 import './BusinessReviews.css'
+import axios from 'axios'
 
 interface Props {
   reviews: Array<[]>
@@ -52,39 +53,37 @@ export const BusinessReviews = (props: Props) => {
 
   const { reviews } = props
 
-  // useEffect(() => {
-  //   const fetchBusinessReviews = () => {
-  //     Promise.all(
-  //       reviews.map((review: any) => axios.get(`api/reviews/${review}`))
-  //     ).then(data => console.log(data, 'in promise, business reviews'))
-  //     // @ts-ignore
-  //     // .then((data: any) => getBusinessReview(data))
-  //   }
-  //   fetchBusinessReviews()
-  //   setLoading(false)
-  // }, [reviews])
+  useEffect(() => {
+    const fetchBusinessReviews = () => {
+      Promise.all(
+        reviews.map((review: any) => axios.get(`api/reviews/${review}`))
+      ).then((data: any) => getBusinessReview(data))
+    }
+    fetchBusinessReviews()
+    setLoading(false)
+  }, [])
 
-  // console.log(businessReview, 'businessReview')
-  console.log(reviews, 'reviews, in business reviews')
+  console.log(businessReview, 'businessReview')
+  // console.log(reviews, 'reviews, in business reviews')
   return (
     <ul className='BusinessReviews_container'>
-      {reviews.map((r: any) => (
-        <>
-          <li key={r._id} className='Business_reviews'>
+      {!loading &&
+        businessReview.map((r: any) => (
+          <li key={r.data.review._id} className='Business_reviews'>
             <div className='Business_column-left '>
-              <div className='person-circle'>person foto</div>
+              <img
+                src={r.data.review.author.imageProfile}
+                className='person-circle'
+              />
             </div>
             <div className='Business_column-right'>
-              {/* <Link to={`/businesses/${r.data.review.business._id}`}> */}
-              person name
-              <h6 className='person-city'>person city, state</h6>
-              <StarSmall stars={r.rating} />
-              <h6>{r.comment}</h6>
-              {/* </Link> */}
+              {r.data.review.author.name}
+              <h6 className='person-city'>do we want city, state</h6>
+              <StarSmall stars={r.data.review.rating} />
+              <h6>{r.data.review.comment}</h6>
             </div>
           </li>
-        </>
-      ))}
+        ))}
     </ul>
   )
 }

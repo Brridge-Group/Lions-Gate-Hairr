@@ -2,7 +2,6 @@
   width: 75px;
   height: 75px;
   border-radius: 50%;
-  background-color: slategrey;
 }
 .Business_reviews {
   margin-top: 20px;
@@ -11,8 +10,8 @@
   text-align: left;
   border-bottom: 1px solid #f32dc8;
 }
-.Business_reviews:first-child {
-  margin-top: 0;
+.Business_reviews:last-child {
+  border-bottom: 0;
 }
 .Profile_reviews:first-child {
   margin-top: 0;
@@ -42,7 +41,8 @@ h6 {
 ul.BusinessReviews_container {
   padding: 0;
   list-style-type: none;
-  margin-top: 0;
+  margin-top: 2px0;
+  border-top: 1px solid #f32dc8;
 }
 .BusinessReviews_container {
   overflow-y: scroll;

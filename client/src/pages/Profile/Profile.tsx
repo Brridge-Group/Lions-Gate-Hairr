@@ -19,10 +19,12 @@ export const Profile = () => {
     localStorage.getItem('profile') || 'false'
   ).result
 
+  const token = JSON.parse(
+    localStorage.getItem('profile') || 'false'
+  ).token
+
   const [userReview, getUserReview] = useState([])
   const [loading, setLoading] = useState(true)
-
-  // need to update local storage when add new review
 
   useEffect(() => {
     const fetchReviews = () => {
@@ -33,49 +35,27 @@ export const Profile = () => {
         .then((data: any) => getUserReview(data))
     }
     fetchReviews()
-    // setLoadedItems(responseData.items)
-
     setLoading(false)
   }, [])
 
-  //   let deleteReview = {
-  //   author:
-  // }
-  const deleteReview = async (id: any, author: any, business: any) => {
-    console.log(id, author, business)
-    let deletedReview = {
-      author,
-      business,
+  const deleteReview = async (id: any) => {
+    try {
+      axios.delete(`api/reviews/${id}`, { data: { profileId: _id}})
+                .then(res => {
+                  window.localStorage.removeItem('profile');
+                  const {result} = res.data;
+                  let userModified ={
+                    result , 
+                    token
+                }
+                  window.localStorage.setItem('profile', JSON.stringify(userModified));
+                } )
+      history.push('/')
+    } catch (error) {
+      console.log('error in delete review');
     }
-    // const requestOptions = {
-    //   method: 'DELETE',
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //   },
-    //   body: JSON.stringify({ ...deletedReview }),
-    // }
-
-    // try {
-    //   const response = await fetch(`/api/reviews/${id}`, requestOptions)
-    //   if (!response.ok) {
-    //     throw new Error('review not deleted! Please resubmit.')
-    //   }
-    //   await response.json()
-    //   alert('Review deleted.')
-    //   history.push('/')
-    // } catch (error) {
-    //   console.error('Review not deleted.')
-    // }
-    // axios.delete(`api/reviews/${id}`).then(res => console.log(res.data))
-    // history.push('/')
-    // getUserReview(
-    //   userReview.filter(r => {
-    //     return r.data.review_id !== id
-    //   })
-    // ).catch(err => console.log('err deleting review'))
   }
 
-  console.log('in profile, userReview', userReview)
 
   return (
     <div
@@ -106,10 +86,10 @@ export const Profile = () => {
                       userReview.map((r: any) => (
                         <>
                           <li
-                            key={r.data.review._id}
+                            key={r._id}
                             className='Profile_reviews'>
                             <div className='column-left'>
-                              <img src={r.data.review.business.image} />
+                              <img src={r.data.review.business.image} alt=''/>
                               <div className='review-btns'>
                                 <Link
                                   to={{
@@ -118,7 +98,7 @@ export const Profile = () => {
                                   }}>
                                   {' '}
                                   <h6 className='btn--btn-primary reviews'>
-                                    edit
+                                    edit 
                                   </h6>
                                 </Link>
 
@@ -126,9 +106,7 @@ export const Profile = () => {
                                   className='btn--btn-primary reviews'
                                   onClick={() =>
                                     deleteReview(
-                                      r.data.review._id,
-                                      r.data.review.author._id,
-                                      r.data.review.business._id
+                                      r.data.review._id
                                     )
                                   }>
                                   delete

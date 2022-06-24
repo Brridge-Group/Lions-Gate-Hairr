@@ -1,5 +1,11 @@
 import { Request, Response, NextFunction } from 'express'
-let StatusCodes = require('http-status-codes')
+const mongoose = require('mongoose');
+import {
+	ReasonPhrases,
+	StatusCodes,
+	getReasonPhrase,
+	getStatusCode,
+} from 'http-status-codes';
 
 let Review = require('../models/review')
 import { Business } from '../models/business'
@@ -10,9 +16,9 @@ const createReview = async (
   res: Response,
   next: NextFunction
 ) => {
-  console.log(req.body)
   const { comment, rating, business, author } = req.body
-
+  let profile
+  
   const newReview = new Review({
     comment,
     rating,
@@ -26,17 +32,15 @@ const createReview = async (
     return next(error)
   }
   let businessFind = await Business.findById(business)
-  console.log('businessFind', businessFind)
   businessFind.reviews.push(newReview)
   await businessFind.save()
 
   let authorFind = await User.findById(author)
-  console.log('authorFind', authorFind)
   authorFind.reviews.push(newReview)
   await authorFind.save()
+  profile = await User.findById(author)  
 
-  console.log('review', newReview)
-  res.status(201).json({ review: newReview })
+  res.status(201).json({ review: newReview, result: profile })
 }
 
 const updateReview = async (
@@ -72,7 +76,6 @@ const getReview = async (req: Request, res: Response, next: NextFunction) => {
   let review
 
   const reviewId = req.params.id
-  console.log('in get review', req.params.id)
 
   try {
     review = await Review.findById(reviewId)
@@ -90,39 +93,39 @@ const deleteReview = async (
   res: Response,
   next: NextFunction
 ) => {
-  let review
-  let busReview
-  let authorReview
-  const { business, author } = req.body
+  const reviewId = req.params.id;
+  const authorId = req.body.profileId;
+  let review;
+  let profile;
 
-  const reviewId = req.params.id
 
-  //     // await Review.findByIdAndRemove(reviewId)
-  // } catch (err) {
-  //   return next(err)
-  // }
-  console.log('in review controller', reviewId, business, author)
+  try{
+    review = await Review.findById(reviewId)
+      .populate('business')
+      .populate('author');
+  }catch(err){
+    res.status(StatusCodes.NOT_FOUND).json({ message:"Something went wrong, error to find a review with this ID."});
+  }
 
-  // const reviewResponse = await ReviewsDAO.deleteReview(
-  //   reviewId,
-  //   userId,
-  // )
+  if(!review){
+    res.status(StatusCodes.NOT_FOUND).json({ message: 'Could not find review for this ID' })
+  }
 
-  // try {
-  //   review = await Review.findById(reviewId)
-  // } catch (err) {
-  //   return next(err)
-  // }
-
-  // try {
-  //   if (review) {
-  //     await review.remove()
-  //   }
-  // } catch (err) {
-  //   return next(err)
-  // }
-
-  res.json({ message: 'Delete successfully' })
+  try {
+    const sess = await mongoose.startSession();
+    sess.startTransaction();
+    review.remove({session: sess});
+    review.author.reviews.pull(reviewId);
+    await review.author.save({session: sess});
+    review.business.reviews.pull(reviewId);
+    await review.business.save({session: sess});
+    await sess.commitTransaction();
+    //get the profile again
+    profile = await User.findById(authorId)            
+    res.status(StatusCodes.OK).json({ result: profile })
+  } catch (error) {
+    res.status(StatusCodes.BAD_REQUEST).json({ message: 'Could not delete.' })
+  }
 }
 
 exports.createReview = createReview

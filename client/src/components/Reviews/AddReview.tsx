@@ -26,6 +26,7 @@ export const AddReview = () => {
   const { comment } = reviewForm
 
   const user = JSON.parse(localStorage.getItem('profile') ?? 'false').result
+  const token = JSON.parse(localStorage.getItem('profile') ?? 'false').token
 
   const handleChange = e => {
     e.preventDefault()
@@ -52,7 +53,13 @@ export const AddReview = () => {
       if (!response.ok) {
         throw new Error('New review not saved! Please resubmit.')
       }
-      await response.json()
+      const res = await response.json()
+      window.localStorage.removeItem('profile');
+      let userModified ={
+          result :  res.result , 
+          token
+      }
+      window.localStorage.setItem('profile', JSON.stringify(userModified));
       alert('Review successful.')
     } catch (error) {
       console.error('Review not created.')

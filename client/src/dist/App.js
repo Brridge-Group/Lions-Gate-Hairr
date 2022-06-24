@@ -30,7 +30,9 @@ exports.App = function () {
         React.createElement(react_router_dom_1.Route, { path: '/users/:id', exact: true },
             React.createElement(EditProfile_1.EditProfile, null)),
         React.createElement(react_router_dom_1.Route, { path: '/my-businesses', exact: true },
-            React.createElement(MyBusinessList_1.MyBusinessList, null)),
+            React.createElement(MyBusinessList_1.MyBusinessList, { toggle: false, setToggle: function (value) {
+                    throw new Error('Function not implemented.');
+                } })),
         React.createElement(react_router_dom_1.Route, { path: '/businesses/:id', exact: true },
             React.createElement(BusinessDetails_1.BusinessDetails, null)),
         React.createElement(react_router_dom_1.Route, { path: '/businessByCity/:city', exact: true },

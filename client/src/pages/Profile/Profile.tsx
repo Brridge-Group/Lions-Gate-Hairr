@@ -19,12 +19,11 @@ export const Profile = () => {
     localStorage.getItem('profile') || 'false'
   ).result
 
-  const token = JSON.parse(
-    localStorage.getItem('profile') || 'false'
-  ).token
+  const token = JSON.parse(localStorage.getItem('profile') || 'false').token
 
   const [userReview, getUserReview] = useState([])
   const [loading, setLoading] = useState(true)
+  const [toggle, setToggle] = useState<boolean>(false)
 
   useEffect(() => {
     const fetchReviews = () => {
@@ -40,22 +39,22 @@ export const Profile = () => {
 
   const deleteReview = async (id: any) => {
     try {
-      axios.delete(`api/reviews/${id}`, { data: { profileId: _id}})
-                .then(res => {
-                  window.localStorage.removeItem('profile');
-                  const {result} = res.data;
-                  let userModified ={
-                    result , 
-                    token
-                }
-                  window.localStorage.setItem('profile', JSON.stringify(userModified));
-                } )
+      axios
+        .delete(`api/reviews/${id}`, { data: { profileId: _id } })
+        .then(res => {
+          window.localStorage.removeItem('profile')
+          const { result } = res.data
+          let userModified = {
+            result,
+            token,
+          }
+          window.localStorage.setItem('profile', JSON.stringify(userModified))
+        })
       history.push('/')
     } catch (error) {
-      console.log('error in delete review');
+      console.log('error in delete review')
     }
   }
-
 
   return (
     <div
@@ -85,11 +84,9 @@ export const Profile = () => {
                     {!loading &&
                       userReview.map((r: any) => (
                         <>
-                          <li
-                            key={r._id}
-                            className='Profile_reviews'>
+                          <li key={r._id} className='Profile_reviews'>
                             <div className='column-left'>
-                              <img src={r.data.review.business.image} alt=''/>
+                              <img src={r.data.review.business.image} alt='' />
                               <div className='review-btns'>
                                 <Link
                                   to={{
@@ -98,16 +95,14 @@ export const Profile = () => {
                                   }}>
                                   {' '}
                                   <h6 className='btn--btn-primary reviews'>
-                                    edit 
+                                    edit
                                   </h6>
                                 </Link>
 
                                 <button
                                   className='btn--btn-primary reviews'
                                   onClick={() =>
-                                    deleteReview(
-                                      r.data.review._id
-                                    )
+                                    deleteReview(r.data.review._id)
                                   }>
                                   delete
                                 </button>
@@ -140,7 +135,8 @@ export const Profile = () => {
             </div>
           </div>
         ) : (
-          <MyBusinessList />
+          // <MyBusinessList />
+          <MyBusinessList toggle={toggle} setToggle={setToggle} />
         )}
       </div>
     </div>

@@ -1,4 +1,15 @@
 "use strict";
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -45,12 +56,10 @@ require("../../pages/Profile/Profile.css");
 require("./MyBusinessList.css");
 var BusinessReviews_1 = require("../BusinessReviews/BusinessReviews");
 var LoadSpinner_1 = require("../LoadSpinner/LoadSpinner");
-exports.MyBusinessList = function () {
+exports.MyBusinessList = function (props) {
     var history = react_router_dom_1.useHistory();
     var _a = react_1.useState([]), list = _a[0], setList = _a[1];
     var _b = react_1.useState(true), loading = _b[0], setLoading = _b[1];
-    var _c = react_1.useState(false), toggle = _c[0], setToggle = _c[1];
-    var _d = react_1.useState(list.map(function (element) { return true; })), show = _d[0], setShow = _d[1];
     var user = JSON.parse(localStorage.getItem('profile') || 'false').result;
     react_1.useEffect(function () {
         var fetchData = function () { return __awaiter(void 0, void 0, void 0, function () {
@@ -79,25 +88,11 @@ exports.MyBusinessList = function () {
         }); };
         fetchData();
     }, []);
-    console.log('in my bus list,list', list);
-    var menuBus = toggle ? 'menu-business open' : 'menu-business';
-    // const showNumber = list.map((l, i) => i)
-    var showNumber = list.map(function (l, i) { return i; });
-    var toggleIt = function (idx) {
-        // showNumber.map(i => {å
-        console.log(showNumber, 'i, id, toggleit, showNumber');
-        // if (id === showNumber) {
-        // if (showNumber == idx) {
-        setToggle(!toggle);
-        // }
-        //FIX THIS only toggle above idx
-        // })
+    var _c = react_1.useState({}), selected = _c[0], setSelected = _c[1];
+    var toggleIt = function (id) {
+        var _a;
+        setSelected(__assign(__assign({}, selected), (_a = {}, _a[id] = !selected[id], _a)));
     };
-    //   hideShow = (index) => {
-    //     const newShowStatus = [...this.state.show];
-    //     newShowStatus[index] = !this.state.show[index];
-    //     this.setState({show: newShowStatus});
-    // }
     console.log('in business list, list', list);
     return (React.createElement("div", { className: 'Profile_user' },
         React.createElement("h1", { className: 'Profile_name' },
@@ -113,9 +108,9 @@ exports.MyBusinessList = function () {
                         React.createElement(About_1.About, { name: business.businessName, description: business.description, image: business.image, address: business.address }),
                         React.createElement(Star_1.Star, { stars: business.stars }),
                         React.createElement("div", { className: 'BusinessCard-buttons' },
-                            React.createElement("h6", { className: 'btn--btn-primary twoLines business reviews', 
-                                // onClick={() => toggleIt(business._id)}
-                                onClick: function () { return toggleIt(idx); }, "data-idx": idx, id: business._id }, !toggle ? 'read reviews' : 'close reviews'),
+                            React.createElement("h6", { className: 'btn--btn-primary twoLines business reviews', onClick: function () { return toggleIt(business._id); }, "data-idx": idx, id: business._id }, !selected[business._id]
+                                ? 'read reviews'
+                                : 'close reviews'),
                             React.createElement(react_router_dom_1.Link, { to: '#' },
                                 React.createElement("h6", { className: 'btn--btn-primary twoLines business' },
                                     "edit ",
@@ -123,7 +118,9 @@ exports.MyBusinessList = function () {
                                     "business")),
                             React.createElement(react_router_dom_1.Link, { to: '#' },
                                 React.createElement("h6", { className: 'btn--btn-primary twoLines business' }, "delete business"))),
-                        React.createElement("div", { className: menuBus },
+                        React.createElement("div", { className: !selected[business._id]
+                                ? 'menu-business open'
+                                : 'menu-business' },
                             React.createElement(BusinessReviews_1.BusinessReviews, { reviews: business.reviews })))); }),
                     ' '))))),
         React.createElement("div", { className: 'Profile_links' },

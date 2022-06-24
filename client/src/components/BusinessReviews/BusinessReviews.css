@@ -48,3 +48,6 @@ ul.BusinessReviews_container {
   overflow-y: scroll;
   height: 95%;
 }
+.BusinessReviews_container-noReviews {
+  margin-top: 20px;
+}

@@ -12,14 +12,15 @@ import { LoadSpinner } from '../LoadSpinner/LoadSpinner'
 interface BusinessReviews {
   reviews: Array<[]>
 }
+interface Props {
+  toggle: boolean
+  setToggle: (value: boolean | ((prevVar: boolean) => boolean)) => void
+}
 
-export const MyBusinessList = () => {
+export const MyBusinessList = (props: Props) => {
   const history = useHistory()
   const [list, setList] = useState<any[]>([])
   const [loading, setLoading] = useState(true)
-  const [toggle, setToggle] = useState(false)
-
-  const [show, setShow] = useState(list.map(element => true))
 
   const user = JSON.parse(localStorage.getItem('profile') || 'false').result
 
@@ -39,30 +40,12 @@ export const MyBusinessList = () => {
     }
     fetchData()
   }, [])
-  console.log('in my bus list,list', list)
-  const menuBus = toggle ? 'menu-business open' : 'menu-business'
 
-  // const showNumber = list.map((l, i) => i)
-  const showNumber = list.map((l, i) => i)
+  const [selected, setSelected] = useState({})
 
-  const toggleIt = (idx: any) => {
-    // showNumber.map(i => {å
-    console.log(showNumber, 'i, id, toggleit, showNumber')
-    // if (id === showNumber) {
-    // if (showNumber == idx) {
-    setToggle(!toggle)
-    // }
-    //FIX THIS only toggle above idx
-
-    // })
+  const toggleIt = (id: any) => {
+    setSelected({ ...selected, [id]: !selected[id] })
   }
-
-  //   hideShow = (index) => {
-  //     const newShowStatus = [...this.state.show];
-  //     newShowStatus[index] = !this.state.show[index];
-  //     this.setState({show: newShowStatus});
-  // }
-
   console.log('in business list, list', list)
 
   return (
@@ -93,11 +76,12 @@ export const MyBusinessList = () => {
                     <div className='BusinessCard-buttons'>
                       <h6
                         className='btn--btn-primary twoLines business reviews'
-                        // onClick={() => toggleIt(business._id)}
-                        onClick={() => toggleIt(idx)}
+                        onClick={() => toggleIt(business._id)}
                         data-idx={idx}
                         id={business._id}>
-                        {!toggle ? 'read reviews' : 'close reviews'}
+                        {!selected[business._id]
+                          ? 'read reviews'
+                          : 'close reviews'}
                       </h6>
                       <Link to={'#'}>
                         <h6 className='btn--btn-primary twoLines business'>
@@ -111,8 +95,12 @@ export const MyBusinessList = () => {
                         </h6>
                       </Link>
                     </div>
-                    {/* <div className='Reviews-dropdown-toggle'> */}
-                    <div className={menuBus}>
+                    <div
+                      className={
+                        !selected[business._id]
+                          ? 'menu-business open'
+                          : 'menu-business'
+                      }>
                       <BusinessReviews reviews={business.reviews} />
                     </div>
                   </div>

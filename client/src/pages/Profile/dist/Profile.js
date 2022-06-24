@@ -47,9 +47,10 @@ var axios_1 = require("axios");
 exports.Profile = function () {
     var history = react_router_dom_1.useHistory();
     var _a = JSON.parse(localStorage.getItem('profile') || 'false').result, role = _a.role, _id = _a._id, name = _a.name, imageProfile = _a.imageProfile, reviews = _a.reviews;
+    var token = JSON.parse(localStorage.getItem('profile') || 'false').token;
     var _b = react_1.useState([]), userReview = _b[0], getUserReview = _b[1];
     var _c = react_1.useState(true), loading = _c[0], setLoading = _c[1];
-    // need to update local storage when add new review
+    var _d = react_1.useState(false), toggle = _d[0], setToggle = _d[1];
     react_1.useEffect(function () {
         var fetchReviews = function () {
             Promise.all(reviews.map(function (review) { return axios_1["default"].get("api/reviews/" + review); }))
@@ -57,24 +58,29 @@ exports.Profile = function () {
                 .then(function (data) { return getUserReview(data); });
         };
         fetchReviews();
-        // setLoadedItems(responseData.items)
         setLoading(false);
     }, []);
-    //   let deleteReview = {
-    //   author:
-    // }
-    var deleteReview = function (id, author, business) { return __awaiter(void 0, void 0, void 0, function () {
-        var deletedReview;
+    var deleteReview = function (id) { return __awaiter(void 0, void 0, void 0, function () {
         return __generator(this, function (_a) {
-            console.log(id, author, business);
-            deletedReview = {
-                author: author,
-                business: business
-            };
+            try {
+                axios_1["default"]["delete"]("api/reviews/" + id, { data: { profileId: _id } })
+                    .then(function (res) {
+                    window.localStorage.removeItem('profile');
+                    var result = res.data.result;
+                    var userModified = {
+                        result: result,
+                        token: token
+                    };
+                    window.localStorage.setItem('profile', JSON.stringify(userModified));
+                });
+                history.push('/');
+            }
+            catch (error) {
+                console.log('error in delete review');
+            }
             return [2 /*return*/];
         });
     }); };
-    console.log('in profile, userReview', userReview);
     return (React.createElement("div", { className: role === 'user'
             ? 'FeatureContainer_image User'
             : 'FeatureContainer_image Owner' },
@@ -89,9 +95,9 @@ exports.Profile = function () {
                     React.createElement("h4", null, "your reviews"),
                     loading ? (React.createElement(LoadSpinner_1.LoadSpinner, null)) : !userReview.length ? ('add some reviews') : (React.createElement("ul", { className: 'Profile_User_reviews' }, !loading &&
                         userReview.map(function (r) { return (React.createElement(React.Fragment, null,
-                            React.createElement("li", { key: r.data.review._id, className: 'Profile_reviews' },
+                            React.createElement("li", { key: r._id, className: 'Profile_reviews' },
                                 React.createElement("div", { className: 'column-left' },
-                                    React.createElement("img", { src: r.data.review.business.image }),
+                                    React.createElement("img", { src: r.data.review.business.image, alt: '' }),
                                     React.createElement("div", { className: 'review-btns' },
                                         React.createElement(react_router_dom_1.Link, { to: {
                                                 pathname: "/reviews/" + r.data.review._id + "/edit-review",
@@ -100,7 +106,7 @@ exports.Profile = function () {
                                             ' ',
                                             React.createElement("h6", { className: 'btn--btn-primary reviews' }, "edit")),
                                         React.createElement("button", { className: 'btn--btn-primary reviews', onClick: function () {
-                                                return deleteReview(r.data.review._id, r.data.review.author._id, r.data.review.business._id);
+                                                return deleteReview(r.data.review._id);
                                             } }, "delete"))),
                                 React.createElement("div", { className: 'column-right' },
                                     React.createElement("h2", null, r.data.review.business.businessName),
@@ -112,5 +118,7 @@ exports.Profile = function () {
                     React.createElement("h6", { className: 'btn--btn-primary' }, "update profile")),
                 React.createElement(react_router_dom_1.Link, { to: '/add-business' },
                     ' ',
-                    React.createElement("h6", { className: 'btn--btn-primary twoLines' }, "become an owner"))))) : (React.createElement(MyBusinessList_1.MyBusinessList, null)))));
+                    React.createElement("h6", { className: 'btn--btn-primary twoLines' }, "become an owner"))))) : (
+        // <MyBusinessList />
+        React.createElement(MyBusinessList_1.MyBusinessList, { toggle: toggle, setToggle: setToggle })))));
 };

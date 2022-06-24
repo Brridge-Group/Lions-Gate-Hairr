@@ -67,7 +67,11 @@ export const BusinessReviews = (props: Props) => {
   // console.log(reviews, 'reviews, in business reviews')
   return (
     <ul className='BusinessReviews_container'>
-      {!loading &&
+      {!loading && !businessReview.length ? (
+        <h6 className='BusinessReviews_container-noReviews'>
+          sorry, no reviews
+        </h6>
+      ) : (
         businessReview.map((r: any) => (
           <li key={r.data.review._id} className='Business_reviews'>
             <div className='Business_column-left '>
@@ -83,7 +87,8 @@ export const BusinessReviews = (props: Props) => {
               <h6>{r.data.review.comment}</h6>
             </div>
           </li>
-        ))}
+        ))
+      )}
     </ul>
   )
 }

@@ -40,18 +40,8 @@ export const App = () => {
         <EditProfile />
       </Route>
       <Route path='/my-businesses' exact>
-        <MyBusinessList
-          toggle={false}
-          setToggle={function (
-            value: boolean | ((prevVar: boolean) => boolean)
-          ): void {
-            throw new Error('Function not implemented.')
-          }}
-        />
-      </Route>
-      {/* <Route path='/my-businesses' exact>
         <MyBusinessList />
-      </Route> */}
+      </Route>
       <Route path='/businesses/:id' exact>
         <BusinessDetails />
       </Route>

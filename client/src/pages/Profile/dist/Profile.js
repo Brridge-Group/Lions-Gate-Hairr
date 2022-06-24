@@ -50,7 +50,6 @@ exports.Profile = function () {
     var token = JSON.parse(localStorage.getItem('profile') || 'false').token;
     var _b = react_1.useState([]), userReview = _b[0], getUserReview = _b[1];
     var _c = react_1.useState(true), loading = _c[0], setLoading = _c[1];
-    var _d = react_1.useState(false), toggle = _d[0], setToggle = _d[1];
     react_1.useEffect(function () {
         var fetchReviews = function () {
             Promise.all(reviews.map(function (review) { return axios_1["default"].get("api/reviews/" + review); }))
@@ -118,7 +117,5 @@ exports.Profile = function () {
                     React.createElement("h6", { className: 'btn--btn-primary' }, "update profile")),
                 React.createElement(react_router_dom_1.Link, { to: '/add-business' },
                     ' ',
-                    React.createElement("h6", { className: 'btn--btn-primary twoLines' }, "become an owner"))))) : (
-        // <MyBusinessList />
-        React.createElement(MyBusinessList_1.MyBusinessList, { toggle: toggle, setToggle: setToggle })))));
+                    React.createElement("h6", { className: 'btn--btn-primary twoLines' }, "become an owner"))))) : (React.createElement(MyBusinessList_1.MyBusinessList, null)))));
 };

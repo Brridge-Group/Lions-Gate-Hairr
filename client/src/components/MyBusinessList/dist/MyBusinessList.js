@@ -56,10 +56,11 @@ require("../../pages/Profile/Profile.css");
 require("./MyBusinessList.css");
 var BusinessReviews_1 = require("../BusinessReviews/BusinessReviews");
 var LoadSpinner_1 = require("../LoadSpinner/LoadSpinner");
-exports.MyBusinessList = function (props) {
+exports.MyBusinessList = function () {
     var history = react_router_dom_1.useHistory();
     var _a = react_1.useState([]), list = _a[0], setList = _a[1];
     var _b = react_1.useState(true), loading = _b[0], setLoading = _b[1];
+    var _c = react_1.useState(false), isToggle = _c[0], setIsToggle = _c[1];
     var user = JSON.parse(localStorage.getItem('profile') || 'false').result;
     react_1.useEffect(function () {
         var fetchData = function () { return __awaiter(void 0, void 0, void 0, function () {
@@ -88,10 +89,19 @@ exports.MyBusinessList = function (props) {
         }); };
         fetchData();
     }, []);
-    var _c = react_1.useState({}), selected = _c[0], setSelected = _c[1];
+    var _d = react_1.useState({}), selected = _d[0], setSelected = _d[1];
     var toggleIt = function (id) {
-        var _a;
+        var _a, _b;
         setSelected(__assign(__assign({}, selected), (_a = {}, _a[id] = !selected[id], _a)));
+        console.log(__assign(__assign({}, selected), (_b = {}, _b[id] = !selected[id], _b)), 'toggleit selected');
+        // setIsToggle(!isToggle)
+        var dropDownArray = list.map(function (l) { return l._id; });
+        console.log(dropDownArray, 'dropDownArray', id, 'id');
+        dropDownArray.filter(function (drop) {
+            if (drop === id) {
+                console.log('yes');
+            }
+        });
     };
     console.log('in business list, list', list);
     return (React.createElement("div", { className: 'Profile_user' },
@@ -119,8 +129,8 @@ exports.MyBusinessList = function (props) {
                             React.createElement(react_router_dom_1.Link, { to: '#' },
                                 React.createElement("h6", { className: 'btn--btn-primary twoLines business' }, "delete business"))),
                         React.createElement("div", { className: !selected[business._id]
-                                ? 'menu-business open'
-                                : 'menu-business' },
+                                ? 'menu-business'
+                                : 'menu-business open' },
                             React.createElement(BusinessReviews_1.BusinessReviews, { reviews: business.reviews })))); }),
                     ' '))))),
         React.createElement("div", { className: 'Profile_links' },

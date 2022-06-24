@@ -23,7 +23,6 @@ export const Profile = () => {
 
   const [userReview, getUserReview] = useState([])
   const [loading, setLoading] = useState(true)
-  const [toggle, setToggle] = useState<boolean>(false)
 
   useEffect(() => {
     const fetchReviews = () => {
@@ -135,8 +134,7 @@ export const Profile = () => {
             </div>
           </div>
         ) : (
-          // <MyBusinessList />
-          <MyBusinessList toggle={toggle} setToggle={setToggle} />
+          <MyBusinessList />
         )}
       </div>
     </div>

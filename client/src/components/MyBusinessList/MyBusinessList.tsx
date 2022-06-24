@@ -12,15 +12,12 @@ import { LoadSpinner } from '../LoadSpinner/LoadSpinner'
 interface BusinessReviews {
   reviews: Array<[]>
 }
-interface Props {
-  toggle: boolean
-  setToggle: (value: boolean | ((prevVar: boolean) => boolean)) => void
-}
 
-export const MyBusinessList = (props: Props) => {
+export const MyBusinessList = () => {
   const history = useHistory()
   const [list, setList] = useState<any[]>([])
   const [loading, setLoading] = useState(true)
+  const [isToggle, setIsToggle] = useState(false)
 
   const user = JSON.parse(localStorage.getItem('profile') || 'false').result
 
@@ -45,6 +42,16 @@ export const MyBusinessList = (props: Props) => {
 
   const toggleIt = (id: any) => {
     setSelected({ ...selected, [id]: !selected[id] })
+    console.log({ ...selected, [id]: !selected[id] }, 'toggleit selected')
+    // setIsToggle(!isToggle)
+
+    const dropDownArray = list.map(l => l._id)
+    console.log(dropDownArray, 'dropDownArray', id, 'id')
+    dropDownArray.filter(drop => {
+      if (drop === id) {
+        console.log('yes')
+      }
+    })
   }
   console.log('in business list, list', list)
 
@@ -62,7 +69,6 @@ export const MyBusinessList = (props: Props) => {
           <>
             <div className='Profile-UserContainer_reviews business'>
               <h4>Your businesses</h4>
-              {/* TODO: fix styles */}
               <div className='BusinessCard-container'>
                 {list.map((business: any, idx) => (
                   <div className='BusinessCard ' key={business._id}>
@@ -98,8 +104,8 @@ export const MyBusinessList = (props: Props) => {
                     <div
                       className={
                         !selected[business._id]
-                          ? 'menu-business open'
-                          : 'menu-business'
+                          ? 'menu-business'
+                          : 'menu-business open'
                       }>
                       <BusinessReviews reviews={business.reviews} />
                     </div>

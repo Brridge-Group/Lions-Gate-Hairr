@@ -67,7 +67,7 @@ export const BusinessReviews = (props: Props) => {
   // console.log(reviews, 'reviews, in business reviews')
   return (
     <ul className='BusinessReviews_container'>
-      {!loading && !businessReview.length ? (
+      {!loading && !businessReview ? (
         <h6 className='BusinessReviews_container-noReviews'>
           sorry, no reviews
         </h6>

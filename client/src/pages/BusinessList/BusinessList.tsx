@@ -89,7 +89,7 @@ export const BusinessList = () => {
     }
     fetchData()
   }, [])
-  // console.log(`initial list`, list)
+  console.log(`bus list.reviews`, list.reviews, list)
 
   //* Fetch Features and Services from the database
   useEffect(() => {
@@ -260,7 +260,11 @@ export const BusinessList = () => {
                 filteredResults?.map((business: any) => (
                   <>
                     <Card className='BusinessCard List' key={business._id}>
-                      <Link to={`/businesses/${business._id}`}>
+                      <Link
+                        to={{
+                          pathname: `/businesses/${business._id}`,
+                          state: business.reviews,
+                        }}>
                         <About
                           name={business.businessName}
                           description={business.description}
@@ -268,6 +272,7 @@ export const BusinessList = () => {
                           address={business.address}
                         />
                       </Link>
+
                       <Star stars={business.stars} />
                     </Card>
                   </>

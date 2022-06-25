@@ -93,25 +93,22 @@ exports.Profile = function () {
                 React.createElement("div", { className: 'Profile-UserContainer_reviews' },
                     React.createElement("h4", null, "your reviews"),
                     loading ? (React.createElement(LoadSpinner_1.LoadSpinner, null)) : !userReview.length ? ('add some reviews') : (React.createElement("ul", { className: 'Profile_User_reviews' }, !loading &&
-                        userReview.map(function (r) { return (React.createElement(React.Fragment, null,
-                            React.createElement("li", { key: r._id, className: 'Profile_reviews' },
-                                React.createElement("div", { className: 'column-left' },
-                                    React.createElement("img", { src: r.data.review.business.image, alt: '' }),
-                                    React.createElement("div", { className: 'review-btns' },
-                                        React.createElement(react_router_dom_1.Link, { to: {
-                                                pathname: "/reviews/" + r.data.review._id + "/edit-review",
-                                                state: r.data.review
-                                            } },
-                                            ' ',
-                                            React.createElement("h6", { className: 'btn--btn-primary reviews' }, "edit")),
-                                        React.createElement("button", { className: 'btn--btn-primary reviews', onClick: function () {
-                                                return deleteReview(r.data.review._id);
-                                            } }, "delete"))),
-                                React.createElement("div", { className: 'column-right' },
-                                    React.createElement("h2", null, r.data.review.business.businessName),
-                                    React.createElement("h5", null, r.data.review.business.address.city),
-                                    React.createElement(Star_1.StarSmall, { stars: r.data.review.rating }),
-                                    React.createElement("h5", null, r.data.review.comment))))); }))))),
+                        userReview.map(function (r) { return (React.createElement("li", { key: r._id, className: 'Profile_reviews' },
+                            React.createElement("div", { className: 'column-left' },
+                                React.createElement("img", { src: r.data.review.business.image, alt: '' }),
+                                React.createElement("div", { className: 'review-btns' },
+                                    React.createElement(react_router_dom_1.Link, { to: {
+                                            pathname: "/reviews/" + r.data.review._id + "/edit-review",
+                                            state: r.data.review
+                                        } },
+                                        ' ',
+                                        React.createElement("h6", { className: 'btn--btn-primary reviews' }, "edit")),
+                                    React.createElement("button", { className: 'btn--btn-primary reviews', onClick: function () { return deleteReview(r.data.review._id); } }, "delete"))),
+                            React.createElement("div", { className: 'column-right' },
+                                React.createElement("h2", null, r.data.review.business.businessName),
+                                React.createElement("h5", null, r.data.review.business.address.city),
+                                React.createElement(Star_1.StarSmall, { stars: r.data.review.rating }),
+                                React.createElement("h5", null, r.data.review.comment)))); }))))),
             React.createElement("div", { className: 'Profile_links' },
                 React.createElement(react_router_dom_1.Link, { to: "users/" + _id },
                     React.createElement("h6", { className: 'btn--btn-primary' }, "update profile")),

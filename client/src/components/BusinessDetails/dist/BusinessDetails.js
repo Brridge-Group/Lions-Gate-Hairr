@@ -46,9 +46,15 @@ require("./BusinessDetails.css");
 var BusinessReviews_1 = require("../BusinessReviews/BusinessReviews");
 var LoadSpinner_1 = require("../LoadSpinner/LoadSpinner");
 exports.BusinessDetails = function () {
-    var _a = react_1.useState(), businessData = _a[0], setBusinessData = _a[1];
+    var location = react_router_dom_1.useLocation();
+    var reviewData = location.state;
+    console.log('bus details, reviewData', reviewData);
+    // const [businessData, setBusiness] = useState<Business>()
+    var _a = react_1.useState(), business = _a[0], setBusiness = _a[1];
+    var _b = react_1.useState(true), loading = _b[0], setLoading = _b[1];
+    var _c = react_1.useState([]), businessReviews = _c[0], getBusinessReviews = _c[1];
     var id = react_router_dom_1.useParams().id;
-    console.log('in bus details, business data', businessData);
+    // console.log('in bus details, business data', business)
     // FETCHES BUSINESS DATA FROM REMOTE DATABSE ONCE AND SETS BUSINESSDATA STATE TO IT.
     react_1.useEffect(function () {
         var getBusinessData = function () { return __awaiter(void 0, void 0, void 0, function () {
@@ -61,33 +67,47 @@ exports.BusinessDetails = function () {
                         return [4 /*yield*/, res.json()];
                     case 2:
                         businessData = _a.sent();
-                        setBusinessData(businessData);
+                        setBusiness(businessData);
                         return [2 /*return*/];
                 }
             });
         }); };
         getBusinessData();
     }, []);
+    // console.log('bus details, business', business)
+    // useEffect(() => {
+    //   const fetchBusinessReviews = () => {
+    //     Promise.all(
+    //       reviewData.map((review: any) => axios.get(`api/reviews/${review}`))
+    //       // ).then((data: any) => getBusinessReviews(data))
+    //     ).then((data: any) =>
+    //       console.log(data, 'in fetch bus details promise, data')
+    //     )
+    //   }
+    //   fetchBusinessReviews()
+    //   setLoading(false)
+    // }, [])
+    console.log(businessReviews, 'businessReviews');
     // CHECKS IF THE BUSINESSDATA STATE HAS VALUE. RENDERS THE BUSINESS PAGE IF IT DOES AND SETS A LOADING SCREEN IF IT DOESN'T.
     // THE FIRST RENDER WON'T HAVE DATA, SINCE USEEFFECT, WHICH GIVES THE STATE IT'S VALUE, RUNS AFTER THE FIRST RENDER.
-    console.log('business details', businessData);
+    // console.log('business details', business)
     return (React.createElement("div", { className: ' FeatureContainer_image Home' },
-        React.createElement("div", { className: 'BusinessContainer' }, businessData ? (React.createElement(React.Fragment, null,
+        React.createElement("div", { className: 'BusinessContainer' }, business ? (React.createElement(React.Fragment, null,
             React.createElement("div", { className: 'BusinessDetails-leftColumn' },
                 React.createElement("h4", { className: 'sidebar-hed' },
                     React.createElement("label", { htmlFor: 'features' }, "Features")),
-                React.createElement("ul", { className: 'BusinessDetails-ul' }, businessData.features.map(function (feature) { return (React.createElement("h5", { className: 'features' },
+                React.createElement("ul", { className: 'BusinessDetails-ul' }, business.features.map(function (feature) { return (React.createElement("h5", { className: 'features' },
                     React.createElement("li", { key: feature._id }, feature.name))); })),
                 React.createElement("h4", { className: 'sidebar-hed' },
                     React.createElement("label", { htmlFor: 'features' }, "Services")),
-                React.createElement("ul", { className: 'BusinessDetails-ul' }, businessData.services.map(function (service) { return (React.createElement("h5", { className: 'services' },
+                React.createElement("ul", { className: 'BusinessDetails-ul' }, business.services.map(function (service) { return (React.createElement("h5", { className: 'services' },
                     React.createElement("li", { key: service._id }, service.name))); }))),
             React.createElement("div", { className: 'BusinessDetails-rightColumn' },
-                React.createElement(About_1.About, { name: businessData.businessName, description: businessData.description, image: businessData.image, address: businessData.address }),
+                React.createElement(About_1.About, { name: business.businessName, description: business.description, image: business.image, address: business.address }),
                 React.createElement("div", { className: 'BusinessDetails-buttons' },
-                    React.createElement(Review_1.Review, { id: id, stars: businessData.stars, ownerId: businessData.ownerId, name: businessData.businessName }),
-                    React.createElement(Book_1.Book, { phone: businessData.phone, ownerId: businessData.ownerId })),
+                    React.createElement(Review_1.Review, { id: id, stars: business.stars, ownerId: business.ownerId, name: business.businessName }),
+                    React.createElement(Book_1.Book, { phone: business.phone, ownerId: business.ownerId })),
                 React.createElement("div", { className: 'BusinessDetails_reviews' },
                     React.createElement("h4", null, "reviews"),
-                    React.createElement(BusinessReviews_1.BusinessReviews, { reviews: businessData.reviews }))))) : (React.createElement(LoadSpinner_1.LoadSpinner, null)))));
+                    React.createElement(BusinessReviews_1.BusinessReviews, { reviews: business.reviews }))))) : (React.createElement(LoadSpinner_1.LoadSpinner, null)))));
 };

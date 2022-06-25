@@ -54,7 +54,7 @@ var Star_1 = require("../../UIElements/Star");
 var About_1 = require("../BusinessDetails/About/About");
 require("../../pages/Profile/Profile.css");
 require("./MyBusinessList.css");
-var BusinessReviews_1 = require("../BusinessReviews/BusinessReviews");
+var MyBusinessReviews_1 = require("../BusinessReviews/MyBusinessReviews");
 var LoadSpinner_1 = require("../LoadSpinner/LoadSpinner");
 exports.MyBusinessList = function () {
     var history = react_router_dom_1.useHistory();
@@ -131,7 +131,7 @@ exports.MyBusinessList = function () {
                         React.createElement("div", { className: !selected[business._id]
                                 ? 'menu-business'
                                 : 'menu-business open' },
-                            React.createElement(BusinessReviews_1.BusinessReviews, { reviews: business.reviews })))); }),
+                            React.createElement(MyBusinessReviews_1.MyBusinessReviews, { reviews: business.reviews })))); }),
                     ' '))))),
         React.createElement("div", { className: 'Profile_links' },
             React.createElement(react_router_dom_1.Link, { to: "/users/" + user._id },

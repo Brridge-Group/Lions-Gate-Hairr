@@ -7,8 +7,10 @@ import axios from 'axios'
 
 interface Props {
   reviews: Array<[]>
-}
 
+  // const id = (state as any)?.id;
+}
+// const (_id: any)?._id
 // const location = useLocation<any>()
 // ownerId: string
 
@@ -53,42 +55,42 @@ export const BusinessReviews = (props: Props) => {
 
   const { reviews } = props
 
-  useEffect(() => {
-    const fetchBusinessReviews = () => {
-      Promise.all(
-        reviews.map((review: any) => axios.get(`api/reviews/${review}`))
-      ).then((data: any) => getBusinessReview(data))
-    }
-    fetchBusinessReviews()
-    setLoading(false)
-  }, [])
+  //ts@ignore
 
-  console.log(businessReview, 'businessReview')
+  // useEffect(() => {
+  //   const fetchBusinessReviews = () => {
+  //     Promise.all(
+  //       reviews.map((review: any) => axios.get(`api/reviews/${review._id}`))
+  //       // ).then((data: any) => getBusinessReview(data))
+  //     ).then((data: any) =>
+  //       console.log(data, 'in fetch bus reviews promise, data')
+  //     )
+  //   }
+  //   fetchBusinessReviews()
+  //   setLoading(false)
+  // }, [])
+
   // console.log(reviews, 'reviews, in business reviews')
   return (
     <ul className='BusinessReviews_container'>
-      {!loading && !businessReview ? (
-        <h6 className='BusinessReviews_container-noReviews'>
-          sorry, no reviews
-        </h6>
-      ) : (
-        businessReview.map((r: any) => (
-          <li key={r.data.review._id} className='Business_reviews'>
-            <div className='Business_column-left '>
-              <img
-                src={r.data.review.author.imageProfile}
-                className='person-circle'
-              />
-            </div>
-            <div className='Business_column-right'>
-              {r.data.review.author.name}
-              <h6 className='person-city'>do we want city, state</h6>
-              <StarSmall stars={r.data.review.rating} />
-              <h6>{r.data.review.comment}</h6>
-            </div>
-          </li>
-        ))
-      )}
+      {reviews.map((r: any) => (
+        <li key={r._id} className='Business_reviews author'>
+          <div className='Business_column-left '>
+            <div className='person-circle no-author'></div>
+            {/* <img
+              src={r.data.review.author.imageProfile}
+              className='person-circle'
+            /> */}
+          </div>
+          <div className='Business_column-right '>
+            person name
+            {/* {r.data.review.author.name} */}
+            <h6 className='person-city'>do we want city, state</h6>
+            <StarSmall stars={r.rating} />
+            <h6>{r.comment}</h6>
+          </div>
+        </li>
+      ))}
     </ul>
   )
 }

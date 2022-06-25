@@ -82,42 +82,38 @@ export const Profile = () => {
                   <ul className='Profile_User_reviews'>
                     {!loading &&
                       userReview.map((r: any) => (
-                        <>
-                          <li key={r._id} className='Profile_reviews'>
-                            <div className='column-left'>
-                              <img src={r.data.review.business.image} alt='' />
-                              <div className='review-btns'>
-                                <Link
-                                  to={{
-                                    pathname: `/reviews/${r.data.review._id}/edit-review`,
-                                    state: r.data.review,
-                                  }}>
-                                  {' '}
-                                  <h6 className='btn--btn-primary reviews'>
-                                    edit
-                                  </h6>
-                                </Link>
+                        <li key={r._id} className='Profile_reviews'>
+                          <div className='column-left'>
+                            <img src={r.data.review.business.image} alt='' />
+                            <div className='review-btns'>
+                              <Link
+                                to={{
+                                  pathname: `/reviews/${r.data.review._id}/edit-review`,
+                                  state: r.data.review,
+                                }}>
+                                {' '}
+                                <h6 className='btn--btn-primary reviews'>
+                                  edit
+                                </h6>
+                              </Link>
 
-                                <button
-                                  className='btn--btn-primary reviews'
-                                  onClick={() =>
-                                    deleteReview(r.data.review._id)
-                                  }>
-                                  delete
-                                </button>
-                              </div>
+                              <button
+                                className='btn--btn-primary reviews'
+                                onClick={() => deleteReview(r.data.review._id)}>
+                                delete
+                              </button>
                             </div>
-                            <div className='column-right'>
-                              {/* <Link */}
-                              {/* // to={`/businesses/${r.data.review.business._id}`}> */}
-                              <h2>{r.data.review.business.businessName}</h2>
-                              <h5>{r.data.review.business.address.city}</h5>
-                              <StarSmall stars={r.data.review.rating} />
-                              <h5>{r.data.review.comment}</h5>
-                              {/* </Link> */}
-                            </div>
-                          </li>
-                        </>
+                          </div>
+                          <div className='column-right'>
+                            {/* <Link */}
+                            {/* // to={`/businesses/${r.data.review.business._id}`}> */}
+                            <h2>{r.data.review.business.businessName}</h2>
+                            <h5>{r.data.review.business.address.city}</h5>
+                            <StarSmall stars={r.data.review.rating} />
+                            <h5>{r.data.review.comment}</h5>
+                            {/* </Link> */}
+                          </div>
+                        </li>
                       ))}
                   </ul>
                 )}

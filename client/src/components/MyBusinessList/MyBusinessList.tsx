@@ -5,11 +5,11 @@ import { Star } from '../../UIElements/Star'
 import { About } from '../BusinessDetails/About/About'
 import '../../pages/Profile/Profile.css'
 import './MyBusinessList.css'
-import { BusinessReviews } from '../BusinessReviews/BusinessReviews'
+import { MyBusinessReviews } from '../BusinessReviews/MyBusinessReviews'
 
 import { LoadSpinner } from '../LoadSpinner/LoadSpinner'
 
-interface BusinessReviews {
+interface MyBusinessReviews {
   reviews: Array<[]>
 }
 
@@ -107,7 +107,8 @@ export const MyBusinessList = () => {
                           ? 'menu-business'
                           : 'menu-business open'
                       }>
-                      <BusinessReviews reviews={business.reviews} />
+                      {/* <BusinessReviews reviews={business.reviews} /> */}
+                      <MyBusinessReviews reviews={business.reviews} />
                     </div>
                   </div>
                 ))}{' '}

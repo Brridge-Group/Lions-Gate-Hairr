@@ -3,6 +3,9 @@
   height: 75px;
   border-radius: 50%;
 }
+.person-circle.no-author {
+  background: slategray;
+}
 .Business_reviews {
   margin-top: 20px;
   font-size: 1.6rem;
@@ -37,21 +40,28 @@ h6 {
   margin-top: -5px;
   margin-bottom: 20px;
 }
-
+.Business_reviews.author:first-child {
+  margin-top: 0;
+}
 ul.BusinessReviews_container {
   padding: 0;
   list-style-type: none;
   margin-top: 2px;
-  border-top: 1px solid #f32dc8;
+  /* border-top: 1px solid #f32dc8; */
 }
-.BusinessDetails_reviews ul.BusinessReviews_container {
+.menu-business.open ul.BusinessReviews_container {
   border-top: none;
   margin-top: 0;
+  border-top: 1px solid #f32dc8;
 }
 .BusinessDetails_reviews h6.BusinessReviews_container-noReviews {
   margin-top: 0;
   text-align: center;
 }
+ul.BusinessReviews_container h6.BusinessReviews_container-noReviews {
+  text-align: center;
+}
+
 .BusinessReviews_container {
   overflow-y: scroll;
   height: 95%;

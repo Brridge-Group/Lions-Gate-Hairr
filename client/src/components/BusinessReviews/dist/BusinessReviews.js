@@ -9,20 +9,6 @@ exports.BusinessReviews = function (props) {
     var _b = react_1.useState([]), businessReview = _b[0], getBusinessReview = _b[1];
     console.log(props, props.reviews, 'props.reviews, in business reviews', props.reviews);
     var reviews = props.reviews;
-    //ts@ignore
-    // useEffect(() => {
-    //   const fetchBusinessReviews = () => {
-    //     Promise.all(
-    //       reviews.map((review: any) => axios.get(`api/reviews/${review._id}`))
-    //       // ).then((data: any) => getBusinessReview(data))
-    //     ).then((data: any) =>
-    //       console.log(data, 'in fetch bus reviews promise, data')
-    //     )
-    //   }
-    //   fetchBusinessReviews()
-    //   setLoading(false)
-    // }, [])
-    // console.log(reviews, 'reviews, in business reviews')
     return (React.createElement("ul", { className: 'BusinessReviews_container' }, reviews.map(function (r) { return (React.createElement("li", { key: r._id, className: 'Business_reviews author' },
         React.createElement("div", { className: 'Business_column-left ' },
             React.createElement("div", { className: 'person-circle no-author' })),

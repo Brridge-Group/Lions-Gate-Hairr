@@ -52,7 +52,6 @@ export const BusinessDetails = () => {
   const location = useLocation<any>()
   const reviewData = location.state
   console.log('bus details, reviewData', reviewData)
-  // const [businessData, setBusiness] = useState<Business>()
   const [business, setBusiness] = useState<Business>()
   const [loading, setLoading] = useState(true)
   const [businessReviews, getBusinessReviews] = useState([])
@@ -70,19 +69,6 @@ export const BusinessDetails = () => {
     }
     getBusinessData()
   }, [])
-  // console.log('bus details, business', business)
-  // useEffect(() => {
-  //   const fetchBusinessReviews = () => {
-  //     Promise.all(
-  //       reviewData.map((review: any) => axios.get(`api/reviews/${review}`))
-  //       // ).then((data: any) => getBusinessReviews(data))
-  //     ).then((data: any) =>
-  //       console.log(data, 'in fetch bus details promise, data')
-  //     )
-  //   }
-  //   fetchBusinessReviews()
-  //   setLoading(false)
-  // }, [])
 
   console.log(businessReviews, 'businessReviews')
 

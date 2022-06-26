@@ -94,7 +94,6 @@ exports.MyBusinessList = function () {
         var _a, _b;
         setSelected(__assign(__assign({}, selected), (_a = {}, _a[id] = !selected[id], _a)));
         console.log(__assign(__assign({}, selected), (_b = {}, _b[id] = !selected[id], _b)), 'toggleit selected');
-        // setIsToggle(!isToggle)
         var dropDownArray = list.map(function (l) { return l._id; });
         console.log(dropDownArray, 'dropDownArray', id, 'id');
         dropDownArray.filter(function (drop) {
@@ -103,7 +102,7 @@ exports.MyBusinessList = function () {
             }
         });
     };
-    console.log('in business list, list', list);
+    console.log('in my business list, list', list);
     return (React.createElement("div", { className: 'Profile_user' },
         React.createElement("h1", { className: 'Profile_name' },
             "Hello ",

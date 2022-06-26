@@ -49,7 +49,6 @@ exports.BusinessDetails = function () {
     var location = react_router_dom_1.useLocation();
     var reviewData = location.state;
     console.log('bus details, reviewData', reviewData);
-    // const [businessData, setBusiness] = useState<Business>()
     var _a = react_1.useState(), business = _a[0], setBusiness = _a[1];
     var _b = react_1.useState(true), loading = _b[0], setLoading = _b[1];
     var _c = react_1.useState([]), businessReviews = _c[0], getBusinessReviews = _c[1];
@@ -74,19 +73,6 @@ exports.BusinessDetails = function () {
         }); };
         getBusinessData();
     }, []);
-    // console.log('bus details, business', business)
-    // useEffect(() => {
-    //   const fetchBusinessReviews = () => {
-    //     Promise.all(
-    //       reviewData.map((review: any) => axios.get(`api/reviews/${review}`))
-    //       // ).then((data: any) => getBusinessReviews(data))
-    //     ).then((data: any) =>
-    //       console.log(data, 'in fetch bus details promise, data')
-    //     )
-    //   }
-    //   fetchBusinessReviews()
-    //   setLoading(false)
-    // }, [])
     console.log(businessReviews, 'businessReviews');
     // CHECKS IF THE BUSINESSDATA STATE HAS VALUE. RENDERS THE BUSINESS PAGE IF IT DOES AND SETS A LOADING SCREEN IF IT DOESN'T.
     // THE FIRST RENDER WON'T HAVE DATA, SINCE USEEFFECT, WHICH GIVES THE STATE IT'S VALUE, RUNS AFTER THE FIRST RENDER.

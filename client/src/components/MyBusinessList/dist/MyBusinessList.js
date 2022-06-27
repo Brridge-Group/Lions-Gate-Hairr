@@ -57,10 +57,8 @@ require("./MyBusinessList.css");
 var MyBusinessReviews_1 = require("../BusinessReviews/MyBusinessReviews");
 var LoadSpinner_1 = require("../LoadSpinner/LoadSpinner");
 exports.MyBusinessList = function () {
-    var history = react_router_dom_1.useHistory();
     var _a = react_1.useState([]), list = _a[0], setList = _a[1];
     var _b = react_1.useState(true), loading = _b[0], setLoading = _b[1];
-    var _c = react_1.useState(false), isToggle = _c[0], setIsToggle = _c[1];
     var user = JSON.parse(localStorage.getItem('profile') || 'false').result;
     react_1.useEffect(function () {
         var fetchData = function () { return __awaiter(void 0, void 0, void 0, function () {
@@ -89,7 +87,7 @@ exports.MyBusinessList = function () {
         }); };
         fetchData();
     }, []);
-    var _d = react_1.useState({}), selected = _d[0], setSelected = _d[1];
+    var _c = react_1.useState({}), selected = _c[0], setSelected = _c[1];
     var toggleIt = function (id) {
         var _a, _b;
         setSelected(__assign(__assign({}, selected), (_a = {}, _a[id] = !selected[id], _a)));

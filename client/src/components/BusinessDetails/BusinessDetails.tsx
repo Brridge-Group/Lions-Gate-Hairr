@@ -25,11 +25,7 @@ interface Feature {
   _id: string
   name: string
 }
-// interface Review {
-//   _id: string
-//   comment: string
-//   rating: number
-// }
+
 interface Business {
   businessName: string
   description: string
@@ -49,16 +45,10 @@ interface Business {
 }
 
 export const BusinessDetails = () => {
-  const location = useLocation<any>()
-  const reviewData = location.state
-  console.log('bus details, reviewData', reviewData)
-  const [business, setBusiness] = useState<Business>()
-  const [loading, setLoading] = useState(true)
-  const [businessReviews, getBusinessReviews] = useState([])
+  const [business, setBusiness] = useState<any>()
+  // const [business, setBusiness] = useState<Business>()
 
   const { id } = useParams<RouteParams>()
-
-  // console.log('in bus details, business data', business)
 
   // FETCHES BUSINESS DATA FROM REMOTE DATABSE ONCE AND SETS BUSINESSDATA STATE TO IT.
   useEffect(() => {
@@ -70,7 +60,7 @@ export const BusinessDetails = () => {
     getBusinessData()
   }, [])
 
-  console.log(businessReviews, 'businessReviews')
+  console.log(business, 'business, business details', business)
 
   // CHECKS IF THE BUSINESSDATA STATE HAS VALUE. RENDERS THE BUSINESS PAGE IF IT DOES AND SETS A LOADING SCREEN IF IT DOESN'T.
   // THE FIRST RENDER WON'T HAVE DATA, SINCE USEEFFECT, WHICH GIVES THE STATE IT'S VALUE, RUNS AFTER THE FIRST RENDER.

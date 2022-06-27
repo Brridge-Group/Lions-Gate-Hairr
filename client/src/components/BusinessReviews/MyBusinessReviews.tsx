@@ -7,22 +7,9 @@ interface Props {
   reviews: Array<[]>
 }
 
-interface MyBusinessReviews {
-  _id: string
-  comment: string
-  rating: number
-  author: string
-}
-
 export const MyBusinessReviews = (props: Props) => {
   const [loading, setLoading] = useState(true)
   const [myBusinessReview, getMyBusinessReview] = useState([])
-  // console.log(
-  //   props,
-  //   props.reviews,
-  //   'props.reviews, in mybusiness reviews',
-  //   props.reviews
-  // )
 
   const { reviews } = props
 

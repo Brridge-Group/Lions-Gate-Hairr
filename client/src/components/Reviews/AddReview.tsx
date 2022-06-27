@@ -12,6 +12,8 @@ interface AddReview {
   rating: number
   business: any
   author: any
+  image: string
+  name: string
 }
 export const AddReview = () => {
   const history = useHistory()
@@ -28,6 +30,8 @@ export const AddReview = () => {
   const user = JSON.parse(localStorage.getItem('profile') ?? 'false').result
   const token = JSON.parse(localStorage.getItem('profile') ?? 'false').token
 
+  console.log('user, in add review', user)
+
   const handleChange = e => {
     e.preventDefault()
     setReviewForm({ ...reviewForm, [e.target.name]: e.target.value })
@@ -38,8 +42,10 @@ export const AddReview = () => {
       author: user._id,
       business: id,
       rating: rating,
+      image: user.imageProfile,
+      name: user.name,
     }
-
+    console.log('new review', newReview)
     const requestOptions = {
       method: 'POST',
       headers: {
@@ -54,12 +60,12 @@ export const AddReview = () => {
         throw new Error('New review not saved! Please resubmit.')
       }
       const res = await response.json()
-      window.localStorage.removeItem('profile');
-      let userModified ={
-          result :  res.result , 
-          token
+      window.localStorage.removeItem('profile')
+      let userModified = {
+        result: res.result,
+        token,
       }
-      window.localStorage.setItem('profile', JSON.stringify(userModified));
+      window.localStorage.setItem('profile', JSON.stringify(userModified))
       alert('Review successful.')
     } catch (error) {
       console.error('Review not created.')

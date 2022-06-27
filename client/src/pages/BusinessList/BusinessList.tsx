@@ -263,7 +263,6 @@ export const BusinessList = () => {
                       <Link
                         to={{
                           pathname: `/businesses/${business._id}`,
-                          state: business.reviews,
                         }}>
                         <About
                           name={business.businessName}
@@ -272,14 +271,13 @@ export const BusinessList = () => {
                           address={business.address}
                         />
                       </Link>
-
                       <Star stars={business.stars} />
                     </Card>
                   </>
                 ))
               ) : (
                 <>
-                  <h2 BusinessCard-noResults>
+                  <h2 className='BusinessCard-noResults'>
                     No businesses were found with the chosen services and or
                     features.
                   </h2>

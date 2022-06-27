@@ -52,9 +52,7 @@ exports.Profile = function () {
     var _c = react_1.useState(true), loading = _c[0], setLoading = _c[1];
     react_1.useEffect(function () {
         var fetchReviews = function () {
-            Promise.all(reviews.map(function (review) { return axios_1["default"].get("api/reviews/" + review); }))
-                //   // @ts-ignore
-                .then(function (data) { return getUserReview(data); });
+            Promise.all(reviews.map(function (review) { return axios_1["default"].get("api/reviews/" + review); })).then(function (data) { return getUserReview(data); });
         };
         fetchReviews();
         setLoading(false);
@@ -103,12 +101,13 @@ exports.Profile = function () {
                                         } },
                                         ' ',
                                         React.createElement("h6", { className: 'btn--btn-primary reviews' }, "edit")),
-                                    React.createElement("button", { className: 'btn--btn-primary reviews', onClick: function () { return deleteReview(r.data.review._id); } }, "delete"))),
+                                    React.createElement("button", { className: 'btn--btn-primary reviews delete', onClick: function () { return deleteReview(r.data.review._id); } }, "delete"))),
                             React.createElement("div", { className: 'column-right' },
-                                React.createElement("h2", null, r.data.review.business.businessName),
-                                React.createElement("h5", null, r.data.review.business.address.city),
-                                React.createElement(Star_1.StarSmall, { stars: r.data.review.rating }),
-                                React.createElement("h5", null, r.data.review.comment)))); }))))),
+                                React.createElement(react_router_dom_1.Link, { to: "/businesses/" + r.data.review.business._id },
+                                    React.createElement("h2", null, r.data.review.business.businessName),
+                                    React.createElement("h5", null, r.data.review.business.address.city),
+                                    React.createElement(Star_1.StarSmall, { stars: r.data.review.rating }),
+                                    React.createElement("h5", null, r.data.review.comment))))); }))))),
             React.createElement("div", { className: 'Profile_links' },
                 React.createElement(react_router_dom_1.Link, { to: "users/" + _id },
                     React.createElement("h6", { className: 'btn--btn-primary' }, "update profile")),

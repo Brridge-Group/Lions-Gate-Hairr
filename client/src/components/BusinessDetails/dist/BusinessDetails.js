@@ -46,14 +46,9 @@ require("./BusinessDetails.css");
 var BusinessReviews_1 = require("../BusinessReviews/BusinessReviews");
 var LoadSpinner_1 = require("../LoadSpinner/LoadSpinner");
 exports.BusinessDetails = function () {
-    var location = react_router_dom_1.useLocation();
-    var reviewData = location.state;
-    console.log('bus details, reviewData', reviewData);
     var _a = react_1.useState(), business = _a[0], setBusiness = _a[1];
-    var _b = react_1.useState(true), loading = _b[0], setLoading = _b[1];
-    var _c = react_1.useState([]), businessReviews = _c[0], getBusinessReviews = _c[1];
+    // const [business, setBusiness] = useState<Business>()
     var id = react_router_dom_1.useParams().id;
-    // console.log('in bus details, business data', business)
     // FETCHES BUSINESS DATA FROM REMOTE DATABSE ONCE AND SETS BUSINESSDATA STATE TO IT.
     react_1.useEffect(function () {
         var getBusinessData = function () { return __awaiter(void 0, void 0, void 0, function () {
@@ -73,7 +68,7 @@ exports.BusinessDetails = function () {
         }); };
         getBusinessData();
     }, []);
-    console.log(businessReviews, 'businessReviews');
+    console.log(business, 'business, business details', business);
     // CHECKS IF THE BUSINESSDATA STATE HAS VALUE. RENDERS THE BUSINESS PAGE IF IT DOES AND SETS A LOADING SCREEN IF IT DOESN'T.
     // THE FIRST RENDER WON'T HAVE DATA, SINCE USEEFFECT, WHICH GIVES THE STATE IT'S VALUE, RUNS AFTER THE FIRST RENDER.
     // console.log('business details', business)

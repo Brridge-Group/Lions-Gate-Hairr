@@ -2,6 +2,7 @@
   width: 75px;
   height: 75px;
   border-radius: 50%;
+  background: slategray;
 }
 .person-circle.no-author {
   background: slategray;

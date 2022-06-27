@@ -59,27 +59,30 @@ var react_1 = require("react");
 var react_router_dom_1 = require("react-router-dom");
 require("./AddReview.css");
 exports.AddReview = function () {
-    var _a;
+    var _a, _b;
     var history = react_router_dom_1.useHistory();
     var location = react_router_dom_1.useLocation();
     var busName = location.state;
-    var _b = react_1.useState(0), rating = _b[0], setRating = _b[1];
-    var _c = react_1.useState(0), hover = _c[0], setHover = _c[1];
-    var _d = react_1.useState({ comment: '' }), reviewForm = _d[0], setReviewForm = _d[1];
+    var _c = react_1.useState(0), rating = _c[0], setRating = _c[1];
+    var _d = react_1.useState(0), hover = _d[0], setHover = _d[1];
+    var _e = react_1.useState({ comment: '' }), reviewForm = _e[0], setReviewForm = _e[1];
     var id = react_router_dom_1.useParams().id;
     var comment = reviewForm.comment;
     var user = JSON.parse((_a = localStorage.getItem('profile')) !== null && _a !== void 0 ? _a : 'false').result;
+    var token = JSON.parse((_b = localStorage.getItem('profile')) !== null && _b !== void 0 ? _b : 'false').token;
+    console.log('user, in add review', user);
     var handleChange = function (e) {
         var _a;
         e.preventDefault();
         setReviewForm(__assign(__assign({}, reviewForm), (_a = {}, _a[e.target.name] = e.target.value, _a)));
     };
     var saveNewReview = function () { return __awaiter(void 0, void 0, void 0, function () {
-        var newReview, requestOptions, response, error_1;
+        var newReview, requestOptions, response, res, userModified, error_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    newReview = __assign(__assign({}, reviewForm), { author: user._id, business: id, rating: rating });
+                    newReview = __assign(__assign({}, reviewForm), { author: user._id, business: id, rating: rating, image: user.imageProfile, name: user.name });
+                    console.log('new review', newReview);
                     requestOptions = {
                         method: 'POST',
                         headers: {
@@ -98,7 +101,13 @@ exports.AddReview = function () {
                     }
                     return [4 /*yield*/, response.json()];
                 case 3:
-                    _a.sent();
+                    res = _a.sent();
+                    window.localStorage.removeItem('profile');
+                    userModified = {
+                        result: res.result,
+                        token: token
+                    };
+                    window.localStorage.setItem('profile', JSON.stringify(userModified));
                     alert('Review successful.');
                     return [3 /*break*/, 5];
                 case 4:

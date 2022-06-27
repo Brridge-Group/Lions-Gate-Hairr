@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react'
 import { Link, useHistory } from 'react-router-dom'
-
 import { Star } from '../../UIElements/Star'
 import { About } from '../BusinessDetails/About/About'
 import '../../pages/Profile/Profile.css'
@@ -14,10 +13,8 @@ interface MyBusinessReviews {
 }
 
 export const MyBusinessList = () => {
-  const history = useHistory()
   const [list, setList] = useState<any[]>([])
   const [loading, setLoading] = useState(true)
-  const [isToggle, setIsToggle] = useState(false)
 
   const user = JSON.parse(localStorage.getItem('profile') || 'false').result
 
@@ -106,7 +103,6 @@ export const MyBusinessList = () => {
                           ? 'menu-business'
                           : 'menu-business open'
                       }>
-                      {/* <BusinessReviews reviews={business.reviews} /> */}
                       <MyBusinessReviews reviews={business.reviews} />
                     </div>
                   </div>

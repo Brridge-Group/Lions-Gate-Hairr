@@ -8,12 +8,6 @@ var axios_1 = require("axios");
 exports.MyBusinessReviews = function (props) {
     var _a = react_1.useState(true), loading = _a[0], setLoading = _a[1];
     var _b = react_1.useState([]), myBusinessReview = _b[0], getMyBusinessReview = _b[1];
-    // console.log(
-    //   props,
-    //   props.reviews,
-    //   'props.reviews, in mybusiness reviews',
-    //   props.reviews
-    // )
     var reviews = props.reviews;
     react_1.useEffect(function () {
         var fetchBusinessReviews = function () {

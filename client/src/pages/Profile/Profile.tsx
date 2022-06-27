@@ -28,9 +28,7 @@ export const Profile = () => {
     const fetchReviews = () => {
       Promise.all(
         reviews.map((review: any) => axios.get(`api/reviews/${review}`))
-      )
-        //   // @ts-ignore
-        .then((data: any) => getUserReview(data))
+      ).then((data: any) => getUserReview(data))
     }
     fetchReviews()
     setLoading(false)
@@ -98,20 +96,20 @@ export const Profile = () => {
                               </Link>
 
                               <button
-                                className='btn--btn-primary reviews'
+                                className='btn--btn-primary reviews delete'
                                 onClick={() => deleteReview(r.data.review._id)}>
                                 delete
                               </button>
                             </div>
                           </div>
                           <div className='column-right'>
-                            {/* <Link */}
-                            {/* // to={`/businesses/${r.data.review.business._id}`}> */}
-                            <h2>{r.data.review.business.businessName}</h2>
-                            <h5>{r.data.review.business.address.city}</h5>
-                            <StarSmall stars={r.data.review.rating} />
-                            <h5>{r.data.review.comment}</h5>
-                            {/* </Link> */}
+                            <Link
+                              to={`/businesses/${r.data.review.business._id}`}>
+                              <h2>{r.data.review.business.businessName}</h2>
+                              <h5>{r.data.review.business.address.city}</h5>
+                              <StarSmall stars={r.data.review.rating} />
+                              <h5>{r.data.review.comment}</h5>
+                            </Link>
                           </div>
                         </li>
                       ))}

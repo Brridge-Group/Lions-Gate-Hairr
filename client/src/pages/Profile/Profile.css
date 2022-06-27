@@ -79,6 +79,10 @@ ul.Profile_User_reviews {
   height: 35px;
   padding-top: 7px;
 }
+.btn--btn-primary.reviews.delete {
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
+}
 
 .Profile-UserContainer {
   border: 1px solid rgba(0, 0, 0, 0.5);

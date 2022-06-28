@@ -91,6 +91,13 @@ export const BusinessList = () => {
   }, [])
   console.log(`bus list.reviews`, list.reviews, list)
 
+  useEffect(() => {
+    const getRating = () => {
+      list.map((r: any) => console.log(r, 'r'))
+    }
+    getRating()
+  }, [])
+
   //* Fetch Features and Services from the database
   useEffect(() => {
     const fetchFeaturesData = async () => {

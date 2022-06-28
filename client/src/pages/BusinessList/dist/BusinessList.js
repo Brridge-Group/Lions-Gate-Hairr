@@ -108,6 +108,12 @@ exports.BusinessList = function () {
         fetchData();
     }, []);
     console.log("bus list.reviews", list.reviews, list);
+    react_1.useEffect(function () {
+        var getRating = function () {
+            list.map(function (r) { return console.log(r, 'r'); });
+        };
+        getRating();
+    }, []);
     //* Fetch Features and Services from the database
     react_1.useEffect(function () {
         var fetchFeaturesData = function () { return __awaiter(void 0, void 0, void 0, function () {

@@ -47,7 +47,7 @@ var BusinessReviews_1 = require("../BusinessReviews/BusinessReviews");
 var LoadSpinner_1 = require("../LoadSpinner/LoadSpinner");
 exports.BusinessDetails = function () {
     var _a = react_1.useState(), business = _a[0], setBusiness = _a[1];
-    // const [business, setBusiness] = useState<Business>()
+    var _b = react_1.useState(0), totalStars = _b[0], setTotalStars = _b[1];
     var id = react_router_dom_1.useParams().id;
     // FETCHES BUSINESS DATA FROM REMOTE DATABSE ONCE AND SETS BUSINESSDATA STATE TO IT.
     react_1.useEffect(function () {
@@ -69,9 +69,20 @@ exports.BusinessDetails = function () {
         getBusinessData();
     }, []);
     console.log(business, 'business, business details', business);
+    react_1.useEffect(function () {
+        var number = 0;
+        var mapRatings = function () {
+            business === null || business === void 0 ? void 0 : business.reviews.map(function (r, idx) {
+                return (number = number + r.rating / (business === null || business === void 0 ? void 0 : business.reviews.length));
+            });
+            setTotalStars(Math.round(number));
+        };
+        mapRatings();
+    }, [business]);
+    // if (p1.address && typeof p1.address.country === 'string')
     // CHECKS IF THE BUSINESSDATA STATE HAS VALUE. RENDERS THE BUSINESS PAGE IF IT DOES AND SETS A LOADING SCREEN IF IT DOESN'T.
     // THE FIRST RENDER WON'T HAVE DATA, SINCE USEEFFECT, WHICH GIVES THE STATE IT'S VALUE, RUNS AFTER THE FIRST RENDER.
-    // console.log('business details', business)
+    console.log('totalStars', totalStars);
     return (React.createElement("div", { className: ' FeatureContainer_image Home' },
         React.createElement("div", { className: 'BusinessContainer' }, business ? (React.createElement(React.Fragment, null,
             React.createElement("div", { className: 'BusinessDetails-leftColumn' },
@@ -86,7 +97,7 @@ exports.BusinessDetails = function () {
             React.createElement("div", { className: 'BusinessDetails-rightColumn' },
                 React.createElement(About_1.About, { name: business.businessName, description: business.description, image: business.image, address: business.address }),
                 React.createElement("div", { className: 'BusinessDetails-buttons' },
-                    React.createElement(Review_1.Review, { id: id, stars: business.stars, ownerId: business.ownerId, name: business.businessName }),
+                    React.createElement(Review_1.Review, { id: id, stars: totalStars, ownerId: business.ownerId, name: business.businessName }),
                     React.createElement(Book_1.Book, { phone: business.phone, ownerId: business.ownerId })),
                 React.createElement("div", { className: 'BusinessDetails_reviews' },
                     React.createElement("h4", null, "reviews"),

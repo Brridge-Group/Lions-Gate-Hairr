@@ -1,12 +1,11 @@
 import { useState, useEffect } from 'react'
-import { useParams, useLocation } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { About } from './About/About'
 import { Book } from './Book'
 import { Review } from '../Reviews/Review'
 import './BusinessDetails.css'
 import { BusinessReviews } from '../BusinessReviews/BusinessReviews'
 import { LoadSpinner } from '../LoadSpinner/LoadSpinner'
-import axios from 'axios'
 
 interface BusinessReviews {
   reviews: Array<[]>
@@ -45,8 +44,8 @@ interface Business {
 }
 
 export const BusinessDetails = () => {
-  const [business, setBusiness] = useState<any>()
-  // const [business, setBusiness] = useState<Business>()
+  const [business, setBusiness] = useState<Business>()
+  const [totalStars, setTotalStars] = useState(0)
 
   const { id } = useParams<RouteParams>()
 
@@ -62,10 +61,22 @@ export const BusinessDetails = () => {
 
   console.log(business, 'business, business details', business)
 
+  useEffect(() => {
+    let number = 0
+    const mapRatings = () => {
+      business?.reviews.map(
+        (r: any, idx: any) =>
+          (number = number + r.rating / business?.reviews.length)
+      )
+      setTotalStars(Math.round(number))
+    }
+    mapRatings()
+  }, [business])
+  // if (p1.address && typeof p1.address.country === 'string')
   // CHECKS IF THE BUSINESSDATA STATE HAS VALUE. RENDERS THE BUSINESS PAGE IF IT DOES AND SETS A LOADING SCREEN IF IT DOESN'T.
   // THE FIRST RENDER WON'T HAVE DATA, SINCE USEEFFECT, WHICH GIVES THE STATE IT'S VALUE, RUNS AFTER THE FIRST RENDER.
 
-  // console.log('business details', business)
+  console.log('totalStars', totalStars)
   return (
     <div className=' FeatureContainer_image Home'>
       <div className='BusinessContainer'>
@@ -103,7 +114,7 @@ export const BusinessDetails = () => {
               <div className='BusinessDetails-buttons'>
                 <Review
                   id={id}
-                  stars={business.stars}
+                  stars={totalStars}
                   ownerId={business.ownerId}
                   name={business.businessName}
                 />

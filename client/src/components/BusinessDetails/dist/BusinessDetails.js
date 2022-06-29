@@ -68,7 +68,6 @@ exports.BusinessDetails = function () {
         }); };
         getBusinessData();
     }, []);
-    // console.log(business, 'business, business details')
     react_1.useEffect(function () {
         var number = 0;
         var mapRatings = function () {
@@ -76,6 +75,19 @@ exports.BusinessDetails = function () {
                 return (number = number + r.rating / (business === null || business === void 0 ? void 0 : business.reviews.length));
             });
             setTotalStars(Math.round(number));
+        };
+        mapRatings();
+    }, [business]);
+    ///////////////////////////use this when ts is set correctly for business.reviews.length//////////////////////////
+    react_1.useEffect(function () {
+        var number = 0;
+        var mapRatings = function () {
+            var total = business === null || business === void 0 ? void 0 : business.reviews.reduce(function (acc, r) {
+                // ts@ignore
+                return r.rating + acc;
+            }, number);
+            console.log('newNumber', total, business === null || business === void 0 ? void 0 : business.reviews.length);
+            // setTotalStars(Math.round(total/business?.reviews.length)
         };
         mapRatings();
     }, [business]);

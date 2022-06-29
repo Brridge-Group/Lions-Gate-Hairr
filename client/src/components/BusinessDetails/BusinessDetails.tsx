@@ -59,8 +59,6 @@ export const BusinessDetails = () => {
     getBusinessData()
   }, [])
 
-  // console.log(business, 'business, business details')
-
   useEffect(() => {
     let number = 0
     const mapRatings = () => {
@@ -72,6 +70,24 @@ export const BusinessDetails = () => {
     }
     mapRatings()
   }, [business])
+
+  ///////////////////////////use this when ts is set correctly for business.reviews.length//////////////////////////
+  useEffect(() => {
+    let number = 0
+    const mapRatings = () => {
+      const total = business?.reviews.reduce(
+        (acc: any, r: any) =>
+          // ts@ignore
+          r.rating + acc,
+        number
+      )
+
+      console.log('newNumber', total, business?.reviews.length)
+      // setTotalStars(Math.round(total/business?.reviews.length)
+    }
+    mapRatings()
+  }, [business])
+
   // if (p1.address && typeof p1.address.country === 'string')
   // CHECKS IF THE BUSINESSDATA STATE HAS VALUE. RENDERS THE BUSINESS PAGE IF IT DOES AND SETS A LOADING SCREEN IF IT DOESN'T.
   // THE FIRST RENDER WON'T HAVE DATA, SINCE USEEFFECT, WHICH GIVES THE STATE IT'S VALUE, RUNS AFTER THE FIRST RENDER.

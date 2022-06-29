@@ -63,6 +63,22 @@ export const StarList = (props: Props) => {
     mapRatings()
   }, [reviews])
 
+  ///////////////////////////use this when ts is set correctly for reviews.length//////////////////////////
+  useEffect(() => {
+    let number = 0
+    const mapRatings = () => {
+      const total = reviews?.reduce(
+        (acc: any, r: any) =>
+          // ts@ignore
+          r.rating + acc,
+        number
+      )
+      console.log(total, reviews?.length)
+      // setTotalStars(Math.round(total / reviews?.length))
+    }
+    mapRatings()
+  }, [reviews])
+
   // console.log('in star, props', props, totalStars)
   const star: JSX.Element[] = [...Array(5)].map((star, i) => {
     if (i <= Math.round(totalStars) - 1) {
@@ -101,19 +117,20 @@ export const MyStarList = (props: Props) => {
     fetchBusinessReviews()
   }, [])
 
-  console.log(myBusinessReview, 'myBusinessReview')
   useEffect(() => {
     let number = 0
-    console.log(myBusinessReview, 'myBusinessReview in useeffect')
     const mapRatings = () => {
-      //@ts-ignore
-      myBusinessReview.length &&
+      const total = //@ts-ignore
+        myBusinessReview.length &&
         //@ts-ignore
-        myBusinessReview.map(
-          (r: any, idx: any) =>
-            (number = number + r.data.review.rating / myBusinessReview.length)
+        myBusinessReview.reduce(
+          (acc: any, r: any) =>
+            // ts@ignore
+            r.data.review.rating + acc,
+          number
         )
-      setMyTotalStars(Math.round(number))
+
+      setMyTotalStars(Math.round(total / myBusinessReview.length))
     }
     mapRatings()
   }, [myBusinessReview])

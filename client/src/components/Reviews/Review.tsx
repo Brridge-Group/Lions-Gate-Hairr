@@ -11,13 +11,7 @@ const isLoggedIn: boolean = true
 
 export const Review = (props: Props) => {
   const user = JSON.parse(localStorage.getItem('profile') || 'false').result
-  console.log(
-    'in review, id, ownerId, props, user',
-    props.id,
-    props.ownerId,
-    props,
-    user
-  )
+
   const stars: JSX.Element[] = [...Array(5)].map((star, i) => {
     if (i <= Math.round(props.stars) - 1) {
       return (

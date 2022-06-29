@@ -58,7 +58,6 @@ require("./BusinessList.css");
 exports.BusinessList = function () {
     var _a = react_1.useState([]), list = _a[0], setList = _a[1];
     var _b = react_1.useState(true), loading = _b[0], setLoading = _b[1];
-    var history = react_router_dom_1.useHistory();
     var city = react_router_dom_1.useParams().city;
     //* Initialize Services and Features to state
     var _c = react_1.useState([]), feats = _c[0], setFeats = _c[1]; // Features full object
@@ -107,7 +106,7 @@ exports.BusinessList = function () {
         }); };
         fetchData();
     }, []);
-    console.log('bus list', list);
+    // console.log('bus list', list)
     //* Fetch Features and Services from the database
     react_1.useEffect(function () {
         var fetchFeaturesData = function () { return __awaiter(void 0, void 0, void 0, function () {
@@ -141,7 +140,6 @@ exports.BusinessList = function () {
                 }
             });
         }); };
-        // history.push(`/businesses/${business._id}`)
         var fetchServicesData = function () { return __awaiter(void 0, void 0, void 0, function () {
             var response, responseData, servicesArr_1, err_3;
             return __generator(this, function (_a) {

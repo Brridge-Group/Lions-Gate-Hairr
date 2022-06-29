@@ -63,7 +63,7 @@ export const StarList = (props: Props) => {
     mapRatings()
   }, [reviews])
 
-  console.log('in star, props', props, totalStars)
+  // console.log('in star, props', props, totalStars)
   const star: JSX.Element[] = [...Array(5)].map((star, i) => {
     if (i <= Math.round(totalStars) - 1) {
       return (
@@ -89,30 +89,35 @@ export const MyStarList = (props: Props) => {
 
   const { reviews } = props
 
-  // useEffect(() => {
-  //   const fetchBusinessReviews = () => {
-  //     Promise.all(
-  //       reviews
-  //         ?.map((review: any) => axios.get(`api/reviews/${review}`))
-  //         .then((data: any) => getMyBusinessReview(data))
-  //     )
-  //   }
-  //   fetchBusinessReviews()
-  // }, [])
+  useEffect(() => {
+    const fetchBusinessReviews = () => {
+      Promise.all(
+        //@ts-ignore
+        reviews?.map((review: any) => axios.get(`api/reviews/${review}`))
+        //@ts-ignore
+      ).then((data: any) => getMyBusinessReview(data))
+      // ).then((data: any) => console.log(data, 'data'))
+    }
+    fetchBusinessReviews()
+  }, [])
 
   console.log(myBusinessReview, 'myBusinessReview')
-  // useEffect(() => {
-  //   let number = 0
-  //   const mapRatings = () => {
-  //     myBusinessReview?.map(
-  //       (r: any, idx: any) => (number = number + r.rating / myBusinessReview?.length)
-  //     )
-  //     setTotalStars(Math.round(number))
-  //   }
-  //   mapRatings()
-  // }, [myBusinessReview])
+  useEffect(() => {
+    let number = 0
+    console.log(myBusinessReview, 'myBusinessReview in useefffect')
+    const mapRatings = () => {
+      //@ts-ignore
+      myBusinessReview.length &&
+        //@ts-ignore
+        myBusinessReview.map(
+          (r: any, idx: any) =>
+            (number = number + r.data.review.rating / myBusinessReview.length)
+        )
+      setTotalStars(Math.round(number))
+    }
+    mapRatings()
+  }, [myBusinessReview])
 
-  console.log('in mystarList, props', props, totalStars)
   const star: JSX.Element[] = [...Array(5)].map((star, i) => {
     if (i <= Math.round(totalStars) - 1) {
       return (

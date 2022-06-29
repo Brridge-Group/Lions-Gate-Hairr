@@ -118,7 +118,7 @@ export const BusinessDetails = () => {
                   ownerId={business.ownerId}
                   name={business.businessName}
                 />
-                <Book phone={business.phone} ownerId={business.ownerId} />
+                <Book phone={business.phone} />
               </div>
               <div className='BusinessDetails_reviews'>
                 <h4>reviews</h4>

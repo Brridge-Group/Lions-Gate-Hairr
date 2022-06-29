@@ -2,7 +2,6 @@ import { useState } from 'react'
 
 interface Props {
   phone: string
-  ownerId: string
 }
 
 export const Book = (props: Props) => {

@@ -9,6 +9,7 @@ var __spreadArrays = (this && this.__spreadArrays) || function () {
 exports.__esModule = true;
 exports.MyStarList = exports.StarList = exports.StarSmall = exports.Star = void 0;
 var react_1 = require("react");
+var axios_1 = require("axios");
 require("./Card.css");
 exports.Star = function (props) {
     var star = __spreadArrays(Array(5)).map(function (star, i) {
@@ -43,7 +44,7 @@ exports.StarList = function (props) {
         };
         mapRatings();
     }, [reviews]);
-    console.log('in star, props', props, totalStars);
+    // console.log('in star, props', props, totalStars)
     var star = __spreadArrays(Array(5)).map(function (star, i) {
         if (i <= Math.round(totalStars) - 1) {
             return (React.createElement("div", { className: 'star btn-review on', key: i }, "\u2605"));
@@ -58,28 +59,34 @@ exports.MyStarList = function (props) {
     var _a = react_1.useState(0), totalStars = _a[0], setTotalStars = _a[1];
     var _b = react_1.useState([]), myBusinessReview = _b[0], getMyBusinessReview = _b[1];
     var reviews = props.reviews;
-    // useEffect(() => {
-    //   const fetchBusinessReviews = () => {
-    //     Promise.all(
-    //       reviews
-    //         ?.map((review: any) => axios.get(`api/reviews/${review}`))
-    //         .then((data: any) => getMyBusinessReview(data))
-    //     )
-    //   }
-    //   fetchBusinessReviews()
-    // }, [])
+    react_1.useEffect(function () {
+        var fetchBusinessReviews = function () {
+            Promise.all(
+            //@ts-ignore
+            reviews === null || 
+            //@ts-ignore
+            reviews === void 0 ? void 0 : 
+            //@ts-ignore
+            reviews.map(function (review) { return axios_1["default"].get("api/reviews/" + review); })).then(function (data) { return getMyBusinessReview(data); });
+            // ).then((data: any) => console.log(data, 'data'))
+        };
+        fetchBusinessReviews();
+    }, []);
     console.log(myBusinessReview, 'myBusinessReview');
-    // useEffect(() => {
-    //   let number = 0
-    //   const mapRatings = () => {
-    //     myBusinessReview?.map(
-    //       (r: any, idx: any) => (number = number + r.rating / myBusinessReview?.length)
-    //     )
-    //     setTotalStars(Math.round(number))
-    //   }
-    //   mapRatings()
-    // }, [myBusinessReview])
-    console.log('in mystarList, props', props, totalStars);
+    react_1.useEffect(function () {
+        var number = 0;
+        console.log(myBusinessReview, 'myBusinessReview in useefffect');
+        var mapRatings = function () {
+            //@ts-ignore
+            myBusinessReview.length &&
+                //@ts-ignore
+                myBusinessReview.map(function (r, idx) {
+                    return (number = number + r.data.review.rating / myBusinessReview.length);
+                });
+            setTotalStars(Math.round(number));
+        };
+        mapRatings();
+    }, [myBusinessReview]);
     var star = __spreadArrays(Array(5)).map(function (star, i) {
         if (i <= Math.round(totalStars) - 1) {
             return (React.createElement("div", { className: 'star btn-review on', key: i }, "\u2605"));

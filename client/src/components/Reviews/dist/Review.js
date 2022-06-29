@@ -13,7 +13,6 @@ require("./AddReview.css");
 var isLoggedIn = true;
 exports.Review = function (props) {
     var user = JSON.parse(localStorage.getItem('profile') || 'false').result;
-    console.log('in review, id, ownerId, props, user', props.id, props.ownerId, props, user);
     var stars = __spreadArrays(Array(5)).map(function (star, i) {
         if (i <= Math.round(props.stars) - 1) {
             return (React.createElement("div", { className: 'star btn-review on', key: i }, "\u2605"));

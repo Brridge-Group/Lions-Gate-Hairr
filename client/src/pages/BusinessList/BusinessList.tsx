@@ -1,7 +1,6 @@
 // React Components
 import { useState, useEffect } from 'react'
-import { useHistory, useParams, Link } from 'react-router-dom'
-import axios from 'axios'
+import { useParams, Link } from 'react-router-dom'
 
 // Custom Imports
 import { About } from '../../components/BusinessDetails/About/About'
@@ -59,7 +58,6 @@ interface Business {
 export const BusinessList = () => {
   const [list, setList]: any = useState([])
   const [loading, setLoading] = useState(true)
-  const history = useHistory()
   const { city } = useParams<RouteParams>()
 
   //* Initialize Services and Features to state
@@ -99,7 +97,7 @@ export const BusinessList = () => {
     fetchData()
   }, [])
 
-  console.log('bus list', list)
+  // console.log('bus list', list)
 
   //* Fetch Features and Services from the database
   useEffect(() => {
@@ -122,8 +120,6 @@ export const BusinessList = () => {
         setLoading(false)
       }
     }
-
-    // history.push(`/businesses/${business._id}`)
 
     const fetchServicesData = async () => {
       try {

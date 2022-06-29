@@ -68,7 +68,7 @@ exports.BusinessDetails = function () {
         }); };
         getBusinessData();
     }, []);
-    console.log(business, 'business, business details', business);
+    // console.log(business, 'business, business details')
     react_1.useEffect(function () {
         var number = 0;
         var mapRatings = function () {

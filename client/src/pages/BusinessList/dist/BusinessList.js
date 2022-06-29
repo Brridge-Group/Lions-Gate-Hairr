@@ -107,13 +107,7 @@ exports.BusinessList = function () {
         }); };
         fetchData();
     }, []);
-    console.log("bus list.reviews", list.reviews, list);
-    react_1.useEffect(function () {
-        var getRating = function () {
-            list.map(function (r) { return console.log(r, 'r'); });
-        };
-        getRating();
-    }, []);
+    console.log('bus list', list);
     //* Fetch Features and Services from the database
     react_1.useEffect(function () {
         var fetchFeaturesData = function () { return __awaiter(void 0, void 0, void 0, function () {
@@ -281,7 +275,7 @@ exports.BusinessList = function () {
                             pathname: "/businesses/" + business._id
                         } },
                         React.createElement(About_1.About, { name: business.businessName, description: business.description, image: business.image, address: business.address })),
-                    React.createElement(Star_1.Star, { stars: business.stars })))); })) : (React.createElement(React.Fragment, null,
+                    React.createElement(Star_1.StarList, { stars: business.stars, reviews: business.reviews })))); })) : (React.createElement(React.Fragment, null,
                 React.createElement("h2", { className: 'BusinessCard-noResults' }, "No businesses were found with the chosen services and or features."),
                 React.createElement("br", null),
                 React.createElement("h2", { className: 'BusinessCard-noResults' }, "Please change your selection and filter again.")))))))));

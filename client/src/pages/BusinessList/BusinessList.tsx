@@ -1,10 +1,11 @@
 // React Components
 import { useState, useEffect } from 'react'
 import { useHistory, useParams, Link } from 'react-router-dom'
+import axios from 'axios'
 
 // Custom Imports
 import { About } from '../../components/BusinessDetails/About/About'
-import { Star } from '../../UIElements/Star'
+import { StarList } from '../../UIElements/Star'
 import { Card } from '../../UIElements/Card'
 import { FilterServicesAndFeatures } from '../../components/FilterServicesAndFeatures/FilterServicesAndFeatures'
 import { LoadSpinner } from '../../components/LoadSpinner/LoadSpinner'
@@ -29,6 +30,12 @@ interface Feature {
   name: string
 }
 
+interface Review {
+  _id: string
+  comment: string
+  rating: number
+}
+
 interface Business {
   businessName: string
   description: string
@@ -45,6 +52,7 @@ interface Business {
   }
   services: Service[]
   features: Feature[]
+  reviews: Review[]
   stars: number
 }
 
@@ -57,6 +65,7 @@ export const BusinessList = () => {
   //* Initialize Services and Features to state
   const [feats, setFeats]: any = useState([]) // Features full object
   const [services, setServices]: any = useState([]) // Services full object
+
   const [featuresArr, setFeaturesArr]: any = useState([])
   const [servicesArr, setServicesArr]: any = useState([])
 
@@ -89,14 +98,8 @@ export const BusinessList = () => {
     }
     fetchData()
   }, [])
-  console.log(`bus list.reviews`, list.reviews, list)
 
-  useEffect(() => {
-    const getRating = () => {
-      list.map((r: any) => console.log(r, 'r'))
-    }
-    getRating()
-  }, [])
+  console.log('bus list', list)
 
   //* Fetch Features and Services from the database
   useEffect(() => {
@@ -142,9 +145,11 @@ export const BusinessList = () => {
         setLoading(false)
       }
     }
+
     fetchFeaturesData()
     fetchServicesData()
   }, [])
+
   // console.log(`servicesArr`, servicesArr)
   // console.log(`featuresArr`, featuresArr)
 
@@ -278,7 +283,10 @@ export const BusinessList = () => {
                           address={business.address}
                         />
                       </Link>
-                      <Star stars={business.stars} />
+                      <StarList
+                        stars={business.stars}
+                        reviews={business.reviews}
+                      />
                     </Card>
                   </>
                 ))

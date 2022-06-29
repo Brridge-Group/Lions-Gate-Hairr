@@ -113,7 +113,7 @@ exports.MyBusinessList = function () {
                 React.createElement("div", { className: 'BusinessCard-container' },
                     list.map(function (business, idx) { return (React.createElement("div", { className: 'BusinessCard ', key: business._id },
                         React.createElement(About_1.About, { name: business.businessName, description: business.description, image: business.image, address: business.address }),
-                        React.createElement(Star_1.Star, { stars: business.stars }),
+                        React.createElement(Star_1.MyStarList, { stars: business.stars, reviews: business.reviews }),
                         React.createElement("div", { className: 'BusinessCard-buttons' },
                             React.createElement("h6", { className: 'btn--btn-primary twoLines business reviews', onClick: function () { return toggleIt(business._id); }, "data-idx": idx, id: business._id }, !selected[business._id]
                                 ? 'read reviews'

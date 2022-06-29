@@ -59,7 +59,7 @@ export const BusinessDetails = () => {
     getBusinessData()
   }, [])
 
-  console.log(business, 'business, business details', business)
+  // console.log(business, 'business, business details')
 
   useEffect(() => {
     let number = 0

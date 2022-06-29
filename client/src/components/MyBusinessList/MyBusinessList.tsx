@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
-import { Link, useHistory } from 'react-router-dom'
-import { Star } from '../../UIElements/Star'
+import { Link } from 'react-router-dom'
+import { MyStarList } from '../../UIElements/Star'
 import { About } from '../BusinessDetails/About/About'
 import '../../pages/Profile/Profile.css'
 import './MyBusinessList.css'
@@ -74,7 +74,10 @@ export const MyBusinessList = () => {
                       image={business.image}
                       address={business.address}
                     />
-                    <Star stars={business.stars} />
+                    <MyStarList
+                      stars={business.stars}
+                      reviews={business.reviews}
+                    />
                     <div className='BusinessCard-buttons'>
                       <h6
                         className='btn--btn-primary twoLines business reviews'

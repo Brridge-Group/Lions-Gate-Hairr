@@ -30,7 +30,7 @@ export const AddReview = () => {
   const user = JSON.parse(localStorage.getItem('profile') ?? 'false').result
   const token = JSON.parse(localStorage.getItem('profile') ?? 'false').token
 
-  console.log('user, in add review', user)
+  // console.log('user, in add review', user)
 
   const handleChange = e => {
     e.preventDefault()
@@ -45,7 +45,7 @@ export const AddReview = () => {
       image: user.imageProfile,
       name: user.name,
     }
-    console.log('new review', newReview)
+    // console.log('new review', newReview)
     const requestOptions = {
       method: 'POST',
       headers: {

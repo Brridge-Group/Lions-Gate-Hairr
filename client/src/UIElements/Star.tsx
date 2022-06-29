@@ -84,7 +84,7 @@ export const StarList = (props: Props) => {
 }
 
 export const MyStarList = (props: Props) => {
-  const [totalStars, setTotalStars] = useState(0)
+  const [myTotalStars, setMyTotalStars] = useState(0)
   const [myBusinessReview, getMyBusinessReview] = useState([])
 
   const { reviews } = props
@@ -104,7 +104,7 @@ export const MyStarList = (props: Props) => {
   console.log(myBusinessReview, 'myBusinessReview')
   useEffect(() => {
     let number = 0
-    console.log(myBusinessReview, 'myBusinessReview in useefffect')
+    console.log(myBusinessReview, 'myBusinessReview in useeffect')
     const mapRatings = () => {
       //@ts-ignore
       myBusinessReview.length &&
@@ -113,13 +113,13 @@ export const MyStarList = (props: Props) => {
           (r: any, idx: any) =>
             (number = number + r.data.review.rating / myBusinessReview.length)
         )
-      setTotalStars(Math.round(number))
+      setMyTotalStars(Math.round(number))
     }
     mapRatings()
   }, [myBusinessReview])
 
   const star: JSX.Element[] = [...Array(5)].map((star, i) => {
-    if (i <= Math.round(totalStars) - 1) {
+    if (i <= Math.round(myTotalStars) - 1) {
       return (
         <div className='star btn-review on' key={i}>
           &#9733;
@@ -133,6 +133,7 @@ export const MyStarList = (props: Props) => {
       )
     }
   })
+  console.log(myTotalStars)
 
   return <div className='Star-container'>{star}</div>
 }

@@ -56,7 +56,7 @@ exports.StarList = function (props) {
     return React.createElement("div", { className: 'Star-container' }, star);
 };
 exports.MyStarList = function (props) {
-    var _a = react_1.useState(0), totalStars = _a[0], setTotalStars = _a[1];
+    var _a = react_1.useState(0), myTotalStars = _a[0], setMyTotalStars = _a[1];
     var _b = react_1.useState([]), myBusinessReview = _b[0], getMyBusinessReview = _b[1];
     var reviews = props.reviews;
     react_1.useEffect(function () {
@@ -75,7 +75,7 @@ exports.MyStarList = function (props) {
     console.log(myBusinessReview, 'myBusinessReview');
     react_1.useEffect(function () {
         var number = 0;
-        console.log(myBusinessReview, 'myBusinessReview in useefffect');
+        console.log(myBusinessReview, 'myBusinessReview in useeffect');
         var mapRatings = function () {
             //@ts-ignore
             myBusinessReview.length &&
@@ -83,17 +83,18 @@ exports.MyStarList = function (props) {
                 myBusinessReview.map(function (r, idx) {
                     return (number = number + r.data.review.rating / myBusinessReview.length);
                 });
-            setTotalStars(Math.round(number));
+            setMyTotalStars(Math.round(number));
         };
         mapRatings();
     }, [myBusinessReview]);
     var star = __spreadArrays(Array(5)).map(function (star, i) {
-        if (i <= Math.round(totalStars) - 1) {
+        if (i <= Math.round(myTotalStars) - 1) {
             return (React.createElement("div", { className: 'star btn-review on', key: i }, "\u2605"));
         }
         else {
             return (React.createElement("div", { className: 'star btn-review off', key: i }, "\u2605"));
         }
     });
+    console.log(myTotalStars);
     return React.createElement("div", { className: 'Star-container' }, star);
 };

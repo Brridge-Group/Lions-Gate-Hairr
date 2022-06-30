@@ -155,10 +155,12 @@ export const BusinessList = () => {
   const handleFilteredResults = (): [] => {
     let tempFilteredResults: any[] = []
     let tempSelectedFeatsServices: any[] = []
+
     //* Push user selected Features to a single temp array, if the filtered array/object is not empty
-    if (Object.keys(filteredFeats).length > 0) {
+    let deepCopyFilterFeats = JSON.parse(JSON.stringify(filteredFeats))
+    if (Object.keys(deepCopyFilterFeats).length > 0) {
       //* Filter out elements that are only true and push those true objects to tempSelectedFeatsServices
-      Object.entries(filteredFeats).filter(featureElement => {
+      Object.entries(deepCopyFilterFeats).filter(featureElement => {
         if (featureElement[1] === true) {
           tempSelectedFeatsServices.push(featureElement)
           return true
@@ -166,9 +168,10 @@ export const BusinessList = () => {
       })
     }
     //* Push user selected Services to a single temp array, if the filtered array/object is not empty
-    if (Object.keys(filteredServices).length > 0) {
+    let deepCopyFilterServices = JSON.parse(JSON.stringify(filteredServices))
+    if (Object.keys(deepCopyFilterServices).length > 0) {
       //* Filter out elements that are only true and push those true objects to tempSelectedFeatsServices
-      Object.entries(filteredServices).filter(featureElement => {
+      Object.entries(deepCopyFilterServices).filter(featureElement => {
         if (featureElement[1] === true) {
           tempSelectedFeatsServices.push(featureElement)
           return true

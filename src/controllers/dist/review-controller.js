@@ -58,10 +58,11 @@ var createReview = function (req, res, next) { return __awaiter(void 0, void 0, 
                 _b.label = 1;
             case 1:
                 _b.trys.push([1, 3, , 4]);
-                return [4 /*yield*/, newReview.save()];
+                return [4 /*yield*/, newReview.save()
+                    // console.log('new review', newReview)
+                ];
             case 2:
                 _b.sent();
-                console.log('new review', newReview);
                 return [3 /*break*/, 4];
             case 3:
                 error_1 = _b.sent();
@@ -94,7 +95,6 @@ var updateReview = function (req, res, next) { return __awaiter(void 0, void 0, 
         switch (_b.label) {
             case 0:
                 reviewId = req.params.id;
-                console.log(req.body);
                 _a = req.body, comment = _a.comment, rating = _a.rating;
                 _b.label = 1;
             case 1:

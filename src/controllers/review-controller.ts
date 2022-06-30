@@ -1,11 +1,6 @@
 import { Request, Response, NextFunction } from 'express'
 const mongoose = require('mongoose')
-import {
-  ReasonPhrases,
-  StatusCodes,
-  getReasonPhrase,
-  getStatusCode,
-} from 'http-status-codes'
+import { StatusCodes } from 'http-status-codes'
 
 let Review = require('../models/review')
 import { Business } from '../models/business'
@@ -30,7 +25,7 @@ const createReview = async (
 
   try {
     await newReview.save()
-    console.log('new review', newReview)
+    // console.log('new review', newReview)
   } catch (error) {
     return next(error)
   }
@@ -53,7 +48,7 @@ const updateReview = async (
 ) => {
   const reviewId = req.params.id
 
-  console.log(req.body)
+  // console.log(req.body)
   const { comment, rating } = req.body
 
   let review

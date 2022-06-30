@@ -220,12 +220,6 @@ export const BusinessList = () => {
     })
   }, [list, city])
 
-  const handleResetFilter = (): any => {
-    // TODO: [ ] => FIXME: Reset checkboxes to false
-    //? TODO: [ ] => Explore connecting to child component to allow for checkbox resetting to opposite of checked
-    window.location.reload()
-  }
-
   if (loading) {
     return (
       <div
@@ -272,7 +266,6 @@ export const BusinessList = () => {
                 onFeatChange={onFeatChange}
                 onServiceChange={onServiceChange}
                 loading={loading}
-                handleResetFilter={handleResetFilter}
                 handleFilteredResults={handleFilteredResults}
               />
             </div>

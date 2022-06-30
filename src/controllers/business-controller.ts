@@ -68,7 +68,7 @@ export const getAllBusinesses = async (req: Request, res: Response) => {
     const businessList = await Business.find()
       .populate('services')
       .populate('features')
-
+      .populate('reviews')
     res.send(businessList)
   } catch (err: any) {
     res.status(StatusCodes.INTERNAL_SERVER_ERROR).json(err.message)

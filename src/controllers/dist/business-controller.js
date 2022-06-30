@@ -112,7 +112,8 @@ exports.getAllBusinesses = function (req, res) { return __awaiter(void 0, void 0
                 _a.trys.push([0, 2, , 3]);
                 return [4 /*yield*/, business_1.Business.find()
                         .populate('services')
-                        .populate('features')];
+                        .populate('features')
+                        .populate('reviews')];
             case 1:
                 businessList = _a.sent();
                 res.send(businessList);

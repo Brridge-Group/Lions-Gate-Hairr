@@ -36,22 +36,24 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-var StatusCodes = require('http-status-codes');
+var mongoose = require('mongoose');
+var http_status_codes_1 = require("http-status-codes");
 var Review = require('../models/review');
 var business_1 = require("../models/business");
 var User = require('../models/users');
 var createReview = function (req, res, next) { return __awaiter(void 0, void 0, void 0, function () {
-    var _a, comment, rating, business, author, newReview, error_1, businessFind, authorFind;
+    var _a, comment, rating, business, author, image, name, profile, newReview, error_1, businessFind, authorFind;
     return __generator(this, function (_b) {
         switch (_b.label) {
             case 0:
-                console.log(req.body);
-                _a = req.body, comment = _a.comment, rating = _a.rating, business = _a.business, author = _a.author;
+                _a = req.body, comment = _a.comment, rating = _a.rating, business = _a.business, author = _a.author, image = _a.image, name = _a.name;
                 newReview = new Review({
                     comment: comment,
                     rating: rating,
                     business: business,
-                    author: author
+                    author: author,
+                    image: image,
+                    name: name
                 });
                 _b.label = 1;
             case 1:
@@ -59,6 +61,7 @@ var createReview = function (req, res, next) { return __awaiter(void 0, void 0, 
                 return [4 /*yield*/, newReview.save()];
             case 2:
                 _b.sent();
+                console.log('new review', newReview);
                 return [3 /*break*/, 4];
             case 3:
                 error_1 = _b.sent();
@@ -66,7 +69,6 @@ var createReview = function (req, res, next) { return __awaiter(void 0, void 0, 
             case 4: return [4 /*yield*/, business_1.Business.findById(business)];
             case 5:
                 businessFind = _b.sent();
-                console.log('businessFind', businessFind);
                 businessFind.reviews.push(newReview);
                 return [4 /*yield*/, businessFind.save()];
             case 6:
@@ -74,13 +76,14 @@ var createReview = function (req, res, next) { return __awaiter(void 0, void 0, 
                 return [4 /*yield*/, User.findById(author)];
             case 7:
                 authorFind = _b.sent();
-                console.log('authorFind', authorFind);
                 authorFind.reviews.push(newReview);
                 return [4 /*yield*/, authorFind.save()];
             case 8:
                 _b.sent();
-                console.log('review', newReview);
-                res.status(201).json({ review: newReview });
+                return [4 /*yield*/, User.findById(author)];
+            case 9:
+                profile = _b.sent();
+                res.status(201).json({ review: newReview, result: profile });
                 return [2 /*return*/];
         }
     });
@@ -128,7 +131,6 @@ var getReview = function (req, res, next) { return __awaiter(void 0, void 0, voi
         switch (_a.label) {
             case 0:
                 reviewId = req.params.id;
-                console.log('in get review', req.params.id);
                 _a.label = 1;
             case 1:
                 _a.trys.push([1, 3, , 4]);
@@ -148,33 +150,66 @@ var getReview = function (req, res, next) { return __awaiter(void 0, void 0, voi
     });
 }); };
 var deleteReview = function (req, res, next) { return __awaiter(void 0, void 0, void 0, function () {
-    var review, busReview, authorReview, _a, business, author, reviewId;
-    return __generator(this, function (_b) {
-        _a = req.body, business = _a.business, author = _a.author;
-        reviewId = req.params.id;
-        //     // await Review.findByIdAndRemove(reviewId)
-        // } catch (err) {
-        //   return next(err)
-        // }
-        console.log('in review controller', reviewId, business, author);
-        // const reviewResponse = await ReviewsDAO.deleteReview(
-        //   reviewId,
-        //   userId,
-        // )
-        // try {
-        //   review = await Review.findById(reviewId)
-        // } catch (err) {
-        //   return next(err)
-        // }
-        // try {
-        //   if (review) {
-        //     await review.remove()
-        //   }
-        // } catch (err) {
-        //   return next(err)
-        // }
-        res.json({ message: 'Delete successfully' });
-        return [2 /*return*/];
+    var reviewId, authorId, review, profile, err_4, sess, error_2;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                reviewId = req.params.id;
+                authorId = req.body.profileId;
+                _a.label = 1;
+            case 1:
+                _a.trys.push([1, 3, , 4]);
+                return [4 /*yield*/, Review.findById(reviewId)
+                        .populate('business')
+                        .populate('author')];
+            case 2:
+                review = _a.sent();
+                return [3 /*break*/, 4];
+            case 3:
+                err_4 = _a.sent();
+                res.status(http_status_codes_1.StatusCodes.NOT_FOUND).json({
+                    message: 'Something went wrong, error to find a review with this ID.'
+                });
+                return [3 /*break*/, 4];
+            case 4:
+                if (!review) {
+                    res
+                        .status(http_status_codes_1.StatusCodes.NOT_FOUND)
+                        .json({ message: 'Could not find review for this ID' });
+                }
+                _a.label = 5;
+            case 5:
+                _a.trys.push([5, 11, , 12]);
+                return [4 /*yield*/, mongoose.startSession()];
+            case 6:
+                sess = _a.sent();
+                sess.startTransaction();
+                review.remove({ session: sess });
+                review.author.reviews.pull(reviewId);
+                return [4 /*yield*/, review.author.save({ session: sess })];
+            case 7:
+                _a.sent();
+                review.business.reviews.pull(reviewId);
+                return [4 /*yield*/, review.business.save({ session: sess })];
+            case 8:
+                _a.sent();
+                return [4 /*yield*/, sess.commitTransaction()
+                    //get the profile again
+                ];
+            case 9:
+                _a.sent();
+                return [4 /*yield*/, User.findById(authorId)];
+            case 10:
+                //get the profile again
+                profile = _a.sent();
+                res.status(http_status_codes_1.StatusCodes.OK).json({ result: profile });
+                return [3 /*break*/, 12];
+            case 11:
+                error_2 = _a.sent();
+                res.status(http_status_codes_1.StatusCodes.BAD_REQUEST).json({ message: 'Could not delete.' });
+                return [3 /*break*/, 12];
+            case 12: return [2 /*return*/];
+        }
     });
 }); };
 exports.createReview = createReview;

@@ -1,17 +1,17 @@
-// React Components
+//* React Components
 import { useState, useEffect } from 'react'
 import { useHistory, useParams } from 'react-router-dom'
 
-// Custom Imports
+//* Custom Imports
 import { Card } from '../../UIElements/Card'
 import { CardDetails } from '../../components/CardDetails/CardDetails'
 import { FilterServicesAndFeatures } from '../../components/FilterServicesAndFeatures/FilterServicesAndFeatures'
 import { LoadSpinner } from '../../components/LoadSpinner/LoadSpinner'
 
-// Custom Styles
+//* Custom Styles
 import './BusinessList.css'
 
-// Types
+//* Types
 interface RouteParams {
   city: string
 }
@@ -59,7 +59,7 @@ export const BusinessList = () => {
   const [featuresArr, setFeaturesArr]: any = useState([])
   const [servicesArr, setServicesArr]: any = useState([])
 
-  // //* Initialize state objects for form checkboxes
+  //* Initialize state objects for form checkboxes
   // // TODO: [ ] => Connect with `handleResetFilter` to reset checkboxes to false
   // const [isChecked, setIsChecked]: any = useState(false)
   // const [isFeatsChecked, setIsFeatsChecked]: any = useState([])
@@ -272,7 +272,6 @@ export const BusinessList = () => {
                 onFeatChange={onFeatChange}
                 onServiceChange={onServiceChange}
                 loading={loading}
-                // isChecked={isChecked}
                 handleResetFilter={handleResetFilter}
                 handleFilteredResults={handleFilteredResults}
               />

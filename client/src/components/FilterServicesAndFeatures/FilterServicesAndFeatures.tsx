@@ -84,6 +84,7 @@ export const FilterServicesAndFeatures = (props: Props) => {
     props.setFilteredResults(() => {
       return [...props.list]
     })
+  }
 
   //* Monitor changes to the filtered Features and Services arrays. If there are changes send the data to the `BusinessList` Parent component
   useEffect(() => {

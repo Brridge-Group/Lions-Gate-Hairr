@@ -261,11 +261,16 @@ export const BusinessList = () => {
           <div className='BusinessList-Container'>
             <div className='BusinessList-Filters'>
               <FilterServicesAndFeatures
+                loading={loading}
+                list={list}
+                filteredResults={filteredResults}
+                setFilteredResults={setFilteredResults}
                 featuresArr={featuresArr}
+                setFeaturesArr={setFeaturesArr}
                 servicesArr={servicesArr}
+                setServicesArr={setServicesArr}
                 onFeatChange={onFeatChange}
                 onServiceChange={onServiceChange}
-                loading={loading}
                 handleFilteredResults={handleFilteredResults}
               />
             </div>

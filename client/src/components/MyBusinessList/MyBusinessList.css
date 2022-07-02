@@ -1,3 +1,7 @@
+.FeatureContainer_image.Owner {
+  background-image: url('../../assets/images/hairgreysm.jpg');
+}
+
 .BusinessCard-buttons {
   display: flex;
   justify-content: space-between;
@@ -33,4 +37,13 @@
 }
 .menu-business.open {
   display: block;
+}
+
+/* ///////media queries ////////// */
+
+@media screen and (max-width: 575px) {
+  .FeatureContainer_image.Owner {
+    background-image: url('../../assets/images/hairgrey-mobile.jpg');
+    height: 100%;
+  }
 }

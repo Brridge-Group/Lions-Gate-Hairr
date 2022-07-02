@@ -52,69 +52,73 @@ export const MyBusinessList = () => {
   console.log('in my business list, list', list)
 
   return (
-    <div className='Profile_user'>
-      <h1 className='Profile_name'>Hello {user.name}!</h1>
-      <div className='Profile-UserContainer Owner'>
-        {loading ? (
-          <LoadSpinner />
-        ) : !list.length ? (
-          <div className='Profile-UserContainer_reviews business'>
-            <h4>no businesses found</h4>
-          </div>
-        ) : (
-          <>
-            <div className='Profile-UserContainer_reviews business'>
-              <h4>Your businesses</h4>
-              <div className='BusinessCard-container'>
-                {list.map((business: any, idx) => (
-                  <div className='BusinessCard ' key={business._id}>
-                    <About
-                      name={business.businessName}
-                      description={business.description}
-                      image={business.image}
-                      address={business.address}
-                    />
-                    <MyStarList
-                      stars={business.stars}
-                      reviews={business.reviews}
-                    />
-                    <div className='BusinessCard-buttons'>
-                      <h6
-                        className='btn--btn-primary twoLines business reviews'
-                        onClick={() => toggleIt(business._id)}
-                        data-idx={idx}
-                        id={business._id}>
-                        {!selected[business._id]
-                          ? 'read reviews'
-                          : 'close reviews'}
-                      </h6>
-                      <Link to={'#'}>
-                        <h6 className='btn--btn-primary twoLines business'>
-                          edit <br />
-                          business
-                        </h6>
-                      </Link>
-                      <Link to={'#'}>
-                        <h6 className='btn--btn-primary twoLines business'>
-                          delete business
-                        </h6>
-                      </Link>
-                    </div>
-                    <div
-                      className={
-                        !selected[business._id]
-                          ? 'menu-business'
-                          : 'menu-business open'
-                      }>
-                      <MyBusinessReviews reviews={business.reviews} />
-                    </div>
-                  </div>
-                ))}{' '}
+    <div className='FeatureContainer_image Owner'>
+      <div className='FeatureContainer'>
+        <div className='Profile_user'>
+          <h1 className='Profile_name'>Hello {user.name}!</h1>
+          <div className='Profile-UserContainer Owner'>
+            {loading ? (
+              <LoadSpinner />
+            ) : !list.length ? (
+              <div className='Profile-UserContainer_reviews business'>
+                <h4>no businesses found</h4>
               </div>
-              {/*end of map method */}
-            </div>
-          </>
-        )}
+            ) : (
+              <>
+                <div className='Profile-UserContainer_reviews business'>
+                  <h4>Your businesses</h4>
+                  <div className='BusinessCard-container'>
+                    {list.map((business: any, idx) => (
+                      <div className='BusinessCard ' key={business._id}>
+                        <About
+                          name={business.businessName}
+                          description={business.description}
+                          image={business.image}
+                          address={business.address}
+                        />
+                        <MyStarList
+                          stars={business.stars}
+                          reviews={business.reviews}
+                        />
+                        <div className='BusinessCard-buttons'>
+                          <h6
+                            className='btn--btn-primary twoLines business reviews'
+                            onClick={() => toggleIt(business._id)}
+                            data-idx={idx}
+                            id={business._id}>
+                            {!selected[business._id]
+                              ? 'read reviews'
+                              : 'close reviews'}
+                          </h6>
+                          <Link to={'#'}>
+                            <h6 className='btn--btn-primary twoLines business'>
+                              edit <br />
+                              business
+                            </h6>
+                          </Link>
+                          <Link to={'#'}>
+                            <h6 className='btn--btn-primary twoLines business'>
+                              delete business
+                            </h6>
+                          </Link>
+                        </div>
+                        <div
+                          className={
+                            !selected[business._id]
+                              ? 'menu-business'
+                              : 'menu-business open'
+                          }>
+                          <MyBusinessReviews reviews={business.reviews} />
+                        </div>
+                      </div>
+                    ))}{' '}
+                  </div>
+                  {/*end of map method */}
+                </div>
+              </>
+            )}
+          </div>
+        </div>
       </div>
       <div className='Profile_links'>
         <Link to={`/users/${user._id}`}>

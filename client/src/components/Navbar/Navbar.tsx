@@ -23,13 +23,10 @@ export const Navbar = () => {
   const handleClick = () => setClick(!click)
 
   const onMouseEnter = () => {
-    // if (window.innerWidth < 960) {
-
     setDropdown(true)
   }
 
   const onMouseLeave = () => {
-    // if (window.innerWidth < 960) {
     setDropdown(false)
   }
 
@@ -138,7 +135,7 @@ export const Navbar = () => {
       }
     }
   }
-
+  console.log('in navbar, role, user', role, user)
   return (
     <nav className='Navbar'>
       <h4 className='Navbar_logo'>LOGO</h4>

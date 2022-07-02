@@ -68,11 +68,9 @@ exports.Navbar = function () {
     var _f = react_1.useState(false), click = _f[0], setClick = _f[1];
     var handleClick = function () { return setClick(!click); };
     var onMouseEnter = function () {
-        // if (window.innerWidth < 960) {
         setDropdown(true);
     };
     var onMouseLeave = function () {
-        // if (window.innerWidth < 960) {
         setDropdown(false);
     };
     var toggleMenu = function () {
@@ -206,6 +204,7 @@ exports.Navbar = function () {
             }
         });
     }); };
+    console.log('in navbar, role, user', role, user);
     return (React.createElement("nav", { className: 'Navbar' },
         React.createElement("h4", { className: 'Navbar_logo' }, "LOGO"),
         React.createElement("input", { type: 'checkbox', id: 'chk' }),

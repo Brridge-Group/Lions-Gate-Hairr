@@ -46,3 +46,14 @@ div.card:nth-child(1) {
 .BusinessCard.List {
   cursor: pointer;
 }
+
+/* ///////media queries ////////// */
+
+@media screen and (max-width: 575px) {
+  .Star-container {
+    width: 45%;
+  }
+  .Star-container_small {
+    width: 55%;
+  }
+}

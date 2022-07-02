@@ -146,4 +146,22 @@ ul.Profile_User_reviews {
     background-image: url('../../assets/images/hairwhite-mobile.jpg');
     height: 100%;
   }
+  .Profile-UserContainer {
+    padding: 3rem;
+  }
+  .Profile_reviews > .column-left {
+    width: 40%;
+  }
+  .btn--btn-primary.reviews,
+  .btn--btn-primary.reviews.delete {
+    width: fit-content;
+    padding: 5px;
+    font-size: 1.4rem;
+  }
+  .btn--btn-primary.reviews {
+    padding-top: 7px;
+  }
+  .Profile_User_reviews > .Profile_reviews:last-child {
+    border-bottom: none;
+  }
 }

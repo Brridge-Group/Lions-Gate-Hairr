@@ -36,6 +36,7 @@ h5.features,
 h5.services {
   margin-top: 10px;
   margin-bottom: 5px;
+  line-height: 1.5rem;
 }
 
 h5.features:last-child {
@@ -100,24 +101,27 @@ h5.features:last-child {
 
 @media screen and (max-width: 575px) {
   .BusinessContainer {
-    grid-column: none;
-    display: block;
     overflow-y: scroll;
-    height: 70%;
     margin-top: 100px;
+    display: flex;
+    flex-flow: column;
+    height: 80vh;
   }
 
   .BusinessDetails-leftColumn {
     width: 60%;
     margin: auto;
-    margin-top: 60px;
+    margin-top: 35px;
+    flex: 0 1 auto;
   }
 
   .BusinessDetails-rightColumn {
-    width: 85%;
+    width: 80%;
     margin: auto;
     margin-top: 3rem;
     padding: 3rem;
+    flex: 1 1 auto;
+    overflow-y: scroll;
   }
   .btn--btn-primary.review.book,
   .phoneNumber {

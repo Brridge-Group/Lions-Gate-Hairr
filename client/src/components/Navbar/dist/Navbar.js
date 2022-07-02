@@ -1,4 +1,15 @@
 "use strict";
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -53,6 +64,17 @@ exports.Navbar = function () {
     var _b = react_1.useState(JSON.parse((_a = localStorage.getItem('profile')) !== null && _a !== void 0 ? _a : 'false')), user = _b[0], setUser = _b[1];
     var _c = react_1.useState(), role = _c[0], setRole = _c[1];
     var _d = react_1.useState(false), isMenuOpen = _d[0], setIsMenuOpen = _d[1];
+    var _e = react_1.useState(false), dropdown = _e[0], setDropdown = _e[1];
+    var _f = react_1.useState(false), click = _f[0], setClick = _f[1];
+    var handleClick = function () { return setClick(!click); };
+    var onMouseEnter = function () {
+        // if (window.innerWidth < 960) {
+        setDropdown(true);
+    };
+    var onMouseLeave = function () {
+        // if (window.innerWidth < 960) {
+        setDropdown(false);
+    };
     var toggleMenu = function () {
         setIsMenuOpen(!isMenuOpen);
     };
@@ -74,27 +96,116 @@ exports.Navbar = function () {
             state: { user: 'false' }
         });
     };
-    if (user) {
-        var fetchData = function () { return __awaiter(void 0, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, axios_1["default"]
-                            .get('http://localhost:5000/api/users' +
-                            ("/get-profile/?id=" + user.result._id))
-                            .then(function (res) { return __awaiter(void 0, void 0, void 0, function () {
-                            return __generator(this, function (_a) {
-                                // setName(res.data.name)
-                                setRole(res.data.role);
-                                return [2 /*return*/];
-                            });
-                        }); })["catch"](function (error) { })];
-                    case 1:
-                        _a.sent();
-                        return [2 /*return*/];
-                }
-            });
-        }); };
-    }
+    react_1.useEffect(function () {
+        if (user) {
+            var fetchData = function () { return __awaiter(void 0, void 0, void 0, function () {
+                return __generator(this, function (_a) {
+                    switch (_a.label) {
+                        case 0: return [4 /*yield*/, axios_1["default"]
+                                .get('http://localhost:5000/api/users' +
+                                ("/get-profile/?id=" + user.result._id))
+                                .then(function (res) { return __awaiter(void 0, void 0, void 0, function () {
+                                return __generator(this, function (_a) {
+                                    // setName(res.data.name)
+                                    setRole(res.data.role);
+                                    return [2 /*return*/];
+                                });
+                            }); })["catch"](function (error) { })];
+                        case 1:
+                            _a.sent();
+                            return [2 /*return*/];
+                    }
+                });
+            }); };
+            fetchData();
+        }
+    }, [user]);
+    // console.log('role', role, 'user', user)
+    var profileRoleOwner = function () { return __awaiter(void 0, void 0, void 0, function () {
+        var revisedRole, requestOptions, response, error_1;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    console.log('user', user);
+                    if (!(role !== 'owner')) return [3 /*break*/, 5];
+                    revisedRole = {
+                        role: 'owner'
+                    };
+                    requestOptions = {
+                        method: 'PATCH',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(__assign({}, revisedRole))
+                    };
+                    _a.label = 1;
+                case 1:
+                    _a.trys.push([1, 4, , 5]);
+                    return [4 /*yield*/, fetch("/api/users/" + user.result._id, requestOptions)];
+                case 2:
+                    response = _a.sent();
+                    if (!response.ok) {
+                        throw new Error('New profile not saved! Please resubmit.');
+                    }
+                    return [4 /*yield*/, response.json()
+                        // console.log(user, 'user, profileRoleOwner', response, 'response')
+                    ];
+                case 3:
+                    _a.sent();
+                    // console.log(user, 'user, profileRoleOwner', response, 'response')
+                    setRole(user.result.role);
+                    history.push('/my-businesses');
+                    return [3 /*break*/, 5];
+                case 4:
+                    error_1 = _a.sent();
+                    console.error('profile not created.');
+                    return [3 /*break*/, 5];
+                case 5: return [2 /*return*/];
+            }
+        });
+    }); };
+    var profileRoleUser = function () { return __awaiter(void 0, void 0, void 0, function () {
+        var revisedRole, requestOptions, response, error_2;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    console.log('user', user);
+                    if (!(role !== 'user')) return [3 /*break*/, 5];
+                    revisedRole = {
+                        role: 'user'
+                    };
+                    console.log('in profile user,revisedRole', revisedRole);
+                    requestOptions = {
+                        method: 'PATCH',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(__assign({}, revisedRole))
+                    };
+                    _a.label = 1;
+                case 1:
+                    _a.trys.push([1, 4, , 5]);
+                    return [4 /*yield*/, fetch("/api/users/" + user.result._id, requestOptions)];
+                case 2:
+                    response = _a.sent();
+                    if (!response.ok) {
+                        throw new Error('New profile not saved! Please resubmit.');
+                    }
+                    return [4 /*yield*/, response.json()];
+                case 3:
+                    _a.sent();
+                    setRole(user.result.role);
+                    console.log(user, 'user, profileRoleUser', response, 'response');
+                    history.push('/profile');
+                    return [3 /*break*/, 5];
+                case 4:
+                    error_2 = _a.sent();
+                    console.error('profile not created.');
+                    return [3 /*break*/, 5];
+                case 5: return [2 /*return*/];
+            }
+        });
+    }); };
     return (React.createElement("nav", { className: 'Navbar' },
         React.createElement("h4", { className: 'Navbar_logo' }, "LOGO"),
         React.createElement("input", { type: 'checkbox', id: 'chk' }),
@@ -103,14 +214,19 @@ exports.Navbar = function () {
         React.createElement("ul", { className: 'NavbarList menu' },
             React.createElement("h4", null,
                 React.createElement("li", { className: 'NavbarList_link' },
-                    React.createElement(react_router_dom_2.NavLink, { to: '/', exact: true, activeStyle: { fontWeight: '400' } }, "Home")),
+                    React.createElement(react_router_dom_2.NavLink, { to: '/', exact: true, activeStyle: { fontWeight: 400 } }, "Home")),
                 !user ? (React.createElement(React.Fragment, null,
                     React.createElement("li", { className: 'NavbarList_link' },
-                        React.createElement(react_router_dom_2.NavLink, { to: '/user-signup', activeStyle: { fontWeight: '400' } }, "Sign Up")),
+                        React.createElement(react_router_dom_2.NavLink, { to: '/user-signup', activeStyle: { fontWeight: 400 } }, "Sign Up")),
                     React.createElement("li", { className: 'NavbarList_link' },
-                        React.createElement(react_router_dom_2.NavLink, { to: '/user-signin', activeStyle: { fontWeight: '400' } }, "Sign In")))) : (React.createElement(React.Fragment, null,
-                    React.createElement("li", { className: 'NavbarList_link' },
-                        React.createElement(react_router_dom_2.NavLink, { to: '/profile', activeStyle: { fontWeight: '400' } }, "Profile")),
+                        React.createElement(react_router_dom_2.NavLink, { to: '/user-signin', activeStyle: { fontWeight: 400 } }, "Sign In")))) : (React.createElement(React.Fragment, null,
+                    React.createElement("li", { className: 'NavbarList_link', onMouseEnter: onMouseEnter, onMouseLeave: onMouseLeave },
+                        React.createElement(react_router_dom_2.NavLink, { to: '/profile', activeStyle: { fontWeight: 400 } }, "Profile"),
+                        dropdown && (React.createElement("ul", { className: click ? 'dropdown-menu clicked ' : 'dropdown-menu' },
+                            React.createElement("li", { className: 'NavbarList_link', onClick: profileRoleUser },
+                                React.createElement(react_router_dom_2.NavLink, { to: '/profile', activeStyle: { fontWeight: 400 } }, "User")),
+                            React.createElement("li", { className: 'NavbarList_link', onClick: profileRoleOwner },
+                                React.createElement(react_router_dom_2.NavLink, { to: '/profile', activeStyle: { fontWeight: 400 } }, "Owner"))))),
                     React.createElement("li", { className: 'NavbarList_link ' },
                         React.createElement(react_router_dom_2.NavLink, { to: '/', onClick: logout }, "Log Out"))))))));
 };

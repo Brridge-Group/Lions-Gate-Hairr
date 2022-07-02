@@ -6,6 +6,7 @@ import decode from 'jwt-decode'
 import axios from 'axios'
 import { MenuButton } from './MenuButton'
 import './Navbar.css'
+import { UserRegistration } from '../../pages/Auth/UserRegistration/UserRegistration'
 
 export const Navbar = () => {
   const location = useLocation()
@@ -16,6 +17,21 @@ export const Navbar = () => {
   )
   const [role, setRole] = useState()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [dropdown, setDropdown] = useState(false)
+  const [click, setClick] = useState(false)
+
+  const handleClick = () => setClick(!click)
+
+  const onMouseEnter = () => {
+    // if (window.innerWidth < 960) {
+
+    setDropdown(true)
+  }
+
+  const onMouseLeave = () => {
+    // if (window.innerWidth < 960) {
+    setDropdown(false)
+  }
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen)
@@ -39,20 +55,87 @@ export const Navbar = () => {
       state: { user: 'false' },
     })
   }
+  useEffect(() => {
+    if (user) {
+      const fetchData = async () => {
+        await axios
+          .get(
+            'http://localhost:5000/api/users' +
+              `/get-profile/?id=${user.result._id}`
+          )
+          .then(async res => {
+            // setName(res.data.name)
+            setRole(res.data.role)
+            // setImage(res.data.imageProfile)
+          })
+          .catch(error => {})
+      }
+      fetchData()
+    }
+  }, [user])
+  // console.log('role', role, 'user', user)
 
-  if (user) {
-    const fetchData = async () => {
-      await axios
-        .get(
-          'http://localhost:5000/api/users' +
-            `/get-profile/?id=${user.result._id}`
+  const profileRoleOwner = async () => {
+    console.log('user', user)
+    if (role !== 'owner') {
+      let revisedRole = {
+        role: 'owner',
+      }
+      const requestOptions = {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ ...revisedRole }),
+      }
+      try {
+        const response = await fetch(
+          `/api/users/${user.result._id}`,
+          requestOptions
         )
-        .then(async res => {
-          // setName(res.data.name)
-          setRole(res.data.role)
-          // setImage(res.data.imageProfile)
-        })
-        .catch(error => {})
+        if (!response.ok) {
+          throw new Error('New profile not saved! Please resubmit.')
+        }
+        await response.json()
+        // console.log(user, 'user, profileRoleOwner', response, 'response')
+
+        setRole(user.result.role)
+        history.push('/my-businesses')
+      } catch (error) {
+        console.error('profile not created.')
+      }
+    }
+  }
+  const profileRoleUser = async () => {
+    console.log('user', user)
+    if (role !== 'user') {
+      let revisedRole = {
+        role: 'user',
+      }
+      console.log('in profile user,revisedRole', revisedRole)
+      const requestOptions = {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ ...revisedRole }),
+      }
+      try {
+        const response = await fetch(
+          `/api/users/${user.result._id}`,
+          requestOptions
+        )
+        if (!response.ok) {
+          throw new Error('New profile not saved! Please resubmit.')
+        }
+        await response.json()
+        setRole(user.result.role)
+        console.log(user, 'user, profileRoleUser', response, 'response')
+
+        history.push('/profile')
+      } catch (error) {
+        console.error('profile not created.')
+      }
     }
   }
 
@@ -85,11 +168,32 @@ export const Navbar = () => {
             </>
           ) : (
             <>
-              <li className='NavbarList_link'>
+              <li
+                className='NavbarList_link'
+                onMouseEnter={onMouseEnter}
+                onMouseLeave={onMouseLeave}>
                 <NavLink to='/profile' activeStyle={{ fontWeight: 400 }}>
                   Profile
                 </NavLink>
+                {dropdown && (
+                  <ul
+                    className={
+                      click ? 'dropdown-menu clicked ' : 'dropdown-menu'
+                    }>
+                    <li className='NavbarList_link' onClick={profileRoleUser}>
+                      <NavLink to='/profile' activeStyle={{ fontWeight: 400 }}>
+                        User
+                      </NavLink>
+                    </li>
+                    <li className='NavbarList_link' onClick={profileRoleOwner}>
+                      <NavLink to='/profile' activeStyle={{ fontWeight: 400 }}>
+                        Owner
+                      </NavLink>
+                    </li>
+                  </ul>
+                )}
               </li>
+
               <li className='NavbarList_link '>
                 <NavLink to='/' onClick={logout}>
                   Log Out

@@ -174,18 +174,20 @@ export const updateUser = async (req: Request, res: Response) => {
 }
 
 export const changeUserRole = async (req: Request, res: Response) => {
-  const filter = { _id: req.params.id }
+  const id = { _id: req.params.id }
 
   const { role } = req.body
   try {
     const fieldsToUpdate = {
       role: role,
     }
-    console.log('filter, req.body, fieldsToUpdate', filter, req.body)
-    let result = await User.findOneAndUpdate(filter, fieldsToUpdate, {})
-    console.log('result', result)
+    console.log('filter, req.body, fieldsToUpdate', id, req.body)
+    let result = await User.findByIdAndUpdate(id, fieldsToUpdate, {
+      new: true,
+    })
     if (result) {
       res.status(200).json({ result })
+      // console.log('result', result)
     } else {
       res.status(400).json({ error: 'Error in update user' })
     }

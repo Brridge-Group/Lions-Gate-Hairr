@@ -225,11 +225,11 @@ exports.updateUser = function (req, res) { return __awaiter(void 0, void 0, void
     });
 }); };
 exports.changeUserRole = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var filter, role, fieldsToUpdate, result, error_2;
+    var id, role, fieldsToUpdate, result, error_2;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
-                filter = { _id: req.params.id };
+                id = { _id: req.params.id };
                 role = req.body.role;
                 _a.label = 1;
             case 1:
@@ -237,13 +237,15 @@ exports.changeUserRole = function (req, res) { return __awaiter(void 0, void 0, 
                 fieldsToUpdate = {
                     role: role
                 };
-                console.log('filter, req.body, fieldsToUpdate', filter, req.body);
-                return [4 /*yield*/, User.findOneAndUpdate(filter, fieldsToUpdate, {})];
+                console.log('filter, req.body, fieldsToUpdate', id, req.body);
+                return [4 /*yield*/, User.findByIdAndUpdate(id, fieldsToUpdate, {
+                        "new": true
+                    })];
             case 2:
                 result = _a.sent();
-                console.log('result', result);
                 if (result) {
                     res.status(200).json({ result: result });
+                    // console.log('result', result)
                 }
                 else {
                     res.status(400).json({ error: 'Error in update user' });

@@ -88,7 +88,7 @@ exports.Profile = function () {
                     React.createElement("img", { src: imageProfile || 'https://imgur.com/LDpwLVZ.jpg', alt: name + '_profilePicture', className: 'Profile-UserContainer_pic' }),
                     React.createElement("div", { className: 'Profile-UserContainer_reviews' },
                         React.createElement("h4", null, "your reviews"),
-                        loading ? (React.createElement(LoadSpinner_1.LoadSpinner, null)) : !userReview.length ? ('add some reviews') : (React.createElement("ul", { className: 'Profile_User_reviews' }, !loading &&
+                        loading ? (React.createElement(LoadSpinner_1.LoadSpinner, null)) : (React.createElement("ul", { className: 'Profile_User_reviews' }, !loading &&
                             userReview.map(function (r) { return (React.createElement("li", { key: r._id, className: 'Profile_reviews' },
                                 React.createElement("div", { className: 'column-left' },
                                     React.createElement("img", { src: r.data.review.business.image, alt: '' }),

@@ -19,7 +19,8 @@ exports.MyBusinessReviews = function (props) {
     // console.log(myBusinessReview, 'mybusinessReview', reviews, 'reviews')
     return (React.createElement("ul", { className: 'BusinessReviews_container' }, !loading && !myBusinessReview.length ? (React.createElement("h6", { className: 'BusinessReviews_container-noReviews' }, "no reviews yet")) : (myBusinessReview.map(function (r) { return (React.createElement("li", { key: r.data.review._id, className: 'Business_reviews' },
         React.createElement("div", { className: 'Business_column-left ' },
-            React.createElement("img", { src: r.data.review.author.imageProfile, className: 'person-circle' })),
+            React.createElement("div", { className: 'img-wrapper' },
+                React.createElement("img", { src: r.data.review.author.imageProfile, className: 'person-circle' }))),
         React.createElement("div", { className: 'Business_column-right' },
             r.data.review.author.name,
             React.createElement("h6", { className: 'person-city' }, "do we want city, state"),

@@ -126,7 +126,10 @@ exports.MyBusinessList = function () {
                                             React.createElement("br", null),
                                             "business")),
                                     React.createElement(react_router_dom_1.Link, { to: '#' },
-                                        React.createElement("h6", { className: 'btn--btn-primary twoLines business' }, "delete business"))),
+                                        React.createElement("h6", { className: 'btn--btn-primary twoLines business' },
+                                            "delete ",
+                                            React.createElement("br", null),
+                                            "business"))),
                                 React.createElement("div", { className: !selected[business._id]
                                         ? 'menu-business'
                                         : 'menu-business open' },

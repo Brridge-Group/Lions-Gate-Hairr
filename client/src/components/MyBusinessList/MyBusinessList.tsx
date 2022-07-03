@@ -98,7 +98,8 @@ export const MyBusinessList = () => {
                           </Link>
                           <Link to={'#'}>
                             <h6 className='btn--btn-primary twoLines business'>
-                              delete business
+                              delete <br />
+                              business
                             </h6>
                           </Link>
                         </div>

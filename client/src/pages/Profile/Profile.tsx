@@ -68,8 +68,6 @@ export const Profile = () => {
               <h4>your reviews</h4>
               {loading ? (
                 <LoadSpinner />
-              ) : !userReview.length ? (
-                'add some reviews'
               ) : (
                 <ul className='Profile_User_reviews'>
                   {!loading &&

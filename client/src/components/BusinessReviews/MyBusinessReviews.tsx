@@ -32,10 +32,12 @@ export const MyBusinessReviews = (props: Props) => {
         myBusinessReview.map((r: any) => (
           <li key={r.data.review._id} className='Business_reviews'>
             <div className='Business_column-left '>
-              <img
-                src={r.data.review.author.imageProfile}
-                className='person-circle'
-              />
+              <div className='img-wrapper'>
+                <img
+                  src={r.data.review.author.imageProfile}
+                  className='person-circle'
+                />
+              </div>
             </div>
             <div className='Business_column-right'>
               {r.data.review.author.name}

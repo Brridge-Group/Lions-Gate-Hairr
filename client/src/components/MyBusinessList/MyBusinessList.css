@@ -46,7 +46,19 @@
     background-image: url('../../assets/images/hairgrey-mobile.jpg');
     height: 100%;
   }
-  .BusinessCard-buttons > .btn--btn-primary.twoLines.business.reviews {
+
+  .btn--btn-primary.twoLines.business {
     width: fit-content;
+    margin: 0;
+    padding: 5px;
+  }
+  .btn--btn-primary.twoLines.business.reviews {
+    font-size: 1.5rem;
+    width: 30%;
+    padding: 0;
+    padding-top: 5px;
+  }
+  .BusinessCard-container {
+    padding-bottom: 0;
   }
 }

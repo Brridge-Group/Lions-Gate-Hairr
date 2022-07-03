@@ -79,11 +79,13 @@
   .BusinessList-Filters.leftColumn {
     width: 60%;
     margin: auto;
+    height: 45vh;
   }
   .BusinessList-Filters.rightColumn {
     width: 80%;
     margin: auto;
     margin-top: 3rem;
+    padding: 3rem;
     padding-bottom: 0rem;
   }
 }

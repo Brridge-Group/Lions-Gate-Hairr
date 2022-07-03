@@ -237,7 +237,6 @@ exports.changeUserRole = function (req, res) { return __awaiter(void 0, void 0, 
                 fieldsToUpdate = {
                     role: role
                 };
-                console.log('filter, req.body, fieldsToUpdate', id, req.body);
                 return [4 /*yield*/, User.findByIdAndUpdate(id, fieldsToUpdate, {
                         "new": true
                     })];

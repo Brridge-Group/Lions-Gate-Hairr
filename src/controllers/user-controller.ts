@@ -181,7 +181,7 @@ export const changeUserRole = async (req: Request, res: Response) => {
     const fieldsToUpdate = {
       role: role,
     }
-    console.log('filter, req.body, fieldsToUpdate', id, req.body)
+    // console.log('filter, req.body, fieldsToUpdate', id, req.body)
     let result = await User.findByIdAndUpdate(id, fieldsToUpdate, {
       new: true,
     })

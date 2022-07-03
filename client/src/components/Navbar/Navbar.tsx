@@ -2,16 +2,18 @@ import { useEffect, useState } from 'react'
 import { useHistory, useLocation } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { NavLink } from 'react-router-dom'
+import { FaCaretDown, FaCaretUp } from 'react-icons/fa'
+
 import decode from 'jwt-decode'
 import axios from 'axios'
 import { MenuButton } from './MenuButton'
 import './Navbar.css'
-import { UserRegistration } from '../../pages/Auth/UserRegistration/UserRegistration'
 
 export const Navbar = () => {
   const location = useLocation()
   const history: any = useHistory()
   const dispatch = useDispatch()
+  const getIsMobile = () => window.innerWidth <= 575
   const [user, setUser] = useState(
     JSON.parse(localStorage.getItem('profile') ?? 'false')
   )
@@ -19,8 +21,36 @@ export const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [dropdown, setDropdown] = useState(false)
   const [click, setClick] = useState(false)
+  const [isMobile, setIsMobile] = useState(getIsMobile)
 
-  const handleClick = () => setClick(!click)
+  useEffect(() => {
+    const onResize = () => {
+      setIsMobile(getIsMobile)
+    }
+
+    window.addEventListener('resize', onResize)
+
+    return () => {
+      window.removeEventListener('resize', onResize)
+    }
+  }, [])
+
+  useEffect(() => {
+    document.addEventListener('keydown', detectKeyDown)
+    return () => {
+      document.removeEventListener('keydown', detectKeyDown)
+    }
+  }, [])
+
+  console.log('isMobile', isMobile)
+  const handleClickMobile = () => {
+    setDropdown(!dropdown)
+  }
+
+  const detectKeyDown = (e: any) => {
+    console.log('clicked key', e.key)
+    setDropdown(true)
+  }
 
   const onMouseEnter = () => {
     setDropdown(true)
@@ -152,12 +182,12 @@ export const Navbar = () => {
           </li>
           {!user ? (
             <>
-              <li className='NavbarList_link'>
+              <li className='NavbarList_link noUser'>
                 <NavLink to='/user-signup' activeStyle={{ fontWeight: 400 }}>
                   Sign Up
                 </NavLink>
               </li>
-              <li className='NavbarList_link'>
+              <li className='NavbarList_link noUser'>
                 <NavLink to='/user-signin' activeStyle={{ fontWeight: 400 }}>
                   Sign In
                 </NavLink>
@@ -165,31 +195,75 @@ export const Navbar = () => {
             </>
           ) : (
             <>
-              <li
-                className='NavbarList_link'
-                onMouseEnter={onMouseEnter}
-                onMouseLeave={onMouseLeave}>
-                <NavLink to='/profile' activeStyle={{ fontWeight: 400 }}>
-                  Profile
-                </NavLink>
-                {dropdown && (
-                  <ul
-                    className={
-                      click ? 'dropdown-menu clicked ' : 'dropdown-menu'
-                    }>
-                    <li className='NavbarList_link' onClick={profileRoleUser}>
-                      <NavLink to='/profile' activeStyle={{ fontWeight: 400 }}>
-                        User
-                      </NavLink>
-                    </li>
-                    <li className='NavbarList_link' onClick={profileRoleOwner}>
-                      <NavLink to='/profile' activeStyle={{ fontWeight: 400 }}>
-                        Owner
-                      </NavLink>
-                    </li>
-                  </ul>
-                )}
-              </li>
+              {isMobile ? (
+                <li className='NavbarList_link mobile'>
+                  <div className='Profile-dropdown' onClick={handleClickMobile}>
+                    Profile{' '}
+                    <span className='NavbarDropdown-carat'>
+                      {!dropdown ? <FaCaretDown /> : <FaCaretUp />}
+                    </span>
+                  </div>
+                  {dropdown && (
+                    <ul
+                      className={
+                        click ? 'dropdown-menu clicked ' : 'dropdown-menu'
+                      }>
+                      <li
+                        className='NavbarList_link dropdown'
+                        onClick={profileRoleUser}>
+                        <NavLink
+                          to='/profile'
+                          activeStyle={{ fontWeight: 400 }}>
+                          User
+                        </NavLink>
+                      </li>
+
+                      <li
+                        className='NavbarList_link dropdown'
+                        onClick={profileRoleOwner}>
+                        <NavLink
+                          to='/profile'
+                          activeStyle={{ fontWeight: 400 }}>
+                          Owner
+                        </NavLink>
+                      </li>
+                    </ul>
+                  )}
+                </li>
+              ) : (
+                <li
+                  className='NavbarList_link '
+                  onMouseEnter={onMouseEnter}
+                  onMouseLeave={onMouseLeave}>
+                  Profile{' '}
+                  <span className='NavbarDropdown-carat'>
+                    <FaCaretDown />
+                  </span>
+                  {dropdown && (
+                    <ul
+                      className={
+                        click ? 'dropdown-menu clicked ' : 'dropdown-menu'
+                      }>
+                      <li className='NavbarList_link' onClick={profileRoleUser}>
+                        <NavLink
+                          to='/profile'
+                          activeStyle={{ fontWeight: 400 }}>
+                          User
+                        </NavLink>
+                      </li>
+                      <li
+                        className='NavbarList_link'
+                        onClick={profileRoleOwner}>
+                        <NavLink
+                          to='/profile'
+                          activeStyle={{ fontWeight: 400 }}>
+                          Owner
+                        </NavLink>
+                      </li>
+                    </ul>
+                  )}
+                </li>
+              )}
 
               <li className='NavbarList_link '>
                 <NavLink to='/' onClick={logout}>

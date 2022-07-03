@@ -52,6 +52,7 @@ var react_1 = require("react");
 var react_router_dom_1 = require("react-router-dom");
 var react_redux_1 = require("react-redux");
 var react_router_dom_2 = require("react-router-dom");
+var fa_1 = require("react-icons/fa");
 var jwt_decode_1 = require("jwt-decode");
 var axios_1 = require("axios");
 var MenuButton_1 = require("./MenuButton");
@@ -61,12 +62,36 @@ exports.Navbar = function () {
     var location = react_router_dom_1.useLocation();
     var history = react_router_dom_1.useHistory();
     var dispatch = react_redux_1.useDispatch();
+    var getIsMobile = function () { return window.innerWidth <= 575; };
     var _b = react_1.useState(JSON.parse((_a = localStorage.getItem('profile')) !== null && _a !== void 0 ? _a : 'false')), user = _b[0], setUser = _b[1];
     var _c = react_1.useState(), role = _c[0], setRole = _c[1];
     var _d = react_1.useState(false), isMenuOpen = _d[0], setIsMenuOpen = _d[1];
     var _e = react_1.useState(false), dropdown = _e[0], setDropdown = _e[1];
     var _f = react_1.useState(false), click = _f[0], setClick = _f[1];
-    var handleClick = function () { return setClick(!click); };
+    var _g = react_1.useState(getIsMobile), isMobile = _g[0], setIsMobile = _g[1];
+    react_1.useEffect(function () {
+        var onResize = function () {
+            setIsMobile(getIsMobile);
+        };
+        window.addEventListener('resize', onResize);
+        return function () {
+            window.removeEventListener('resize', onResize);
+        };
+    }, []);
+    react_1.useEffect(function () {
+        document.addEventListener('keydown', detectKeyDown);
+        return function () {
+            document.removeEventListener('keydown', detectKeyDown);
+        };
+    }, []);
+    console.log('isMobile', isMobile);
+    var handleClickMobile = function () {
+        setDropdown(!dropdown);
+    };
+    var detectKeyDown = function (e) {
+        console.log('clicked key', e.key);
+        setDropdown(true);
+    };
     var onMouseEnter = function () {
         setDropdown(true);
     };
@@ -215,17 +240,29 @@ exports.Navbar = function () {
                 React.createElement("li", { className: 'NavbarList_link' },
                     React.createElement(react_router_dom_2.NavLink, { to: '/', exact: true, activeStyle: { fontWeight: 400 } }, "Home")),
                 !user ? (React.createElement(React.Fragment, null,
-                    React.createElement("li", { className: 'NavbarList_link' },
+                    React.createElement("li", { className: 'NavbarList_link noUser' },
                         React.createElement(react_router_dom_2.NavLink, { to: '/user-signup', activeStyle: { fontWeight: 400 } }, "Sign Up")),
-                    React.createElement("li", { className: 'NavbarList_link' },
+                    React.createElement("li", { className: 'NavbarList_link noUser' },
                         React.createElement(react_router_dom_2.NavLink, { to: '/user-signin', activeStyle: { fontWeight: 400 } }, "Sign In")))) : (React.createElement(React.Fragment, null,
-                    React.createElement("li", { className: 'NavbarList_link', onMouseEnter: onMouseEnter, onMouseLeave: onMouseLeave },
-                        React.createElement(react_router_dom_2.NavLink, { to: '/profile', activeStyle: { fontWeight: 400 } }, "Profile"),
+                    isMobile ? (React.createElement("li", { className: 'NavbarList_link mobile' },
+                        React.createElement("div", { className: 'Profile-dropdown', onClick: handleClickMobile },
+                            "Profile",
+                            ' ',
+                            React.createElement("span", { className: 'NavbarDropdown-carat' }, !dropdown ? React.createElement(fa_1.FaCaretDown, null) : React.createElement(fa_1.FaCaretUp, null))),
+                        dropdown && (React.createElement("ul", { className: click ? 'dropdown-menu clicked ' : 'dropdown-menu' },
+                            React.createElement("li", { className: 'NavbarList_link dropdown', onClick: profileRoleUser },
+                                React.createElement(react_router_dom_2.NavLink, { to: '/profile', activeStyle: { fontWeight: 400 } }, "User")),
+                            React.createElement("li", { className: 'NavbarList_link dropdown', onClick: profileRoleOwner },
+                                React.createElement(react_router_dom_2.NavLink, { to: '/profile', activeStyle: { fontWeight: 400 } }, "Owner")))))) : (React.createElement("li", { className: 'NavbarList_link ', onMouseEnter: onMouseEnter, onMouseLeave: onMouseLeave },
+                        "Profile",
+                        ' ',
+                        React.createElement("span", { className: 'NavbarDropdown-carat' },
+                            React.createElement(fa_1.FaCaretDown, null)),
                         dropdown && (React.createElement("ul", { className: click ? 'dropdown-menu clicked ' : 'dropdown-menu' },
                             React.createElement("li", { className: 'NavbarList_link', onClick: profileRoleUser },
                                 React.createElement(react_router_dom_2.NavLink, { to: '/profile', activeStyle: { fontWeight: 400 } }, "User")),
                             React.createElement("li", { className: 'NavbarList_link', onClick: profileRoleOwner },
-                                React.createElement(react_router_dom_2.NavLink, { to: '/profile', activeStyle: { fontWeight: 400 } }, "Owner"))))),
+                                React.createElement(react_router_dom_2.NavLink, { to: '/profile', activeStyle: { fontWeight: 400 } }, "Owner")))))),
                     React.createElement("li", { className: 'NavbarList_link ' },
                         React.createElement(react_router_dom_2.NavLink, { to: '/', onClick: logout }, "Log Out"))))))));
 };

@@ -15,11 +15,7 @@
 .Profile_name h1 {
   text-align: center;
 }
-img.user-pix-placeholder {
-  width: 35%;
 
-  margin-top: -20px;
-}
 .Profile_reviews {
   margin-top: 20px;
   font-size: 1.6rem;
@@ -34,22 +30,22 @@ img.user-pix-placeholder {
   border-bottom: 20px;
 }
 
-.column-left {
+.Profile_reviews > .column-left {
   width: 25%;
   margin-right: 20px;
   margin-bottom: 20px;
 }
-.column-right h5 {
+.Profile_reviews > .column-right h5 {
   margin: 0;
   font-weight: normal;
   font-size: 1.7rem;
 }
-.column-right {
+.Profile_reviews > .column-right {
   width: 65%;
   margin-top: -5px;
   margin-bottom: 20px;
 }
-.column-right.Star-container {
+.Profile_reviews > .column-right.Star-container {
   width: 60%;
 }
 img {
@@ -64,11 +60,7 @@ ul.Profile_User_reviews {
   list-style-type: none;
   margin-top: 0;
 }
-.user-foto {
-  z-index: 100;
-  position: absolute;
-  left: 45%;
-}
+
 .review-btns {
   display: flex;
   width: 100%;
@@ -165,15 +157,13 @@ ul.Profile_User_reviews {
   .btn--btn-primary.reviews {
     padding-top: 7px;
   }
-  .Profile_User_reviews > .Profile_reviews:last-child {
+  .Profile_reviews:last-child {
     border-bottom: none;
   }
   .Profile_User_reviews {
     overscroll-behavior-y: contain;
   }
-  li.Profile_reviews:last-child {
-    border-bottom: none;
-  }
+
   .Profile-UserContainer.Owner {
     height: 70vh;
   }

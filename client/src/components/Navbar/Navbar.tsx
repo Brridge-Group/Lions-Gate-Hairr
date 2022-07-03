@@ -27,7 +27,6 @@ export const Navbar = () => {
     const onResize = () => {
       setIsMobile(getIsMobile)
     }
-
     window.addEventListener('resize', onResize)
 
     return () => {
@@ -35,21 +34,9 @@ export const Navbar = () => {
     }
   }, [])
 
-  useEffect(() => {
-    document.addEventListener('keydown', detectKeyDown)
-    return () => {
-      document.removeEventListener('keydown', detectKeyDown)
-    }
-  }, [])
-
-  console.log('isMobile', isMobile)
+  // console.log('isMobile', isMobile)
   const handleClickMobile = () => {
     setDropdown(!dropdown)
-  }
-
-  const detectKeyDown = (e: any) => {
-    console.log('clicked key', e.key)
-    setDropdown(true)
   }
 
   const onMouseEnter = () => {
@@ -100,10 +87,8 @@ export const Navbar = () => {
       fetchData()
     }
   }, [user])
-  // console.log('role', role, 'user', user)
 
   const profileRoleOwner = async () => {
-    console.log('user', user)
     if (role !== 'owner') {
       let revisedRole = {
         role: 'owner',
@@ -124,7 +109,6 @@ export const Navbar = () => {
           throw new Error('New profile not saved! Please resubmit.')
         }
         await response.json()
-        // console.log(user, 'user, profileRoleOwner', response, 'response')
 
         setRole(user.result.role)
         history.push('/my-businesses')
@@ -134,12 +118,11 @@ export const Navbar = () => {
     }
   }
   const profileRoleUser = async () => {
-    console.log('user', user)
     if (role !== 'user') {
       let revisedRole = {
         role: 'user',
       }
-      console.log('in profile user,revisedRole', revisedRole)
+      // console.log('in profile user,revisedRole', revisedRole)
       const requestOptions = {
         method: 'PATCH',
         headers: {
@@ -157,7 +140,7 @@ export const Navbar = () => {
         }
         await response.json()
         setRole(user.result.role)
-        console.log(user, 'user, profileRoleUser', response, 'response')
+        // console.log(user, 'user, profileRoleUser', response, 'response')
 
         history.push('/profile')
       } catch (error) {
@@ -165,7 +148,6 @@ export const Navbar = () => {
       }
     }
   }
-  console.log('in navbar, role, user', role, user)
   return (
     <nav className='Navbar'>
       <h4 className='Navbar_logo'>LOGO</h4>

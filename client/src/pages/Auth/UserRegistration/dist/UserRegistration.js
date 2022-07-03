@@ -50,11 +50,6 @@ exports.__esModule = true;
 exports.UserRegistration = void 0;
 var react_1 = require("react");
 var UserImage_1 = require("../../../UIElements/UserImage");
-var VisibilityRounded_1 = require("@material-ui/icons/VisibilityRounded");
-var VisibilityOffRounded_1 = require("@material-ui/icons/VisibilityOffRounded");
-var Input_1 = require("@material-ui/core/Input");
-var InputAdornment_1 = require("@material-ui/core/InputAdornment");
-var IconButton_1 = require("@material-ui/core/IconButton");
 var react_toastify_1 = require("react-toastify");
 var react_router_dom_1 = require("react-router-dom");
 var react_redux_1 = require("react-redux");
@@ -64,6 +59,7 @@ var api = require("../../../api/index");
 require("./UserRegistration.css");
 require("../../Profile/Profile.css");
 require("react-toastify/dist/ReactToastify.css");
+var ai_1 = require("react-icons/ai");
 require('dotenv').config();
 react_toastify_1.toast.configure();
 exports.UserRegistration = function () {
@@ -85,10 +81,11 @@ exports.UserRegistration = function () {
                     _a.trys.push([0, 2, , 3]);
                     return [4 /*yield*/, api.signUp(userData)];
                 case 1:
-                    // sign up the user
-                    data = _a.sent();
+                    data = (_a.sent()).data;
                     dispatch({ type: actionTypes_1.AUTH, data: data });
-                    history.push('/');
+                    userData.role === 'user'
+                        ? history.push('/')
+                        : history.push('/add-business');
                     return [3 /*break*/, 3];
                 case 2:
                     err_1 = _a.sent();
@@ -101,9 +98,6 @@ exports.UserRegistration = function () {
     }); }; };
     var toggleShow = function () {
         setShowPassword(!showPassword);
-    };
-    var handleMouseDownPassword = function (event) {
-        event.preventDefault();
     };
     var onImageChange = function (e) { return __awaiter(void 0, void 0, void 0, function () {
         var maxFileSize, file_1, base64;
@@ -148,15 +142,11 @@ exports.UserRegistration = function () {
     }); };
     var handleSubmit = function (e) {
         e.preventDefault();
-        if (!imageSelected) {
-            react_toastify_1.toast('Error uploading image. No image was selected.');
-        }
-        else {
-            dispatch(signup(userData, history));
-        }
+        dispatch(signup(userData, history));
     };
     var handleChange = function (e) {
         var _a;
+        // console.log(e.target.value)
         setUserData(__assign(__assign({}, userData), (_a = {}, _a[e.target.name] = e.target.value, _a)));
     };
     return (React.createElement(React.Fragment, null,
@@ -174,13 +164,14 @@ exports.UserRegistration = function () {
                         React.createElement("h5", null,
                             React.createElement("label", null, "Email")),
                         React.createElement("input", { name: 'email', onChange: handleChange, className: 'UserRegistration_input' }),
-                        React.createElement("h5", null,
-                            React.createElement("label", null, "Password")),
-                        React.createElement(Input_1["default"], { name: 'password', type: showPassword ? 'text' : 'password', onChange: handleChange, className: 'UserRegistration_input', endAdornment: React.createElement(InputAdornment_1["default"], { position: 'end' },
-                                React.createElement(IconButton_1["default"], { onClick: toggleShow, onMouseDown: handleMouseDownPassword }, showPassword ? (React.createElement(VisibilityRounded_1["default"], null)) : (React.createElement(VisibilityOffRounded_1["default"], null)))) }),
+                        React.createElement("div", { className: 'UserRegistration_password-wrapper' },
+                            React.createElement("h5", null,
+                                React.createElement("label", null, "Password")),
+                            React.createElement("input", { name: 'password', className: 'UserRegistration_input', type: showPassword ? 'text' : 'password', onChange: handleChange }),
+                            React.createElement("button", { type: 'button', className: 'UserRegistration_input-button', onClick: toggleShow }, showPassword ? React.createElement(ai_1.AiFillEye, null) : React.createElement(ai_1.AiFillEyeInvisible, null))),
                         React.createElement("h5", null,
                             React.createElement("label", null, "Confirm Password")),
-                        React.createElement(Input_1["default"], { name: 'confirmPassword', className: 'UserRegistration_input', type: showPassword ? 'text' : 'password', onChange: handleChange }),
+                        React.createElement("input", { name: 'confirmPassword', className: 'UserRegistration_input', type: showPassword ? 'text' : 'password', onChange: handleChange }),
                         React.createElement("div", { className: 'UserRegistration_radioButtons' },
                             React.createElement("h5", { className: 'UserRegistration_radio' },
                                 React.createElement("input", { type: 'radio', name: 'role', value: 'user', onChange: handleChange, checked: userData.role === 'user' }),
@@ -191,10 +182,10 @@ exports.UserRegistration = function () {
                                 "Owner")),
                         React.createElement("button", { type: 'submit', className: 'UserRegistration_submit' },
                             React.createElement("h6", { className: 'btn--btn-primary' }, "Sign Up")),
-                        React.createElement("p", { style: { fontWeight: '300' } },
+                        React.createElement("p", { style: { fontWeight: 300 } },
                             "Have an account?",
                             ' ',
-                            React.createElement(react_router_dom_1.NavLink, { to: 'user-signin', style: { fontWeight: '500', color: 'black' } }, "Click Here"),
+                            React.createElement(react_router_dom_1.NavLink, { to: 'user-signin', style: { fontWeight: 500, color: 'black' } }, "Click Here"),
                             ' ',
                             "to Login."),
                         React.createElement("br", null),

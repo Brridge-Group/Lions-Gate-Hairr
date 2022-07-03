@@ -68,7 +68,6 @@ exports.EditReview = function () {
         comment: reviewData.comment
     }), reviewForm = _c[0], setReviewForm = _c[1];
     var id = react_router_dom_1.useParams().id;
-    // console.log(reviewData, 'reviewData', typeof reviewData)
     var handleChange = function (e) {
         var _a;
         e.preventDefault();

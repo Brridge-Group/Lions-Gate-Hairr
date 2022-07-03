@@ -3,7 +3,6 @@ exports.__esModule = true;
 exports.About = void 0;
 require("./About.css");
 exports.About = function (props) {
-    // console.log('in about, props', props)
     return (React.createElement("div", { className: 'About' },
         React.createElement("div", { className: 'About-left' },
             React.createElement("img", { src: props.image, className: 'About-pic', alt: 'Hair salon.' })),

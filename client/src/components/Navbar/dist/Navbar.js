@@ -78,19 +78,9 @@ exports.Navbar = function () {
             window.removeEventListener('resize', onResize);
         };
     }, []);
-    react_1.useEffect(function () {
-        document.addEventListener('keydown', detectKeyDown);
-        return function () {
-            document.removeEventListener('keydown', detectKeyDown);
-        };
-    }, []);
-    console.log('isMobile', isMobile);
+    // console.log('isMobile', isMobile)
     var handleClickMobile = function () {
         setDropdown(!dropdown);
-    };
-    var detectKeyDown = function (e) {
-        console.log('clicked key', e.key);
-        setDropdown(true);
     };
     var onMouseEnter = function () {
         setDropdown(true);
@@ -143,13 +133,11 @@ exports.Navbar = function () {
             fetchData();
         }
     }, [user]);
-    // console.log('role', role, 'user', user)
     var profileRoleOwner = function () { return __awaiter(void 0, void 0, void 0, function () {
         var revisedRole, requestOptions, response, error_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    console.log('user', user);
                     if (!(role !== 'owner')) return [3 /*break*/, 5];
                     revisedRole = {
                         role: 'owner'
@@ -170,12 +158,9 @@ exports.Navbar = function () {
                     if (!response.ok) {
                         throw new Error('New profile not saved! Please resubmit.');
                     }
-                    return [4 /*yield*/, response.json()
-                        // console.log(user, 'user, profileRoleOwner', response, 'response')
-                    ];
+                    return [4 /*yield*/, response.json()];
                 case 3:
                     _a.sent();
-                    // console.log(user, 'user, profileRoleOwner', response, 'response')
                     setRole(user.result.role);
                     history.push('/my-businesses');
                     return [3 /*break*/, 5];
@@ -192,12 +177,10 @@ exports.Navbar = function () {
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    console.log('user', user);
                     if (!(role !== 'user')) return [3 /*break*/, 5];
                     revisedRole = {
                         role: 'user'
                     };
-                    console.log('in profile user,revisedRole', revisedRole);
                     requestOptions = {
                         method: 'PATCH',
                         headers: {
@@ -218,7 +201,7 @@ exports.Navbar = function () {
                 case 3:
                     _a.sent();
                     setRole(user.result.role);
-                    console.log(user, 'user, profileRoleUser', response, 'response');
+                    // console.log(user, 'user, profileRoleUser', response, 'response')
                     history.push('/profile');
                     return [3 /*break*/, 5];
                 case 4:
@@ -229,7 +212,6 @@ exports.Navbar = function () {
             }
         });
     }); };
-    console.log('in navbar, role, user', role, user);
     return (React.createElement("nav", { className: 'Navbar' },
         React.createElement("h4", { className: 'Navbar_logo' }, "LOGO"),
         React.createElement("input", { type: 'checkbox', id: 'chk' }),

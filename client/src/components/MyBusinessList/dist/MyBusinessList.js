@@ -89,18 +89,18 @@ exports.MyBusinessList = function () {
     }, []);
     var _c = react_1.useState({}), selected = _c[0], setSelected = _c[1];
     var toggleIt = function (id) {
-        var _a, _b;
+        var _a;
         setSelected(__assign(__assign({}, selected), (_a = {}, _a[id] = !selected[id], _a)));
-        console.log(__assign(__assign({}, selected), (_b = {}, _b[id] = !selected[id], _b)), 'toggleit selected');
-        var dropDownArray = list.map(function (l) { return l._id; });
-        console.log(dropDownArray, 'dropDownArray', id, 'id');
-        dropDownArray.filter(function (drop) {
-            if (drop === id) {
-                console.log('yes');
-            }
-        });
+        ////// want an open dropdown to close if click on another dropdown?  start of logic////
+        // const dropDownArray = list.map(l => l._id)
+        // console.log(dropDownArray, 'dropDownArray', id, 'id')
+        // dropDownArray.filter(drop => {
+        //   if (drop === id) {
+        //     console.log('yes')
+        //   }
+        // })
     };
-    console.log('in my business list, list', list);
+    // console.log('in my business list, list', list)
     return (React.createElement("div", { className: 'FeatureContainer_image Owner' },
         React.createElement("div", { className: 'FeatureContainer' },
             React.createElement("div", { className: 'Profile_user' },

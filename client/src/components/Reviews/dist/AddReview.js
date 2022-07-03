@@ -70,7 +70,6 @@ exports.AddReview = function () {
     var comment = reviewForm.comment;
     var user = JSON.parse((_a = localStorage.getItem('profile')) !== null && _a !== void 0 ? _a : 'false').result;
     var token = JSON.parse((_b = localStorage.getItem('profile')) !== null && _b !== void 0 ? _b : 'false').token;
-    // console.log('user, in add review', user)
     var handleChange = function (e) {
         var _a;
         e.preventDefault();

@@ -23,8 +23,6 @@ export const EditReview = () => {
 
   const { id } = useParams<RouteParams>()
 
-  // console.log(reviewData, 'reviewData', typeof reviewData)
-
   const handleChange = (e: any) => {
     e.preventDefault()
     setReviewForm({ ...reviewForm, [e.target.name]: e.target.value })

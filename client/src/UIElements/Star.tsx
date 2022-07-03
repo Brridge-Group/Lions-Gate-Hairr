@@ -73,7 +73,7 @@ export const StarList = (props: Props) => {
           r.rating + acc,
         number
       )
-      console.log(total, reviews?.length)
+      // console.log(total, reviews?.length)
       // setTotalStars(Math.round(total / reviews?.length))
     }
     mapRatings()
@@ -112,7 +112,6 @@ export const MyStarList = (props: Props) => {
         reviews?.map((review: any) => axios.get(`api/reviews/${review}`))
         //@ts-ignore
       ).then((data: any) => getMyBusinessReview(data))
-      // ).then((data: any) => console.log(data, 'data'))
     }
     fetchBusinessReviews()
   }, [])
@@ -150,7 +149,7 @@ export const MyStarList = (props: Props) => {
       )
     }
   })
-  console.log(myTotalStars)
+  // console.log(myTotalStars)
 
   return <div className='Star-container'>{star}</div>
 }

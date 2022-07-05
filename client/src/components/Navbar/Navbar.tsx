@@ -237,7 +237,7 @@ export const Navbar = () => {
                         className='NavbarList_link'
                         onClick={profileRoleOwner}>
                         <NavLink
-                          to='/profile'
+                          to='/my-businesses'
                           activeStyle={{ fontWeight: 400 }}>
                           Owner
                         </NavLink>

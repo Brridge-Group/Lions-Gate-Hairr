@@ -244,7 +244,7 @@ exports.Navbar = function () {
                             React.createElement("li", { className: 'NavbarList_link', onClick: profileRoleUser },
                                 React.createElement(react_router_dom_2.NavLink, { to: '/profile', activeStyle: { fontWeight: 400 } }, "User")),
                             React.createElement("li", { className: 'NavbarList_link', onClick: profileRoleOwner },
-                                React.createElement(react_router_dom_2.NavLink, { to: '/profile', activeStyle: { fontWeight: 400 } }, "Owner")))))),
+                                React.createElement(react_router_dom_2.NavLink, { to: '/my-businesses', activeStyle: { fontWeight: 400 } }, "Owner")))))),
                     React.createElement("li", { className: 'NavbarList_link ' },
                         React.createElement(react_router_dom_2.NavLink, { to: '/', onClick: logout }, "Log Out"))))))));
 };

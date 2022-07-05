@@ -58,9 +58,7 @@ var createReview = function (req, res, next) { return __awaiter(void 0, void 0, 
                 _b.label = 1;
             case 1:
                 _b.trys.push([1, 3, , 4]);
-                return [4 /*yield*/, newReview.save()
-                    // console.log('new review', newReview)
-                ];
+                return [4 /*yield*/, newReview.save()];
             case 2:
                 _b.sent();
                 return [3 /*break*/, 4];

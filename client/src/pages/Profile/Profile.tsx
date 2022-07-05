@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react'
 import { Link, useHistory } from 'react-router-dom'
-import { MyBusinessList } from '../../components/MyBusinessList/MyBusinessList'
 import { StarSmall } from '../../UIElements/Star'
 import { LoadSpinner } from '../../components/LoadSpinner/LoadSpinner'
 import './Profile.css'
@@ -48,6 +47,7 @@ export const Profile = () => {
           window.localStorage.setItem('profile', JSON.stringify(userModified))
         })
       history.push('/')
+      alert('Deleted review.')
     } catch (error) {
       console.log('error in delete review')
     }

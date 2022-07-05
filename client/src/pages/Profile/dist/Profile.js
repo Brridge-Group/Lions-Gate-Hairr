@@ -70,6 +70,7 @@ exports.Profile = function () {
                     window.localStorage.setItem('profile', JSON.stringify(userModified));
                 });
                 history.push('/');
+                alert('Deleted review.');
             }
             catch (error) {
                 console.log('error in delete review');

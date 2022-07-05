@@ -154,6 +154,7 @@ ul.dropdown-menu > li.NavbarList_linka:focus {
 
   .Profile-dropdown {
     padding: 20px;
+    padding-left: 30px;
   }
   .NavbarList_link.noUser {
     margin: 0;

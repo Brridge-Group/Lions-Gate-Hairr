@@ -1,0 +1,65 @@
+.FeatureContainer_image.Review {
+  background-image: url('../../assets/images/hairlavender.jpg');
+}
+.AddReview-container {
+  text-align: center;
+  margin-top: 145px;
+  grid-column: 5/11;
+  display: flex;
+  flex-direction: column;
+}
+.btn-review,
+.btn-review_small {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-size: 2rem;
+}
+.btn-review_small {
+  font-size: 1.5rem;
+  cursor: none;
+}
+.btn-review.on,
+.btn-review_small.on {
+  color: #000;
+}
+
+.btn-review.off,
+.btn-review_small.off {
+  color: rgba(0, 0, 0, 0.2);
+}
+.form {
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  margin-top: 25px;
+}
+.form-group.star-rating {
+  margin: 19px 0;
+}
+.form-control.text-area {
+  background: none;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  width: 85%;
+  height: 200px;
+}
+
+.form-group {
+  margin-bottom: 19px;
+}
+.btn--btn-primary.add-review {
+  width: 95px;
+  margin-bottom: 19px;
+  padding-top: 0px;
+}
+.AddReview-name {
+  text-transform: capitalize;
+}
+/* ///////media queries ////////// */
+
+@media screen and (max-width: 575px) {
+  .FeatureContainer_image.Review {
+    background-image: url('../../assets/images/hairlavender-mobile.jpg');
+    margin-bottom: 0;
+    height: 100%;
+  }
+}

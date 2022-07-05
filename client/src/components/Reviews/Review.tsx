@@ -1,27 +1,29 @@
 import { Link } from 'react-router-dom'
-import { AiOutlineStar, AiFillStar } from 'react-icons/ai'
+import './AddReview.css'
 interface Props {
   id?: string
   stars: number
+  ownerId: string
+  name: string
 }
 
 const isLoggedIn: boolean = true
 
 export const Review = (props: Props) => {
+  const user = JSON.parse(localStorage.getItem('profile') || 'false').result
+
   const stars: JSX.Element[] = [...Array(5)].map((star, i) => {
     if (i <= Math.round(props.stars) - 1) {
       return (
-        <AiFillStar
-          key={i}
-          style={{ fontSize: '2rem', color: 'rgba(0,0,0,0.7)' }}
-        />
+        <div className='star btn-review on' key={i}>
+          &#9733;
+        </div>
       )
     } else {
       return (
-        <AiOutlineStar
-          key={i}
-          style={{ fontSize: '2rem', color: 'rgba(0,0,0,0.5)' }}
-        />
+        <div className='star btn-review off' key={i}>
+          &#9733;
+        </div>
       )
     }
   })
@@ -32,7 +34,7 @@ export const Review = (props: Props) => {
         <div className='Star-container'>{stars}</div>
         {isLoggedIn ? (
           <Link
-            to={props.id + '/add-review'}
+            to={{ pathname: props.id + '/add-review', state: props.name }}
             className='btn--btn-primary review'>
             Leave a Review
           </Link>

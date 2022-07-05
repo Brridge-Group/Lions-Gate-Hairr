@@ -13,7 +13,8 @@ import Login from './pages/Auth/Login/Login'
 import { BusinessList } from './pages/BusinessList/BusinessList'
 import { BusinessDetails } from './components/BusinessDetails/BusinessDetails'
 import { AddBusiness } from './pages/AddBusiness/AddBusiness'
-import { AddReview } from './components/AddReview/AddReview/AddReview'
+import { AddReview } from './components/Reviews/AddReview'
+import { EditReview } from './components/Reviews/EditReview'
 import { MyBusinessList } from './components/MyBusinessList/MyBusinessList'
 import { Navbar } from './components/Navbar/Navbar'
 import { Profile } from './pages/Profile/Profile'
@@ -52,6 +53,9 @@ export const App = () => {
       </Route>
       <Route path='/businesses/:id/add-review' exact>
         <AddReview />
+      </Route>
+      <Route path='/reviews/:id/edit-review' exact>
+        <EditReview />
       </Route>
       <Route path='/profile' exact>
         <Profile />

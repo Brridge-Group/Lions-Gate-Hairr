@@ -8,17 +8,35 @@ export const showBusiness = async (req: Request, res: Response) => {
   const { id } = req.params
   const business = await Business.findById(id).populate('services')
   await business.populate('features')
+  await business.populate('reviews')
   res.set('Access-Control-Allow-Origin', '')
   res.send(business)
 }
 
-export const addBusiness = async (req: Request, res: Response, next: NextFunction) => {
+export const addBusiness = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   const errors = validationResult(req)
   if (!errors.isEmpty()) {
-    return res.status(StatusCodes.UNPROCESSABLE_ENTITY).json('Invalid inputs passed, please check your data.')
+    return res
+      .status(StatusCodes.UNPROCESSABLE_ENTITY)
+      .json('Invalid inputs passed, please check your data.')
   }
 
-  const { businessName, description, image, address, email, features, services, stars, phone, ownerId } = req.body
+  const {
+    businessName,
+    description,
+    image,
+    address,
+    email,
+    features,
+    services,
+    stars,
+    phone,
+    ownerId,
+  } = req.body
 
   const addedBusiness = new Business({
     businessName,
@@ -36,7 +54,9 @@ export const addBusiness = async (req: Request, res: Response, next: NextFunctio
   try {
     await addedBusiness.save()
   } catch (err) {
-    const error = res.status(StatusCodes.INTERNAL_SERVER_ERROR).json('Adding business failed, please try again.')
+    const error = res
+      .status(StatusCodes.INTERNAL_SERVER_ERROR)
+      .json('Adding business failed, please try again.')
     return next(error)
   }
 
@@ -45,7 +65,10 @@ export const addBusiness = async (req: Request, res: Response, next: NextFunctio
 
 export const getAllBusinesses = async (req: Request, res: Response) => {
   try {
-    const businessList = await Business.find().populate('services').populate('features')
+    const businessList = await Business.find()
+      .populate('services')
+      .populate('features')
+      .populate('reviews')
     res.send(businessList)
   } catch (err: any) {
     res.status(StatusCodes.INTERNAL_SERVER_ERROR).json(err.message)
@@ -53,9 +76,11 @@ export const getAllBusinesses = async (req: Request, res: Response) => {
 }
 
 export const getOwnersBusinesses = async (req: Request, res: Response) => {
-  const id = req.query.id;
+  const id = req.query.id
   try {
-    const businessList = await Business.find({ ownerId: id }).populate('services').populate('features')
+    const businessList = await Business.find({ ownerId: id })
+      .populate('services')
+      .populate('features')
     res.send(businessList)
   } catch (err: any) {
     res.status(StatusCodes.INTERNAL_SERVER_ERROR).json(err.message)

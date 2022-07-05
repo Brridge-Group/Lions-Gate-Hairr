@@ -47,8 +47,10 @@ h5.features:last-child {
   padding: 3.5rem;
   margin-top: 160px;
   grid-column: 7/14;
-  height: fit-content;
+  /* height: fit-content; */
   max-height: 58vh;
+  overflow: hidden;
+  padding-bottom: 0;
 }
 
 .BusinessDetails-buttons {
@@ -75,6 +77,9 @@ h5.features:last-child {
   margin-bottom: 2.5rem;
   text-align: center;
   margin-top: 3rem;
+}
+.BusinessDetails_reviews {
+  height: 41%;
 }
 
 /* ///////media queries ////////// */

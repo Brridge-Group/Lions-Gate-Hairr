@@ -58,7 +58,6 @@ require("./BusinessList.css");
 exports.BusinessList = function () {
     var _a = react_1.useState([]), list = _a[0], setList = _a[1];
     var _b = react_1.useState(true), loading = _b[0], setLoading = _b[1];
-    var history = react_router_dom_1.useHistory();
     var city = react_router_dom_1.useParams().city;
     //* Initialize Services and Features to state
     var _c = react_1.useState([]), feats = _c[0], setFeats = _c[1]; // Features full object
@@ -107,8 +106,7 @@ exports.BusinessList = function () {
         }); };
         fetchData();
     }, []);
-    // console.log(`initial list`, list)
-    console.log('hi, list', list);
+    // console.log('bus list', list)
     //* Fetch Features and Services from the database
     react_1.useEffect(function () {
         var fetchFeaturesData = function () { return __awaiter(void 0, void 0, void 0, function () {
@@ -136,15 +134,12 @@ exports.BusinessList = function () {
                         return [3 /*break*/, 4];
                     case 3:
                         err_2 = _a.sent();
-                        console.log(err_2);
                         setLoading(false);
                         return [3 /*break*/, 4];
                     case 4: return [2 /*return*/];
                 }
             });
         }); };
-        var redirectToBus = function () { };
-        // history.push(`/businesses/${business._id}`)
         var fetchServicesData = function () { return __awaiter(void 0, void 0, void 0, function () {
             var response, responseData, servicesArr_1, err_3;
             return __generator(this, function (_a) {
@@ -180,11 +175,11 @@ exports.BusinessList = function () {
         fetchFeaturesData();
         fetchServicesData();
     }, []);
-    console.log("servicesArr", servicesArr);
-    console.log("featuresArr", featuresArr);
+    // console.log(`servicesArr`, servicesArr)
+    // console.log(`featuresArr`, featuresArr)
     //* Filter Business Features and Services
     var _g = react_1.useState([]), filteredResults = _g[0], setFilteredResults = _g[1];
-    console.log("filteredResults", filteredResults);
+    // console.log(`filteredResults`, filteredResults)
     var _h = react_1.useState([]), filteredFeats = _h[0], setFilteredFeats = _h[1];
     var _j = react_1.useState([]), filteredServices = _j[0], setFilteredServices = _j[1];
     //* Listen for the features' and services' checkbox changes and capture that data from the `FilterServicesAndFeatures` child component
@@ -257,7 +252,7 @@ exports.BusinessList = function () {
             return newFilteredResults;
         });
     }, [list, city]);
-    console.log(list, city, 'list, city');
+    // console.log(list, city, 'list, city')
     var handleResetFilter = function () {
         // TODO: [ ] => FIXME: Reset checkboxes to false
         //? TODO: [ ] => Explore connecting to child component to allow for checkbox resetting to opposite of checked
@@ -274,10 +269,12 @@ exports.BusinessList = function () {
                     handleResetFilter: handleResetFilter, handleFilteredResults: handleFilteredResults })),
             React.createElement("div", { className: 'BusinessList-Filters rightColumn' }, filteredResults && filteredResults.length > 0 ? (filteredResults === null || filteredResults === void 0 ? void 0 : filteredResults.map(function (business) { return (React.createElement(React.Fragment, null,
                 React.createElement(Card_1.Card, { className: 'BusinessCard List', key: business._id },
-                    React.createElement(react_router_dom_1.Link, { to: "/businesses/" + business._id, className: 'BusinessCard-link' },
-                        React.createElement(About_1.About, { name: business.businessName, description: business.description, image: business.image, address: business.address }),
-                        React.createElement(Star_1.Star, { stars: business.stars }))))); })) : (React.createElement(React.Fragment, null,
-                React.createElement("h1", null, "No businesses were found with the chosen services and or features."),
+                    React.createElement(react_router_dom_1.Link, { to: {
+                            pathname: "/businesses/" + business._id
+                        } },
+                        React.createElement(About_1.About, { name: business.businessName, description: business.description, image: business.image, address: business.address })),
+                    React.createElement(Star_1.StarList, { stars: business.stars, reviews: business.reviews })))); })) : (React.createElement(React.Fragment, null,
+                React.createElement("h2", { className: 'BusinessCard-noResults' }, "No businesses were found with the chosen services and or features."),
                 React.createElement("br", null),
-                React.createElement("h1", null, "Please change your selection and filter again.")))))))));
+                React.createElement("h2", { className: 'BusinessCard-noResults' }, "Please change your selection and filter again.")))))))));
 };

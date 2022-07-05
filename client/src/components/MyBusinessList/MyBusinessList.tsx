@@ -39,17 +39,16 @@ export const MyBusinessList = () => {
 
   const toggleIt = (id: any) => {
     setSelected({ ...selected, [id]: !selected[id] })
-    console.log({ ...selected, [id]: !selected[id] }, 'toggleit selected')
 
     const dropDownArray = list.map(l => l._id)
-    console.log(dropDownArray, 'dropDownArray', id, 'id')
+    // console.log(dropDownArray, 'dropDownArray', id, 'id')
     dropDownArray.filter(drop => {
       if (drop === id) {
-        console.log('yes')
+        // console.log('yes')
       }
     })
   }
-  console.log('in my business list, list', list)
+  // console.log('in my business list, list', list)
 
   return (
     <div className='Profile_user'>

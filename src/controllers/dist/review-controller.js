@@ -61,7 +61,6 @@ var createReview = function (req, res, next) { return __awaiter(void 0, void 0, 
                 return [4 /*yield*/, newReview.save()];
             case 2:
                 _b.sent();
-                console.log('new review', newReview);
                 return [3 /*break*/, 4];
             case 3:
                 error_1 = _b.sent();

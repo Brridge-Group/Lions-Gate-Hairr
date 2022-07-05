@@ -86,7 +86,7 @@ exports.BusinessDetails = function () {
                 // ts@ignore
                 return r.rating + acc;
             }, number);
-            console.log('newNumber', total, business === null || business === void 0 ? void 0 : business.reviews.length);
+            // console.log('newNumber', total, business?.reviews.length)
             // setTotalStars(Math.round(total/business?.reviews.length)
         };
         mapRatings();
@@ -94,7 +94,7 @@ exports.BusinessDetails = function () {
     // if (p1.address && typeof p1.address.country === 'string')
     // CHECKS IF THE BUSINESSDATA STATE HAS VALUE. RENDERS THE BUSINESS PAGE IF IT DOES AND SETS A LOADING SCREEN IF IT DOESN'T.
     // THE FIRST RENDER WON'T HAVE DATA, SINCE USEEFFECT, WHICH GIVES THE STATE IT'S VALUE, RUNS AFTER THE FIRST RENDER.
-    console.log('totalStars', totalStars);
+    // console.log('totalStars', totalStars)
     return (React.createElement("div", { className: ' FeatureContainer_image Home' },
         React.createElement("div", { className: 'BusinessContainer' }, business ? (React.createElement(React.Fragment, null,
             React.createElement("div", { className: 'BusinessDetails-leftColumn' },

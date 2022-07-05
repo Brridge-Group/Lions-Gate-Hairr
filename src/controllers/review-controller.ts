@@ -30,7 +30,6 @@ const createReview = async (
 
   try {
     await newReview.save()
-    console.log('new review', newReview)
   } catch (error) {
     return next(error)
   }

@@ -52,7 +52,7 @@ exports.StarList = function (props) {
                 // ts@ignore
                 return r.rating + acc;
             }, number);
-            console.log(total, reviews === null || reviews === void 0 ? void 0 : reviews.length);
+            // console.log(total, reviews?.length)
             // setTotalStars(Math.round(total / reviews?.length))
         };
         mapRatings();
@@ -107,6 +107,6 @@ exports.MyStarList = function (props) {
             return (React.createElement("div", { className: 'star btn-review off', key: i }, "\u2605"));
         }
     });
-    console.log(myTotalStars);
+    // console.log(myTotalStars)
     return React.createElement("div", { className: 'Star-container' }, star);
 };

@@ -266,7 +266,7 @@ exports.EditBusiness = function () {
         // Add FeaturesArray and ServicesArray to data business form state object
         var editedBusiness = __assign(__assign({}, formData), { features: savedFormFeats, services: savedFormServices });
         axios_1["default"]
-            .post('http://localhost:5000/api/businesses/add-business', editedBusiness)
+            .patch("/api/businesses/" + business._id, editedBusiness)
             .then(function (response) {
             console.log(response.data);
             history.push('/');
@@ -275,6 +275,7 @@ exports.EditBusiness = function () {
         });
     };
     var handleSubmit = function (e) {
+        console.log('hi');
         e.preventDefault();
         saveEditedBusiness();
     };

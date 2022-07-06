@@ -227,7 +227,7 @@ export const EditBusiness = () => {
     }
 
     axios
-      .post('http://localhost:5000/api/businesses/add-business', editedBusiness)
+      .patch(`/api/businesses/${business._id}`, editedBusiness)
       .then(response => {
         console.log(response.data)
         history.push('/')
@@ -238,6 +238,7 @@ export const EditBusiness = () => {
   }
 
   const handleSubmit = (e: any) => {
+    console.log('hi')
     e.preventDefault()
     saveEditedBusiness()
   }

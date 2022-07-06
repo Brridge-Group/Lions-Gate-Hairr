@@ -36,7 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-exports.getOwnersBusinesses = exports.getAllBusinesses = exports.addBusiness = exports.showBusiness = void 0;
+exports.updateBusiness = exports.getOwnersBusinesses = exports.getAllBusinesses = exports.addBusiness = exports.showBusiness = void 0;
 var express_validator_1 = require("express-validator");
 var StatusCodes = require('http-status-codes');
 var business_1 = require("../models/business");
@@ -148,5 +148,13 @@ exports.getOwnersBusinesses = function (req, res) { return __awaiter(void 0, voi
                 return [3 /*break*/, 4];
             case 4: return [2 /*return*/];
         }
+    });
+}); };
+exports.updateBusiness = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var id;
+    return __generator(this, function (_a) {
+        id = req.params.id;
+        console.log('in updatebusiness backend');
+        return [2 /*return*/];
     });
 }); };

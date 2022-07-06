@@ -86,3 +86,8 @@ export const getOwnersBusinesses = async (req: Request, res: Response) => {
     res.status(StatusCodes.INTERNAL_SERVER_ERROR).json(err.message)
   }
 }
+
+export const updateBusiness = async (req: Request, res: Response) => {
+  const { id } = req.params
+  console.log('in updatebusiness backend')
+}

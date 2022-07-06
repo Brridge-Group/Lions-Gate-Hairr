@@ -26,8 +26,7 @@ export const EditBusiness = () => {
   const location = useLocation<any>()
   const business = location.state
   console.log('business', business)
-  // const { id } = useParams()
-  // console.log('id', id)
+
   const [loading, setLoading] = useState(true)
 
   const [image, setImage] = useState<any | null>(null)
@@ -40,68 +39,74 @@ export const EditBusiness = () => {
 
   // Initialize state objects for form checkboxes
   const [isChecked, setIsChecked]: any = useState(false)
-  const [isFeatsChecked, setIsFeatsChecked]: any = useState([])
-  const [isServicesChecked, setIsServicesChecked]: any = useState([])
+  const [isFeatsChecked, setIsFeatsChecked]: any = useState([
+    { features: business.features },
+  ])
+  const [isServicesChecked, setIsServicesChecked]: any = useState([
+    { services: business.services },
+  ])
 
   // Fetch Services and Features from Database API Endpoint
-  // useEffect(() => {
-  //   const fetchFeaturesData = async () => {
-  //     try {
-  //       const response = await fetch('/api/features', {
-  //         method: 'GET',
-  //       })
-  //       const responseData = await response.json()
-  //       setFeats(responseData)
-  //       const featsArr = responseData.map(el => {
-  //         let featsName = el.name
-  //         let featsId = el._id
-  //         let featsIsChecked = el.isChecked
+  useEffect(() => {
+    const fetchFeaturesData = async () => {
+      try {
+        const response = await fetch('/api/features', {
+          method: 'GET',
+        })
+        const responseData = await response.json()
+        setFeats(responseData)
+        const featsArr = responseData.map(el => {
+          let featsName = el.name
+          let featsId = el._id
+          let featsIsChecked = el.isChecked
 
-  //         return [featsName, featsId, featsIsChecked]
-  //       })
-  //       setFeaturesArr(featsArr)
-  //     } catch (err: any) {
-  //       console.log(err)
-  //       setLoading(false)
-  //     }
-  //   }
+          return [featsName, featsId, featsIsChecked]
+        })
+        setFeaturesArr(featsArr)
+      } catch (err: any) {
+        console.log(err)
+        setLoading(false)
+      }
+    }
+    const servicesArrTrue = business.services.map((bus: any) => bus._id)
+    console.log('servicesArrTrue', servicesArrTrue)
 
-  //   const fetchServicesData = async () => {
-  //     try {
-  //       const response = await fetch('/api/services', {
-  //         method: 'GET',
-  //       })
-  //       const responseData = await response.json()
-  //       setServices(responseData)
-  //       const servicesArr = responseData.map(el => {
-  //         let servicesName = el.name
-  //         let servicesId = el._id
-  //         let servicesIsChecked = el.isChecked
+    const fetchServicesData = async () => {
+      try {
+        const response = await fetch('/api/services', {
+          method: 'GET',
+        })
+        const responseData = await response.json()
+        // setServices(responseData)
+        console.log(servicesArrTrue, services, 'servicesArrTrue,services')
+        const servicesArr = responseData.map(el => {
+          let servicesName = el.name
+          let servicesId = el._id
+          let servicesIsChecked = el.isChecked
 
-  //         return [servicesName, servicesId, servicesIsChecked]
-  //       })
-  //       setServicesArr(servicesArr)
-  //     } catch (err: any) {
-  //       console.log(err)
-  //       setLoading(false)
-  //     }
-  //   }
-  //   fetchFeaturesData()
-  //   fetchServicesData()
-  // }, [])
+          return [servicesName, servicesId, servicesIsChecked]
+        })
+        for (let i = 0; i < servicesArr.length; i++) {
+          for (let j = 0; j < servicesArrTrue.length; j++) {
+            if (servicesArr[i][1] === servicesArrTrue[j]) {
+              servicesArr[i][2] = true
+            }
+          }
+        }
+        setServicesArr(servicesArr)
+      } catch (err: any) {
+        console.log(err)
+        setLoading(false)
+      }
+    }
+    fetchFeaturesData()
+    fetchServicesData()
+  }, [])
 
   const [formData, setFormData]: any = useState({
     businessName: business.businessName,
     description: business.description,
     email: business.email,
-    // address: {
-    //   address1: business.address1,
-    //   address2: business.address2,
-    //   postalCode: business.postalCode,
-    //   city: business.cityTown,
-    //   region: business.region,
-    //   country: business.country,
-    // },
     address1: business.address.address1,
     address2: business.address.address2,
     image: business.image,
@@ -110,11 +115,10 @@ export const EditBusiness = () => {
     region: business.address.region,
     country: business.address.country,
     phone: business.phone,
+    features: business.features,
   })
   const [region, setRegion] = useState('AB')
   const [country, setCountry] = useState('Canada')
-  const ownerId = JSON.parse(localStorage.getItem('profile') ?? 'false').result
-    ._id
 
   const onImageChange = async (e: any) => {
     e.preventDefault()
@@ -207,38 +211,16 @@ export const EditBusiness = () => {
     setCountry(e.target.value)
   }
 
-  // Initialize business profile form state object
-  // const data = {
-  //   businessName: formData.businessName,
-  //   description: formData.description,
-  //   image:
-  //     formData.image === ' '
-  //       ? 'https://images.unsplash.com/photo-1560066984-138dadb4c035?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1674&q=80'
-  //       : formData.image,
-  //   email: formData.email,
-  //   address: {
-  //     address1: formData.address1,
-  //     address2: formData.address2,
-  //     postalCode: formData.postalCode,
-  //     city: formData.cityTown,
-  //     region: region,
-  //     country: country,
-  //   },
-  //   stars: 0,
-  //   phone: formData.phone,
-  //   ownerId: ownerId,
-  // }
-
-  const saveNewBusiness = () => {
+  const saveEditedBusiness = () => {
     // Add FeaturesArray and ServicesArray to data business form state object
-    let newBusiness = {
+    let editedBusiness = {
       ...formData,
       features: savedFormFeats,
       services: savedFormServices,
     }
 
     axios
-      .post('http://localhost:5000/api/businesses/add-business', newBusiness)
+      .post('http://localhost:5000/api/businesses/add-business', editedBusiness)
       .then(response => {
         console.log(response.data)
         history.push('/')
@@ -250,7 +232,7 @@ export const EditBusiness = () => {
 
   const handleSubmit = (e: any) => {
     e.preventDefault()
-    saveNewBusiness()
+    saveEditedBusiness()
   }
 
   return (
@@ -318,7 +300,7 @@ export const EditBusiness = () => {
                   <input
                     name='cityTown'
                     type='text'
-                    value={formData.cityTown}
+                    value={formData.city}
                     className='UserRegistration_input color'
                     onChange={onFormChange}
                     required
@@ -330,6 +312,7 @@ export const EditBusiness = () => {
                     className='UserRegistration_input color'
                     onChange={handleRegion}
                     name='region'
+                    value={formData.region}
                     id='region'>
                     {regions.map(region => (
                       <option value={region.value}>{region.label}</option>
@@ -380,6 +363,7 @@ export const EditBusiness = () => {
                     className='UserRegistration_input color'
                     onChange={handleCountry}
                     name='country'
+                    value={formData.country}
                     id='country'>
                     <option value='Canada'> Canada </option>
                     <option value='United States'> United States</option>

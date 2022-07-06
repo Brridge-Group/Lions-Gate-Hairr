@@ -1,6 +1,6 @@
 // React Components
 import React, { useEffect, useState } from 'react'
-import { useHistory, useParams } from 'react-router-dom'
+import { useHistory, useParams, useLocation } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import BusinessImage from '../../UIElements/BusinessImage'
 
@@ -22,6 +22,10 @@ interface EditBusiness {
 }
 
 export const EditBusiness = () => {
+  // const history = useHistory()
+  const location = useLocation<any>()
+  const business = location.state
+  console.log('business', business)
   // const { id } = useParams()
   // console.log('id', id)
   const [loading, setLoading] = useState(true)

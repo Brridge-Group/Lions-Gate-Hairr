@@ -120,7 +120,10 @@ exports.MyBusinessList = function () {
                                     React.createElement("h6", { className: 'btn--btn-primary twoLines business reviews', onClick: function () { return toggleIt(business._id); }, "data-idx": idx, id: business._id }, !selected[business._id]
                                         ? 'read reviews'
                                         : 'close reviews'),
-                                    React.createElement(react_router_dom_1.Link, { to: '#' },
+                                    React.createElement(react_router_dom_1.Link, { to: {
+                                            pathname: "/businesses/" + business._id + "/edit-business",
+                                            state: business
+                                        } },
                                         React.createElement("h6", { className: 'btn--btn-primary twoLines business' },
                                             "edit ",
                                             React.createElement("br", null),

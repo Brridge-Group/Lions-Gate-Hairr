@@ -58,6 +58,10 @@ require("../AddBusiness/AddBusiness.css");
 require("../Auth/UserRegistration/UserRegistration.css");
 exports.EditBusiness = function () {
     var _a;
+    // const history = useHistory()
+    var location = react_router_dom_1.useLocation();
+    var business = location.state;
+    console.log('business', business);
     // const { id } = useParams()
     // console.log('id', id)
     var _b = react_1.useState(true), loading = _b[0], setLoading = _b[1];

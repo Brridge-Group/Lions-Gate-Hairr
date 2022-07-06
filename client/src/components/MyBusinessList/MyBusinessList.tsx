@@ -90,8 +90,15 @@ export const MyBusinessList = () => {
                               ? 'read reviews'
                               : 'close reviews'}
                           </h6>
-                          <Link to={'#'}>
+                          <Link
+                            to={{
+                              pathname: `/businesses/${business._id}/edit-business`,
+                              state: business,
+                            }}>
                             <h6 className='btn--btn-primary twoLines business'>
+                              {/* <Link
+                            to={`/businesses/${business._id}/edit-business`}>
+                            <h6 className='btn--btn-primary twoLines business'> */}
                               edit <br />
                               business
                             </h6>

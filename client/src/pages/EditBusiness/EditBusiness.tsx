@@ -48,20 +48,29 @@ export const EditBusiness = () => {
 
   // Fetch Services and Features from Database API Endpoint
   useEffect(() => {
+    const featuresArrTrue = business.features.map((bus: any) => bus._id)
+    console.log('featuresArrTrue', featuresArrTrue)
+
     const fetchFeaturesData = async () => {
       try {
         const response = await fetch('/api/features', {
           method: 'GET',
         })
         const responseData = await response.json()
-        setFeats(responseData)
-        const featsArr = responseData.map(el => {
+        const featsArr = responseData.map((el: any) => {
           let featsName = el.name
           let featsId = el._id
           let featsIsChecked = el.isChecked
 
           return [featsName, featsId, featsIsChecked]
         })
+        for (let i = 0; i < featsArr.length; i++) {
+          for (let j = 0; j < featuresArrTrue.length; j++) {
+            if (featsArr[i][1] === featuresArrTrue[j]) {
+              featsArr[i][2] = true
+            }
+          }
+        }
         setFeaturesArr(featsArr)
       } catch (err: any) {
         console.log(err)
@@ -77,9 +86,7 @@ export const EditBusiness = () => {
           method: 'GET',
         })
         const responseData = await response.json()
-        // setServices(responseData)
-        console.log(servicesArrTrue, services, 'servicesArrTrue,services')
-        const servicesArr = responseData.map(el => {
+        const servicesArr = responseData.map((el: any) => {
           let servicesName = el.name
           let servicesId = el._id
           let servicesIsChecked = el.isChecked
@@ -238,7 +245,6 @@ export const EditBusiness = () => {
   return (
     <div className='FeatureContainer_image AddBusiness'>
       <div className='FeatureContainer'>
-        hi in edit business
         {/* <-- Form Start --> */}
         <form onSubmit={handleSubmit} className='AddBusiness_inputGroup'>
           <div className='AddBusiness_scroll'>

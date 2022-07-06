@@ -81,8 +81,10 @@ exports.EditBusiness = function () {
     ]), isServicesChecked = _j[0], setIsServicesChecked = _j[1];
     // Fetch Services and Features from Database API Endpoint
     react_1.useEffect(function () {
+        var featuresArrTrue = business.features.map(function (bus) { return bus._id; });
+        console.log('featuresArrTrue', featuresArrTrue);
         var fetchFeaturesData = function () { return __awaiter(void 0, void 0, void 0, function () {
-            var response, responseData, featsArr, err_1;
+            var response, responseData, featsArr, i, j, err_1;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -95,13 +97,19 @@ exports.EditBusiness = function () {
                         return [4 /*yield*/, response.json()];
                     case 2:
                         responseData = _a.sent();
-                        setFeats(responseData);
                         featsArr = responseData.map(function (el) {
                             var featsName = el.name;
                             var featsId = el._id;
                             var featsIsChecked = el.isChecked;
                             return [featsName, featsId, featsIsChecked];
                         });
+                        for (i = 0; i < featsArr.length; i++) {
+                            for (j = 0; j < featuresArrTrue.length; j++) {
+                                if (featsArr[i][1] === featuresArrTrue[j]) {
+                                    featsArr[i][2] = true;
+                                }
+                            }
+                        }
                         setFeaturesArr(featsArr);
                         return [3 /*break*/, 4];
                     case 3:
@@ -126,13 +134,9 @@ exports.EditBusiness = function () {
                             })];
                     case 1:
                         response = _a.sent();
-                        return [4 /*yield*/, response.json()
-                            // setServices(responseData)
-                        ];
+                        return [4 /*yield*/, response.json()];
                     case 2:
                         responseData = _a.sent();
-                        // setServices(responseData)
-                        console.log(servicesArrTrue, services, 'servicesArrTrue,services');
                         servicesArr_1 = responseData.map(function (el) {
                             var servicesName = el.name;
                             var servicesId = el._id;
@@ -276,7 +280,6 @@ exports.EditBusiness = function () {
     };
     return (react_1["default"].createElement("div", { className: 'FeatureContainer_image AddBusiness' },
         react_1["default"].createElement("div", { className: 'FeatureContainer' },
-            "hi in edit business",
             react_1["default"].createElement("form", { onSubmit: handleSubmit, className: 'AddBusiness_inputGroup' },
                 react_1["default"].createElement("div", { className: 'AddBusiness_scroll' },
                     react_1["default"].createElement("div", { className: 'AddBusiness-FormCard_body' },

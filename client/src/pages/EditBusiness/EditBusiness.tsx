@@ -22,7 +22,7 @@ interface EditBusiness {
 }
 
 export const EditBusiness = () => {
-  // const history = useHistory()
+  const history = useHistory()
   const location = useLocation<any>()
   const business = location.state
   console.log('business', business)
@@ -44,67 +44,75 @@ export const EditBusiness = () => {
   const [isServicesChecked, setIsServicesChecked]: any = useState([])
 
   // Fetch Services and Features from Database API Endpoint
-  useEffect(() => {
-    const fetchFeaturesData = async () => {
-      try {
-        const response = await fetch('/api/features', {
-          method: 'GET',
-        })
-        const responseData = await response.json()
-        setFeats(responseData)
-        const featsArr = responseData.map(el => {
-          let featsName = el.name
-          let featsId = el._id
-          let featsIsChecked = el.isChecked
+  // useEffect(() => {
+  //   const fetchFeaturesData = async () => {
+  //     try {
+  //       const response = await fetch('/api/features', {
+  //         method: 'GET',
+  //       })
+  //       const responseData = await response.json()
+  //       setFeats(responseData)
+  //       const featsArr = responseData.map(el => {
+  //         let featsName = el.name
+  //         let featsId = el._id
+  //         let featsIsChecked = el.isChecked
 
-          return [featsName, featsId, featsIsChecked]
-        })
-        setFeaturesArr(featsArr)
-      } catch (err: any) {
-        console.log(err)
-        setLoading(false)
-      }
-    }
+  //         return [featsName, featsId, featsIsChecked]
+  //       })
+  //       setFeaturesArr(featsArr)
+  //     } catch (err: any) {
+  //       console.log(err)
+  //       setLoading(false)
+  //     }
+  //   }
 
-    const fetchServicesData = async () => {
-      try {
-        const response = await fetch('/api/services', {
-          method: 'GET',
-        })
-        const responseData = await response.json()
-        setServices(responseData)
-        const servicesArr = responseData.map(el => {
-          let servicesName = el.name
-          let servicesId = el._id
-          let servicesIsChecked = el.isChecked
+  //   const fetchServicesData = async () => {
+  //     try {
+  //       const response = await fetch('/api/services', {
+  //         method: 'GET',
+  //       })
+  //       const responseData = await response.json()
+  //       setServices(responseData)
+  //       const servicesArr = responseData.map(el => {
+  //         let servicesName = el.name
+  //         let servicesId = el._id
+  //         let servicesIsChecked = el.isChecked
 
-          return [servicesName, servicesId, servicesIsChecked]
-        })
-        setServicesArr(servicesArr)
-      } catch (err: any) {
-        console.log(err)
-        setLoading(false)
-      }
-    }
-    fetchFeaturesData()
-    fetchServicesData()
-  }, [])
+  //         return [servicesName, servicesId, servicesIsChecked]
+  //       })
+  //       setServicesArr(servicesArr)
+  //     } catch (err: any) {
+  //       console.log(err)
+  //       setLoading(false)
+  //     }
+  //   }
+  //   fetchFeaturesData()
+  //   fetchServicesData()
+  // }, [])
 
   const [formData, setFormData]: any = useState({
-    businessName: '',
-    description: '',
-    email: '',
-    address1: '',
-    address2: '',
-    image:
-      'https://images.unsplash.com/photo-1560066984-138dadb4c035?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1674&q=80',
-    cityTown: '',
-    postalCode: '',
-    phone: '',
+    businessName: business.businessName,
+    description: business.description,
+    email: business.email,
+    // address: {
+    //   address1: business.address1,
+    //   address2: business.address2,
+    //   postalCode: business.postalCode,
+    //   city: business.cityTown,
+    //   region: business.region,
+    //   country: business.country,
+    // },
+    address1: business.address.address1,
+    address2: business.address.address2,
+    image: business.image,
+    city: business.address.city,
+    postalCode: business.address.postalCode,
+    region: business.address.region,
+    country: business.address.country,
+    phone: business.phone,
   })
   const [region, setRegion] = useState('AB')
   const [country, setCountry] = useState('Canada')
-  const history = useHistory()
   const ownerId = JSON.parse(localStorage.getItem('profile') ?? 'false').result
     ._id
 
@@ -200,31 +208,31 @@ export const EditBusiness = () => {
   }
 
   // Initialize business profile form state object
-  const data = {
-    businessName: formData.businessName,
-    description: formData.description,
-    image:
-      formData.image === ' '
-        ? 'https://images.unsplash.com/photo-1560066984-138dadb4c035?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1674&q=80'
-        : formData.image,
-    email: formData.email,
-    address: {
-      address1: formData.address1,
-      address2: formData.address2,
-      postalCode: formData.postalCode,
-      city: formData.cityTown,
-      region: region,
-      country: country,
-    },
-    stars: 0,
-    phone: formData.phone,
-    ownerId: ownerId,
-  }
+  // const data = {
+  //   businessName: formData.businessName,
+  //   description: formData.description,
+  //   image:
+  //     formData.image === ' '
+  //       ? 'https://images.unsplash.com/photo-1560066984-138dadb4c035?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1674&q=80'
+  //       : formData.image,
+  //   email: formData.email,
+  //   address: {
+  //     address1: formData.address1,
+  //     address2: formData.address2,
+  //     postalCode: formData.postalCode,
+  //     city: formData.cityTown,
+  //     region: region,
+  //     country: country,
+  //   },
+  //   stars: 0,
+  //   phone: formData.phone,
+  //   ownerId: ownerId,
+  // }
 
   const saveNewBusiness = () => {
     // Add FeaturesArray and ServicesArray to data business form state object
     let newBusiness = {
-      ...data,
+      ...formData,
       features: savedFormFeats,
       services: savedFormServices,
     }
@@ -250,8 +258,8 @@ export const EditBusiness = () => {
       <div className='FeatureContainer'>
         hi in edit business
         {/* <-- Form Start --> */}
-        {/* <form onSubmit={handleSubmit} className='AddBusiness_inputGroup'> */}
-        {/* <div className='AddBusiness_scroll'>
+        <form onSubmit={handleSubmit} className='AddBusiness_inputGroup'>
+          <div className='AddBusiness_scroll'>
             <div className='AddBusiness-FormCard_body'>
               <BusinessImage
                 pic={image}
@@ -439,7 +447,7 @@ export const EditBusiness = () => {
               submit
             </button>
           </div>
-        </form> */}
+        </form>
         {/* <-- Form Ends --> */}
       </div>
     </div>

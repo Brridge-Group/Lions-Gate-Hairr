@@ -59,12 +59,6 @@ export const BusinessList = () => {
   const [featuresArr, setFeaturesArr]: any = useState([])
   const [servicesArr, setServicesArr]: any = useState([])
 
-  // //* Initialize state objects for form checkboxes
-  // // TODO: [ ] => Connect with `handleResetFilter` to reset checkboxes to false
-  // const [isChecked, setIsChecked]: any = useState(false)
-  // const [isFeatsChecked, setIsFeatsChecked]: any = useState([])
-  // const [isServicesChecked, setIsServicesChecked]: any = useState([])
-
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -236,8 +230,6 @@ export const BusinessList = () => {
   }, [list, city])
 
   const handleResetFilter = (): any => {
-    // TODO: [ ] => FIXME: Reset checkboxes to false
-    //? TODO: [ ] => Explore connecting to child component to allow for checkbox resetting to opposite of checked
     window.location.reload()
   }
 

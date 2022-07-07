@@ -384,6 +384,7 @@ export const AddBusiness = () => {
                         display: 'flex',
                         marginTop: '10px',
                         marginBottom: '5px',
+                        alignItems: 'flex-start',
                       }}>
                       <input
                         type='checkbox'
@@ -408,6 +409,7 @@ export const AddBusiness = () => {
                         display: 'flex',
                         marginTop: '10px',
                         marginBottom: '5px',
+                        alignItems: 'flex-start',
                       }}>
                       <input
                         type='checkbox'

@@ -47,7 +47,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-exports.EditBusiness = void 0;
+exports.AddBusiness = void 0;
 // React Components
 var react_1 = require("react");
 var react_router_dom_1 = require("react-router-dom");
@@ -57,28 +57,26 @@ var BusinessImage_1 = require("../../UIElements/BusinessImage");
 var regions_1 = require("../../constants/regions");
 // 3rd Party Custom Imports
 var axios_1 = require("axios");
-require("../AddBusiness/AddBusiness.css");
+require("./AddBusiness.css");
 require("../Auth/UserRegistration/UserRegistration.css");
-exports.EditBusiness = function () {
-    var history = react_router_dom_1.useHistory();
-    var location = react_router_dom_1.useLocation();
-    var business = location.state;
-    // console.log('business', business)
-    var _a = react_1.useState(true), loading = _a[0], setLoading = _a[1];
-    var _b = react_1.useState(null), image = _b[0], setImage = _b[1];
+// Custom Styles
+exports.AddBusiness = function () {
+    var _a;
+    var _b = react_1.useState(true), loading = _b[0], setLoading = _b[1];
+    var _c = react_1.useState(null), image = _c[0], setImage = _c[1];
     // Initialize  Services and Features to state
-    var _c = react_1.useState([]), featuresArr = _c[0], setFeaturesArr = _c[1];
-    var _d = react_1.useState([]), servicesArr = _d[0], setServicesArr = _d[1];
+    var _d = react_1.useState([]), feats = _d[0], setFeats = _d[1]; // Features full object
+    var _e = react_1.useState([]), services = _e[0], setServices = _e[1]; // Services full object
+    var _f = react_1.useState([]), featuresArr = _f[0], setFeaturesArr = _f[1];
+    var _g = react_1.useState([]), servicesArr = _g[0], setServicesArr = _g[1];
     // Initialize state objects for form checkboxes
-    var _e = react_1.useState(false), isChecked = _e[0], setIsChecked = _e[1];
-    var _f = react_1.useState([]), isFeatsChecked = _f[0], setIsFeatsChecked = _f[1];
-    var _g = react_1.useState([]), isServicesChecked = _g[0], setIsServicesChecked = _g[1];
+    var _h = react_1.useState(false), isChecked = _h[0], setIsChecked = _h[1];
+    var _j = react_1.useState([]), isFeatsChecked = _j[0], setIsFeatsChecked = _j[1];
+    var _k = react_1.useState([]), isServicesChecked = _k[0], setIsServicesChecked = _k[1];
     // Fetch Services and Features from Database API Endpoint
     react_1.useEffect(function () {
-        var featuresArrTrue = business.features.map(function (bus) { return bus._id; });
-        // setting initial render of whats checked or not
         var fetchFeaturesData = function () { return __awaiter(void 0, void 0, void 0, function () {
-            var response, responseData, featsArr, i, j, err_1;
+            var response, responseData, featsArr, err_1;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -91,20 +89,13 @@ exports.EditBusiness = function () {
                         return [4 /*yield*/, response.json()];
                     case 2:
                         responseData = _a.sent();
+                        setFeats(responseData);
                         featsArr = responseData.map(function (el) {
                             var featsName = el.name;
                             var featsId = el._id;
                             var featsIsChecked = el.isChecked;
                             return [featsName, featsId, featsIsChecked];
                         });
-                        for (i = 0; i < featsArr.length; i++) {
-                            for (j = 0; j < featuresArrTrue.length; j++) {
-                                if (featsArr[i][1] === featuresArrTrue[j]) {
-                                    featsArr[i][2] = true;
-                                }
-                            }
-                        }
-                        // console.log(featsArr, 'featsArr')
                         setFeaturesArr(featsArr);
                         return [3 /*break*/, 4];
                     case 3:
@@ -116,9 +107,8 @@ exports.EditBusiness = function () {
                 }
             });
         }); };
-        var servicesArrTrue = business.services.map(function (bus) { return bus._id; });
         var fetchServicesData = function () { return __awaiter(void 0, void 0, void 0, function () {
-            var response, responseData, servicesArr_1, i, j, err_2;
+            var response, responseData, servicesArr_1, err_2;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -131,19 +121,13 @@ exports.EditBusiness = function () {
                         return [4 /*yield*/, response.json()];
                     case 2:
                         responseData = _a.sent();
+                        setServices(responseData);
                         servicesArr_1 = responseData.map(function (el) {
                             var servicesName = el.name;
                             var servicesId = el._id;
                             var servicesIsChecked = el.isChecked;
                             return [servicesName, servicesId, servicesIsChecked];
                         });
-                        for (i = 0; i < servicesArr_1.length; i++) {
-                            for (j = 0; j < servicesArrTrue.length; j++) {
-                                if (servicesArr_1[i][1] === servicesArrTrue[j]) {
-                                    servicesArr_1[i][2] = true;
-                                }
-                            }
-                        }
                         setServicesArr(servicesArr_1);
                         return [3 /*break*/, 4];
                     case 3:
@@ -158,21 +142,22 @@ exports.EditBusiness = function () {
         fetchFeaturesData();
         fetchServicesData();
     }, []);
-    var _h = react_1.useState({
-        businessName: business.businessName,
-        description: business.description,
-        email: business.email,
-        address1: business.address.address1,
-        address2: business.address.address2,
-        image: business.image,
-        city: business.address.city,
-        postalCode: business.address.postalCode,
-        region: business.address.region,
-        country: business.address.country,
-        phone: business.phone
-    }), formData = _h[0], setFormData = _h[1];
-    var _j = react_1.useState('AB'), region = _j[0], setRegion = _j[1];
-    var _k = react_1.useState('Canada'), country = _k[0], setCountry = _k[1];
+    var _l = react_1.useState({
+        businessName: '',
+        description: '',
+        email: '',
+        address1: '',
+        address2: '',
+        image: 'https://images.unsplash.com/photo-1560066984-138dadb4c035?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1674&q=80',
+        cityTown: '',
+        postalCode: '',
+        phone: ''
+    }), formData = _l[0], setFormData = _l[1];
+    var _m = react_1.useState('AB'), region = _m[0], setRegion = _m[1];
+    var _o = react_1.useState('Canada'), country = _o[0], setCountry = _o[1];
+    var history = react_router_dom_1.useHistory();
+    var ownerId = JSON.parse((_a = localStorage.getItem('profile')) !== null && _a !== void 0 ? _a : 'false').result
+        ._id;
     var onImageChange = function (e) { return __awaiter(void 0, void 0, void 0, function () {
         var maxFileSize, file_1, base64;
         var _a;
@@ -216,7 +201,6 @@ exports.EditBusiness = function () {
         // Evaluate to determine if checkbox is checked and if is it a service or feature
         if (e.target.type === 'checkbox') {
             setIsChecked(__assign(__assign({}, isChecked), (_a = {}, _a[e.target.name] = value, _a)));
-            setIsServicesChecked(__assign(__assign({}, isServicesChecked), { trythis: false }));
             if (e.target.name.includes('service')) {
                 setIsServicesChecked(__assign(__assign({}, isServicesChecked), (_b = {}, _b[e.target.id] = value, _b)));
             }
@@ -224,12 +208,11 @@ exports.EditBusiness = function () {
                 setIsFeatsChecked(__assign(__assign({}, isFeatsChecked), (_c = {}, _c[e.target.id] = value, _c)));
             }
         }
+        console.log(value);
         setFormData(__assign(__assign({}, formData), (_d = {}, _d[e.target.name] = e.target.value, _d)));
     };
     // Save to the businesses collection database all features and services set to true.
     var savedFormFeats = Object.entries(isFeatsChecked)
-        // console
-        //   .log('savedFormFeats', savedFormFeats)
         .map(function (key) {
         if (key[1] === true) {
             return [key[0]];
@@ -257,12 +240,31 @@ exports.EditBusiness = function () {
     var handleCountry = function (e) {
         setCountry(e.target.value);
     };
-    var saveEditedBusiness = function () {
+    // Initialize business profile form state object
+    var data = {
+        businessName: formData.businessName,
+        description: formData.description,
+        image: formData.image === ' '
+            ? 'https://images.unsplash.com/photo-1560066984-138dadb4c035?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1674&q=80'
+            : formData.image,
+        email: formData.email,
+        address: {
+            address1: formData.address1,
+            address2: formData.address2,
+            postalCode: formData.postalCode,
+            city: formData.cityTown,
+            region: region,
+            country: country
+        },
+        stars: 0,
+        phone: formData.phone,
+        ownerId: ownerId
+    };
+    var saveNewBusiness = function () {
         // Add FeaturesArray and ServicesArray to data business form state object
-        var editedBusiness = __assign(__assign({}, formData), { features: savedFormFeats, services: savedFormServices });
-        // console.log(editedBusiness, 'editedBusiness line 248')
+        var newBusiness = __assign(__assign({}, data), { features: savedFormFeats, services: savedFormServices });
         axios_1["default"]
-            .patch("/api/businesses/" + business._id, editedBusiness)
+            .post('http://localhost:5000/api/businesses/add-business', newBusiness)
             .then(function (response) {
             console.log(response.data);
             history.push('/');
@@ -271,9 +273,8 @@ exports.EditBusiness = function () {
         });
     };
     var handleSubmit = function (e) {
-        console.log('hi');
         e.preventDefault();
-        saveEditedBusiness();
+        saveNewBusiness();
     };
     return (react_1["default"].createElement("div", { className: 'FeatureContainer_image AddBusiness' },
         react_1["default"].createElement("div", { className: 'FeatureContainer' },
@@ -296,11 +297,11 @@ exports.EditBusiness = function () {
                         react_1["default"].createElement("div", { className: 'AddBusiness-FormCard_body_columns' },
                             react_1["default"].createElement("div", { className: 'AddBusiness-FormCard_body_left' },
                                 react_1["default"].createElement("h5", null,
-                                    react_1["default"].createElement("label", { htmlFor: 'city' }, "City / Town")),
-                                react_1["default"].createElement("input", { name: 'city', type: 'text', value: formData.city, className: 'UserRegistration_input color', onChange: onFormChange, required: true }),
+                                    react_1["default"].createElement("label", { htmlFor: 'cityTown' }, "City / Town")),
+                                react_1["default"].createElement("input", { name: 'cityTown', type: 'text', value: formData.cityTown, className: 'UserRegistration_input color', onChange: onFormChange, required: true }),
                                 react_1["default"].createElement("h5", null,
                                     react_1["default"].createElement("label", { htmlFor: 'region' }, "Province / State")),
-                                react_1["default"].createElement("select", { className: 'UserRegistration_input color', onChange: handleRegion, name: 'region', value: formData.region, id: 'region' }, regions_1.regions.map(function (region) { return (react_1["default"].createElement("option", { value: region.value }, region.label)); })),
+                                react_1["default"].createElement("select", { className: 'UserRegistration_input color', onChange: handleRegion, name: 'region', id: 'region' }, regions_1.regions.map(function (region) { return (react_1["default"].createElement("option", { value: region.value }, region.label)); })),
                                 react_1["default"].createElement("h5", null,
                                     react_1["default"].createElement("label", { htmlFor: 'phone' }, "Phone Number")),
                                 react_1["default"].createElement("input", { name: 'phone', type: 'text', value: formData.phone, className: 'UserRegistration_input color', onChange: onFormChange, required: true })),
@@ -313,7 +314,7 @@ exports.EditBusiness = function () {
                                 react_1["default"].createElement("input", { name: 'postalCode', type: 'text', value: formData.postalCode, className: 'UserRegistration_input color', onChange: onFormChange, required: true }),
                                 react_1["default"].createElement("h5", null,
                                     react_1["default"].createElement("label", { htmlFor: 'country' }, "Country:")),
-                                react_1["default"].createElement("select", { className: 'UserRegistration_input color', onChange: handleCountry, name: 'country', value: formData.country, id: 'country' },
+                                react_1["default"].createElement("select", { className: 'UserRegistration_input color', onChange: handleCountry, name: 'country', id: 'country' },
                                     react_1["default"].createElement("option", { value: 'Canada' }, " Canada "),
                                     react_1["default"].createElement("option", { value: 'United States' }, " United States")))))),
                 react_1["default"].createElement("div", { className: 'AddBusiness-FormCard_sidebar' },

@@ -21,36 +21,29 @@ interface EditBusiness {
   id: string
 }
 
-// SOMEHOW SET CHECKBOXES TO TRUE IF THEY COME IN
-
 export const EditBusiness = () => {
   const history = useHistory()
   const location = useLocation<any>()
   const business = location.state
-  console.log('business', business)
+  // console.log('business', business)
 
   const [loading, setLoading] = useState(true)
 
   const [image, setImage] = useState<any | null>(null)
 
   // Initialize  Services and Features to state
-  const [feats, setFeats]: any = useState([]) // Features full object
-  const [services, setServices]: any = useState([]) // Services full object
+
   const [featuresArr, setFeaturesArr]: any = useState([])
   const [servicesArr, setServicesArr]: any = useState([])
 
   // Initialize state objects for form checkboxes
   const [isChecked, setIsChecked]: any = useState(false)
   const [isFeatsChecked, setIsFeatsChecked]: any = useState([])
-  const [isServicesChecked, setIsServicesChecked]: any = useState([
-    { services: business.services },
-  ])
-  console.log(isServicesChecked, 'isServicesChecked')
+  const [isServicesChecked, setIsServicesChecked]: any = useState([])
 
   // Fetch Services and Features from Database API Endpoint
   useEffect(() => {
     const featuresArrTrue = business.features.map((bus: any) => bus._id)
-    // console.log('featuresArrTrue', featuresArrTrue)
     // setting initial render of whats checked or not
     const fetchFeaturesData = async () => {
       try {
@@ -72,7 +65,7 @@ export const EditBusiness = () => {
             }
           }
         }
-        console.log(featsArr, 'featsArr')
+        // console.log(featsArr, 'featsArr')
         setFeaturesArr(featsArr)
       } catch (err: any) {
         console.log(err)
@@ -80,7 +73,6 @@ export const EditBusiness = () => {
       }
     }
     const servicesArrTrue = business.services.map((bus: any) => bus._id)
-    // console.log('servicesArrTrue', servicesArrTrue)
 
     const fetchServicesData = async () => {
       try {
@@ -127,6 +119,7 @@ export const EditBusiness = () => {
     // features: business.features,
     // services: business.services,
   })
+
   const [region, setRegion] = useState('AB')
   const [country, setCountry] = useState('Canada')
 
@@ -163,11 +156,13 @@ export const EditBusiness = () => {
       e.target.type === 'checkbox' ? e.target.checked : e.target.value
 
     // Evaluate to determine if checkbox is checked and if is it a service or feature
-    if (e.target.type === 'checkbox' || value === true) {
+    if (e.target.type === 'checkbox') {
       setIsChecked({
         ...isChecked,
         [e.target.name]: value,
       })
+
+      setIsServicesChecked({ ...isServicesChecked, trythis: false })
 
       if (e.target.name.includes('service')) {
         setIsServicesChecked({
@@ -183,20 +178,14 @@ export const EditBusiness = () => {
         })
       }
     }
-    console.log(
-      value,
-      'value',
-      isServicesChecked,
-      'isServicesChecked',
-      isFeatsChecked,
-      'isFeatsChecked'
-    )
 
     setFormData({ ...formData, [e.target.name]: e.target.value })
   }
 
   // Save to the businesses collection database all features and services set to true.
   let savedFormFeats = Object.entries(isFeatsChecked)
+    // console
+    //   .log('savedFormFeats', savedFormFeats)
     .map(key => {
       if (key[1] === true) {
         return [key[0]]
@@ -207,7 +196,6 @@ export const EditBusiness = () => {
       }
       return el
     })
-  console.log()
 
   let savedFormServices = Object.entries(isServicesChecked)
     .map(key => {
@@ -236,7 +224,7 @@ export const EditBusiness = () => {
       features: savedFormFeats,
       services: savedFormServices,
     }
-    console.log(editedBusiness, 'editedBusiness')
+    // console.log(editedBusiness, 'editedBusiness line 248')
 
     axios
       .patch(`/api/businesses/${business._id}`, editedBusiness)
@@ -314,10 +302,10 @@ export const EditBusiness = () => {
               <div className='AddBusiness-FormCard_body_columns'>
                 <div className='AddBusiness-FormCard_body_left'>
                   <h5>
-                    <label htmlFor='cityTown'>City / Town</label>
+                    <label htmlFor='city'>City / Town</label>
                   </h5>
                   <input
-                    name='cityTown'
+                    name='city'
                     type='text'
                     value={formData.city}
                     className='UserRegistration_input color'
@@ -404,6 +392,7 @@ export const EditBusiness = () => {
                         display: 'flex',
                         marginTop: '10px',
                         marginBottom: '5px',
+                        alignItems: 'flex-start',
                       }}>
                       <input
                         type='checkbox'
@@ -428,6 +417,7 @@ export const EditBusiness = () => {
                         display: 'flex',
                         marginTop: '10px',
                         marginBottom: '5px',
+                        alignItems: 'flex-start',
                       }}>
                       <input
                         type='checkbox'

@@ -69,6 +69,7 @@ export const FilterServicesAndFeatures = (props: Props) => {
                     display: 'flex',
                     marginTop: '10px',
                     marginBottom: '5px',
+                    alignItems: 'flex-start',
                   }}>
                   <input
                     type='checkbox'
@@ -94,6 +95,7 @@ export const FilterServicesAndFeatures = (props: Props) => {
                     display: 'flex',
                     marginTop: '10px',
                     marginBottom: '5px',
+                    alignItems: 'flex-start',
                   }}>
                   <input
                     type='checkbox'

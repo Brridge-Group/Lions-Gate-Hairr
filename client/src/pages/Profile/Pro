@@ -66,9 +66,10 @@ export const Profile = () => {
             />
             <div className='Profile-UserContainer_reviews'>
               <h4>your reviews</h4>
-              {!loading && !userReview.length ? (
-                <LoadSpinner />
+              {loading && loading ? (
+                <h1>HIHIHIHIHIHIIHIHIH</h1>
               ) : (
+                // <LoadSpinner />
                 <ul className='Profile_User_reviews'>
                   {!loading &&
                     userReview.map((r: any) => (

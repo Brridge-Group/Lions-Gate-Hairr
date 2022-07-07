@@ -120,10 +120,6 @@ ul.Profile_User_reviews {
   height: 125px;
   border-radius: 50%;
 }
-.Profile-UserContainer.Owner {
-  background-image: url('../../assets/images/hairgreybg.jpg');
-  padding-bottom: 0;
-}
 
 /* ///////media queries ////////// */
 

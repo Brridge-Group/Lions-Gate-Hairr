@@ -151,10 +151,27 @@ exports.getOwnersBusinesses = function (req, res) { return __awaiter(void 0, voi
     });
 }); };
 exports.updateBusiness = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var id;
-    return __generator(this, function (_a) {
-        id = req.params.id;
-        console.log('in updatebusiness backend');
+    var id, _a, businessName, description, image, address1, address2, city, postalCode, region, country, email, features, services, phone, fieldsToUpdate;
+    return __generator(this, function (_b) {
+        id = { _id: req.params.id };
+        console.log('in updatebusiness backend, id', id);
+        _a = req.body, businessName = _a.businessName, description = _a.description, image = _a.image, address1 = _a.address1, address2 = _a.address2, city = _a.city, postalCode = _a.postalCode, region = _a.region, country = _a.country, email = _a.email, features = _a.features, services = _a.services, phone = _a.phone;
+        fieldsToUpdate = {
+            businessName: businessName,
+            description: description,
+            image: image,
+            address1: address1,
+            address2: address2,
+            city: city,
+            postalCode: postalCode,
+            region: region,
+            country: country,
+            email: email,
+            features: features,
+            services: services,
+            phone: phone
+        };
+        console.log('in updatebusiness backend, fieldsToUpdate', fieldsToUpdate);
         return [2 /*return*/];
     });
 }); };

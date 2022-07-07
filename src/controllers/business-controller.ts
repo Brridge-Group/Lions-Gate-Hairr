@@ -88,6 +88,55 @@ export const getOwnersBusinesses = async (req: Request, res: Response) => {
 }
 
 export const updateBusiness = async (req: Request, res: Response) => {
-  const { id } = req.params
-  console.log('in updatebusiness backend')
+  const id = { _id: req.params.id }
+  console.log('in updatebusiness backend, id', id)
+
+  const {
+    businessName,
+    description,
+    image,
+    address1,
+    address2,
+    city,
+    postalCode,
+    region,
+    country,
+    email,
+    features,
+    services,
+    phone,
+  } = req.body
+
+  const fieldsToUpdate = {
+    businessName,
+    description,
+    image,
+    address1,
+    address2,
+    city,
+    postalCode,
+    region,
+    country,
+    email,
+    features,
+    services,
+    phone,
+  }
+
+  console.log('in updatebusiness backend, fieldsToUpdate', fieldsToUpdate)
+
+  // try {
+  //   let result = await Business.findOneAndUpdate(id, fieldsToUpdate)
+  //   if (result) {
+  //     console.log('result', result)
+  //     res.status(200).json({ result })
+  //   } else {
+  //     res.status(400).json({ error: 'Error in update user' })
+  //   }
+  // } catch (error) {
+  //   console.log(error)
+  //   return res
+  //     .status(StatusCodes.BAD_REQUEST)
+  //     .send('Something went wrong in update user, try later!')
+  // }
 }

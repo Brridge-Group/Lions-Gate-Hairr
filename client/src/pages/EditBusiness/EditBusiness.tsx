@@ -21,6 +21,8 @@ interface EditBusiness {
   id: string
 }
 
+// SOMEHOW SET CHECKBOXES TO TRUE IF THEY COME IN
+
 export const EditBusiness = () => {
   const history = useHistory()
   const location = useLocation<any>()
@@ -39,18 +41,17 @@ export const EditBusiness = () => {
 
   // Initialize state objects for form checkboxes
   const [isChecked, setIsChecked]: any = useState(false)
-  const [isFeatsChecked, setIsFeatsChecked]: any = useState([
-    { features: business.features },
-  ])
+  const [isFeatsChecked, setIsFeatsChecked]: any = useState([])
   const [isServicesChecked, setIsServicesChecked]: any = useState([
     { services: business.services },
   ])
+  console.log(isServicesChecked, 'isServicesChecked')
 
   // Fetch Services and Features from Database API Endpoint
   useEffect(() => {
     const featuresArrTrue = business.features.map((bus: any) => bus._id)
-    console.log('featuresArrTrue', featuresArrTrue)
-
+    // console.log('featuresArrTrue', featuresArrTrue)
+    // setting initial render of whats checked or not
     const fetchFeaturesData = async () => {
       try {
         const response = await fetch('/api/features', {
@@ -71,6 +72,7 @@ export const EditBusiness = () => {
             }
           }
         }
+        console.log(featsArr, 'featsArr')
         setFeaturesArr(featsArr)
       } catch (err: any) {
         console.log(err)
@@ -78,7 +80,7 @@ export const EditBusiness = () => {
       }
     }
     const servicesArrTrue = business.services.map((bus: any) => bus._id)
-    console.log('servicesArrTrue', servicesArrTrue)
+    // console.log('servicesArrTrue', servicesArrTrue)
 
     const fetchServicesData = async () => {
       try {
@@ -122,7 +124,8 @@ export const EditBusiness = () => {
     region: business.address.region,
     country: business.address.country,
     phone: business.phone,
-    features: business.features,
+    // features: business.features,
+    // services: business.services,
   })
   const [region, setRegion] = useState('AB')
   const [country, setCountry] = useState('Canada')
@@ -160,7 +163,7 @@ export const EditBusiness = () => {
       e.target.type === 'checkbox' ? e.target.checked : e.target.value
 
     // Evaluate to determine if checkbox is checked and if is it a service or feature
-    if (e.target.type === 'checkbox') {
+    if (e.target.type === 'checkbox' || value === true) {
       setIsChecked({
         ...isChecked,
         [e.target.name]: value,
@@ -180,7 +183,14 @@ export const EditBusiness = () => {
         })
       }
     }
-    console.log(value)
+    console.log(
+      value,
+      'value',
+      isServicesChecked,
+      'isServicesChecked',
+      isFeatsChecked,
+      'isFeatsChecked'
+    )
 
     setFormData({ ...formData, [e.target.name]: e.target.value })
   }
@@ -197,6 +207,7 @@ export const EditBusiness = () => {
       }
       return el
     })
+  console.log()
 
   let savedFormServices = Object.entries(isServicesChecked)
     .map(key => {
@@ -225,6 +236,7 @@ export const EditBusiness = () => {
       features: savedFormFeats,
       services: savedFormServices,
     }
+    console.log(editedBusiness, 'editedBusiness')
 
     axios
       .patch(`/api/businesses/${business._id}`, editedBusiness)

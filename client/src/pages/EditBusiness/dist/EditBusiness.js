@@ -59,6 +59,7 @@ var regions_1 = require("../../constants/regions");
 var axios_1 = require("axios");
 require("../AddBusiness/AddBusiness.css");
 require("../Auth/UserRegistration/UserRegistration.css");
+// SOMEHOW SET CHECKBOXES TO TRUE IF THEY COME IN
 exports.EditBusiness = function () {
     var history = react_router_dom_1.useHistory();
     var location = react_router_dom_1.useLocation();
@@ -73,16 +74,16 @@ exports.EditBusiness = function () {
     var _f = react_1.useState([]), servicesArr = _f[0], setServicesArr = _f[1];
     // Initialize state objects for form checkboxes
     var _g = react_1.useState(false), isChecked = _g[0], setIsChecked = _g[1];
-    var _h = react_1.useState([
-        { features: business.features },
-    ]), isFeatsChecked = _h[0], setIsFeatsChecked = _h[1];
+    var _h = react_1.useState([]), isFeatsChecked = _h[0], setIsFeatsChecked = _h[1];
     var _j = react_1.useState([
         { services: business.services },
     ]), isServicesChecked = _j[0], setIsServicesChecked = _j[1];
+    console.log(isServicesChecked, 'isServicesChecked');
     // Fetch Services and Features from Database API Endpoint
     react_1.useEffect(function () {
         var featuresArrTrue = business.features.map(function (bus) { return bus._id; });
-        console.log('featuresArrTrue', featuresArrTrue);
+        // console.log('featuresArrTrue', featuresArrTrue)
+        // setting initial render of whats checked or not
         var fetchFeaturesData = function () { return __awaiter(void 0, void 0, void 0, function () {
             var response, responseData, featsArr, i, j, err_1;
             return __generator(this, function (_a) {
@@ -110,6 +111,7 @@ exports.EditBusiness = function () {
                                 }
                             }
                         }
+                        console.log(featsArr, 'featsArr');
                         setFeaturesArr(featsArr);
                         return [3 /*break*/, 4];
                     case 3:
@@ -122,7 +124,7 @@ exports.EditBusiness = function () {
             });
         }); };
         var servicesArrTrue = business.services.map(function (bus) { return bus._id; });
-        console.log('servicesArrTrue', servicesArrTrue);
+        // console.log('servicesArrTrue', servicesArrTrue)
         var fetchServicesData = function () { return __awaiter(void 0, void 0, void 0, function () {
             var response, responseData, servicesArr_1, i, j, err_2;
             return __generator(this, function (_a) {
@@ -175,8 +177,7 @@ exports.EditBusiness = function () {
         postalCode: business.address.postalCode,
         region: business.address.region,
         country: business.address.country,
-        phone: business.phone,
-        features: business.features
+        phone: business.phone
     }), formData = _k[0], setFormData = _k[1];
     var _l = react_1.useState('AB'), region = _l[0], setRegion = _l[1];
     var _m = react_1.useState('Canada'), country = _m[0], setCountry = _m[1];
@@ -221,7 +222,7 @@ exports.EditBusiness = function () {
         var _a, _b, _c, _d;
         var value = e.target.type === 'checkbox' ? e.target.checked : e.target.value;
         // Evaluate to determine if checkbox is checked and if is it a service or feature
-        if (e.target.type === 'checkbox') {
+        if (e.target.type === 'checkbox' || value === true) {
             setIsChecked(__assign(__assign({}, isChecked), (_a = {}, _a[e.target.name] = value, _a)));
             if (e.target.name.includes('service')) {
                 setIsServicesChecked(__assign(__assign({}, isServicesChecked), (_b = {}, _b[e.target.id] = value, _b)));
@@ -230,7 +231,7 @@ exports.EditBusiness = function () {
                 setIsFeatsChecked(__assign(__assign({}, isFeatsChecked), (_c = {}, _c[e.target.id] = value, _c)));
             }
         }
-        console.log(value);
+        console.log(value, 'value', isServicesChecked, 'isServicesChecked', isFeatsChecked, 'isFeatsChecked');
         setFormData(__assign(__assign({}, formData), (_d = {}, _d[e.target.name] = e.target.value, _d)));
     };
     // Save to the businesses collection database all features and services set to true.
@@ -245,6 +246,7 @@ exports.EditBusiness = function () {
         }
         return el;
     });
+    console.log();
     var savedFormServices = Object.entries(isServicesChecked)
         .map(function (key) {
         if (key[1] === true) {
@@ -265,6 +267,7 @@ exports.EditBusiness = function () {
     var saveEditedBusiness = function () {
         // Add FeaturesArray and ServicesArray to data business form state object
         var editedBusiness = __assign(__assign({}, formData), { features: savedFormFeats, services: savedFormServices });
+        console.log(editedBusiness, 'editedBusiness');
         axios_1["default"]
             .patch("/api/businesses/" + business._id, editedBusiness)
             .then(function (response) {

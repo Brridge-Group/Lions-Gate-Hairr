@@ -1,16 +1,18 @@
 import { useState, useEffect } from 'react'
-import { Link, useHistory } from 'react-router-dom'
-
-import { Card } from '../../UIElements/Card'
-import { Star } from '../../UIElements/Star'
+import { Link } from 'react-router-dom'
+import { MyStarList } from '../../UIElements/Star'
 import { About } from '../BusinessDetails/About/About'
 import '../../pages/Profile/Profile.css'
 import './MyBusinessList.css'
+import { MyBusinessReviews } from '../BusinessReviews/MyBusinessReviews'
 
 import { LoadSpinner } from '../LoadSpinner/LoadSpinner'
 
+interface MyBusinessReviews {
+  reviews: Array<[]>
+}
+
 export const MyBusinessList = () => {
-  const history = useHistory()
   const [list, setList] = useState<any[]>([])
   const [isLoading, setIsLoading] = useState(true)
   const user = JSON.parse(localStorage.getItem('profile') || 'false').result
@@ -30,7 +32,21 @@ export const MyBusinessList = () => {
     }
     fetchData()
   }, [])
-  // console.log('in business list, list', list)
+
+  const [selected, setSelected] = useState({})
+
+  const toggleIt = (id: any) => {
+    setSelected({ ...selected, [id]: !selected[id] })
+
+    const dropDownArray = list.map(l => l._id)
+    // console.log(dropDownArray, 'dropDownArray', id, 'id')
+    dropDownArray.filter(drop => {
+      if (drop === id) {
+        // console.log('yes')
+      }
+    })
+  }
+  // console.log('in my business list, list', list)
 
   return (
     <div className='Profile_user'>
@@ -46,19 +62,29 @@ export const MyBusinessList = () => {
           <>
             <div className='Profile-UserContainer_reviews business'>
               <h4>Your businesses</h4>
-              {/* TODO: fix styles */}
               <div className='BusinessCard-container'>
-                {list.map((business: any) => (
-                  <div className='BusinessCard ' key={business._id} onClick={() => history.push('businesses/' + `${business._id}`)}>
-                    <About name={business.businessName} description={business.description} image={business.image} address={business.address} />
-                    <Star stars={business.stars} />
+                {list.map((business: any, idx) => (
+                  <div className='BusinessCard ' key={business._id}>
+                    <About
+                      name={business.businessName}
+                      description={business.description}
+                      image={business.image}
+                      address={business.address}
+                    />
+                    <MyStarList
+                      stars={business.stars}
+                      reviews={business.reviews}
+                    />
                     <div className='BusinessCard-buttons'>
-                      <Link to={'#'}>
-                        <h6 className='btn--btn-primary twoLines business'>
-                          read <br />
-                          reviews
-                        </h6>
-                      </Link>
+                      <h6
+                        className='btn--btn-primary twoLines business reviews'
+                        onClick={() => toggleIt(business._id)}
+                        data-idx={idx}
+                        id={business._id}>
+                        {!selected[business._id]
+                          ? 'read reviews'
+                          : 'close reviews'}
+                      </h6>
                       <Link to={'#'}>
                         <h6 className='btn--btn-primary twoLines business'>
                           edit <br />
@@ -68,6 +94,14 @@ export const MyBusinessList = () => {
                       <Link to={'#'}>
                         <h6 className='btn--btn-primary twoLines business'>delete business</h6>
                       </Link>
+                    </div>
+                    <div
+                      className={
+                        !selected[business._id]
+                          ? 'menu-business'
+                          : 'menu-business open'
+                      }>
+                      <MyBusinessReviews reviews={business.reviews} />
                     </div>
                   </div>
                 ))}

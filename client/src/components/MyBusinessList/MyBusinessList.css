@@ -6,10 +6,33 @@
 .btn--btn-primary.twoLines.business {
   width: 95px;
 }
+.btn--btn-primary.twoLines.business.reviews {
+  height: 42px;
+  padding: 0 10px;
+  padding-top: 5px;
+}
 .BusinessCard-container {
   overflow-y: scroll;
   height: 90%;
   padding-bottom: 2rem;
+  max-height: 58vh;
+}
+
+.menu-business {
+  position: relative;
+  width: 100%;
+  height: fit-content;
+  text-align: left;
+  line-height: normal;
+  transition: 0.7s;
+  z-index: 3;
+  margin-right: 9%;
+  display: flex;
+  justify-content: center;
+  display: none;
+}
+.menu-business.open {
+  display: block;
 }
 
 /* ----- -> LoadSpinner <- ----- */

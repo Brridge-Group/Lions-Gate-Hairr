@@ -1,10 +1,10 @@
 // React Components
 import { useState, useEffect } from 'react'
-import { useHistory, useParams, Link } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
 
 // Custom Imports
 import { About } from '../../components/BusinessDetails/About/About'
-import { Star } from '../../UIElements/Star'
+import { StarList } from '../../UIElements/Star'
 import { Card } from '../../UIElements/Card'
 import { FilterServicesAndFeatures } from '../../components/FilterServicesAndFeatures/FilterServicesAndFeatures'
 import { LoadSpinner } from '../../components/LoadSpinner/LoadSpinner'
@@ -29,6 +29,12 @@ interface Feature {
   name: string
 }
 
+interface Review {
+  _id: string
+  comment: string
+  rating: number
+}
+
 interface Business {
   businessName: string
   description: string
@@ -45,18 +51,19 @@ interface Business {
   }
   services: Service[]
   features: Feature[]
+  reviews: Review[]
   stars: number
 }
 
 export const BusinessList = () => {
   const [list, setList]: any = useState([])
   const [isLoading, setIsLoading] = useState(true)
-  const history = useHistory()
   const { city } = useParams<RouteParams>()
 
   //* Initialize Services and Features to state
   const [feats, setFeats]: any = useState([]) // Features full object
   const [services, setServices]: any = useState([]) // Services full object
+
   const [featuresArr, setFeaturesArr]: any = useState([])
   const [servicesArr, setServicesArr]: any = useState([])
 
@@ -88,9 +95,8 @@ export const BusinessList = () => {
     }
     fetchData()
   }, [])
-  // console.log(`initial list`, list)
 
-  // console.log('hi, list', list)
+  // console.log('bus list', list)
   //* Fetch Features and Services from the database
   useEffect(() => {
     const fetchFeaturesData = async () => {
@@ -113,9 +119,6 @@ export const BusinessList = () => {
         setIsLoading(false)
       }
     }
-    const redirectToBus = () => {}
-
-    // history.push(`/businesses/${business._id}`)
 
     const fetchServicesData = async () => {
       try {
@@ -137,15 +140,17 @@ export const BusinessList = () => {
         setIsLoading(false)
       }
     }
+
     fetchFeaturesData()
     fetchServicesData()
   }, [])
-  console.log(`servicesArr`, servicesArr)
-  console.log(`featuresArr`, featuresArr)
+
+  // console.log(`servicesArr`, servicesArr)
+  // console.log(`featuresArr`, featuresArr)
 
   //* Filter Business Features and Services
   const [filteredResults, setFilteredResults]: any = useState([])
-  console.log(`filteredResults`, filteredResults)
+  // console.log(`filteredResults`, filteredResults)
   const [filteredFeats, setFilteredFeats]: any = useState([])
   const [filteredServices, setFilteredServices]: any = useState([])
 
@@ -222,7 +227,7 @@ export const BusinessList = () => {
       return newFilteredResults
     })
   }, [list, city])
-  console.log(list, city, 'list, city')
+  // console.log(list, city, 'list, city')
 
   const handleResetFilter = (): any => {
     // TODO: [ ] => FIXME: Reset checkboxes to false
@@ -258,18 +263,34 @@ export const BusinessList = () => {
                 filteredResults?.map((business: any) => (
                   <>
                     <Card className='BusinessCard List' key={business._id}>
-                      <Link to={`/businesses/${business._id}`} className='BusinessCard-link'>
-                        <About name={business.businessName} description={business.description} image={business.image} address={business.address} />
-                        <Star stars={business.stars} />
+                      <Link
+                        to={{
+                          pathname: `/businesses/${business._id}`,
+                        }}>
+                        <About
+                          name={business.businessName}
+                          description={business.description}
+                          image={business.image}
+                          address={business.address}
+                        />
                       </Link>
+                      <StarList
+                        stars={business.stars}
+                        reviews={business.reviews}
+                      />
                     </Card>
                   </>
                 ))
               ) : (
                 <>
-                  <h1>No businesses were found with the chosen services and or features.</h1>
+                  <h2 className='BusinessCard-noResults'>
+                    No businesses were found with the chosen services and or
+                    features.
+                  </h2>
                   <br />
-                  <h1>Please change your selection and filter again.</h1>
+                  <h2 className='BusinessCard-noResults'>
+                    Please change your selection and filter again.
+                  </h2>
                 </>
               )}
             </div>

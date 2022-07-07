@@ -86,6 +86,9 @@ ul.Profile_User_reviews {
   padding-bottom: 0;
   overflow: hidden;
 }
+.Profile-UserContainer.Owner {
+  background-image: url('../../assets/images/hairgreybg.jpg');
+}
 .Profile-UserContainer_reviews h4 {
   border-top: 1px solid #f32dc8;
   border-bottom: 1px solid #f32dc8;

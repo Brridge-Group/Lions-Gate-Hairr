@@ -57,7 +57,7 @@ interface Business {
 
 export const BusinessList = () => {
   const [list, setList]: any = useState([])
-  const [loading, setLoading] = useState(true)
+  const [isLoading, setIsLoading] = useState(true)
   const { city } = useParams<RouteParams>()
 
   //* Initialize Services and Features to state
@@ -77,28 +77,26 @@ export const BusinessList = () => {
     const fetchData = async () => {
       try {
         const res = await fetch('/api/businesses/get-businesses')
+        setIsLoading(true)
         const businessesList = await res.json()
         if (typeof city !== 'undefined') {
           const filtered = businessesList.filter((business: Business) => {
-            return business.address.city
-              .toLowerCase()
-              .includes(city.toLowerCase())
+            return business.address.city.toLowerCase().includes(city.toLowerCase())
           })
           setList(filtered)
         } else {
           setList(businessesList)
         }
-        setLoading(false)
+        setIsLoading(false)
       } catch (err: any) {
         console.log(err)
-        setLoading(false)
+        setIsLoading(false)
       }
     }
     fetchData()
   }, [])
 
   // console.log('bus list', list)
-
   //* Fetch Features and Services from the database
   useEffect(() => {
     const fetchFeaturesData = async () => {
@@ -117,7 +115,8 @@ export const BusinessList = () => {
         })
         setFeaturesArr(featsArr)
       } catch (err: any) {
-        setLoading(false)
+        console.log(err)
+        setIsLoading(false)
       }
     }
 
@@ -138,7 +137,7 @@ export const BusinessList = () => {
         setServicesArr(servicesArr)
       } catch (err: any) {
         console.log(err)
-        setLoading(false)
+        setIsLoading(false)
       }
     }
 
@@ -216,9 +215,7 @@ export const BusinessList = () => {
       }
     })
     //* Remove Any Duplicates
-    let uniqueTempFilteredResults: any = Array.from(
-      new Set(tempFilteredResults)
-    )
+    let uniqueTempFilteredResults: any = Array.from(new Set(tempFilteredResults))
     setFilteredResults(uniqueTempFilteredResults)
     return filteredResults
   }
@@ -241,12 +238,10 @@ export const BusinessList = () => {
   return (
     <div className='FeatureContainer_image BusinessList'>
       <div className='FeatureContainer BusinessList'>
-        {loading ? (
+        {isLoading ? (
           <LoadSpinner />
         ) : !list.length || city == 'undefined' ? (
-          <h1 className='BusinessList-none'>
-            No businesses found. Please try another city.
-          </h1>
+          <h1 className='BusinessList-none'>No businesses found. Please try another city.</h1>
         ) : (
           <>
             <h1 className='BusinessList-Header'>{city} Salons</h1>
@@ -256,7 +251,7 @@ export const BusinessList = () => {
                 servicesArr={servicesArr}
                 onFeatChange={onFeatChange}
                 onServiceChange={onServiceChange}
-                loading={loading}
+                isLoading={isLoading}
                 // isChecked={isChecked}
                 handleResetFilter={handleResetFilter}
                 handleFilteredResults={handleFilteredResults}

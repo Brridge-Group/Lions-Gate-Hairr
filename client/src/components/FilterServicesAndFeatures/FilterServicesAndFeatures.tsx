@@ -9,7 +9,7 @@ import './FilterServicesAndFeatures.css'
 
 // Types
 interface Props {
-  loading: boolean
+  isLoading: boolean
   onFeatChange: any
   onServiceChange: any
   servicesArr: any
@@ -55,7 +55,7 @@ export const FilterServicesAndFeatures = (props: Props) => {
   }, [filteredFeats, filteredServices])
   return (
     <>
-      {!props.loading ? (
+      {!props.isLoading ? (
         <>
           <section className='Filters'>
             <h4 className='sidebar-hed'>
@@ -71,14 +71,7 @@ export const FilterServicesAndFeatures = (props: Props) => {
                     marginBottom: '5px',
                     alignItems: 'flex-start',
                   }}>
-                  <input
-                    type='checkbox'
-                    name={`feature-${feature[0]}`}
-                    id={feature[1]}
-                    defaultChecked={feature[2].isChecked}
-                    value={id}
-                    onChange={onFeatChange}
-                  />
+                  <input type='checkbox' name={`feature-${feature[0]}`} id={feature[1]} defaultChecked={feature[2].isChecked} value={id} onChange={onFeatChange} />
                   <label htmlFor={feature[1]}>{feature[0]}</label>
                 </h5>
                 // </div>
@@ -97,17 +90,8 @@ export const FilterServicesAndFeatures = (props: Props) => {
                     marginBottom: '5px',
                     alignItems: 'flex-start',
                   }}>
-                  <input
-                    type='checkbox'
-                    name={`service-${service[0]}`}
-                    id={service[1]}
-                    defaultChecked={service[2].isChecked}
-                    value={id}
-                    onChange={onServiceChange}
-                  />
-                  <label
-                    className='Filters-FormCheckLabel'
-                    htmlFor={service[1]}>
+                  <input type='checkbox' name={`service-${service[0]}`} id={service[1]} defaultChecked={service[2].isChecked} value={id} onChange={onServiceChange} />
+                  <label className='Filters-FormCheckLabel' htmlFor={service[1]}>
                     {service[0]}
                   </label>
                 </h5>
@@ -116,22 +100,16 @@ export const FilterServicesAndFeatures = (props: Props) => {
           </section>
           {/* TODO: BackLog => Connect to filterFunction */}
           <div className='Filters-buttons'>
-            <button
-              className='btn--btn-primary filter'
-              onClick={props.handleFilteredResults}>
+            <button className='btn--btn-primary filter' onClick={props.handleFilteredResults}>
               Filter Results
             </button>
-            <button
-              className='btn--btn-primary filter'
-              onClick={props.handleResetFilter}>
+            <button className='btn--btn-primary filter' onClick={props.handleResetFilter}>
               Reset Filters
             </button>
           </div>
         </>
       ) : (
-        <section className='Filters-Container'>
-          {isLoading && <LoadSpinner />}
-        </section>
+        <section className='Filters-Container'>{isLoading && <LoadSpinner />}</section>
       )}
     </>
   )

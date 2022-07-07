@@ -18,7 +18,7 @@ interface AddBusiness {
 // Custom Styles
 
 export const AddBusiness = () => {
-  const [loading, setLoading] = useState(true)
+  const [isLoading, setIsLoading] = useState(true)
 
   const [image, setImage] = useState<any | null>(null)
 
@@ -40,6 +40,7 @@ export const AddBusiness = () => {
         const response = await fetch('/api/features', {
           method: 'GET',
         })
+        setIsLoading(true)
         const responseData = await response.json()
         setFeats(responseData)
         const featsArr = responseData.map(el => {
@@ -52,7 +53,7 @@ export const AddBusiness = () => {
         setFeaturesArr(featsArr)
       } catch (err: any) {
         console.log(err)
-        setLoading(false)
+        setIsLoading(false)
       }
     }
 
@@ -73,7 +74,7 @@ export const AddBusiness = () => {
         setServicesArr(servicesArr)
       } catch (err: any) {
         console.log(err)
-        setLoading(false)
+        setIsLoading(false)
       }
     }
     fetchFeaturesData()

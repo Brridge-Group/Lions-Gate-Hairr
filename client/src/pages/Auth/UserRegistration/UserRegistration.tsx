@@ -90,7 +90,7 @@ export const UserRegistration = () => {
   }
 
   const handleChange = (e: any) => {
-    console.log(e.target.value)
+    // console.log(e.target.value)
     setUserData({ ...userData, [e.target.name]: e.target.value })
   }
 

@@ -81,7 +81,6 @@ exports.MyStarList = function (props) {
             reviews === void 0 ? void 0 : 
             //@ts-ignore
             reviews.map(function (review) { return axios_1["default"].get("api/reviews/" + review); })).then(function (data) { return getMyBusinessReview(data); });
-            // ).then((data: any) => console.log(data, 'data'))
         };
         fetchBusinessReviews();
     }, []);

@@ -1,6 +1,6 @@
 // React Components
 import React, { useEffect, useState } from 'react'
-import { useHistory } from 'react-router-dom'
+import { useHistory, useParams } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import BusinessImage from '../../UIElements/BusinessImage'
 
@@ -9,17 +9,22 @@ import { regions } from '../../constants/regions'
 
 // 3rd Party Custom Imports
 import axios from 'axios'
-import './AddBusiness.css'
+import '../AddBusiness/AddBusiness.css'
 import '../Auth/UserRegistration/UserRegistration.css'
 
-interface AddBusiness {
+interface EditBusiness {
   onClick: React.MouseEventHandler<HTMLButtonElement>
 }
 
 // Custom Styles
+interface EditBusiness {
+  id: string
+}
 
-export const AddBusiness = () => {
-  const [isLoading, setIsLoading] = useState(true)
+export const EditBusiness = () => {
+  // const { id } = useParams()
+  // console.log('id', id)
+  const [loading, setLoading] = useState(true)
 
   const [image, setImage] = useState<any | null>(null)
 
@@ -41,7 +46,6 @@ export const AddBusiness = () => {
         const response = await fetch('/api/features', {
           method: 'GET',
         })
-        setIsLoading(true)
         const responseData = await response.json()
         setFeats(responseData)
         const featsArr = responseData.map(el => {
@@ -54,7 +58,7 @@ export const AddBusiness = () => {
         setFeaturesArr(featsArr)
       } catch (err: any) {
         console.log(err)
-        setIsLoading(false)
+        setLoading(false)
       }
     }
 
@@ -75,7 +79,7 @@ export const AddBusiness = () => {
         setServicesArr(servicesArr)
       } catch (err: any) {
         console.log(err)
-        setIsLoading(false)
+        setLoading(false)
       }
     }
     fetchFeaturesData()
@@ -88,7 +92,8 @@ export const AddBusiness = () => {
     email: '',
     address1: '',
     address2: '',
-    image: 'https://images.unsplash.com/photo-1560066984-138dadb4c035?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1674&q=80',
+    image:
+      'https://images.unsplash.com/photo-1560066984-138dadb4c035?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1674&q=80',
     cityTown: '',
     postalCode: '',
     phone: '',
@@ -96,7 +101,8 @@ export const AddBusiness = () => {
   const [region, setRegion] = useState('AB')
   const [country, setCountry] = useState('Canada')
   const history = useHistory()
-  const ownerId = JSON.parse(localStorage.getItem('profile') ?? 'false').result._id
+  const ownerId = JSON.parse(localStorage.getItem('profile') ?? 'false').result
+    ._id
 
   const onImageChange = async (e: any) => {
     e.preventDefault()
@@ -107,7 +113,9 @@ export const AddBusiness = () => {
 
       if (file.type.match('image.*')) {
         if (file.size > maxFileSize) {
-          toast.error(`The selected image file size, ${file.size}kb, is too large. Please upload an image that is less than 2 mb.`)
+          toast.error(
+            `The selected image file size, ${file.size}kb, is too large. Please upload an image that is less than 2 mb.`
+          )
         } else {
           setImage(URL.createObjectURL(file))
           let base64 = (await new Promise(resolve => {
@@ -125,7 +133,8 @@ export const AddBusiness = () => {
     }
   }
   const onFormChange = (e: any) => {
-    const value = e.target.type === 'checkbox' ? e.target.checked : e.target.value
+    const value =
+      e.target.type === 'checkbox' ? e.target.checked : e.target.value
 
     // Evaluate to determine if checkbox is checked and if is it a service or feature
     if (e.target.type === 'checkbox') {
@@ -235,39 +244,81 @@ export const AddBusiness = () => {
   return (
     <div className='FeatureContainer_image AddBusiness'>
       <div className='FeatureContainer'>
+        hi in edit business
         {/* <-- Form Start --> */}
-
-        <form onSubmit={handleSubmit} className='AddBusiness_inputGroup'>
-          <div className='AddBusiness_scroll'>
+        {/* <form onSubmit={handleSubmit} className='AddBusiness_inputGroup'> */}
+        {/* <div className='AddBusiness_scroll'>
             <div className='AddBusiness-FormCard_body'>
-              <BusinessImage pic={image} name={'profile-picture'} handleChange={onImageChange} />
+              <BusinessImage
+                pic={image}
+                name={'profile-picture'}
+                handleChange={onImageChange}
+              />
               <h5>
                 <label htmlFor='businessName'>Business Name</label>
               </h5>
-              <input name='businessName' type='text' value={formData.businessName} className='UserRegistration_input' onChange={onFormChange} required />
+              <input
+                name='businessName'
+                type='text'
+                value={formData.businessName}
+                className='UserRegistration_input'
+                onChange={onFormChange}
+                required
+              />
               <h5>
                 <label htmlFor='description'>Description</label>
               </h5>
-              <textarea name='description' value={formData.description} className='UserRegistration_input' onChange={onFormChange} required />
+              <textarea
+                name='description'
+                value={formData.description}
+                className='UserRegistration_input'
+                onChange={onFormChange}
+                required
+              />
               <h5>
                 <label htmlFor='email'>Email</label>
               </h5>
-              <input name='email' type='email' value={formData.email} className='UserRegistration_input' onChange={onFormChange} required />
+              <input
+                name='email'
+                type='email'
+                value={formData.email}
+                className='UserRegistration_input'
+                onChange={onFormChange}
+                required
+              />
               <h5>
                 <label htmlFor='address1'>Address Line 1</label>
               </h5>
-              <input name='address1' type='text' value={formData.address1} className='UserRegistration_input color' onChange={onFormChange} required />
+              <input
+                name='address1'
+                type='text'
+                value={formData.address1}
+                className='UserRegistration_input color'
+                onChange={onFormChange}
+                required
+              />
 
               <div className='AddBusiness-FormCard_body_columns'>
                 <div className='AddBusiness-FormCard_body_left'>
                   <h5>
                     <label htmlFor='cityTown'>City / Town</label>
                   </h5>
-                  <input name='cityTown' type='text' value={formData.cityTown} className='UserRegistration_input color' onChange={onFormChange} required />
+                  <input
+                    name='cityTown'
+                    type='text'
+                    value={formData.cityTown}
+                    className='UserRegistration_input color'
+                    onChange={onFormChange}
+                    required
+                  />
                   <h5>
                     <label htmlFor='region'>Province / State</label>
                   </h5>
-                  <select className='UserRegistration_input color' onChange={handleRegion} name='region' id='region'>
+                  <select
+                    className='UserRegistration_input color'
+                    onChange={handleRegion}
+                    name='region'
+                    id='region'>
                     {regions.map(region => (
                       <option value={region.value}>{region.label}</option>
                     ))}
@@ -275,25 +326,49 @@ export const AddBusiness = () => {
                   <h5>
                     <label htmlFor='phone'>Phone Number</label>
                   </h5>
-                  <input name='phone' type='text' value={formData.phone} className='UserRegistration_input color' onChange={onFormChange} required />
+                  <input
+                    name='phone'
+                    type='text'
+                    value={formData.phone}
+                    className='UserRegistration_input color'
+                    onChange={onFormChange}
+                    required
+                  />
                 </div>
                 <div className='AddBusiness-FormCard_body_right'>
                   <h5>
                     <label htmlFor='address2'>Address Line 2</label>
                   </h5>
 
-                  <input name='address2' type='text' value={formData.address2} className='UserRegistration_input color' onChange={onFormChange} />
+                  <input
+                    name='address2'
+                    type='text'
+                    value={formData.address2}
+                    className='UserRegistration_input color'
+                    onChange={onFormChange}
+                  />
 
                   <h5>
                     <label htmlFor=''>Postal Code</label>
                   </h5>
 
-                  <input name='postalCode' type='text' value={formData.postalCode} className='UserRegistration_input color' onChange={onFormChange} required />
+                  <input
+                    name='postalCode'
+                    type='text'
+                    value={formData.postalCode}
+                    className='UserRegistration_input color'
+                    onChange={onFormChange}
+                    required
+                  />
 
                   <h5>
                     <label htmlFor='country'>Country:</label>
                   </h5>
-                  <select className='UserRegistration_input color' onChange={handleCountry} name='country' id='country'>
+                  <select
+                    className='UserRegistration_input color'
+                    onChange={handleCountry}
+                    name='country'
+                    id='country'>
                     <option value='Canada'> Canada </option>
                     <option value='United States'> United States</option>
                   </select>
@@ -314,9 +389,14 @@ export const AddBusiness = () => {
                         display: 'flex',
                         marginTop: '10px',
                         marginBottom: '5px',
-                        alignItems: 'flex-start',
                       }}>
-                      <input type='checkbox' name={`feature-${feature[0]}`} id={feature[1]} defaultChecked={feature[2]} onChange={onFormChange} />
+                      <input
+                        type='checkbox'
+                        name={`feature-${feature[0]}`}
+                        id={feature[1]}
+                        defaultChecked={feature[2]}
+                        onChange={onFormChange}
+                      />
                       <label htmlFor={feature[1]}>{feature[0]}</label>
                     </h5>
                   </div>
@@ -333,9 +413,14 @@ export const AddBusiness = () => {
                         display: 'flex',
                         marginTop: '10px',
                         marginBottom: '5px',
-                        alignItems: 'flex-start',
                       }}>
-                      <input type='checkbox' name={`service-${service[0]}`} id={service[1]} defaultChecked={service[2]} onChange={onFormChange} />
+                      <input
+                        type='checkbox'
+                        name={`service-${service[0]}`}
+                        id={service[1]}
+                        defaultChecked={service[2]}
+                        onChange={onFormChange}
+                      />
                       <label htmlFor={service[1]}>{service[0]}</label>
                     </h5>
                   </div>
@@ -343,11 +428,14 @@ export const AddBusiness = () => {
               </div>
             </div>
 
-            <button type='submit' className='btn--btn-primary' style={{ paddingTop: '0px' }}>
+            <button
+              type='submit'
+              className='btn--btn-primary'
+              style={{ paddingTop: '0px' }}>
               submit
             </button>
           </div>
-        </form>
+        </form> */}
         {/* <-- Form Ends --> */}
       </div>
     </div>

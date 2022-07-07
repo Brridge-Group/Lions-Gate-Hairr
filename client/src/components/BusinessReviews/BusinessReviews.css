@@ -1,8 +1,16 @@
 .person-circle {
-  width: 75px;
-  height: 75px;
+  border: 0.25px solid slategray;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   border-radius: 50%;
-  background: slategray;
+}
+.img-wrapper {
+  position: relative;
+  padding-bottom: 100%;
+  height: 0;
 }
 .person-circle.no-author {
   background: slategray;
@@ -70,4 +78,14 @@ ul.BusinessReviews_container h6.BusinessReviews_container-noReviews {
 .BusinessReviews_container-noReviews {
   margin-top: 20px;
   text-align: center;
+}
+/* ///////media queries ////////// */
+
+@media screen and (max-width: 575px) {
+  .Business_column-left {
+    width: 35%;
+  }
+  .Profile_User_reviews > .Business_reviews:last-child {
+    border-bottom: none;
+  }
 }

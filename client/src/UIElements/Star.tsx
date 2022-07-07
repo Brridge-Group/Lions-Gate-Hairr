@@ -112,7 +112,6 @@ export const MyStarList = (props: Props) => {
         reviews?.map((review: any) => axios.get(`api/reviews/${review}`))
         //@ts-ignore
       ).then((data: any) => getMyBusinessReview(data))
-      // ).then((data: any) => console.log(data, 'data'))
     }
     fetchBusinessReviews()
   }, [])

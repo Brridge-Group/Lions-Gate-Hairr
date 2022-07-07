@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react'
 import { Link, useHistory } from 'react-router-dom'
-import { MyBusinessList } from '../../components/MyBusinessList/MyBusinessList'
 import { StarSmall } from '../../UIElements/Star'
 import { LoadSpinner } from '../../components/LoadSpinner/LoadSpinner'
 import './Profile.css'
@@ -55,29 +54,22 @@ export const Profile = () => {
   }
 
   return (
-    <div
-      className={
-        role === 'user'
-          ? 'FeatureContainer_image User'
-          : 'FeatureContainer_image Owner'
-      }>
+    <div className='FeatureContainer_image User'>
       <div className='FeatureContainer'>
-        {role && role === 'user' ? (
-          <div className='Profile_user'>
-            <h1 className='Profile_name'>Hello {name}!</h1>
-            <div className='Profile-UserContainer '>
-              <img
-                src={imageProfile || 'https://imgur.com/LDpwLVZ.jpg'}
-                alt={name + '_profilePicture'}
-                className='Profile-UserContainer_pic'
-              />
-              <div className='Profile-UserContainer_reviews'>
-                <h4>your reviews</h4>
-                {loading ? (
-                  <LoadSpinner />
-                ) : !userReview.length ? (
-                  'add some reviews'
-                ) : (
+        <div className='Profile_user'>
+          <h1 className='Profile_name'>Hello {name}!</h1>
+          <div className='Profile-UserContainer '>
+            {loading ? (
+              <LoadSpinner />
+            ) : (
+              <>
+                <img
+                  src={imageProfile || 'https://imgur.com/LDpwLVZ.jpg'}
+                  alt={name + '_profilePicture'}
+                  className='Profile-UserContainer_pic'
+                />
+                <div className='Profile-UserContainer_reviews'>
+                  <h4>your reviews</h4>
                   <ul className='Profile_User_reviews'>
                     {!loading &&
                       userReview.map((r: any) => (
@@ -115,22 +107,20 @@ export const Profile = () => {
                         </li>
                       ))}
                   </ul>
-                )}
-              </div>
-            </div>
-            <div className='Profile_links'>
-              <Link to={`users/${_id}`}>
-                <h6 className='btn--btn-primary'>update profile</h6>
-              </Link>
-              <Link to={'/add-business'}>
-                {' '}
-                <h6 className='btn--btn-primary twoLines'>become an owner</h6>
-              </Link>
-            </div>
+                </div>
+              </>
+            )}
           </div>
-        ) : (
-          <MyBusinessList />
-        )}
+          <div className='Profile_links'>
+            <Link to={`users/${_id}`}>
+              <h6 className='btn--btn-primary'>update profile</h6>
+            </Link>
+            <Link to={'/add-business'}>
+              {' '}
+              <h6 className='btn--btn-primary twoLines'>become an owner</h6>
+            </Link>
+          </div>
+        </div>
       </div>
     </div>
   )

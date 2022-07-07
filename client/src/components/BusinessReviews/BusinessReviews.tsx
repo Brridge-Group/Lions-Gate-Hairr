@@ -14,7 +14,9 @@ export const BusinessReviews = (props: Props) => {
       {reviews.map((r: any) => (
         <li key={r._id} className='Business_reviews author'>
           <div className='Business_column-left '>
-            <img src={r.image} className='person-circle' />
+            <div className='img-wrapper'>
+              <img src={r.image} className='person-circle' />
+            </div>
           </div>
           <div className='Business_column-right '>
             {r.name === undefined ? 'person name' : r.name}

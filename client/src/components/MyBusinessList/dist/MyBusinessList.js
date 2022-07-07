@@ -58,7 +58,7 @@ var MyBusinessReviews_1 = require("../BusinessReviews/MyBusinessReviews");
 var LoadSpinner_1 = require("../LoadSpinner/LoadSpinner");
 exports.MyBusinessList = function () {
     var _a = react_1.useState([]), list = _a[0], setList = _a[1];
-    var _b = react_1.useState(true), loading = _b[0], setLoading = _b[1];
+    var _b = react_1.useState(true), isLoading = _b[0], setIsLoading = _b[1];
     var user = JSON.parse(localStorage.getItem('profile') || 'false').result;
     react_1.useEffect(function () {
         var fetchData = function () { return __awaiter(void 0, void 0, void 0, function () {
@@ -70,16 +70,17 @@ exports.MyBusinessList = function () {
                         return [4 /*yield*/, fetch("/api/businesses/get-business-by-ownersId/?id=" + user._id)];
                     case 1:
                         res = _a.sent();
+                        setIsLoading(true);
                         return [4 /*yield*/, res.json()];
                     case 2:
                         businessesList = _a.sent();
                         setList(businessesList);
-                        setLoading(false);
+                        setIsLoading(false);
                         return [3 /*break*/, 4];
                     case 3:
                         err_1 = _a.sent();
                         console.log(err_1);
-                        setLoading(false);
+                        setIsLoading(false);
                         return [3 /*break*/, 4];
                     case 4: return [2 /*return*/];
                 }
@@ -91,51 +92,54 @@ exports.MyBusinessList = function () {
     var toggleIt = function (id) {
         var _a;
         setSelected(__assign(__assign({}, selected), (_a = {}, _a[id] = !selected[id], _a)));
-        var dropDownArray = list.map(function (l) { return l._id; });
+        ////// want an open dropdown to close if click on another dropdown?  start of logic////
+        // const dropDownArray = list.map(l => l._id)
         // console.log(dropDownArray, 'dropDownArray', id, 'id')
-        dropDownArray.filter(function (drop) {
-            if (drop === id) {
-                // console.log('yes')
-            }
-        });
+        // dropDownArray.filter(drop => {
+        //   if (drop === id) {
+        //     console.log('yes')
+        //   }
+        // })
     };
     // console.log('in my business list, list', list)
-    return (React.createElement("div", { className: 'Profile_user' },
-        React.createElement("h1", { className: 'Profile_name' },
-            "Hello ",
-            user.name,
-            "!"),
-        React.createElement("div", { className: 'Profile-UserContainer Owner' }, loading ? (React.createElement(LoadSpinner_1.LoadSpinner, null)) : !list.length ? (React.createElement("div", { className: 'Profile-UserContainer_reviews business' },
-            React.createElement("h4", null, "no businesses found"))) : (React.createElement(React.Fragment, null,
-            React.createElement("div", { className: 'Profile-UserContainer_reviews business' },
-                React.createElement("h4", null, "Your businesses"),
-                React.createElement("div", { className: 'BusinessCard-container' },
-                    list.map(function (business, idx) { return (React.createElement("div", { className: 'BusinessCard ', key: business._id },
-                        React.createElement(About_1.About, { name: business.businessName, description: business.description, image: business.image, address: business.address }),
-                        React.createElement(Star_1.MyStarList, { stars: business.stars, reviews: business.reviews }),
-                        React.createElement("div", { className: 'BusinessCard-buttons' },
-                            React.createElement("h6", { className: 'btn--btn-primary twoLines business reviews', onClick: function () { return toggleIt(business._id); }, "data-idx": idx, id: business._id }, !selected[business._id]
-                                ? 'read reviews'
-                                : 'close reviews'),
-                            React.createElement(react_router_dom_1.Link, { to: '#' },
-                                React.createElement("h6", { className: 'btn--btn-primary twoLines business' },
-                                    "edit ",
-                                    React.createElement("br", null),
-                                    "business")),
-                            React.createElement(react_router_dom_1.Link, { to: '#' },
-                                React.createElement("h6", { className: 'btn--btn-primary twoLines business' }, "delete business"))),
-                        React.createElement("div", { className: !selected[business._id]
-                                ? 'menu-business'
-                                : 'menu-business open' },
-                            React.createElement(MyBusinessReviews_1.MyBusinessReviews, { reviews: business.reviews })))); }),
-                    ' '))))),
+    return (React.createElement("div", { className: 'FeatureContainer_image Owner' },
+        React.createElement("div", { className: 'FeatureContainer' },
+            React.createElement("div", { className: 'Profile_user' },
+                React.createElement("h1", { className: 'Profile_name' },
+                    "Hello ",
+                    user.name,
+                    "!"),
+                React.createElement("div", { className: 'Profile-UserContainer Owner' }, isLoading ? (React.createElement(LoadSpinner_1.LoadSpinner, null)) : !list.length ? (React.createElement("div", { className: 'Profile-UserContainer_reviews business' },
+                    React.createElement("h4", null, "No Businesses Found"))) : (React.createElement(React.Fragment, null,
+                    React.createElement("div", { className: 'Profile-UserContainer_reviews business' },
+                        React.createElement("h4", null, "Your businesses"),
+                        React.createElement("div", { className: 'BusinessCard-container' },
+                            list.map(function (business, idx) { return (React.createElement("div", { className: 'BusinessCard ', key: business._id },
+                                React.createElement(About_1.About, { name: business.businessName, description: business.description, image: business.image, address: business.address }),
+                                React.createElement(Star_1.MyStarList, { stars: business.stars, reviews: business.reviews }),
+                                React.createElement("div", { className: 'BusinessCard-buttons' },
+                                    React.createElement("h6", { className: 'btn--btn-primary twoLines business reviews', onClick: function () { return toggleIt(business._id); }, "data-idx": idx, id: business._id }, !selected[business._id]
+                                        ? 'read reviews'
+                                        : 'close reviews'),
+                                    React.createElement(react_router_dom_1.Link, { to: '#' },
+                                        React.createElement("h6", { className: 'btn--btn-primary twoLines business' },
+                                            "edit ",
+                                            React.createElement("br", null),
+                                            "business")),
+                                    React.createElement(react_router_dom_1.Link, { to: '#' },
+                                        React.createElement("h6", { className: 'btn--btn-primary twoLines business' },
+                                            "delete ",
+                                            React.createElement("br", null),
+                                            "business"))),
+                                React.createElement("div", { className: !selected[business._id]
+                                        ? 'menu-business'
+                                        : 'menu-business open' },
+                                    React.createElement(MyBusinessReviews_1.MyBusinessReviews, { reviews: business.reviews })))); }),
+                            ' '))))))),
         React.createElement("div", { className: 'Profile_links' },
             React.createElement(react_router_dom_1.Link, { to: "/users/" + user._id },
-                ' ',
-                React.createElement("h6", { className: 'btn--btn-primary' }, "update profile"),
-                ' '),
+                React.createElement("h6", { className: 'btn--btn-primary' }, "update profile")),
             React.createElement(react_router_dom_1.Link, { to: '/add-business' },
-                ' ',
                 React.createElement("h6", { className: 'btn--btn-primary twoLines' },
                     "add a",
                     React.createElement("br", null),

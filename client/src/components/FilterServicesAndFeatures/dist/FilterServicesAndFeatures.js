@@ -59,7 +59,8 @@ exports.FilterServicesAndFeatures = function (props) {
             React.createElement("div", { className: 'Filters-FormGroup features' }, (_a = props.featuresArr) === null || _a === void 0 ? void 0 : _a.map(function (feature, id, index) { return (React.createElement("h5", { key: feature + "_" + index, style: {
                     display: 'flex',
                     marginTop: '10px',
-                    marginBottom: '5px'
+                    marginBottom: '5px',
+                    alignItems: 'flex-start'
                 } },
                 React.createElement("input", { type: 'checkbox', name: "feature-" + feature[0], id: feature[1], defaultChecked: feature[2].isChecked, value: id, onChange: onFeatChange }),
                 React.createElement("label", { htmlFor: feature[1] }, feature[0]))
@@ -70,7 +71,8 @@ exports.FilterServicesAndFeatures = function (props) {
             React.createElement("div", { className: 'Filters-FormGroup services' }, (_b = props.servicesArr) === null || _b === void 0 ? void 0 : _b.map(function (service, id, index) { return (React.createElement("h5", { key: service + "_" + index, style: {
                     display: 'flex',
                     marginTop: '10px',
-                    marginBottom: '5px'
+                    marginBottom: '5px',
+                    alignItems: 'flex-start'
                 } },
                 React.createElement("input", { type: 'checkbox', name: "service-" + service[0], id: service[1], defaultChecked: service[2].isChecked, value: id, onChange: onServiceChange }),
                 React.createElement("label", { className: 'Filters-FormCheckLabel', htmlFor: service[1] }, service[0]))); }))),

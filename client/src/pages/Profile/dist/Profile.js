@@ -39,7 +39,6 @@ exports.__esModule = true;
 exports.Profile = void 0;
 var react_1 = require("react");
 var react_router_dom_1 = require("react-router-dom");
-var MyBusinessList_1 = require("../../components/MyBusinessList/MyBusinessList");
 var Star_1 = require("../../UIElements/Star");
 var LoadSpinner_1 = require("../../components/LoadSpinner/LoadSpinner");
 require("./Profile.css");
@@ -79,40 +78,39 @@ exports.Profile = function () {
             return [2 /*return*/];
         });
     }); };
-    return (React.createElement("div", { className: role === 'user'
-            ? 'FeatureContainer_image User'
-            : 'FeatureContainer_image Owner' },
-        React.createElement("div", { className: 'FeatureContainer' }, role && role === 'user' ? (React.createElement("div", { className: 'Profile_user' },
-            React.createElement("h1", { className: 'Profile_name' },
-                "Hello ",
-                name,
-                "!"),
-            React.createElement("div", { className: 'Profile-UserContainer ' },
-                React.createElement("img", { src: imageProfile || 'https://imgur.com/LDpwLVZ.jpg', alt: name + '_profilePicture', className: 'Profile-UserContainer_pic' }),
-                React.createElement("div", { className: 'Profile-UserContainer_reviews' },
-                    React.createElement("h4", null, "your reviews"),
-                    loading ? (React.createElement(LoadSpinner_1.LoadSpinner, null)) : !userReview.length ? ('add some reviews') : (React.createElement("ul", { className: 'Profile_User_reviews' }, !loading &&
-                        userReview.map(function (r) { return (React.createElement("li", { key: r._id, className: 'Profile_reviews' },
-                            React.createElement("div", { className: 'column-left' },
-                                React.createElement("img", { src: r.data.review.business.image, alt: '' }),
-                                React.createElement("div", { className: 'review-btns' },
-                                    React.createElement(react_router_dom_1.Link, { to: {
-                                            pathname: "/reviews/" + r.data.review._id + "/edit-review",
-                                            state: r.data.review
-                                        } },
-                                        ' ',
-                                        React.createElement("h6", { className: 'btn--btn-primary reviews' }, "edit")),
-                                    React.createElement("button", { className: 'btn--btn-primary reviews delete', onClick: function () { return deleteReview(r.data.review._id); } }, "delete"))),
-                            React.createElement("div", { className: 'column-right' },
-                                React.createElement(react_router_dom_1.Link, { to: "/businesses/" + r.data.review.business._id },
-                                    React.createElement("h2", null, r.data.review.business.businessName),
-                                    React.createElement("h5", null, r.data.review.business.address.city),
-                                    React.createElement(Star_1.StarSmall, { stars: r.data.review.rating }),
-                                    React.createElement("h5", null, r.data.review.comment))))); }))))),
-            React.createElement("div", { className: 'Profile_links' },
-                React.createElement(react_router_dom_1.Link, { to: "users/" + _id },
-                    React.createElement("h6", { className: 'btn--btn-primary' }, "update profile")),
-                React.createElement(react_router_dom_1.Link, { to: '/add-business' },
-                    ' ',
-                    React.createElement("h6", { className: 'btn--btn-primary twoLines' }, "become an owner"))))) : (React.createElement(MyBusinessList_1.MyBusinessList, null)))));
+    return (React.createElement("div", { className: 'FeatureContainer_image User' },
+        React.createElement("div", { className: 'FeatureContainer' },
+            React.createElement("div", { className: 'Profile_user' },
+                React.createElement("h1", { className: 'Profile_name' },
+                    "Hello ",
+                    name,
+                    "!"),
+                React.createElement("div", { className: 'Profile-UserContainer ' }, loading ? (React.createElement(LoadSpinner_1.LoadSpinner, null)) : (React.createElement(React.Fragment, null,
+                    React.createElement("img", { src: imageProfile || 'https://imgur.com/LDpwLVZ.jpg', alt: name + '_profilePicture', className: 'Profile-UserContainer_pic' }),
+                    React.createElement("div", { className: 'Profile-UserContainer_reviews' },
+                        React.createElement("h4", null, "your reviews"),
+                        React.createElement("ul", { className: 'Profile_User_reviews' }, !loading &&
+                            userReview.map(function (r) { return (React.createElement("li", { key: r._id, className: 'Profile_reviews' },
+                                React.createElement("div", { className: 'column-left' },
+                                    React.createElement("img", { src: r.data.review.business.image, alt: '' }),
+                                    React.createElement("div", { className: 'review-btns' },
+                                        React.createElement(react_router_dom_1.Link, { to: {
+                                                pathname: "/reviews/" + r.data.review._id + "/edit-review",
+                                                state: r.data.review
+                                            } },
+                                            ' ',
+                                            React.createElement("h6", { className: 'btn--btn-primary reviews' }, "edit")),
+                                        React.createElement("button", { className: 'btn--btn-primary reviews delete', onClick: function () { return deleteReview(r.data.review._id); } }, "delete"))),
+                                React.createElement("div", { className: 'column-right' },
+                                    React.createElement(react_router_dom_1.Link, { to: "/businesses/" + r.data.review.business._id },
+                                        React.createElement("h2", null, r.data.review.business.businessName),
+                                        React.createElement("h5", null, r.data.review.business.address.city),
+                                        React.createElement(Star_1.StarSmall, { stars: r.data.review.rating }),
+                                        React.createElement("h5", null, r.data.review.comment))))); })))))),
+                React.createElement("div", { className: 'Profile_links' },
+                    React.createElement(react_router_dom_1.Link, { to: "users/" + _id },
+                        React.createElement("h6", { className: 'btn--btn-primary' }, "update profile")),
+                    React.createElement(react_router_dom_1.Link, { to: '/add-business' },
+                        ' ',
+                        React.createElement("h6", { className: 'btn--btn-primary twoLines' }, "become an owner")))))));
 };

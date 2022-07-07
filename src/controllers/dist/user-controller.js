@@ -36,7 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-exports.updateUser = exports.getProfileById = exports.signup = exports.signin = void 0;
+exports.changeUserRole = exports.updateUser = exports.getProfileById = exports.signup = exports.signin = void 0;
 var bcrypt = require('bcryptjs');
 var jwt = require('jsonwebtoken');
 var StatusCodes = require('http-status-codes');
@@ -221,6 +221,42 @@ exports.updateUser = function (req, res) { return __awaiter(void 0, void 0, void
                         .status(StatusCodes.BAD_REQUEST)
                         .send('Something went wrong in update user, try later!')];
             case 8: return [2 /*return*/];
+        }
+    });
+}); };
+exports.changeUserRole = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var id, role, fieldsToUpdate, result, error_2;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                id = { _id: req.params.id };
+                role = req.body.role;
+                _a.label = 1;
+            case 1:
+                _a.trys.push([1, 3, , 4]);
+                fieldsToUpdate = {
+                    role: role
+                };
+                return [4 /*yield*/, User.findByIdAndUpdate(id, fieldsToUpdate, {
+                        "new": true
+                    })];
+            case 2:
+                result = _a.sent();
+                if (result) {
+                    res.status(200).json({ result: result });
+                    // console.log('result', result)
+                }
+                else {
+                    res.status(400).json({ error: 'Error in update user' });
+                }
+                return [3 /*break*/, 4];
+            case 3:
+                error_2 = _a.sent();
+                console.log(error_2);
+                return [2 /*return*/, res
+                        .status(StatusCodes.BAD_REQUEST)
+                        .send('Something went wrong in update user, try later!')];
+            case 4: return [2 /*return*/];
         }
     });
 }); };

@@ -172,3 +172,29 @@ export const updateUser = async (req: Request, res: Response) => {
       .send('Something went wrong in update user, try later!')
   }
 }
+
+export const changeUserRole = async (req: Request, res: Response) => {
+  const id = { _id: req.params.id }
+
+  const { role } = req.body
+  try {
+    const fieldsToUpdate = {
+      role: role,
+    }
+    // console.log('filter, req.body, fieldsToUpdate', id, req.body)
+    let result = await User.findByIdAndUpdate(id, fieldsToUpdate, {
+      new: true,
+    })
+    if (result) {
+      res.status(200).json({ result })
+      // console.log('result', result)
+    } else {
+      res.status(400).json({ error: 'Error in update user' })
+    }
+  } catch (error) {
+    console.log(error)
+    return res
+      .status(StatusCodes.BAD_REQUEST)
+      .send('Something went wrong in update user, try later!')
+  }
+}

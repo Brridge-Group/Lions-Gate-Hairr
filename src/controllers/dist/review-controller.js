@@ -93,7 +93,6 @@ var updateReview = function (req, res, next) { return __awaiter(void 0, void 0, 
         switch (_b.label) {
             case 0:
                 reviewId = req.params.id;
-                console.log(req.body);
                 _a = req.body, comment = _a.comment, rating = _a.rating;
                 _b.label = 1;
             case 1:

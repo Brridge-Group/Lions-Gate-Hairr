@@ -69,6 +69,7 @@ export const FilterServicesAndFeatures = (props: Props) => {
                     display: 'flex',
                     marginTop: '10px',
                     marginBottom: '5px',
+                    alignItems: 'flex-start',
                   }}>
                   <input type='checkbox' name={`feature-${feature[0]}`} id={feature[1]} defaultChecked={feature[2].isChecked} value={id} onChange={onFeatChange} />
                   <label htmlFor={feature[1]}>{feature[0]}</label>
@@ -87,6 +88,7 @@ export const FilterServicesAndFeatures = (props: Props) => {
                     display: 'flex',
                     marginTop: '10px',
                     marginBottom: '5px',
+                    alignItems: 'flex-start',
                   }}>
                   <input type='checkbox' name={`service-${service[0]}`} id={service[1]} defaultChecked={service[2].isChecked} value={id} onChange={onServiceChange} />
                   <label className='Filters-FormCheckLabel' htmlFor={service[1]}>

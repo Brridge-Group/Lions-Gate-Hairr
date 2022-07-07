@@ -1,13 +1,13 @@
-// React Components
+//* React Components
 import { useState, useEffect } from 'react'
 
-// Custom Imports
+//* Custom Imports
 import { LoadSpinner } from '../LoadSpinner/LoadSpinner'
 
-// Custom Styles
+//* Custom Styles
 import './FilterServicesAndFeatures.css'
 
-// Types
+//* Types
 interface Props {
   loading: boolean
   onFeatChange: any
@@ -29,16 +29,18 @@ export const FilterServicesAndFeatures = (props: Props) => {
   const onFeatChange: React.ChangeEventHandler<HTMLInputElement> = event => {
     const { name, checked, id } = event.target
     // console.log('id', id, 'checked', checked)
-    // setFilteredFeats({ ...filteredFeats, [`${name} (${id})`]: checked })
-    setFilteredFeats({ ...filteredFeats, [`${id}`]: checked })
+
+    const updatedFilteredFeats = filteredFeats.filter(feat => feat._id !== id)
+    setFilteredFeats([...updatedFilteredFeats, { _id: id, isChecked: checked }])
   }
   // console.log('filteredFeats onChange', filteredFeats)
 
   const onServiceChange: React.ChangeEventHandler<HTMLInputElement> = event => {
     const { name, checked, id } = event.target
     // console.log('id', id, 'checked', checked)
-    // setFilteredServices({ ...filteredServices, [`${name} (${id})`]: checked })
-    setFilteredServices({ ...filteredServices, [`${id}`]: checked })
+
+    const updatedFilteredServices = filteredServices.filter(service => service._id !== id)
+    setFilteredServices([...updatedFilteredServices, { _id: id, isChecked: checked }])
   }
   // console.log('filteredServices onChange', filteredServices)
 

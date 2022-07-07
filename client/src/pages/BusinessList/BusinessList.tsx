@@ -1,17 +1,17 @@
-// React Components
+//* React Components
 import { useState, useEffect } from 'react'
 import { useHistory, useParams } from 'react-router-dom'
 
-// Custom Imports
+//* Custom Imports
 import { Card } from '../../UIElements/Card'
 import { CardDetails } from '../../components/CardDetails/CardDetails'
 import { FilterServicesAndFeatures } from '../../components/FilterServicesAndFeatures/FilterServicesAndFeatures'
 import { LoadSpinner } from '../../components/LoadSpinner/LoadSpinner'
 
-// Custom Styles
+//* Custom Styles
 import './BusinessList.css'
 
-// Types
+//* Types
 interface RouteParams {
   city: string
 }
@@ -152,64 +152,79 @@ export const BusinessList = () => {
     setFilteredServices(service)
   }
 
-  const handleFilteredResults = (): [] => {
-    let tempFilteredResults: any[] = []
+  const handleFilteredResults = (): void => {
+    // let tempFilteredResults: any[] = []
     let tempSelectedFeatsServices: any[] = []
 
-    //* Push user selected Features to a single temp array, if the filtered array/object is not empty
-    let deepCopyFilterFeats = JSON.parse(JSON.stringify(filteredFeats))
-    if (Object.keys(deepCopyFilterFeats).length > 0) {
-      //* Filter out elements that are only true and push those true objects to tempSelectedFeatsServices
-      Object.entries(deepCopyFilterFeats).filter(featureElement => {
-        if (featureElement[1] === true) {
-          tempSelectedFeatsServices.push(featureElement)
-          return true
-        }
-      })
-    }
-    //* Push user selected Services to a single temp array, if the filtered array/object is not empty
-    let deepCopyFilterServices = JSON.parse(JSON.stringify(filteredServices))
-    if (Object.keys(deepCopyFilterServices).length > 0) {
-      //* Filter out elements that are only true and push those true objects to tempSelectedFeatsServices
-      Object.entries(deepCopyFilterServices).filter(featureElement => {
-        if (featureElement[1] === true) {
-          tempSelectedFeatsServices.push(featureElement)
-          return true
-        }
-      })
-    }
-    //* Filter the list of businesses by the selected Features and Services
-    let newList: any[] = [...list].filter(businessObject => {
-      //* Iterate through the selected Features and Services
-      if (tempSelectedFeatsServices.length === 0) {
-        tempFilteredResults.push(businessObject)
-        return true
-      }
-      if (tempSelectedFeatsServices.length > 0) {
-        return tempSelectedFeatsServices.some(filteredElement => {
-          //* Iterate through the Features of each business
-          businessObject.features.filter(bizFeats => {
-            //* If the business has the selected Features, add it to the tempFilteredResults array
-            if (Object.values(bizFeats).includes(filteredElement[0])) {
-              tempFilteredResults.push(businessObject)
-              return true
-            }
-          })
-          //* Iterate through the Services of each business
-          businessObject.services.filter(bizServices => {
-            //* If the business has the selected Services, add it to the tempFilteredResults array
-            if (Object.values(bizServices).includes(filteredElement[0])) {
-              tempFilteredResults.push(businessObject)
-              return true
-            }
-          })
+    tempSelectedFeatsServices = [...filteredFeats, ...filteredServices].filter(tempFeatOrService => tempFeatOrService.isChecked)
+    console.log(`🔇 -> tempSelectedFeatsServices`, tempSelectedFeatsServices)
+
+    if (tempSelectedFeatsServices.length > 0) {
+      // * Filter out elements that are not selected as true or checked
+      const filteredBusinesses = list.filter(businessObject => {
+        const businessFeatAndService = [...businessObject.features, ...businessObject.services].map(businessFeatOrService => businessFeatOrService._id)
+        return tempSelectedFeatsServices.every(tempFeatOrService => {
+          return businessFeatAndService.includes(tempFeatOrService._id)
         })
-      }
-    })
-    //* Remove Any Duplicates
-    let uniqueTempFilteredResults: any = Array.from(new Set(tempFilteredResults))
-    setFilteredResults(uniqueTempFilteredResults)
-    return filteredResults
+      })
+      console.log(`🔇 -> filteredBusinesses`, filteredBusinesses)
+      setFilteredResults(filteredBusinesses)
+    }
+
+    // //* Push user selected Features to a single temp array, if the filtered array/object is not empty
+    // let deepCopyFilterFeats = JSON.parse(JSON.stringify(filteredFeats))
+    // if (Object.keys(deepCopyFilterFeats).length > 0) {
+    //   //* Filter out elements that are only true and push those true objects to tempSelectedFeatsServices
+    //   Object.entries(deepCopyFilterFeats).filter(featureElement => {
+    //     if (featureElement[1] === true) {
+    //       tempSelectedFeatsServices.push(featureElement)
+    //       return true
+    //     }
+    //   })
+    // }
+    // //* Push user selected Services to a single temp array, if the filtered array/object is not empty
+    // let deepCopyFilterServices = JSON.parse(JSON.stringify(filteredServices))
+    // if (Object.keys(deepCopyFilterServices).length > 0) {
+    //   //* Filter out elements that are only true and push those true objects to tempSelectedFeatsServices
+    //   Object.entries(deepCopyFilterServices).filter(featureElement => {
+    //     if (featureElement[1] === true) {
+    //       tempSelectedFeatsServices.push(featureElement)
+    //       return true
+    //     }
+    //   })
+    // }
+    // //* Filter the list of businesses by the selected Features and Services
+    // let newList: any[] = [...list].filter(businessObject => {
+    //   //* Iterate through the selected Features and Services
+    //   if (tempSelectedFeatsServices.length === 0) {
+    //     tempFilteredResults.push(businessObject)
+    //     return true
+    //   }
+    //   if (tempSelectedFeatsServices.length > 0) {
+    //     return tempSelectedFeatsServices.some(filteredElement => {
+    //       //* Iterate through the Features of each business
+    //       businessObject.features.filter(bizFeats => {
+    //         //* If the business has the selected Features, add it to the tempFilteredResults array
+    //         if (Object.values(bizFeats).includes(filteredElement[0])) {
+    //           tempFilteredResults.push(businessObject)
+    //           return true
+    //         }
+    //       })
+    //       //* Iterate through the Services of each business
+    //       businessObject.services.filter(bizServices => {
+    //         //* If the business has the selected Services, add it to the tempFilteredResults array
+    //         if (Object.values(bizServices).includes(filteredElement[0])) {
+    //           tempFilteredResults.push(businessObject)
+    //           return true
+    //         }
+    //       })
+    //     })
+    //   }
+    // })
+    // //* Remove Any Duplicates
+    // let uniqueTempFilteredResults: any = Array.from(new Set(tempFilteredResults))
+    // setFilteredResults(uniqueTempFilteredResults)
+    // return filteredResults
   }
 
   //* Set `filteredResults` Businesses List

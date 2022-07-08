@@ -1,25 +1,21 @@
 "use strict";
 exports.__esModule = true;
 exports.LoadSpinner = void 0;
-// React Components
-var react_1 = require("react");
-// Custom Styles
+//* Custom Styles
 require("../../components/LoadSpinner/LoadSpinner.css");
-exports.LoadSpinner = function (_a) {
-    return (react_1["default"].createElement(react_1["default"].Fragment, null,
-        react_1["default"].createElement("div", { className: 'center-spinner' },
-            react_1["default"].createElement("div", { className: 'loadingio-spinner-spinner-94sumfx7kxi' },
-                react_1["default"].createElement("div", { className: 'ldio-cs9r5gg8z0w' },
-                    react_1["default"].createElement("div", null),
-                    react_1["default"].createElement("div", null),
-                    react_1["default"].createElement("div", null),
-                    react_1["default"].createElement("div", null),
-                    react_1["default"].createElement("div", null),
-                    react_1["default"].createElement("div", null),
-                    react_1["default"].createElement("div", null),
-                    react_1["default"].createElement("div", null),
-                    react_1["default"].createElement("div", null),
-                    react_1["default"].createElement("div", null),
-                    react_1["default"].createElement("div", null),
-                    react_1["default"].createElement("div", null))))));
+exports.LoadSpinner = function () {
+    return (React.createElement("section", { className: 'Spinner-wrapper' },
+        React.createElement("div", { className: 'spinner' },
+            React.createElement("div", null),
+            React.createElement("div", null),
+            React.createElement("div", null),
+            React.createElement("div", null),
+            React.createElement("div", null),
+            React.createElement("div", null),
+            React.createElement("div", null),
+            React.createElement("div", null),
+            React.createElement("div", null),
+            React.createElement("div", null),
+            React.createElement("div", null),
+            React.createElement("div", null))));
 };

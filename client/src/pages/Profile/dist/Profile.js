@@ -85,7 +85,7 @@ exports.Profile = function () {
                     "Hello ",
                     name,
                     "!"),
-                React.createElement("div", { className: 'Profile-UserContainer ' }, loading ? (React.createElement(LoadSpinner_1.LoadSpinner, null)) : (React.createElement(React.Fragment, null,
+                React.createElement("div", { className: 'Profile-UserContainer ' }, loading || !userReview.length ? (React.createElement(LoadSpinner_1.LoadSpinner, null)) : (React.createElement(React.Fragment, null,
                     React.createElement("img", { src: imageProfile || 'https://imgur.com/LDpwLVZ.jpg', alt: name + '_profilePicture', className: 'Profile-UserContainer_pic' }),
                     React.createElement("div", { className: 'Profile-UserContainer_reviews' },
                         React.createElement("h4", null, "your reviews"),

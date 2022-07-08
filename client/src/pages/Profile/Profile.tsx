@@ -59,7 +59,7 @@ export const Profile = () => {
         <div className='Profile_user'>
           <h1 className='Profile_name'>Hello {name}!</h1>
           <div className='Profile-UserContainer '>
-            {loading ? (
+            {loading || !userReview.length ? (
               <LoadSpinner />
             ) : (
               <>

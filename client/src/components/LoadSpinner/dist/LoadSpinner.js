@@ -8,7 +8,7 @@ require("../../components/LoadSpinner/LoadSpinner.css");
 exports.LoadSpinner = function (_a) {
     return (react_1["default"].createElement(react_1["default"].Fragment, null,
         react_1["default"].createElement("div", { className: 'Spinner-wrapper' },
-            react_1["default"].createElement("div", { className: 'ldio-cs9r5gg8z0w' },
+            react_1["default"].createElement("div", { className: 'spinner' },
                 react_1["default"].createElement("div", null),
                 react_1["default"].createElement("div", null),
                 react_1["default"].createElement("div", null),

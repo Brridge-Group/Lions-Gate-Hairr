@@ -36,10 +36,13 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-exports.updateBusiness = exports.getOwnersBusinesses = exports.getAllBusinesses = exports.addBusiness = exports.showBusiness = void 0;
+exports.deleteBusiness = exports.updateBusiness = exports.getOwnersBusinesses = exports.getAllBusinesses = exports.addBusiness = exports.showBusiness = void 0;
 var express_validator_1 = require("express-validator");
 var StatusCodes = require('http-status-codes');
+var mongoose = require('mongoose');
 var business_1 = require("../models/business");
+var Review = require('../models/review');
+var User = require('../models/users');
 exports.showBusiness = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var id, business;
     return __generator(this, function (_a) {
@@ -150,37 +153,34 @@ exports.getOwnersBusinesses = function (req, res) { return __awaiter(void 0, voi
         }
     });
 }); };
-exports.updateBusiness = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var id, _a, businessName, description, image, address1, address2, city, postalCode, region, country, email, features, services, phone, fieldsToUpdate, result, error_1;
+exports.updateBusiness = function (req, res, next) { return __awaiter(void 0, void 0, void 0, function () {
+    var id, _a, businessName, description, email, image, address, features, services, reviews, phone, fieldsToUpdate, business, error_1, err_4;
     return __generator(this, function (_b) {
         switch (_b.label) {
             case 0:
                 id = { _id: req.params.id };
-                _a = req.body, businessName = _a.businessName, description = _a.description, image = _a.image, address1 = _a.address1, address2 = _a.address2, city = _a.city, postalCode = _a.postalCode, region = _a.region, country = _a.country, email = _a.email, features = _a.features, services = _a.services, phone = _a.phone;
+                _a = req.body, businessName = _a.businessName, description = _a.description, email = _a.email, image = _a.image, address = _a.address, features = _a.features, services = _a.services, reviews = _a.reviews, phone = _a.phone;
                 fieldsToUpdate = {
                     businessName: businessName,
                     description: description,
-                    image: image,
-                    address1: address1,
-                    address2: address2,
-                    city: city,
-                    postalCode: postalCode,
-                    region: region,
-                    country: country,
                     email: email,
+                    image: image,
+                    address: address,
                     features: features,
                     services: services,
+                    reviews: reviews,
                     phone: phone
                 };
+                console.log('in updatebusiness backend, fieldsToUpdate', fieldsToUpdate);
                 _b.label = 1;
             case 1:
                 _b.trys.push([1, 3, , 4]);
-                return [4 /*yield*/, business_1.Business.findOneAndUpdate(id, fieldsToUpdate)];
+                return [4 /*yield*/, business_1.Business.findByIdAndUpdate(id, fieldsToUpdate)];
             case 2:
-                result = _b.sent();
-                if (result) {
-                    // console.log('result', result)
-                    res.status(200).json({ result: result });
+                business = _b.sent();
+                if (business) {
+                    console.log('business', business);
+                    res.status(200).json({ business: business });
                 }
                 else {
                     res.status(400).json({ error: 'Error in update user' });
@@ -192,7 +192,60 @@ exports.updateBusiness = function (req, res) { return __awaiter(void 0, void 0, 
                 return [2 /*return*/, res
                         .status(StatusCodes.BAD_REQUEST)
                         .send('Something went wrong in update user, try later!')];
-            case 4: return [2 /*return*/];
+            case 4:
+                _b.trys.push([4, 6, , 7]);
+                return [4 /*yield*/, business.save()];
+            case 5:
+                _b.sent();
+                return [3 /*break*/, 7];
+            case 6:
+                err_4 = _b.sent();
+                return [2 /*return*/, next(err_4)];
+            case 7: return [2 /*return*/];
         }
+    });
+}); };
+exports.deleteBusiness = function (req, res, next) { return __awaiter(void 0, void 0, void 0, function () {
+    var businessId;
+    return __generator(this, function (_a) {
+        businessId = { _id: req.params.id };
+        // const reviewId = req.params.id
+        // const authorId = req.body.profileId
+        // let review
+        // let profile
+        console.log('businessId', businessId);
+        // let business
+        // try {
+        //   business = await Business.findById(businessId)
+        // .populate('services')
+        // .populate('features')
+        //     .populate('reviews')
+        // } catch (err) {
+        //   return next(err)
+        // }
+        // router.delete('/posts/:post', function(req, res, next) {
+        //   Post.remove({_id: req.params.post}, function(err, post) {
+        //       if (err) {res.send(err);}
+        //       Comment.remove({post: req.params.post}, function(err, post) {
+        //       if (err) {res.send(err);}
+        //       });
+        //       res.json({ message: 'Successfully deleted' });
+        //   });
+        // });
+        // try {
+        //   const sess = await mongoose.startSession()
+        //   sess.startTransaction()
+        //   business.remove({ session: sess })
+        //   business.reviews.pull(businessId)
+        //   await business.reviews.save({ session: sess })
+        //   // Review.remove({ business: businessId })
+        //   // }
+        //   // business.reviews.pull
+        //   await sess.commitTransaction()
+        // } catch (err) {
+        //   return next(err)
+        // }
+        res.json({ message: 'Delete successfully' });
+        return [2 /*return*/];
     });
 }); };

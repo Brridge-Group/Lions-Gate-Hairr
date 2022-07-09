@@ -55,6 +55,7 @@ var About_1 = require("../BusinessDetails/About/About");
 require("../../pages/Profile/Profile.css");
 require("./MyBusinessList.css");
 var MyBusinessReviews_1 = require("../BusinessReviews/MyBusinessReviews");
+var axios_1 = require("axios");
 var LoadSpinner_1 = require("../LoadSpinner/LoadSpinner");
 exports.MyBusinessList = function () {
     var _a = react_1.useState([]), list = _a[0], setList = _a[1];
@@ -91,15 +92,31 @@ exports.MyBusinessList = function () {
     var toggleIt = function (id) {
         var _a;
         setSelected(__assign(__assign({}, selected), (_a = {}, _a[id] = !selected[id], _a)));
-        ////// want an open dropdown to close if click on another dropdown?  start of logic////
-        // const dropDownArray = list.map(l => l._id)
-        // console.log(dropDownArray, 'dropDownArray', id, 'id')
-        // dropDownArray.filter(drop => {
-        //   if (drop === id) {
-        //     console.log('yes')
-        //   }
-        // })
     };
+    var deleteBusiness = function (id) { return __awaiter(void 0, void 0, void 0, function () {
+        return __generator(this, function (_a) {
+            try {
+                axios_1["default"]["delete"]("api/businesses/" + id, { data: { businessId: id } })
+                    .then(function (res) {
+                    console.log(res, 'res');
+                });
+                // history.push('/')
+                alert('Deleted business');
+            }
+            catch (error) {
+                console.log('error in delete review');
+            }
+            return [2 /*return*/];
+        });
+    }); };
+    ////// want an open dropdown to close if click on another dropdown?  start of logic////
+    // const dropDownArray = list.map(l => l._id)
+    // console.log(dropDownArray, 'dropDownArray', id, 'id')
+    // dropDownArray.filter(drop => {
+    //   if (drop === id) {
+    //     console.log('yes')
+    //   }
+    // })
     // console.log('in my business list, list', list)
     return (React.createElement("div", { className: 'FeatureContainer_image Owner' },
         React.createElement("div", { className: 'FeatureContainer' },
@@ -128,25 +145,20 @@ exports.MyBusinessList = function () {
                                             "edit ",
                                             React.createElement("br", null),
                                             "business")),
-                                    React.createElement(react_router_dom_1.Link, { to: '#' },
-                                        React.createElement("h6", { className: 'btn--btn-primary twoLines business' },
-                                            "delete ",
-                                            React.createElement("br", null),
-                                            "business"))),
+                                    React.createElement("button", { className: 'btn--btn-primary twoLines business', onClick: function () { return deleteBusiness(business._id); } },
+                                        "delete ",
+                                        React.createElement("br", null),
+                                        "business")),
                                 React.createElement("div", { className: !selected[business._id]
                                         ? 'menu-business'
                                         : 'menu-business open' },
                                     React.createElement(MyBusinessReviews_1.MyBusinessReviews, { reviews: business.reviews })))); }),
-                            ' '))))))),
-        React.createElement("div", { className: 'Profile_links' },
-            React.createElement(react_router_dom_1.Link, { to: "/users/" + user._id },
-                ' ',
-                React.createElement("h6", { className: 'btn--btn-primary' }, "update profile"),
-                ' '),
-            React.createElement(react_router_dom_1.Link, { to: '/add-business' },
-                ' ',
-                React.createElement("h6", { className: 'btn--btn-primary twoLines' },
-                    "add a",
-                    React.createElement("br", null),
-                    " business")))));
+                            ' '))))),
+                React.createElement("div", { className: 'Profile_links' },
+                    React.createElement(react_router_dom_1.Link, { to: '/add-business' },
+                        ' ',
+                        React.createElement("h6", { className: 'btn--btn-primary twoLines' },
+                            "add a",
+                            React.createElement("br", null),
+                            " business")))))));
 };

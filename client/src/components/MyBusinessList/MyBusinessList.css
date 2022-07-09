@@ -9,6 +9,9 @@
 }
 .btn--btn-primary.twoLines.business {
   width: 95px;
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+  padding-bottom: 5px;
 }
 .btn--btn-primary.twoLines.business.reviews {
   height: 42px;

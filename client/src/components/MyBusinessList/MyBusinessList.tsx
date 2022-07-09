@@ -5,6 +5,7 @@ import { About } from '../BusinessDetails/About/About'
 import '../../pages/Profile/Profile.css'
 import './MyBusinessList.css'
 import { MyBusinessReviews } from '../BusinessReviews/MyBusinessReviews'
+import axios from 'axios'
 
 import { LoadSpinner } from '../LoadSpinner/LoadSpinner'
 
@@ -39,16 +40,31 @@ export const MyBusinessList = () => {
 
   const toggleIt = (id: any) => {
     setSelected({ ...selected, [id]: !selected[id] })
-
-    ////// want an open dropdown to close if click on another dropdown?  start of logic////
-    // const dropDownArray = list.map(l => l._id)
-    // console.log(dropDownArray, 'dropDownArray', id, 'id')
-    // dropDownArray.filter(drop => {
-    //   if (drop === id) {
-    //     console.log('yes')
-    //   }
-    // })
   }
+
+  const deleteBusiness = async (id: any) => {
+    try {
+      axios
+        .delete(`api/businesses/${id}`, { data: { businessId: id } })
+        .then(res => {
+          console.log(res, 'res')
+        })
+      // history.push('/')
+      alert('Deleted business')
+    } catch (error) {
+      console.log('error in delete review')
+    }
+  }
+
+  ////// want an open dropdown to close if click on another dropdown?  start of logic////
+  // const dropDownArray = list.map(l => l._id)
+  // console.log(dropDownArray, 'dropDownArray', id, 'id')
+  // dropDownArray.filter(drop => {
+  //   if (drop === id) {
+  //     console.log('yes')
+  //   }
+  // })
+
   // console.log('in my business list, list', list)
 
   return (
@@ -96,19 +112,16 @@ export const MyBusinessList = () => {
                               state: business,
                             }}>
                             <h6 className='btn--btn-primary twoLines business'>
-                              {/* <Link
-                            to={`/businesses/${business._id}/edit-business`}>
-                            <h6 className='btn--btn-primary twoLines business'> */}
                               edit <br />
                               business
                             </h6>
                           </Link>
-                          <Link to={'#'}>
-                            <h6 className='btn--btn-primary twoLines business'>
-                              delete <br />
-                              business
-                            </h6>
-                          </Link>
+                          <button
+                            className='btn--btn-primary twoLines business'
+                            onClick={() => deleteBusiness(business._id)}>
+                            delete <br />
+                            business
+                          </button>
                         </div>
                         <div
                           className={
@@ -126,19 +139,15 @@ export const MyBusinessList = () => {
               </>
             )}
           </div>
+          <div className='Profile_links'>
+            <Link to={'/add-business'}>
+              {' '}
+              <h6 className='btn--btn-primary twoLines'>
+                add a<br /> business
+              </h6>
+            </Link>
+          </div>
         </div>
-      </div>
-      <div className='Profile_links'>
-        <Link to={`/users/${user._id}`}>
-          {' '}
-          <h6 className='btn--btn-primary'>update profile</h6>{' '}
-        </Link>
-        <Link to={'/add-business'}>
-          {' '}
-          <h6 className='btn--btn-primary twoLines'>
-            add a<br /> business
-          </h6>
-        </Link>
       </div>
     </div>
   )

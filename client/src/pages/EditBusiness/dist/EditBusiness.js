@@ -71,17 +71,11 @@ exports.EditBusiness = function () {
     var location = react_router_dom_1.useLocation();
     var business = location.state;
     // console.log('business', business)
-    var _a = react_1.useState(true), loading = _a[0], setLoading = _a[1];
-    var _b = react_1.useState(null), image = _b[0], setImage = _b[1];
-    // Initialize  Services and Features to state
-    var _c = react_1.useState([]), featuresArr = _c[0], setFeaturesArr = _c[1];
-    var _d = react_1.useState([]), servicesArr = _d[0], setServicesArr = _d[1];
-    // Initialize state objects for form checkboxes
-    var _e = react_1.useState(false), isChecked = _e[0], setIsChecked = _e[1];
-    var _f = react_1.useState([]), isFeatsChecked = _f[0], setIsFeatsChecked = _f[1];
-    var _g = react_1.useState([]), isServicesChecked = _g[0], setIsServicesChecked = _g[1];
+    var _a = react_1.useState(null), image = _a[0], setImage = _a[1];
+    var _b = react_1.useState([]), featuresArr = _b[0], setFeaturesArr = _b[1];
+    var _c = react_1.useState([]), servicesArr = _c[0], setServicesArr = _c[1];
     var featuresArrTrue = business.features.map(function (bus) { return bus._id; });
-    var _h = react_1.useState(__spreadArrays(featuresArrTrue)), featsSelection = _h[0], setFeatsSelection = _h[1];
+    var _d = react_1.useState(__spreadArrays(featuresArrTrue)), featsSelection = _d[0], setFeatsSelection = _d[1];
     var onFeatCheck = function (featId) {
         if (featsSelection.includes(featId)) {
             setFeatsSelection(featsSelection.filter(function (v) { return v !== featId; }));
@@ -90,9 +84,9 @@ exports.EditBusiness = function () {
             setFeatsSelection(__spreadArrays(featsSelection, [featId]));
         }
     };
-    console.log(featsSelection, 'featsSelection');
+    // console.log(featsSelection, 'featsSelection')
     var servicesArrTrue = business.services.map(function (bus) { return bus._id; });
-    var _j = react_1.useState(__spreadArrays(servicesArrTrue)), servicesSelection = _j[0], setServicesSelection = _j[1];
+    var _e = react_1.useState(__spreadArrays(servicesArrTrue)), servicesSelection = _e[0], setServicesSelection = _e[1];
     var onServicesCheck = function (serviceId) {
         if (servicesSelection.includes(serviceId)) {
             setServicesSelection(servicesSelection.filter(function (v) { return v !== serviceId; }));
@@ -101,7 +95,7 @@ exports.EditBusiness = function () {
             setServicesSelection(__spreadArrays(servicesSelection, [serviceId]));
         }
     };
-    console.log(servicesSelection, 'servicesSelection');
+    // console.log(servicesSelection, 'servicesSelection')
     react_1.useEffect(function () {
         var featuresArrTrue = business.features.map(function (bus) { return bus._id; });
         var fetchFeaturesData = function () { return __awaiter(void 0, void 0, void 0, function () {
@@ -136,13 +130,11 @@ exports.EditBusiness = function () {
                     case 3:
                         err_1 = _a.sent();
                         console.log(err_1);
-                        setLoading(false);
                         return [3 /*break*/, 4];
                     case 4: return [2 /*return*/];
                 }
             });
         }); };
-        console.log(featuresArr, 'featuresArr');
         var servicesArrTrue = business.services.map(function (bus) { return bus._id; });
         var fetchServicesData = function () { return __awaiter(void 0, void 0, void 0, function () {
             var response, responseData, servicesArr_1, i, j, err_2;
@@ -176,7 +168,6 @@ exports.EditBusiness = function () {
                     case 3:
                         err_2 = _a.sent();
                         console.log(err_2);
-                        setLoading(false);
                         return [3 /*break*/, 4];
                     case 4: return [2 /*return*/];
                 }
@@ -185,21 +176,21 @@ exports.EditBusiness = function () {
         fetchFeaturesData();
         fetchServicesData();
     }, []);
-    var _k = react_1.useState({
+    var _f = react_1.useState({
         businessName: business.businessName,
         description: business.description,
-        email: business.email,
-        address1: business.address.address1,
-        address2: business.address.address2,
         image: business.image,
-        city: business.address.city,
-        postalCode: business.address.postalCode,
-        region: business.address.region,
-        country: business.address.country,
+        email: business.email,
+        address: {
+            address1: business.address1,
+            address2: business.address2,
+            postalCode: business.postalCode,
+            city: business.cityTown,
+            region: business.region,
+            country: business.country
+        },
         phone: business.phone
-    }), formData = _k[0], setFormData = _k[1];
-    var _l = react_1.useState('AB'), region = _l[0], setRegion = _l[1];
-    var _m = react_1.useState('Canada'), country = _m[0], setCountry = _m[1];
+    }), formData = _f[0], setFormData = _f[1];
     var onImageChange = function (e) { return __awaiter(void 0, void 0, void 0, function () {
         var maxFileSize, file_1, base64;
         var _a;
@@ -237,36 +228,27 @@ exports.EditBusiness = function () {
             }
         });
     }); };
-    react_1.useEffect(function () {
-        var onFeatFormChange = function () {
-            // console.log(e.target, 'e.target')
-        };
-        onFeatFormChange();
-    }, []);
-    var onFormChange = function (e) {
+    var onFormFirstChange = function (e) {
         var _a;
         setFormData(__assign(__assign({}, formData), (_a = {}, _a[e.target.name] = e.target.value, _a)));
     };
-    var handleRegion = function (e) {
-        setRegion(e.target.value);
-    };
-    var handleCountry = function (e) {
-        setCountry(e.target.value);
-    };
+    var onFormChange = function (address) { return function (e) {
+        var _a, _b;
+        setFormData(__assign(__assign({}, formData), (_a = {}, _a[address] = __assign(__assign({}, formData[address]), (_b = {}, _b[e.target.name] = e.target.value, _b)), _a)));
+    }; };
     var saveEditedBusiness = function () {
-        // Add FeaturesArray and ServicesArray to data business form state object
         var editedBusiness = __assign(__assign({}, formData), { features: featsSelection, services: servicesSelection });
+        console.log('editedBusiness', editedBusiness);
         axios_1["default"]
             .patch("/api/businesses/" + business._id, editedBusiness)
             .then(function (response) {
             console.log(response.data);
-            history.push('/');
+            history.goBack();
         })["catch"](function (error) {
             console.log(error);
         });
     };
     var handleSubmit = function (e) {
-        console.log('hi');
         e.preventDefault();
         saveEditedBusiness();
     };
@@ -278,37 +260,39 @@ exports.EditBusiness = function () {
                         react_1["default"].createElement(BusinessImage_1["default"], { pic: image, name: 'profile-picture', handleChange: onImageChange }),
                         react_1["default"].createElement("h5", null,
                             react_1["default"].createElement("label", { htmlFor: 'businessName' }, "Business Name")),
-                        react_1["default"].createElement("input", { name: 'businessName', type: 'text', value: formData.businessName, className: 'UserRegistration_input', onChange: onFormChange, required: true }),
+                        react_1["default"].createElement("input", { name: 'businessName', type: 'text', value: formData.businessName, className: 'UserRegistration_input', onChange: onFormFirstChange, required: true }),
                         react_1["default"].createElement("h5", null,
                             react_1["default"].createElement("label", { htmlFor: 'description' }, "Description")),
-                        react_1["default"].createElement("textarea", { name: 'description', value: formData.description, className: 'UserRegistration_input', onChange: onFormChange, required: true }),
+                        react_1["default"].createElement("textarea", { name: 'description', value: formData.description, className: 'UserRegistration_input', onChange: onFormFirstChange, required: true }),
                         react_1["default"].createElement("h5", null,
                             react_1["default"].createElement("label", { htmlFor: 'email' }, "Email")),
-                        react_1["default"].createElement("input", { name: 'email', type: 'email', value: formData.email, className: 'UserRegistration_input', onChange: onFormChange, required: true }),
+                        react_1["default"].createElement("input", { name: 'email', type: 'email', value: formData.email, className: 'UserRegistration_input', onChange: onFormFirstChange, required: true }),
                         react_1["default"].createElement("h5", null,
                             react_1["default"].createElement("label", { htmlFor: 'address1' }, "Address Line 1")),
-                        react_1["default"].createElement("input", { name: 'address1', type: 'text', value: formData.address1, className: 'UserRegistration_input color', onChange: onFormChange, required: true }),
+                        react_1["default"].createElement("input", { name: 'address1', type: 'text', value: formData.address.address1, className: 'UserRegistration_input color', onChange: onFormChange('address'), 
+                            // onChange={handleInputChanges('location')} // location object
+                            required: true }),
                         react_1["default"].createElement("div", { className: 'AddBusiness-FormCard_body_columns' },
                             react_1["default"].createElement("div", { className: 'AddBusiness-FormCard_body_left' },
                                 react_1["default"].createElement("h5", null,
                                     react_1["default"].createElement("label", { htmlFor: 'city' }, "City / Town")),
-                                react_1["default"].createElement("input", { name: 'city', type: 'text', value: formData.city, className: 'UserRegistration_input color', onChange: onFormChange, required: true }),
+                                react_1["default"].createElement("input", { name: 'city', type: 'text', value: formData.address.city, className: 'UserRegistration_input color', onChange: onFormChange('address'), required: true }),
                                 react_1["default"].createElement("h5", null,
                                     react_1["default"].createElement("label", { htmlFor: 'region' }, "Province / State")),
-                                react_1["default"].createElement("select", { className: 'UserRegistration_input color', onChange: handleRegion, name: 'region', value: formData.region, id: 'region' }, regions_1.regions.map(function (region) { return (react_1["default"].createElement("option", { value: region.value }, region.label)); })),
+                                react_1["default"].createElement("select", { className: 'UserRegistration_input color', onChange: onFormChange('address'), name: 'region', value: formData.address.region, id: 'region' }, regions_1.regions.map(function (region) { return (react_1["default"].createElement("option", { value: region.value }, region.label)); })),
                                 react_1["default"].createElement("h5", null,
                                     react_1["default"].createElement("label", { htmlFor: 'phone' }, "Phone Number")),
-                                react_1["default"].createElement("input", { name: 'phone', type: 'text', value: formData.phone, className: 'UserRegistration_input color', onChange: onFormChange, required: true })),
+                                react_1["default"].createElement("input", { name: 'phone', type: 'text', value: formData.phone, className: 'UserRegistration_input color', onChange: onFormFirstChange, required: true })),
                             react_1["default"].createElement("div", { className: 'AddBusiness-FormCard_body_right' },
                                 react_1["default"].createElement("h5", null,
                                     react_1["default"].createElement("label", { htmlFor: 'address2' }, "Address Line 2")),
-                                react_1["default"].createElement("input", { name: 'address2', type: 'text', value: formData.address2, className: 'UserRegistration_input color', onChange: onFormChange }),
+                                react_1["default"].createElement("input", { name: 'address2', type: 'text', value: formData.address.address2, className: 'UserRegistration_input color', onChange: onFormChange('address') }),
                                 react_1["default"].createElement("h5", null,
                                     react_1["default"].createElement("label", { htmlFor: '' }, "Postal Code")),
-                                react_1["default"].createElement("input", { name: 'postalCode', type: 'text', value: formData.postalCode, className: 'UserRegistration_input color', onChange: onFormChange, required: true }),
+                                react_1["default"].createElement("input", { name: 'postalCode', type: 'text', value: formData.address.postalCode, className: 'UserRegistration_input color', onChange: onFormChange('address'), required: true }),
                                 react_1["default"].createElement("h5", null,
                                     react_1["default"].createElement("label", { htmlFor: 'country' }, "Country:")),
-                                react_1["default"].createElement("select", { className: 'UserRegistration_input color', onChange: handleCountry, name: 'country', value: formData.country, id: 'country' },
+                                react_1["default"].createElement("select", { className: 'UserRegistration_input color', onChange: onFormChange('address'), name: 'country', value: formData.address.country, id: 'country' },
                                     react_1["default"].createElement("option", { value: 'Canada' }, " Canada "),
                                     react_1["default"].createElement("option", { value: 'United States' }, " United States")))))),
                 react_1["default"].createElement("div", { className: 'AddBusiness-FormCard_sidebar' },

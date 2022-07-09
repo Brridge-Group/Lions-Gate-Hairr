@@ -1,8 +1,11 @@
 import { Request, Response, NextFunction } from 'express'
 import { validationResult } from 'express-validator'
 let StatusCodes = require('http-status-codes')
+const mongoose = require('mongoose')
 
 import { Business } from '../models/business'
+let Review = require('../models/review')
+let User = require('../models/users')
 
 export const showBusiness = async (req: Request, res: Response) => {
   const { id } = req.params
@@ -87,49 +90,46 @@ export const getOwnersBusinesses = async (req: Request, res: Response) => {
   }
 }
 
-export const updateBusiness = async (req: Request, res: Response) => {
+export const updateBusiness = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   const id = { _id: req.params.id }
   // console.log('in updatebusiness backend, id', id)
 
   const {
     businessName,
     description,
-    image,
-    address1,
-    address2,
-    city,
-    postalCode,
-    region,
-    country,
     email,
+    image,
+    address,
     features,
     services,
+    reviews,
     phone,
   } = req.body
 
   const fieldsToUpdate = {
     businessName,
     description,
-    image,
-    address1,
-    address2,
-    city,
-    postalCode,
-    region,
-    country,
     email,
+    image,
+    address,
     features,
     services,
+    reviews,
     phone,
   }
 
-  // console.log('in updatebusiness backend, fieldsToUpdate', fieldsToUpdate)
+  console.log('in updatebusiness backend, fieldsToUpdate', fieldsToUpdate)
+  let business
 
   try {
-    let result = await Business.findOneAndUpdate(id, fieldsToUpdate)
-    if (result) {
-      // console.log('result', result)
-      res.status(200).json({ result })
+    business = await Business.findByIdAndUpdate(id, fieldsToUpdate)
+    if (business) {
+      console.log('business', business)
+      res.status(200).json({ business })
     } else {
       res.status(400).json({ error: 'Error in update user' })
     }
@@ -139,4 +139,59 @@ export const updateBusiness = async (req: Request, res: Response) => {
       .status(StatusCodes.BAD_REQUEST)
       .send('Something went wrong in update user, try later!')
   }
+  try {
+    await business.save()
+  } catch (err) {
+    return next(err)
+  }
+}
+
+export const deleteBusiness = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  const businessId = { _id: req.params.id }
+  // const reviewId = req.params.id
+  // const authorId = req.body.profileId
+  // let review
+  // let profile
+  console.log('businessId', businessId)
+  // let business
+  // try {
+  //   business = await Business.findById(businessId)
+  // .populate('services')
+  // .populate('features')
+  //     .populate('reviews')
+  // } catch (err) {
+  //   return next(err)
+  // }
+  // router.delete('/posts/:post', function(req, res, next) {
+  //   Post.remove({_id: req.params.post}, function(err, post) {
+  //       if (err) {res.send(err);}
+
+  //       Comment.remove({post: req.params.post}, function(err, post) {
+  //       if (err) {res.send(err);}
+  //       });
+
+  //       res.json({ message: 'Successfully deleted' });
+  //   });
+  // });
+  // try {
+  //   const sess = await mongoose.startSession()
+  //   sess.startTransaction()
+
+  //   business.remove({ session: sess })
+  //   business.reviews.pull(businessId)
+  //   await business.reviews.save({ session: sess })
+  //   // Review.remove({ business: businessId })
+
+  //   // }
+  //   // business.reviews.pull
+  //   await sess.commitTransaction()
+  // } catch (err) {
+  //   return next(err)
+  // }
+
+  res.json({ message: 'Delete successfully' })
 }

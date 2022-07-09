@@ -31,7 +31,7 @@
 }
 
 .Profile_reviews > .column-left {
-  width: 25%;
+  width: 30%;
   margin-right: 20px;
   margin-bottom: 20px;
 }
@@ -125,6 +125,12 @@ ul.Profile_User_reviews {
 }
 
 /* ///////media queries ////////// */
+
+@media screen and (max-width: 990px) {
+  .Profile_user {
+    grid-column: 4/12;
+  }
+}
 
 @media screen and (max-width: 575px) {
   .FeatureContainer_image.User {

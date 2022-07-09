@@ -1,6 +1,6 @@
 // React Components
 import React, { useEffect, useState } from 'react'
-import { useHistory, useParams, useLocation } from 'react-router-dom'
+import { useHistory, useLocation } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import BusinessImage from '../../UIElements/BusinessImage'
 
@@ -27,22 +27,12 @@ export const EditBusiness = () => {
   const business = location.state
   // console.log('business', business)
 
-  const [loading, setLoading] = useState(true)
-
   const [image, setImage] = useState<any | null>(null)
-
-  // Initialize  Services and Features to state
 
   const [featuresArr, setFeaturesArr]: any = useState([])
   const [servicesArr, setServicesArr]: any = useState([])
 
-  // Initialize state objects for form checkboxes
-  const [isChecked, setIsChecked]: any = useState(false)
-  const [isFeatsChecked, setIsFeatsChecked]: any = useState([])
-  const [isServicesChecked, setIsServicesChecked]: any = useState([])
-
   const featuresArrTrue = business.features.map((bus: any) => bus._id)
-
   const [featsSelection, setFeatsSelection] = useState([...featuresArrTrue])
 
   const onFeatCheck = (featId: any) => {
@@ -52,10 +42,9 @@ export const EditBusiness = () => {
       setFeatsSelection([...featsSelection, featId])
     }
   }
-  console.log(featsSelection, 'featsSelection')
+  // console.log(featsSelection, 'featsSelection')
 
   const servicesArrTrue = business.services.map((bus: any) => bus._id)
-
   const [servicesSelection, setServicesSelection] = useState([
     ...servicesArrTrue,
   ])
@@ -67,7 +56,7 @@ export const EditBusiness = () => {
       setServicesSelection([...servicesSelection, serviceId])
     }
   }
-  console.log(servicesSelection, 'servicesSelection')
+  // console.log(servicesSelection, 'servicesSelection')
 
   useEffect(() => {
     const featuresArrTrue = business.features.map((bus: any) => bus._id)
@@ -94,10 +83,8 @@ export const EditBusiness = () => {
         setFeaturesArr(featsArr)
       } catch (err: any) {
         console.log(err)
-        setLoading(false)
       }
     }
-    console.log(featuresArr, 'featuresArr')
     const servicesArrTrue = business.services.map((bus: any) => bus._id)
 
     const fetchServicesData = async () => {
@@ -123,7 +110,6 @@ export const EditBusiness = () => {
         setServicesArr(servicesArr)
       } catch (err: any) {
         console.log(err)
-        setLoading(false)
       }
     }
     fetchFeaturesData()
@@ -133,19 +119,18 @@ export const EditBusiness = () => {
   const [formData, setFormData]: any = useState({
     businessName: business.businessName,
     description: business.description,
-    email: business.email,
-    address1: business.address.address1,
-    address2: business.address.address2,
     image: business.image,
-    city: business.address.city,
-    postalCode: business.address.postalCode,
-    region: business.address.region,
-    country: business.address.country,
+    email: business.email,
+    address: {
+      address1: business.address1,
+      address2: business.address2,
+      postalCode: business.postalCode,
+      city: business.cityTown,
+      region: business.region,
+      country: business.country,
+    },
     phone: business.phone,
   })
-
-  const [region, setRegion] = useState('AB')
-  const [country, setCountry] = useState('Canada')
 
   const onImageChange = async (e: any) => {
     e.preventDefault()
@@ -175,38 +160,32 @@ export const EditBusiness = () => {
       }
     }
   }
-  useEffect(() => {
-    const onFeatFormChange = () => {
-      // console.log(e.target, 'e.target')
-    }
-    onFeatFormChange()
-  }, [])
-
-  const onFormChange = (e: any) => {
+  const onFormFirstChange = (e: any) => {
     setFormData({ ...formData, [e.target.name]: e.target.value })
   }
-
-  const handleRegion = (e: any) => {
-    setRegion(e.target.value)
-  }
-
-  const handleCountry = (e: any) => {
-    setCountry(e.target.value)
+  const onFormChange = (address: any) => (e: any) => {
+    setFormData({
+      ...formData,
+      [address]: {
+        ...formData[address],
+        [e.target.name]: e.target.value,
+      },
+    })
   }
 
   const saveEditedBusiness = () => {
-    // Add FeaturesArray and ServicesArray to data business form state object
     let editedBusiness = {
       ...formData,
       features: featsSelection,
       services: servicesSelection,
     }
+    console.log('editedBusiness', editedBusiness)
 
     axios
       .patch(`/api/businesses/${business._id}`, editedBusiness)
       .then(response => {
         console.log(response.data)
-        history.push('/')
+        history.goBack()
       })
       .catch(error => {
         console.log(error)
@@ -214,7 +193,6 @@ export const EditBusiness = () => {
   }
 
   const handleSubmit = (e: any) => {
-    console.log('hi')
     e.preventDefault()
     saveEditedBusiness()
   }
@@ -239,7 +217,7 @@ export const EditBusiness = () => {
                 type='text'
                 value={formData.businessName}
                 className='UserRegistration_input'
-                onChange={onFormChange}
+                onChange={onFormFirstChange}
                 required
               />
               <h5>
@@ -249,7 +227,7 @@ export const EditBusiness = () => {
                 name='description'
                 value={formData.description}
                 className='UserRegistration_input'
-                onChange={onFormChange}
+                onChange={onFormFirstChange}
                 required
               />
               <h5>
@@ -260,7 +238,7 @@ export const EditBusiness = () => {
                 type='email'
                 value={formData.email}
                 className='UserRegistration_input'
-                onChange={onFormChange}
+                onChange={onFormFirstChange}
                 required
               />
               <h5>
@@ -269,9 +247,11 @@ export const EditBusiness = () => {
               <input
                 name='address1'
                 type='text'
-                value={formData.address1}
+                value={formData.address.address1}
                 className='UserRegistration_input color'
-                onChange={onFormChange}
+                onChange={onFormChange('address')}
+                // onChange={handleInputChanges('location')} // location object
+
                 required
               />
 
@@ -283,9 +263,9 @@ export const EditBusiness = () => {
                   <input
                     name='city'
                     type='text'
-                    value={formData.city}
+                    value={formData.address.city}
                     className='UserRegistration_input color'
-                    onChange={onFormChange}
+                    onChange={onFormChange('address')}
                     required
                   />
                   <h5>
@@ -293,9 +273,9 @@ export const EditBusiness = () => {
                   </h5>
                   <select
                     className='UserRegistration_input color'
-                    onChange={handleRegion}
+                    onChange={onFormChange('address')}
                     name='region'
-                    value={formData.region}
+                    value={formData.address.region}
                     id='region'>
                     {regions.map(region => (
                       <option value={region.value}>{region.label}</option>
@@ -309,7 +289,7 @@ export const EditBusiness = () => {
                     type='text'
                     value={formData.phone}
                     className='UserRegistration_input color'
-                    onChange={onFormChange}
+                    onChange={onFormFirstChange}
                     required
                   />
                 </div>
@@ -321,9 +301,9 @@ export const EditBusiness = () => {
                   <input
                     name='address2'
                     type='text'
-                    value={formData.address2}
+                    value={formData.address.address2}
                     className='UserRegistration_input color'
-                    onChange={onFormChange}
+                    onChange={onFormChange('address')}
                   />
 
                   <h5>
@@ -333,9 +313,9 @@ export const EditBusiness = () => {
                   <input
                     name='postalCode'
                     type='text'
-                    value={formData.postalCode}
+                    value={formData.address.postalCode}
                     className='UserRegistration_input color'
-                    onChange={onFormChange}
+                    onChange={onFormChange('address')}
                     required
                   />
 
@@ -344,9 +324,9 @@ export const EditBusiness = () => {
                   </h5>
                   <select
                     className='UserRegistration_input color'
-                    onChange={handleCountry}
+                    onChange={onFormChange('address')}
                     name='country'
-                    value={formData.country}
+                    value={formData.address.country}
                     id='country'>
                     <option value='Canada'> Canada </option>
                     <option value='United States'> United States</option>

@@ -164,7 +164,7 @@ export const BusinessList = () => {
           return businessFeatAndService.includes(tempFeatOrService._id)
         })
       })
-      console.log(`🔇 -> filteredBusinesses`, filteredBusinesses)
+      // console.log(`🔇 -> filteredBusinesses`, filteredBusinesses)
       setFilteredResults(filteredBusinesses)
     }
   }

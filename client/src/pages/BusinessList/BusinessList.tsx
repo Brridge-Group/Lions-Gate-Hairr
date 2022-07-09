@@ -147,82 +147,30 @@ export const BusinessList = () => {
   }
 
   const handleFilteredResults = (): void => {
-    // let tempFilteredResults: any[] = []
     let tempSelectedFeatsServices: any[] = []
 
+    //* Filter out elements that are only selected as true/checked and push those true objects to tempSelectedFeatsServices
     tempSelectedFeatsServices = [...filteredFeats, ...filteredServices].filter(tempFeatOrService => tempFeatOrService.isChecked)
-    console.log(`🔇 -> tempSelectedFeatsServices`, tempSelectedFeatsServices)
 
     if (tempSelectedFeatsServices.length > 0) {
-      // * Filter out elements that are not selected as true or checked
+      //* Filter out Businesses that do not have the selected Features and Services
       const filteredBusinesses = list.filter(businessObject => {
+        //* Return an array of business Iterate through the Features and Services of each business
         const businessFeatAndService = [...businessObject.features, ...businessObject.services].map(businessFeatOrService => businessFeatOrService._id)
+
+        //* Iterate through, `tempSelectedFeatsServices`, the Features && Services of each business
         return tempSelectedFeatsServices.every(tempFeatOrService => {
+          //* If the business' Features && Service has the selected filter Features && Service `_id`, return true
           return businessFeatAndService.includes(tempFeatOrService._id)
         })
       })
       console.log(`🔇 -> filteredBusinesses`, filteredBusinesses)
       setFilteredResults(filteredBusinesses)
     }
-
-    // //* Push user selected Features to a single temp array, if the filtered array/object is not empty
-    // let deepCopyFilterFeats = JSON.parse(JSON.stringify(filteredFeats))
-    // if (Object.keys(deepCopyFilterFeats).length > 0) {
-    //   //* Filter out elements that are only true and push those true objects to tempSelectedFeatsServices
-    //   Object.entries(deepCopyFilterFeats).filter(featureElement => {
-    //     if (featureElement[1] === true) {
-    //       tempSelectedFeatsServices.push(featureElement)
-    //       return true
-    //     }
-    //   })
-    // }
-    // //* Push user selected Services to a single temp array, if the filtered array/object is not empty
-    // let deepCopyFilterServices = JSON.parse(JSON.stringify(filteredServices))
-    // if (Object.keys(deepCopyFilterServices).length > 0) {
-    //   //* Filter out elements that are only true and push those true objects to tempSelectedFeatsServices
-    //   Object.entries(deepCopyFilterServices).filter(featureElement => {
-    //     if (featureElement[1] === true) {
-    //       tempSelectedFeatsServices.push(featureElement)
-    //       return true
-    //     }
-    //   })
-    // }
-    // //* Filter the list of businesses by the selected Features and Services
-    // let newList: any[] = [...list].filter(businessObject => {
-    //   //* Iterate through the selected Features and Services
-    //   if (tempSelectedFeatsServices.length === 0) {
-    //     tempFilteredResults.push(businessObject)
-    //     return true
-    //   }
-    //   if (tempSelectedFeatsServices.length > 0) {
-    //     return tempSelectedFeatsServices.some(filteredElement => {
-    //       //* Iterate through the Features of each business
-    //       businessObject.features.filter(bizFeats => {
-    //         //* If the business has the selected Features, add it to the tempFilteredResults array
-    //         if (Object.values(bizFeats).includes(filteredElement[0])) {
-    //           tempFilteredResults.push(businessObject)
-    //           return true
-    //         }
-    //       })
-    //       //* Iterate through the Services of each business
-    //       businessObject.services.filter(bizServices => {
-    //         //* If the business has the selected Services, add it to the tempFilteredResults array
-    //         if (Object.values(bizServices).includes(filteredElement[0])) {
-    //           tempFilteredResults.push(businessObject)
-    //           return true
-    //         }
-    //       })
-    //     })
-    //   }
-    // })
-    // //* Remove Any Duplicates
-    // let uniqueTempFilteredResults: any = Array.from(new Set(tempFilteredResults))
-    // setFilteredResults(uniqueTempFilteredResults)
-    // return filteredResults
   }
 
-  //* Set `filteredResults` Businesses List
   useEffect(() => {
+    //* Set `filteredResults` Business List
     setFilteredResults(() => {
       let newFilteredResults = [...list]
       return newFilteredResults

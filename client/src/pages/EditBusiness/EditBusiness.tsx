@@ -41,10 +41,36 @@ export const EditBusiness = () => {
   const [isFeatsChecked, setIsFeatsChecked]: any = useState([])
   const [isServicesChecked, setIsServicesChecked]: any = useState([])
 
-  // Fetch Services and Features from Database API Endpoint
+  const featuresArrTrue = business.features.map((bus: any) => bus._id)
+
+  const [featsSelection, setFeatsSelection] = useState([...featuresArrTrue])
+
+  const onFeatCheck = (featId: any) => {
+    if (featsSelection.includes(featId)) {
+      setFeatsSelection(featsSelection.filter(v => v !== featId))
+    } else {
+      setFeatsSelection([...featsSelection, featId])
+    }
+  }
+  console.log(featsSelection, 'featsSelection')
+
+  const servicesArrTrue = business.services.map((bus: any) => bus._id)
+
+  const [servicesSelection, setServicesSelection] = useState([
+    ...servicesArrTrue,
+  ])
+
+  const onServicesCheck = (serviceId: any) => {
+    if (servicesSelection.includes(serviceId)) {
+      setServicesSelection(servicesSelection.filter(v => v !== serviceId))
+    } else {
+      setServicesSelection([...servicesSelection, serviceId])
+    }
+  }
+  console.log(servicesSelection, 'servicesSelection')
+
   useEffect(() => {
     const featuresArrTrue = business.features.map((bus: any) => bus._id)
-    // setting initial render of whats checked or not
     const fetchFeaturesData = async () => {
       try {
         const response = await fetch('/api/features', {
@@ -65,13 +91,13 @@ export const EditBusiness = () => {
             }
           }
         }
-        // console.log(featsArr, 'featsArr')
         setFeaturesArr(featsArr)
       } catch (err: any) {
         console.log(err)
         setLoading(false)
       }
     }
+    console.log(featuresArr, 'featuresArr')
     const servicesArrTrue = business.services.map((bus: any) => bus._id)
 
     const fetchServicesData = async () => {
@@ -116,8 +142,6 @@ export const EditBusiness = () => {
     region: business.address.region,
     country: business.address.country,
     phone: business.phone,
-    // features: business.features,
-    // services: business.services,
   })
 
   const [region, setRegion] = useState('AB')
@@ -151,63 +175,16 @@ export const EditBusiness = () => {
       }
     }
   }
-  const onFormChange = (e: any) => {
-    const value =
-      e.target.type === 'checkbox' ? e.target.checked : e.target.value
-
-    // Evaluate to determine if checkbox is checked and if is it a service or feature
-    if (e.target.type === 'checkbox') {
-      setIsChecked({
-        ...isChecked,
-        [e.target.name]: value,
-      })
-
-      setIsServicesChecked({ ...isServicesChecked, trythis: false })
-
-      if (e.target.name.includes('service')) {
-        setIsServicesChecked({
-          ...isServicesChecked,
-          [e.target.id]: value,
-        })
-      }
-
-      if (e.target.name.includes('feature')) {
-        setIsFeatsChecked({
-          ...isFeatsChecked,
-          [e.target.id]: value,
-        })
-      }
+  useEffect(() => {
+    const onFeatFormChange = () => {
+      // console.log(e.target, 'e.target')
     }
+    onFeatFormChange()
+  }, [])
 
+  const onFormChange = (e: any) => {
     setFormData({ ...formData, [e.target.name]: e.target.value })
   }
-
-  // Save to the businesses collection database all features and services set to true.
-  let savedFormFeats = Object.entries(isFeatsChecked)
-    // console
-    //   .log('savedFormFeats', savedFormFeats)
-    .map(key => {
-      if (key[1] === true) {
-        return [key[0]]
-      }
-    })
-    .filter(el => {
-      if (el !== undefined) {
-      }
-      return el
-    })
-
-  let savedFormServices = Object.entries(isServicesChecked)
-    .map(key => {
-      if (key[1] === true) {
-        return [key[0]]
-      }
-    })
-    .filter(el => {
-      if (el !== undefined) {
-      }
-      return el
-    })
 
   const handleRegion = (e: any) => {
     setRegion(e.target.value)
@@ -221,10 +198,9 @@ export const EditBusiness = () => {
     // Add FeaturesArray and ServicesArray to data business form state object
     let editedBusiness = {
       ...formData,
-      features: savedFormFeats,
-      services: savedFormServices,
+      features: featsSelection,
+      services: servicesSelection,
     }
-    // console.log(editedBusiness, 'editedBusiness line 248')
 
     axios
       .patch(`/api/businesses/${business._id}`, editedBusiness)
@@ -379,6 +355,8 @@ export const EditBusiness = () => {
               </div>
             </div>
           </div>
+
+          {/* //ts@ignore */}
           <div className='AddBusiness-FormCard_sidebar'>
             <div className='AddBusiness-FormCard_filtersContainer'>
               <h4 className='sidebar-hed'>
@@ -399,7 +377,7 @@ export const EditBusiness = () => {
                         name={`feature-${feature[0]}`}
                         id={feature[1]}
                         defaultChecked={feature[2]}
-                        onChange={onFormChange}
+                        onChange={() => onFeatCheck(feature[1])}
                       />
                       <label htmlFor={feature[1]}>{feature[0]}</label>
                     </h5>
@@ -424,7 +402,7 @@ export const EditBusiness = () => {
                         name={`service-${service[0]}`}
                         id={service[1]}
                         defaultChecked={service[2]}
-                        onChange={onFormChange}
+                        onChange={() => onServicesCheck(service[1])}
                       />
                       <label htmlFor={service[1]}>{service[0]}</label>
                     </h5>

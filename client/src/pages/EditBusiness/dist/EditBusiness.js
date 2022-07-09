@@ -70,7 +70,7 @@ exports.EditBusiness = function () {
     var history = react_router_dom_1.useHistory();
     var location = react_router_dom_1.useLocation();
     var business = location.state;
-    // console.log('business', business)
+    console.log('business', business);
     var _a = react_1.useState(null), image = _a[0], setImage = _a[1];
     var _b = react_1.useState([]), featuresArr = _b[0], setFeaturesArr = _b[1];
     var _c = react_1.useState([]), servicesArr = _c[0], setServicesArr = _c[1];
@@ -182,12 +182,12 @@ exports.EditBusiness = function () {
         image: business.image,
         email: business.email,
         address: {
-            address1: business.address1,
-            address2: business.address2,
-            postalCode: business.postalCode,
-            city: business.cityTown,
-            region: business.region,
-            country: business.country
+            address1: business.address.address1,
+            address2: business.address.address2,
+            postalCode: business.address.postalCode,
+            city: business.address.city,
+            region: business.address.region,
+            country: business.address.country
         },
         phone: business.phone
     }), formData = _f[0], setFormData = _f[1];
@@ -233,8 +233,12 @@ exports.EditBusiness = function () {
         setFormData(__assign(__assign({}, formData), (_a = {}, _a[e.target.name] = e.target.value, _a)));
     };
     var onFormChange = function (address) { return function (e) {
-        var _a, _b;
-        setFormData(__assign(__assign({}, formData), (_a = {}, _a[address] = __assign(__assign({}, formData[address]), (_b = {}, _b[e.target.name] = e.target.value, _b)), _a)));
+        var _a, _b, _c;
+        if (!address) {
+            setFormData(__assign(__assign({}, formData), (_a = {}, _a[e.target.name] = e.target.value, _a)));
+        }
+        else
+            setFormData(__assign(__assign({}, formData), (_b = {}, _b[address] = __assign(__assign({}, formData[address]), (_c = {}, _c[e.target.name] = e.target.value, _c)), _b)));
     }; };
     var saveEditedBusiness = function () {
         var editedBusiness = __assign(__assign({}, formData), { features: featsSelection, services: servicesSelection });

@@ -25,7 +25,7 @@ export const EditBusiness = () => {
   const history = useHistory()
   const location = useLocation<any>()
   const business = location.state
-  // console.log('business', business)
+  console.log('business', business)
 
   const [image, setImage] = useState<any | null>(null)
 
@@ -122,12 +122,12 @@ export const EditBusiness = () => {
     image: business.image,
     email: business.email,
     address: {
-      address1: business.address1,
-      address2: business.address2,
-      postalCode: business.postalCode,
-      city: business.cityTown,
-      region: business.region,
-      country: business.country,
+      address1: business.address.address1,
+      address2: business.address.address2,
+      postalCode: business.address.postalCode,
+      city: business.address.city,
+      region: business.address.region,
+      country: business.address.country,
     },
     phone: business.phone,
   })
@@ -164,13 +164,16 @@ export const EditBusiness = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value })
   }
   const onFormChange = (address: any) => (e: any) => {
-    setFormData({
-      ...formData,
-      [address]: {
-        ...formData[address],
-        [e.target.name]: e.target.value,
-      },
-    })
+    if (!address) {
+      setFormData({ ...formData, [e.target.name]: e.target.value })
+    } else
+      setFormData({
+        ...formData,
+        [address]: {
+          ...formData[address],
+          [e.target.name]: e.target.value,
+        },
+      })
   }
 
   const saveEditedBusiness = () => {

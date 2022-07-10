@@ -152,16 +152,12 @@ export const deleteBusiness = async (
   next: NextFunction
 ) => {
   const businessId = { _id: req.params.id }
-  // const reviewId = req.params.id
-  // const authorId = req.body.profileId
-  // let review
-  // let profile
+
   console.log('businessId', businessId)
   // let business
   // try {
   //   business = await Business.findById(businessId)
-  // .populate('services')
-  // .populate('features')
+
   //     .populate('reviews')
   // } catch (err) {
   //   return next(err)

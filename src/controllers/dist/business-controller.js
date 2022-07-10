@@ -209,16 +209,10 @@ exports.deleteBusiness = function (req, res, next) { return __awaiter(void 0, vo
     var businessId;
     return __generator(this, function (_a) {
         businessId = { _id: req.params.id };
-        // const reviewId = req.params.id
-        // const authorId = req.body.profileId
-        // let review
-        // let profile
         console.log('businessId', businessId);
         // let business
         // try {
         //   business = await Business.findById(businessId)
-        // .populate('services')
-        // .populate('features')
         //     .populate('reviews')
         // } catch (err) {
         //   return next(err)

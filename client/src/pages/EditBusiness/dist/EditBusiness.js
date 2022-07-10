@@ -78,7 +78,7 @@ exports.EditBusiness = function () {
     var _d = react_1.useState(__spreadArrays(featuresArrTrue)), featsSelection = _d[0], setFeatsSelection = _d[1];
     var onFeatCheck = function (featId) {
         if (featsSelection.includes(featId)) {
-            setFeatsSelection(featsSelection.filter(function (v) { return v !== featId; }));
+            setFeatsSelection(featsSelection.filter(function (feat) { return feat !== featId; }));
         }
         else {
             setFeatsSelection(__spreadArrays(featsSelection, [featId]));
@@ -89,7 +89,7 @@ exports.EditBusiness = function () {
     var _e = react_1.useState(__spreadArrays(servicesArrTrue)), servicesSelection = _e[0], setServicesSelection = _e[1];
     var onServicesCheck = function (serviceId) {
         if (servicesSelection.includes(serviceId)) {
-            setServicesSelection(servicesSelection.filter(function (v) { return v !== serviceId; }));
+            setServicesSelection(servicesSelection.filter(function (service) { return service !== serviceId; }));
         }
         else {
             setServicesSelection(__spreadArrays(servicesSelection, [serviceId]));
@@ -97,7 +97,6 @@ exports.EditBusiness = function () {
     };
     // console.log(servicesSelection, 'servicesSelection')
     react_1.useEffect(function () {
-        var featuresArrTrue = business.features.map(function (bus) { return bus._id; });
         var fetchFeaturesData = function () { return __awaiter(void 0, void 0, void 0, function () {
             var response, responseData, featsArr, i, j, err_1;
             return __generator(this, function (_a) {
@@ -135,7 +134,6 @@ exports.EditBusiness = function () {
                 }
             });
         }); };
-        var servicesArrTrue = business.services.map(function (bus) { return bus._id; });
         var fetchServicesData = function () { return __awaiter(void 0, void 0, void 0, function () {
             var response, responseData, servicesArr_1, i, j, err_2;
             return __generator(this, function (_a) {
@@ -233,16 +231,24 @@ exports.EditBusiness = function () {
         setFormData(__assign(__assign({}, formData), (_a = {}, _a[e.target.name] = e.target.value, _a)));
     };
     var onFormChange = function (address) { return function (e) {
-        var _a, _b, _c;
-        if (!address) {
-            setFormData(__assign(__assign({}, formData), (_a = {}, _a[e.target.name] = e.target.value, _a)));
-        }
-        else
-            setFormData(__assign(__assign({}, formData), (_b = {}, _b[address] = __assign(__assign({}, formData[address]), (_c = {}, _c[e.target.name] = e.target.value, _c)), _b)));
+        var _a, _b;
+        setFormData(__assign(__assign({}, formData), (_a = {}, _a[address] = __assign(__assign({}, formData[address]), (_b = {}, _b[e.target.name] = e.target.value, _b)), _a)));
     }; };
+    // const onFormChange = (address: any) => (e: any) => {
+    //   if (!address) {
+    //     setFormData({ ...formData, [e.target.name]: e.target.value })
+    //   } else
+    //     setFormData({
+    //       ...formData,
+    //       [address]: {
+    //         ...formData[address],
+    //         [e.target.name]: e.target.value,
+    //       },
+    //     })
+    // }
     var saveEditedBusiness = function () {
         var editedBusiness = __assign(__assign({}, formData), { features: featsSelection, services: servicesSelection });
-        console.log('editedBusiness', editedBusiness);
+        // console.log('editedBusiness', editedBusiness)
         axios_1["default"]
             .patch("/api/businesses/" + business._id, editedBusiness)
             .then(function (response) {
@@ -270,12 +276,10 @@ exports.EditBusiness = function () {
                         react_1["default"].createElement("textarea", { name: 'description', value: formData.description, className: 'UserRegistration_input', onChange: onFormFirstChange, required: true }),
                         react_1["default"].createElement("h5", null,
                             react_1["default"].createElement("label", { htmlFor: 'email' }, "Email")),
-                        react_1["default"].createElement("input", { name: 'email', type: 'email', value: formData.email, className: 'UserRegistration_input', onChange: onFormFirstChange, required: true }),
+                        react_1["default"].createElement("input", { name: 'email', type: 'email', value: formData.email, className: 'UserRegistration_input', onChange: onFormChange, required: true }),
                         react_1["default"].createElement("h5", null,
                             react_1["default"].createElement("label", { htmlFor: 'address1' }, "Address Line 1")),
-                        react_1["default"].createElement("input", { name: 'address1', type: 'text', value: formData.address.address1, className: 'UserRegistration_input color', onChange: onFormChange('address'), 
-                            // onChange={handleInputChanges('location')} // location object
-                            required: true }),
+                        react_1["default"].createElement("input", { name: 'address1', type: 'text', value: formData.address.address1, className: 'UserRegistration_input color', onChange: onFormChange('address'), required: true }),
                         react_1["default"].createElement("div", { className: 'AddBusiness-FormCard_body_columns' },
                             react_1["default"].createElement("div", { className: 'AddBusiness-FormCard_body_left' },
                                 react_1["default"].createElement("h5", null,

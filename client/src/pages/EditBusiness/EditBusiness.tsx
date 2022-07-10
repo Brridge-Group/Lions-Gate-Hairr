@@ -37,7 +37,7 @@ export const EditBusiness = () => {
 
   const onFeatCheck = (featId: any) => {
     if (featsSelection.includes(featId)) {
-      setFeatsSelection(featsSelection.filter(v => v !== featId))
+      setFeatsSelection(featsSelection.filter(feat => feat !== featId))
     } else {
       setFeatsSelection([...featsSelection, featId])
     }
@@ -51,7 +51,9 @@ export const EditBusiness = () => {
 
   const onServicesCheck = (serviceId: any) => {
     if (servicesSelection.includes(serviceId)) {
-      setServicesSelection(servicesSelection.filter(v => v !== serviceId))
+      setServicesSelection(
+        servicesSelection.filter(service => service !== serviceId)
+      )
     } else {
       setServicesSelection([...servicesSelection, serviceId])
     }
@@ -59,7 +61,6 @@ export const EditBusiness = () => {
   // console.log(servicesSelection, 'servicesSelection')
 
   useEffect(() => {
-    const featuresArrTrue = business.features.map((bus: any) => bus._id)
     const fetchFeaturesData = async () => {
       try {
         const response = await fetch('/api/features', {
@@ -85,7 +86,6 @@ export const EditBusiness = () => {
         console.log(err)
       }
     }
-    const servicesArrTrue = business.services.map((bus: any) => bus._id)
 
     const fetchServicesData = async () => {
       try {
@@ -164,17 +164,27 @@ export const EditBusiness = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value })
   }
   const onFormChange = (address: any) => (e: any) => {
-    if (!address) {
-      setFormData({ ...formData, [e.target.name]: e.target.value })
-    } else
-      setFormData({
-        ...formData,
-        [address]: {
-          ...formData[address],
-          [e.target.name]: e.target.value,
-        },
-      })
+    setFormData({
+      ...formData,
+      [address]: {
+        ...formData[address],
+        [e.target.name]: e.target.value,
+      },
+    })
   }
+
+  // const onFormChange = (address: any) => (e: any) => {
+  //   if (!address) {
+  //     setFormData({ ...formData, [e.target.name]: e.target.value })
+  //   } else
+  //     setFormData({
+  //       ...formData,
+  //       [address]: {
+  //         ...formData[address],
+  //         [e.target.name]: e.target.value,
+  //       },
+  //     })
+  // }
 
   const saveEditedBusiness = () => {
     let editedBusiness = {
@@ -182,7 +192,7 @@ export const EditBusiness = () => {
       features: featsSelection,
       services: servicesSelection,
     }
-    console.log('editedBusiness', editedBusiness)
+    // console.log('editedBusiness', editedBusiness)
 
     axios
       .patch(`/api/businesses/${business._id}`, editedBusiness)
@@ -203,7 +213,6 @@ export const EditBusiness = () => {
   return (
     <div className='FeatureContainer_image AddBusiness'>
       <div className='FeatureContainer'>
-        {/* <-- Form Start --> */}
         <form onSubmit={handleSubmit} className='AddBusiness_inputGroup'>
           <div className='AddBusiness_scroll'>
             <div className='AddBusiness-FormCard_body'>
@@ -241,7 +250,7 @@ export const EditBusiness = () => {
                 type='email'
                 value={formData.email}
                 className='UserRegistration_input'
-                onChange={onFormFirstChange}
+                onChange={onFormChange}
                 required
               />
               <h5>
@@ -253,8 +262,6 @@ export const EditBusiness = () => {
                 value={formData.address.address1}
                 className='UserRegistration_input color'
                 onChange={onFormChange('address')}
-                // onChange={handleInputChanges('location')} // location object
-
                 required
               />
 
@@ -339,7 +346,6 @@ export const EditBusiness = () => {
             </div>
           </div>
 
-          {/* //ts@ignore */}
           <div className='AddBusiness-FormCard_sidebar'>
             <div className='AddBusiness-FormCard_filtersContainer'>
               <h4 className='sidebar-hed'>
@@ -402,7 +408,6 @@ export const EditBusiness = () => {
             </button>
           </div>
         </form>
-        {/* <-- Form Ends --> */}
       </div>
     </div>
   )

@@ -152,7 +152,6 @@ export const AddBusiness = () => {
         })
       }
     }
-    console.log(value)
 
     setFormData({ ...formData, [e.target.name]: e.target.value })
   }
@@ -223,7 +222,6 @@ export const AddBusiness = () => {
     axios
       .post('http://localhost:5000/api/businesses/add-business', newBusiness)
       .then(response => {
-        console.log(response.data)
         history.push('/')
       })
       .catch(error => {

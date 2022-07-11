@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import { MyStarList } from '../../UIElements/Star'
 import { About } from '../BusinessDetails/About/About'
 import '../../pages/Profile/Profile.css'
@@ -16,6 +16,7 @@ interface MyBusinessReviews {
 export const MyBusinessList = () => {
   const [list, setList] = useState<any[]>([])
   const [loading, setLoading] = useState(true)
+  let history = useHistory();
 
   const user = JSON.parse(localStorage.getItem('profile') || 'false').result
 
@@ -47,12 +48,12 @@ export const MyBusinessList = () => {
       axios
         .delete(`api/businesses/${id}`, { data: { businessId: id } })
         .then(res => {
-          console.log(res, 'res')
+          window.location.reload();
+          alert(res.data.message)
         })
-      // history.push('/')
-      alert('Deleted business')
-    } catch (error) {
-      console.log('error in delete review')
+    } catch (error:any) {
+      alert(error.message)
+      console.log('error in delete review: ', error.message)
     }
   }
 

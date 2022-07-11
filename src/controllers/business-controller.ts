@@ -152,8 +152,58 @@ export const deleteBusiness = async (
   next: NextFunction
 ) => {
   const businessId = { _id: req.params.id }
+  let userListId = [];
+  let reviewListIds = [];
+  
+  try {
+    const business = await Business.findByIdAndDelete(businessId);
+    if(!business) {return res.sendStatus(404).json({message: "Business not found"});}
 
-  console.log('businessId', businessId)
+    const reviews = await Review.find({business: businessId})
+    for(let i = 0; i < reviews.length; i++){
+      const review = await Review.findByIdAndDelete({_id: reviews[i]._id})
+      if(i > 0){
+        let userAlreadyExist = userListId.indexOf(review.author)
+        userAlreadyExist === -1 ? "" : userListId.push(review.author);
+      }else{
+        userListId.push(review.author);
+      }        
+      reviewListIds.push(review._id);
+    }
+
+    while(reviewListIds.length > 0){
+      let _id = reviewListIds.pop();
+      for(let i = 0; i < userListId.length; i++){
+        await User.findOneAndUpdate(
+          {
+            _id: userListId[i]
+          },
+          {
+            $pull : {
+              'reviews': _id 
+            }
+          }
+        )
+      } 
+    }
+
+    return res.send({ message: business.businessName +' was deleted successfully.' });
+  } catch (err) {
+    return res.sendStatus(400).json({message: "Error on delete business"});
+  }
+}
+
+
+
+
+
+
+
+
+
+   
+
+  
   // let business
   // try {
   //   business = await Business.findById(businessId)
@@ -188,6 +238,3 @@ export const deleteBusiness = async (
   // } catch (err) {
   //   return next(err)
   // }
-
-  res.json({ message: 'Delete successfully' })
-}

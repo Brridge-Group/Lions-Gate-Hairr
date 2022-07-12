@@ -96,7 +96,6 @@ export const updateBusiness = async (
   next: NextFunction
 ) => {
   const id = { _id: req.params.id }
-  // console.log('in updatebusiness backend, id', id)
 
   const {
     businessName,
@@ -122,13 +121,12 @@ export const updateBusiness = async (
     phone,
   }
 
-  // console.log('in updatebusiness backend, fieldsToUpdate', fieldsToUpdate)
   let business
 
   try {
     business = await Business.findByIdAndUpdate(id, fieldsToUpdate)
     if (business) {
-      console.log('business', business)
+      // console.log('business', business)
       res.status(200).json({ business })
     } else {
       res.status(400).json({ error: 'Error in update user' })

@@ -178,7 +178,7 @@ exports.updateBusiness = function (req, res, next) { return __awaiter(void 0, vo
             case 2:
                 business = _b.sent();
                 if (business) {
-                    console.log('business', business);
+                    // console.log('business', business)
                     res.status(200).json({ business: business });
                 }
                 else {

@@ -19,6 +19,7 @@ export const AddReview = () => {
   const history = useHistory()
   const location = useLocation<any>()
   const busName = location.state
+  console.log('in add review, busName', busName)
 
   const [rating, setRating] = useState(0)
   const [hover, setHover] = useState(0)

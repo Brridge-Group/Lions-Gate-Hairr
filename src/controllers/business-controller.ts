@@ -122,7 +122,7 @@ export const updateBusiness = async (
     phone,
   }
 
-  console.log('in updatebusiness backend, fieldsToUpdate', fieldsToUpdate)
+  // console.log('in updatebusiness backend, fieldsToUpdate', fieldsToUpdate)
   let business
 
   try {
@@ -152,89 +152,48 @@ export const deleteBusiness = async (
   next: NextFunction
 ) => {
   const businessId = { _id: req.params.id }
-  let userListId = [];
-  let reviewListIds = [];
-  
-  try {
-    const business = await Business.findByIdAndDelete(businessId);
-    if(!business) {return res.sendStatus(404).json({message: "Business not found"});}
+  let userListId = []
+  let reviewListIds = []
 
-    const reviews = await Review.find({business: businessId})
-    for(let i = 0; i < reviews.length; i++){
-      const review = await Review.findByIdAndDelete({_id: reviews[i]._id})
-      if(i > 0){
-        let userAlreadyExist = userListId.indexOf(review.author)
-        userAlreadyExist === -1 ? "" : userListId.push(review.author);
-      }else{
-        userListId.push(review.author);
-      }        
-      reviewListIds.push(review._id);
+  try {
+    const business = await Business.findByIdAndDelete(businessId)
+    if (!business) {
+      return res.sendStatus(404).json({ message: 'Business not found' })
     }
 
-    while(reviewListIds.length > 0){
-      let _id = reviewListIds.pop();
-      for(let i = 0; i < userListId.length; i++){
+    const reviews = await Review.find({ business: businessId })
+    // console.log('reviews', reviews)
+    for (let i = 0; i < reviews.length; i++) {
+      const review = await Review.findByIdAndDelete({ _id: reviews[i]._id })
+      if (i > 0) {
+        let userAlreadyExist = userListId.indexOf(review.author)
+        userAlreadyExist === -1 ? '' : userListId.push(review.author)
+      } else {
+        userListId.push(review.author)
+      }
+      reviewListIds.push(review._id)
+    }
+
+    while (reviewListIds.length > 0) {
+      let _id = reviewListIds.pop()
+      for (let i = 0; i < userListId.length; i++) {
         await User.findOneAndUpdate(
           {
-            _id: userListId[i]
+            _id: userListId[i],
           },
           {
-            $pull : {
-              'reviews': _id 
-            }
+            $pull: {
+              reviews: _id,
+            },
           }
         )
-      } 
+      }
     }
 
-    return res.send({ message: business.businessName +' was deleted successfully.' });
+    return res.send({
+      message: business.businessName + ' was deleted successfully.',
+    })
   } catch (err) {
-    return res.sendStatus(400).json({message: "Error on delete business"});
+    return res.sendStatus(400).json({ message: 'Error on delete business' })
   }
 }
-
-
-
-
-
-
-
-
-
-   
-
-  
-  // let business
-  // try {
-  //   business = await Business.findById(businessId)
-
-  //     .populate('reviews')
-  // } catch (err) {
-  //   return next(err)
-  // }
-  // router.delete('/posts/:post', function(req, res, next) {
-  //   Post.remove({_id: req.params.post}, function(err, post) {
-  //       if (err) {res.send(err);}
-
-  //       Comment.remove({post: req.params.post}, function(err, post) {
-  //       if (err) {res.send(err);}
-  //       });
-
-  //       res.json({ message: 'Successfully deleted' });
-  //   });
-  // });
-  // try {
-  //   const sess = await mongoose.startSession()
-  //   sess.startTransaction()
-
-  //   business.remove({ session: sess })
-  //   business.reviews.pull(businessId)
-  //   await business.reviews.save({ session: sess })
-  //   // Review.remove({ business: businessId })
-
-  //   // }
-  //   // business.reviews.pull
-  //   await sess.commitTransaction()
-  // } catch (err) {
-  //   return next(err)
-  // }

@@ -54,6 +54,11 @@
 .AddReview-name {
   text-transform: capitalize;
 }
+
+.btn--btn-primary.review.hide {
+  display: none;
+  /* visibility: hidden; */
+}
 /* ///////media queries ////////// */
 
 @media screen and (max-width: 575px) {

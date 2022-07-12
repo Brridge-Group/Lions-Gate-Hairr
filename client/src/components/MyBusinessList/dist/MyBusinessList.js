@@ -59,7 +59,7 @@ var axios_1 = require("axios");
 var LoadSpinner_1 = require("../LoadSpinner/LoadSpinner");
 exports.MyBusinessList = function () {
     var _a = react_1.useState([]), list = _a[0], setList = _a[1];
-    var _b = react_1.useState(true), loading = _b[0], setLoading = _b[1];
+    var _b = react_1.useState(true), isLoading = _b[0], setIsLoading = _b[1];
     var user = JSON.parse(localStorage.getItem('profile') || 'false').result;
     react_1.useEffect(function () {
         var fetchData = function () { return __awaiter(void 0, void 0, void 0, function () {
@@ -71,16 +71,17 @@ exports.MyBusinessList = function () {
                         return [4 /*yield*/, fetch("/api/businesses/get-business-by-ownersId/?id=" + user._id)];
                     case 1:
                         res = _a.sent();
+                        setIsLoading(true);
                         return [4 /*yield*/, res.json()];
                     case 2:
                         businessesList = _a.sent();
                         setList(businessesList);
-                        setLoading(false);
+                        setIsLoading(false);
                         return [3 /*break*/, 4];
                     case 3:
                         err_1 = _a.sent();
                         console.log(err_1);
-                        setLoading(false);
+                        setIsLoading(false);
                         return [3 /*break*/, 4];
                     case 4: return [2 /*return*/];
                 }
@@ -98,13 +99,13 @@ exports.MyBusinessList = function () {
             try {
                 axios_1["default"]["delete"]("api/businesses/" + id, { data: { businessId: id } })
                     .then(function (res) {
-                    console.log(res, 'res');
+                    window.location.reload();
+                    alert(res.data.message);
                 });
-                // history.push('/')
-                alert('Deleted business');
             }
             catch (error) {
-                console.log('error in delete review');
+                alert(error.message);
+                console.log('error in delete review: ', error.message);
             }
             return [2 /*return*/];
         });
@@ -125,8 +126,8 @@ exports.MyBusinessList = function () {
                     "Hello ",
                     user.name,
                     "!"),
-                React.createElement("div", { className: 'Profile-UserContainer Owner' }, loading ? (React.createElement(LoadSpinner_1.LoadSpinner, null)) : !list.length ? (React.createElement("div", { className: 'Profile-UserContainer_reviews business' },
-                    React.createElement("h4", null, "no businesses found"))) : (React.createElement(React.Fragment, null,
+                React.createElement("div", { className: 'Profile-UserContainer Owner' }, isLoading ? (React.createElement(LoadSpinner_1.LoadSpinner, null)) : !list.length ? (React.createElement("div", { className: 'Profile-UserContainer_reviews business' },
+                    React.createElement("h4", null, "No Businesses Found"))) : (React.createElement(React.Fragment, null,
                     React.createElement("div", { className: 'Profile-UserContainer_reviews business' },
                         React.createElement("h4", null, "Your businesses"),
                         React.createElement("div", { className: 'BusinessCard-container' },
@@ -153,12 +154,13 @@ exports.MyBusinessList = function () {
                                         ? 'menu-business'
                                         : 'menu-business open' },
                                     React.createElement(MyBusinessReviews_1.MyBusinessReviews, { reviews: business.reviews })))); }),
-                            ' '))))),
-                React.createElement("div", { className: 'Profile_links' },
-                    React.createElement(react_router_dom_1.Link, { to: '/add-business' },
-                        ' ',
-                        React.createElement("h6", { className: 'btn--btn-primary twoLines' },
-                            "add a",
-                            React.createElement("br", null),
-                            " business")))))));
+                            ' '))))))),
+        React.createElement("div", { className: 'Profile_links' },
+            React.createElement(react_router_dom_1.Link, { to: "/users/" + user._id },
+                React.createElement("h6", { className: 'btn--btn-primary' }, "update profile")),
+            React.createElement(react_router_dom_1.Link, { to: '/add-business' },
+                React.createElement("h6", { className: 'btn--btn-primary twoLines' },
+                    "add a",
+                    React.createElement("br", null),
+                    " business")))));
 };

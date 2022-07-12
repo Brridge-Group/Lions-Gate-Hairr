@@ -65,3 +65,13 @@
     padding-bottom: 0;
   }
 }
+/* ----- -> LoadSpinner <- ----- */
+
+.Profile-UserContainer.Owner section.FeatureContainer {
+  gap: 0 !important;
+  width: 0 !important;
+  position: relative;
+  top: 30%;
+  transform: translateY(-30%);
+  left: -25%;
+}

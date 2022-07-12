@@ -15,9 +15,7 @@ interface MyBusinessReviews {
 
 export const MyBusinessList = () => {
   const [list, setList] = useState<any[]>([])
-  const [loading, setLoading] = useState(true)
-  let history = useHistory();
-
+  const [isLoading, setIsLoading] = useState(true)
   const user = JSON.parse(localStorage.getItem('profile') || 'false').result
 
   useEffect(() => {
@@ -26,12 +24,13 @@ export const MyBusinessList = () => {
         const res = await fetch(
           `/api/businesses/get-business-by-ownersId/?id=${user._id}`
         )
+        setIsLoading(true)
         const businessesList = await res.json()
         setList(businessesList)
-        setLoading(false)
+        setIsLoading(false)
       } catch (err: any) {
         console.log(err)
-        setLoading(false)
+        setIsLoading(false)
       }
     }
     fetchData()
@@ -48,10 +47,10 @@ export const MyBusinessList = () => {
       axios
         .delete(`api/businesses/${id}`, { data: { businessId: id } })
         .then(res => {
-          window.location.reload();
+          window.location.reload()
           alert(res.data.message)
         })
-    } catch (error:any) {
+    } catch (error: any) {
       alert(error.message)
       console.log('error in delete review: ', error.message)
     }
@@ -74,11 +73,11 @@ export const MyBusinessList = () => {
         <div className='Profile_user'>
           <h1 className='Profile_name'>Hello {user.name}!</h1>
           <div className='Profile-UserContainer Owner'>
-            {loading ? (
+            {isLoading ? (
               <LoadSpinner />
             ) : !list.length ? (
               <div className='Profile-UserContainer_reviews business'>
-                <h4>no businesses found</h4>
+                <h4>No Businesses Found</h4>
               </div>
             ) : (
               <>
@@ -140,15 +139,17 @@ export const MyBusinessList = () => {
               </>
             )}
           </div>
-          <div className='Profile_links'>
-            <Link to={'/add-business'}>
-              {' '}
-              <h6 className='btn--btn-primary twoLines'>
-                add a<br /> business
-              </h6>
-            </Link>
-          </div>
         </div>
+      </div>
+      <div className='Profile_links'>
+        <Link to={`/users/${user._id}`}>
+          <h6 className='btn--btn-primary'>update profile</h6>
+        </Link>
+        <Link to={'/add-business'}>
+          <h6 className='btn--btn-primary twoLines'>
+            add a<br /> business
+          </h6>
+        </Link>
       </div>
     </div>
   )

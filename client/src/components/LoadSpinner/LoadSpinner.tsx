@@ -1,12 +1,7 @@
-// React Components
-import React from 'react'
-
-// Custom Styles
+//* Custom Styles
 import '../../components/LoadSpinner/LoadSpinner.css'
 
-interface LoadSpinnerProps {}
-
-export const LoadSpinner: React.FC<LoadSpinnerProps> = ({}) => {
+export const LoadSpinner = () => {
   return (
     <>
       <div className='Spinner-wrapper'>

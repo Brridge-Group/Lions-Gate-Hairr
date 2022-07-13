@@ -124,7 +124,9 @@ a {
 .star.btn-review.off {
   color: rgba(0, 0, 0, 0.2);
 }
-
+input[type='checkbox'] {
+  background-color: none !important;
+}
 input[type='checkbox'] {
   position: relative;
   cursor: pointer;

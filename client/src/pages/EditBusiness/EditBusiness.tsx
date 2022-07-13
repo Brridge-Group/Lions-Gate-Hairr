@@ -1,6 +1,6 @@
 // React Components
 import React, { useEffect, useState } from 'react'
-import { useHistory, useParams } from 'react-router-dom'
+import { useHistory, useLocation } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import BusinessImage from '../../UIElements/BusinessImage'
 
@@ -22,24 +22,44 @@ interface EditBusiness {
 }
 
 export const EditBusiness = () => {
-  // const { id } = useParams()
-  // console.log('id', id)
-  const [loading, setLoading] = useState(true)
+  const history = useHistory()
+  const location = useLocation<any>()
+  const business = location.state
+  console.log('business', business)
 
   const [image, setImage] = useState<any | null>(null)
 
-  // Initialize  Services and Features to state
-  const [feats, setFeats]: any = useState([]) // Features full object
-  const [services, setServices]: any = useState([]) // Services full object
   const [featuresArr, setFeaturesArr]: any = useState([])
   const [servicesArr, setServicesArr]: any = useState([])
 
-  // Initialize state objects for form checkboxes
-  const [isChecked, setIsChecked]: any = useState(false)
-  const [isFeatsChecked, setIsFeatsChecked]: any = useState([])
-  const [isServicesChecked, setIsServicesChecked]: any = useState([])
+  const featuresArrTrue = business.features.map((bus: any) => bus._id)
+  const [featsSelection, setFeatsSelection] = useState([...featuresArrTrue])
 
-  // Fetch Services and Features from Database API Endpoint
+  const onFeatCheck = (featId: any) => {
+    if (featsSelection.includes(featId)) {
+      setFeatsSelection(featsSelection.filter(feat => feat !== featId))
+    } else {
+      setFeatsSelection([...featsSelection, featId])
+    }
+  }
+  // console.log(featsSelection, 'featsSelection')
+
+  const servicesArrTrue = business.services.map((bus: any) => bus._id)
+  const [servicesSelection, setServicesSelection] = useState([
+    ...servicesArrTrue,
+  ])
+
+  const onServicesCheck = (serviceId: any) => {
+    if (servicesSelection.includes(serviceId)) {
+      setServicesSelection(
+        servicesSelection.filter(service => service !== serviceId)
+      )
+    } else {
+      setServicesSelection([...servicesSelection, serviceId])
+    }
+  }
+  // console.log(servicesSelection, 'servicesSelection')
+
   useEffect(() => {
     const fetchFeaturesData = async () => {
       try {
@@ -47,18 +67,23 @@ export const EditBusiness = () => {
           method: 'GET',
         })
         const responseData = await response.json()
-        setFeats(responseData)
-        const featsArr = responseData.map(el => {
+        const featsArr = responseData.map((el: any) => {
           let featsName = el.name
           let featsId = el._id
           let featsIsChecked = el.isChecked
 
           return [featsName, featsId, featsIsChecked]
         })
+        for (let i = 0; i < featsArr.length; i++) {
+          for (let j = 0; j < featuresArrTrue.length; j++) {
+            if (featsArr[i][1] === featuresArrTrue[j]) {
+              featsArr[i][2] = true
+            }
+          }
+        }
         setFeaturesArr(featsArr)
       } catch (err: any) {
         console.log(err)
-        setLoading(false)
       }
     }
 
@@ -68,18 +93,23 @@ export const EditBusiness = () => {
           method: 'GET',
         })
         const responseData = await response.json()
-        setServices(responseData)
-        const servicesArr = responseData.map(el => {
+        const servicesArr = responseData.map((el: any) => {
           let servicesName = el.name
           let servicesId = el._id
           let servicesIsChecked = el.isChecked
 
           return [servicesName, servicesId, servicesIsChecked]
         })
+        for (let i = 0; i < servicesArr.length; i++) {
+          for (let j = 0; j < servicesArrTrue.length; j++) {
+            if (servicesArr[i][1] === servicesArrTrue[j]) {
+              servicesArr[i][2] = true
+            }
+          }
+        }
         setServicesArr(servicesArr)
       } catch (err: any) {
         console.log(err)
-        setLoading(false)
       }
     }
     fetchFeaturesData()
@@ -87,22 +117,20 @@ export const EditBusiness = () => {
   }, [])
 
   const [formData, setFormData]: any = useState({
-    businessName: '',
-    description: '',
-    email: '',
-    address1: '',
-    address2: '',
-    image:
-      'https://images.unsplash.com/photo-1560066984-138dadb4c035?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1674&q=80',
-    cityTown: '',
-    postalCode: '',
-    phone: '',
+    businessName: business.businessName,
+    description: business.description,
+    image: business.image,
+    email: business.email,
+    address: {
+      address1: business.address.address1,
+      address2: business.address.address2,
+      postalCode: business.address.postalCode,
+      city: business.address.city,
+      region: business.address.region,
+      country: business.address.country,
+    },
+    phone: business.phone,
   })
-  const [region, setRegion] = useState('AB')
-  const [country, setCountry] = useState('Canada')
-  const history = useHistory()
-  const ownerId = JSON.parse(localStorage.getItem('profile') ?? 'false').result
-    ._id
 
   const onImageChange = async (e: any) => {
     e.preventDefault()
@@ -132,104 +160,45 @@ export const EditBusiness = () => {
       }
     }
   }
-  const onFormChange = (e: any) => {
-    const value =
-      e.target.type === 'checkbox' ? e.target.checked : e.target.value
-
-    // Evaluate to determine if checkbox is checked and if is it a service or feature
-    if (e.target.type === 'checkbox') {
-      setIsChecked({
-        ...isChecked,
-        [e.target.name]: value,
-      })
-
-      if (e.target.name.includes('service')) {
-        setIsServicesChecked({
-          ...isServicesChecked,
-          [e.target.id]: value,
-        })
-      }
-
-      if (e.target.name.includes('feature')) {
-        setIsFeatsChecked({
-          ...isFeatsChecked,
-          [e.target.id]: value,
-        })
-      }
-    }
-    console.log(value)
-
+  const onFormFirstChange = (e: any) => {
     setFormData({ ...formData, [e.target.name]: e.target.value })
   }
-
-  // Save to the businesses collection database all features and services set to true.
-  let savedFormFeats = Object.entries(isFeatsChecked)
-    .map(key => {
-      if (key[1] === true) {
-        return [key[0]]
-      }
+  const onFormChange = (address: any) => (e: any) => {
+    setFormData({
+      ...formData,
+      [address]: {
+        ...formData[address],
+        [e.target.name]: e.target.value,
+      },
     })
-    .filter(el => {
-      if (el !== undefined) {
-      }
-      return el
-    })
-
-  let savedFormServices = Object.entries(isServicesChecked)
-    .map(key => {
-      if (key[1] === true) {
-        return [key[0]]
-      }
-    })
-    .filter(el => {
-      if (el !== undefined) {
-      }
-      return el
-    })
-
-  const handleRegion = (e: any) => {
-    setRegion(e.target.value)
   }
 
-  const handleCountry = (e: any) => {
-    setCountry(e.target.value)
-  }
+  // const onFormChange = (address: any) => (e: any) => {
+  //   if (!address) {
+  //     setFormData({ ...formData, [e.target.name]: e.target.value })
+  //   } else
+  //     setFormData({
+  //       ...formData,
+  //       [address]: {
+  //         ...formData[address],
+  //         [e.target.name]: e.target.value,
+  //       },
+  //     })
+  // }
 
-  // Initialize business profile form state object
-  const data = {
-    businessName: formData.businessName,
-    description: formData.description,
-    image:
-      formData.image === ' '
-        ? 'https://images.unsplash.com/photo-1560066984-138dadb4c035?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1674&q=80'
-        : formData.image,
-    email: formData.email,
-    address: {
-      address1: formData.address1,
-      address2: formData.address2,
-      postalCode: formData.postalCode,
-      city: formData.cityTown,
-      region: region,
-      country: country,
-    },
-    stars: 0,
-    phone: formData.phone,
-    ownerId: ownerId,
-  }
-
-  const saveNewBusiness = () => {
-    // Add FeaturesArray and ServicesArray to data business form state object
-    let newBusiness = {
-      ...data,
-      features: savedFormFeats,
-      services: savedFormServices,
+  const saveEditedBusiness = () => {
+    let editedBusiness = {
+      ...formData,
+      features: featsSelection,
+      services: servicesSelection,
     }
+    // console.log('editedBusiness', editedBusiness)
 
     axios
-      .post('http://localhost:5000/api/businesses/add-business', newBusiness)
+      .patch(`/api/businesses/${business._id}`, editedBusiness)
       .then(response => {
         console.log(response.data)
-        history.push('/')
+        history.goBack()
       })
       .catch(error => {
         console.log(error)
@@ -238,16 +207,14 @@ export const EditBusiness = () => {
 
   const handleSubmit = (e: any) => {
     e.preventDefault()
-    saveNewBusiness()
+    saveEditedBusiness()
   }
 
   return (
     <div className='FeatureContainer_image AddBusiness'>
       <div className='FeatureContainer'>
-        hi in edit business
-        {/* <-- Form Start --> */}
-        {/* <form onSubmit={handleSubmit} className='AddBusiness_inputGroup'> */}
-        {/* <div className='AddBusiness_scroll'>
+        <form onSubmit={handleSubmit} className='AddBusiness_inputGroup'>
+          <div className='AddBusiness_scroll'>
             <div className='AddBusiness-FormCard_body'>
               <BusinessImage
                 pic={image}
@@ -262,7 +229,7 @@ export const EditBusiness = () => {
                 type='text'
                 value={formData.businessName}
                 className='UserRegistration_input'
-                onChange={onFormChange}
+                onChange={onFormFirstChange}
                 required
               />
               <h5>
@@ -272,7 +239,7 @@ export const EditBusiness = () => {
                 name='description'
                 value={formData.description}
                 className='UserRegistration_input'
-                onChange={onFormChange}
+                onChange={onFormFirstChange}
                 required
               />
               <h5>
@@ -292,23 +259,23 @@ export const EditBusiness = () => {
               <input
                 name='address1'
                 type='text'
-                value={formData.address1}
+                value={formData.address.address1}
                 className='UserRegistration_input color'
-                onChange={onFormChange}
+                onChange={onFormChange('address')}
                 required
               />
 
               <div className='AddBusiness-FormCard_body_columns'>
                 <div className='AddBusiness-FormCard_body_left'>
                   <h5>
-                    <label htmlFor='cityTown'>City / Town</label>
+                    <label htmlFor='city'>City / Town</label>
                   </h5>
                   <input
-                    name='cityTown'
+                    name='city'
                     type='text'
-                    value={formData.cityTown}
+                    value={formData.address.city}
                     className='UserRegistration_input color'
-                    onChange={onFormChange}
+                    onChange={onFormChange('address')}
                     required
                   />
                   <h5>
@@ -316,8 +283,9 @@ export const EditBusiness = () => {
                   </h5>
                   <select
                     className='UserRegistration_input color'
-                    onChange={handleRegion}
+                    onChange={onFormChange('address')}
                     name='region'
+                    value={formData.address.region}
                     id='region'>
                     {regions.map(region => (
                       <option value={region.value}>{region.label}</option>
@@ -331,7 +299,7 @@ export const EditBusiness = () => {
                     type='text'
                     value={formData.phone}
                     className='UserRegistration_input color'
-                    onChange={onFormChange}
+                    onChange={onFormFirstChange}
                     required
                   />
                 </div>
@@ -343,9 +311,9 @@ export const EditBusiness = () => {
                   <input
                     name='address2'
                     type='text'
-                    value={formData.address2}
+                    value={formData.address.address2}
                     className='UserRegistration_input color'
-                    onChange={onFormChange}
+                    onChange={onFormChange('address')}
                   />
 
                   <h5>
@@ -355,9 +323,9 @@ export const EditBusiness = () => {
                   <input
                     name='postalCode'
                     type='text'
-                    value={formData.postalCode}
+                    value={formData.address.postalCode}
                     className='UserRegistration_input color'
-                    onChange={onFormChange}
+                    onChange={onFormChange('address')}
                     required
                   />
 
@@ -366,8 +334,9 @@ export const EditBusiness = () => {
                   </h5>
                   <select
                     className='UserRegistration_input color'
-                    onChange={handleCountry}
+                    onChange={onFormChange('address')}
                     name='country'
+                    value={formData.address.country}
                     id='country'>
                     <option value='Canada'> Canada </option>
                     <option value='United States'> United States</option>
@@ -376,6 +345,7 @@ export const EditBusiness = () => {
               </div>
             </div>
           </div>
+
           <div className='AddBusiness-FormCard_sidebar'>
             <div className='AddBusiness-FormCard_filtersContainer'>
               <h4 className='sidebar-hed'>
@@ -389,13 +359,14 @@ export const EditBusiness = () => {
                         display: 'flex',
                         marginTop: '10px',
                         marginBottom: '5px',
+                        alignItems: 'flex-start',
                       }}>
                       <input
                         type='checkbox'
                         name={`feature-${feature[0]}`}
                         id={feature[1]}
                         defaultChecked={feature[2]}
-                        onChange={onFormChange}
+                        onChange={() => onFeatCheck(feature[1])}
                       />
                       <label htmlFor={feature[1]}>{feature[0]}</label>
                     </h5>
@@ -413,13 +384,14 @@ export const EditBusiness = () => {
                         display: 'flex',
                         marginTop: '10px',
                         marginBottom: '5px',
+                        alignItems: 'flex-start',
                       }}>
                       <input
                         type='checkbox'
                         name={`service-${service[0]}`}
                         id={service[1]}
                         defaultChecked={service[2]}
-                        onChange={onFormChange}
+                        onChange={() => onServicesCheck(service[1])}
                       />
                       <label htmlFor={service[1]}>{service[0]}</label>
                     </h5>
@@ -435,8 +407,7 @@ export const EditBusiness = () => {
               submit
             </button>
           </div>
-        </form> */}
-        {/* <-- Form Ends --> */}
+        </form>
       </div>
     </div>
   )

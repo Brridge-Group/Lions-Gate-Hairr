@@ -36,10 +36,13 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-exports.getOwnersBusinesses = exports.getAllBusinesses = exports.addBusiness = exports.showBusiness = void 0;
+exports.deleteBusiness = exports.updateBusiness = exports.getOwnersBusinesses = exports.getAllBusinesses = exports.addBusiness = exports.showBusiness = void 0;
 var express_validator_1 = require("express-validator");
 var StatusCodes = require('http-status-codes');
+var mongoose = require('mongoose');
 var business_1 = require("../models/business");
+var Review = require('../models/review');
+var User = require('../models/users');
 exports.showBusiness = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var id, business;
     return __generator(this, function (_a) {
@@ -147,6 +150,129 @@ exports.getOwnersBusinesses = function (req, res) { return __awaiter(void 0, voi
                 res.status(StatusCodes.INTERNAL_SERVER_ERROR).json(err_3.message);
                 return [3 /*break*/, 4];
             case 4: return [2 /*return*/];
+        }
+    });
+}); };
+exports.updateBusiness = function (req, res, next) { return __awaiter(void 0, void 0, void 0, function () {
+    var id, _a, businessName, description, email, image, address, features, services, reviews, phone, fieldsToUpdate, business, error_1, err_4;
+    return __generator(this, function (_b) {
+        switch (_b.label) {
+            case 0:
+                id = { _id: req.params.id };
+                _a = req.body, businessName = _a.businessName, description = _a.description, email = _a.email, image = _a.image, address = _a.address, features = _a.features, services = _a.services, reviews = _a.reviews, phone = _a.phone;
+                fieldsToUpdate = {
+                    businessName: businessName,
+                    description: description,
+                    email: email,
+                    image: image,
+                    address: address,
+                    features: features,
+                    services: services,
+                    reviews: reviews,
+                    phone: phone
+                };
+                _b.label = 1;
+            case 1:
+                _b.trys.push([1, 3, , 4]);
+                return [4 /*yield*/, business_1.Business.findByIdAndUpdate(id, fieldsToUpdate)];
+            case 2:
+                business = _b.sent();
+                if (business) {
+                    // console.log('business', business)
+                    res.status(200).json({ business: business });
+                }
+                else {
+                    res.status(400).json({ error: 'Error in update user' });
+                }
+                return [3 /*break*/, 4];
+            case 3:
+                error_1 = _b.sent();
+                console.log(error_1);
+                return [2 /*return*/, res
+                        .status(StatusCodes.BAD_REQUEST)
+                        .send('Something went wrong in update user, try later!')];
+            case 4:
+                _b.trys.push([4, 6, , 7]);
+                return [4 /*yield*/, business.save()];
+            case 5:
+                _b.sent();
+                return [3 /*break*/, 7];
+            case 6:
+                err_4 = _b.sent();
+                return [2 /*return*/, next(err_4)];
+            case 7: return [2 /*return*/];
+        }
+    });
+}); };
+exports.deleteBusiness = function (req, res, next) { return __awaiter(void 0, void 0, void 0, function () {
+    var businessId, userListId, reviewListIds, business, reviews, i, review, userAlreadyExist, _id, i, err_5;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                businessId = { _id: req.params.id };
+                userListId = [];
+                reviewListIds = [];
+                _a.label = 1;
+            case 1:
+                _a.trys.push([1, 13, , 14]);
+                return [4 /*yield*/, business_1.Business.findByIdAndDelete(businessId)];
+            case 2:
+                business = _a.sent();
+                if (!business) {
+                    return [2 /*return*/, res.sendStatus(404).json({ message: 'Business not found' })];
+                }
+                return [4 /*yield*/, Review.find({ business: businessId })
+                    // console.log('reviews', reviews)
+                ];
+            case 3:
+                reviews = _a.sent();
+                i = 0;
+                _a.label = 4;
+            case 4:
+                if (!(i < reviews.length)) return [3 /*break*/, 7];
+                return [4 /*yield*/, Review.findByIdAndDelete({ _id: reviews[i]._id })];
+            case 5:
+                review = _a.sent();
+                if (i > 0) {
+                    userAlreadyExist = userListId.indexOf(review.author);
+                    userAlreadyExist === -1 ? '' : userListId.push(review.author);
+                }
+                else {
+                    userListId.push(review.author);
+                }
+                reviewListIds.push(review._id);
+                _a.label = 6;
+            case 6:
+                i++;
+                return [3 /*break*/, 4];
+            case 7:
+                if (!(reviewListIds.length > 0)) return [3 /*break*/, 12];
+                _id = reviewListIds.pop();
+                i = 0;
+                _a.label = 8;
+            case 8:
+                if (!(i < userListId.length)) return [3 /*break*/, 11];
+                return [4 /*yield*/, User.findOneAndUpdate({
+                        _id: userListId[i]
+                    }, {
+                        $pull: {
+                            reviews: _id
+                        }
+                    })];
+            case 9:
+                _a.sent();
+                _a.label = 10;
+            case 10:
+                i++;
+                return [3 /*break*/, 8];
+            case 11: return [3 /*break*/, 7];
+            case 12: return [2 /*return*/, res.send({
+                    message: business.businessName + ' was deleted successfully.'
+                })];
+            case 13:
+                err_5 = _a.sent();
+                return [2 /*return*/, res.sendStatus(400).json({ message: 'Error on delete business' })];
+            case 14: return [2 /*return*/];
         }
     });
 }); };

@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import { MyStarList } from '../../UIElements/Star'
 import { About } from '../BusinessDetails/About/About'
 import '../../pages/Profile/Profile.css'
 import './MyBusinessList.css'
 import { MyBusinessReviews } from '../BusinessReviews/MyBusinessReviews'
+import axios from 'axios'
 
 import { LoadSpinner } from '../LoadSpinner/LoadSpinner'
 
@@ -39,16 +40,31 @@ export const MyBusinessList = () => {
 
   const toggleIt = (id: any) => {
     setSelected({ ...selected, [id]: !selected[id] })
-
-    ////// want an open dropdown to close if click on another dropdown?  start of logic////
-    // const dropDownArray = list.map(l => l._id)
-    // console.log(dropDownArray, 'dropDownArray', id, 'id')
-    // dropDownArray.filter(drop => {
-    //   if (drop === id) {
-    //     console.log('yes')
-    //   }
-    // })
   }
+
+  const deleteBusiness = async (id: any) => {
+    try {
+      axios
+        .delete(`api/businesses/${id}`, { data: { businessId: id } })
+        .then(res => {
+          window.location.reload()
+          alert(res.data.message)
+        })
+    } catch (error: any) {
+      alert(error.message)
+      console.log('error in delete review: ', error.message)
+    }
+  }
+
+  ////// want an open dropdown to close if click on another dropdown?  start of logic////
+  // const dropDownArray = list.map(l => l._id)
+  // console.log(dropDownArray, 'dropDownArray', id, 'id')
+  // dropDownArray.filter(drop => {
+  //   if (drop === id) {
+  //     console.log('yes')
+  //   }
+  // })
+
   // console.log('in my business list, list', list)
 
   return (
@@ -90,18 +106,22 @@ export const MyBusinessList = () => {
                               ? 'read reviews'
                               : 'close reviews'}
                           </h6>
-                          <Link to={'#'}>
+                          <Link
+                            to={{
+                              pathname: `/businesses/${business._id}/edit-business`,
+                              state: business,
+                            }}>
                             <h6 className='btn--btn-primary twoLines business'>
                               edit <br />
                               business
                             </h6>
                           </Link>
-                          <Link to={'#'}>
-                            <h6 className='btn--btn-primary twoLines business'>
-                              delete <br />
-                              business
-                            </h6>
-                          </Link>
+                          <button
+                            className='btn--btn-primary twoLines business'
+                            onClick={() => deleteBusiness(business._id)}>
+                            delete <br />
+                            business
+                          </button>
                         </div>
                         <div
                           className={

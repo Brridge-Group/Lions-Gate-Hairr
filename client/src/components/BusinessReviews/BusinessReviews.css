@@ -52,7 +52,7 @@ h6 {
 .Business_reviews.author:first-child {
   margin-top: 0;
 }
-ul.BusinessReviews_container {
+ul.BusinessReviews_scroll {
   padding: 0;
   list-style-type: none;
   margin-top: 2px;
@@ -67,7 +67,7 @@ ul.BusinessReviews_container {
   margin-top: 0;
   text-align: center;
 }
-ul.BusinessReviews_container h6.BusinessReviews_container-noReviews {
+ul.BusinessReviews_scroll h6.BusinessReviews_container-noReviews {
   text-align: center;
 }
 

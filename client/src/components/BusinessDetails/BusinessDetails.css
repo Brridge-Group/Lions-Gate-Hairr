@@ -30,6 +30,7 @@ ul.BusinessDetails-ul {
   list-style: none;
   margin: 0;
   padding: 0;
+  text-transform: capitalize;
 }
 
 h5.features,
@@ -37,6 +38,7 @@ h5.services {
   margin-top: 10px;
   margin-bottom: 5px;
   line-height: 1.5rem;
+  align-items: flex-start;
 }
 
 h5.features:last-child {
@@ -48,7 +50,6 @@ h5.features:last-child {
   padding: 3.5rem;
   margin-top: 160px;
   grid-column: 7/14;
-  /* height: fit-content; */
   max-height: 58vh;
   overflow: hidden;
   padding-bottom: 0;

@@ -24,5 +24,5 @@ exports.Review = function (props) {
     return (React.createElement(React.Fragment, null,
         React.createElement("div", { className: 'Review-container' },
             React.createElement("div", { className: 'Star-container' }, stars),
-            isLoggedIn ? (React.createElement(react_router_dom_1.Link, { to: { pathname: props.id + '/add-review', state: props.name }, className: 'btn--btn-primary review' }, "Leave a Review")) : null)));
+            isLoggedIn ? (user._id !== props.ownerId ? (React.createElement(react_router_dom_1.Link, { to: { pathname: props.id + '/add-review', state: props.name }, className: 'btn--btn-primary review' }, "Leave a Review")) : (React.createElement(react_router_dom_1.Link, { to: '#', className: 'btn--btn-primary review hide' }))) : null)));
 };

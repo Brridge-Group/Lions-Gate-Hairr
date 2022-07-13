@@ -63,6 +63,7 @@ exports.AddReview = function () {
     var history = react_router_dom_1.useHistory();
     var location = react_router_dom_1.useLocation();
     var busName = location.state;
+    console.log('in add review, busName', busName);
     var _c = react_1.useState(0), rating = _c[0], setRating = _c[1];
     var _d = react_1.useState(0), hover = _d[0], setHover = _d[1];
     var _e = react_1.useState({ comment: '' }), reviewForm = _e[0], setReviewForm = _e[1];

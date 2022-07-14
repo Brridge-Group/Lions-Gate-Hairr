@@ -3,7 +3,7 @@ import {
   BrowserRouter as Router,
   Route,
   Redirect,
-  Switch
+  Switch,
 } from 'react-router-dom'
 
 // Custom Imports
@@ -11,10 +11,13 @@ import { Home } from './pages/Home/Home'
 import { UserRegistration } from './pages/Auth/UserRegistration/UserRegistration'
 import Login from './pages/Auth/Login/Login'
 import { BusinessList } from './pages/BusinessList/BusinessList'
-import { BusinessDetails } from './components/BusinessDetails/BusinessDetails'
+import { BusinessDetails } from './pages/BusinessDetails/BusinessDetails'
 import { AddBusiness } from './pages/AddBusiness/AddBusiness'
-import { AddReview } from './components/AddReview/AddReview/AddReview'
+import { AddReview } from './components/Reviews/AddReview'
+import { EditReview } from './components/Reviews/EditReview'
 import { MyBusinessList } from './components/MyBusinessList/MyBusinessList'
+import { EditBusiness } from './pages/EditBusiness/EditBusiness'
+
 import { Navbar } from './components/Navbar/Navbar'
 import { Profile } from './pages/Profile/Profile'
 import { EditProfile } from './pages/Auth/EditProfile'
@@ -26,34 +29,40 @@ export const App = () => {
   let routes: any
   routes = (
     <Switch>
-      <Route path='/' exact>
+      <Route exact path='/'>
         <Home />
       </Route>
-      <Route path='/user-signin' exact>
+      <Route exact path='/user-signin'>
         <Login />
       </Route>
-      <Route path='/user-signup' exact>
+      <Route exact path='/user-signup'>
         <UserRegistration />
       </Route>
-      <Route path='/users/:id' exact>
+      <Route exact path='/users/:id'>
         <EditProfile />
       </Route>
-      <Route path='/my-businesses' exact>
+      <Route exact path='/my-businesses'>
         <MyBusinessList />
       </Route>
-      <Route path='/businesses/:id' exact>
+      <Route exact path='/businesses/:id/edit-business'>
+        <EditBusiness />
+      </Route>
+      <Route exact path='/businesses/:id'>
         <BusinessDetails />
       </Route>
-      <Route path='/businessByCity/:city' exact>
+      <Route exact path='/businessByCity/:city'>
         <BusinessList />
       </Route>
-      <Route path='/add-business' exact>
+      <Route exact path='/add-business'>
         <AddBusiness />
       </Route>
-      <Route path='/businesses/:id/add-review' exact>
+      <Route exact path='/businesses/:id/add-review'>
         <AddReview />
       </Route>
-      <Route path='/profile' exact>
+      <Route exact path='/reviews/:id/edit-review'>
+        <EditReview />
+      </Route>
+      <Route exact path='/profile'>
         <Profile />
       </Route>
       <Redirect to='/' />

@@ -9,8 +9,8 @@ import './FilterServicesAndFeatures.css'
 
 //* Types
 interface Props {
-  loading: boolean
   list: any
+  isLoading: boolean
   onFeatChange: any
   onServiceChange: any
   servicesArr: any
@@ -102,12 +102,15 @@ export const FilterServicesAndFeatures = (props: Props) => {
 
   return (
     <>
-      {!props.loading ? (
-        <section className='Filters-Container'>
-          <label htmlFor='features' className='Filters-Label_header'>
-            Features
-          </label>
-          <div className='Filters-FormGroup'>
+      {!props.isLoading ? (
+        <aside className='Filters-Container'>
+          <h4 className='Filters-Label_header'>
+            <label htmlFor='features' className='Filters-FormCheckLabel'>
+              Features
+            </label>
+          </h4>
+          <section className='Filters-FormGroup Filters-FormGroup_features'>
+            {/* Feature Checkboxes */}
             {props.featuresArr?.map((feature, id, index) => (
               <div className='Filters-FormCheck' key={`${feature}_` + index}>
                 <input
@@ -120,16 +123,22 @@ export const FilterServicesAndFeatures = (props: Props) => {
                   checked={isChecked[index]}
                   onChange={onFeatChange}
                 />
-                <label className='Filters-FormCheckLabel' htmlFor={feature[1]}>
-                  {feature[0]}
-                </label>
+                {/* Feature Checkbox Labels */}
+                <h5 className='Filters-FormCheckLabel_header'>
+                  <label className='Filters-FormCheckLabel' htmlFor={feature[1]}>
+                    {feature[0]}
+                  </label>
+                </h5>
               </div>
             ))}
-          </div>
-          <label htmlFor='services' className='Filters-Label_header   Filters-Label_header_services'>
-            Services
-          </label>
-          <div className='Filters-FormGroup'>
+          </section>
+          <h4 className='Filters-Label_header'>
+            <label htmlFor='services' className='Filters-Label_header_services'>
+              Services
+            </label>
+          </h4>
+          <section className='Filters-FormGroup Filters-FormGroup_services'>
+            {/* Service Checkboxes */}
             {props.servicesArr?.map((service, id, index) => (
               <div className='Filters-FormCheck' key={`${service}_` + index}>
                 <input
@@ -142,23 +151,26 @@ export const FilterServicesAndFeatures = (props: Props) => {
                   checked={isChecked[index]}
                   onChange={onServiceChange}
                 />
-                <label className='Filters-FormCheckLabel' htmlFor={service[1]}>
-                  {service[0]}
-                </label>
+                <h5 className='Filters-FormCheckLabel_header'>
+                  {/** Service Checkbox Labels  */}
+                  <label className='Filters-FormCheckLabel' htmlFor={service[1]}>
+                    {service[0]}
+                  </label>
+                </h5>
               </div>
             ))}
+          </section>
+          <div className='Filters-Buttons'>
+            <button className='Filter-Button Btn-Primary' onClick={props.handleFilteredResults}>
+              Filter Results
+            </button>
+            <button className='Reset-Button Btn-Primary' onClick={handleResetFilter}>
+              Reset Filters
+            </button>
           </div>
-          <button className='Filters-Button' onClick={props.handleFilteredResults}>
-            filter results
-          </button>
-          <button className='Reset-Button' onClick={handleResetFilter}>
-            reset filters
-          </button>
-        </section>
+        </aside>
       ) : (
-        <>
-          <section className='Filters-Container'>{isLoading && <LoadSpinner />}</section>
-        </>
+        <aside className='Filters-Container'>{isLoading && <LoadSpinner />}</aside>
       )}
     </>
   )

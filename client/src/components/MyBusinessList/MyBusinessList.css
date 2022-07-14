@@ -1,13 +1,77 @@
+.FeatureContainer_image.Owner {
+  background-image: url('../../assets/images/hairgreysm.jpg');
+}
+
 .BusinessCard-buttons {
   display: flex;
   justify-content: space-between;
   margin-bottom: 2rem;
 }
-.btn--btn-primary.twoLines.business {
+.Btn-Primary.twoLines.business {
   width: 95px;
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+  padding-bottom: 5px;
+}
+.Btn-Primary.twoLines.business.reviews {
+  height: 42px;
+  padding: 0 10px;
+  padding-top: 5px;
 }
 .BusinessCard-container {
   overflow-y: scroll;
   height: 90%;
   padding-bottom: 2rem;
+  max-height: 58vh;
+}
+
+.menu-business {
+  position: relative;
+  width: 100%;
+  height: fit-content;
+  text-align: left;
+  line-height: normal;
+  transition: 0.7s;
+  z-index: 3;
+  margin-right: 9%;
+  display: flex;
+  justify-content: center;
+  display: none;
+}
+.menu-business.open {
+  display: block;
+}
+
+/* ///////media queries ////////// */
+
+@media screen and (max-width: 575px) {
+  .FeatureContainer_image.Owner {
+    background-image: url('../../assets/images/hairgrey-mobile.jpg');
+    height: 100%;
+  }
+
+  .Btn-Primary.twoLines.business {
+    width: fit-content;
+    margin: 0;
+    padding: 5px;
+  }
+  .Btn-Primary.twoLines.business.reviews {
+    font-size: 1.5rem;
+    width: 30%;
+    padding: 0;
+    padding-top: 5px;
+  }
+  .BusinessCard-container {
+    padding-bottom: 0;
+  }
+}
+/* ----- -> LoadSpinner <- ----- */
+
+.Profile-UserContainer.Owner section.FeatureContainer {
+  gap: 0 !important;
+  width: 0 !important;
+  position: relative;
+  top: 30%;
+  transform: translateY(-30%);
+  left: -25%;
 }

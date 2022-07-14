@@ -36,7 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-exports.updateUser = exports.getProfileById = exports.signup = exports.signin = void 0;
+exports.changeUserRole = exports.updateUser = exports.getProfileById = exports.signup = exports.signin = void 0;
 var bcrypt = require('bcryptjs');
 var jwt = require('jsonwebtoken');
 var StatusCodes = require('http-status-codes');
@@ -65,7 +65,7 @@ exports.signin = function (req, res) { return __awaiter(void 0, void 0, void 0, 
                 return [3 /*break*/, 5];
             case 4:
                 err_1 = _b.sent();
-
+                console.log('Error on SignIn function on line 29: ', err_1);
                 res.status(StatusCodes.INTERNAL_SERVER_ERROR).send('Something went wrong.');
                 return [3 /*break*/, 5];
             case 5: return [2 /*return*/];
@@ -78,7 +78,6 @@ exports.signup = function (req, res) { return __awaiter(void 0, void 0, void 0, 
         switch (_b.label) {
             case 0:
                 _a = req.body, email = _a.email, password = _a.password, confirmPassword = _a.confirmPassword, firstName = _a.firstName, lastName = _a.lastName, role = _a.role, imageProfile = _a.imageProfile;
-                console.log(req.body);
                 _b.label = 1;
             case 1:
                 _b.trys.push([1, 5, , 6]);
@@ -86,7 +85,6 @@ exports.signup = function (req, res) { return __awaiter(void 0, void 0, void 0, 
             case 2:
                 existingUser = _b.sent();
                 if (existingUser) {
-                    console.log(existingUser);
                     return [2 /*return*/, res
                             .status(StatusCodes.BAD_REQUEST)
                             .send('User already exists! Try new email address.')];
@@ -105,7 +103,6 @@ exports.signup = function (req, res) { return __awaiter(void 0, void 0, void 0, 
                     })];
             case 4:
                 result = _b.sent();
-                console.log('Result of creation of user: ', result);
                 token = jwt.sign({ email: result.email, id: result._id }, 'jwtSecret', { expiresIn: '1h' });
                 console.log("User registered:" + result + " and Token: " + token);
                 res.status(200).json({ result: result, token: token });
@@ -127,17 +124,20 @@ exports.getProfileById = function (req, res) { return __awaiter(void 0, void 0, 
                 profileId = req.query.id;
                 _a.label = 1;
             case 1:
-                _a.trys.push([1, 3, , 4]);
+                _a.trys.push([1, 4, , 5]);
                 return [4 /*yield*/, User.findById(profileId, '-password')];
             case 2:
                 profile = _a.sent();
-                return [3 /*break*/, 4];
+                return [4 /*yield*/, profile.populate('reviews')];
             case 3:
+                _a.sent();
+                return [3 /*break*/, 5];
+            case 4:
                 err_3 = _a.sent();
                 return [2 /*return*/, res
                         .status(StatusCodes.BAD_REQUEST)
                         .send('Something went wrong, try later!')];
-            case 4:
+            case 5:
                 if (!profile) {
                     return [2 /*return*/, res
                             .status(StatusCodes.NOT_FOUND)
@@ -221,6 +221,42 @@ exports.updateUser = function (req, res) { return __awaiter(void 0, void 0, void
                         .status(StatusCodes.BAD_REQUEST)
                         .send('Something went wrong in update user, try later!')];
             case 8: return [2 /*return*/];
+        }
+    });
+}); };
+exports.changeUserRole = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var id, role, fieldsToUpdate, result, error_2;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                id = { _id: req.params.id };
+                role = req.body.role;
+                _a.label = 1;
+            case 1:
+                _a.trys.push([1, 3, , 4]);
+                fieldsToUpdate = {
+                    role: role
+                };
+                return [4 /*yield*/, User.findByIdAndUpdate(id, fieldsToUpdate, {
+                        "new": true
+                    })];
+            case 2:
+                result = _a.sent();
+                if (result) {
+                    res.status(200).json({ result: result });
+                    // console.log('result', result)
+                }
+                else {
+                    res.status(400).json({ error: 'Error in update user' });
+                }
+                return [3 /*break*/, 4];
+            case 3:
+                error_2 = _a.sent();
+                console.log(error_2);
+                return [2 /*return*/, res
+                        .status(StatusCodes.BAD_REQUEST)
+                        .send('Something went wrong in update user, try later!')];
+            case 4: return [2 /*return*/];
         }
     });
 }); };

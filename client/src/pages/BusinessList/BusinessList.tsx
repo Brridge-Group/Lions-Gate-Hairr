@@ -1,10 +1,11 @@
 //* React Components
 import { useState, useEffect } from 'react'
-import { useHistory, useParams } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
 
 //* Custom Imports
-import { Card } from '../../UIElements/Card'
-import { CardDetails } from '../../components/CardDetails/CardDetails'
+import { CardDetails } from '../../components/Card/CardDetails/CardDetails'
+import { StarList } from '../../UIElements/Star'
+import { Card } from '../../components/Card/Card'
 import { FilterServicesAndFeatures } from '../../components/FilterServicesAndFeatures/FilterServicesAndFeatures'
 import { LoadSpinner } from '../../components/LoadSpinner/LoadSpinner'
 
@@ -28,6 +29,12 @@ interface Feature {
   name: string
 }
 
+interface Review {
+  _id: string
+  comment: string
+  rating: number
+}
+
 interface Business {
   businessName: string
   description: string
@@ -44,18 +51,19 @@ interface Business {
   }
   services: Service[]
   features: Feature[]
+  reviews: Review[]
   stars: number
 }
 
 export const BusinessList = () => {
   const [list, setList]: any = useState([])
-  const [loading, setLoading] = useState(true)
-  const history = useHistory()
+  const [isLoading, setIsLoading] = useState(true)
   const { city } = useParams<RouteParams>()
 
   //* Initialize Services and Features to state
   const [feats, setFeats]: any = useState([]) // Features full object
   const [services, setServices]: any = useState([]) // Services full object
+
   const [featuresArr, setFeaturesArr]: any = useState([])
   const [servicesArr, setServicesArr]: any = useState([])
 
@@ -69,6 +77,7 @@ export const BusinessList = () => {
     const fetchData = async () => {
       try {
         const res = await fetch('/api/businesses/get-businesses')
+        setIsLoading(true)
         const businessesList = await res.json()
         if (typeof city !== 'undefined') {
           const filtered = businessesList.filter((business: Business) => {
@@ -78,16 +87,16 @@ export const BusinessList = () => {
         } else {
           setList(businessesList)
         }
-        setLoading(false)
+        setIsLoading(false)
       } catch (err: any) {
         console.log(err)
-        setLoading(false)
+        setIsLoading(false)
       }
     }
     fetchData()
   }, [])
-  // console.log(`initial list`, list)
 
+  // console.log('bus list', list)
   //* Fetch Features and Services from the database
   useEffect(() => {
     const fetchFeaturesData = async () => {
@@ -107,7 +116,7 @@ export const BusinessList = () => {
         setFeaturesArr(featsArr)
       } catch (err: any) {
         console.log(err)
-        setLoading(false)
+        setIsLoading(false)
       }
     }
 
@@ -128,12 +137,14 @@ export const BusinessList = () => {
         setServicesArr(servicesArr)
       } catch (err: any) {
         console.log(err)
-        setLoading(false)
+        setIsLoading(false)
       }
     }
+
     fetchFeaturesData()
     fetchServicesData()
   }, [])
+
   // console.log(`servicesArr`, servicesArr)
   // console.log(`featuresArr`, featuresArr)
 
@@ -219,49 +230,23 @@ export const BusinessList = () => {
       return newFilteredResults
     })
   }, [list, city])
+  // console.log(list, city, 'list, city')
 
-  if (loading) {
-    return (
-      <div
-        className='BusinessList-Wrapper'
-        style={{
-          display: 'flex',
-          justifyContent: 'center',
-          height: '100vh',
-          width: '100%',
-          placeItems: 'center',
-        }}>
-        <div className='BusinessList-Wrapper_loader'>
+  return (
+    <div className='BusinessList-Container_image FeatureContainer_image '>
+      <main className='BusinessList-Container FeatureContainer'>
+        {isLoading ? (
           <LoadSpinner />
-        </div>
-      </div>
-    )
-  }
-  if (list.length === 0 || city == 'undefined') {
-    return (
-      <div
-        className='BusinessList-Wrapper'
-        style={{
-          display: 'flex',
-          justifyContent: 'center',
-          height: '100vh',
-          width: '100%',
-          placeItems: 'center',
-        }}>
-        <h2>No businesses found. Please try another city.</h2>
-      </div>
-    )
-  } else {
-    return (
-      <section className='BusinessList'>
-        <div className='BusinessList-Wrapper'>
-          <div className='BusinessList-HeaderContainer'>
-            <h1 className='BusinessList-Header'>{city} Businesses</h1>
+        ) : !list.length || city == 'undefined' ? (
+          <div className='BusinessList-Header_errorMessage'>
+            <h1>No businesses found. Please try another city.</h1>
           </div>
-          <div className='BusinessList-Container'>
-            <div className='BusinessList-Filters'>
+        ) : (
+          <>
+            <h1 className='BusinessList-Header'>{city} Businesses</h1>
+            <section className='BusinessList-FiltersContainer'>
               <FilterServicesAndFeatures
-                loading={loading}
+                isLoading={isLoading}
                 list={list}
                 filteredResults={filteredResults}
                 setFilteredResults={setFilteredResults}
@@ -271,28 +256,37 @@ export const BusinessList = () => {
                 setServicesArr={setServicesArr}
                 onFeatChange={onFeatChange}
                 onServiceChange={onServiceChange}
+                // isChecked={isChecked}
                 handleFilteredResults={handleFilteredResults}
               />
-            </div>
-            {/* Display full Business List by city or a Filtered list by Services and Features   */}
-            <div className='BusinessList-CardContainer'>
+            </section>
+            <section className='BusinessList-CardContainer'>
+              {/* If the list of Businesses is not empty, display filtered results, further filtered by user selected Services and Features*/}
               {filteredResults && filteredResults.length > 0 ? (
                 filteredResults?.map((business: any) => (
-                  <Card className=' BusinessList-Card' key={`${business._id}_` + business.name} onClick={() => history.push(`/businesses/${business._id}`)}>
-                    <CardDetails businessName={business.businessName} description={business.description} image={business.image} address={business.address} stars={business.stars} />
-                  </Card>
+                  <div key={`${business._id}_` + business.name} className='BusinessList-Card'>
+                    <Card>
+                      <Link
+                        to={{
+                          pathname: `/businesses/${business._id}`,
+                        }}>
+                        <CardDetails businessName={business.businessName} description={business.description} image={business.image} address={business.address} />
+                      </Link>
+                      <StarList stars={business.stars} reviews={business.reviews} />
+                    </Card>
+                  </div>
                 ))
               ) : (
                 <>
-                  <h1>No businesses were found with the chosen services and or features.</h1>
+                  <h2 className='BusinessList-Header_errorMessage_noResults'>No businesses were found with the chosen services and or features.</h2>
                   <br />
-                  <h1>Please change your selection and filter again.</h1>
+                  <h2 className='BusinessList-Header_errorMessage_noResults'>Please change your selection and filter again.</h2>
                 </>
               )}
-            </div>
-          </div>
-        </div>
-      </section>
-    )
-  }
+            </section>
+          </>
+        )}
+      </main>
+    </div>
+  )
 }

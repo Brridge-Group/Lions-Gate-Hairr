@@ -78,7 +78,7 @@ h4 {
   font-weight: 300;
 }
 h5 {
-  font-size: 1.4rem;
+  font-size: 1.5rem;
   line-height: 19px;
   font-weight: 300;
   margin: 20px 0 15px 0;
@@ -86,9 +86,11 @@ h5 {
 p {
   line-height: 1.9rem;
   font-weight: 400;
+  text-transform: capitalize;
 }
-
-.btn--btn-primary {
+/* TODO: [ ] -> Rename */
+/* .Btn-Primary */
+.Btn-Primary {
   width: 116px;
   height: 42px;
   background: black;
@@ -102,12 +104,62 @@ p {
   margin: 0 15px;
   cursor: pointer;
 }
-.btn--btn-primary.twoLines {
+/* TODO: [ ] -> Rename */
+/* .Btn-Primary */
+.Btn-Primary.twoLines {
   padding-top: 5px;
   line-height: 1;
 }
 a {
   text-decoration: none;
+  color: black;
+}
+
+.star {
+  font-size: 2rem;
+}
+.star_small {
+  font-size: 1.6rem;
+}
+.star.btn-review.on {
+  color: #000;
+}
+.star.btn-review.off {
+  color: rgba(0, 0, 0, 0.2);
+}
+input[type='checkbox'] {
+  background-color: none !important;
+}
+input[type='checkbox'] {
+  position: relative;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+input[type='checkbox']:checked:before {
+  content: '';
+  display: block;
+  position: absolute;
+  width: 13px;
+  height: 13px;
+  top: 0;
+  left: 0;
+  background-color: #f32dc8;
+  border-radius: 2px;
+}
+input[type='checkbox']:checked:after {
+  content: '';
+  display: block;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+  position: absolute;
+  top: 0px;
+  left: 4px;
 }
 
 /* ///////media queries ////////// */

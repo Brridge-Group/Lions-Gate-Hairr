@@ -1,0 +1,42 @@
+.card {
+  position: relative;
+  margin: 0;
+  overflow: hidden;
+}
+div.card:nth-child(1) {
+  margin-top: 0;
+}
+.Star-container,
+.Star-container_small {
+  width: 35%;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+}
+.Star-container_small {
+  width: 50%;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+.Review-container {
+  display: flex;
+  flex-direction: column;
+}
+.Btn-Primary.review {
+  width: 95px;
+  padding-top: 5px;
+  line-height: 1;
+  font-family: 'Roboto', sans-serif;
+}
+
+/* ///////media queries ////////// */
+
+@media screen and (max-width: 575px) {
+  .Star-container {
+    width: 45%;
+  }
+  .Star-container_small {
+    width: 55%;
+  }
+}

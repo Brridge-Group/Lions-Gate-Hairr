@@ -114,17 +114,14 @@ export const MyBusinessList = () => {
               </>
             )}
           </div>
+          <div className='Profile_links'>
+            <Link to={'/add-business'}>
+              <h6 className='btn--btn-primary twoLines'>
+                add a<br /> business
+              </h6>
+            </Link>
+          </div>
         </div>
-      </div>
-      <div className='Profile_links'>
-        <Link to={`/users/${user._id}`}>
-          <h6 className='Btn-Primary'>update profile</h6>
-        </Link>
-        <Link to={'/add-business'}>
-          <h6 className='Btn-Primary twoLines'>
-            add a<br /> business
-          </h6>
-        </Link>
       </div>
     </div>
   )

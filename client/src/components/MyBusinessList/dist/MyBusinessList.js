@@ -154,13 +154,11 @@ exports.MyBusinessList = function () {
                                         ? 'menu-business'
                                         : 'menu-business open' },
                                     React.createElement(MyBusinessReviews_1.MyBusinessReviews, { reviews: business.reviews })))); }),
-                            ' '))))))),
-        React.createElement("div", { className: 'Profile_links' },
-            React.createElement(react_router_dom_1.Link, { to: "/users/" + user._id },
-                React.createElement("h6", { className: 'btn--btn-primary' }, "update profile")),
-            React.createElement(react_router_dom_1.Link, { to: '/add-business' },
-                React.createElement("h6", { className: 'btn--btn-primary twoLines' },
-                    "add a",
-                    React.createElement("br", null),
-                    " business")))));
+                            ' '))))),
+                React.createElement("div", { className: 'Profile_links' },
+                    React.createElement(react_router_dom_1.Link, { to: '/add-business' },
+                        React.createElement("h6", { className: 'btn--btn-primary twoLines' },
+                            "add a",
+                            React.createElement("br", null),
+                            " business")))))));
 };

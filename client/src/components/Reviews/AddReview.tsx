@@ -83,8 +83,7 @@ export const AddReview = () => {
       <div className='FeatureContainer'>
         <div className='AddReview-container'>
           <h2>
-            Review your experience with{' '}
-            <span className='AddReview-name'>{busName}</span>
+            Review your experience with <span className='AddReview-name'>{busName}</span>
           </h2>
           <form className='form' onSubmit={submitReview}>
             <div className='form-group star-rating'>
@@ -94,11 +93,7 @@ export const AddReview = () => {
                   <button
                     type='button'
                     key={index}
-                    className={
-                      index <= (hover || rating)
-                        ? 'btn-review on'
-                        : 'btn-review off'
-                    }
+                    className={index <= (hover || rating) ? 'btn-review on' : 'btn-review off'}
                     onClick={() => setRating(index)}
                     onMouseEnter={() => setHover(index)}
                     onMouseLeave={() => setHover(rating)}>
@@ -109,17 +104,9 @@ export const AddReview = () => {
             </div>
             <div className='form-group'>
               <label htmlFor='comment'></label>
-              <textarea
-                name='comment'
-                className='form-control text-area'
-                onChange={handleChange}
-                value={comment}
-              />
+              <textarea name='comment' className='form-control text-area' onChange={handleChange} value={comment} />
             </div>
-            <button
-              onChange={handleChange}
-              type='submit'
-              className='btn--btn-primary add-review'>
+            <button onChange={handleChange} type='submit' className='Btn-Primary add-review'>
               Submit
             </button>
           </form>

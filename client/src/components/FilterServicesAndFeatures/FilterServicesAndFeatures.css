@@ -1,28 +1,43 @@
-.Filters {
-  height: 90%;
+.Filters-Container {
   display: flex;
   flex-direction: column;
+  height: 90%;
 }
-.Filters-FormGroup.features,
-.Filters-FormGroup.services {
-  min-height: fit-content;
+.Filters-Label_header {
+  text-align: center;
+  margin: 0;
+  font-weight: 500;
+  font-size: 1.6rem;
+  text-transform: capitalize;
+}
+.Filters-FormGroup_features,
+.Filters-FormGroup_services {
   height: 50%;
+  min-height: fit-content;
   overflow-y: scroll;
   margin-bottom: 2rem;
 }
-.btn--btn-primary.filter {
-  padding-top: 0;
-  margin-top: 1rem;
-  width: 45%;
-  margin: 0;
+.Filters-FormCheck {
+  display: flex;
+  align-items: flex-start;
+  margin: 1rem 0 0.5008rem 0;
 }
-.Filters-buttons {
-  position: absolute;
-  bottom: 2rem;
+h5.Filters-FormCheckLabel_header {
+  margin: 0 !important;
+  text-transform: capitalize;
+}
+.Filters-Buttons {
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
-  align-self: flex-end;
   width: 80%;
+  align-items: flex-start;
+  position: absolute;
+  bottom: 2rem;
   font-weight: 100;
+}
+.Btn-Primary.Filter-Button,
+.Btn-Primary.Reset-Button {
+  width: 45%;
+  margin: 0;
+  padding-top: 0;
 }

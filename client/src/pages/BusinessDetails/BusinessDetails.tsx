@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
-import { About } from './About/About'
-import { Book } from './Book'
-import { Review } from '../Reviews/Review'
+import { CardDetails } from '../../components/Card/CardDetails/CardDetails'
+import { Book } from '../../components/Book'
+import { Review } from '../../components/Reviews/Review'
 import './BusinessDetails.css'
-import { BusinessReviews } from '../BusinessReviews/BusinessReviews'
-import { LoadSpinner } from '../LoadSpinner/LoadSpinner'
+import { BusinessReviews } from '../../components/BusinessReviews/BusinessReviews'
+import { LoadSpinner } from '../../components/LoadSpinner/LoadSpinner'
 
 interface BusinessReviews {
   reviews: Array<[]>
@@ -31,6 +31,7 @@ interface Business {
   image: string
   address: {
     address1: string
+    address2: string
     city: string
     region: string
     postalCode: string
@@ -49,7 +50,7 @@ export const BusinessDetails = () => {
 
   const { id } = useParams<RouteParams>()
 
-  // FETCHES BUSINESS DATA FROM REMOTE DATABSE ONCE AND SETS BUSINESSDATA STATE TO IT.
+  // FETCHES BUSINESS DATA FROM REMOTE DATABASE ONCE AND SETS `BUSINESSDATA` STATE TO IT.
   useEffect(() => {
     const getBusinessData = async () => {
       const res = await fetch(`/api/businesses/get-business-by-id/${id}`)
@@ -62,10 +63,7 @@ export const BusinessDetails = () => {
   useEffect(() => {
     let number = 0
     const mapRatings = () => {
-      business?.reviews.map(
-        (r: any, idx: any) =>
-          (number = number + r.rating / business?.reviews.length)
-      )
+      business?.reviews.map((r: any, idx: any) => (number = number + r.rating / business?.reviews.length))
       setTotalStars(Math.round(number))
     }
     mapRatings()
@@ -89,7 +87,7 @@ export const BusinessDetails = () => {
   }, [business])
 
   // if (p1.address && typeof p1.address.country === 'string')
-  // CHECKS IF THE BUSINESSDATA STATE HAS VALUE. RENDERS THE BUSINESS PAGE IF IT DOES AND SETS A LOADING SCREEN IF IT DOESN'T.
+  // CHECKS IF THE `BUSINESSDATA` STATE HAS VALUE. RENDERS THE BUSINESS PAGE IF IT DOES AND SETS A LOADING SCREEN IF IT DOESN'T.
   // THE FIRST RENDER WON'T HAVE DATA, SINCE USEEFFECT, WHICH GIVES THE STATE IT'S VALUE, RUNS AFTER THE FIRST RENDER.
 
   // console.log('totalStars', totalStars)
@@ -121,19 +119,9 @@ export const BusinessDetails = () => {
               </ul>
             </div>
             <div className='BusinessDetails-rightColumn'>
-              <About
-                name={business.businessName}
-                description={business.description}
-                image={business.image}
-                address={business.address}
-              />
+              <CardDetails businessName={business.businessName} description={business.description} image={business.image} address={business.address} />
               <div className='BusinessDetails-buttons'>
-                <Review
-                  id={id}
-                  stars={totalStars}
-                  ownerId={business.ownerId}
-                  name={business.businessName}
-                />
+                <Review id={id} stars={totalStars} ownerId={business.ownerId} name={business.businessName} />
                 <Book phone={business.phone} />
               </div>
               <div className='BusinessDetails_reviews'>

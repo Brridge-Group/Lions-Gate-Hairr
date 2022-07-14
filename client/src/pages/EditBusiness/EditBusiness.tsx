@@ -216,77 +216,34 @@ export const EditBusiness = () => {
         <form onSubmit={handleSubmit} className='AddBusiness_inputGroup'>
           <div className='AddBusiness_scroll'>
             <div className='AddBusiness-FormCard_body'>
-              <BusinessImage
-                pic={image}
-                name={'profile-picture'}
-                handleChange={onImageChange}
-              />
+              <BusinessImage pic={image} name={'profile-picture'} handleChange={onImageChange} />
               <h5>
                 <label htmlFor='businessName'>Business Name</label>
               </h5>
-              <input
-                name='businessName'
-                type='text'
-                value={formData.businessName}
-                className='UserRegistration_input'
-                onChange={onFormFirstChange}
-                required
-              />
+              <input name='businessName' type='text' value={formData.businessName} className='UserRegistration_input' onChange={onFormFirstChange} required />
               <h5>
                 <label htmlFor='description'>Description</label>
               </h5>
-              <textarea
-                name='description'
-                value={formData.description}
-                className='UserRegistration_input'
-                onChange={onFormFirstChange}
-                required
-              />
+              <textarea name='description' value={formData.description} className='UserRegistration_input' onChange={onFormFirstChange} required />
               <h5>
                 <label htmlFor='email'>Email</label>
               </h5>
-              <input
-                name='email'
-                type='email'
-                value={formData.email}
-                className='UserRegistration_input'
-                onChange={onFormChange}
-                required
-              />
+              <input name='email' type='email' value={formData.email} className='UserRegistration_input' onChange={onFormChange} required />
               <h5>
                 <label htmlFor='address1'>Address Line 1</label>
               </h5>
-              <input
-                name='address1'
-                type='text'
-                value={formData.address.address1}
-                className='UserRegistration_input color'
-                onChange={onFormChange('address')}
-                required
-              />
+              <input name='address1' type='text' value={formData.address.address1} className='UserRegistration_input color' onChange={onFormChange('address')} required />
 
               <div className='AddBusiness-FormCard_body_columns'>
                 <div className='AddBusiness-FormCard_body_left'>
                   <h5>
                     <label htmlFor='city'>City / Town</label>
                   </h5>
-                  <input
-                    name='city'
-                    type='text'
-                    value={formData.address.city}
-                    className='UserRegistration_input color'
-                    onChange={onFormChange('address')}
-                    required
-                  />
+                  <input name='city' type='text' value={formData.address.city} className='UserRegistration_input color' onChange={onFormChange('address')} required />
                   <h5>
                     <label htmlFor='region'>Province / State</label>
                   </h5>
-                  <select
-                    className='UserRegistration_input color'
-                    onChange={onFormChange('address')}
-                    name='region'
-                    value={formData.address.region}
-                    id='region'>
+                  <select className='UserRegistration_input color' onChange={onFormChange('address')} name='region' value={formData.address.region} id='region'>
                     {regions.map(region => (
                       <option value={region.value}>{region.label}</option>
                     ))}
@@ -294,50 +251,25 @@ export const EditBusiness = () => {
                   <h5>
                     <label htmlFor='phone'>Phone Number</label>
                   </h5>
-                  <input
-                    name='phone'
-                    type='text'
-                    value={formData.phone}
-                    className='UserRegistration_input color'
-                    onChange={onFormFirstChange}
-                    required
-                  />
+                  <input name='phone' type='text' value={formData.phone} className='UserRegistration_input color' onChange={onFormFirstChange} required />
                 </div>
                 <div className='AddBusiness-FormCard_body_right'>
                   <h5>
                     <label htmlFor='address2'>Address Line 2</label>
                   </h5>
 
-                  <input
-                    name='address2'
-                    type='text'
-                    value={formData.address.address2}
-                    className='UserRegistration_input color'
-                    onChange={onFormChange('address')}
-                  />
+                  <input name='address2' type='text' value={formData.address.address2} className='UserRegistration_input color' onChange={onFormChange('address')} />
 
                   <h5>
                     <label htmlFor=''>Postal Code</label>
                   </h5>
 
-                  <input
-                    name='postalCode'
-                    type='text'
-                    value={formData.address.postalCode}
-                    className='UserRegistration_input color'
-                    onChange={onFormChange('address')}
-                    required
-                  />
+                  <input name='postalCode' type='text' value={formData.address.postalCode} className='UserRegistration_input color' onChange={onFormChange('address')} required />
 
                   <h5>
                     <label htmlFor='country'>Country:</label>
                   </h5>
-                  <select
-                    className='UserRegistration_input color'
-                    onChange={onFormChange('address')}
-                    name='country'
-                    value={formData.address.country}
-                    id='country'>
+                  <select className='UserRegistration_input color' onChange={onFormChange('address')} name='country' value={formData.address.country} id='country'>
                     <option value='Canada'> Canada </option>
                     <option value='United States'> United States</option>
                   </select>
@@ -361,13 +293,7 @@ export const EditBusiness = () => {
                         marginBottom: '5px',
                         alignItems: 'flex-start',
                       }}>
-                      <input
-                        type='checkbox'
-                        name={`feature-${feature[0]}`}
-                        id={feature[1]}
-                        defaultChecked={feature[2]}
-                        onChange={() => onFeatCheck(feature[1])}
-                      />
+                      <input type='checkbox' name={`feature-${feature[0]}`} id={feature[1]} defaultChecked={feature[2]} onChange={() => onFeatCheck(feature[1])} />
                       <label htmlFor={feature[1]}>{feature[0]}</label>
                     </h5>
                   </div>
@@ -386,13 +312,7 @@ export const EditBusiness = () => {
                         marginBottom: '5px',
                         alignItems: 'flex-start',
                       }}>
-                      <input
-                        type='checkbox'
-                        name={`service-${service[0]}`}
-                        id={service[1]}
-                        defaultChecked={service[2]}
-                        onChange={() => onServicesCheck(service[1])}
-                      />
+                      <input type='checkbox' name={`service-${service[0]}`} id={service[1]} defaultChecked={service[2]} onChange={() => onServicesCheck(service[1])} />
                       <label htmlFor={service[1]}>{service[0]}</label>
                     </h5>
                   </div>
@@ -400,10 +320,7 @@ export const EditBusiness = () => {
               </div>
             </div>
 
-            <button
-              type='submit'
-              className='btn--btn-primary'
-              style={{ paddingTop: '0px' }}>
+            <button type='submit' className='Btn-Primary' style={{ paddingTop: '0px' }}>
               submit
             </button>
           </div>

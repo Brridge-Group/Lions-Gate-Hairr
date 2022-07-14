@@ -34,13 +34,11 @@ export const Review = (props: Props) => {
         <div className='Star-container'>{stars}</div>
         {isLoggedIn ? (
           user._id !== props.ownerId ? (
-            <Link
-              to={{ pathname: props.id + '/add-review', state: props.name }}
-              className='btn--btn-primary review'>
+            <Link to={{ pathname: props.id + '/add-review', state: props.name }} className='Btn-Primary review'>
               Leave a Review
             </Link>
           ) : (
-            <Link to={'#'} className='btn--btn-primary review hide'></Link>
+            <Link to={'#'} className='Btn-Primary review hide'></Link>
           )
         ) : null}
       </div>

@@ -3,22 +3,9 @@
   margin: 0;
   overflow: hidden;
 }
-
-.BusinessCard {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.5);
-  margin-top: 3rem;
-}
-.BusinessCard:first-child {
-  margin-top: 0;
-}
-
-.BusinessCard:last-child {
-  border-bottom: none;
-}
 div.card:nth-child(1) {
   margin-top: 0;
 }
-
 .Star-container,
 .Star-container_small {
   width: 35%;
@@ -32,19 +19,15 @@ div.card:nth-child(1) {
   margin-top: 0.5rem;
   margin-bottom: 0.5rem;
 }
-
 .Review-container {
   display: flex;
   flex-direction: column;
 }
-.btn--btn-primary.review {
+.Btn-Primary.review {
   width: 95px;
   padding-top: 5px;
   line-height: 1;
   font-family: 'Roboto', sans-serif;
-}
-.BusinessCard.List {
-  cursor: pointer;
 }
 
 /* ///////media queries ////////// */

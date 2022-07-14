@@ -341,7 +341,7 @@ export const AddBusiness = () => {
               </div>
             </div>
 
-            <button type='submit' className='btn--btn-primary' style={{ paddingTop: '0px' }}>
+            <button type='submit' className='Btn-Primary' style={{ paddingTop: '0px' }}>
               submit
             </button>
           </div>

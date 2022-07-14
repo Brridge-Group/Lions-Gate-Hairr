@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 
-import './Card.css'
+import '../components/Card/Card.css'
 interface Props {
   stars: number
   reviews?: []

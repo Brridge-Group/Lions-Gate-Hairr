@@ -40,7 +40,7 @@ exports.BusinessDetails = void 0;
 var react_1 = require("react");
 var react_router_dom_1 = require("react-router-dom");
 var About_1 = require("./About/About");
-var Book_1 = require("./Book");
+var Book_1 = require("../../../components/dist/Book");
 var Review_1 = require("../Reviews/Review");
 require("./BusinessDetails.css");
 var BusinessReviews_1 = require("../BusinessReviews/BusinessReviews");

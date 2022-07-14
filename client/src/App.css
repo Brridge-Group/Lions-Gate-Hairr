@@ -88,8 +88,9 @@ p {
   font-weight: 400;
   text-transform: capitalize;
 }
-
-.btn--btn-primary {
+/* TODO: [ ] -> Rename */
+/* .Btn-Primary */
+.Btn-Primary {
   width: 116px;
   height: 42px;
   background: black;
@@ -103,7 +104,9 @@ p {
   margin: 0 15px;
   cursor: pointer;
 }
-.btn--btn-primary.twoLines {
+/* TODO: [ ] -> Rename */
+/* .Btn-Primary */
+.Btn-Primary.twoLines {
   padding-top: 5px;
   line-height: 1;
 }

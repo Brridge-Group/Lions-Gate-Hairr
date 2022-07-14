@@ -59,7 +59,7 @@ h5.features:last-child {
   display: flex;
   flex-direction: column;
 }
-.btn--btn-primary.review.book,
+.Btn-Primary.review.book,
 .phoneNumber {
   align-self: center;
   margin-left: 50px;
@@ -94,7 +94,7 @@ h5.features:last-child {
     grid-column: 7/15;
   }
 
-  .btn--btn-primary.review.book,
+  .Btn-Primary.review.book,
   .phoneNumber {
     align-self: end;
   }
@@ -125,7 +125,7 @@ h5.features:last-child {
     flex: 1 1 auto;
     overflow-y: scroll;
   }
-  .btn--btn-primary.review.book,
+  .Btn-Primary.review.book,
   .phoneNumber {
     align-self: flex-end;
   }

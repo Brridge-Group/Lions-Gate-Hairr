@@ -1,18 +1,18 @@
-// React Components
+//* React Components
 import { useState, useEffect } from 'react'
 import { useParams, Link } from 'react-router-dom'
 
-// Custom Imports
-import { About } from '../../components/BusinessDetails/About/About'
+//* Custom Imports
+import { CardDetails } from '../../components/Card/CardDetails/CardDetails'
 import { StarList } from '../../UIElements/Star'
-import { Card } from '../../UIElements/Card'
+import { Card } from '../../components/Card/Card'
 import { FilterServicesAndFeatures } from '../../components/FilterServicesAndFeatures/FilterServicesAndFeatures'
 import { LoadSpinner } from '../../components/LoadSpinner/LoadSpinner'
 
-// Custom Styles
+//* Custom Styles
 import './BusinessList.css'
 
-// Types
+//* Types
 interface RouteParams {
   city: string
 }
@@ -67,7 +67,7 @@ export const BusinessList = () => {
   const [featuresArr, setFeaturesArr]: any = useState([])
   const [servicesArr, setServicesArr]: any = useState([])
 
-  // //* Initialize state objects for form checkboxes
+  //* Initialize state objects for form checkboxes
   // // TODO: [ ] => Connect with `handleResetFilter` to reset checkboxes to false
   // const [isChecked, setIsChecked]: any = useState(false)
   // const [isFeatsChecked, setIsFeatsChecked]: any = useState([])
@@ -166,10 +166,12 @@ export const BusinessList = () => {
   const handleFilteredResults = (): [] => {
     let tempFilteredResults: any[] = []
     let tempSelectedFeatsServices: any[] = []
+
     //* Push user selected Features to a single temp array, if the filtered array/object is not empty
-    if (Object.keys(filteredFeats).length > 0) {
+    let deepCopyFilterFeats = JSON.parse(JSON.stringify(filteredFeats))
+    if (Object.keys(deepCopyFilterFeats).length > 0) {
       //* Filter out elements that are only true and push those true objects to tempSelectedFeatsServices
-      Object.entries(filteredFeats).filter(featureElement => {
+      Object.entries(deepCopyFilterFeats).filter(featureElement => {
         if (featureElement[1] === true) {
           tempSelectedFeatsServices.push(featureElement)
           return true
@@ -177,9 +179,10 @@ export const BusinessList = () => {
       })
     }
     //* Push user selected Services to a single temp array, if the filtered array/object is not empty
-    if (Object.keys(filteredServices).length > 0) {
+    let deepCopyFilterServices = JSON.parse(JSON.stringify(filteredServices))
+    if (Object.keys(deepCopyFilterServices).length > 0) {
       //* Filter out elements that are only true and push those true objects to tempSelectedFeatsServices
-      Object.entries(filteredServices).filter(featureElement => {
+      Object.entries(deepCopyFilterServices).filter(featureElement => {
         if (featureElement[1] === true) {
           tempSelectedFeatsServices.push(featureElement)
           return true
@@ -229,74 +232,61 @@ export const BusinessList = () => {
   }, [list, city])
   // console.log(list, city, 'list, city')
 
-  const handleResetFilter = (): any => {
-    // TODO: [ ] => FIXME: Reset checkboxes to false
-    //? TODO: [ ] => Explore connecting to child component to allow for checkbox resetting to opposite of checked
-    window.location.reload()
-  }
-
   return (
-    <div className='FeatureContainer_image BusinessList'>
-      <div className='FeatureContainer BusinessList'>
+    <div className='BusinessList-Container_image FeatureContainer_image '>
+      <main className='BusinessList-Container FeatureContainer'>
         {isLoading ? (
           <LoadSpinner />
         ) : !list.length || city == 'undefined' ? (
-          <h1 className='BusinessList-none'>No businesses found. Please try another city.</h1>
+          <div className='BusinessList-Header_errorMessage'>
+            <h1>No businesses found. Please try another city.</h1>
+          </div>
         ) : (
           <>
-            <h1 className='BusinessList-Header'>{city} Salons</h1>
-            <div className='BusinessList-Filters leftColumn '>
+            <h1 className='BusinessList-Header'>{city} Businesses</h1>
+            <section className='BusinessList-FiltersContainer'>
               <FilterServicesAndFeatures
+                isLoading={isLoading}
+                list={list}
+                filteredResults={filteredResults}
+                setFilteredResults={setFilteredResults}
                 featuresArr={featuresArr}
+                setFeaturesArr={setFeaturesArr}
                 servicesArr={servicesArr}
+                setServicesArr={setServicesArr}
                 onFeatChange={onFeatChange}
                 onServiceChange={onServiceChange}
-                isLoading={isLoading}
                 // isChecked={isChecked}
-                handleResetFilter={handleResetFilter}
                 handleFilteredResults={handleFilteredResults}
               />
-            </div>
-            <div className='BusinessList-Filters rightColumn'>
-              {/* Display full Business List by city or a Filtered list by Services and Features   */}
+            </section>
+            <section className='BusinessList-CardContainer'>
+              {/* If the list of Businesses is not empty, display filtered results, further filtered by user selected Services and Features*/}
               {filteredResults && filteredResults.length > 0 ? (
                 filteredResults?.map((business: any) => (
-                  <>
-                    <Card className='BusinessCard List' key={business._id}>
+                  <div key={`${business._id}_` + business.name} className='BusinessList-Card'>
+                    <Card>
                       <Link
                         to={{
                           pathname: `/businesses/${business._id}`,
                         }}>
-                        <About
-                          name={business.businessName}
-                          description={business.description}
-                          image={business.image}
-                          address={business.address}
-                        />
+                        <CardDetails businessName={business.businessName} description={business.description} image={business.image} address={business.address} />
                       </Link>
-                      <StarList
-                        stars={business.stars}
-                        reviews={business.reviews}
-                      />
+                      <StarList stars={business.stars} reviews={business.reviews} />
                     </Card>
-                  </>
+                  </div>
                 ))
               ) : (
                 <>
-                  <h2 className='BusinessCard-noResults'>
-                    No businesses were found with the chosen services and or
-                    features.
-                  </h2>
+                  <h2 className='BusinessList-Header_errorMessage_noResults'>No businesses were found with the chosen services and or features.</h2>
                   <br />
-                  <h2 className='BusinessCard-noResults'>
-                    Please change your selection and filter again.
-                  </h2>
+                  <h2 className='BusinessList-Header_errorMessage_noResults'>Please change your selection and filter again.</h2>
                 </>
               )}
-            </div>
+            </section>
           </>
         )}
-      </div>
+      </main>
     </div>
   )
 }

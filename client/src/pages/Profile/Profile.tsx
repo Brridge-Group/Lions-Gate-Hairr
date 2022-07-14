@@ -63,11 +63,7 @@ export const Profile = () => {
               <LoadSpinner />
             ) : (
               <>
-                <img
-                  src={imageProfile || 'https://imgur.com/LDpwLVZ.jpg'}
-                  alt={name + '_profilePicture'}
-                  className='Profile-UserContainer_pic'
-                />
+                <img src={imageProfile || 'https://imgur.com/LDpwLVZ.jpg'} alt={name + '_profilePicture'} className='Profile-UserContainer_pic' />
                 <div className='Profile-UserContainer_reviews'>
                   <h4>your reviews</h4>
                   <ul className='Profile_User_reviews'>
@@ -83,21 +79,16 @@ export const Profile = () => {
                                   state: r.data.review,
                                 }}>
                                 {' '}
-                                <h6 className='btn--btn-primary reviews'>
-                                  edit
-                                </h6>
+                                <h6 className='Btn-Primary reviews'>edit</h6>
                               </Link>
 
-                              <button
-                                className='btn--btn-primary reviews delete'
-                                onClick={() => deleteReview(r.data.review._id)}>
+                              <button className='Btn-Primary reviews delete' onClick={() => deleteReview(r.data.review._id)}>
                                 delete
                               </button>
                             </div>
                           </div>
                           <div className='column-right'>
-                            <Link
-                              to={`/businesses/${r.data.review.business._id}`}>
+                            <Link to={`/businesses/${r.data.review.business._id}`}>
                               <h2>{r.data.review.business.businessName}</h2>
                               <h5>{r.data.review.business.address.city}</h5>
                               <StarSmall stars={r.data.review.rating} />
@@ -113,11 +104,11 @@ export const Profile = () => {
           </div>
           <div className='Profile_links'>
             <Link to={`users/${_id}`}>
-              <h6 className='btn--btn-primary'>update profile</h6>
+              <h6 className='Btn-Primary'>update profile</h6>
             </Link>
             <Link to={'/add-business'}>
               {' '}
-              <h6 className='btn--btn-primary twoLines'>become an owner</h6>
+              <h6 className='Btn-Primary twoLines'>become an owner</h6>
             </Link>
           </div>
         </div>

@@ -1,0 +1,32 @@
+.CardDetails-Container {
+  display: flex;
+}
+.CardDetails-Image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.CardDetails-ImageContainer {
+  width: 35%;
+  margin: 0 7% 0 0;
+}
+.CardDetails-InfoContainer {
+  width: 65%;
+  text-align: left;
+}
+.CardDetails-InfoContainer h3 {
+  margin: 0;
+  margin-bottom: 0.5rem;
+  font-size: 2rem;
+  text-transform: capitalize;
+}
+.CardDetails-InfoContainer h2 {
+  margin-top: -0.5rem;
+  text-transform: capitalize;
+}
+
+.CardDetails-InfoContainer p {
+  margin: 0;
+  text-transform: capitalize;
+  color: rgba(0, 0, 0, 0.8);
+}

@@ -46,7 +46,7 @@
 .form-group {
   margin-bottom: 19px;
 }
-.btn--btn-primary.add-review {
+.Btn-Primary.add-review {
   width: 95px;
   margin-bottom: 19px;
   padding-top: 0px;
@@ -55,7 +55,7 @@
   text-transform: capitalize;
 }
 
-.btn--btn-primary.review.hide {
+.Btn-Primary.review.hide {
   display: none;
   /* visibility: hidden; */
 }

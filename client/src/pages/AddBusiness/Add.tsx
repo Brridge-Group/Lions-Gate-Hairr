@@ -237,86 +237,39 @@ export const AddBusiness = () => {
   }
 
   return (
-    <div className='AddBusiness-Wrapper'>
+    <div className='AddBusiness-Container'>
       <div className='AddBusiness-FormCard'>
         {/* <-- Form Start --> */}
         <form onSubmit={handleSubmit}>
           <div className='AddBusiness-FormCard_body'>
             <div className='AddBusiness-FormCard_body_formGroup AddBusiness-FormCard_preview_container'>
-              <BusinessImage
-                pic={image}
-                name={'profile-picture'}
-                handleChange={onImageChange}
-              />
+              <BusinessImage pic={image} name={'profile-picture'} handleChange={onImageChange} />
             </div>
             <div className='AddBusiness-FormCard_body_formGroup'>
               <label htmlFor='businessName'>Business Name</label>
-              <input
-                name='businessName'
-                type='text'
-                value={formData.businessName}
-                className='AddBusiness-FormControl'
-                placeholder='Enter business name'
-                onChange={onFormChange}
-                required
-              />
+              <input name='businessName' type='text' value={formData.businessName} className='AddBusiness-FormControl' placeholder='Enter business name' onChange={onFormChange} required />
             </div>
             <div className='AddBusiness-FormCard_body_formGroup'>
               <label htmlFor='description'>Description</label>
-              <textarea
-                name='description'
-                value={formData.description}
-                className='AddBusiness-FormControl'
-                placeholder='Enter business description'
-                onChange={onFormChange}
-                required
-              />
+              <textarea name='description' value={formData.description} className='AddBusiness-FormControl' placeholder='Enter business description' onChange={onFormChange} required />
             </div>
             <div className='AddBusiness-FormCard_body_formGroup'>
               <label htmlFor='email'>Email</label>
-              <input
-                name='email'
-                type='email'
-                value={formData.email}
-                className='AddBusiness-FormControl'
-                placeholder='Enter email address'
-                onChange={onFormChange}
-                required
-              />
+              <input name='email' type='email' value={formData.email} className='AddBusiness-FormControl' placeholder='Enter email address' onChange={onFormChange} required />
             </div>
             <div className='AddBusiness-FormCard_body_formGroup'>
               <label htmlFor='address1'>Address Line 1</label>
-              <input
-                name='address1'
-                type='text'
-                value={formData.address1}
-                className='AddBusiness-FormControl'
-                placeholder='Enter street address'
-                onChange={onFormChange}
-                required
-              />
+              <input name='address1' type='text' value={formData.address1} className='AddBusiness-FormControl' placeholder='Enter street address' onChange={onFormChange} required />
             </div>
             <div className='AddBusiness-FormCard_body_columns'>
               <div className='AddBusiness-FormCard_body_left'>
                 <div className='AddBusiness-FormCard_body_formGroup'>
                   <label htmlFor='cityTown'>City / Town</label>
-                  <input
-                    name='cityTown'
-                    type='text'
-                    value={formData.cityTown}
-                    className='AddBusiness-FormControl'
-                    placeholder='Enter city'
-                    onChange={onFormChange}
-                    required
-                  />
+                  <input name='cityTown' type='text' value={formData.cityTown} className='AddBusiness-FormControl' placeholder='Enter city' onChange={onFormChange} required />
                 </div>
                 <div className='AddBusiness-FormCard_body_formGroup'>
                   <label htmlFor='region'>Province / State</label>
-                  <select
-                    className='custom-select rounded-0'
-                    onChange={handleRegion}
-                    name='region'
-                    id='region'>
+                  <select className='custom-select rounded-0' onChange={handleRegion} name='region' id='region'>
                     {regions.map(region => (
                       <option value={region.value}>{region.label}</option>
                     ))}
@@ -324,48 +277,21 @@ export const AddBusiness = () => {
                 </div>
                 <div className='AddBusiness-FormCard_body_formGroup'>
                   <label htmlFor='phone'>Phone Number</label>
-                  <input
-                    name='phone'
-                    type='text'
-                    value={formData.phone}
-                    className='AddBusiness-FormControl'
-                    placeholder='Enter phone number'
-                    onChange={onFormChange}
-                    required
-                  />
+                  <input name='phone' type='text' value={formData.phone} className='AddBusiness-FormControl' placeholder='Enter phone number' onChange={onFormChange} required />
                 </div>
               </div>
               <div className='AddBusiness-FormCard_body_right'>
                 <div className='AddBusiness-FormCard_body_formGroup'>
                   <label htmlFor='address2'>Address Line 2</label>
-                  <input
-                    name='address2'
-                    type='text'
-                    value={formData.address2}
-                    className='AddBusiness-FormControl'
-                    placeholder='Enter street address 2'
-                    onChange={onFormChange}
-                  />
+                  <input name='address2' type='text' value={formData.address2} className='AddBusiness-FormControl' placeholder='Enter street address 2' onChange={onFormChange} />
                 </div>
                 <div className='AddBusiness-FormCard_body_formGroup'>
                   <label htmlFor=''>Postal Code</label>
-                  <input
-                    name='postalCode'
-                    type='text'
-                    value={formData.postalCode}
-                    className='AddBusiness-FormControl'
-                    placeholder='Enter postal code'
-                    onChange={onFormChange}
-                    required
-                  />
+                  <input name='postalCode' type='text' value={formData.postalCode} className='AddBusiness-FormControl' placeholder='Enter postal code' onChange={onFormChange} required />
                 </div>
                 <div className='AddBusiness-FormCard_body_formGroup'>
                   <label htmlFor='country'>Country:</label>
-                  <select
-                    className='custom-select rounded-0'
-                    onChange={handleCountry}
-                    name='country'
-                    id='country'>
+                  <select className='custom-select rounded-0' onChange={handleCountry} name='country' id='country'>
                     <option value='Canada'> Canada </option>
                     <option value='United States'> United States</option>
                   </select>
@@ -375,17 +301,12 @@ export const AddBusiness = () => {
           </div>
           <div className='AddBusiness-FormCard_sidebar'>
             <div className='AddBusiness-FormCard_filtersContainer'>
-              <label
-                className=' AddBusiness-FormCard_filtersContainer_labelHeader'
-                htmlFor='features'>
+              <label className=' AddBusiness-FormCard_filtersContainer_labelHeader' htmlFor='features'>
                 Features
               </label>
               <div className='AddBusiness-FormCard_filtersContainer_formGroup'>
                 {featuresArr?.map((feature, index) => (
-                  <div
-                    className='AddBusiness-FormCard_filtersContainer_formCheck'
-                    style={{ textTransform: 'capitalize' }}
-                    key={`${feature}_` + index}>
+                  <div className='AddBusiness-FormCard_filtersContainer_formCheck' style={{ textTransform: 'capitalize' }} key={`${feature}_` + index}>
                     <input
                       className='AddBusiness-FormCard_filtersContainer_formCheckInput'
                       type='checkbox'
@@ -394,25 +315,18 @@ export const AddBusiness = () => {
                       defaultChecked={feature[2]}
                       onChange={onFormChange}
                     />
-                    <label
-                      className='AddBusiness-FormCard_filtersContainer_formCheckLabel'
-                      htmlFor={feature[1]}>
+                    <label className='AddBusiness-FormCard_filtersContainer_formCheckLabel' htmlFor={feature[1]}>
                       {feature[0]}
                     </label>
                   </div>
                 ))}
               </div>
-              <label
-                className=' AddBusiness-FormCard_filtersContainer_labelHeader  AddBusiness-FormCard_filtersContainer_labelHeader_services'
-                htmlFor='services'>
+              <label className=' AddBusiness-FormCard_filtersContainer_labelHeader  AddBusiness-FormCard_filtersContainer_labelHeader_services' htmlFor='services'>
                 Services
               </label>
               <div className='AddBusiness-FormCard_filtersContainer_formGroup'>
                 {servicesArr?.map((service, index) => (
-                  <div
-                    className='AddBusiness-FormCard_filtersContainer_formCheck'
-                    style={{ textTransform: 'capitalize' }}
-                    key={`${service}_` + index}>
+                  <div className='AddBusiness-FormCard_filtersContainer_formCheck' style={{ textTransform: 'capitalize' }} key={`${service}_` + index}>
                     <input
                       className='AddBusiness-FormCard_filtersContainer_formCheckInput'
                       type='checkbox'
@@ -421,9 +335,7 @@ export const AddBusiness = () => {
                       defaultChecked={service[2]}
                       onChange={onFormChange}
                     />
-                    <label
-                      className='AddBusiness-FormCard_filtersContainer_formCheckLabel'
-                      htmlFor={service[1]}>
+                    <label className='AddBusiness-FormCard_filtersContainer_formCheckLabel' htmlFor={service[1]}>
                       {service[0]}
                     </label>
                   </div>
@@ -431,9 +343,7 @@ export const AddBusiness = () => {
               </div>
             </div>
             <div className='AddBusiness-FormCard_sidebar_footer'>
-              <button
-                type='submit'
-                className='AddBusiness-FormCard_sidebar_btn'>
+              <button type='submit' className='AddBusiness-FormCard_sidebar_btn'>
                 submit
               </button>
             </div>

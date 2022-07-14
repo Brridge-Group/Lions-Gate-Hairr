@@ -7,13 +7,13 @@
   justify-content: space-between;
   margin-bottom: 2rem;
 }
-.btn--btn-primary.twoLines.business {
+.Btn-Primary.twoLines.business {
   width: 95px;
   margin: 0;
   font-family: 'Roboto', sans-serif;
   padding-bottom: 5px;
 }
-.btn--btn-primary.twoLines.business.reviews {
+.Btn-Primary.twoLines.business.reviews {
   height: 42px;
   padding: 0 10px;
   padding-top: 5px;
@@ -50,12 +50,12 @@
     height: 100%;
   }
 
-  .btn--btn-primary.twoLines.business {
+  .Btn-Primary.twoLines.business {
     width: fit-content;
     margin: 0;
     padding: 5px;
   }
-  .btn--btn-primary.twoLines.business.reviews {
+  .Btn-Primary.twoLines.business.reviews {
     font-size: 1.5rem;
     width: 30%;
     padding: 0;

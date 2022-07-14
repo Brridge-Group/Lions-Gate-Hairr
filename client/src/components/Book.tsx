@@ -17,9 +17,7 @@ export const Book = (props: Props) => {
   }
 
   const BookButton: JSX.Element = (
-    <button
-      onClick={phoneNumberButtonClickHandler}
-      className='btn--btn-primary review book'>
+    <button onClick={phoneNumberButtonClickHandler} className='Btn-Primary review book'>
       Book Now
     </button>
   )

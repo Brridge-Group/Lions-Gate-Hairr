@@ -362,9 +362,6 @@ export const AddBusiness = () => {
           <aside className='AsideSidebar'>
             <div className='AsideSidebar-Container'>
               <h4 className='AsideSidebar-Header'>Features</h4>
-              {/* <h4 className='AsideSidebar-Header'>
-                <label htmlFor='features'>Features</label>
-              </h4> */}
               <section className='AsideSidebar-FormGroup_section'>
                 {featuresArr?.map((feature, index) => (
                   <div key={`${feature}_` + index}>
@@ -382,9 +379,6 @@ export const AddBusiness = () => {
                 ))}
               </section>
               <h4 className='AsideSidebar-Header'>Services</h4>
-              {/* <h4 className='AsideSidebar-Header'>
-                <label htmlFor='services'>Services</label>
-              </h4> */}
               <section className='AsideSidebar-FormGroup_section'>
                 {servicesArr?.map((service, index) => (
                   <div key={`${service}_` + index}>

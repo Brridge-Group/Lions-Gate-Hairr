@@ -16,7 +16,6 @@
   margin-right: auto;
   margin-left: auto;
 }
-
 .BusinessDetails-leftColumn {
   border: 0.5px solid black;
   padding: 1.6rem;
@@ -25,14 +24,12 @@
   grid-column: 4/7;
   margin-top: 160px;
 }
-
 ul.BusinessDetails-ul {
   list-style: none;
   margin: 0;
   padding: 0;
   text-transform: capitalize;
 }
-
 h5.features,
 h5.services {
   margin-top: 10px;
@@ -40,7 +37,6 @@ h5.services {
   line-height: 1.5rem;
   align-items: flex-start;
 }
-
 h5.features:last-child {
   margin-bottom: 2rem;
 }
@@ -54,7 +50,6 @@ h5.features:last-child {
   overflow: hidden;
   padding-bottom: 0;
 }
-
 .BusinessDetails-buttons {
   display: flex;
   flex-direction: column;
@@ -84,8 +79,7 @@ h5.features:last-child {
   height: 41%;
 }
 
-/* ///////media queries ////////// */
-
+/** Media Queries **/
 @media screen and (max-width: 990px) {
   .BusinessDetails-leftColumn {
     grid-column: 3/7;
@@ -93,7 +87,6 @@ h5.features:last-child {
   .BusinessDetails-rightColumn {
     grid-column: 7/15;
   }
-
   .Btn-Primary.review.book,
   .phoneNumber {
     align-self: end;
@@ -108,14 +101,12 @@ h5.features:last-child {
     flex-flow: column;
     height: 80vh;
   }
-
   .BusinessDetails-leftColumn {
     width: 60%;
     margin: auto;
     margin-top: 35px;
     flex: 0 1 auto;
   }
-
   .BusinessDetails-rightColumn {
     width: 80%;
     margin: auto;

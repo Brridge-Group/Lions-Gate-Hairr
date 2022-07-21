@@ -1,8 +1,8 @@
-.AddBusiness-Container_image {
+.EditBusiness-Container_image {
   margin-bottom: -10px;
   background-image: url('../../assets/images/hairlavender.jpg');
 }
-.AddBusiness-Form {
+.EditBusiness-Form {
   display: flex;
   flex-direction: row;
   grid-column: 4/12;
@@ -10,36 +10,36 @@
   margin-top: 160px;
   text-align: center;
 }
-.AddBusiness-FormCard {
+.EditBusiness-FormCard {
   display: flex;
   width: 75%;
   overflow-y: auto;
 }
-.AddBusiness-FormCard_body {
+.EditBusiness-FormCard_body {
   width: 100%;
 }
-.AddBusiness-FormCard_body_columns {
+.EditBusiness-FormCard_body_columns {
   display: flex;
 }
-.AddBusiness-FormCard_body_left {
+.EditBusiness-FormCard_body_left {
   width: 45%;
   margin-right: 10%;
 }
-.AddBusiness-FormCard_body_right {
+.EditBusiness-FormCard_body_right {
   width: 45%;
 }
-.AddBusiness-Form button.Btn-Primary{
-  margin-left: 26px;
+.EditBusiness-Form button.Btn-Primary{
+  margin-left: 26px !important;
 }
 
 /** Media Queries **/
 @media screen and (max-width: 575px) {
-  .AddBusiness-Container_image {
+  .EditBusiness-Container_image {
     height: 100%;
     margin-bottom: 0;
     background-image: url('../../assets/images/hairlavender-mobile.jpg');
   }
-  .AddBusiness-Form {
+  .EditBusiness-Form {
     height: 50%;
     grid-column: none;
     flex-wrap: wrap;
@@ -47,7 +47,7 @@
     overflow-y: scroll;
     text-align: center;
   }
-  .AddBusiness-FormCard {
+  .EditBusiness-FormCard {
     width: 100%;
   }
 }

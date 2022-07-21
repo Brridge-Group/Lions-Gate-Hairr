@@ -1,12 +1,18 @@
+//* React Components
 import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
+
+//* Custom Imports
 import { CardDetails } from '../../components/Card/CardDetails/CardDetails'
 import { Book } from '../../components/Book'
 import { Review } from '../../components/Reviews/Review'
-import './BusinessDetails.css'
 import { BusinessReviews } from '../../components/BusinessReviews/BusinessReviews'
 import { LoadSpinner } from '../../components/LoadSpinner/LoadSpinner'
 
+//* Custom Styles
+import './BusinessDetails.css'
+
+//* Types
 interface BusinessReviews {
   reviews: Array<[]>
 }
@@ -92,33 +98,33 @@ export const BusinessDetails = () => {
 
   // console.log('totalStars', totalStars)
   return (
-    <div className=' FeatureContainer_image Home'>
-      <div className='BusinessContainer'>
+    <div className='FeatureContainer_image Home'>
+      <main className='BusinessContainer'>
         {business ? (
           <>
-            <div className='BusinessDetails-leftColumn'>
-              <h4 className='sidebar-hed'>
+            <aside className='BusinessDetails-leftColumn'>
+              <h4 className='AsideSidebar-Header'>
                 <label htmlFor='features'>Features</label>
               </h4>
               <ul className='BusinessDetails-ul'>
                 {business.features.map(feature => (
-                  <h5 className='features'>
-                    <li key={feature._id}>{feature.name}</li>
+                  <h5 className='features' key={feature._id}>
+                    <li>{feature.name}</li>
                   </h5>
                 ))}
               </ul>
-              <h4 className='sidebar-hed'>
+              <h4 className='AsideSidebar-Header'>
                 <label htmlFor='features'>Services</label>
               </h4>
               <ul className='BusinessDetails-ul'>
                 {business.services.map(service => (
-                  <h5 className='services'>
-                    <li key={service._id}>{service.name}</li>
+                  <h5 className='services' key={service._id}>
+                    <li>{service.name}</li>
                   </h5>
                 ))}
               </ul>
-            </div>
-            <div className='BusinessDetails-rightColumn'>
+            </aside>
+            <section className='BusinessDetails-rightColumn'>
               <CardDetails businessName={business.businessName} description={business.description} image={business.image} address={business.address} />
               <div className='BusinessDetails-buttons'>
                 <Review id={id} stars={totalStars} ownerId={business.ownerId} name={business.businessName} />
@@ -128,12 +134,12 @@ export const BusinessDetails = () => {
                 <h4>reviews</h4>
                 <BusinessReviews reviews={business.reviews} />
               </div>
-            </div>
+            </section>
           </>
         ) : (
           <LoadSpinner />
         )}
-      </div>
+      </main>
     </div>
   )
 }

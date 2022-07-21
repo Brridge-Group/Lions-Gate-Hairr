@@ -1,4 +1,4 @@
-//* React Components
+//* React Imports
 import { useState, useEffect } from 'react'
 
 //* Custom Imports
@@ -27,32 +27,39 @@ interface ObjectCheckboxes {
 }
 
 export const FilterServicesAndFeatures = (props: Props) => {
-  const [isLoading, setIsLoading] = useState(true)
+  const [isLoading, setIsLoading] = useState<boolean>(true)
 
   //* Initialize State Objects for Form Checkboxes
-  const [isChecked, setIsChecked]: any = useState(false)
-  //* Initialize Arrays for Selected Business Features and Services
-  const [filteredFeats, setFilteredFeats]: any = useState([])
-  const [filteredServices, setFilteredServices]: any = useState([])
+  const [isChecked, setIsChecked] = useState<boolean>(false)
 
-  //* HandleChanges for the Selected Features and Services Checkboxes
+  //* Initialize State Arrays for Selected Business Features and Services
+  const [filteredFeats, setFilteredFeats]: any[] = useState([])
+  const [filteredServices, setFilteredServices]: any[] = useState([])
+
+  //* HandleChanges for the Selected Feature Checkboxes
   const onFeatChange: React.ChangeEventHandler<HTMLInputElement> = event => {
     const { name, checked, id } = event.target
+
+    const updatedFilteredFeats = filteredFeats.filter(feat => feat._id !== id)
+    setFilteredFeats([...updatedFilteredFeats, { _id: id, isChecked: checked }])
+
     // console.log('id', id, 'checked', checked)
-    setIsChecked(!isChecked)
-    // setFilteredFeats({ ...filteredFeats, [`${name} (${id})`]: checked })
-    setFilteredFeats({ ...filteredFeats, [`${id}`]: checked })
+    // setFilteredFeats({ ...filteredFeats, [`${name} (${id})`]: checked })  // Used for Dev Testing
   }
   // console.log('filteredFeats onChange', filteredFeats)
 
+  //* HandleChanges for the Selected Service Checkboxes
   const onServiceChange: React.ChangeEventHandler<HTMLInputElement> = event => {
     const { name, checked, id } = event.target
+
+    const updatedFilteredServices = filteredServices.filter(service => service._id !== id)
+    setFilteredServices([...updatedFilteredServices, { _id: id, isChecked: checked }])
+
     // console.log('id', id, 'checked', checked)
-    setIsChecked(!isChecked)
-    // setFilteredServices({ ...filteredServices, [`${name} (${id})`]: checked })
-    setFilteredServices({ ...filteredServices, [`${id}`]: checked })
+    // setFilteredServices({ ...filteredServices, [`${name} (${id})`]: checked }) // Used for Dev Testing
   }
   // console.log('filteredServices onChange', filteredServices)
+
   const handleResetFilter = (): any => {
     //* Create an object of checkboxes
     let objectCheckboxes = document.getElementsByClassName('Filters-FormCheckInput')
@@ -98,6 +105,7 @@ export const FilterServicesAndFeatures = (props: Props) => {
       // console.log('filteredServices useEffect changes', filteredServices)
     }
     props.onServiceChange(filteredServices)
+    setIsLoading(false)
   }, [filteredFeats, filteredServices])
 
   return (
@@ -119,7 +127,6 @@ export const FilterServicesAndFeatures = (props: Props) => {
                   name={`feature-${feature[0]}`}
                   value={id}
                   id={feature[1]}
-                  // defaultChecked={feature[2].isChecked}
                   checked={isChecked[index]}
                   onChange={onFeatChange}
                 />
@@ -147,7 +154,6 @@ export const FilterServicesAndFeatures = (props: Props) => {
                   name={`service-${service[0]}`}
                   value={id}
                   id={service[1]}
-                  // defaultChecked={service[2].isChecked}
                   checked={isChecked[index]}
                   onChange={onServiceChange}
                 />

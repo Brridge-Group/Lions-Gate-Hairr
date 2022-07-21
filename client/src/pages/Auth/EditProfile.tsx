@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import UserImage from '../../UIElements/UserImage'
+import { UserImage } from '../../components/ImageFigure/UserImage'
 import { toast } from 'react-toastify'
 import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'

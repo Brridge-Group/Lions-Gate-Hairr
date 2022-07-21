@@ -1,6 +1,4 @@
-/*
-  Use a more-intuitive box-sizing model.
-*/
+/** Use a more-intuitive box-sizing model. **/
 *,
 *::before,
 *::after {
@@ -15,16 +13,14 @@ body {
   overscroll-behavior: none;
   font-size: 1.6rem;
 }
-/* //hide scrollbar// */
+/** Hide Page Scrollbar **/
 * {
   -ms-overflow-style: none;
 }
 ::-webkit-scrollbar {
   display: none;
 }
-/*
-  Avoid text overflows
-*/
+/** Avoid text overflows **/
 p,
 h1,
 h2,
@@ -34,32 +30,6 @@ h5,
 h6 {
   overflow-wrap: break-word;
 }
-.AppContainer {
-  display: flex;
-  position: fixed;
-  height: 100vh;
-  width: 100%;
-  flex-direction: column;
-  font-family: 'Roboto', sans-serif;
-  font-style: normal;
-}
-.FeatureContainer_image {
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: bottom center;
-  width: 100%;
-}
-.FeatureContainer {
-  display: grid;
-  grid-template-columns: repeat(14, 1fr);
-  grid-column-gap: 35px;
-  height: 100vh;
-  width: 100vw;
-  max-width: 1206px;
-  margin-right: auto;
-  margin-left: auto;
-}
-
 h1 {
   font-size: 3.6rem;
   font-weight: 100;
@@ -88,44 +58,9 @@ p {
   font-weight: 400;
   text-transform: capitalize;
 }
-/* TODO: [ ] -> Rename */
-/* .Btn-Primary */
-.Btn-Primary {
-  width: 116px;
-  height: 42px;
-  background: black;
-  border-radius: 10px;
-  border: 1px solid #f32dc8;
-  color: white;
-  text-align: center;
-  font-size: 1.5rem;
-  font-weight: 300;
-  padding-top: 10px;
-  margin: 0 15px;
-  cursor: pointer;
-}
-/* TODO: [ ] -> Rename */
-/* .Btn-Primary */
-.Btn-Primary.twoLines {
-  padding-top: 5px;
-  line-height: 1;
-}
 a {
   text-decoration: none;
   color: black;
-}
-
-.star {
-  font-size: 2rem;
-}
-.star_small {
-  font-size: 1.6rem;
-}
-.star.btn-review.on {
-  color: #000;
-}
-.star.btn-review.off {
-  color: rgba(0, 0, 0, 0.2);
 }
 input[type='checkbox'] {
   background-color: none !important;
@@ -135,7 +70,6 @@ input[type='checkbox'] {
   cursor: pointer;
   margin-right: 10px;
 }
-
 input[type='checkbox']:checked:before {
   content: '';
   display: block;
@@ -161,13 +95,110 @@ input[type='checkbox']:checked:after {
   top: 0px;
   left: 4px;
 }
+.AppContainer {
+  display: flex;
+  position: fixed;
+  height: 100vh;
+  width: 100%;
+  flex-direction: column;
+  font-family: 'Roboto', sans-serif;
+  font-style: normal;
+}
+.FeatureContainer_image {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: bottom center;
+  width: 100%;
+}
+.FeatureContainer {
+  display: grid;
+  grid-template-columns: repeat(14, 1fr);
+  grid-column-gap: 35px;
+  height: 100vh;
+  width: 100vw;
+  max-width: 1206px;
+  margin-right: auto;
+  margin-left: auto;
+}
+.Btn-Primary {
+  width: 116px;
+  height: 42px;
+  background: black;
+  border-radius: 10px;
+  border: 1px solid #f32dc8;
+  color: white;
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 300;
+  padding-top: 10px;
+  margin: 0 15px;
+  cursor: pointer;
+}
+.Btn-Primary.twoLines {
+  padding-top: 5px;
+  line-height: 1;
+}
+.star {
+  font-size: 2rem;
+}
+.star_small {
+  font-size: 1.6rem;
+}
+.star.btn-review.on {
+  color: #000;
+}
+.star.btn-review.off {
+  color: rgba(0, 0, 0, 0.2);
+}
+.AsideSidebar {
+  margin-left: 5%;
+  padding: 1.6rem;
+  border: 0.5px solid black;
+  text-align: left;
+}
+.AsideSidebar-Container {
+  margin-bottom: 15px;
+}
+.AsideSidebar-Header {
+  margin: 0;
+  text-align: center;
+  font-weight: 500;
+  font-size: 1.6rem;
+}
+.AsideSidebar-FormGroup_section {
+  height: 170px;
+  overflow-y: scroll;
+  text-transform: capitalize;
+}
+.FormCard_body input,
+textarea,
+select {
+  height: 3.2rem;
+  width: 100%;
+  background: none;
+  border: 0.5px solid black;
+  margin-top: -4rem;
+  text-align: center;
+  margin-bottom: -0.5rem;
+  font-family: 'Roboto', sans-serif;
+  padding: 0.5rem;
+  font-size: 13.3333px;
+}
+.FormCard_body input,
+textarea,
+select {
+  background: #eee6ed !important;
+}
 
-/* ///////media queries ////////// */
-
+/** Media Queries  **/
 @media screen and (max-width: 575px) {
   .FeatureContainer {
     display: block;
     width: 80%;
+  }
+  .AsideSidebar {
+       margin: auto;
+    margin-top: 3rem;
   }
 }
 @media screen and (max-height: 850px) and (max-width: 450px) {

@@ -1,7 +1,6 @@
 .FeatureContainer_image.Owner {
   background-image: url('../../assets/images/hairgreysm.jpg');
 }
-
 .BusinessCard-buttons {
   display: flex;
   justify-content: space-between;
@@ -24,7 +23,6 @@
   padding-bottom: 2rem;
   max-height: 58vh;
 }
-
 .menu-business {
   position: relative;
   width: 100%;
@@ -41,9 +39,17 @@
 .menu-business.open {
   display: block;
 }
+/* ----- -> LoadSpinner <- ----- */
+.Profile-UserContainer.Owner section.FeatureContainer {
+  gap: 0 !important;
+  width: 0 !important;
+  position: relative;
+  top: 30%;
+  transform: translateY(-30%);
+  left: -25%;
+}
 
-/* ///////media queries ////////// */
-
+/** Media Queries  **/
 @media screen and (max-width: 575px) {
   .FeatureContainer_image.Owner {
     background-image: url('../../assets/images/hairgrey-mobile.jpg');
@@ -65,13 +71,5 @@
     padding-bottom: 0;
   }
 }
-/* ----- -> LoadSpinner <- ----- */
 
-.Profile-UserContainer.Owner section.FeatureContainer {
-  gap: 0 !important;
-  width: 0 !important;
-  position: relative;
-  top: 30%;
-  transform: translateY(-30%);
-  left: -25%;
-}
+

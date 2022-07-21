@@ -20,13 +20,11 @@
   font-weight: 100;
   font-family: 'Roboto', sans-serif;
 }
-
 .Home_input:focus {
   outline: none;
 }
 
-/* ///////media queries ////////// */
-
+/** Media Queries **/
 @media screen and (max-width: 575px) {
   .FeatureContainer_image.Home {
     background-image: url('../../assets/images/hairpink-mobile.jpg');

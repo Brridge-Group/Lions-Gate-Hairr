@@ -23,7 +23,7 @@ export const CardDetails = (business: Business) => {
       </figure>
       <div className='CardDetails-InfoContainer'>
         <h2>{business.businessName}</h2>
-        <h3>{business.description}</h3>
+        <h3>{business?.description}</h3>
         <p>
           {business.address?.address1}
           <br />

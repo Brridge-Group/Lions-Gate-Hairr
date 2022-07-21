@@ -16,7 +16,6 @@ ul.NavbarList {
   list-style-type: none;
   padding: 0;
 }
-
 li.NavbarList_link {
   display: inline-block;
   margin: 0 4rem;
@@ -34,18 +33,16 @@ li.NavbarList_link {
 .NavbarList_link a:focus {
   font-weight: 400;
 }
-
 .show-menu-btn {
   display: none;
 }
-
 #chk {
   position: absolute;
   visibility: hidden;
   z-index: -1111;
 }
-/* ///////drop-down ////////// */
 
+/** Drop-down Menu **/
 .dropdown-menu {
   width: 200px;
   position: absolute;
@@ -57,7 +54,6 @@ ul.dropdown-menu {
   display: flex;
   flex-direction: column;
 }
-
 ul.dropdown-menu > li.NavbarList_link {
   margin: 0;
 }
@@ -72,7 +68,6 @@ ul.dropdown-menu > li.NavbarList_link {
 .dropdown-menu.clicked {
   display: none;
 }
-
 ul.dropdown-menu > li.NavbarList_link a:hover {
   font-weight: 400;
   text-decoration: none;
@@ -83,8 +78,7 @@ ul.dropdown-menu > li.NavbarList_linka:focus {
   font-weight: 400;
 }
 
-/* ///////media queries ////////// */
-
+/** Media Queries **/
 @media screen and (max-width: 575px) {
   .show-menu-btn {
     display: block;
@@ -132,11 +126,9 @@ ul.dropdown-menu > li.NavbarList_linka:focus {
   .menu a:hover {
     padding: 20px;
   }
-
   #chk:checked ~ .menu {
     right: 0;
   }
-
   .NavbarList_link.mobile > .dropdown-menu {
     position: relative;
   }
@@ -151,7 +143,6 @@ ul.dropdown-menu > li.NavbarList_linka:focus {
   li.NavbarList_link a:hover {
     margin: 0 5rem;
   }
-
   .Profile-dropdown {
     padding: 20px;
     padding-left: 30px;

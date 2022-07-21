@@ -30,8 +30,7 @@ div.card:nth-child(1) {
   font-family: 'Roboto', sans-serif;
 }
 
-/* ///////media queries ////////// */
-
+/** Media Queries  **/
 @media screen and (max-width: 575px) {
   .Star-container {
     width: 45%;

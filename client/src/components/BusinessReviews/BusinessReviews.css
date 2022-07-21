@@ -79,8 +79,7 @@ ul.BusinessReviews_scroll h6.BusinessReviews_container-noReviews {
   margin-top: 20px;
   text-align: center;
 }
-/* ///////media queries ////////// */
-
+/** Media Queries  **/
 @media screen and (max-width: 575px) {
   .Business_column-left {
     width: 35%;

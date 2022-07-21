@@ -1,13 +1,13 @@
-//* React Components
+//* React Imports
 import { useState, useEffect } from 'react'
 import { useParams, Link } from 'react-router-dom'
 
 //* Custom Imports
-import { CardDetails } from '../../components/Card/CardDetails/CardDetails'
 import { StarList } from '../../UIElements/Star'
-import { Card } from '../../components/Card/Card'
-import { FilterServicesAndFeatures } from '../../components/FilterServicesAndFeatures/FilterServicesAndFeatures'
 import { LoadSpinner } from '../../components/LoadSpinner/LoadSpinner'
+import { Card } from '../../components/Card/Card'
+import { CardDetails } from '../../components/Card/CardDetails/CardDetails'
+import { FilterServicesAndFeatures } from '../../components/FilterServicesAndFeatures/FilterServicesAndFeatures'
 
 //* Custom Styles
 import './BusinessList.css'
@@ -15,24 +15,6 @@ import './BusinessList.css'
 //* Types
 interface RouteParams {
   city: string
-}
-
-interface Service {
-  _id: string
-  isChecked: boolean
-  name: string
-}
-
-interface Feature {
-  _id: string
-  isChecked: boolean
-  name: string
-}
-
-interface Review {
-  _id: string
-  comment: string
-  rating: number
 }
 
 interface Business {
@@ -55,23 +37,35 @@ interface Business {
   stars: number
 }
 
+interface Service {
+  _id: string
+  isChecked: boolean
+  name: string
+}
+
+interface Feature {
+  _id: string
+  isChecked: boolean
+  name: string
+}
+
+interface Review {
+  _id: string
+  comment: string
+  rating: number
+}
 export const BusinessList = () => {
-  const [list, setList]: any = useState([])
-  const [isLoading, setIsLoading] = useState(true)
+  const [isLoading, setIsLoading] = useState<boolean>(true)
   const { city } = useParams<RouteParams>()
+  const [list, setList]:any[] = useState([])
 
-  //* Initialize Services and Features to state
-  const [feats, setFeats]: any = useState([]) // Features full object
-  const [services, setServices]: any = useState([]) // Services full object
+  //* Initialize Services and Features to State with full database data object
+  const [feats, setFeats] = useState<Business['features'][]>([]) 
+  const [services, setServices] = useState<Business['services'][]>([])
 
-  const [featuresArr, setFeaturesArr]: any = useState([])
-  const [servicesArr, setServicesArr]: any = useState([])
-
-  //* Initialize state objects for form checkboxes
-  // // TODO: [ ] => Connect with `handleResetFilter` to reset checkboxes to false
-  // const [isChecked, setIsChecked]: any = useState(false)
-  // const [isFeatsChecked, setIsFeatsChecked]: any = useState([])
-  // const [isServicesChecked, setIsServicesChecked]: any = useState([])
+  //* Initialize Services and Features Arrays to State
+  const [featuresArr, setFeaturesArr]: any[] = useState([])
+  const [servicesArr, setServicesArr]: any[] = useState([])
 
   useEffect(() => {
     const fetchData = async () => {
@@ -96,7 +90,8 @@ export const BusinessList = () => {
     fetchData()
   }, [])
 
-  // console.log('bus list', list)
+  // console.log('Business List', list)
+
   //* Fetch Features and Services from the database
   useEffect(() => {
     const fetchFeaturesData = async () => {
@@ -148,85 +143,56 @@ export const BusinessList = () => {
   // console.log(`servicesArr`, servicesArr)
   // console.log(`featuresArr`, featuresArr)
 
-  //* Filter Business Features and Services
-  const [filteredResults, setFilteredResults]: any = useState([])
+  //* Initialize State Arrays to Filter Business Features and Services
+  const [filteredResults, setFilteredResults]: any[] = useState([])
+  const [filteredFeats, setFilteredFeats]: any[] = useState([])
+  const [filteredServices, setFilteredServices]: any[] = useState([])
+
   // console.log(`filteredResults`, filteredResults)
-  const [filteredFeats, setFilteredFeats]: any = useState([])
-  const [filteredServices, setFilteredServices]: any = useState([])
 
   //* Listen for the features' and services' checkbox changes and capture that data from the `FilterServicesAndFeatures` child component
-  const onFeatChange = (feature: any) => {
+  const onFeatChange = (feature: any[]):void => {
     setFilteredFeats(feature)
   }
 
-  const onServiceChange = (service: any) => {
+  const onServiceChange = (service: any[]):void => {
     setFilteredServices(service)
   }
 
-  const handleFilteredResults = (): [] => {
-    let tempFilteredResults: any[] = []
+  //* Filter Business by *All* User Selected Features and Services
+  const handleFilteredResults = (): void => {
     let tempSelectedFeatsServices: any[] = []
 
-    //* Push user selected Features to a single temp array, if the filtered array/object is not empty
-    let deepCopyFilterFeats = JSON.parse(JSON.stringify(filteredFeats))
-    if (Object.keys(deepCopyFilterFeats).length > 0) {
-      //* Filter out elements that are only true and push those true objects to tempSelectedFeatsServices
-      Object.entries(deepCopyFilterFeats).filter(featureElement => {
-        if (featureElement[1] === true) {
-          tempSelectedFeatsServices.push(featureElement)
-          return true
-        }
-      })
-    }
-    //* Push user selected Services to a single temp array, if the filtered array/object is not empty
-    let deepCopyFilterServices = JSON.parse(JSON.stringify(filteredServices))
-    if (Object.keys(deepCopyFilterServices).length > 0) {
-      //* Filter out elements that are only true and push those true objects to tempSelectedFeatsServices
-      Object.entries(deepCopyFilterServices).filter(featureElement => {
-        if (featureElement[1] === true) {
-          tempSelectedFeatsServices.push(featureElement)
-          return true
-        }
-      })
-    }
-    //* Filter the list of businesses by the selected Features and Services
-    let newList: any[] = [...list].filter(businessObject => {
-      //* Iterate through the selected Features and Services
-      if (tempSelectedFeatsServices.length === 0) {
-        tempFilteredResults.push(businessObject)
-        return true
-      }
-      if (tempSelectedFeatsServices.length > 0) {
-        return tempSelectedFeatsServices.some(filteredElement => {
-          //* Iterate through the Features of each business
-          businessObject.features.filter(bizFeats => {
-            //* If the business has the selected Features, add it to the tempFilteredResults array
-            if (Object.values(bizFeats).includes(filteredElement[0])) {
-              tempFilteredResults.push(businessObject)
-              return true
-            }
-          })
-          //* Iterate through the Services of each business
-          businessObject.services.filter(bizServices => {
-            //* If the business has the selected Services, add it to the tempFilteredResults array
-            if (Object.values(bizServices).includes(filteredElement[0])) {
-              tempFilteredResults.push(businessObject)
-              return true
-            }
-          })
+    //* Filter out elements that are only selected as true/checked and push those true objects to tempSelectedFeatsServices
+    tempSelectedFeatsServices = [...filteredFeats, ...filteredServices].filter(tempFeatOrService => tempFeatOrService.isChecked)
+
+    if (tempSelectedFeatsServices.length > 0) {
+      //* Filter out Businesses that do not have the selected Features and Services
+      const filteredBusinesses: any[] = list.filter(businessObject => {
+        //* Return an array of business Iterate through the Features and Services of each business
+        const businessFeatAndService = [...businessObject.features, ...businessObject.services].map(businessFeatOrService => businessFeatOrService._id)
+
+        //* Iterate through, `tempSelectedFeatsServices`, the Features && Services of each business
+        return tempSelectedFeatsServices.every(tempFeatOrService => {
+          //* If the business' Features && Service has the selected filter Features && Service `_id`, return true
+          return businessFeatAndService.includes(tempFeatOrService._id)
         })
-      }
-    })
-    //* Remove Any Duplicates
-    let uniqueTempFilteredResults: any = Array.from(new Set(tempFilteredResults))
-    setFilteredResults(uniqueTempFilteredResults)
-    return filteredResults
+      })
+      // console.log(`🔇 -> filteredBusinesses`, filteredBusinesses)
+      setFilteredResults(filteredBusinesses)
+    }
+    if (tempSelectedFeatsServices.length === 0) {
+      setFilteredResults(() => {
+        let newFilteredResults: any[] = [...list]
+        return newFilteredResults
+      })
+    }
   }
 
-  //* Set `filteredResults` Businesses List
   useEffect(() => {
+    //* Set `filteredResults` Business List
     setFilteredResults(() => {
-      let newFilteredResults = [...list]
+      let newFilteredResults: any[] = [...list]
       return newFilteredResults
     })
   }, [list, city])

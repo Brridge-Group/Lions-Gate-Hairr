@@ -1,40 +1,81 @@
-// React Components
+//* React Imports
 import React, { useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom'
-import { toast } from 'react-toastify'
-import BusinessImage from '../../UIElements/BusinessImage'
 
-// Custom Imports
+//* Custom Imports
+import { BusinessImage } from '../../components/ImageFigure/BusinessImage'
 import { regions } from '../../constants/regions'
 
-// 3rd Party Custom Imports
-import axios from 'axios'
+//* Custom Styles
 import './AddBusiness.css'
 import '../Auth/UserRegistration/UserRegistration.css'
 
+//* 3rd Party Custom Imports
+import axios from 'axios'
+import { toast } from 'react-toastify'
+
+//* Types
 interface AddBusiness {
   onClick: React.MouseEventHandler<HTMLButtonElement>
 }
 
-// Custom Styles
+interface Business {
+  businessName: string
+  description: string
+  email: string
+  image: string
+  phone: string
+  address: {
+    address1: string
+    address2: string
+    city: string
+    country: string
+    region: string
+    postalCode: string
+  }
+  services: Service[]
+  features: Feature[]
+  reviews: Review[]
+  stars: number
+}
+
+interface Service {
+  _id: string
+  isChecked: boolean
+  name: string
+}
+
+interface Feature {
+  _id: string
+  isChecked: boolean
+  name: string
+}
+
+interface Review {
+  _id: string
+  comment: string
+  rating: number
+}
 
 export const AddBusiness = () => {
-  const [isLoading, setIsLoading] = useState(true)
+  const [isLoading, setIsLoading] = useState<boolean>(true)
 
   const [image, setImage] = useState<any | null>(null)
 
-  // Initialize  Services and Features to state
-  const [feats, setFeats]: any = useState([]) // Features full object
-  const [services, setServices]: any = useState([]) // Services full object
-  const [featuresArr, setFeaturesArr]: any = useState([])
-  const [servicesArr, setServicesArr]: any = useState([])
+  //* Initialize Services and Features to State with full database data object
+  const [feats, setFeats] = useState<Business['features'][]>([])
+  const [services, setServices] = useState<Business['services'][]>([])
 
-  // Initialize state objects for form checkboxes
+  //* Initialize Services and Features Arrays to State
+  const [featuresArr, setFeaturesArr]: any[] = useState([])
+  const [servicesArr, setServicesArr]: any[] = useState([])
+
+  //* Initialize state objects for form checkboxes
   const [isChecked, setIsChecked]: any = useState(false)
   const [isFeatsChecked, setIsFeatsChecked]: any = useState([])
   const [isServicesChecked, setIsServicesChecked]: any = useState([])
 
-  // Fetch Services and Features from Database API Endpoint
+  //* Fetch Services and Features from Database API Endpoint
   useEffect(() => {
     const fetchFeaturesData = async () => {
       try {
@@ -56,6 +97,7 @@ export const AddBusiness = () => {
         console.log(err)
         setIsLoading(false)
       }
+      setIsLoading(false)
     }
 
     const fetchServicesData = async () => {
@@ -77,6 +119,7 @@ export const AddBusiness = () => {
         console.log(err)
         setIsLoading(false)
       }
+      setIsLoading(false)
     }
     fetchFeaturesData()
     fetchServicesData()
@@ -127,7 +170,7 @@ export const AddBusiness = () => {
   const onFormChange = (e: any) => {
     const value = e.target.type === 'checkbox' ? e.target.checked : e.target.value
 
-    // Evaluate to determine if checkbox is checked and if is it a service or feature
+    //* Evaluate to determine if checkbox is checked and if is it a service or feature
     if (e.target.type === 'checkbox') {
       setIsChecked({
         ...isChecked,
@@ -152,7 +195,7 @@ export const AddBusiness = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value })
   }
 
-  // Save to the businesses collection database all features and services set to true.
+  //* Save to the businesses collection database all Services and Features set to true.
   let savedFormFeats = Object.entries(isFeatsChecked)
     .map(key => {
       if (key[1] === true) {
@@ -185,8 +228,8 @@ export const AddBusiness = () => {
     setCountry(e.target.value)
   }
 
-  // Initialize business profile form state object
-  const data = {
+  //* Initialize business profile form state object
+  const newBusinessProfileData = {
     businessName: formData.businessName,
     description: formData.description,
     image:
@@ -208,9 +251,9 @@ export const AddBusiness = () => {
   }
 
   const saveNewBusiness = () => {
-    // Add FeaturesArray and ServicesArray to data business form state object
+    //* Add FeaturesArray and ServicesArray to data business form state object
     let newBusiness = {
-      ...data,
+      ...newBusinessProfileData,
       features: savedFormFeats,
       services: savedFormServices,
     }
@@ -225,86 +268,101 @@ export const AddBusiness = () => {
       })
   }
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>)  => {
     e.preventDefault()
     saveNewBusiness()
   }
 
   return (
-    <div className='FeatureContainer_image AddBusiness'>
-      <div className='FeatureContainer'>
-        {/* <-- Form Start --> */}
-
-        <form onSubmit={handleSubmit} className='AddBusiness_inputGroup'>
-          <div className='AddBusiness_scroll'>
-            <div className='AddBusiness-FormCard_body'>
+    <div className='AddBusiness-Container_image FeatureContainer_image'>
+      <main className='AddBusiness-Container FeatureContainer'>
+        <form onSubmit={handleSubmit} className='AddBusiness-Form Form'>
+          <section className='AddBusiness-FormCard'>
+            <div className='AddBusiness-FormCard_body FormCard_body'>
+              {/* Image Placeholder && Preview */}
               <BusinessImage pic={image} name={'profile-picture'} handleChange={onImageChange} />
-              <h5>
-                <label htmlFor='businessName'>Business Name</label>
-              </h5>
-              <input name='businessName' type='text' value={formData.businessName} className='UserRegistration_input' onChange={onFormChange} required />
-              <h5>
-                <label htmlFor='description'>Description</label>
-              </h5>
-              <textarea name='description' value={formData.description} className='UserRegistration_input' onChange={onFormChange} required />
-              <h5>
-                <label htmlFor='email'>Email</label>
-              </h5>
-              <input name='email' type='email' value={formData.email} className='UserRegistration_input' onChange={onFormChange} required />
-              <h5>
-                <label htmlFor='address1'>Address Line 1</label>
-              </h5>
-              <input name='address1' type='text' value={formData.address1} className='UserRegistration_input color' onChange={onFormChange} required />
-
+              {/* <-- Form Starts --> */}
+              <div className='AddBusiness-FormCard_body_formGroup'>
+                <h5>
+                  <label htmlFor='businessName'>Business Name</label>
+                </h5>
+                <input name='businessName' type='text' value={formData.businessName} onChange={onFormChange} required />
+              </div>
+              <div className='AddBusiness-FormCard_body_formGroup'>
+                <h5>
+                  <label htmlFor='description'>Description</label>
+                </h5>
+                <textarea name='description' value={formData.description} onChange={onFormChange} required />
+              </div>
+              <div className='AddBusiness-FormCard_body_formGroup'>
+                <h5>
+                  <label htmlFor='email'>Email</label>
+                </h5>
+                <input name='email' type='email' value={formData.email} onChange={onFormChange} required />
+              </div>
+              <div className='AddBusiness-FormCard_body_formGroup'>
+                <h5>
+                  <label htmlFor='address1'>Address Line 1</label>
+                </h5>
+                <input name='address1' type='text' value={formData.address1} onChange={onFormChange} required />
+              </div>
               <div className='AddBusiness-FormCard_body_columns'>
                 <div className='AddBusiness-FormCard_body_left'>
-                  <h5>
-                    <label htmlFor='cityTown'>City / Town</label>
-                  </h5>
-                  <input name='cityTown' type='text' value={formData.cityTown} className='UserRegistration_input color' onChange={onFormChange} required />
-                  <h5>
-                    <label htmlFor='region'>Province / State</label>
-                  </h5>
-                  <select className='UserRegistration_input color' onChange={handleRegion} name='region' id='region'>
-                    {regions.map(region => (
-                      <option value={region.value}>{region.label}</option>
-                    ))}
-                  </select>
-                  <h5>
-                    <label htmlFor='phone'>Phone Number</label>
-                  </h5>
-                  <input name='phone' type='text' value={formData.phone} className='UserRegistration_input color' onChange={onFormChange} required />
+                  <div className='AddBusiness-FormCard_body_formGroup'>
+                    <h5>
+                      <label htmlFor='address2'>Address Line 2</label>
+                    </h5>
+                    <input name='address2' type='text' value={formData.address2} onChange={onFormChange} />
+                  </div>
+                  <div className='AddBusiness-FormCard_body_formGroup'>
+                    <h5>
+                      <label htmlFor='cityTown'>City / Town</label>
+                    </h5>
+                    <input name='cityTown' type='text' value={formData.cityTown} onChange={onFormChange} required />
+                  </div>
+                  <div className='AddBusiness-FormCard_body_formGroup'>
+                    <h5>
+                      <label htmlFor='region'>Province / State</label>
+                    </h5>
+                    <select onChange={handleRegion} name='region' id='region'>
+                      {regions.map(region => (
+                        <option key={`${region}_${region.value}`} value={region.value}>
+                          {region.label}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
                 </div>
                 <div className='AddBusiness-FormCard_body_right'>
-                  <h5>
-                    <label htmlFor='address2'>Address Line 2</label>
-                  </h5>
-
-                  <input name='address2' type='text' value={formData.address2} className='UserRegistration_input color' onChange={onFormChange} />
-
-                  <h5>
-                    <label htmlFor=''>Postal Code</label>
-                  </h5>
-
-                  <input name='postalCode' type='text' value={formData.postalCode} className='UserRegistration_input color' onChange={onFormChange} required />
-
-                  <h5>
-                    <label htmlFor='country'>Country:</label>
-                  </h5>
-                  <select className='UserRegistration_input color' onChange={handleCountry} name='country' id='country'>
-                    <option value='Canada'> Canada </option>
-                    <option value='United States'> United States</option>
-                  </select>
+                  <div className='AddBusiness-FormCard_body_formGroup'>
+                    <h5>
+                      <label htmlFor='postalCode'>Postal Code</label>
+                    </h5>
+                    <input name='postalCode' type='text' value={formData.postalCode} onChange={onFormChange} required />
+                  </div>
+                  <div className='AddBusiness-FormCard_body_formGroup'>
+                    <h5>
+                      <label htmlFor='phone'>Phone Number</label>
+                    </h5>
+                    <input name='phone' type='text' value={formData.phone} onChange={onFormChange} required />
+                  </div>
+                  <div className='AddBusiness-FormCard_body_formGroup'>
+                    <h5>
+                      <label htmlFor='country'>Country:</label>
+                    </h5>
+                    <select onChange={handleCountry} name='country' id='country'>
+                      <option value='Canada'> Canada </option>
+                      <option value='United States'> United States</option>
+                    </select>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div className='AddBusiness-FormCard_sidebar'>
-            <div className='AddBusiness-FormCard_filtersContainer'>
-              <h4 className='sidebar-hed'>
-                <label htmlFor='features'>Features</label>
-              </h4>
-              <div className='AddBusiness-FormCard_filtersContainer_formGroup'>
+          </section>
+          <aside className='AsideSidebar'>
+            <div className='AsideSidebar-Container'>
+              <h4 className='AsideSidebar-Header'>Features</h4>
+              <section className='AsideSidebar-FormGroup_section'>
                 {featuresArr?.map((feature, index) => (
                   <div key={`${feature}_` + index}>
                     <h5
@@ -319,11 +377,9 @@ export const AddBusiness = () => {
                     </h5>
                   </div>
                 ))}
-              </div>
-              <h4 className='sidebar-hed'>
-                <label htmlFor='features'>Services</label>
-              </h4>
-              <div className='AddBusiness-FormCard_filtersContainer_formGroup'>
+              </section>
+              <h4 className='AsideSidebar-Header'>Services</h4>
+              <section className='AsideSidebar-FormGroup_section'>
                 {servicesArr?.map((service, index) => (
                   <div key={`${service}_` + index}>
                     <h5
@@ -338,16 +394,15 @@ export const AddBusiness = () => {
                     </h5>
                   </div>
                 ))}
-              </div>
+              </section>
             </div>
-
             <button type='submit' className='Btn-Primary' style={{ paddingTop: '0px' }}>
-              submit
+              Submit
             </button>
-          </div>
+          </aside>
         </form>
         {/* <-- Form Ends --> */}
-      </div>
+      </main>
     </div>
   )
 }

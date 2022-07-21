@@ -1,12 +1,7 @@
-// React Components
-import {
-  BrowserRouter as Router,
-  Route,
-  Redirect,
-  Switch,
-} from 'react-router-dom'
+//* React Components
+import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-dom'
 
-// Custom Imports
+//* Custom Imports
 import { Home } from './pages/Home/Home'
 import { UserRegistration } from './pages/Auth/UserRegistration/UserRegistration'
 import Login from './pages/Auth/Login/Login'
@@ -22,7 +17,7 @@ import { Navbar } from './components/Navbar/Navbar'
 import { Profile } from './pages/Profile/Profile'
 import { EditProfile } from './pages/Auth/EditProfile'
 
-// Custom Styles
+//* Custom Styles
 import './App.css'
 
 export const App = () => {

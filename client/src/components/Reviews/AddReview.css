@@ -24,7 +24,6 @@
 .btn-review_small.on {
   color: #000;
 }
-
 .btn-review.off,
 .btn-review_small.off {
   color: rgba(0, 0, 0, 0.2);
@@ -42,7 +41,6 @@
   width: 85%;
   height: 200px;
 }
-
 .form-group {
   margin-bottom: 19px;
 }
@@ -54,13 +52,12 @@
 .AddReview-name {
   text-transform: capitalize;
 }
-
 .Btn-Primary.review.hide {
   display: none;
   /* visibility: hidden; */
 }
-/* ///////media queries ////////// */
 
+/** Media Queries **/
 @media screen and (max-width: 575px) {
   .FeatureContainer_image.Review {
     background-image: url('../../assets/images/hairlavender-mobile.jpg');

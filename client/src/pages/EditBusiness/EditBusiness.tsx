@@ -1,22 +1,24 @@
-// React Components
+//* React Imports
 import React, { useEffect, useState } from 'react'
 import { useHistory, useLocation } from 'react-router-dom'
-import { toast } from 'react-toastify'
-import BusinessImage from '../../UIElements/BusinessImage'
 
-// Custom Imports
+//* Custom Imports
 import { regions } from '../../constants/regions'
+import { BusinessImage } from '../../components/ImageFigure/BusinessImage'
 
-// 3rd Party Custom Imports
-import axios from 'axios'
-import '../AddBusiness/AddBusiness.css'
+//* Custom Styles
+import '../EditBusiness/EditBusiness.css'
 import '../Auth/UserRegistration/UserRegistration.css'
 
+//* 3rd Party Custom Imports
+import axios from 'axios'
+import { toast } from 'react-toastify'
+
+//* Types
 interface EditBusiness {
   onClick: React.MouseEventHandler<HTMLButtonElement>
 }
 
-// Custom Styles
 interface EditBusiness {
   id: string
 }
@@ -45,15 +47,11 @@ export const EditBusiness = () => {
   // console.log(featsSelection, 'featsSelection')
 
   const servicesArrTrue = business.services.map((bus: any) => bus._id)
-  const [servicesSelection, setServicesSelection] = useState([
-    ...servicesArrTrue,
-  ])
+  const [servicesSelection, setServicesSelection] = useState([...servicesArrTrue])
 
   const onServicesCheck = (serviceId: any) => {
     if (servicesSelection.includes(serviceId)) {
-      setServicesSelection(
-        servicesSelection.filter(service => service !== serviceId)
-      )
+      setServicesSelection(servicesSelection.filter(service => service !== serviceId))
     } else {
       setServicesSelection([...servicesSelection, serviceId])
     }
@@ -141,9 +139,7 @@ export const EditBusiness = () => {
 
       if (file.type.match('image.*')) {
         if (file.size > maxFileSize) {
-          toast.error(
-            `The selected image file size, ${file.size}kb, is too large. Please upload an image that is less than 2 mb.`
-          )
+          toast.error(`The selected image file size, ${file.size}kb, is too large. Please upload an image that is less than 2 mb.`)
         } else {
           setImage(URL.createObjectURL(file))
           let base64 = (await new Promise(resolve => {
@@ -211,79 +207,98 @@ export const EditBusiness = () => {
   }
 
   return (
-    <div className='FeatureContainer_image AddBusiness'>
-      <div className='FeatureContainer'>
-        <form onSubmit={handleSubmit} className='AddBusiness_inputGroup'>
-          <div className='AddBusiness_scroll'>
-            <div className='AddBusiness-FormCard_body'>
+    <div className='EditBusiness-Container_image FeatureContainer_image'>
+      <main className='EditBusiness-Container FeatureContainer'>
+        <form onSubmit={handleSubmit} className='EditBusiness-Form Form'>
+          <section className='EditBusiness-FormCard'>
+            <div className='EditBusiness-FormCard_body FormCard_body'>
+              {/* Image Placeholder && Preview */}
               <BusinessImage pic={image} name={'profile-picture'} handleChange={onImageChange} />
-              <h5>
-                <label htmlFor='businessName'>Business Name</label>
-              </h5>
-              <input name='businessName' type='text' value={formData.businessName} className='UserRegistration_input' onChange={onFormFirstChange} required />
-              <h5>
-                <label htmlFor='description'>Description</label>
-              </h5>
-              <textarea name='description' value={formData.description} className='UserRegistration_input' onChange={onFormFirstChange} required />
-              <h5>
-                <label htmlFor='email'>Email</label>
-              </h5>
-              <input name='email' type='email' value={formData.email} className='UserRegistration_input' onChange={onFormChange} required />
-              <h5>
-                <label htmlFor='address1'>Address Line 1</label>
-              </h5>
-              <input name='address1' type='text' value={formData.address.address1} className='UserRegistration_input color' onChange={onFormChange('address')} required />
-
-              <div className='AddBusiness-FormCard_body_columns'>
-                <div className='AddBusiness-FormCard_body_left'>
-                  <h5>
-                    <label htmlFor='city'>City / Town</label>
-                  </h5>
-                  <input name='city' type='text' value={formData.address.city} className='UserRegistration_input color' onChange={onFormChange('address')} required />
-                  <h5>
-                    <label htmlFor='region'>Province / State</label>
-                  </h5>
-                  <select className='UserRegistration_input color' onChange={onFormChange('address')} name='region' value={formData.address.region} id='region'>
-                    {regions.map(region => (
-                      <option value={region.value}>{region.label}</option>
-                    ))}
-                  </select>
-                  <h5>
-                    <label htmlFor='phone'>Phone Number</label>
-                  </h5>
-                  <input name='phone' type='text' value={formData.phone} className='UserRegistration_input color' onChange={onFormFirstChange} required />
+              {/* <-- Form Starts --> */}
+              <div className='EditBusiness-FormCard_body_formGroup'>
+                <h5>
+                  <label htmlFor='businessName'>Business Name</label>
+                </h5>
+                <input name='businessName' type='text' value={formData.businessName} onChange={onFormFirstChange} required />
+              </div>
+              <div className='EditBusiness-FormCard_body_formGroup'>
+                <h5>
+                  <label htmlFor='description'>Description</label>
+                </h5>
+                <textarea name='description' value={formData.description} onChange={onFormFirstChange} required />
+              </div>
+              <div className='EditBusiness-FormCard_body_formGroup'>
+                <h5>
+                  <label htmlFor='email'>Email</label>
+                </h5>
+                <input name='email' type='email' value={formData.email} onChange={onFormChange} required />
+              </div>
+              <div className='EditBusiness-FormCard_body_formGroup'>
+                <h5>
+                  <label htmlFor='address1'>Address Line 1</label>
+                </h5>
+                <input name='address1' type='text' value={formData.address.address1} onChange={onFormChange('address')} required />
+              </div>
+              <div className='EditBusiness-FormCard_body_columns'>
+                <div className='EditBusiness-FormCard_body_left'>
+                  <div className='EditBusiness-FormCard_body_formGroup'>
+                    <h5>
+                      <label htmlFor='address2'>Address Line 2</label>
+                    </h5>
+                    <input name='address2' type='text' value={formData.address.address2} onChange={onFormChange('address')} />
+                  </div>
+                  <div className='EditBusiness-FormCard_body_formGroup'>
+                    <h5>
+                      <label htmlFor='city'>City / Town</label>
+                    </h5>
+                    <input name='city' type='text' value={formData.address.city} onChange={onFormChange('address')} required />
+                  </div>
+                  <div className='EditBusiness-FormCard_body_formGroup'>
+                    <h5>
+                      <label htmlFor='region'>Province / State</label>
+                    </h5>
+                    <select onChange={onFormChange('address')} name='region' value={formData.address.region} id='region'>
+                      {regions.map(region => (
+                        <option key={`${region}_${region.value}`} value={region.value}>
+                          {region.label}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
                 </div>
-                <div className='AddBusiness-FormCard_body_right'>
-                  <h5>
-                    <label htmlFor='address2'>Address Line 2</label>
-                  </h5>
-
-                  <input name='address2' type='text' value={formData.address.address2} className='UserRegistration_input color' onChange={onFormChange('address')} />
-
-                  <h5>
-                    <label htmlFor=''>Postal Code</label>
-                  </h5>
-
-                  <input name='postalCode' type='text' value={formData.address.postalCode} className='UserRegistration_input color' onChange={onFormChange('address')} required />
-
-                  <h5>
-                    <label htmlFor='country'>Country:</label>
-                  </h5>
-                  <select className='UserRegistration_input color' onChange={onFormChange('address')} name='country' value={formData.address.country} id='country'>
-                    <option value='Canada'> Canada </option>
-                    <option value='United States'> United States</option>
-                  </select>
+                <div className='EditBusiness-FormCard_body_right'>
+                  <div className='EditBusiness-FormCard_body_formGroup'>
+                    <h5>
+                      <label htmlFor='postalCode'>Postal Code</label>
+                    </h5>
+                    <input name='postalCode' type='text' value={formData.address.postalCode} onChange={onFormChange('address')} required />
+                  </div>
+                  <div className='EditBusiness-FormCard_body_formGroup'>
+                    <h5>
+                      <label htmlFor='phone'>Phone Number</label>
+                    </h5>
+                    <input name='phone' type='text' value={formData.phone} onChange={onFormFirstChange} required />
+                  </div>
+                  <div className='EditBusiness-FormCard_body_formGroup'>
+                    <h5>
+                      <label htmlFor='country'>Country:</label>
+                    </h5>
+                    <select onChange={onFormChange('address')} name='country' value={formData.address.country} id='country'>
+                      <option value='Canada'> Canada </option>
+                      <option value='United States'> United States</option>
+                    </select>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-
-          <div className='AddBusiness-FormCard_sidebar'>
-            <div className='AddBusiness-FormCard_filtersContainer'>
-              <h4 className='sidebar-hed'>
+          </section>
+          <aside className='AsideSidebar'>
+            <div className='AsideSidebar-Container'>
+              <h4 className='AsideSidebar-Header'>Features</h4>
+              {/* <h4 className='AsideSidebar-Header'>
                 <label htmlFor='features'>Features</label>
-              </h4>
-              <div className='AddBusiness-FormCard_filtersContainer_formGroup'>
+              </h4> */}
+              <section className='AsideSidebar-FormGroup_section'>
                 {featuresArr?.map((feature, index) => (
                   <div key={`${feature}_` + index}>
                     <h5
@@ -298,11 +313,12 @@ export const EditBusiness = () => {
                     </h5>
                   </div>
                 ))}
-              </div>
-              <h4 className='sidebar-hed'>
-                <label htmlFor='features'>Services</label>
-              </h4>
-              <div className='AddBusiness-FormCard_filtersContainer_formGroup'>
+              </section>
+              <h4 className='AsideSidebar-Header'>Services</h4>
+              {/* <h4 className='AsideSidebar-Header'>
+                <label htmlFor='services'>Services</label>
+              </h4> */}
+              <section className='AsideSidebar-FormGroup_section'>
                 {servicesArr?.map((service, index) => (
                   <div key={`${service}_` + index}>
                     <h5
@@ -317,15 +333,15 @@ export const EditBusiness = () => {
                     </h5>
                   </div>
                 ))}
-              </div>
+              </section>
             </div>
-
             <button type='submit' className='Btn-Primary' style={{ paddingTop: '0px' }}>
-              submit
+              Submit
             </button>
-          </div>
+          </aside>
         </form>
-      </div>
+        {/* <-- Form Ends --> */}
+      </main>
     </div>
   )
 }

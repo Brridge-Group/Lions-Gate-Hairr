@@ -1,3 +1,4 @@
+.BusinessImage_image_preview{margin: 0}
 .fileUpload {
   position: relative;
   overflow: hidden;
@@ -20,7 +21,6 @@
   opacity: 0;
   filter: alpha(opacity=0);
 }
-
 .UserImage-pic {
   width: 125px;
   height: 125px;

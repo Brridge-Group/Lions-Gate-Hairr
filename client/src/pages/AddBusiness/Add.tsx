@@ -1,21 +1,22 @@
-// React Components
+//* React Imports
 import React, { useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom'
-import { toast } from 'react-toastify'
-import BusinessImage from '../../UIElements/BusinessImage'
 
-// Custom Imports
+//* Custom Imports
 import { regions } from '../../constants/regions'
+import { BusinessImage } from '../../components/ImageFigure/BusinessImage'
 
-// 3rd Party Custom Imports
-import axios from 'axios'
+//* Custom Styles
 import './AddBusiness.css'
 
+//* 3rd Party Custom Imports
+import axios from 'axios'
+import { toast } from 'react-toastify'
+
+//* Types
 interface AddBusiness {
   onClick: React.MouseEventHandler<HTMLButtonElement>
 }
-
-// Custom Styles
 
 export const AddBusiness = () => {
   const [isLoading, setIsLoading] = useState(true)
@@ -87,8 +88,7 @@ export const AddBusiness = () => {
     email: '',
     address1: '',
     address2: '',
-    image:
-      'https://images.unsplash.com/photo-1560066984-138dadb4c035?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1674&q=80',
+    image: 'https://images.unsplash.com/photo-1560066984-138dadb4c035?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1674&q=80',
     cityTown: '',
     postalCode: '',
     phone: '',
@@ -96,8 +96,7 @@ export const AddBusiness = () => {
   const [region, setRegion] = useState('AB')
   const [country, setCountry] = useState('Canada')
   const history = useHistory()
-  const ownerId = JSON.parse(localStorage.getItem('profile') ?? 'false').result
-    ._id
+  const ownerId = JSON.parse(localStorage.getItem('profile') ?? 'false').result._id
 
   const onImageChange = async (e: any) => {
     e.preventDefault()
@@ -108,9 +107,7 @@ export const AddBusiness = () => {
 
       if (file.type.match('image.*')) {
         if (file.size > maxFileSize) {
-          toast.error(
-            `The selected image file size, ${file.size}kb, is too large. Please upload an image that is less than 2 mb.`
-          )
+          toast.error(`The selected image file size, ${file.size}kb, is too large. Please upload an image that is less than 2 mb.`)
         } else {
           setImage(URL.createObjectURL(file))
           let base64 = (await new Promise(resolve => {
@@ -128,8 +125,7 @@ export const AddBusiness = () => {
     }
   }
   const onFormChange = (e: any) => {
-    const value =
-      e.target.type === 'checkbox' ? e.target.checked : e.target.value
+    const value = e.target.type === 'checkbox' ? e.target.checked : e.target.value
 
     // Evaluate to determine if checkbox is checked and if is it a service or feature
     if (e.target.type === 'checkbox') {

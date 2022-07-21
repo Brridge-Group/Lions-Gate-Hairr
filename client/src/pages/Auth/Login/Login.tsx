@@ -44,33 +44,19 @@ const Login = () => {
             <h5>
               <label>Email</label>
             </h5>
-            <input
-              name='email'
-              onChange={handleChange}
-              type='email'
-              className='Login_input'
-              autoFocus
-            />
+            <input name='email' onChange={handleChange} type='email' className='Login_input' autoFocus />
             <h5>
               <label>Password</label>
             </h5>
-            <input
-              name='password'
-              type='Password'
-              onChange={handleChange}
-              className='Login_input'
-            />
+            <input name='password' type='Password' onChange={handleChange} className='Login_input' />
             <br />
             {errorMsg && <p style={{ color: 'grey' }}> {errorMsg} </p>}
-            <button type='submit' className='Login btn--btn-primary'>
+            <button type='submit' className='Login Btn-Primary'>
               Sign In
             </button>
             <p style={{ fontWeight: 300 }}>
               Don't have an account?{' '}
-              <NavLink
-                to='user-signup'
-                style={{ fontWeight: 500, color: 'black' }}
-              >
+              <NavLink to='user-signup' style={{ fontWeight: 500, color: 'black' }}>
                 Click Here{' '}
               </NavLink>
               to Sign Up

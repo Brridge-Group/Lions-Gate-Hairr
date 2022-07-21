@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import UserImage from '../../UIElements/UserImage'
+import { UserImage } from '../../components/ImageFigure/UserImage'
 import { toast } from 'react-toastify'
 import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
@@ -38,7 +38,9 @@ export const EditProfile = () => {
         // update the user
         const { data } = await api.updateUser(userData, user._id)
         dispatch({ type: UPDATE, data })
-        history.push('/')
+        userData.role === 'user'
+          ? history.push('/')
+          : history.push('/add-business')
       } catch (err: any) {
         errorM = err.response.data
         setErrorMsg(errorM)
@@ -83,91 +85,45 @@ export const EditProfile = () => {
         <div className='FeatureContainer'>
           <div className='UserRegistration_inputGroup'>
             <form className='UserRegistration_form' onSubmit={handleSubmit}>
-              {
-                <UserImage
-                  pic={userData.imageProfile}
-                  name={user.name + '_pictureProfile'}
-                  handleChange={onImageChange}
-                />
-              }
+              {<UserImage pic={userData.imageProfile} name={user.name + '_pictureProfile'} handleChange={onImageChange} />}
               <h5>
                 <label>First Name</label>
               </h5>
-              <input
-                name='firstName'
-                value={userData.firstName}
-                onChange={handleChange}
-                autoFocus
-                className='UserRegistration_input'
-              />
+              <input name='firstName' value={userData.firstName} onChange={handleChange} autoFocus className='UserRegistration_input' />
               <h5>
                 <label>Last Name</label>
               </h5>
-              <input
-                name='lastName'
-                value={userData.lastName}
-                onChange={handleChange}
-                className='UserRegistration_input'
-              />
+              <input name='lastName' value={userData.lastName} onChange={handleChange} className='UserRegistration_input' />
               <h5>
                 <label>Email</label>
               </h5>
-              <input
-                name='email'
-                onChange={handleChange}
-                value={userData.email}
-                className='UserRegistration_input'
-              />
+              <input name='email' onChange={handleChange} value={userData.email} className='UserRegistration_input' />
 
               <div className='UserRegistration_password-wrapper'>
                 <h5>
                   <label>New Password</label>
                 </h5>
-                <input
-                  name='Password'
-                  className='UserRegistration_input'
-                  type={showPassword ? 'text' : 'password'}
-                  onChange={handleChange}
-                />
-                <button
-                  className='UserRegistration_input-button'
-                  onClick={toggleShow}>
+                <input name='Password' className='UserRegistration_input' type={showPassword ? 'text' : 'password'} onChange={handleChange} />
+                <button className='UserRegistration_input-button' onClick={toggleShow}>
                   {showPassword ? <AiFillEye /> : <AiFillEyeInvisible />}
                 </button>
               </div>
               <h5>
                 <label>Confirm Password</label>
               </h5>
-              <input
-                name='confirmPassword'
-                className='UserRegistration_input'
-                type={showPassword ? 'text' : 'password'}
-                onChange={handleChange}
-              />
+              <input name='confirmPassword' className='UserRegistration_input' type={showPassword ? 'text' : 'password'} onChange={handleChange} />
               <div className='UserRegistration_radioButtons'>
                 <h5 className='UserRegistration_radio'>
-                  <input
-                    type='radio'
-                    name='role'
-                    value='user'
-                    checked={userData.role === 'user'}
-                    onChange={handleChange}
-                  />
+                  <input type='radio' name='role' value='user' checked={userData.role === 'user'} onChange={handleChange} />
                   User
                 </h5>
                 <h5 className='UserRegistration_radio'>
-                  <input
-                    type='radio'
-                    name='role'
-                    value='owner'
-                    onChange={handleChange}
-                    checked={userData.role === 'owner'}
-                  />
+                  <input type='radio' name='role' value='owner' onChange={handleChange} checked={userData.role === 'owner'} />
                   Owner
                 </h5>
               </div>
               <button type='submit' className='UserRegistration_submit'>
-                <h6 className='btn--btn-primary'>Update Profile</h6>
+                <h6 className='Btn-Primary'>Update Profile</h6>
               </button>
               <br />
               {errorMsg && <p style={{ color: 'grey' }}> {errorMsg} </p>}

@@ -1,0 +1,90 @@
+.person-circle {
+  border: 0.25px solid slategray;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+.img-wrapper {
+  position: relative;
+  padding-bottom: 100%;
+  height: 0;
+}
+.person-circle.no-author {
+  background: slategray;
+}
+.Business_reviews {
+  margin-top: 20px;
+  font-size: 1.6rem;
+  display: flex;
+  text-align: left;
+  border-bottom: 1px solid #f32dc8;
+}
+.Business_reviews:last-child {
+  border-bottom: 0;
+}
+.Profile_reviews:first-child {
+  margin-top: 0;
+}
+
+.Business_column-left {
+  width: 20%;
+  margin: 20px;
+  margin-left: 0;
+  margin-top: 0;
+}
+h5.person-city {
+  color: rgba(0, 0, 0, 0.5);
+}
+h6 {
+  font-size: 1.6rem;
+  font-weight: 300;
+  margin: 0;
+}
+
+.Business_column-right {
+  width: 65%;
+  margin-top: -5px;
+  margin-bottom: 20px;
+}
+.Business_reviews.author:first-child {
+  margin-top: 0;
+}
+ul.BusinessReviews_scroll {
+  padding: 0;
+  list-style-type: none;
+  margin-top: 2px;
+  /* border-top: 1px solid #f32dc8; */
+}
+.menu-business.open ul.BusinessReviews_container {
+  border-top: none;
+  margin-top: 0;
+  border-top: 1px solid #f32dc8;
+}
+.BusinessDetails_reviews h6.BusinessReviews_container-noReviews {
+  margin-top: 0;
+  text-align: center;
+}
+ul.BusinessReviews_scroll h6.BusinessReviews_container-noReviews {
+  text-align: center;
+}
+
+.BusinessReviews_container {
+  overflow-y: scroll;
+  height: 95%;
+}
+.BusinessReviews_container-noReviews {
+  margin-top: 20px;
+  text-align: center;
+}
+/** Media Queries  **/
+@media screen and (max-width: 575px) {
+  .Business_column-left {
+    width: 35%;
+  }
+  .Profile_User_reviews > .Business_reviews:last-child {
+    border-bottom: none;
+  }
+}

@@ -1,0 +1,123 @@
+.BusinessDetails-container {
+  text-align: center;
+  margin-top: 160px;
+  grid-column: 4/13;
+  display: flex;
+  flex-direction: row;
+  height: 58vh;
+}
+.BusinessContainer {
+  display: grid;
+  grid-template-columns: repeat(16, 1fr);
+  grid-column-gap: 40px;
+  height: 100vh;
+  width: 100vw;
+  max-width: 1206px;
+  margin-right: auto;
+  margin-left: auto;
+}
+.BusinessDetails-leftColumn {
+  border: 0.5px solid black;
+  padding: 1.6rem;
+  text-align: center;
+  height: fit-content;
+  grid-column: 4/7;
+  margin-top: 160px;
+}
+ul.BusinessDetails-ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  text-transform: capitalize;
+}
+h5.features,
+h5.services {
+  margin-top: 10px;
+  margin-bottom: 5px;
+  line-height: 1.5rem;
+  align-items: flex-start;
+}
+h5.features:last-child {
+  margin-bottom: 2rem;
+}
+.BusinessDetails-rightColumn {
+  border: 0.5px solid black;
+  background-image: url('../../assets/images/hairpinkbg.jpg');
+  padding: 3.5rem;
+  margin-top: 160px;
+  grid-column: 7/14;
+  max-height: 58vh;
+  overflow: hidden;
+  padding-bottom: 0;
+}
+.BusinessDetails-buttons {
+  display: flex;
+  flex-direction: column;
+}
+.Btn-Primary.review.book,
+.phoneNumber {
+  align-self: center;
+  margin-left: 50px;
+  margin-top: -42px;
+}
+.phoneNumber {
+  margin-top: -30px;
+  margin-left: 65px;
+  margin-bottom: 11px;
+}
+.BusinessDetails_reviews h4 {
+  border-top: 1px solid #f32dc8;
+  border-bottom: 1px solid #f32dc8;
+  font-weight: 500;
+  padding: 1rem;
+  margin: 0;
+  margin-bottom: 2.5rem;
+  text-align: center;
+  margin-top: 3rem;
+}
+.BusinessDetails_reviews {
+  height: 41%;
+}
+
+/** Media Queries **/
+@media screen and (max-width: 990px) {
+  .BusinessDetails-leftColumn {
+    grid-column: 3/7;
+  }
+  .BusinessDetails-rightColumn {
+    grid-column: 7/15;
+  }
+  .Btn-Primary.review.book,
+  .phoneNumber {
+    align-self: end;
+  }
+}
+
+@media screen and (max-width: 575px) {
+  .BusinessContainer {
+    overflow-y: scroll;
+    margin-top: 100px;
+    display: flex;
+    flex-flow: column;
+    height: 80vh;
+  }
+  .BusinessDetails-leftColumn {
+    width: 60%;
+    margin: auto;
+    margin-top: 35px;
+    flex: 0 1 auto;
+  }
+  .BusinessDetails-rightColumn {
+    width: 80%;
+    margin: auto;
+    margin-top: 3rem;
+    padding: 3rem;
+    padding-bottom: 0rem;
+    flex: 1 1 auto;
+    overflow-y: scroll;
+  }
+  .Btn-Primary.review.book,
+  .phoneNumber {
+    align-self: flex-end;
+  }
+}

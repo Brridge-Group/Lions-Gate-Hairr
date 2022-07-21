@@ -1,0 +1,53 @@
+.EditBusiness-Container_image {
+  margin-bottom: -10px;
+  background-image: url('../../assets/images/hairlavender.jpg');
+}
+.EditBusiness-Form {
+  display: flex;
+  flex-direction: row;
+  grid-column: 4/12;
+  height: 50%;
+  margin-top: 160px;
+  text-align: center;
+}
+.EditBusiness-FormCard {
+  display: flex;
+  width: 75%;
+  overflow-y: auto;
+}
+.EditBusiness-FormCard_body {
+  width: 100%;
+}
+.EditBusiness-FormCard_body_columns {
+  display: flex;
+}
+.EditBusiness-FormCard_body_left {
+  width: 45%;
+  margin-right: 10%;
+}
+.EditBusiness-FormCard_body_right {
+  width: 45%;
+}
+.EditBusiness-Form button.Btn-Primary{
+  margin-left: 26px !important;
+}
+
+/** Media Queries **/
+@media screen and (max-width: 575px) {
+  .EditBusiness-Container_image {
+    height: 100%;
+    margin-bottom: 0;
+    background-image: url('../../assets/images/hairlavender-mobile.jpg');
+  }
+  .EditBusiness-Form {
+    height: 50%;
+    grid-column: none;
+    flex-wrap: wrap;
+    margin-top: 160px;
+    overflow-y: scroll;
+    text-align: center;
+  }
+  .EditBusiness-FormCard {
+    width: 100%;
+  }
+}

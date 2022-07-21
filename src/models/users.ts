@@ -16,6 +16,7 @@ const userSchema = new Schema({
     default: new Date(),
   },
   imageProfile: { type: String },
+  reviews: [{ type: Schema.Types.ObjectId, ref: 'Review' }],
 })
 
 module.exports = mongoose.model('User', userSchema)

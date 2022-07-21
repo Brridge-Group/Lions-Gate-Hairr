@@ -1,54 +1,43 @@
 .Filters-Container {
   display: flex;
   flex-direction: column;
-  height: 58.7rem;
-  padding-left: 12px;
-  padding-top: 20px;
-  padding-right: 12px;
-  padding-bottom: 12px;
-  border-bottom-width: 0px;
-  border-bottom-style: solid;
-  background: #efefef !important;
+  height: 90%;
 }
 .Filters-Label_header {
-  display: flex;
-  justify-content: center;
+  text-align: center;
+  margin: 0;
   font-weight: 500;
-}
-.Filters-Label_header_services {
-  margin-top: 1rem;
-}
-.Filters-FormGroup {
-  max-height: 36%;
-  overflow: scroll;
-}
-.Filters-FormCheck {
-  margin: 1rem 1rem 1rem 0;
+  font-size: 1.6rem;
   text-transform: capitalize;
 }
-.Filters-FormCheckInput {
-  margin: 0 1rem 0 0;
+.Filters-FormGroup_features,
+.Filters-FormGroup_services {
+  height: 50%;
+  min-height: fit-content;
+  overflow-y: scroll;
+  margin-bottom: 2rem;
 }
-.Filters-FormCheckLabel {
-  font-weight: 300;
+.Filters-FormCheck {
+  display: flex;
+  align-items: flex-start;
+  margin: 1rem 0 0.5008rem 0;
 }
-.Filters-Button {
-  width: 11.6rem;
-  height: 4.2rem;
-  margin: 5rem 0 1rem 1.55rem;
-  background: black;
-  border-radius: 10px;
-  border: 1px solid #f32dc8;
-  color: white;
-  text-align: center;
+h5.Filters-FormCheckLabel_header {
+  margin: 0 !important;
+  text-transform: capitalize;
 }
-.Reset-Button {
-  width: 11.6rem;
-  height: 4.2rem;
-  margin: 0rem 0 0 1.55rem;
-  background: black;
-  border-radius: 10px;
-  border: 1px solid #f32dc8;
-  color: white;
-  text-align: center;
+.Filters-Buttons {
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
+  align-items: flex-start;
+  position: absolute;
+  bottom: 2rem;
+  font-weight: 100;
+}
+.Btn-Primary.Filter-Button,
+.Btn-Primary.Reset-Button {
+  width: 45%;
+  margin: 0;
+  padding-top: 0;
 }

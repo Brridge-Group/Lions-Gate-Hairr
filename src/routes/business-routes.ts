@@ -1,19 +1,25 @@
-import express from "express";
-const router = express.Router({ mergeParams: true });
+import express from 'express'
+const router = express.Router({ mergeParams: true })
 
 import {
   showBusiness,
   addBusiness,
   getAllBusinesses,
   getOwnersBusinesses,
-} from "../controllers/business-controller";
+  updateBusiness,
+  deleteBusiness,
+} from '../controllers/business-controller'
 
-router.post("/add-business", addBusiness);
+router.post('/add-business', addBusiness)
 
-router.get("/get-businesses", getAllBusinesses);
+router.get('/get-businesses', getAllBusinesses)
 
-router.route("/get-business-by-id/:id").get(showBusiness);
+router.patch('/:id', updateBusiness)
 
-router.route("/get-business-by-ownersId").get(getOwnersBusinesses);
+router.delete('/:id', deleteBusiness)
 
-export default router;
+router.route('/get-business-by-id/:id').get(showBusiness)
+
+router.route('/get-business-by-ownersId').get(getOwnersBusinesses)
+
+export default router

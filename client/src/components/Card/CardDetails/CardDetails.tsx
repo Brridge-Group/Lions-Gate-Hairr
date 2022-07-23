@@ -19,7 +19,11 @@ export const CardDetails = (business: Business) => {
   return (
     <section className='CardDetails-Container'>
       <figure className='CardDetails-ImageContainer'>
-        <img src={business.image} className='CardDetails-Image' alt='Hair salon.' />
+        <img
+          src={business.image}
+          className='CardDetails-Image'
+          alt='Hair salon.'
+        />
       </figure>
       <div className='CardDetails-InfoContainer'>
         <h2>{business.businessName}</h2>
@@ -28,7 +32,6 @@ export const CardDetails = (business: Business) => {
           {business.address?.address1}
           <br />
           {business.address?.address2}
-          <br />
           {business.address?.city}, {business.address?.region}
           <br />
           {business.address?.postalCode}

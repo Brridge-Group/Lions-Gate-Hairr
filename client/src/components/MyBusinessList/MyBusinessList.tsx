@@ -21,7 +21,9 @@ export const MyBusinessList = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch(`/api/businesses/get-business-by-ownersId/?id=${user._id}`)
+        const res = await fetch(
+          `/api/businesses/get-business-by-ownersId/?id=${user._id}`
+        )
         setIsLoading(true)
         const businessesList = await res.json()
         setList(businessesList)
@@ -42,10 +44,12 @@ export const MyBusinessList = () => {
 
   const deleteBusiness = async (id: any) => {
     try {
-      axios.delete(`api/businesses/${id}`, { data: { businessId: id } }).then(res => {
-        window.location.reload()
-        alert(res.data.message)
-      })
+      axios
+        .delete(`api/businesses/${id}`, { data: { businessId: id } })
+        .then(res => {
+          window.location.reload()
+          alert(res.data.message)
+        })
     } catch (error: any) {
       alert(error.message)
       console.log('error in delete review: ', error.message)
@@ -82,11 +86,25 @@ export const MyBusinessList = () => {
                   <div className='BusinessCard-container'>
                     {list.map((business: any, idx) => (
                       <div className='BusinessCard ' key={business._id}>
-                        <CardDetails businessName={business.businessName} description={business.description} image={business.image} address={business.address} />
-                        <MyStarList stars={business.stars} reviews={business.reviews} />
+                        <CardDetails
+                          businessName={business.businessName}
+                          description={business.description}
+                          image={business.image}
+                          address={business.address}
+                        />
+                        <MyStarList
+                          stars={business.stars}
+                          reviews={business.reviews}
+                        />
                         <div className='BusinessCard-buttons'>
-                          <h6 className='Btn-Primary twoLines business reviews' onClick={() => toggleIt(business._id)} data-idx={idx} id={business._id}>
-                            {!selected[business._id] ? 'read reviews' : 'close reviews'}
+                          <h6
+                            className='Btn-Primary twoLines business reviews'
+                            onClick={() => toggleIt(business._id)}
+                            data-idx={idx}
+                            id={business._id}>
+                            {!selected[business._id]
+                              ? 'read reviews'
+                              : 'close reviews'}
                           </h6>
                           <Link
                             to={{
@@ -98,12 +116,19 @@ export const MyBusinessList = () => {
                               business
                             </h6>
                           </Link>
-                          <button className='Btn-Primary twoLines business' onClick={() => deleteBusiness(business._id)}>
+                          <button
+                            className='Btn-Primary twoLines business'
+                            onClick={() => deleteBusiness(business._id)}>
                             delete <br />
                             business
                           </button>
                         </div>
-                        <div className={!selected[business._id] ? 'menu-business' : 'menu-business open'}>
+                        <div
+                          className={
+                            !selected[business._id]
+                              ? 'menu-business'
+                              : 'menu-business open'
+                          }>
                           <MyBusinessReviews reviews={business.reviews} />
                         </div>
                       </div>
@@ -116,7 +141,7 @@ export const MyBusinessList = () => {
           </div>
           <div className='Profile_links'>
             <Link to={'/add-business'}>
-              <h6 className='btn--btn-primary twoLines'>
+              <h6 className='Btn-Primary twoLines'>
                 add a<br /> business
               </h6>
             </Link>

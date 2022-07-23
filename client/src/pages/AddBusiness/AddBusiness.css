@@ -28,11 +28,22 @@
 .AddBusiness-FormCard_body_right {
   width: 45%;
 }
-.AddBusiness-Form button.Btn-Primary{
+.AddBusiness-Form button.Btn-Primary {
   margin-left: 26px;
 }
 
-/** Media Queries **/
+.AddBusiness-FormCard_filtersContainer_formGroup {
+  text-transform: capitalize;
+  overflow-y: scroll;
+  height: 150px;
+  margin-bottom: 20px;
+}
+.AddBusiness-FormCard_filtersContainer {
+  margin-bottom: 15px;
+}
+
+/* ///////media queries ////////// */
+
 @media screen and (max-width: 575px) {
   .AddBusiness-Container_image {
     height: 100%;
@@ -49,5 +60,15 @@
   }
   .AddBusiness-FormCard {
     width: 100%;
+    overflow-y: scroll;
+  }
+  .AddBusiness-FormCard_sidebar {
+    margin: auto;
+    margin-top: 3rem;
+    width: 75%;
+  }
+  .AddBusiness-FormCard_sidebar > .Btn-Primary {
+    display: block;
+    margin: 0 auto;
   }
 }

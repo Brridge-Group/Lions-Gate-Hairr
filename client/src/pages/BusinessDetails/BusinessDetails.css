@@ -71,7 +71,6 @@ h5.features:last-child {
   font-weight: 500;
   padding: 1rem;
   margin: 0;
-  margin-bottom: 2.5rem;
   text-align: center;
   margin-top: 3rem;
 }
@@ -79,7 +78,8 @@ h5.features:last-child {
   height: 41%;
 }
 
-/** Media Queries **/
+/* ///////media queries ////////// */
+
 @media screen and (max-width: 990px) {
   .BusinessDetails-leftColumn {
     grid-column: 3/7;

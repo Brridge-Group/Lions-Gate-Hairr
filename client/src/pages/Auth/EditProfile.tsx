@@ -2,27 +2,39 @@ import { useState } from 'react'
 import { UserImage } from '../../components/ImageFigure/UserImage'
 import { toast } from 'react-toastify'
 import { useDispatch } from 'react-redux'
-import { useHistory } from 'react-router-dom'
+import { RouteComponentProps, useHistory } from 'react-router-dom'
 import { UPDATE } from '../../constants/actionTypes'
 import * as api from '../../api/index'
 import './UserRegistration/UserRegistration.css'
 import '../Profile/Profile.css'
 import 'react-toastify/dist/ReactToastify.css'
 import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai'
+import { Dispatch } from 'redux'
+import { isAxiosError } from './UserRegistration/UserRegistration'
 toast.configure()
+
+export interface UserDataFromLocalStorage{
+  _id: string;
+  name: string;
+  email: string;
+  password: string;
+  role: string;
+  createdAt: string;
+  imageProfile: string;
+  reviews?: string[];
+}
 
 interface EditProfile {
   onClick: React.MouseEventHandler<HTMLButtonElement>
 }
 export const EditProfile = () => {
-  const user = JSON.parse(localStorage.getItem('profile') ?? 'false').result
-
+  const user:UserDataFromLocalStorage = JSON.parse(localStorage.getItem('profile') ?? 'false').result
   const dispatch = useDispatch()
   const history = useHistory()
 
   const [showPassword, setShowPassword] = useState(false)
   const [errorMsg, setErrorMsg] = useState('')
-  const [userData, setUserData] = useState({
+  const [userData, setUserData] = useState<api.UserData>({
     firstName: user.name.split(' ')[0],
     lastName: user.name.split(' ')[1],
     email: user.email,
@@ -33,7 +45,7 @@ export const EditProfile = () => {
   })
 
   const updateUser =
-    (formData: any, history: any, errorM?: any) => async (dispatch: any) => {
+    (formData: api.UserData, history: RouteComponentProps['history'], errorM?: any) => async (dispatch: Dispatch):Promise<void> => {
       try {
         // update the user
         const { data } = await api.updateUser(userData, user._id)
@@ -42,8 +54,13 @@ export const EditProfile = () => {
           ? history.push('/')
           : history.push('/add-business')
       } catch (err: any) {
-        errorM = err.response.data
-        setErrorMsg(errorM)
+        if(isAxiosError(err)){
+          errorM = err.response?.data
+          setErrorMsg(errorM)
+        }
+        errorM = "Something wrong in creating a new user, try  later"
+        console.log("Something wrong in creating a user(UserRegistration.tsx) which is not axios error: ", err)
+        toast(errorM);
       }
     }
 

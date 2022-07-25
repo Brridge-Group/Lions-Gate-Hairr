@@ -18,7 +18,7 @@ interface UserRegistration {
   onClick: React.MouseEventHandler<HTMLButtonElement>
 }
 
-function isAxiosError(e: any):e is AxiosError {
+export function isAxiosError(e: any):e is AxiosError {
   return e.isAxiosError === true;
 }
 

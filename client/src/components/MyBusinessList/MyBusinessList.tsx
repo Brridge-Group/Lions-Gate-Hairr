@@ -9,8 +9,19 @@ import axios from 'axios'
 
 import { LoadSpinner } from '../LoadSpinner/LoadSpinner'
 
-interface MyBusinessReviews {
-  reviews: Array<[]>
+interface ReviewsInfo {
+  _id: string;
+  comment?: string;
+  rating: number;
+  author: string;
+  business: string;
+  name: string;
+  image: string;
+  createDate: string;
+}
+
+interface IMyBusinessReviews {
+  reviews: ReviewsInfo[];
 }
 
 export const MyBusinessList = () => {
@@ -40,7 +51,7 @@ export const MyBusinessList = () => {
     setSelected({ ...selected, [id]: !selected[id] })
   }
 
-  const deleteBusiness = async (id: any) => {
+  const deleteBusiness = async (id:string) => {
     try {
       axios.delete(`api/businesses/${id}`, { data: { businessId: id } }).then(res => {
         window.location.reload()

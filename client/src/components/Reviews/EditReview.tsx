@@ -17,7 +17,7 @@ export const EditReview = () => {
 
   const [hover, setHover] = useState(0)
   const [rating, setRating] = useState(0)
-  const [reviewForm, setReviewForm] = useState<any>({
+  const [reviewForm, setReviewForm] = useState({
     comment: reviewData.comment,
   })
 

@@ -21,7 +21,7 @@ import { EditProfile } from './pages/Auth/EditProfile'
 import './App.css'
 
 export const App = () => {
-  let routes: any
+  let routes;
   routes = (
     <Switch>
       <Route exact path='/'>

@@ -1,6 +1,18 @@
 .FeatureContainer_image.Owner {
   background-image: url('../../assets/images/hairgreysm.jpg');
 }
+
+.BusinessCard {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+  margin-top: 3rem;
+}
+.BusinessCard:first-child {
+  margin-top: 0;
+}
+
+.BusinessCard:last-child {
+  border-bottom: none;
+}
 .BusinessCard-buttons {
   display: flex;
   justify-content: space-between;
@@ -39,15 +51,6 @@
 .menu-business.open {
   display: block;
 }
-/* ----- -> LoadSpinner <- ----- */
-.Profile-UserContainer.Owner section.FeatureContainer {
-  gap: 0 !important;
-  width: 0 !important;
-  position: relative;
-  top: 30%;
-  transform: translateY(-30%);
-  left: -25%;
-}
 
 /** Media Queries  **/
 @media screen and (max-width: 575px) {
@@ -71,5 +74,3 @@
     padding-bottom: 0;
   }
 }
-
-

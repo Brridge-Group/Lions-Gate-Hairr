@@ -25,15 +25,19 @@
 .Business_reviews:last-child {
   border-bottom: 0;
 }
+
+.Business_reviews.author > .Business_column-right {
+  margin-bottom: 20px;
+}
+
 .Profile_reviews:first-child {
   margin-top: 0;
 }
 
 .Business_column-left {
   width: 20%;
-  margin: 20px;
-  margin-left: 0;
-  margin-top: 0;
+  margin: 0;
+  margin-right: 20px;
 }
 h5.person-city {
   color: rgba(0, 0, 0, 0.5);
@@ -49,19 +53,18 @@ h6 {
   margin-top: -5px;
   margin-bottom: 20px;
 }
-.Business_reviews.author:first-child {
-  margin-top: 0;
-}
+
 ul.BusinessReviews_scroll {
   padding: 0;
   list-style-type: none;
   margin-top: 2px;
-  /* border-top: 1px solid #f32dc8; */
+  margin-bottom: 0;
 }
 .menu-business.open ul.BusinessReviews_container {
   border-top: none;
   margin-top: 0;
   border-top: 1px solid #f32dc8;
+  padding-left: 0;
 }
 .BusinessDetails_reviews h6.BusinessReviews_container-noReviews {
   margin-top: 0;
@@ -73,7 +76,7 @@ ul.BusinessReviews_scroll h6.BusinessReviews_container-noReviews {
 
 .BusinessReviews_container {
   overflow-y: scroll;
-  height: 95%;
+  height: 99.9%;
 }
 .BusinessReviews_container-noReviews {
   margin-top: 20px;

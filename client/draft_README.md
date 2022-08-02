@@ -82,3 +82,67 @@ Hairr || HairrKeepers helps its customers find the right hair experts in any cit
  | <h3 align="center">Owner Profile Page</h3>  <h6 align="center" style={}>Edit Business Profile Data </h6>| <img src="../client/src/assets/images/ReadMe_OwnerProfilePage.png" width="700">
 
 </details>
+<details>
+ <summary> ✨ Features & Code Snippets</summary>
+
+<details>
+<!-- TODO: [ ] - Requesting Section Completion, Edition and or Addition, By Cynthia && Sergio -->
+<summary>Responsivity</summary>
+
+<h5 align="center">Feature Description</h5>
+
+| Description                 | Screenshot                                                            |
+| --------------------------- | --------------------------------------------------------------------- |
+| <h3 align="center">TBD</h3> | <img src="../client/src/assets/images/comingSoonAlt.jpg" width="500"> |
+
+</details>
+<!-- TODO: [ ] - Requesting Section Completion, Edition and or Addition, By Cynthia && Sergio -->
+
+<details>
+<summary>CRUD Functionality</summary>
+
+<h5 align="center">Feature Description</h5>
+
+| Description                 | Screenshot                                                            |
+| --------------------------- | --------------------------------------------------------------------- |
+| <h3 align="center">TBD</h3> | <img src="../client/src/assets/images/comingSoonAlt.jpg" width="500"> |
+
+</details>
+
+<details>
+
+<!-- TODO: [ ] - Requesting Section Completion, and or Addition, By Kathy -->
+<summary> Multi Conditional Filter Functionality</summary>
+<h5 align="center">Feature Description</h5>
+
+| Description                 | Screenshot                                                            |
+| --------------------------- | --------------------------------------------------------------------- |
+| <h3 align="center">TBD</h3> | <img src="../client/src/assets/images/comingSoonAlt.jpg" width="500"> |
+
+</details>
+
+</details>
+
+## 💻 Technologies Used
+
+---
+
+![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
+![React](https://img.shields.io/badge/-React-05122A?style=flat&logo=react)
+![Express](https://img.shields.io/badge/-Express-333?style=flat&logo=express)
+![Node](https://img.shields.io/badge/-Node.js-05122A?style=flat&logo=node.js)
+![MongoDB Atlas](https://img.shields.io/badge/-MongoDB-333?style=flat&logo=mongodb)
+![Node](https://img.shields.io/badge/-Node.js-333?style=flat&logo=node.js)
+![JWT](https://img.shields.io/badge/-JSON_Web_Tokens-333?style=flat&logo=jsonwebtokens)
+![Mongoose ODM](https://img.shields.io/badge/-Mongoose_ODM-333?style=flat&logo=mongodb)
+![HTML5](https://img.shields.io/badge/-HTML5-333?style=flat&logo=html5)
+![CSS3](https://img.shields.io/badge/-CSS-333?style=flat&logo=css3)
+![Heroku](https://img.shields.io/badge/-Heroku-333?style=flat&logo=heroku)
+![Markdown](https://img.shields.io/badge/-Markdown-05122A?style=flat&logo=markdown)
+![Prettier](https://img.shields.io/badge/prettier-1A2C34?style=for-the-badge&logo=prettier&logoColor=F7BA3E)
+![Git](https://img.shields.io/badge/-Git-05122A?style=flat&logo=git)
+![Github](https://img.shields.io/badge/-GitHub-05122A?style=flat&logo=github)
+![VSCode](https://img.shields.io/badge/-VS_Code-05122A?style=flat&logo=visualstudio)
+![Jira](https://img.shields.io/badge/Jira-0052CC?style=for-the-badge&logo=Jira&logoColor=white)
+![Figma](https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white)
+

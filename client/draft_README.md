@@ -81,3 +81,4 @@ Hairr || HairrKeepers helps its customers find the right hair experts in any cit
  | <h3 align="center">User Profile Page</h3>  <h6 align="center" style={}>Edit User Profile Data & Add a Business</h6> | <img src="../client/src/assets/images/ReadMe_UserProfilePage.png" width="700">
  | <h3 align="center">Owner Profile Page</h3>  <h6 align="center" style={}>Edit Business Profile Data </h6>| <img src="../client/src/assets/images/ReadMe_OwnerProfilePage.png" width="700">
 
+</details>

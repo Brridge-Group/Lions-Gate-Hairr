@@ -55,3 +55,29 @@ Hairr || HairrKeepers helps its customers find the right hair experts in any cit
 </details>
 
 <details>
+ <summary> 🎨 Wireframes</summary>
+
+  <!-- TODO: [ ] - Requesting Section Completion By Cynthia -->
+
+| Description                          | Screenshot                                                             |
+| ------------------------------------ | ---------------------------------------------------------------------- |
+| Desktop Layout | Device Size Ranges: 540 - 990 Max                                      |
+| <h3 align="center">Home Page</h3>    | <img src="../client/src/assets/images/comingSoonAlt.jpg"  width="500"> |
+| <h3 align="center">Profile Page</h3> | <img src="../client/src/assets/images/comingSoonAlt.jpg" width="500">  |
+| Mobile Layout                        | Device Size Ranges: 340 - 540 Max                                      |
+| <h3 align="center">Home Page</h3>    | <img src="../client/src/assets/images/comingSoonAlt.jpg"  width="500"> |
+| <h3 align="center">Profile Page</h3> | <img src="../client/src/assets/images/comingSoonAlt.jpg" width="500">  |
+
+</details>
+<!-- <details open> -->
+<details>
+ <summary> ⚙️ Functionality</summary>
+ 
+ | Description | Screenshot |
+ |------------ | ------------|
+ | <h3 align="center">Business List Page</h3>  <h6 align="center" style={"font-type"}>Filter Businesses by Features & Services</h6> | <img src="../client/src/assets/images/ReadMe_BusinessListPage.png" width="700">
+ | <h3 align="center">Business Details Page</h3> | <img src="../client/src/assets/images/ReadMe_BusinessDetailsPage.png" width="700">
+ | <h3 align="center">Business Customer Review Page</h3> <h6 align="center" style={}>Leave Customer Feedback</h6>  | <img src="../client/src/assets/images/ReadMe_ReviewPage.png" width="700">
+ | <h3 align="center">User Profile Page</h3>  <h6 align="center" style={}>Edit User Profile Data & Add a Business</h6> | <img src="../client/src/assets/images/ReadMe_UserProfilePage.png" width="700">
+ | <h3 align="center">Owner Profile Page</h3>  <h6 align="center" style={}>Edit Business Profile Data </h6>| <img src="../client/src/assets/images/ReadMe_OwnerProfilePage.png" width="700">
+

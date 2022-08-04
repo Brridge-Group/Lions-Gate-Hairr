@@ -146,3 +146,62 @@ Hairr || HairrKeepers helps its customers find the right hair experts in any cit
 ![Jira](https://img.shields.io/badge/Jira-0052CC?style=for-the-badge&logo=Jira&logoColor=white)
 ![Figma](https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white)
 
+## ⚛️ Getting Started
+
+---
+
+### 📲 Instructions
+
+<details>
+<summary>Prerequisites</summary>
+
+This project uses [NodeJS](http://nodejs.org), [NPM](https://npmjs.com) and [MongDB](https://www.mongodb.com/). To confirm if locally installed:
+
+1. Either run the following commands in the terminal: `node --version` or `npm --version` for NodeJS and `mongo --version` for MongoDB.
+2. If not locally installed, you will need to install visit the links below for download and install methods.
+
+   - [NodeJS and NPM](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
+
+   - [MongoDB](https://www.mongodb.com/download-center/shell)
+
+</details>
+
+<details>
+<summary>Installing Hairr || HairrKeepers </summary>
+
+Clone or download the [Hairr || HairrKeepers](https://github.com/Brridge-Group/Lions-Gate-Hairr).
+
+<!-- This project was [bootstrapped](https://getbootstrap.com) with [Create React App](https://github.com/facebook/create-react-app) and enhanced with [Font Awesome](https://fontawesome.com/how-to-use/on-the-web/using-with/react) React components. In order to successfully run the project, as intended, locally all items are needed installed. -->
+
+**Using `npm`:**
+
+1. Clone or download repository
+2. Install project dependencies run: `npm install`
+3. Start Server: `npm run start`
+4. Visit local copy of the project: `localhost:3000`
+
+</details>
+
+<details>
+<summary>Using Hairr || HairrKeepers </summary>
+
+1. Open your terminal and in the desired directory, run `git clone https://github.com/Brridge-Group/Lions-Gate-Hairr.git` to clone this project repository to the local machine.
+2. Once cloned, from the terminal within the root directory of the repository, run `npm install` to install `server` dependencies. Then terminal run `cd Lions-Gate-Hairr/client` and run `npm install` inside the `client` directory to do the same.
+3. Add `.env` to the `Lions-Gate-Hairr/` directory `.gitignore` file.
+4. Create a .env file in the `Lions-Gate-Hairr/` directory with the connected `MONGODB_URI` to link the connect MongoBD database.
+5. In the `Lions-Gate-Hairr/` directory from the terminal, run `node db/seed` to create and seed the database.
+6. In `Lions-Gate-Hairr/` run `mongo` in the terminal to start the MongoDB CLI.
+7. Once the Mongo shell is initialized, run `show dbs` to double-check that your local database was created correctly. One of the results should be `Lions-Gate-Hairr`.
+8. Once all developer dependencies are downloaded, you are ready to get started.
+   - In `Lions-Gate-Hairr/client` run `npm run start` to start the Vue.js dev server.
+   - In `Lions-Gate-Hairr/` run `npm run dev` to start the NodeJS development server.
+9. Visit a locally running copy of the project at `http://localhost:3000` (or as indicated in the terminal).
+
+</details>
+
+## ⏭️ Next Steps
+
+---
+
+- [ ] Display a visual map utilizing a web mapping API to enable users to locate businesses.
+- [ ] Allow users to complete two input fields; a starting point and a destination, calculating the distance between them, displaying the shortest path between the two locations.

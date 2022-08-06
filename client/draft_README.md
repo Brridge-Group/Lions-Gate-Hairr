@@ -199,9 +199,123 @@ Clone or download the [Hairr || HairrKeepers](https://github.com/Brridge-Group/L
 
 </details>
 
-## ⏭️ Next Steps
+---
+
+## Contributors
+
+  <!-- TODO: [ ] - Requesting Section Review, Remove, Update, Addition, and or Completion By Abel, Cynthia, && Sergio-->
+
+Gratitude to the following people who have contributed to this project:
+
+<h3>Abel Belay</h3>
+<a href="mailto:[email]@[provider]" target="_blank">
+    <img src="https://img.shields.io/badge/-[email_address]-c14438?style=flat&logo=Gmail&logoColor=white">
+ </a>
+<div style='display: flex; justify-content: center; gap: .5rem'>
+
+<a href="https://www.linkedin.com/in/username" target="_blank">
+      <img src="https://img.shields.io/badge/Abel Belay-blue?style=flat&logo=Linkedin&logoColor=f32dc8">
+ </a>
+
+[@abel-belay](https://github.com/abel-belay)
+
+<a href="https://[username]g.github.io/portfolio" target="_blank">
+    <img src="https://img.shields.io/badge/[username]github.io/portfolio-gold?style=flat&logo=github"
+
+</a>
+
+</div>
+<h3>Cynthia Eddy</h3>
+<a href="mailto:[email]@[provider]" target="_blank">
+    <img src="https://img.shields.io/badge/-[email_address]-c14438?style=flat&logo=Gmail&logoColor=white">
+ </a>
+<div style='display: flex; justify-content: center; gap: .5rem'>
+
+<a href="https://www.linkedin.com/in/username" target="_blank">
+      <img src="https://img.shields.io/badge/Cynthia Eddy-blue?style=flat&logo=Linkedin&logoColor=f32dc8">
+ </a>
+
+[@cynthiaeddy](https://github.com/cynthiaeddy)
+
+<a href="https://[username]g.github.io/portfolio" target="_blank">
+    <img src="https://img.shields.io/badge/[username]github.io/portfolio-gold?style=flat&logo=github"
+
+</a>
+
+</div>
+
+<h3>Kathy Lambert</h3>
+<a href="mailto:Kathy@KathyLambert.me" target="_blank">
+    <img src="https://img.shields.io/badge/-Kathy@KathyLambert.me-c14438?style=flat&logo=Gmail&logoColor=white">
+ </a>
+
+<div style='display: flex; justify-content: center; gap: .5rem'>
+
+<a href="https://www.linkedin.com/in/k-lambert" target="_blank">
+      <img src="https://img.shields.io/badge/Kathy Lambert-blue?style=flat&logo=Linkedin&logoColor=f32dc8">
+ </a>
+
+[@CodeMeKathy](https://github.com/CodeMeKathy)
+
+ <a href="https://kathylambert.me" target="_blank">
+    <img src="https://img.shields.io/badge/kathylambert.me-gold?style=flat&logo=github"
+
+</a>
+
+</div>
+
+<h3>Njteh Keledjian</h3>
+<a href="mailto:[email]@[provider]" target="_blank">
+    <img src="https://img.shields.io/badge/-[email_address]-c14438?style=flat&logo=Gmail&logoColor=white">
+ </a>
+<div style='display: flex; justify-content: center; gap: .5rem'>
+
+<a href="https://www.linkedin.com/in/username" target="_blank">
+      <img src="https://img.shields.io/badge/Njteh Keledjian-blue?style=flat&logo=Linkedin&logoColor=f32dc8">
+ </a>
+
+[@njteh7](https://github.com/njteh7)
+
+<a href="https://[username]g.github.io/portfolio" target="_blank">
+    <img src="https://img.shields.io/badge/[username]github.io/portfolio-gold?style=flat&logo=github"
+
+</a>
+
+</div>
+
+<h3>Sergio Silvay</h3>
+<a href="mailto:[email]@[provider]" target="_blank">
+    <img src="https://img.shields.io/badge/-[email_address]-c14438?style=flat&logo=Gmail&logoColor=white">
+ </a>
+<div style='display: flex; justify-content: center; gap: .5rem'>
+
+<a href="https://www.linkedin.com/in/username" target="_blank">
+      <img src="https://img.shields.io/badge/Sergio Silvay-blue?style=flat&logo=Linkedin&logoColor=f32dc8">
+ </a>
+
+[@sergiobtos](https://github.com/sergiobtos)
+
+<a href="https://[username]g.github.io/portfolio" target="_blank">
+    <img src="https://img.shields.io/badge/[username]github.io/portfolio-gold?style=flat&logo=github"
+
+</a>
+
+</div>
+
+## Special Mentions
+
+<h6>
+
+Many thanks and appreciations to the following people for so many things least of all the donation of their time, efforts and mentorship this project:
+
+</h6>
+
+[Mikhail Karan](https://github.com/mikhail-karan)
+[Aderson Oliveira](https://github.com/deskpal)
 
 ---
+
+## ⏭️ Next Steps
 
 - [ ] Display a visual map utilizing a web mapping API to enable users to locate businesses.
 - [ ] Allow users to complete two input fields; a starting point and a destination, calculating the distance between them, displaying the shortest path between the two locations.

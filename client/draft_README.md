@@ -1,28 +1,20 @@
 <!-- Repo Shields. See https://shields.io for others or to customize this set of shields.   -->
 
-<!-- ![GitHub forks](https://img.shields.io/github/forks/scottydocs/README-template.md?style=social) -->
+# <h1 align="center" style='color: #f32dc8' >HairrKeepers</h1>
 
-<!-- https://github.com/Brridge-Group/Lions-Gate-Hairr/stargazers -->
-<!-- https://github.com/Brridge-Group/Lions-Gate-Hairr f32dc8-->
+<h3 align="center">https://hairr-app.herokuapp.com</h3>
 
-<!-- Starts Here -->
+<div align="center">
+<div style='display: flex; justify-content: center; gap: 1rem'>
 
-# <h1 align="center">HairrKeepers</h1>
-
-#### <h3 align="center">https://hairr-app.herokuapp.com</h3>
-
- <!-- <h5 align="center">TEAM</h5>       -->
-
- <div align="center">
-
- <a href='https://img.shields.io/github/repo-size/Brridge-Group/Lions-Gate-Hairr?color=f32dc8'>
+<a href='https://img.shields.io/github/repo-size/Brridge-Group/Lions-Gate-Hairr?color=f32dc8'>
 
 ![GitHub repo size](https://img.shields.io/github/repo-size/Brridge-Group/Lions-Gate-Hairr?color=f32dc8)
 </a>
 
 <a href='https://img.shields.io/github/contributors/Brridge-Group/Lions-Gate-Hairr?color=e00db2'>
- 
- ![GitHub contributors](https://img.shields.io/github/contributors/Brridge-Group/Lions-Gate-Hairr?color=e00db2)
+
+![GitHub Contributors](https://img.shields.io/github/contributors/Brridge-Group/Lions-Gate-Hairr?color=e00db2)
 
 </a>
 
@@ -30,18 +22,23 @@
 
 ![GitHub stars](https://img.shields.io/github/stars/Brridge-Group/Lions-Gate-Hairr?style=social&logo&logoColor=f32dc8)
 </a>
- </div>
 
+<a href='https://img.shields.io/github/stars/Brridge-Group/Lions-Gate-Hairr?style=social&logo&logoColor=f32dc8'>
+
+![GitHub forks](https://img.shields.io/github/forks/Brridge-Group/Lions-Gate-Hairr?style=social&logo&logoColor=f32dc8)
+</a>
+
+</div>
+
+---
 
 ## 📝 Description
 
----
+HairrKeepers helps its customers find the right hair experts in any city within the United States and Canada, fueled with the informative reviews of previous customers to ensure they are in expert hands. A TypeScript and React front-end applications using modern React best practices, including React Hooks, while utilizing Express, Node.js, and MongoDB for database management. An open-source project built by a fully distributed engineering team building. Together the team employs technologies like GitHub, Slack, and Jira to work for effective team communication.
 
-Hairr || HairrKeepers helps its customers find the right hair experts in any city within the United States and Canada, fueled with the informative reviews of previous customers to ensure they are in expert hands. A TypeScript and React front-end applications using modern React best practices, including React Hooks, while utilizing Express, Node.js, and MongoDB for database management. An open-source project built by a fully distributed engineering team building. Together the team employs technologies like GitHub, Slack, and Jira to work for effective team communication.
+---
 
 ## 🖼️ Screenshots
-
----
 
 <details>
  <summary> 📊 ERD</summary>
@@ -61,7 +58,7 @@ Hairr || HairrKeepers helps its customers find the right hair experts in any cit
 
 | Description                          | Screenshot                                                             |
 | ------------------------------------ | ---------------------------------------------------------------------- |
-| Desktop Layout | Device Size Ranges: 540 - 990 Max                                      |
+| Desktop Layout                       | Device Size Ranges: 540 - 990 Max                                      |
 | <h3 align="center">Home Page</h3>    | <img src="../client/src/assets/images/comingSoonAlt.jpg"  width="500"> |
 | <h3 align="center">Profile Page</h3> | <img src="../client/src/assets/images/comingSoonAlt.jpg" width="500">  |
 | Mobile Layout                        | Device Size Ranges: 340 - 540 Max                                      |
@@ -72,14 +69,14 @@ Hairr || HairrKeepers helps its customers find the right hair experts in any cit
 <!-- <details open> -->
 <details>
  <summary> ⚙️ Functionality</summary>
- 
- | Description | Screenshot |
- |------------ | ------------|
- | <h3 align="center">Business List Page</h3>  <h6 align="center" style={"font-type"}>Filter Businesses by Features & Services</h6> | <img src="../client/src/assets/images/ReadMe_BusinessListPage.png" width="700">
- | <h3 align="center">Business Details Page</h3> | <img src="../client/src/assets/images/ReadMe_BusinessDetailsPage.png" width="700">
- | <h3 align="center">Business Customer Review Page</h3> <h6 align="center" style={}>Leave Customer Feedback</h6>  | <img src="../client/src/assets/images/ReadMe_ReviewPage.png" width="700">
- | <h3 align="center">User Profile Page</h3>  <h6 align="center" style={}>Edit User Profile Data & Add a Business</h6> | <img src="../client/src/assets/images/ReadMe_UserProfilePage.png" width="700">
- | <h3 align="center">Owner Profile Page</h3>  <h6 align="center" style={}>Edit Business Profile Data </h6>| <img src="../client/src/assets/images/ReadMe_OwnerProfilePage.png" width="700">
+
+| Description                                                                                                                          | Screenshot                                                                         |
+| ------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------- |
+| <h3 align="center">Business List Page</h3> <h6 align="center" style="font-type:normal">Filter Businesses by Features & Services</h6> | <img src="../client/src/assets/images/ReadMe_BusinessListPage.png" width="700">    |
+| <h3 align="center">Business Details Page</h3>                                                                                        | <img src="../client/src/assets/images/ReadMe_BusinessDetailsPage.png" width="700"> |
+| <h3 align="center">Business Customer Review Page</h3> <h6 align="center">Leave Customer Feedback</h6>                                | <img src="../client/src/assets/images/ReadMe_ReviewPage.png" width="700">          |
+| <h3 align="center">User Profile Page</h3> <h6 align="center">Edit User Profile Data & Add a Business</h6>                            | <img src="../client/src/assets/images/ReadMe_UserProfilePage.png" width="700">     |
+| <h3 align="center">Owner Profile Page</h3> <h6 align="center">Edit Business Profile Data </h6>                                       | <img src="../client/src/assets/images/ReadMe_OwnerProfilePage.png" width="700">    |
 
 </details>
 <details>
@@ -123,80 +120,164 @@ Hairr || HairrKeepers helps its customers find the right hair experts in any cit
 
 </details>
 
+---
+
 ## 💻 Technologies Used
 
----
+ <div style='display: flex; justify-content: center; gap: 0.5rem; flex-wrap: wrap;'>
+
+<a href="(https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white">
 
 ![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
-![React](https://img.shields.io/badge/-React-05122A?style=flat&logo=react)
-![Express](https://img.shields.io/badge/-Express-333?style=flat&logo=express)
-![Node](https://img.shields.io/badge/-Node.js-05122A?style=flat&logo=node.js)
-![MongoDB Atlas](https://img.shields.io/badge/-MongoDB-333?style=flat&logo=mongodb)
-![Node](https://img.shields.io/badge/-Node.js-333?style=flat&logo=node.js)
-![JWT](https://img.shields.io/badge/-JSON_Web_Tokens-333?style=flat&logo=jsonwebtokens)
-![Mongoose ODM](https://img.shields.io/badge/-Mongoose_ODM-333?style=flat&logo=mongodb)
-![HTML5](https://img.shields.io/badge/-HTML5-333?style=flat&logo=html5)
-![CSS3](https://img.shields.io/badge/-CSS-333?style=flat&logo=css3)
-![Heroku](https://img.shields.io/badge/-Heroku-333?style=flat&logo=heroku)
-![Markdown](https://img.shields.io/badge/-Markdown-05122A?style=flat&logo=markdown)
-![Prettier](https://img.shields.io/badge/prettier-1A2C34?style=for-the-badge&logo=prettier&logoColor=F7BA3E)
-![Git](https://img.shields.io/badge/-Git-05122A?style=flat&logo=git)
-![Github](https://img.shields.io/badge/-GitHub-05122A?style=flat&logo=github)
-![VSCode](https://img.shields.io/badge/-VS_Code-05122A?style=flat&logo=visualstudio)
-![Jira](https://img.shields.io/badge/Jira-0052CC?style=for-the-badge&logo=Jira&logoColor=white)
-![Figma](https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white)
+</a>
 
-## ⚛️ Getting Started
+<a href="https://img.shields.io/badge/-React-05122A?style=flat&logo=react">
+
+![React](https://img.shields.io/badge/-React-05122A?style=flat&logo=react)</a>
+
+<a href="https://img.shields.io/badge/-Express-333?style=flat&logo=express">
+
+![Express](https://img.shields.io/badge/-Express-333?style=flat&logo=express)</a>
+
+<a href="https://img.shields.io/badge/-Node.js-333?style=flat&logo=node.js">
+
+![Node](https://img.shields.io/badge/-Node.js-333?style=flat&logo=node.js)</a>
+
+<a href="https://img.shields.io/badge/-MongoDB-333?style=flat&logo=mongodb">
+
+![MongoDB Atlas](https://img.shields.io/badge/-MongoDB-333?style=flat&logo=mongodb)</a>s
+
+<a href="https://img.shields.io/badge/-JSON_Web_Tokens-333?style=flat&logo=jsonwebtokens">
+
+![JWT](https://img.shields.io/badge/-JSON_Web_Tokens-333?style=flat&logo=jsonwebtokens)</a>
+
+<a href="https://img.shields.io/badge/-Mongoose_ODM-333?style=flat&logo=mongodb">
+
+![Mongoose ODM](https://img.shields.io/badge/-Mongoose_ODM-333?style=flat&logo=mongodb)</a>
+
+<a href="https://img.shields.io/badge/-HTML5-333?style=flat&logo=html5">
+
+![HTML5](https://img.shields.io/badge/-HTML5-333?style=flat&logo=html5)</a>
+
+<a href="https://img.shields.io/badge/-CSS-333?style=flat&logo=css3">
+
+![CSS3](https://img.shields.io/badge/-CSS-333?style=flat&logo=css3)</a>
+
+<a href="(https://img.shields.io/badge/-Heroku-333?style=flat&logo=heroku">
+
+![Heroku](https://img.shields.io/badge/-Heroku-333?style=flat&logo=heroku)
+</a>
+
+<a href="https://img.shields.io/badge/-Markdown-05122A?style=flat&logo=markdown">
+
+![Markdown](https://img.shields.io/badge/-Markdown-05122A?style=flat&logo=markdown)
+</a>
+
+<a href="https://img.shields.io/badge/prettier-1A2C34?style=for-the-badge&logo=prettier&logoColor=F7BA3E">
+
+![Prettier](https://img.shields.io/badge/prettier-1A2C34?style=for-the-badge&logo=prettier&logoColor=F7BA3E)</a>
+
+<a href="https://img.shields.io/badge/-Git-05122A?style=flat&logo=git">
+
+![Git](https://img.shields.io/badge/-Git-05122A?style=flat&logo=git)</a>
+
+<a href="https://img.shields.io/badge/-GitHub-05122A?style=flat&logo=github">
+
+![Github](https://img.shields.io/badge/-GitHub-05122A?style=flat&logo=github)</a>
+
+<a href="https://img.shields.io/badge/-VS_Code-05122A?style=flat&logo=visualstudio">
+
+![VSCode](https://img.shields.io/badge/-VS_Code-05122A?style=flat&logo=visualstudio)</a>
+
+<a href="https://img.shields.io/badge/Jira-0052CC?style=for-the-badge&logo=Jira&logoColor=white">
+
+![Jira](https://img.shields.io/badge/Jira-0052CC?style=for-the-badge&logo=Jira&logoColor=white)</a>
+
+<a href="https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white">
+
+![Figma](https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white)</a>
+
+</div>
 
 ---
 
-### 📲 Instructions
+## ⚛️ Instructions 
 
-<details>
+### 📲 Getting Started
+
+<details >
 <summary>Prerequisites</summary>
-
+<div align='left'>
 This project uses [NodeJS](http://nodejs.org), [NPM](https://npmjs.com) and [MongDB](https://www.mongodb.com/). To confirm if locally installed:
 
 1. Either run the following commands in the terminal: `node --version` or `npm --version` for NodeJS and `mongo --version` for MongoDB.
-2. If not locally installed, you will need to install visit the links below for download and install methods.
+2. If not locally installed, to install visit the links below for download and install details.
 
    - [NodeJS and NPM](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
 
    - [MongoDB](https://www.mongodb.com/download-center/shell)
-
-</details>
-
-<details>
-<summary>Installing Hairr || HairrKeepers </summary>
-
-Clone or download the [Hairr || HairrKeepers](https://github.com/Brridge-Group/Lions-Gate-Hairr).
-
-<!-- This project was [bootstrapped](https://getbootstrap.com) with [Create React App](https://github.com/facebook/create-react-app) and enhanced with [Font Awesome](https://fontawesome.com/how-to-use/on-the-web/using-with/react) React components. In order to successfully run the project, as intended, locally all items are needed installed. -->
-
-**Using `npm`:**
-
-1. Clone or download repository
-2. Install project dependencies run: `npm install`
-3. Start Server: `npm run start`
-4. Visit local copy of the project: `localhost:3000`
-
-</details>
+   </div>
+   </details>
 
 <details>
-<summary>Using Hairr || HairrKeepers </summary>
+<summary >Installing HairrKeepers </summary>
+<div align='left'>
 
-1. Open your terminal and in the desired directory, run `git clone https://github.com/Brridge-Group/Lions-Gate-Hairr.git` to clone this project repository to the local machine.
-2. Once cloned, from the terminal within the root directory of the repository, run `npm install` to install `server` dependencies. Then terminal run `cd Lions-Gate-Hairr/client` and run `npm install` inside the `client` directory to do the same.
-3. Add `.env` to the `Lions-Gate-Hairr/` directory `.gitignore` file.
-4. Create a .env file in the `Lions-Gate-Hairr/` directory with the connected `MONGODB_URI` to link the connect MongoBD database.
-5. In the `Lions-Gate-Hairr/` directory from the terminal, run `node db/seed` to create and seed the database.
-6. In `Lions-Gate-Hairr/` run `mongo` in the terminal to start the MongoDB CLI.
-7. Once the Mongo shell is initialized, run `show dbs` to double-check that your local database was created correctly. One of the results should be `Lions-Gate-Hairr`.
-8. Once all developer dependencies are downloaded, you are ready to get started.
-   - In `Lions-Gate-Hairr/client` run `npm run start` to start the Vue.js dev server.
-   - In `Lions-Gate-Hairr/` run `npm run dev` to start the NodeJS development server.
-9. Visit a locally running copy of the project at `http://localhost:3000` (or as indicated in the terminal).
+1. Open the terminal and in the desired directory, run `git clone https://github.com/Brridge-Group/Lions-Gate-Hairr.git` to clone [HairrKeepers](https://github.com/Brridge-Group/Lions-Gate-Hairr) project repository to the local machine.
 
+2. Once cloned, from the terminal within the `Lions-Gate-Hairr/` directory of the repository, run `npm install` to install the backend dependencies. Then run in the terminal `cd Lions-Gate-Hairr/client` and run `npm install` inside the `client` directory to do the same.
+
+3. Ensure `.env` is included within the `.gitignore` file in the `Lions-Gate-Hairr/` directory.
+
+4. Create a new `.env` file in the `Lions-Gate-Hairr/` directory.
+   1. In the `.env` file add the `MONGODB_URI` link to connected desired empty MongoBD database.
+   2. Example:
+
+```json
+MONGODB_URI="mongodb://username:password@host1:port1,...,hostN:portN/database?authSource=admin&..."
+```
+
+<h5> Optional Database Pre-Seed</h5>
+
+1. To create and seed the database, in the `Lions-Gate-Hairr/` directory from the terminal, run `node db/seed`.
+
+2. In `Lions-Gate-Hairr/` run `mongo` in the terminal to start the MongoDB CLI.
+
+</div>
+</details>
+
+### 💻 Using HairrKeepers
+
+<details>
+<summary>Access the project in the browser </summary>
+<div align='left'>
+
+1. Once all developer dependencies are downloaded:
+
+   1. In `Lions-Gate-Hairr/client` run `npm run start` to start the front-end server.
+
+   2. In `Lions-Gate-Hairr/` directory from the terminal, run `npm run dev` to start the NodeJS development server.
+
+2. Visit a locally running copy of the project at `http://localhost:3000` (or as indicated in the terminal).
+
+</div>
+</details>
+
+---
+
+## Contributing to HairrKeepers
+
+<details>
+<summary>Follow these steps:</summary>
+<div align='left'>
+
+1. Fork this [HairrKeepers](https://github.com/Brridge-Group/Lions-Gate-Hairr) project repository.
+2. Create a branch: `git checkout -b <[branch type]/[branch name][#ticketIssueID]>`, example: `git checkout -b feature/login-page#HAIR-31>`. Note naming convention.
+3. Make all desired changes and commit them: `git commit -m '<commit_message>'`
+4. Push to the original branch: `git push origin HairrKeepers/<location>`
+5. Create and submit a pull request with at least two other developers tagged for review. See the GitHub documentation on [creating a pull request](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request) for additional details.
+
+</div>
 </details>
 
 ---
@@ -302,12 +383,12 @@ Gratitude to the following people who have contributed to this project:
 
 </div>
 
-## Special Mentions
+---
+
+## Special Mention
 
 <h6>
-
 Many thanks and appreciations to the following people for so many things least of all the donation of their time, efforts and mentorship this project:
-
 </h6>
 
 [Mikhail Karan](https://github.com/mikhail-karan)
@@ -324,29 +405,23 @@ Many thanks and appreciations to the following people for so many things least o
 
 ## License
 
-This project uses the following license: MIT License
-
 <details>
-<summary>Copyright (c) 2022 HairrKeepers </summary>
+
+<summary>This project uses the following license: MIT License</summary>
+
 <div align="left">
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+Copyright (c) 2022 HairrKeepers
+<br>
+</br>
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+<br>
+</br>
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+<br>
+</br>
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 </div>
 
 </details>
+</div>

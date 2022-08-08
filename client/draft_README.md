@@ -201,7 +201,7 @@ HairrKeepers helps its customers find the right hair experts in any city within 
 
 ---
 
-## ⚛️ Instructions 
+## ⚛️ Instructions
 
 ### 📲 Getting Started
 
@@ -396,7 +396,7 @@ Many thanks and appreciations to the following people for so many things least o
 
 ---
 
-## ⏭️ Next Steps
+## ⏭️ Potential Next Steps
 
 - [ ] Display a visual map utilizing a web mapping API to enable users to locate businesses.
 - [ ] Allow users to complete two input fields; a starting point and a destination, calculating the distance between them, displaying the shortest path between the two locations.

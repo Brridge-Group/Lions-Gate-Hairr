@@ -25,7 +25,9 @@
 .Business_reviews:last-child {
   border-bottom: 0;
 }
-
+.Business_reviews > .Business_column-right {
+  margin-bottom: 0;
+}
 .Business_reviews.author > .Business_column-right {
   margin-bottom: 20px;
 }

@@ -82,7 +82,7 @@ export const MyBusinessList = () => {
             ) : (
               <>
                 <div className='Profile-UserContainer_reviews business'>
-                  <h4>Your businesses</h4>
+                  <h4 className='MyBusinessList-hed'>Your Businesses</h4>
                   <div className='BusinessCard-container'>
                     {list.map((business: any, idx) => (
                       <div className='BusinessCard ' key={business._id}>

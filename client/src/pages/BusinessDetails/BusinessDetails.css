@@ -50,10 +50,7 @@ h5.features:last-child {
   overflow: hidden;
   padding-bottom: 0;
 }
-/* .BusinessDetails-rightColumn
-  + .BusinessDetails-buttons.Review-container.Btn-Primary.review.book {
-  margin-top: 0;
-} */
+
 .BusinessDetails-buttons {
   display: flex;
   flex-direction: column;
@@ -62,20 +59,13 @@ h5.features:last-child {
 .phoneNumber {
   align-self: center;
   margin-left: 50px;
-  /* margin-top: -42px; */
 }
-.Btn-Primary.review.book {
-  /* margin-top: -42px; */
-}
+
 .Btn-Primary.review.not-owner {
   margin-top: 0;
 }
 
-/* .Btn-Primary.review.owner {
-  visibility: hidden;
-} */
 .phoneNumber {
-  /* margin-top: -30px; */
   margin-left: 65px;
   margin-bottom: 7px;
 }

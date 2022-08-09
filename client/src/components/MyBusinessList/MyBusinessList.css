@@ -6,9 +6,6 @@
   border-bottom: 1px solid rgba(0, 0, 0, 0.5);
   margin-top: 3rem;
 }
-.BusinessCard:first-child {
-  margin-top: 0;
-}
 
 .BusinessCard:last-child {
   border-bottom: none;
@@ -31,7 +28,7 @@
 }
 .BusinessCard-container {
   overflow-y: scroll;
-  height: 90%;
+  height: 95%;
   padding-bottom: 2rem;
   max-height: 58vh;
 }

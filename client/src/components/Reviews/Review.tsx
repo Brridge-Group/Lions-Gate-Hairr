@@ -1,10 +1,13 @@
 import { Link } from 'react-router-dom'
 import './AddReview.css'
+import { Book } from '../../components/Book'
+
 interface Props {
   id?: string
   stars: number
   ownerId: string
   name: string
+  phone: string
 }
 
 export const Review = (props: Props) => {
@@ -31,12 +34,17 @@ export const Review = (props: Props) => {
       <div className='Review-container'>
         <div className='Star-container'>{stars}</div>
         {user && user._id !== props.ownerId ? (
-          <Link
-            to={{ pathname: props.id + '/add-review', state: props.name }}
-            className='Btn-Primary review'>
-            Leave a Review
-          </Link>
-        ) : null}
+          <>
+            <Link
+              to={{ pathname: props.id + '/add-review', state: props.name }}
+              className='Btn-Primary review not-owner'>
+              Leave a Review
+            </Link>
+            <Book phone={props.phone} />
+          </>
+        ) : (
+          <Book phone={props.phone} />
+        )}
       </div>
     </>
   )

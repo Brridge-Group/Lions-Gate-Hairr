@@ -76,9 +76,9 @@ ul.BusinessReviews_scroll h6.BusinessReviews_container-noReviews {
   text-align: center;
 }
 
-.BusinessReviews_container {
+.BusinessDetails_reviews > .BusinessReviews_container {
   overflow-y: scroll;
-  height: 99.9%;
+  height: 75%;
 }
 .BusinessReviews_container-noReviews {
   margin-top: 20px;

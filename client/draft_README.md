@@ -364,7 +364,7 @@ Gratitude to the following people who have contributed to this project:
 
 </div>
 
-<h3>Sergio Silvay</h3>
+<h3>Sergio Silva</h3>
 <a href="mailto:[email]@[provider]" target="_blank">
     <img src="https://img.shields.io/badge/-[email_address]-c14438?style=flat&logo=Gmail&logoColor=white">
  </a>

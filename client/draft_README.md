@@ -109,7 +109,7 @@ HairrKeepers helps its customers find the right hair experts in any city within 
 <details>
 
 <!-- TODO: [✅] - Requesting Section Completion, and or Addition, By Kathy -->
-<summary> Multi-Conditional Filter Functionality</summary>
+<summary>Multi-Conditional Filter Functionality</summary>
 <h3 align="center">Features and Services Filter</h3>
 
 | Description                 | Screenshot                                                            |

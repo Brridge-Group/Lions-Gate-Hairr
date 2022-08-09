@@ -7,6 +7,11 @@
 <div align="center">
 <div style='display: flex; justify-content: center; gap: 1rem'>
 
+<a href='https://img.shields.io/github/stars/Brridge-Group/Lions-Gate-Hairr?style=social&logo&logoColor=f32dc8'>
+
+![GitHub stars](https://img.shields.io/github/stars/Brridge-Group/Lions-Gate-Hairr?style=social&logo&logoColor=f32dc8)
+</a>
+
 <a href='https://img.shields.io/github/repo-size/Brridge-Group/Lions-Gate-Hairr?color=f32dc8'>
 
 ![GitHub repo size](https://img.shields.io/github/repo-size/Brridge-Group/Lions-Gate-Hairr?color=f32dc8)
@@ -18,10 +23,7 @@
 
 </a>
 
-<a href='https://img.shields.io/github/stars/Brridge-Group/Lions-Gate-Hairr?style=social&logo&logoColor=f32dc8'>
 
-![GitHub stars](https://img.shields.io/github/stars/Brridge-Group/Lions-Gate-Hairr?style=social&logo&logoColor=f32dc8)
-</a>
 
 <a href='https://img.shields.io/github/stars/Brridge-Group/Lions-Gate-Hairr?style=social&logo&logoColor=f32dc8'>
 
@@ -88,7 +90,7 @@ HairrKeepers helps its customers find the right hair experts in any city within 
 
 <h5 align="center">Feature Description</h5>
 
-| Description                 | Screenshot                                                            |
+| Description                 | Demo                                                            |
 | --------------------------- | --------------------------------------------------------------------- |
 | <h3 align="center">TBD</h3> | <img src="../client/src/assets/images/comingSoonAlt.jpg" width="500"> |
 
@@ -100,7 +102,7 @@ HairrKeepers helps its customers find the right hair experts in any city within 
 
 <h5 align="center">Feature Description</h5>
 
-| Description                 | Screenshot                                                            |
+| Description                 | Demo                                                            |
 | --------------------------- | --------------------------------------------------------------------- |
 | <h3 align="center">TBD</h3> | <img src="../client/src/assets/images/comingSoonAlt.jpg" width="500"> |
 
@@ -108,11 +110,10 @@ HairrKeepers helps its customers find the right hair experts in any city within 
 
 <details>
 
-<!-- TODO: [✅] - Requesting Section Completion, and or Addition, By Kathy -->
 <summary>Multi-Conditional Filter Functionality</summary>
 <h3 align="center">Features and Services Filter</h3>
 
-| Description                 | Screenshot                                                            |
+| Description                 | Demo                                                            |
 | --------------------------- | --------------------------------------------------------------------- |
 | <h5 align="center">All Features and Services are dynamically loaded from the database and filter the returned list of businesses once set by the user.</h5> | <img src="../client/src/assets/images/ReadMe_Multi-CondFilterFeature.gif" width="500"> |
 
@@ -145,7 +146,7 @@ HairrKeepers helps its customers find the right hair experts in any city within 
 
 <a href="https://img.shields.io/badge/-MongoDB-333?style=flat&logo=mongodb">
 
-![MongoDB Atlas](https://img.shields.io/badge/-MongoDB-333?style=flat&logo=mongodb)</a>s
+![MongoDB Atlas](https://img.shields.io/badge/-MongoDB-333?style=flat&logo=mongodb)</a>
 
 <a href="https://img.shields.io/badge/-JSON_Web_Tokens-333?style=flat&logo=jsonwebtokens">
 

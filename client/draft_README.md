@@ -56,14 +56,18 @@ HairrKeepers helps its customers find the right hair experts in any city within 
 
   <!-- TODO: [ ] - Requesting Section Completion By Cynthia -->
 
-| Description                          | Screenshot                                                             |
-| ------------------------------------ | ---------------------------------------------------------------------- |
-| Desktop Layout                       | Device Size Ranges: 540 - 990 Max                                      |
-| <h3 align="center">Home Page</h3>    | <img src="../client/src/assets/images/comingSoonAlt.jpg"  width="500"> |
-| <h3 align="center">Profile Page</h3> | <img src="../client/src/assets/images/comingSoonAlt.jpg" width="500">  |
-| Mobile Layout                        | Device Size Ranges: 340 - 540 Max                                      |
-| <h3 align="center">Home Page</h3>    | <img src="../client/src/assets/images/comingSoonAlt.jpg"  width="500"> |
-| <h3 align="center">Profile Page</h3> | <img src="../client/src/assets/images/comingSoonAlt.jpg" width="500">  |
+| Description                                | Screenshot                                                                      |
+| ------------------------------------------ | ------------------------------------------------------------------------------- |
+| Desktop Layout                             | Device Size Ranges: 540 - 990 Max                                               |
+| <h3 align="center">Home Page</h3>          | <img src="../client/src/assets/images/ReadMe_HomePage.jpg"  width="500">        |
+| <h3 align="center">Profile Page User</h3>  | <img src="../client/src/assets/images/ReadMe_ProfilePageUser.jpg" width="500">  |
+| <h3 align="center">Profile Page Owner</h3> | <img src="../client/src/assets/images/ReadMe_ProfilePageOwner.jpg" width="500"> |
+
+| Description                                             | Screenshot Screenshot                                                                      |
+| ------------------------------------------------------- | ------------------------------------------------------------------------------------------ |
+| Mobile Layout                                           | Device Size Ranges: 340 - 540 Max                                                          |
+| <h3 align="center">Home Page & Hamburger Menu Open</h3> | <img src="../client/src/assets/images/ReadMe_MobileHomePage&Menu.jpg"  width="500">        |
+| <h3 align="center">Profile Page User & Owner</h3>       | <img src="../client/src/assets/images/ReadMe_MobileProfilePageUser&Owner.jpg" width="500"> |
 
 </details>
 <!-- <details open> -->

@@ -154,7 +154,7 @@ ul.Profile_User_reviews {
   .Profile_User_reviews {
     overscroll-behavior-y: contain;
   }
-  .Profile-UserContainer.Owner {
+  /* .Profile-UserContainer.Owner {
     height: 70vh;
-  }
+  } */
 }

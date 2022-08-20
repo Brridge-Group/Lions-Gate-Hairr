@@ -49,7 +49,7 @@ HairrKeepers helps its customers find the right hair experts in any city within 
 
 | Description                 | Screenshot                                                                |
 | --------------------------- | ------------------------------------------------------------------------- |
-| <h3 align="center">ERD</h3> | <img src="../client/src/assets/images//Example_ERD.MYC.png"  width="500"> |
+| <h3 align="center">ERD</h3> | <img src="../client/src/assets/images//ERD.MYC.png"  width="500"> |
 
 </details>
 

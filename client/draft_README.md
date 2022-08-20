@@ -377,8 +377,8 @@ Gratitude to the following people who have contributed to this project:
 
 [@sergiobtos](https://github.com/sergiobtos)
 
-<a href="https://[username]g.github.io/portfolio" target="_blank">
-    <img src="https://img.shields.io/badge/[username]github.io/portfolio-gold?style=flat&logo=github"
+<a href="https://github.com/sergiobtos" target="_blank">
+    <img src="https://img.shields.io/badge/sergiobtos.github.io/portfolio-gold?style=flat&logo=github"
 
 </a>
 

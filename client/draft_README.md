@@ -366,12 +366,12 @@ Gratitude to the following people who have contributed to this project:
 </div>
 
 <h3>Sergio Silva</h3>
-<a href="mailto:[email]@[provider]" target="_blank">
+<a href="mailto:sergiobtos@hotmail.com" target="_blank">
     <img src="https://img.shields.io/badge/-[email_address]-c14438?style=flat&logo=Gmail&logoColor=white">
  </a>
 <div style='display: flex; justify-content: center; gap: .5rem'>
 
-<a href="https://www.linkedin.com/in/username" target="_blank">
+<a href="https://www.linkedin.com/in/sergio-btos" target="_blank">
       <img src="https://img.shields.io/badge/Sergio Silvay-blue?style=flat&logo=Linkedin&logoColor=f32dc8">
  </a>
 

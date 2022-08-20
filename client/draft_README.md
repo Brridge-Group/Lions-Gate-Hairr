@@ -104,7 +104,7 @@ HairrKeepers helps its customers find the right hair experts in any city within 
 
 | Description                 | Demo                                                            |
 | --------------------------- | --------------------------------------------------------------------- |
-| <h3 align="center">TBD</h3> | <img src="../client/src/assets/images/comingSoonAlt.jpg" width="500"> |
+| <h3 align="center">TBD</h3> | <img src="../client/src/assets/images/crud.png" width="500"> |
 
 </details>
 

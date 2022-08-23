@@ -7,6 +7,11 @@
 <div align="center">
 <div style='display: flex; justify-content: center; gap: 1rem'>
 
+<a href='https://img.shields.io/github/stars/Brridge-Group/Lions-Gate-Hairr?style=social&logo&logoColor=f32dc8'>
+
+![GitHub stars](https://img.shields.io/github/stars/Brridge-Group/Lions-Gate-Hairr?style=social&logo&logoColor=f32dc8)
+</a>
+
 <a href='https://img.shields.io/github/repo-size/Brridge-Group/Lions-Gate-Hairr?color=f32dc8'>
 
 ![GitHub repo size](https://img.shields.io/github/repo-size/Brridge-Group/Lions-Gate-Hairr?color=f32dc8)
@@ -16,11 +21,6 @@
 
 ![GitHub Contributors](https://img.shields.io/github/contributors/Brridge-Group/Lions-Gate-Hairr?color=e00db2)
 
-</a>
-
-<a href='https://img.shields.io/github/stars/Brridge-Group/Lions-Gate-Hairr?style=social&logo&logoColor=f32dc8'>
-
-![GitHub stars](https://img.shields.io/github/stars/Brridge-Group/Lions-Gate-Hairr?style=social&logo&logoColor=f32dc8)
 </a>
 
 <a href='https://img.shields.io/github/stars/Brridge-Group/Lions-Gate-Hairr?style=social&logo&logoColor=f32dc8'>
@@ -79,40 +79,29 @@ HairrKeepers helps its customers find the right hair experts in any city within 
 <details>
 <summary>Responsivity</summary>
 
-| Description                                | Video                                                                                                                                                                             |
-| ------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| <h3 align="center">Desktop and Mobile</h3> | <video src="https://user-images.githubusercontent.com/15850286/186239607-a3ec9cc2-02b8-4bc4-9005-601b6f051c92.mp4" width='500' controls><source src="movie.mp4" type="video/mp4"> |
-
-| </video>
+| Description                                | Demo                                                                                                                                                                                       |
+| ------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| <h3 align="center">Desktop and Mobile</h3> | <video src="https://user-images.githubusercontent.com/15850286/186239607-a3ec9cc2-02b8-4bc4-9005-601b6f051c92.mp4" width='500' controls><source src="movie.mp4" type="video/mp4"> </video> |
 
 </details>
 
 <details>
 <summary>CRUD Functionality</summary>
 
-| Description                     | Video                                                                                                                                                                             |
-| ------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| <h3 align="center">Reviews</h3> | <video src="https://user-images.githubusercontent.com/15850286/186231055-d33e6890-551c-4ab0-af8b-029670ac288e.mp4" width='500' controls><source src="movie.mp4" type="video/mp4"> |
-| </video>                        |
-
-<h5 align="center">Feature Description</h5>
-
-| Description                 | Screenshot                                                            |
-| --------------------------- | --------------------------------------------------------------------- |
-| <h3 align="center">TBD</h3> | <img src="../client/src/assets/images/comingSoonAlt.jpg" width="500"> |
-| <h3 align="center">TBD</h3> | ![crud](../../../../Review%20crud.mp4)                                |
+| Description                     | Demo                                                                                                                                                                                       |
+| ------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| <h3 align="center">Reviews</h3> | <video src="https://user-images.githubusercontent.com/15850286/186231055-d33e6890-551c-4ab0-af8b-029670ac288e.mp4" width='500' controls><source src="movie.mp4" type="video/mp4"> </video> |
 
 </details>
 
 <details>
 
-<!-- TODO: [ ] - Requesting Section Completion, and or Addition, By Kathy -->
-<summary> Multi Conditional Filter Functionality</summary>
-<h5 align="center">Feature Description</h5>
+<summary>Multi-Conditional Filter Functionality</summary>
+<h3 align="center">Features and Services Filter</h3>
 
-| Description                 | Screenshot                                                            |
-| --------------------------- | --------------------------------------------------------------------- |
-| <h3 align="center">TBD</h3> | <img src="../client/src/assets/images/comingSoonAlt.jpg" width="500"> |
+| Description                                                                                                                                                 | Demo                                                                                   |
+| ----------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| <h5 align="center">All Features and Services are dynamically loaded from the database and filter the returned list of businesses once set by the user.</h5> | <img src="../client/src/assets/images/ReadMe_Multi-CondFilterFeature.gif" width="500"> |
 
 </details>
 
@@ -143,7 +132,7 @@ HairrKeepers helps its customers find the right hair experts in any city within 
 
 <a href="https://img.shields.io/badge/-MongoDB-333?style=flat&logo=mongodb">
 
-![MongoDB Atlas](https://img.shields.io/badge/-MongoDB-333?style=flat&logo=mongodb)</a>s
+![MongoDB Atlas](https://img.shields.io/badge/-MongoDB-333?style=flat&logo=mongodb)</a>
 
 <a href="https://img.shields.io/badge/-JSON_Web_Tokens-333?style=flat&logo=jsonwebtokens">
 
@@ -362,7 +351,7 @@ Gratitude to the following people who have contributed to this project:
 
 </div>
 
-<h3>Sergio Silvay</h3>
+<h3>Sergio Silva</h3>
 <a href="mailto:[email]@[provider]" target="_blank">
     <img src="https://img.shields.io/badge/-[email_address]-c14438?style=flat&logo=Gmail&logoColor=white">
  </a>

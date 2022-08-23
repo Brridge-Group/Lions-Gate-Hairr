@@ -52,22 +52,12 @@ HairrKeepers helps its customers find the right hair experts in any city within 
 </details>
 
 <details>
- <summary> 🎨 Wireframes</summary>
+ <summary> 🎨 Figma</summary>
 
-  <!-- TODO: [ ] - Requesting Section Completion By Cynthia -->
-
-| Description                                | Screenshot                                                                      |
-| ------------------------------------------ | ------------------------------------------------------------------------------- |
-| Desktop Layout                             | Device Size Ranges: 540 - 990 Max                                               |
-| <h3 align="center">Home Page</h3>          | <img src="../client/src/assets/images/ReadMe_HomePage.jpg"  width="500">        |
-| <h3 align="center">Profile Page User</h3>  | <img src="../client/src/assets/images/ReadMe_ProfilePageUser.jpg" width="500">  |
-| <h3 align="center">Profile Page Owner</h3> | <img src="../client/src/assets/images/ReadMe_ProfilePageOwner.jpg" width="500"> |
-
-| Description                                             | Screenshot Screenshot                                                                      |
-| ------------------------------------------------------- | ------------------------------------------------------------------------------------------ |
-| Mobile Layout                                           | Device Size Ranges: 340 - 540 Max                                                          |
-| <h3 align="center">Home Page & Hamburger Menu Open</h3> | <img src="../client/src/assets/images/ReadMe_MobileHomePage&Menu.jpg"  width="500">        |
-| <h3 align="center">Profile Page User & Owner</h3>       | <img src="../client/src/assets/images/ReadMe_MobileProfilePageUser&Owner.jpg" width="500"> |
+| Description                               | Screenshot                                                            |
+| ----------------------------------------- | --------------------------------------------------------------------- |
+| Desktop Layout                            | Device Size Ranges: 540 - 990 Max                                     |
+| <h3 align="center">Initial Figma Doc</h3> | <img src="../client/src/assets/images/ReadMe_figma.png"  width="500"> |
 
 </details>
 <!-- <details open> -->
@@ -87,26 +77,30 @@ HairrKeepers helps its customers find the right hair experts in any city within 
  <summary> ✨ Features & Code Snippets</summary>
 
 <details>
-<!-- TODO: [ ] - Requesting Section Completion, Edition and or Addition, By Cynthia && Sergio -->
 <summary>Responsivity</summary>
 
-<h5 align="center">Feature Description</h5>
+| Description                                | Video                                                                                                                                                                             |
+| ------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| <h3 align="center">Desktop and Mobile</h3> | <video src="https://user-images.githubusercontent.com/15850286/186239607-a3ec9cc2-02b8-4bc4-9005-601b6f051c92.mp4" width='500' controls><source src="movie.mp4" type="video/mp4"> |
 
-| Description                 | Screenshot                                                            |
-| --------------------------- | --------------------------------------------------------------------- |
-| <h3 align="center">TBD</h3> | <img src="../client/src/assets/images/comingSoonAlt.jpg" width="500"> |
+| </video>
 
 </details>
-<!-- TODO: [ ] - Requesting Section Completion, Edition and or Addition, By Cynthia && Sergio -->
 
 <details>
 <summary>CRUD Functionality</summary>
 
+| Description                     | Video                                                                                                                                                                             |
+| ------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| <h3 align="center">Reviews</h3> | <video src="https://user-images.githubusercontent.com/15850286/186231055-d33e6890-551c-4ab0-af8b-029670ac288e.mp4" width='500' controls><source src="movie.mp4" type="video/mp4"> |
+| </video>                        |
+
 <h5 align="center">Feature Description</h5>
 
 | Description                 | Screenshot                                                            |
 | --------------------------- | --------------------------------------------------------------------- |
 | <h3 align="center">TBD</h3> | <img src="../client/src/assets/images/comingSoonAlt.jpg" width="500"> |
+| <h3 align="center">TBD</h3> | ![crud](../../../../Review%20crud.mp4)                                |
 
 </details>
 
@@ -311,19 +305,19 @@ Gratitude to the following people who have contributed to this project:
 
 </div>
 <h3>Cynthia Eddy</h3>
-<a href="mailto:[email]@[provider]" target="_blank">
+<a href="mailto:cynthiaeddynyc@gmail.com" target="_blank">
     <img src="https://img.shields.io/badge/-[email_address]-c14438?style=flat&logo=Gmail&logoColor=white">
  </a>
 <div style='display: flex; justify-content: center; gap: .5rem'>
 
-<a href="https://www.linkedin.com/in/username" target="_blank">
+<a href="https://www.linkedin.com/in/cynthiaeddy" target="_blank">
       <img src="https://img.shields.io/badge/Cynthia Eddy-blue?style=flat&logo=Linkedin&logoColor=f32dc8">
  </a>
 
 [@cynthiaeddy](https://github.com/cynthiaeddy)
 
-<a href="https://[username]g.github.io/portfolio" target="_blank">
-    <img src="https://img.shields.io/badge/[username]github.io/portfolio-gold?style=flat&logo=github"
+<a href="https://cynthiaeddy.netlify.app" target="_blank">
+    <img src="https://img.shields.io/badge/cynthiaeddy-gold?style=flat&logo=github"
 
 </a>
 

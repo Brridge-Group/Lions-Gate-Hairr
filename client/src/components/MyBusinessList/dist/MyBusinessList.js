@@ -129,7 +129,7 @@ exports.MyBusinessList = function () {
                 React.createElement("div", { className: 'Profile-UserContainer Owner' }, isLoading ? (React.createElement(LoadSpinner_1.LoadSpinner, null)) : !list.length ? (React.createElement("div", { className: 'Profile-UserContainer_reviews business' },
                     React.createElement("h4", null, "No Businesses Found"))) : (React.createElement(React.Fragment, null,
                     React.createElement("div", { className: 'Profile-UserContainer_reviews business' },
-                        React.createElement("h4", null, "Your businesses"),
+                        React.createElement("h4", { className: 'MyBusinessList-hed' }, "Your Businesses"),
                         React.createElement("div", { className: 'BusinessCard-container' },
                             list.map(function (business, idx) { return (React.createElement("div", { className: 'BusinessCard ', key: business._id },
                                 React.createElement(CardDetails_1.CardDetails, { businessName: business.businessName, description: business.description, image: business.image, address: business.address }),

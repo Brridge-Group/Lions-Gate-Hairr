@@ -37,19 +37,21 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 exports.__esModule = true;
 exports.BusinessDetails = void 0;
+//* React Components
 var react_1 = require("react");
 var react_router_dom_1 = require("react-router-dom");
-var About_1 = require("./About/About");
-var Book_1 = require("../../../components/dist/Book");
-var Review_1 = require("../Reviews/Review");
+//* Custom Imports
+var CardDetails_1 = require("../../components/Card/CardDetails/CardDetails");
+var Review_1 = require("../../components/Reviews/Review");
+var BusinessReviews_1 = require("../../components/BusinessReviews/BusinessReviews");
+var LoadSpinner_1 = require("../../components/LoadSpinner/LoadSpinner");
+//* Custom Styles
 require("./BusinessDetails.css");
-var BusinessReviews_1 = require("../BusinessReviews/BusinessReviews");
-var LoadSpinner_1 = require("../LoadSpinner/LoadSpinner");
 exports.BusinessDetails = function () {
     var _a = react_1.useState(), business = _a[0], setBusiness = _a[1];
     var _b = react_1.useState(0), totalStars = _b[0], setTotalStars = _b[1];
     var id = react_router_dom_1.useParams().id;
-    // FETCHES BUSINESS DATA FROM REMOTE DATABSE ONCE AND SETS BUSINESSDATA STATE TO IT.
+    // FETCHES BUSINESS DATA FROM REMOTE DATABASE ONCE AND SETS `BUSINESSDATA` STATE TO IT.
     react_1.useEffect(function () {
         var getBusinessData = function () { return __awaiter(void 0, void 0, void 0, function () {
             var res, businessData;
@@ -92,25 +94,24 @@ exports.BusinessDetails = function () {
         mapRatings();
     }, [business]);
     // if (p1.address && typeof p1.address.country === 'string')
-    // CHECKS IF THE BUSINESSDATA STATE HAS VALUE. RENDERS THE BUSINESS PAGE IF IT DOES AND SETS A LOADING SCREEN IF IT DOESN'T.
+    // CHECKS IF THE `BUSINESSDATA` STATE HAS VALUE. RENDERS THE BUSINESS PAGE IF IT DOES AND SETS A LOADING SCREEN IF IT DOESN'T.
     // THE FIRST RENDER WON'T HAVE DATA, SINCE USEEFFECT, WHICH GIVES THE STATE IT'S VALUE, RUNS AFTER THE FIRST RENDER.
     // console.log('totalStars', totalStars)
-    return (React.createElement("div", { className: ' FeatureContainer_image Home' },
-        React.createElement("div", { className: 'BusinessContainer' }, business ? (React.createElement(React.Fragment, null,
-            React.createElement("div", { className: 'BusinessDetails-leftColumn' },
-                React.createElement("h4", { className: 'sidebar-hed' },
+    return (React.createElement("div", { className: 'FeatureContainer_image Home' },
+        React.createElement("main", { className: 'BusinessContainer' }, business ? (React.createElement(React.Fragment, null,
+            React.createElement("aside", { className: 'BusinessDetails-leftColumn' },
+                React.createElement("h4", { className: 'AsideSidebar-Header' },
                     React.createElement("label", { htmlFor: 'features' }, "Features")),
-                React.createElement("ul", { className: 'BusinessDetails-ul' }, business.features.map(function (feature) { return (React.createElement("h5", { className: 'features' },
-                    React.createElement("li", { key: feature._id }, feature.name))); })),
-                React.createElement("h4", { className: 'sidebar-hed' },
+                React.createElement("ul", { className: 'BusinessDetails-ul' }, business.features.map(function (feature) { return (React.createElement("h5", { className: 'features', key: feature._id },
+                    React.createElement("li", null, feature.name))); })),
+                React.createElement("h4", { className: 'AsideSidebar-Header' },
                     React.createElement("label", { htmlFor: 'features' }, "Services")),
-                React.createElement("ul", { className: 'BusinessDetails-ul' }, business.services.map(function (service) { return (React.createElement("h5", { className: 'services' },
-                    React.createElement("li", { key: service._id }, service.name))); }))),
-            React.createElement("div", { className: 'BusinessDetails-rightColumn' },
-                React.createElement(About_1.About, { name: business.businessName, description: business.description, image: business.image, address: business.address }),
+                React.createElement("ul", { className: 'BusinessDetails-ul' }, business.services.map(function (service) { return (React.createElement("h5", { className: 'services', key: service._id },
+                    React.createElement("li", null, service.name))); }))),
+            React.createElement("section", { className: 'BusinessDetails-rightColumn' },
+                React.createElement(CardDetails_1.CardDetails, { businessName: business.businessName, description: business.description, image: business.image, address: business.address }),
                 React.createElement("div", { className: 'BusinessDetails-buttons' },
-                    React.createElement(Review_1.Review, { id: id, stars: totalStars, ownerId: business.ownerId, name: business.businessName }),
-                    React.createElement(Book_1.Book, { phone: business.phone })),
+                    React.createElement(Review_1.Review, { id: id, stars: totalStars, ownerId: business.ownerId, name: business.businessName, phone: business.phone })),
                 React.createElement("div", { className: 'BusinessDetails_reviews' },
                     React.createElement("h4", null, "reviews"),
                     React.createElement(BusinessReviews_1.BusinessReviews, { reviews: business.reviews }))))) : (React.createElement(LoadSpinner_1.LoadSpinner, null)))));

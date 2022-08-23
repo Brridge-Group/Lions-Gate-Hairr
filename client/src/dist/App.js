@@ -1,14 +1,14 @@
 "use strict";
 exports.__esModule = true;
 exports.App = void 0;
-// React Components
+//* React Components
 var react_router_dom_1 = require("react-router-dom");
-// Custom Imports
+//* Custom Imports
 var Home_1 = require("./pages/Home/Home");
 var UserRegistration_1 = require("./pages/Auth/UserRegistration/UserRegistration");
 var Login_1 = require("./pages/Auth/Login/Login");
 var BusinessList_1 = require("./pages/BusinessList/BusinessList");
-var BusinessDetails_1 = require("./components/BusinessDetails/BusinessDetails");
+var BusinessDetails_1 = require("./pages/BusinessDetails/BusinessDetails");
 var AddBusiness_1 = require("./pages/AddBusiness/AddBusiness");
 var AddReview_1 = require("./components/Reviews/AddReview");
 var EditReview_1 = require("./components/Reviews/EditReview");
@@ -17,7 +17,6 @@ var EditBusiness_1 = require("./pages/EditBusiness/EditBusiness");
 var Navbar_1 = require("./components/Navbar/Navbar");
 var Profile_1 = require("./pages/Profile/Profile");
 var EditProfile_1 = require("./pages/Auth/EditProfile");
-// Custom Styles
 require("./App.css");
 exports.App = function () {
     var routes;

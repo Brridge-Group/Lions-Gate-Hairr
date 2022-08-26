@@ -1,8 +1,19 @@
 import { StarSmall } from '../../UIElements/Star'
 import './BusinessReviews.css'
 
+interface ReviewsInfo {
+  _id: string;
+  comment?: string;
+  rating: number;
+  author: string;
+  business: string;
+  name: string;
+  image: string;
+  createDate: string;
+}
+
 interface Props {
-  reviews: Array<[]>
+  reviews: ReviewsInfo[];
 }
 
 export const BusinessReviews = (props: Props) => {
@@ -11,11 +22,11 @@ export const BusinessReviews = (props: Props) => {
   return (
     <div className='BusinessReviews_container'>
       <ul className='BusinessReviews_scroll'>
-        {reviews.map((r: any) => (
+        {reviews.map((r: ReviewsInfo) => (
           <li key={r._id} className='Business_reviews author'>
             <div className='Business_column-left '>
               <div className='img-wrapper'>
-                <img src={r.image} className='person-circle' />
+                <img src={r.image} className='person-circle' alt={r._id + 'image'} />
               </div>
             </div>
             <div className='Business_column-right '>

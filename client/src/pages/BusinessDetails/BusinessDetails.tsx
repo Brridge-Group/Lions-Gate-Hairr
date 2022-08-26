@@ -12,9 +12,19 @@ import { LoadSpinner } from '../../components/LoadSpinner/LoadSpinner'
 //* Custom Styles
 import './BusinessDetails.css'
 
+interface ReviewsInfo {
+  _id: string;
+  comment?: string;
+  rating: number;
+  author: string;
+  business: string;
+  name: string;
+  image: string;
+  createDate: string;
+}
 //* Types
 interface BusinessReviews {
-  reviews: Array<[]>
+  reviews: ReviewsInfo[]
 }
 
 interface RouteParams {
@@ -44,7 +54,7 @@ interface Business {
   }
   services: Service[]
   features: Feature[]
-  reviews: Array<[]>
+  reviews: ReviewsInfo[]
   stars: number
   phone: string
   ownerId: string
@@ -69,10 +79,8 @@ export const BusinessDetails = () => {
   useEffect(() => {
     let number = 0
     const mapRatings = () => {
-      business?.reviews.map(
-        (r: any, idx: any) =>
-          (number = number + r.rating / business?.reviews.length)
-      )
+      business?.reviews.map((r: ReviewsInfo, idx: any) => (number = number + r.rating / business?.reviews.length))
+
       setTotalStars(Math.round(number))
     }
     mapRatings()
@@ -83,7 +91,7 @@ export const BusinessDetails = () => {
     let number = 0
     const mapRatings = () => {
       const total = business?.reviews.reduce(
-        (acc: any, r: any) =>
+        (acc: any, r: ReviewsInfo) =>
           // ts@ignore
           r.rating + acc,
         number

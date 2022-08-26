@@ -3,8 +3,19 @@ import { StarSmall } from '../../UIElements/Star'
 import './BusinessReviews.css'
 import axios from 'axios'
 
+interface ReviewsInfo {
+  _id: string;
+  comment?: string;
+  rating: number;
+  author: string;
+  business: string;
+  name: string;
+  image: string;
+  createDate: string;
+}
+
 interface Props {
-  reviews: Array<[]>
+  reviews: ReviewsInfo[];
 }
 
 export const MyBusinessReviews = (props: Props) => {
@@ -13,11 +24,14 @@ export const MyBusinessReviews = (props: Props) => {
 
   const { reviews } = props
 
+
   useEffect(() => {
     const fetchBusinessReviews = () => {
       Promise.all(
-        reviews.map((review: any) => axios.get(`api/reviews/${review}`))
-      ).then((data: any) => getMyBusinessReview(data))
+        reviews.map((review: ReviewsInfo) => axios.get(`api/reviews/${review._id}`))
+      ).then((data: any) => {
+        getMyBusinessReview(data)
+      })
     }
     fetchBusinessReviews()
     setLoading(false)
@@ -36,6 +50,7 @@ export const MyBusinessReviews = (props: Props) => {
                 <img
                   src={r.data.review.author.imageProfile}
                   className='person-circle'
+                  alt=""
                 />
               </div>
             </div>

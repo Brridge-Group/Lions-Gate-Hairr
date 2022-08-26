@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useParams, useHistory, useLocation } from 'react-router-dom'
+import { UserDataFromLocalStorage } from '../../pages/Auth/EditProfile'
 
 import './AddReview.css'
 
@@ -7,19 +8,10 @@ interface RouteParams {
   id: string
 }
 
-interface AddReview {
-  comment: string
-  rating: number
-  business: any
-  author: any
-  image: string
-  name: string
-}
 export const AddReview = () => {
   const history = useHistory()
   const location = useLocation<any>()
   const busName = location.state
-  console.log('in add review, busName', busName)
 
   const [rating, setRating] = useState(0)
   const [hover, setHover] = useState(0)
@@ -28,12 +20,12 @@ export const AddReview = () => {
 
   const { comment } = reviewForm
 
-  const user = JSON.parse(localStorage.getItem('profile') ?? 'false').result
-  const token = JSON.parse(localStorage.getItem('profile') ?? 'false').token
+  const user : UserDataFromLocalStorage = JSON.parse(localStorage.getItem('profile') ?? 'false').result
+  const token : string = JSON.parse(localStorage.getItem('profile') ?? 'false').token
 
-  const handleChange = e => {
+  const handleChange = (e: any) => {
     e.preventDefault()
-    setReviewForm({ ...reviewForm, [e.target.name]: e.target.value })
+    setReviewForm({ ...reviewForm, [e.currentTarget.name]: e.currentTarget.value })
   }
   const saveNewReview = async () => {
     let newReview = {

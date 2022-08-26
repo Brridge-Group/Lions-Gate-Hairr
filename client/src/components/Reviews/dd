@@ -1,14 +1,15 @@
+
+
 import { Link } from 'react-router-dom'
 import './AddReview.css'
-import { Book } from '../../components/Book'
-
 interface Props {
   id?: string
   stars: number
   ownerId: string
   name: string
-  phone: string
 }
+
+const isLoggedIn: boolean = true
 
 export const Review = (props: Props) => {
   const user = JSON.parse(localStorage.getItem('profile') || 'false').result
@@ -33,18 +34,17 @@ export const Review = (props: Props) => {
     <>
       <div className='Review-container'>
         <div className='Star-container'>{stars}</div>
-        {user && user._id !== props.ownerId ? (
-          <>
+        {isLoggedIn ? (
+          user._id !== props.ownerId ? (
             <Link
               to={{ pathname: props.id + '/add-review', state: props.name }}
-              className='Btn-Primary review not-owner'>
+              className='btn--btn-primary review'>
               Leave a Review
             </Link>
-            <Book phone={props.phone} />
-          </>
-        ) : (
-          <Book phone={props.phone} />
-        )}
+          ) : (
+            <Link to={'#'} className='btn--btn-primary review hide'></Link>
+          )
+        ) : null}
       </div>
     </>
   )

@@ -44,31 +44,27 @@ var __spreadArrays = (this && this.__spreadArrays) || function () {
 };
 exports.__esModule = true;
 exports.BusinessList = void 0;
-// React Components
+//* React Imports
 var react_1 = require("react");
 var react_router_dom_1 = require("react-router-dom");
-// Custom Imports
-var About_1 = require("../../components/BusinessDetails/About/About");
+//* Custom Imports
 var Star_1 = require("../../UIElements/Star");
-var Card_1 = require("../../UIElements/Card");
-var FilterServicesAndFeatures_1 = require("../../components/FilterServicesAndFeatures/FilterServicesAndFeatures");
 var LoadSpinner_1 = require("../../components/LoadSpinner/LoadSpinner");
-// Custom Styles
+var Card_1 = require("../../components/Card/Card");
+var CardDetails_1 = require("../../components/Card/CardDetails/CardDetails");
+var FilterServicesAndFeatures_1 = require("../../components/FilterServicesAndFeatures/FilterServicesAndFeatures");
+//* Custom Styles
 require("./BusinessList.css");
 exports.BusinessList = function () {
-    var _a = react_1.useState([]), list = _a[0], setList = _a[1];
-    var _b = react_1.useState(true), loading = _b[0], setLoading = _b[1];
+    var _a = react_1.useState(true), isLoading = _a[0], setIsLoading = _a[1];
     var city = react_router_dom_1.useParams().city;
-    //* Initialize Services and Features to state
-    var _c = react_1.useState([]), feats = _c[0], setFeats = _c[1]; // Features full object
-    var _d = react_1.useState([]), services = _d[0], setServices = _d[1]; // Services full object
+    var _b = react_1.useState([]), list = _b[0], setList = _b[1];
+    //* Initialize Services and Features to State with full database data object
+    var _c = react_1.useState([]), feats = _c[0], setFeats = _c[1];
+    var _d = react_1.useState([]), services = _d[0], setServices = _d[1];
+    //* Initialize Services and Features Arrays to State
     var _e = react_1.useState([]), featuresArr = _e[0], setFeaturesArr = _e[1];
     var _f = react_1.useState([]), servicesArr = _f[0], setServicesArr = _f[1];
-    // //* Initialize state objects for form checkboxes
-    // // TODO: [ ] => Connect with `handleResetFilter` to reset checkboxes to false
-    // const [isChecked, setIsChecked]: any = useState(false)
-    // const [isFeatsChecked, setIsFeatsChecked]: any = useState([])
-    // const [isServicesChecked, setIsServicesChecked]: any = useState([])
     react_1.useEffect(function () {
         var fetchData = function () { return __awaiter(void 0, void 0, void 0, function () {
             var res, businessesList, filtered, err_1;
@@ -79,6 +75,7 @@ exports.BusinessList = function () {
                         return [4 /*yield*/, fetch('/api/businesses/get-businesses')];
                     case 1:
                         res = _a.sent();
+                        setIsLoading(true);
                         return [4 /*yield*/, res.json()];
                     case 2:
                         businessesList = _a.sent();
@@ -93,12 +90,12 @@ exports.BusinessList = function () {
                         else {
                             setList(businessesList);
                         }
-                        setLoading(false);
+                        setIsLoading(false);
                         return [3 /*break*/, 4];
                     case 3:
                         err_1 = _a.sent();
                         console.log(err_1);
-                        setLoading(false);
+                        setIsLoading(false);
                         return [3 /*break*/, 4];
                     case 4: return [2 /*return*/];
                 }
@@ -106,7 +103,7 @@ exports.BusinessList = function () {
         }); };
         fetchData();
     }, []);
-    // console.log('bus list', list)
+    // console.log('Business List', list)
     //* Fetch Features and Services from the database
     react_1.useEffect(function () {
         var fetchFeaturesData = function () { return __awaiter(void 0, void 0, void 0, function () {
@@ -134,7 +131,8 @@ exports.BusinessList = function () {
                         return [3 /*break*/, 4];
                     case 3:
                         err_2 = _a.sent();
-                        setLoading(false);
+                        console.log(err_2);
+                        setIsLoading(false);
                         return [3 /*break*/, 4];
                     case 4: return [2 /*return*/];
                 }
@@ -166,7 +164,7 @@ exports.BusinessList = function () {
                     case 3:
                         err_3 = _a.sent();
                         console.log(err_3);
-                        setLoading(false);
+                        setIsLoading(false);
                         return [3 /*break*/, 4];
                     case 4: return [2 /*return*/];
                 }
@@ -177,11 +175,11 @@ exports.BusinessList = function () {
     }, []);
     // console.log(`servicesArr`, servicesArr)
     // console.log(`featuresArr`, featuresArr)
-    //* Filter Business Features and Services
+    //* Initialize State Arrays to Filter Business Features and Services
     var _g = react_1.useState([]), filteredResults = _g[0], setFilteredResults = _g[1];
-    // console.log(`filteredResults`, filteredResults)
     var _h = react_1.useState([]), filteredFeats = _h[0], setFilteredFeats = _h[1];
     var _j = react_1.useState([]), filteredServices = _j[0], setFilteredServices = _j[1];
+    // console.log(`filteredResults`, filteredResults)
     //* Listen for the features' and services' checkbox changes and capture that data from the `FilterServicesAndFeatures` child component
     var onFeatChange = function (feature) {
         setFilteredFeats(feature);
@@ -189,92 +187,97 @@ exports.BusinessList = function () {
     var onServiceChange = function (service) {
         setFilteredServices(service);
     };
+    //* Filter Business by *All* User Selected Features and Services
     var handleFilteredResults = function () {
-        var tempFilteredResults = [];
         var tempSelectedFeatsServices = [];
-        //* Push user selected Features to a single temp array, if the filtered array/object is not empty
-        if (Object.keys(filteredFeats).length > 0) {
-            //* Filter out elements that are only true and push those true objects to tempSelectedFeatsServices
-            Object.entries(filteredFeats).filter(function (featureElement) {
-                if (featureElement[1] === true) {
-                    tempSelectedFeatsServices.push(featureElement);
-                    return true;
-                }
-            });
-        }
-        //* Push user selected Services to a single temp array, if the filtered array/object is not empty
-        if (Object.keys(filteredServices).length > 0) {
-            //* Filter out elements that are only true and push those true objects to tempSelectedFeatsServices
-            Object.entries(filteredServices).filter(function (featureElement) {
-                if (featureElement[1] === true) {
-                    tempSelectedFeatsServices.push(featureElement);
-                    return true;
-                }
-            });
-        }
-        //* Filter the list of businesses by the selected Features and Services
-        var newList = __spreadArrays(list).filter(function (businessObject) {
-            //* Iterate through the selected Features and Services
-            if (tempSelectedFeatsServices.length === 0) {
-                tempFilteredResults.push(businessObject);
-                return true;
-            }
-            if (tempSelectedFeatsServices.length > 0) {
-                return tempSelectedFeatsServices.some(function (filteredElement) {
-                    //* Iterate through the Features of each business
-                    businessObject.features.filter(function (bizFeats) {
-                        //* If the business has the selected Features, add it to the tempFilteredResults array
-                        if (Object.values(bizFeats).includes(filteredElement[0])) {
-                            tempFilteredResults.push(businessObject);
-                            return true;
-                        }
-                    });
-                    //* Iterate through the Services of each business
-                    businessObject.services.filter(function (bizServices) {
-                        //* If the business has the selected Services, add it to the tempFilteredResults array
-                        if (Object.values(bizServices).includes(filteredElement[0])) {
-                            tempFilteredResults.push(businessObject);
-                            return true;
-                        }
-                    });
+        //* Filter out elements that are only selected as true/checked and push those true objects to tempSelectedFeatsServices
+        tempSelectedFeatsServices = __spreadArrays(filteredFeats, filteredServices).filter(function (tempFeatOrService) { return tempFeatOrService.isChecked; });
+        if (tempSelectedFeatsServices.length > 0) {
+            //* Filter out Businesses that do not have the selected Features and Services
+            var filteredBusinesses = list.filter(function (businessObject) {
+                //* Return an array of business Iterate through the Features and Services of each business
+                var businessFeatAndService = __spreadArrays(businessObject.features, businessObject.services).map(function (businessFeatOrService) { return businessFeatOrService._id; });
+                //* Iterate through, `tempSelectedFeatsServices`, the Features && Services of each business
+                return tempSelectedFeatsServices.every(function (tempFeatOrService) {
+                    //* If the business' Features && Service has the selected filter Features && Service `_id`, return true
+                    return businessFeatAndService.includes(tempFeatOrService._id);
                 });
-            }
-        });
-        //* Remove Any Duplicates
-        var uniqueTempFilteredResults = Array.from(new Set(tempFilteredResults));
-        setFilteredResults(uniqueTempFilteredResults);
-        return filteredResults;
+            });
+            // console.log(`🔇 -> filteredBusinesses`, filteredBusinesses)
+            setFilteredResults(filteredBusinesses);
+        }
+        if (tempSelectedFeatsServices.length === 0) {
+            setFilteredResults(function () {
+                var newFilteredResults = __spreadArrays(list);
+                return newFilteredResults;
+            });
+        }
     };
-    //* Set `filteredResults` Businesses List
     react_1.useEffect(function () {
+        //* Set `filteredResults` Business List
         setFilteredResults(function () {
             var newFilteredResults = __spreadArrays(list);
             return newFilteredResults;
         });
     }, [list, city]);
     // console.log(list, city, 'list, city')
-    var handleResetFilter = function () {
-        // TODO: [ ] => FIXME: Reset checkboxes to false
-        //? TODO: [ ] => Explore connecting to child component to allow for checkbox resetting to opposite of checked
-        window.location.reload();
-    };
-    return (React.createElement("div", { className: 'FeatureContainer_image BusinessList' },
-        React.createElement("div", { className: 'FeatureContainer BusinessList' }, loading ? (React.createElement(LoadSpinner_1.LoadSpinner, null)) : !list.length || city == 'undefined' ? (React.createElement("h1", { className: 'BusinessList-none' }, "No businesses found. Please try another city.")) : (React.createElement(React.Fragment, null,
+    return (React.createElement("div", { className: 'BusinessList-Container_image FeatureContainer_image ' },
+        React.createElement("main", { className: 'BusinessList-Container FeatureContainer' }, isLoading ? (React.createElement(LoadSpinner_1.LoadSpinner, null)) : !list.length || city == 'undefined' ? (React.createElement("div", { className: 'BusinessList-Header_errorMessage' },
+            React.createElement("h1", null, "No businesses found. Please try another city."))) : (React.createElement(React.Fragment, null,
             React.createElement("h1", { className: 'BusinessList-Header' },
                 city,
-                " Salons"),
-            React.createElement("div", { className: 'BusinessList-Filters leftColumn ' },
-                React.createElement(FilterServicesAndFeatures_1.FilterServicesAndFeatures, { featuresArr: featuresArr, servicesArr: servicesArr, onFeatChange: onFeatChange, onServiceChange: onServiceChange, loading: loading, 
+                " Businesses"),
+            React.createElement("section", { className: 'BusinessList-FiltersContainer' },
+                React.createElement(FilterServicesAndFeatures_1.FilterServicesAndFeatures, { isLoading: isLoading, list: list, filteredResults: filteredResults, setFilteredResults: setFilteredResults, featuresArr: featuresArr, setFeaturesArr: setFeaturesArr, servicesArr: servicesArr, setServicesArr: setServicesArr, onFeatChange: onFeatChange, onServiceChange: onServiceChange, 
                     // isChecked={isChecked}
-                    handleResetFilter: handleResetFilter, handleFilteredResults: handleFilteredResults })),
-            React.createElement("div", { className: 'BusinessList-Filters rightColumn' }, filteredResults && filteredResults.length > 0 ? (filteredResults === null || filteredResults === void 0 ? void 0 : filteredResults.map(function (business) { return (React.createElement(React.Fragment, null,
-                React.createElement(Card_1.Card, { className: 'BusinessCard List', key: business._id },
-                    React.createElement(react_router_dom_1.Link, { to: {
-                            pathname: "/businesses/" + business._id
-                        } },
-                        React.createElement(About_1.About, { name: business.businessName, description: business.description, image: business.image, address: business.address })),
-                    React.createElement(Star_1.StarList, { stars: business.stars, reviews: business.reviews })))); })) : (React.createElement(React.Fragment, null,
-                React.createElement("h2", { className: 'BusinessCard-noResults' }, "No businesses were found with the chosen services and or features."),
+                    handleFilteredResults: handleFilteredResults })),
+            React.createElement("section", { className: 'BusinessList-CardContainer' }, filteredResults && filteredResults.length > 0 ? (filteredResults === null || filteredResults === void 0 ? void 0 : filteredResults.map(function (business) { return (
+            // <div key={`${business._id}_` + business.name} className='BusinessList-Card'>
+            React.createElement(Card_1.Card, { className: 'BusinessCard List', key: business._id },
+                React.createElement(react_router_dom_1.Link, { to: {
+                        pathname: "/businesses/" + business._id
+                    } },
+                    React.createElement(CardDetails_1.CardDetails, { businessName: business.businessName, description: business.description, image: business.image, address: business.address })),
+                React.createElement(Star_1.StarList, { stars: business.stars, reviews: business.reviews }))
+            //   <>
+            //   <Card className='BusinessCard List' key={business._id}>
+            //     <Link
+            //       to={{
+            //         pathname: `/businesses/${business._id}`,
+            //       }}>
+            //       <About
+            //         name={business.businessName}
+            //         description={business.description}
+            //         image={business.image}
+            //         address={business.address}
+            //       />
+            //     </Link>
+            //     <StarList
+            //       stars={business.stars}
+            //       reviews={business.reviews}
+            //     />
+            //   </Card>
+            // </>
+            /* <Card className='BusinessCard List' key={business._id}>
+                <Link
+                  to={{
+                    pathname: `/businesses/${business._id}`,
+                  }}>
+                  <About
+                    name={business.businessName}
+                    description={business.description}
+                    image={business.image}
+                    address={business.address}
+                  />
+                </Link>
+                <StarList
+                  stars={business.stars}
+                  reviews={business.reviews}
+                />
+              </Card> */
+            // </div>
+            ); })) : (React.createElement(React.Fragment, null,
+                React.createElement("h2", { className: 'BusinessList-Header_errorMessage_noResults' }, "No businesses were found with the chosen services and or features."),
                 React.createElement("br", null),
-                React.createElement("h2", { className: 'BusinessCard-noResults' }, "Please change your selection and filter again.")))))))));
+                React.createElement("h2", { className: 'BusinessList-Header_errorMessage_noResults' }, "Please change your selection and filter again.")))))))));
 };

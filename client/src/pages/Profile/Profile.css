@@ -88,7 +88,6 @@ ul.Profile_User_reviews {
   font-weight: 500;
   padding: 1rem;
   margin: 0;
-  margin-bottom: 2rem;
   margin-top: 1rem;
 }
 .Profile-UserContainer_reviews {
@@ -100,7 +99,7 @@ ul.Profile_User_reviews {
 }
 .Profile_User_reviews {
   overflow-y: scroll;
-  height: 65%;
+  height: 71%;
 }
 .Profile_links {
   display: flex;
@@ -155,7 +154,7 @@ ul.Profile_User_reviews {
   .Profile_User_reviews {
     overscroll-behavior-y: contain;
   }
-  .Profile-UserContainer.Owner {
+  /* .Profile-UserContainer.Owner {
     height: 70vh;
-  }
+  } */
 }

@@ -6,6 +6,7 @@
 div.card:nth-child(1) {
   margin-top: 0;
 }
+
 .Star-container,
 .Star-container_small {
   width: 35%;
@@ -13,6 +14,7 @@ div.card:nth-child(1) {
   justify-content: space-between;
   margin-top: 1rem;
   margin-bottom: 2rem;
+  margin-right: 35%;
 }
 .Star-container_small {
   width: 50%;
@@ -21,8 +23,20 @@ div.card:nth-child(1) {
 }
 .Review-container {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
+.Star-container > .star.btn-review {
+  cursor: default;
+}
+.Star-container_small > .star.btn-review {
+  cursor: default;
+}
+
+.Business_column-right > .Star-container_small {
+  cursor: default;
+}
+
 .Btn-Primary.review {
   width: 95px;
   padding-top: 5px;

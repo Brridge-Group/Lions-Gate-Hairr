@@ -57,10 +57,10 @@ interface Review {
 export const BusinessList = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true)
   const { city } = useParams<RouteParams>()
-  const [list, setList]:any[] = useState([])
+  const [list, setList]: any[] = useState([])
 
   //* Initialize Services and Features to State with full database data object
-  const [feats, setFeats] = useState<Business['features'][]>([]) 
+  const [feats, setFeats] = useState<Business['features'][]>([])
   const [services, setServices] = useState<Business['services'][]>([])
 
   //* Initialize Services and Features Arrays to State
@@ -75,7 +75,9 @@ export const BusinessList = () => {
         const businessesList = await res.json()
         if (typeof city !== 'undefined') {
           const filtered = businessesList.filter((business: Business) => {
-            return business.address.city.toLowerCase().includes(city.toLowerCase())
+            return business.address.city
+              .toLowerCase()
+              .includes(city.toLowerCase())
           })
           setList(filtered)
         } else {
@@ -151,11 +153,11 @@ export const BusinessList = () => {
   // console.log(`filteredResults`, filteredResults)
 
   //* Listen for the features' and services' checkbox changes and capture that data from the `FilterServicesAndFeatures` child component
-  const onFeatChange = (feature: any[]):void => {
+  const onFeatChange = (feature: any[]): void => {
     setFilteredFeats(feature)
   }
 
-  const onServiceChange = (service: any[]):void => {
+  const onServiceChange = (service: any[]): void => {
     setFilteredServices(service)
   }
 
@@ -164,13 +166,18 @@ export const BusinessList = () => {
     let tempSelectedFeatsServices: any[] = []
 
     //* Filter out elements that are only selected as true/checked and push those true objects to tempSelectedFeatsServices
-    tempSelectedFeatsServices = [...filteredFeats, ...filteredServices].filter(tempFeatOrService => tempFeatOrService.isChecked)
+    tempSelectedFeatsServices = [...filteredFeats, ...filteredServices].filter(
+      tempFeatOrService => tempFeatOrService.isChecked
+    )
 
     if (tempSelectedFeatsServices.length > 0) {
       //* Filter out Businesses that do not have the selected Features and Services
       const filteredBusinesses: any[] = list.filter(businessObject => {
         //* Return an array of business Iterate through the Features and Services of each business
-        const businessFeatAndService = [...businessObject.features, ...businessObject.services].map(businessFeatOrService => businessFeatOrService._id)
+        const businessFeatAndService = [
+          ...businessObject.features,
+          ...businessObject.services,
+        ].map(businessFeatOrService => businessFeatOrService._id)
 
         //* Iterate through, `tempSelectedFeatsServices`, the Features && Services of each business
         return tempSelectedFeatsServices.every(tempFeatOrService => {
@@ -230,23 +237,75 @@ export const BusinessList = () => {
               {/* If the list of Businesses is not empty, display filtered results, further filtered by user selected Services and Features*/}
               {filteredResults && filteredResults.length > 0 ? (
                 filteredResults?.map((business: any) => (
-                  <div key={`${business._id}_` + business.name} className='BusinessList-Card'>
-                    <Card>
+                  // <div key={`${business._id}_` + business.name} className='BusinessList-Card'>
+                  <Card className='BusinessCard List' key={business._id}>
+                    <Link
+                      to={{
+                        pathname: `/businesses/${business._id}`,
+                      }}>
+                      <CardDetails
+                        businessName={business.businessName}
+                        description={business.description}
+                        image={business.image}
+                        address={business.address}
+                      />
+                    </Link>
+                    <StarList
+                      stars={business.stars}
+                      reviews={business.reviews}
+                    />
+                  </Card>
+
+                  //   <>
+                  //   <Card className='BusinessCard List' key={business._id}>
+                  //     <Link
+                  //       to={{
+                  //         pathname: `/businesses/${business._id}`,
+                  //       }}>
+                  //       <About
+                  //         name={business.businessName}
+                  //         description={business.description}
+                  //         image={business.image}
+                  //         address={business.address}
+                  //       />
+                  //     </Link>
+                  //     <StarList
+                  //       stars={business.stars}
+                  //       reviews={business.reviews}
+                  //     />
+                  //   </Card>
+                  // </>
+
+                  /* <Card className='BusinessCard List' key={business._id}>
                       <Link
                         to={{
                           pathname: `/businesses/${business._id}`,
                         }}>
-                        <CardDetails businessName={business.businessName} description={business.description} image={business.image} address={business.address} />
+                        <About
+                          name={business.businessName}
+                          description={business.description}
+                          image={business.image}
+                          address={business.address}
+                        />
                       </Link>
-                      <StarList stars={business.stars} reviews={business.reviews} />
-                    </Card>
-                  </div>
+                      <StarList
+                        stars={business.stars}
+                        reviews={business.reviews}
+                      />
+                    </Card> */
+
+                  // </div>
                 ))
               ) : (
                 <>
-                  <h2 className='BusinessList-Header_errorMessage_noResults'>No businesses were found with the chosen services and or features.</h2>
+                  <h2 className='BusinessList-Header_errorMessage_noResults'>
+                    No businesses were found with the chosen services and or
+                    features.
+                  </h2>
                   <br />
-                  <h2 className='BusinessList-Header_errorMessage_noResults'>Please change your selection and filter again.</h2>
+                  <h2 className='BusinessList-Header_errorMessage_noResults'>
+                    Please change your selection and filter again.
+                  </h2>
                 </>
               )}
             </section>

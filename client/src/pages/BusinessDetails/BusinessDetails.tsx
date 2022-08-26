@@ -80,6 +80,7 @@ export const BusinessDetails = () => {
     let number = 0
     const mapRatings = () => {
       business?.reviews.map((r: ReviewsInfo, idx: any) => (number = number + r.rating / business?.reviews.length))
+
       setTotalStars(Math.round(number))
     }
     mapRatings()
@@ -135,10 +136,21 @@ export const BusinessDetails = () => {
               </ul>
             </aside>
             <section className='BusinessDetails-rightColumn'>
-              <CardDetails businessName={business.businessName} description={business.description} image={business.image} address={business.address} />
+              <CardDetails
+                businessName={business.businessName}
+                description={business.description}
+                image={business.image}
+                address={business.address}
+              />
               <div className='BusinessDetails-buttons'>
-                <Review id={id} stars={totalStars} ownerId={business.ownerId} name={business.businessName} />
-                <Book phone={business.phone} />
+                <Review
+                  id={id}
+                  stars={totalStars}
+                  ownerId={business.ownerId}
+                  name={business.businessName}
+                  phone={business.phone}
+                />
+                {/* <Book phone={business.phone} /> */}
               </div>
               <div className='BusinessDetails_reviews'>
                 <h4>reviews</h4>

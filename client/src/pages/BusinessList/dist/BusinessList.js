@@ -78,8 +78,14 @@ exports.BusinessList = function () {
             window.removeEventListener('resize', onResize);
         };
     }, []);
+    var addClass = 'Btn-Primary modal';
     var handleClick = function () {
         setIsModalOpen(!isModalOpen);
+        console.log('hi');
+    };
+    var handleClickClose = function () {
+        setIsModalOpen(false);
+        console.log('hi');
     };
     react_1.useEffect(function () {
         var fetchData = function () { return __awaiter(void 0, void 0, void 0, function () {
@@ -245,7 +251,9 @@ exports.BusinessList = function () {
                 " Businesses"),
             isMobile ? (React.createElement(React.Fragment, null,
                 React.createElement("button", { onClick: handleClick, className: 'Btn-Primary modal' }, "Filter Services & Features"),
-                React.createElement("div", { className: 'BusinessList-modal' },
+                React.createElement("div", { className: isModalOpen
+                        ? 'BusinessList-modal open'
+                        : 'BusinessList-modal' },
                     React.createElement("button", { onClick: handleClick, className: 'BusinessList-modalButton' },
                         React.createElement(gr_1.GrClose, null)),
                     React.createElement("section", { className: 'BusinessList-FiltersContainer modal' },

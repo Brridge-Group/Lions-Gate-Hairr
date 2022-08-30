@@ -82,9 +82,15 @@ export const BusinessList = () => {
       window.removeEventListener('resize', onResize)
     }
   }, [])
+  const addClass = 'Btn-Primary modal'
 
   const handleClick = () => {
     setIsModalOpen(!isModalOpen)
+    console.log('hi')
+  }
+  const handleClickClose = () => {
+    setIsModalOpen(false)
+    console.log('hi')
   }
 
   useEffect(() => {
@@ -242,7 +248,13 @@ export const BusinessList = () => {
                 <button onClick={handleClick} className='Btn-Primary modal'>
                   Filter Services & Features
                 </button>
-                <div className='BusinessList-modal'>
+                <div
+                  className={
+                    isModalOpen
+                      ? 'BusinessList-modal open'
+                      : 'BusinessList-modal'
+                  }>
+                  {/* 'BusinessList-modal'> */}
                   <button
                     onClick={handleClick}
                     className='BusinessList-modalButton'>

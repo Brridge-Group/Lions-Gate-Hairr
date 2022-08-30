@@ -104,9 +104,8 @@
   .BusinessList-modal {
     position: fixed;
     width: 65%;
-
     height: fit-content;
-    /* right: -100%; */
+    right: -100%;
     top: 22%;
     text-align: left;
     line-height: normal;
@@ -118,9 +117,13 @@
     color: black;
     border: 0.5px solid black;
     background-image: url('../../assets/images/hairgrey-mobile.jpg');
-    /* left: 50%; */
+  }
+
+  .BusinessList-modal.open {
+    left: 50%;
     transform: translate(-50%, 0);
   }
+
   .BusinessList-FiltersContainer.modal {
     width: 90%;
     border: 0;

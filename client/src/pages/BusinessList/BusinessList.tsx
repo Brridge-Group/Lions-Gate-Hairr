@@ -246,7 +246,7 @@ export const BusinessList = () => {
             {isMobile ? (
               <>
                 <button onClick={handleClick} className='Btn-Primary modal'>
-                  Filter Services & Features
+                  Filter Features & Services
                 </button>
                 <div
                   className={
@@ -254,7 +254,6 @@ export const BusinessList = () => {
                       ? 'BusinessList-modal open'
                       : 'BusinessList-modal'
                   }>
-                  {/* 'BusinessList-modal'> */}
                   <button
                     onClick={handleClick}
                     className='BusinessList-modalButton'>

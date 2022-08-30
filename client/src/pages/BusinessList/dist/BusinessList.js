@@ -250,7 +250,7 @@ exports.BusinessList = function () {
                 city,
                 " Businesses"),
             isMobile ? (React.createElement(React.Fragment, null,
-                React.createElement("button", { onClick: handleClick, className: 'Btn-Primary modal' }, "Filter Services & Features"),
+                React.createElement("button", { onClick: handleClick, className: 'Btn-Primary modal' }, "Filter Features & Services"),
                 React.createElement("div", { className: isModalOpen
                         ? 'BusinessList-modal open'
                         : 'BusinessList-modal' },

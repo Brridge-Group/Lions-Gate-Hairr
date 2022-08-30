@@ -84,7 +84,7 @@ export const BusinessList = () => {
   }, [])
 
   const handleClick = () => {
-    console.log('hi')
+    setIsModalOpen(!isModalOpen)
   }
 
   useEffect(() => {
@@ -238,29 +238,34 @@ export const BusinessList = () => {
           <>
             <h1 className='BusinessList-Header'>{city} Businesses</h1>
             {isMobile ? (
-              <div className='BusinessList-modal'>
-                <button
-                  onClick={handleClick}
-                  className='BusinessList-modalButton'>
-                  <GrClose />
+              <>
+                <button onClick={handleClick} className='Btn-Primary modal'>
+                  Filter Services & Features
                 </button>
-                <section className='BusinessList-FiltersContainer modal'>
-                  <FilterServicesAndFeatures
-                    isLoading={isLoading}
-                    list={list}
-                    filteredResults={filteredResults}
-                    setFilteredResults={setFilteredResults}
-                    featuresArr={featuresArr}
-                    setFeaturesArr={setFeaturesArr}
-                    servicesArr={servicesArr}
-                    setServicesArr={setServicesArr}
-                    onFeatChange={onFeatChange}
-                    onServiceChange={onServiceChange}
-                    // isChecked={isChecked}
-                    handleFilteredResults={handleFilteredResults}
-                  />
-                </section>
-              </div>
+                <div className='BusinessList-modal'>
+                  <button
+                    onClick={handleClick}
+                    className='BusinessList-modalButton'>
+                    <GrClose />
+                  </button>
+                  <section className='BusinessList-FiltersContainer modal'>
+                    <FilterServicesAndFeatures
+                      isLoading={isLoading}
+                      list={list}
+                      filteredResults={filteredResults}
+                      setFilteredResults={setFilteredResults}
+                      featuresArr={featuresArr}
+                      setFeaturesArr={setFeaturesArr}
+                      servicesArr={servicesArr}
+                      setServicesArr={setServicesArr}
+                      onFeatChange={onFeatChange}
+                      onServiceChange={onServiceChange}
+                      // isChecked={isChecked}
+                      handleFilteredResults={handleFilteredResults}
+                    />
+                  </section>
+                </div>
+              </>
             ) : (
               <section className='BusinessList-FiltersContainer'>
                 <FilterServicesAndFeatures

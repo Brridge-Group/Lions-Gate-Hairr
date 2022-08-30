@@ -79,7 +79,7 @@ exports.BusinessList = function () {
         };
     }, []);
     var handleClick = function () {
-        console.log('hi');
+        setIsModalOpen(!isModalOpen);
     };
     react_1.useEffect(function () {
         var fetchData = function () { return __awaiter(void 0, void 0, void 0, function () {
@@ -243,13 +243,15 @@ exports.BusinessList = function () {
             React.createElement("h1", { className: 'BusinessList-Header' },
                 city,
                 " Businesses"),
-            isMobile ? (React.createElement("div", { className: 'BusinessList-modal' },
-                React.createElement("button", { onClick: handleClick, className: 'BusinessList-modalButton' },
-                    React.createElement(gr_1.GrClose, null)),
-                React.createElement("section", { className: 'BusinessList-FiltersContainer modal' },
-                    React.createElement(FilterServicesAndFeatures_1.FilterServicesAndFeatures, { isLoading: isLoading, list: list, filteredResults: filteredResults, setFilteredResults: setFilteredResults, featuresArr: featuresArr, setFeaturesArr: setFeaturesArr, servicesArr: servicesArr, setServicesArr: setServicesArr, onFeatChange: onFeatChange, onServiceChange: onServiceChange, 
-                        // isChecked={isChecked}
-                        handleFilteredResults: handleFilteredResults })))) : (React.createElement("section", { className: 'BusinessList-FiltersContainer' },
+            isMobile ? (React.createElement(React.Fragment, null,
+                React.createElement("button", { onClick: handleClick, className: 'Btn-Primary modal' }, "Filter Services & Features"),
+                React.createElement("div", { className: 'BusinessList-modal' },
+                    React.createElement("button", { onClick: handleClick, className: 'BusinessList-modalButton' },
+                        React.createElement(gr_1.GrClose, null)),
+                    React.createElement("section", { className: 'BusinessList-FiltersContainer modal' },
+                        React.createElement(FilterServicesAndFeatures_1.FilterServicesAndFeatures, { isLoading: isLoading, list: list, filteredResults: filteredResults, setFilteredResults: setFilteredResults, featuresArr: featuresArr, setFeaturesArr: setFeaturesArr, servicesArr: servicesArr, setServicesArr: setServicesArr, onFeatChange: onFeatChange, onServiceChange: onServiceChange, 
+                            // isChecked={isChecked}
+                            handleFilteredResults: handleFilteredResults }))))) : (React.createElement("section", { className: 'BusinessList-FiltersContainer' },
                 React.createElement(FilterServicesAndFeatures_1.FilterServicesAndFeatures, { isLoading: isLoading, list: list, filteredResults: filteredResults, setFilteredResults: setFilteredResults, featuresArr: featuresArr, setFeaturesArr: setFeaturesArr, servicesArr: servicesArr, setServicesArr: setServicesArr, onFeatChange: onFeatChange, onServiceChange: onServiceChange, 
                     // isChecked={isChecked}
                     handleFilteredResults: handleFilteredResults }))),

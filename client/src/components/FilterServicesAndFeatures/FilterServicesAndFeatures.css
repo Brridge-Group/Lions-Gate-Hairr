@@ -17,6 +17,11 @@
   overflow-y: scroll;
   margin-bottom: 2rem;
 }
+.Filters-FormGroup_features {
+  height: 39%;
+  overflow: auto;
+  margin-bottom: 1.5rem;
+}
 .Filters-FormCheck {
   display: flex;
   align-items: flex-start;
@@ -41,3 +46,8 @@ h5.Filters-FormCheckLabel_header {
   margin: 0;
   padding-top: 0;
 }
+/* @media screen and (max-width: 575px) {
+  .Filters-Buttons {
+    bottom: 1rem;
+  }
+} */

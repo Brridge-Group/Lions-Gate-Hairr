@@ -36,5 +36,6 @@
 @media screen and (max-width: 575px) {
   .CardDetails-InfoContainer h2 {
     line-height: 1;
+    margin-top: 0;
   }
 }

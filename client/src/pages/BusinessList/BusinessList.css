@@ -117,6 +117,7 @@
     color: black;
     border: 0.5px solid black;
     background-image: url('../../assets/images/hairgrey-mobile.jpg');
+    padding-bottom: 1rem;
   }
 
   .BusinessList-modal.open {

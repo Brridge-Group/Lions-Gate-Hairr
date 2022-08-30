@@ -4,6 +4,8 @@ import { useParams, Link } from 'react-router-dom'
 
 //* Custom Imports
 import { StarList } from '../../UIElements/Star'
+import { GrClose } from 'react-icons/gr'
+
 import { LoadSpinner } from '../../components/LoadSpinner/LoadSpinner'
 import { Card } from '../../components/Card/Card'
 import { CardDetails } from '../../components/Card/CardDetails/CardDetails'
@@ -68,6 +70,7 @@ export const BusinessList = () => {
   const [featuresArr, setFeaturesArr]: any[] = useState([])
   const [servicesArr, setServicesArr]: any[] = useState([])
   const [isMobile, setIsMobile] = useState(getIsMobile)
+  const [isModalOpen, setIsModalOpen] = useState(false)
 
   useEffect(() => {
     const onResize = () => {
@@ -79,6 +82,11 @@ export const BusinessList = () => {
       window.removeEventListener('resize', onResize)
     }
   }, [])
+
+  const handleClick = () => {
+    console.log('hi')
+  }
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -231,6 +239,11 @@ export const BusinessList = () => {
             <h1 className='BusinessList-Header'>{city} Businesses</h1>
             {isMobile ? (
               <div className='BusinessList-modal'>
+                <button
+                  onClick={handleClick}
+                  className='BusinessList-modalButton'>
+                  <GrClose />
+                </button>
                 <section className='BusinessList-FiltersContainer modal'>
                   <FilterServicesAndFeatures
                     isLoading={isLoading}

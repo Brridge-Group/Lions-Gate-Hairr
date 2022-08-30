@@ -49,6 +49,7 @@ var react_1 = require("react");
 var react_router_dom_1 = require("react-router-dom");
 //* Custom Imports
 var Star_1 = require("../../UIElements/Star");
+var gr_1 = require("react-icons/gr");
 var LoadSpinner_1 = require("../../components/LoadSpinner/LoadSpinner");
 var Card_1 = require("../../components/Card/Card");
 var CardDetails_1 = require("../../components/Card/CardDetails/CardDetails");
@@ -67,6 +68,7 @@ exports.BusinessList = function () {
     var _e = react_1.useState([]), featuresArr = _e[0], setFeaturesArr = _e[1];
     var _f = react_1.useState([]), servicesArr = _f[0], setServicesArr = _f[1];
     var _g = react_1.useState(getIsMobile), isMobile = _g[0], setIsMobile = _g[1];
+    var _h = react_1.useState(false), isModalOpen = _h[0], setIsModalOpen = _h[1];
     react_1.useEffect(function () {
         var onResize = function () {
             setIsMobile(getIsMobile);
@@ -76,6 +78,9 @@ exports.BusinessList = function () {
             window.removeEventListener('resize', onResize);
         };
     }, []);
+    var handleClick = function () {
+        console.log('hi');
+    };
     react_1.useEffect(function () {
         var fetchData = function () { return __awaiter(void 0, void 0, void 0, function () {
             var res, businessesList, filtered, err_1;
@@ -187,9 +192,9 @@ exports.BusinessList = function () {
     // console.log(`servicesArr`, servicesArr)
     // console.log(`featuresArr`, featuresArr)
     //* Initialize State Arrays to Filter Business Features and Services
-    var _h = react_1.useState([]), filteredResults = _h[0], setFilteredResults = _h[1];
-    var _j = react_1.useState([]), filteredFeats = _j[0], setFilteredFeats = _j[1];
-    var _k = react_1.useState([]), filteredServices = _k[0], setFilteredServices = _k[1];
+    var _j = react_1.useState([]), filteredResults = _j[0], setFilteredResults = _j[1];
+    var _k = react_1.useState([]), filteredFeats = _k[0], setFilteredFeats = _k[1];
+    var _l = react_1.useState([]), filteredServices = _l[0], setFilteredServices = _l[1];
     // console.log(`filteredResults`, filteredResults)
     //* Listen for the features' and services' checkbox changes and capture that data from the `FilterServicesAndFeatures` child component
     var onFeatChange = function (feature) {
@@ -239,6 +244,8 @@ exports.BusinessList = function () {
                 city,
                 " Businesses"),
             isMobile ? (React.createElement("div", { className: 'BusinessList-modal' },
+                React.createElement("button", { onClick: handleClick, className: 'BusinessList-modalButton' },
+                    React.createElement(gr_1.GrClose, null)),
                 React.createElement("section", { className: 'BusinessList-FiltersContainer modal' },
                     React.createElement(FilterServicesAndFeatures_1.FilterServicesAndFeatures, { isLoading: isLoading, list: list, filteredResults: filteredResults, setFilteredResults: setFilteredResults, featuresArr: featuresArr, setFeaturesArr: setFeaturesArr, servicesArr: servicesArr, setServicesArr: setServicesArr, onFeatChange: onFeatChange, onServiceChange: onServiceChange, 
                         // isChecked={isChecked}

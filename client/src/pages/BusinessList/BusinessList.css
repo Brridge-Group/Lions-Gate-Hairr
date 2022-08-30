@@ -129,4 +129,11 @@
     position: relative;
     padding: 3rem 2rem 5rem 2rem;
   }
+  .BusinessList-modalButton {
+    position: absolute;
+    z-index: 5;
+    right: 5%;
+    border: none;
+    top: 2%;
+  }
 }

@@ -81,16 +81,16 @@ HairrKeepers helps its customers find the right hair experts in any city within 
 
 | Description                                | Demo                                                                                                                                                                                       |
 | ------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| <h3 align="center">Desktop and Mobile</h3> | <video src="https://user-images.githubusercontent.com/15850286/186239607-a3ec9cc2-02b8-4bc4-9005-601b6f051c92.mp4" width='500' controls><source src="movie.mp4" type="video/mp4"> </video> |
+| <h3 align="center">Desktop and Mobile</h3> | <video src="https://user-images.githubusercontent.com/15850286/187489902-277374a0-5987-4462-8c90-204f8069fb56.mp4" width='500' controls><source src="movie.mp4" type="video/mp4"> </video> |
 
 </details>
 
 <details>
 <summary>CRUD Functionality</summary>
 
-| Description                     | Demo                                                                                                                                                                                       |
-| ------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| <h3 align="center">Reviews</h3> | <video src="https://user-images.githubusercontent.com/15850286/186231055-d33e6890-551c-4ab0-af8b-029670ac288e.mp4" width='500' controls><source src="movie.mp4" type="video/mp4"> </video> |
+| Description                     | Demo                                                                                                                                                                                        |
+| ------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| <h3 align="center">Reviews</h3> | <video src="https://user-images.githubusercontent.com/15850286/187496833-17f54023-5f26-4135-ab2d-6c47c8d2f5d0.mp4"  width='500' controls><source src="movie.mp4" type="video/mp4"> </video> |
 
 </details>
 
@@ -295,7 +295,7 @@ Gratitude to the following people who have contributed to this project:
 </div>
 <h3>Cynthia Eddy</h3>
 <a href="mailto:cynthiaeddynyc@gmail.com" target="_blank">
-    <img src="https://img.shields.io/badge/-[email_address]-c14438?style=flat&logo=Gmail&logoColor=white">
+    <img src="https://img.shields.io/badge/-cynthiaeddynyc@gmail.com-c14438?style=flat&logo=Gmail&logoColor=white">
  </a>
 <div style='display: flex; justify-content: center; gap: .5rem'>
 

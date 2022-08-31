@@ -54,10 +54,9 @@ HairrKeepers helps its customers find the right hair experts in any city within 
 <details>
  <summary> 🎨 Figma</summary>
 
-| Description                               | Screenshot                                                            |
-| ----------------------------------------- | --------------------------------------------------------------------- |
-| Desktop Layout                            | Device Size Ranges: 540 - 990 Max                                     |
-| <h3 align="center">Initial Figma Doc</h3> | <img src="../client/src/assets/images/ReadMe_figma.png"  width="500"> |
+| Description                                                                                     | Screenshot                                         |
+| ----------------------------------------------------------------------------------------------- | -------------------------------------------------- |
+| <h3 align="center">Desktop and Mobile Layout</h3> <h5 align="center">Initial Figma version</h5> | <img src="../client/src/assets/images/figma.png" > |
 
 </details>
 <!-- <details open> -->

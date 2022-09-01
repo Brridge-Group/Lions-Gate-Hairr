@@ -52,12 +52,17 @@ HairrKeepers helps its customers find the right hair experts in any city within 
 </details>
 
 <details>
- <summary> 🎨 Figma</summary>
+ <summary> 🎨 Figma Mockup Designs by Cynthia Eddy</summary>
 
-| Description                               | Screenshot                                                            |
-| ----------------------------------------- | --------------------------------------------------------------------- |
-| Desktop Layout                            | Device Size Ranges: 540 - 990 Max                                     |
-| <h3 align="center">Initial Figma Doc</h3> | <img src="../client/src/assets/images/ReadMe_figma.png"  width="500"> |
+ <!-- TODO: [ ] - Update to include the Mobile Figma Mockup Designs By Cynthia -->
+
+| Description                          | Screenshot                                                             |
+| ------------------------------------ | ---------------------------------------------------------------------- |
+| Desktop Layout                       | Device Size Ranges: 540 - 990 Max                                      |
+| <h3 align="center">Home & Profile Pages</h3>    | <img src="../client/src/assets/images/ReadMe_figma.png"  width="500"> |
+| Mobile Layout                        | Device Size Ranges: 340 - 540 Max                                      |
+| <h3 align="center">Home Page</h3>    | <img src="../client/src/assets/images/comingSoonAlt.jpg"  width="500"> |
+| <h3 align="center">Profile Page</h3> | <img src="../client/src/assets/images/comingSoonAlt.jpg" width="500">  |
 
 </details>
 <!-- <details open> -->

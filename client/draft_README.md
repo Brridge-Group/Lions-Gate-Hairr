@@ -45,11 +45,11 @@ HairrKeepers helps its customers find the right hair experts in any city within 
 <details>
  <summary> 📊 ERD</summary>
 
- <!-- TODO: [ ] - Requesting Section Completion By Sergio -->
+ <!-- TODO: [ ] - Pending ERD image update highlighting required database elements by Sergio -->
 
 | Description                 | Screenshot                                                                |
 | --------------------------- | ------------------------------------------------------------------------- |
-| <h3 align="center">ERD</h3> | <img src="../client/src/assets/images//ERD.MYC.png"  width="500"> |
+| <h3 align="center"> Entity Relationship Diagram (ERD)</h3> | <img src="../client/src/assets/images//ERD.MYC.png"  width="700"> |
 
 </details>
 

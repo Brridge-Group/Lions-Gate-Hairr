@@ -49,6 +49,7 @@ var react_1 = require("react");
 var react_router_dom_1 = require("react-router-dom");
 //* Custom Imports
 var Star_1 = require("../../UIElements/Star");
+var gr_1 = require("react-icons/gr");
 var LoadSpinner_1 = require("../../components/LoadSpinner/LoadSpinner");
 var Card_1 = require("../../components/Card/Card");
 var CardDetails_1 = require("../../components/Card/CardDetails/CardDetails");
@@ -59,12 +60,33 @@ exports.BusinessList = function () {
     var _a = react_1.useState(true), isLoading = _a[0], setIsLoading = _a[1];
     var city = react_router_dom_1.useParams().city;
     var _b = react_1.useState([]), list = _b[0], setList = _b[1];
+    var getIsMobile = function () { return window.innerWidth <= 575; };
     //* Initialize Services and Features to State with full database data object
     var _c = react_1.useState([]), feats = _c[0], setFeats = _c[1];
     var _d = react_1.useState([]), services = _d[0], setServices = _d[1];
     //* Initialize Services and Features Arrays to State
     var _e = react_1.useState([]), featuresArr = _e[0], setFeaturesArr = _e[1];
     var _f = react_1.useState([]), servicesArr = _f[0], setServicesArr = _f[1];
+    var _g = react_1.useState(getIsMobile), isMobile = _g[0], setIsMobile = _g[1];
+    var _h = react_1.useState(false), isModalOpen = _h[0], setIsModalOpen = _h[1];
+    react_1.useEffect(function () {
+        var onResize = function () {
+            setIsMobile(getIsMobile);
+        };
+        window.addEventListener('resize', onResize);
+        return function () {
+            window.removeEventListener('resize', onResize);
+        };
+    }, []);
+    var addClass = 'Btn-Primary modal';
+    var handleClick = function () {
+        setIsModalOpen(!isModalOpen);
+        console.log('hi');
+    };
+    var handleClickClose = function () {
+        setIsModalOpen(false);
+        console.log('hi');
+    };
     react_1.useEffect(function () {
         var fetchData = function () { return __awaiter(void 0, void 0, void 0, function () {
             var res, businessesList, filtered, err_1;
@@ -176,9 +198,9 @@ exports.BusinessList = function () {
     // console.log(`servicesArr`, servicesArr)
     // console.log(`featuresArr`, featuresArr)
     //* Initialize State Arrays to Filter Business Features and Services
-    var _g = react_1.useState([]), filteredResults = _g[0], setFilteredResults = _g[1];
-    var _h = react_1.useState([]), filteredFeats = _h[0], setFilteredFeats = _h[1];
-    var _j = react_1.useState([]), filteredServices = _j[0], setFilteredServices = _j[1];
+    var _j = react_1.useState([]), filteredResults = _j[0], setFilteredResults = _j[1];
+    var _k = react_1.useState([]), filteredFeats = _k[0], setFilteredFeats = _k[1];
+    var _l = react_1.useState([]), filteredServices = _l[0], setFilteredServices = _l[1];
     // console.log(`filteredResults`, filteredResults)
     //* Listen for the features' and services' checkbox changes and capture that data from the `FilterServicesAndFeatures` child component
     var onFeatChange = function (feature) {
@@ -227,10 +249,20 @@ exports.BusinessList = function () {
             React.createElement("h1", { className: 'BusinessList-Header' },
                 city,
                 " Businesses"),
-            React.createElement("section", { className: 'BusinessList-FiltersContainer' },
+            isMobile ? (React.createElement(React.Fragment, null,
+                React.createElement("button", { onClick: handleClick, className: 'Btn-Primary modal' }, "Filter Features & Services"),
+                React.createElement("div", { className: isModalOpen
+                        ? 'BusinessList-modal open'
+                        : 'BusinessList-modal' },
+                    React.createElement("button", { onClick: handleClick, className: 'BusinessList-modalButton' },
+                        React.createElement(gr_1.GrClose, null)),
+                    React.createElement("section", { className: 'BusinessList-FiltersContainer modal' },
+                        React.createElement(FilterServicesAndFeatures_1.FilterServicesAndFeatures, { isLoading: isLoading, list: list, filteredResults: filteredResults, setFilteredResults: setFilteredResults, featuresArr: featuresArr, setFeaturesArr: setFeaturesArr, servicesArr: servicesArr, setServicesArr: setServicesArr, onFeatChange: onFeatChange, onServiceChange: onServiceChange, 
+                            // isChecked={isChecked}
+                            handleFilteredResults: handleFilteredResults }))))) : (React.createElement("section", { className: 'BusinessList-FiltersContainer' },
                 React.createElement(FilterServicesAndFeatures_1.FilterServicesAndFeatures, { isLoading: isLoading, list: list, filteredResults: filteredResults, setFilteredResults: setFilteredResults, featuresArr: featuresArr, setFeaturesArr: setFeaturesArr, servicesArr: servicesArr, setServicesArr: setServicesArr, onFeatChange: onFeatChange, onServiceChange: onServiceChange, 
                     // isChecked={isChecked}
-                    handleFilteredResults: handleFilteredResults })),
+                    handleFilteredResults: handleFilteredResults }))),
             React.createElement("section", { className: 'BusinessList-CardContainer' }, filteredResults && filteredResults.length > 0 ? (filteredResults === null || filteredResults === void 0 ? void 0 : filteredResults.map(function (business) { return (
             // <div key={`${business._id}_` + business.name} className='BusinessList-Card'>
             React.createElement(Card_1.Card, { className: 'BusinessCard List', key: business._id },
@@ -238,45 +270,7 @@ exports.BusinessList = function () {
                         pathname: "/businesses/" + business._id
                     } },
                     React.createElement(CardDetails_1.CardDetails, { businessName: business.businessName, description: business.description, image: business.image, address: business.address })),
-                React.createElement(Star_1.StarList, { stars: business.stars, reviews: business.reviews }))
-            //   <>
-            //   <Card className='BusinessCard List' key={business._id}>
-            //     <Link
-            //       to={{
-            //         pathname: `/businesses/${business._id}`,
-            //       }}>
-            //       <About
-            //         name={business.businessName}
-            //         description={business.description}
-            //         image={business.image}
-            //         address={business.address}
-            //       />
-            //     </Link>
-            //     <StarList
-            //       stars={business.stars}
-            //       reviews={business.reviews}
-            //     />
-            //   </Card>
-            // </>
-            /* <Card className='BusinessCard List' key={business._id}>
-                <Link
-                  to={{
-                    pathname: `/businesses/${business._id}`,
-                  }}>
-                  <About
-                    name={business.businessName}
-                    description={business.description}
-                    image={business.image}
-                    address={business.address}
-                  />
-                </Link>
-                <StarList
-                  stars={business.stars}
-                  reviews={business.reviews}
-                />
-              </Card> */
-            // </div>
-            ); })) : (React.createElement(React.Fragment, null,
+                React.createElement(Star_1.StarList, { stars: business.stars, reviews: business.reviews }))); })) : (React.createElement(React.Fragment, null,
                 React.createElement("h2", { className: 'BusinessList-Header_errorMessage_noResults' }, "No businesses were found with the chosen services and or features."),
                 React.createElement("br", null),
                 React.createElement("h2", { className: 'BusinessList-Header_errorMessage_noResults' }, "Please change your selection and filter again.")))))))));

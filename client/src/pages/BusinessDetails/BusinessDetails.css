@@ -127,4 +127,7 @@ h5.features:last-child {
   .phoneNumber {
     align-self: flex-end;
   }
+  .Btn-Primary.review {
+    margin-left: 0;
+  }
 }

@@ -4,6 +4,8 @@ import { useParams, Link } from 'react-router-dom'
 
 //* Custom Imports
 import { StarList } from '../../UIElements/Star'
+import { GrClose } from 'react-icons/gr'
+
 import { LoadSpinner } from '../../components/LoadSpinner/LoadSpinner'
 import { Card } from '../../components/Card/Card'
 import { CardDetails } from '../../components/Card/CardDetails/CardDetails'
@@ -58,6 +60,7 @@ export const BusinessList = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true)
   const { city } = useParams<RouteParams>()
   const [list, setList]: any[] = useState([])
+  const getIsMobile = () => window.innerWidth <= 575
 
   //* Initialize Services and Features to State with full database data object
   const [feats, setFeats] = useState<Business['features'][]>([])
@@ -66,6 +69,29 @@ export const BusinessList = () => {
   //* Initialize Services and Features Arrays to State
   const [featuresArr, setFeaturesArr]: any[] = useState([])
   const [servicesArr, setServicesArr]: any[] = useState([])
+  const [isMobile, setIsMobile] = useState(getIsMobile)
+  const [isModalOpen, setIsModalOpen] = useState(false)
+
+  useEffect(() => {
+    const onResize = () => {
+      setIsMobile(getIsMobile)
+    }
+    window.addEventListener('resize', onResize)
+
+    return () => {
+      window.removeEventListener('resize', onResize)
+    }
+  }, [])
+  const addClass = 'Btn-Primary modal'
+
+  const handleClick = () => {
+    setIsModalOpen(!isModalOpen)
+    console.log('hi')
+  }
+  const handleClickClose = () => {
+    setIsModalOpen(false)
+    console.log('hi')
+  }
 
   useEffect(() => {
     const fetchData = async () => {
@@ -217,22 +243,58 @@ export const BusinessList = () => {
         ) : (
           <>
             <h1 className='BusinessList-Header'>{city} Businesses</h1>
-            <section className='BusinessList-FiltersContainer'>
-              <FilterServicesAndFeatures
-                isLoading={isLoading}
-                list={list}
-                filteredResults={filteredResults}
-                setFilteredResults={setFilteredResults}
-                featuresArr={featuresArr}
-                setFeaturesArr={setFeaturesArr}
-                servicesArr={servicesArr}
-                setServicesArr={setServicesArr}
-                onFeatChange={onFeatChange}
-                onServiceChange={onServiceChange}
-                // isChecked={isChecked}
-                handleFilteredResults={handleFilteredResults}
-              />
-            </section>
+            {isMobile ? (
+              <>
+                <button onClick={handleClick} className='Btn-Primary modal'>
+                  Filter Features & Services
+                </button>
+                <div
+                  className={
+                    isModalOpen
+                      ? 'BusinessList-modal open'
+                      : 'BusinessList-modal'
+                  }>
+                  <button
+                    onClick={handleClick}
+                    className='BusinessList-modalButton'>
+                    <GrClose />
+                  </button>
+                  <section className='BusinessList-FiltersContainer modal'>
+                    <FilterServicesAndFeatures
+                      isLoading={isLoading}
+                      list={list}
+                      filteredResults={filteredResults}
+                      setFilteredResults={setFilteredResults}
+                      featuresArr={featuresArr}
+                      setFeaturesArr={setFeaturesArr}
+                      servicesArr={servicesArr}
+                      setServicesArr={setServicesArr}
+                      onFeatChange={onFeatChange}
+                      onServiceChange={onServiceChange}
+                      // isChecked={isChecked}
+                      handleFilteredResults={handleFilteredResults}
+                    />
+                  </section>
+                </div>
+              </>
+            ) : (
+              <section className='BusinessList-FiltersContainer'>
+                <FilterServicesAndFeatures
+                  isLoading={isLoading}
+                  list={list}
+                  filteredResults={filteredResults}
+                  setFilteredResults={setFilteredResults}
+                  featuresArr={featuresArr}
+                  setFeaturesArr={setFeaturesArr}
+                  servicesArr={servicesArr}
+                  setServicesArr={setServicesArr}
+                  onFeatChange={onFeatChange}
+                  onServiceChange={onServiceChange}
+                  // isChecked={isChecked}
+                  handleFilteredResults={handleFilteredResults}
+                />
+              </section>
+            )}
             <section className='BusinessList-CardContainer'>
               {/* If the list of Businesses is not empty, display filtered results, further filtered by user selected Services and Features*/}
               {filteredResults && filteredResults.length > 0 ? (
@@ -255,46 +317,6 @@ export const BusinessList = () => {
                       reviews={business.reviews}
                     />
                   </Card>
-
-                  //   <>
-                  //   <Card className='BusinessCard List' key={business._id}>
-                  //     <Link
-                  //       to={{
-                  //         pathname: `/businesses/${business._id}`,
-                  //       }}>
-                  //       <About
-                  //         name={business.businessName}
-                  //         description={business.description}
-                  //         image={business.image}
-                  //         address={business.address}
-                  //       />
-                  //     </Link>
-                  //     <StarList
-                  //       stars={business.stars}
-                  //       reviews={business.reviews}
-                  //     />
-                  //   </Card>
-                  // </>
-
-                  /* <Card className='BusinessCard List' key={business._id}>
-                      <Link
-                        to={{
-                          pathname: `/businesses/${business._id}`,
-                        }}>
-                        <About
-                          name={business.businessName}
-                          description={business.description}
-                          image={business.image}
-                          address={business.address}
-                        />
-                      </Link>
-                      <StarList
-                        stars={business.stars}
-                        reviews={business.reviews}
-                      />
-                    </Card> */
-
-                  // </div>
                 ))
               ) : (
                 <>

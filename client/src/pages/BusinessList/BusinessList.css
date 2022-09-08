@@ -96,8 +96,60 @@
   .BusinessList-CardContainer {
     width: 80%;
     margin: auto;
-    margin-top: 3rem;
+    margin-top: 5.5rem;
     padding: 3rem;
     padding-bottom: 0rem;
+  }
+
+  .BusinessList-modal {
+    position: fixed;
+    width: 65%;
+    height: fit-content;
+    right: -100%;
+    top: 22%;
+    text-align: left;
+    line-height: normal;
+    transition: 0.7s;
+    z-index: 2;
+    margin-right: 9%;
+    display: flex;
+    justify-content: center;
+    color: black;
+    border: 0.5px solid black;
+    background-image: url('../../assets/images/hairgrey-mobile.jpg');
+    padding-bottom: 1rem;
+  }
+
+  .BusinessList-modal.open {
+    left: 50%;
+    transform: translate(-50%, 0);
+  }
+
+  .BusinessList-FiltersContainer.modal {
+    width: 90%;
+    border: 0;
+    height: fit-content;
+    margin: auto;
+    position: relative;
+    padding: 3rem 2rem 5rem 2rem;
+  }
+  .BusinessList-modalButton {
+    position: absolute;
+    z-index: 5;
+    right: 5%;
+    border: none;
+    top: 2%;
+  }
+  .BusinessList-Header_errorMessage {
+    width: 80%;
+    margin: auto;
+    text-align: center;
+  }
+  .Btn-Primary.modal {
+    position: absolute;
+    transform: translate(-50%, 0);
+    left: 50%;
+    margin: 0;
+    padding: 0 0.5rem;
   }
 }

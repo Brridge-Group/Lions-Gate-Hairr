@@ -54,9 +54,9 @@ HairrKeepers helps its customers find the right hair experts in any city within 
 <details>
  <summary> 🎨 Figma</summary>
 
-| Description                                                                                     | Screenshot                                         |
-| ----------------------------------------------------------------------------------------------- | -------------------------------------------------- |
-| <h3 align="center">Desktop and Mobile Layout</h3> <h5 align="center">Initial Figma version</h5> | <img src="../client/src/assets/images/figma.png" > |
+| Description                                                                                     | Screenshot                                            |
+| ----------------------------------------------------------------------------------------------- | ----------------------------------------------------- |
+| <h3 align="center">Desktop and Mobile Layout</h3> <h5 align="center">Initial Figma version</h5> | <img src="../client/src/assets/images/figmaNew.png" > |
 
 </details>
 <!-- <details open> -->

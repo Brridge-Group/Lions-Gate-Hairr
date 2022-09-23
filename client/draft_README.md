@@ -52,7 +52,7 @@ HairrKeepers helps its customers find the right hair experts in any city within 
 </details>
 
 <details>
- <summary> 🎨 Figma</summary>
+ <summary> 🎨 Figma Mockup Designs by Cynthia Eddy</summary>
 
 | Description                                                                                     | Screenshot                                            |
 | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------- |
@@ -78,18 +78,21 @@ HairrKeepers helps its customers find the right hair experts in any city within 
 <details>
 <summary>Responsivity</summary>
 
-| Description                                                                                                                                                                                                                                          | Demo                                                                                                               |
-| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
-| <h3 align="center">Desktop and Mobile</h3> <h5 align="center">Overall layout is reliant on css Grid which allows fluid scaling, and css Flexbox within. Breakpoint for mobile 575 max. Hamburger and modal menus are present in mobile version.</h5> | <![respon5](https://user-images.githubusercontent.com/15850286/187746534-6fa1c363-a50b-4304-bb28-e178f7451b6c.gif) |
+<h3 align="center">Desktop and Mobile</h3>
+
+| Description                                                                                                                                                                                               | Demo                                                                                                                          |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
+| <h5 align="center">Overall layout is reliant on css Grid which allows fluid scaling, and css Flexbox within. Breakpoint for mobile 575 max. Hamburger and modal menus are present in mobile version.</h5> | <img src="https://user-images.githubusercontent.com/15850286/187746534-6fa1c363-a50b-4304-bb28-e178f7451b6c.gif" width="700"> |
 
 </details>
 
 <details>
 <summary>CRUD Functionality</summary>
+ <h3 align="center" >Reviews</h3>
 
-| Description                                                                                                                                                                                                                                                             | Demo                                                                                                            |
-| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
-| <h3 align="center" >Reviews</h3> <h5 align="center">Signed in user creates a review that is reflected in their profile, business list and details business page. An owner cannot write a review for his business. A user can also update his review and delete it.</h5> | ![crud3](https://user-images.githubusercontent.com/15850286/187742729-74d6beaf-390c-493d-a041-3fe0a1495801.gif) |
+| Description                                                                                                                                                                                                                            | Demo                                                                                                                                       |
+| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
+| <h5 align="center">Signed in user creates a review that is reflected in their profile, business list and details business page. An owner cannot write a review for his business. A user can also update his review and delete it.</h5> | <img  alt='CRUD3' src="https://user-images.githubusercontent.com/15850286/187742729-74d6beaf-390c-493d-a041-3fe0a1495801.gif" width="750"> |
 
 </details>
 
@@ -100,7 +103,7 @@ HairrKeepers helps its customers find the right hair experts in any city within 
 
 | Description                                                                                                                                                 | Demo                                                                                   |
 | ----------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
-| <h5 align="center">All Features and Services are dynamically loaded from the database and filter the returned list of businesses once set by the user.</h5> | <img src="../client/src/assets/images/ReadMe_Multi-CondFilterFeature.gif" width="500"> |
+| <h5 align="center">All Features and Services are dynamically loaded from the database and filter the returned list of businesses once set by the user.</h5> | <img src="../client/src/assets/images/ReadMe_Multi-CondFilterFeature.gif" width="450"> |
 
 </details>
 

@@ -30,3 +30,12 @@
   text-transform: capitalize;
   color: rgba(0, 0, 0, 0.8);
 }
+
+/* ///////media queries ////////// */
+
+@media screen and (max-width: 575px) {
+  .CardDetails-InfoContainer h2 {
+    line-height: 1;
+    margin-top: 0;
+  }
+}

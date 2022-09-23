@@ -10,7 +10,7 @@ exports.__esModule = true;
 exports.Review = void 0;
 var react_router_dom_1 = require("react-router-dom");
 require("./AddReview.css");
-var isLoggedIn = true;
+var Book_1 = require("../../components/Book");
 exports.Review = function (props) {
     var user = JSON.parse(localStorage.getItem('profile') || 'false').result;
     var stars = __spreadArrays(Array(5)).map(function (star, i) {
@@ -24,5 +24,7 @@ exports.Review = function (props) {
     return (React.createElement(React.Fragment, null,
         React.createElement("div", { className: 'Review-container' },
             React.createElement("div", { className: 'Star-container' }, stars),
-            isLoggedIn ? (user._id !== props.ownerId ? (React.createElement(react_router_dom_1.Link, { to: { pathname: props.id + '/add-review', state: props.name }, className: 'btn--btn-primary review' }, "Leave a Review")) : (React.createElement(react_router_dom_1.Link, { to: '#', className: 'btn--btn-primary review hide' }))) : null)));
+            user && user._id !== props.ownerId ? (React.createElement(React.Fragment, null,
+                React.createElement(react_router_dom_1.Link, { to: { pathname: props.id + '/add-review', state: props.name }, className: 'Btn-Primary review not-owner' }, "Leave a Review"),
+                React.createElement(Book_1.Book, { phone: props.phone }))) : (React.createElement(Book_1.Book, { phone: props.phone })))));
 };

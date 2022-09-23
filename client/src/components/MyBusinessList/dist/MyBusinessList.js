@@ -51,7 +51,7 @@ exports.MyBusinessList = void 0;
 var react_1 = require("react");
 var react_router_dom_1 = require("react-router-dom");
 var Star_1 = require("../../UIElements/Star");
-var About_1 = require("../BusinessDetails/About/About");
+var CardDetails_1 = require("../Card/CardDetails/CardDetails");
 require("../../pages/Profile/Profile.css");
 require("./MyBusinessList.css");
 var MyBusinessReviews_1 = require("../BusinessReviews/MyBusinessReviews");
@@ -129,24 +129,24 @@ exports.MyBusinessList = function () {
                 React.createElement("div", { className: 'Profile-UserContainer Owner' }, isLoading ? (React.createElement(LoadSpinner_1.LoadSpinner, null)) : !list.length ? (React.createElement("div", { className: 'Profile-UserContainer_reviews business' },
                     React.createElement("h4", null, "No Businesses Found"))) : (React.createElement(React.Fragment, null,
                     React.createElement("div", { className: 'Profile-UserContainer_reviews business' },
-                        React.createElement("h4", null, "Your businesses"),
+                        React.createElement("h4", { className: 'MyBusinessList-hed' }, "Your Businesses"),
                         React.createElement("div", { className: 'BusinessCard-container' },
                             list.map(function (business, idx) { return (React.createElement("div", { className: 'BusinessCard ', key: business._id },
-                                React.createElement(About_1.About, { name: business.businessName, description: business.description, image: business.image, address: business.address }),
+                                React.createElement(CardDetails_1.CardDetails, { businessName: business.businessName, description: business.description, image: business.image, address: business.address }),
                                 React.createElement(Star_1.MyStarList, { stars: business.stars, reviews: business.reviews }),
                                 React.createElement("div", { className: 'BusinessCard-buttons' },
-                                    React.createElement("h6", { className: 'btn--btn-primary twoLines business reviews', onClick: function () { return toggleIt(business._id); }, "data-idx": idx, id: business._id }, !selected[business._id]
+                                    React.createElement("h6", { className: 'Btn-Primary twoLines business reviews', onClick: function () { return toggleIt(business._id); }, "data-idx": idx, id: business._id }, !selected[business._id]
                                         ? 'read reviews'
                                         : 'close reviews'),
                                     React.createElement(react_router_dom_1.Link, { to: {
                                             pathname: "/businesses/" + business._id + "/edit-business",
                                             state: business
                                         } },
-                                        React.createElement("h6", { className: 'btn--btn-primary twoLines business' },
+                                        React.createElement("h6", { className: 'Btn-Primary twoLines business' },
                                             "edit ",
                                             React.createElement("br", null),
                                             "business")),
-                                    React.createElement("button", { className: 'btn--btn-primary twoLines business', onClick: function () { return deleteBusiness(business._id); } },
+                                    React.createElement("button", { className: 'Btn-Primary twoLines business', onClick: function () { return deleteBusiness(business._id); } },
                                         "delete ",
                                         React.createElement("br", null),
                                         "business")),
@@ -157,7 +157,7 @@ exports.MyBusinessList = function () {
                             ' '))))),
                 React.createElement("div", { className: 'Profile_links' },
                     React.createElement(react_router_dom_1.Link, { to: '/add-business' },
-                        React.createElement("h6", { className: 'btn--btn-primary twoLines' },
+                        React.createElement("h6", { className: 'Btn-Primary twoLines' },
                             "add a",
                             React.createElement("br", null),
                             " business")))))));

@@ -18,7 +18,7 @@
 }
 .btn-review_small {
   font-size: 1.5rem;
-  cursor: none;
+  cursor: default;
 }
 .btn-review.on,
 .btn-review_small.on {
@@ -40,6 +40,12 @@
   border: 1px solid rgba(0, 0, 0, 0.5);
   width: 85%;
   height: 200px;
+  font-family: 'Roboto', sans-serif;
+  padding: 2rem;
+  line-height: 1.5;
+  padding-top: 1.5rem;
+  max-height: fit-content;
+  margin-top: 0;
 }
 .form-group {
   margin-bottom: 19px;

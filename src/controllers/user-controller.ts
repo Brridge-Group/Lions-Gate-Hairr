@@ -67,7 +67,6 @@ export const signup = async (req: Request, res: Response) => {
       'jwtSecret',
       { expiresIn: '1h' }
     )
-    console.log(`User registered:${result} and Token: ${token}`)
     res.status(200).json({ result, token })
   } catch (err) {
     console.log(err)

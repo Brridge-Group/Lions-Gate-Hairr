@@ -60,7 +60,7 @@ export const FilterServicesAndFeatures = (props: Props) => {
   }
   // console.log('filteredServices onChange', filteredServices)
 
-  const handleResetFilter = (): any => {
+  const handleResetFilter = (): void => {
     //* Create an object of checkboxes
     let objectCheckboxes = document.getElementsByClassName('Filters-FormCheckInput')
 

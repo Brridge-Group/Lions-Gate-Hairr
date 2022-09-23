@@ -3,7 +3,8 @@ import { UserImage } from '../../../components/ImageFigure/UserImage'
 import { toast } from 'react-toastify'
 import { NavLink } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
-import { useHistory } from 'react-router-dom'
+import {AxiosError} from 'axios';
+import { useHistory, RouteComponentProps } from 'react-router-dom'
 import { AUTH } from '../../../constants/actionTypes'
 import * as api from '../../../api/index'
 import './UserRegistration.css'
@@ -11,16 +12,21 @@ import '../../Profile/Profile.css'
 
 import 'react-toastify/dist/ReactToastify.css'
 import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai'
+import { Dispatch } from 'redux'
 
 interface UserRegistration {
   onClick: React.MouseEventHandler<HTMLButtonElement>
+}
+
+export function isAxiosError(e: any):e is AxiosError {
+  return e.isAxiosError === true;
 }
 
 require('dotenv').config()
 toast.configure()
 
 export const UserRegistration = () => {
-  const [userData, setUserData] = useState({
+  const [userData, setUserData] = useState<api.UserData>({
     role: 'user',
     imageProfile: 'https://imgur.com/LDpwLVZ.jpg',
   })
@@ -33,7 +39,7 @@ export const UserRegistration = () => {
   const history = useHistory()
 
   const signup =
-    (formData: any, history: any, errorM?: any) => async (dispatch: any) => {
+    (formData: api.UserData, history: RouteComponentProps['history'], errorM?: any) => async (dispatch: Dispatch):Promise<void> => {
       try {
         // sign up the user
         const { data } = await api.signUp(userData)
@@ -41,9 +47,14 @@ export const UserRegistration = () => {
         userData.role === 'user'
           ? history.push('/')
           : history.push('/add-business')
-      } catch (err: any) {
-        errorM = err.response.data
-        toast(errorM)
+      } catch (err : any) {
+        if(isAxiosError(err)){
+          errorM = err.response?.data
+          toast(errorM)
+        }
+        errorM = "Something wrong in creating a new user, try  later"
+        console.log("Something wrong in creating a user(UserRegistration.tsx) which is not axios error: ", err)
+        toast(errorM);
       }
     }
 
@@ -51,13 +62,13 @@ export const UserRegistration = () => {
     setShowPassword(!showPassword)
   }
 
-  const onImageChange = async (e: any) => {
+  const onImageChange = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-
-    if (e.target.files && e.target.files[0]) {
+    const result = (e.target as HTMLInputElement).files;
+    if (result && result[0]) {
       setImageSelected(true)
       const maxFileSize = 2097067 //2mb
-      const file = e.target.files[0]
+      const file = result[0]
 
       if (file.type.match('image.*')) {
         if (file.size > maxFileSize) {
@@ -84,14 +95,14 @@ export const UserRegistration = () => {
     }
   }
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     dispatch(signup(userData, history))
   }
 
-  const handleChange = (e: any) => {
+  const handleChange = (e: React.FormEvent<HTMLInputElement>) => {
     // console.log(e.target.value)
-    setUserData({ ...userData, [e.target.name]: e.target.value })
+    setUserData({ ...userData, [e.currentTarget.name]: e.currentTarget.value })
   }
 
   return (

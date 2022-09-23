@@ -50,20 +50,24 @@ h5.features:last-child {
   overflow: hidden;
   padding-bottom: 0;
 }
+
 .BusinessDetails-buttons {
   display: flex;
   flex-direction: column;
 }
-.Btn-Primary.review.book,
+.Btn-Primary.review,
 .phoneNumber {
   align-self: center;
   margin-left: 50px;
-  margin-top: -42px;
 }
+
+.Btn-Primary.review.not-owner {
+  margin-top: 0;
+}
+
 .phoneNumber {
-  margin-top: -30px;
   margin-left: 65px;
-  margin-bottom: 11px;
+  margin-bottom: 7px;
 }
 .BusinessDetails_reviews h4 {
   border-top: 1px solid #f32dc8;
@@ -76,7 +80,10 @@ h5.features:last-child {
   margin-top: 3rem;
 }
 .BusinessDetails_reviews {
-  height: 41%;
+  height: 60%;
+}
+.BusinessDetails-buttons + .BusinessDetails_reviews h4 {
+  margin-bottom: 0;
 }
 
 /** Media Queries **/
@@ -119,5 +126,8 @@ h5.features:last-child {
   .Btn-Primary.review.book,
   .phoneNumber {
     align-self: flex-end;
+  }
+  .Btn-Primary.review {
+    margin-left: 0;
   }
 }

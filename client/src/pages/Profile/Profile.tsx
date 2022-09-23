@@ -33,7 +33,7 @@ export const Profile = () => {
     setLoading(false)
   }, [])
 
-  const deleteReview = async (id: any) => {
+  const deleteReview = async (id: string) => {
     try {
       axios
         .delete(`api/reviews/${id}`, { data: { profileId: _id } })

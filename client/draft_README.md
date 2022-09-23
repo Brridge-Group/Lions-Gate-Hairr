@@ -23,8 +23,6 @@
 
 </a>
 
-
-
 <a href='https://img.shields.io/github/stars/Brridge-Group/Lions-Gate-Hairr?style=social&logo&logoColor=f32dc8'>
 
 ![GitHub forks](https://img.shields.io/github/forks/Brridge-Group/Lions-Gate-Hairr?style=social&logo&logoColor=f32dc8)
@@ -47,29 +45,18 @@ HairrKeepers helps its customers find the right hair experts in any city within 
 
  <!-- TODO: [ ] - Pending ERD image update highlighting required database elements by Sergio -->
 
-| Description                 | Screenshot                                                                |
-| --------------------------- | ------------------------------------------------------------------------- |
+| Description                                                | Screenshot                                                        |
+| ---------------------------------------------------------- | ----------------------------------------------------------------- |
 | <h3 align="center"> Entity Relationship Diagram (ERD)</h3> | <img src="../client/src/assets/images//ERD.MYC.png"  width="700"> |
 
 </details>
 
 <details>
- <summary> 🎨 Wireframes</summary>
+ <summary> 🎨 Figma Mockup Designs by Cynthia Eddy</summary>
 
-  <!-- TODO: [ ] - Requesting Section Completion By Cynthia -->
-
-| Description                                | Screenshot                                                                      |
-| ------------------------------------------ | ------------------------------------------------------------------------------- |
-| Desktop Layout                             | Device Size Ranges: 540 - 990 Max                                               |
-| <h3 align="center">Home Page</h3>          | <img src="../client/src/assets/images/ReadMe_HomePage.jpg"  width="500">        |
-| <h3 align="center">Profile Page User</h3>  | <img src="../client/src/assets/images/ReadMe_ProfilePageUser.jpg" width="500">  |
-| <h3 align="center">Profile Page Owner</h3> | <img src="../client/src/assets/images/ReadMe_ProfilePageOwner.jpg" width="500"> |
-
-| Description                                             | Screenshot Screenshot                                                                      |
-| ------------------------------------------------------- | ------------------------------------------------------------------------------------------ |
-| Mobile Layout                                           | Device Size Ranges: 340 - 540 Max                                                          |
-| <h3 align="center">Home Page & Hamburger Menu Open</h3> | <img src="../client/src/assets/images/ReadMe_MobileHomePage&Menu.jpg"  width="500">        |
-| <h3 align="center">Profile Page User & Owner</h3>       | <img src="../client/src/assets/images/ReadMe_MobileProfilePageUser&Owner.jpg" width="500"> |
+| Description                                                                                     | Screenshot                                            |
+| ----------------------------------------------------------------------------------------------- | ----------------------------------------------------- |
+| <h3 align="center">Desktop and Mobile Layout</h3> <h5 align="center">Initial Figma version</h5> | <img src="../client/src/assets/images/figmaNew.png" > |
 
 </details>
 <!-- <details open> -->
@@ -89,26 +76,29 @@ HairrKeepers helps its customers find the right hair experts in any city within 
  <summary> ✨ Features & Code Snippets</summary>
 
 <details>
-<!-- TODO: [ ] - Requesting Section Completion, Edition and or Addition, By Cynthia && Sergio -->
 <summary>Responsivity</summary>
 
-<h5 align="center">Feature Description</h5>
+<h3 align="center">Desktop and Mobile</h3>
 
-| Description                 | Demo                                                            |
-| --------------------------- | --------------------------------------------------------------------- |
-| <h3 align="center">TBD</h3> | <img src="../client/src/assets/images/comingSoonAlt.jpg" width="500"> |
+| Description                                                                                                                                                                                               | Demo                                                                                                                          |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
+| <h5 align="center">Overall layout is reliant on css Grid which allows fluid scaling, and css Flexbox within. Breakpoint for mobile 575 max. Hamburger and modal menus are present in mobile version.</h5> | <img src="https://user-images.githubusercontent.com/15850286/187746534-6fa1c363-a50b-4304-bb28-e178f7451b6c.gif" width="700"> |
 
 </details>
-<!-- TODO: [ ] - Requesting Section Completion, Edition and or Addition, By Cynthia && Sergio -->
 
 <details>
 <summary>CRUD Functionality</summary>
+ <h3 align="center" >Reviews</h3>
 
-<h5 align="center">Feature Description</h5>
+| Description                                                                                                                                                                                                                            | Demo                                                                                                                                       |
+| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
+| <h5 align="center">Signed in user creates a review that is reflected in their profile, business list and details business page. An owner cannot write a review for his business. A user can also update his review and delete it.</h5> | <img  alt='CRUD3' src="https://user-images.githubusercontent.com/15850286/187742729-74d6beaf-390c-493d-a041-3fe0a1495801.gif" width="750"> |
 
-| Description                 | Demo                                                            |
-| --------------------------- | --------------------------------------------------------------------- |
-| <h3 align="center">TBD</h3> | <img src="../client/src/assets/images/crud.png" width="500"> |
+ <h3 align="center" >Diagram of all CRUD </h3>
+
+| Description                                                                        | Screenshot                                                     |
+| ---------------------------------------------------------------------------------- | -------------------------------------------------------------- |
+| <h5 align="center" >Models are Business, User, Review, Services and Features.</h5> | <img src="../client/src/assets/images//crud.png"  width="700"> |
 
 </details>
 
@@ -117,9 +107,9 @@ HairrKeepers helps its customers find the right hair experts in any city within 
 <summary>Multi-Conditional Filter Functionality</summary>
 <h3 align="center">Features and Services Filter</h3>
 
-| Description                 | Demo                                                            |
-| --------------------------- | --------------------------------------------------------------------- |
-| <h5 align="center">All Features and Services are dynamically loaded from the database and filter the returned list of businesses once set by the user.</h5> | <img src="../client/src/assets/images/ReadMe_Multi-CondFilterFeature.gif" width="500"> |
+| Description                                                                                                                                                 | Demo                                                                                   |
+| ----------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| <h5 align="center">All Features and Services are dynamically loaded from the database and filter the returned list of businesses once set by the user.</h5> | <img src="../client/src/assets/images/ReadMe_Multi-CondFilterFeature.gif" width="450"> |
 
 </details>
 
@@ -312,19 +302,19 @@ Gratitude to the following people who have contributed to this project:
 
 </div>
 <h3>Cynthia Eddy</h3>
-<a href="mailto:[email]@[provider]" target="_blank">
-    <img src="https://img.shields.io/badge/-[email_address]-c14438?style=flat&logo=Gmail&logoColor=white">
+<a href="mailto:cynthiaeddynyc@gmail.com" target="_blank">
+    <img src="https://img.shields.io/badge/-cynthiaeddynyc@gmail.com-c14438?style=flat&logo=Gmail&logoColor=white">
  </a>
 <div style='display: flex; justify-content: center; gap: .5rem'>
 
-<a href="https://www.linkedin.com/in/username" target="_blank">
+<a href="https://www.linkedin.com/in/cynthiaeddy" target="_blank">
       <img src="https://img.shields.io/badge/Cynthia Eddy-blue?style=flat&logo=Linkedin&logoColor=f32dc8">
  </a>
 
 [@cynthiaeddy](https://github.com/cynthiaeddy)
 
-<a href="https://[username]g.github.io/portfolio" target="_blank">
-    <img src="https://img.shields.io/badge/[username]github.io/portfolio-gold?style=flat&logo=github"
+<a href="https://cynthiaeddy.netlify.app" target="_blank">
+    <img src="https://img.shields.io/badge/cynthiaeddy-gold?style=flat&logo=github"
 
 </a>
 
@@ -375,9 +365,8 @@ Gratitude to the following people who have contributed to this project:
  </a>
 <div style='display: flex; justify-content: center; gap: .5rem'>
 
-<a href="https://www.linkedin.com/in/sergio-btos" target="_blank">
-      <img src="https://img.shields.io/badge/Sergio Silvay-blue?style=flat&logo=Linkedin&logoColor=f32dc8">
- </a>
+<a href="https://www.linkedin.com/in/sergio-btos" target="_blank"> <img src="https://img.shields.io/badge/Sergio Silvay-blue?style=flat&logo=Linkedin&logoColor=f32dc8">
+</a>
 
 [@sergiobtos](https://github.com/sergiobtos)
 

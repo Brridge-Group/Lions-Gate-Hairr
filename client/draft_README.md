@@ -45,11 +45,11 @@ HairrKeepers helps its customers find the right hair experts in any city within 
 <details>
  <summary> 📊 ERD</summary>
 
- <!-- TODO: [ ] - Requesting Section Completion By Sergio -->
+ <!-- TODO: [ ] - Pending ERD image update highlighting required database elements by Sergio -->
 
 | Description                 | Screenshot                                                                |
 | --------------------------- | ------------------------------------------------------------------------- |
-| <h3 align="center">ERD</h3> | <img src="../client/src/assets/images//Example_ERD.MYC.png"  width="500"> |
+| <h3 align="center"> Entity Relationship Diagram (ERD)</h3> | <img src="../client/src/assets/images//ERD.MYC.png"  width="700"> |
 
 </details>
 
@@ -108,7 +108,7 @@ HairrKeepers helps its customers find the right hair experts in any city within 
 
 | Description                 | Demo                                                            |
 | --------------------------- | --------------------------------------------------------------------- |
-| <h3 align="center">TBD</h3> | <img src="../client/src/assets/images/comingSoonAlt.jpg" width="500"> |
+| <h3 align="center">TBD</h3> | <img src="../client/src/assets/images/crud.png" width="500"> |
 
 </details>
 
@@ -370,19 +370,19 @@ Gratitude to the following people who have contributed to this project:
 </div>
 
 <h3>Sergio Silva</h3>
-<a href="mailto:[email]@[provider]" target="_blank">
+<a href="mailto:sergiobtos@hotmail.com" target="_blank">
     <img src="https://img.shields.io/badge/-[email_address]-c14438?style=flat&logo=Gmail&logoColor=white">
  </a>
 <div style='display: flex; justify-content: center; gap: .5rem'>
 
-<a href="https://www.linkedin.com/in/username" target="_blank">
+<a href="https://www.linkedin.com/in/sergio-btos" target="_blank">
       <img src="https://img.shields.io/badge/Sergio Silvay-blue?style=flat&logo=Linkedin&logoColor=f32dc8">
  </a>
 
 [@sergiobtos](https://github.com/sergiobtos)
 
-<a href="https://[username]g.github.io/portfolio" target="_blank">
-    <img src="https://img.shields.io/badge/[username]github.io/portfolio-gold?style=flat&logo=github"
+<a href="https://github.com/sergiobtos" target="_blank">
+    <img src="https://img.shields.io/badge/sergiobtos.github.io/portfolio-gold?style=flat&logo=github"
 
 </a>
 
